@@ -1,0 +1,67 @@
+# Code
+
+
+## Values
+
+| Name                             | Value                            |
+| -------------------------------- | -------------------------------- |
+| `VerificationError`              | verification_error               |
+| `UnknownStreetLower`             | unknown_street                   |
+| `ComponentMismatchError`         | component_mismatch_error         |
+| `MultipleMatch`                  | multiple_match                   |
+| `SubPremiseNumberInvalid`        | sub_premise_number_invalid       |
+| `SubPremiseNumberMissing`        | sub_premise_number_missing       |
+| `PremiseNumberInvalid`           | premise_number_invalid           |
+| `PremiseNumberMissing`           | premise_number_missing           |
+| `BoxNumberInvalid`               | box_number_invalid               |
+| `BoxNumberMissing`               | box_number_missing               |
+| `PmbNumberMissing`               | pmb_number_missing               |
+| `PostalCodeChange`               | postal_code_change               |
+| `AdministrativeAreaChange`       | administrative_area_change       |
+| `LocalityChange`                 | locality_change                  |
+| `DependentLocalityChange`        | dependent_locality_change        |
+| `StreetNameChange`               | street_name_change               |
+| `StreetTypeChange`               | street_type_change               |
+| `StreetDirectionalChange`        | street_directional_change        |
+| `SubPremiseTypeChange`           | sub_premise_type_change          |
+| `SubPremiseNumberChange`         | sub_premise_number_change        |
+| `DoubleDependentLocalityChange`  | double_dependent_locality_change |
+| `SubadministrativeAreaChange`    | subadministrative_area_change    |
+| `SubnationalAreaChange`          | subnational_area_change          |
+| `PoBoxChange`                    | po_box_change                    |
+| `PremiseTypeChange`              | premise_type_change              |
+| `HouseNumberChange`              | house_number_change              |
+| `OrganizationChange`             | organization_change              |
+| `ExtraneousInformation`          | extraneous_information           |
+| `UspsDoorInaccessible`           | usps_door_inaccessible           |
+| `AdministrativeAreaPartial`      | administrative_area_partial      |
+| `CityPartial`                    | city_partial                     |
+| `StreetPartial`                  | street_partial                   |
+| `BuildingPartial`                | building_partial                 |
+| `SubpremisePartial`              | subpremise_partial               |
+| `AdministrativeAreaFull`         | administrative_area_full         |
+| `CityFull`                       | city_full                        |
+| `ThoroughfareFull`               | thoroughfare_full                |
+| `PremisesFull`                   | premises_full                    |
+| `SubpremiseFull`                 | subpremise_full                  |
+| `GeocodedStreet`                 | geocoded_street                  |
+| `GeocodedNeighborhood`           | geocoded_neighborhood            |
+| `GeocodedCommunity`              | geocoded_community               |
+| `GeocodedState`                  | geocoded_state                   |
+| `GeocodedRooftop`                | geocoded_rooftop                 |
+| `GeocodedInterpolatedRooftop`    | geocoded_interpolated_rooftop    |
+| `InvalidPostalCode`              | invalid_postal_code              |
+| `PostalCodeNotFound`             | postal_code_not_found            |
+| `EmptyRequest`                   | empty_request                    |
+| `ServiceError`                   | service_error                    |
+| `StreetDetailMissing`            | street_detail_missing            |
+| `InvalidCityStateZip`            | Invalid City/State/Zip           |
+| `DefaultMatch`                   | Default Match                    |
+| `UnknownStreetMixed`             | Unknown Street                   |
+| `AddressNotFound`                | Address Not Found                |
+| `NonDeliverableZip4`             | Non-Deliverable ZIP4             |
+| `MultipleResponses`              | Multiple Responses               |
+| `InvalidDualAddress`             | Invalid Dual Address             |
+| `InvalidState`                   | Invalid State                    |
+| `InvalidCity`                    | Invalid City                     |
+| `AmbiguousAddress`               | Ambiguous Address                |

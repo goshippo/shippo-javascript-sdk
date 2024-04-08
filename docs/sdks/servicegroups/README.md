@@ -1,0 +1,231 @@
+# ServiceGroups
+(*serviceGroups*)
+
+## Overview
+
+A service group is a set of service levels grouped together. 
+Rates at checkout uses services groups to present available shipping options to customers in their shopping basket.
+<SchemaDefinition schemaRef="#/components/schemas/ServiceGroup"/>
+
+### Available Operations
+
+* [list](#list) - List all service groups
+* [create](#create) - Create a new service group
+* [update](#update) - Update an existing service group
+* [delete](#delete) - Delete a service group
+
+## list
+
+Returns a list of service group objects.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const shippoApiVersion = "2018-02-08";
+  
+  const result = await sdk.serviceGroups.list(shippoApiVersion);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.ListServiceGroupsResponse](../../models/operations/listservicegroupsresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## create
+
+Creates a new service group.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+import { ServiceGroupType } from "shippo/models/components";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const shippoApiVersion = "2018-02-08";
+  const serviceGroupCreateRequest = {
+    description: "USPS shipping options",
+    flatRate: "5",
+    flatRateCurrency: "USD",
+    freeShippingThresholdCurrency: "USD",
+    freeShippingThresholdMin: "5",
+    name: "USPS Shipping",
+    rateAdjustment: 15,
+    type: ServiceGroupType.FlatRate,
+    serviceLevels: [
+      {
+        accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
+        serviceLevelToken: "ups_next_day_air_saver",
+      },
+    ],
+  };
+  
+  const result = await sdk.serviceGroups.create(shippoApiVersion, serviceGroupCreateRequest);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `serviceGroupCreateRequest`                                                                                                                                                    | [components.ServiceGroupCreateRequest](../../models/components/servicegroupcreaterequest.md)                                                                                   | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.CreateServiceGroupResponse](../../models/operations/createservicegroupresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## update
+
+Updates an existing service group object. <br>The object_id cannot be updated as it is the unique identifier for the object.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+import { ServiceGroupType } from "shippo/models/components";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const shippoApiVersion = "2018-02-08";
+  const serviceGroupUpdateRequest = {
+    description: "USPS shipping options",
+    flatRate: "5",
+    flatRateCurrency: "USD",
+    freeShippingThresholdCurrency: "USD",
+    freeShippingThresholdMin: "5",
+    name: "USPS Shipping",
+    rateAdjustment: 15,
+    type: ServiceGroupType.FlatRate,
+    objectId: "80feb1633d4a43c898f005850",
+    isActive: true,
+    serviceLevels: [
+      {
+        accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
+        serviceLevelToken: "ups_next_day_air_saver",
+      },
+    ],
+  };
+  
+  const result = await sdk.serviceGroups.update(shippoApiVersion, serviceGroupUpdateRequest);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `serviceGroupUpdateRequest`                                                                                                                                                    | [components.ServiceGroupUpdateRequest](../../models/components/servicegroupupdaterequest.md)                                                                                   | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.UpdateServiceGroupResponse](../../models/operations/updateservicegroupresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## delete
+
+Deletes an existing service group using an object ID.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const serviceGroupId = "<value>";
+  const shippoApiVersion = "2018-02-08";
+  
+  const result = await sdk.serviceGroups.delete(serviceGroupId, shippoApiVersion);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `serviceGroupId`                                                                                                                                                               | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the service group                                                                                                                                                 |                                                                                                                                                                                |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.DeleteServiceGroupResponse](../../models/operations/deleteservicegroupresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |

@@ -1,0 +1,87 @@
+# Pickups
+(*pickups*)
+
+## Overview
+
+A pickup is when you schedule a carrier to collect a package for delivery.
+Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.
+<SchemaDefinition schemaRef="#/components/schemas/Pickup"/>
+
+### Available Operations
+
+* [create](#create) - Create a pickup
+
+## create
+
+Creates a pickup object. This request is for a carrier to come to a specified location to take a package for shipping.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+import { BuildingLocationType, BuildingType } from "shippo/models/components";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const shippoApiVersion = "2018-02-08";
+  const pickupBase = {
+    carrierAccount: "adcfdddf8ec64b84ad22772bce3ea37a",
+    location: {
+      address: {
+        name: "Shwan Ippotle",
+        company: "Shippo",
+        street1: "215 Clayton St.",
+        street3: "",
+        streetNo: "",
+        city: "San Francisco",
+        state: "CA",
+        zip: "94117",
+        country: "US",
+        phone: "+1 555 341 9393",
+        email: "shippotle@shippo.com",
+        isResidential: true,
+        metadata: "Customer ID 123456",
+        validate: true,
+      },
+      buildingLocationType: BuildingLocationType.FrontDoor,
+      buildingType: BuildingType.Apartment,
+      instructions: "Behind screen door",
+    },
+    requestedEndTime: new Date("2023-06-18T07:14:55.676Z"),
+    requestedStartTime: new Date("2023-06-21T08:42:38.998Z"),
+    transactions: [
+      "adcfdddf8ec64b84ad22772bce3ea37a",
+    ],
+  };
+  
+  const result = await sdk.pickups.create(shippoApiVersion, pickupBase);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `pickupBase`                                                                                                                                                                   | [components.PickupBase](../../models/components/pickupbase.md)                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Shippo’s pickups endpoint allows you to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.                                       |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.CreatePickupResponse](../../models/operations/createpickupresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |

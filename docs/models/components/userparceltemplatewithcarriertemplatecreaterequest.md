@@ -1,0 +1,10 @@
+# UserParcelTemplateWithCarrierTemplateCreateRequest
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `template`                                                                  | *string*                                                                    | :heavy_minus_sign:                                                          | The object representing the carrier parcel template                         |                                                                             |
+| `weight`                                                                    | *string*                                                                    | :heavy_minus_sign:                                                          | The weight of the package, in units specified by the weight_unit attribute. | 12                                                                          |
+| `weightUnit`                                                                | [components.WeightUnit](../../models/components/weightunit.md)              | :heavy_minus_sign:                                                          | The unit used for weight.                                                   | lb                                                                          |

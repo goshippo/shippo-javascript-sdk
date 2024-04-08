@@ -1,0 +1,9 @@
+# ListCustomsDeclarationsResponse
+
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `httpMeta`                                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                       | :heavy_check_mark:                                                                                       | N/A                                                                                                      |
+| `customsDeclarationPaginatedList`                                                                        | [components.CustomsDeclarationPaginatedList](../../models/components/customsdeclarationpaginatedlist.md) | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |

@@ -1,0 +1,270 @@
+# UserParcelTemplates
+(*userParcelTemplates*)
+
+## Overview
+
+A user parcel template represents a package used for shipping that has preset dimensions and attributes defined 
+by you. They are useful for capturing attributes of parcel-types you frequently use for shipping, allowing 
+them to be defined once and then used for many shipments. These parcel templates can also be used for live rates.
+
+User parcel templates can also be created using a carrier parcel template, where the dimensions will be copied from 
+the carrier presets, but the weight can be configured by you.
+<SchemaDefinition schemaRef="#/components/schemas/UserParcelTemplate"/>
+
+### Available Operations
+
+* [list](#list) - List all user parcel templates
+* [create](#create) - Create a new user parcel template
+* [delete](#delete) - Delete a user parcel template
+* [get](#get) - Retrieves a user parcel template
+* [update](#update) - Update an existing user parcel template
+
+## list
+
+Returns a list all of all user parcel template objects.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const shippoApiVersion = "2018-02-08";
+  
+  const result = await sdk.userParcelTemplates.list(shippoApiVersion);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.ListUserParcelTemplatesResponse](../../models/operations/listuserparceltemplatesresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## create
+
+Creates a new user parcel template. <br>You can choose to create a
+parcel template using a preset carrier template as a starting point, or
+you can create an entirely custom one. To use a preset carrier template,
+pass in a unique template token from <a href="#tag/Parcel-Templates">this list</a>
+plus the weight fields (**weight** and **weight_unit**). Otherwise, omit
+the template field and pass the other fields, for the weight, length, height,
+and depth, as well as their units."
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+import { WeightUnit } from "shippo/models/components";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const shippoApiVersion = "2018-02-08";
+  const userParcelTemplateCreateRequest = {
+      weight: "12",
+      weightUnit: WeightUnit.Lb,
+    };
+  
+  const result = await sdk.userParcelTemplates.create(shippoApiVersion, userParcelTemplateCreateRequest);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `userParcelTemplateCreateRequest`                                                                                                                                              | *components.UserParcelTemplateCreateRequest*                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.CreateUserParcelTemplateResponse](../../models/operations/createuserparceltemplateresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## delete
+
+Deletes a user parcel template using an object ID.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const userParcelTemplateObjectId = "<value>";
+  const shippoApiVersion = "2018-02-08";
+  
+  const result = await sdk.userParcelTemplates.delete(userParcelTemplateObjectId, shippoApiVersion);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `userParcelTemplateObjectId`                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the user parcel template                                                                                                                                          |                                                                                                                                                                                |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.DeleteUserParcelTemplateResponse](../../models/operations/deleteuserparceltemplateresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## get
+
+Returns the parcel template information for a specific user parcel
+template, identified by the object ID.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const userParcelTemplateObjectId = "<value>";
+  const shippoApiVersion = "2018-02-08";
+  
+  const result = await sdk.userParcelTemplates.get(userParcelTemplateObjectId, shippoApiVersion);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `userParcelTemplateObjectId`                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the user parcel template                                                                                                                                          |                                                                                                                                                                                |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.GetUserParcelTemplateResponse](../../models/operations/getuserparceltemplateresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## update
+
+Updates an existing user parcel template.
+
+### Example Usage
+
+```typescript
+import { Shippo } from "shippo";
+import { DistanceUnit, WeightUnit } from "shippo/models/components";
+
+async function run() {
+  const sdk = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+  });
+
+  const userParcelTemplateObjectId = "<value>";
+  const shippoApiVersion = "2018-02-08";
+  const userParcelTemplateUpdateRequest = {
+    distanceUnit: DistanceUnit.In,
+    height: "6",
+    length: "10",
+    name: "My Custom Template",
+    weight: "12",
+    weightUnit: WeightUnit.Lb,
+    width: "8",
+  };
+  
+  const result = await sdk.userParcelTemplates.update(userParcelTemplateObjectId, shippoApiVersion, userParcelTemplateUpdateRequest);
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `userParcelTemplateObjectId`                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the user parcel template                                                                                                                                          |                                                                                                                                                                                |
+| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
+| `userParcelTemplateUpdateRequest`                                                                                                                                              | [components.UserParcelTemplateUpdateRequest](../../models/components/userparceltemplateupdaterequest.md)                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+
+
+### Response
+
+**Promise<[operations.UpdateUserParcelTemplateResponse](../../models/operations/updateuserparceltemplateresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
