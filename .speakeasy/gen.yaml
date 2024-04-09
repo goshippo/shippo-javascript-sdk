@@ -15,7 +15,9 @@ typescript:
   version: 0.0.1
   additionalDependencies:
     dependencies: {}
-    devDependencies: {}
+    devDependencies:
+      chai: "^5.1.0"
+      mocha: "^10.4.0"
     peerDependencies: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
