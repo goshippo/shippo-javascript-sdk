@@ -64,7 +64,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListOrdersResponse](../../models/operations/listordersresponse.md)>**
+**Promise<[components.OrderPaginatedList](../../models/components/orderpaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -172,7 +172,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateOrderResponse](../../models/operations/createorderresponse.md)>**
+**Promise<[components.Order](../../models/components/order.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -218,7 +218,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetOrderResponse](../../models/operations/getorderresponse.md)>**
+**Promise<[components.Order](../../models/components/order.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

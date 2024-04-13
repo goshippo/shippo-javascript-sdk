@@ -49,7 +49,7 @@ export class Refunds extends ClientSDK {
         shippoApiVersion?: string | undefined,
         refundRequestBody?: components.RefundRequestBody | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateRefundResponse> {
+    ): Promise<components.Refund> {
         const input$: operations.CreateRefundRequest = {
             shippoApiVersion: shippoApiVersion,
             refundRequestBody: refundRequestBody,
@@ -109,28 +109,19 @@ export class Refunds extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateRefundResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Refund: val$,
-                    });
+                    return components.Refund$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -143,7 +134,7 @@ export class Refunds extends ClientSDK {
     async list(
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListRefundsResponse> {
+    ): Promise<components.RefundPaginatedList> {
         const input$: operations.ListRefundsRequest = {
             shippoApiVersion: shippoApiVersion,
         };
@@ -201,28 +192,19 @@ export class Refunds extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListRefundsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        RefundPaginatedList: val$,
-                    });
+                    return components.RefundPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -236,7 +218,7 @@ export class Refunds extends ClientSDK {
         refundId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetRefundResponse> {
+    ): Promise<components.Refund> {
         const input$: operations.GetRefundRequest = {
             refundId: refundId,
             shippoApiVersion: shippoApiVersion,
@@ -301,28 +283,19 @@ export class Refunds extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetRefundResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Refund: val$,
-                    });
+                    return components.Refund$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

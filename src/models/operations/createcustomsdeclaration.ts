@@ -16,11 +16,6 @@ export type CreateCustomsDeclarationRequest = {
     customsDeclarationCreateRequest?: components.CustomsDeclarationCreateRequest | undefined;
 };
 
-export type CreateCustomsDeclarationResponse = {
-    httpMeta: components.HTTPMetadata;
-    customsDeclaration?: components.CustomsDeclaration | undefined;
-};
-
 /** @internal */
 export namespace CreateCustomsDeclarationRequest$ {
     export type Inbound = {
@@ -73,52 +68,6 @@ export namespace CreateCustomsDeclarationRequest$ {
                 ...(v.customsDeclarationCreateRequest === undefined
                     ? null
                     : { CustomsDeclarationCreateRequest: v.customsDeclarationCreateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateCustomsDeclarationResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CustomsDeclaration?: components.CustomsDeclaration$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateCustomsDeclarationResponse, z.ZodTypeDef, Inbound> =
-        z
-            .object({
-                HttpMeta: components.HTTPMetadata$.inboundSchema,
-                CustomsDeclaration: components.CustomsDeclaration$.inboundSchema.optional(),
-            })
-            .transform((v) => {
-                return {
-                    httpMeta: v.HttpMeta,
-                    ...(v.CustomsDeclaration === undefined
-                        ? null
-                        : { customsDeclaration: v.CustomsDeclaration }),
-                };
-            });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CustomsDeclaration?: components.CustomsDeclaration$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        CreateCustomsDeclarationResponse
-    > = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            customsDeclaration: components.CustomsDeclaration$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.customsDeclaration === undefined
-                    ? null
-                    : { CustomsDeclaration: v.customsDeclaration }),
             };
         });
 }

@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListAddressesResponse](../../models/operations/listaddressesresponse.md)>**
+**Promise<[components.AddressPaginatedList](../../models/components/addresspaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -115,7 +115,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateAddressResponse](../../models/operations/createaddressresponse.md)>**
+**Promise<[components.Address](../../models/components/address.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -161,7 +161,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetAddressResponse](../../models/operations/getaddressresponse.md)>**
+**Promise<[components.Address](../../models/components/address.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -207,7 +207,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ValidateAddressResponse](../../models/operations/validateaddressresponse.md)>**
+**Promise<[components.Address](../../models/components/address.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

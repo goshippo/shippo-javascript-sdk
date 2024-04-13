@@ -16,11 +16,6 @@ export type CreatePickupRequest = {
     pickupBase?: components.PickupBase | undefined;
 };
 
-export type CreatePickupResponse = {
-    httpMeta: components.HTTPMetadata;
-    pickup?: components.Pickup | undefined;
-};
-
 /** @internal */
 export namespace CreatePickupRequest$ {
     export type Inbound = {
@@ -58,43 +53,6 @@ export namespace CreatePickupRequest$ {
                     ? null
                     : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
                 ...(v.pickupBase === undefined ? null : { PickupBase: v.pickupBase }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreatePickupResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Pickup?: components.Pickup$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreatePickupResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Pickup: components.Pickup$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Pickup === undefined ? null : { pickup: v.Pickup }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Pickup?: components.Pickup$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreatePickupResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            pickup: components.Pickup$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.pickup === undefined ? null : { Pickup: v.pickup }),
             };
         });
 }

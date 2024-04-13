@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListCarrierParcelTemplatesResponse](../../models/operations/listcarrierparceltemplatesresponse.md)>**
+**Promise<[components.CarrierParcelTemplate[]](../../models/.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -100,7 +100,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetCarrierParcelTemplateResponse](../../models/operations/getcarrierparceltemplateresponse.md)>**
+**Promise<[components.CarrierParcelTemplate](../../models/components/carrierparceltemplate.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -63,7 +63,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTrackResponse](../../models/operations/createtrackresponse.md)>**
+**Promise<[components.Track](../../models/components/track.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -112,7 +112,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTrackResponse](../../models/operations/gettrackresponse.md)>**
+**Promise<[components.Track](../../models/components/track.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

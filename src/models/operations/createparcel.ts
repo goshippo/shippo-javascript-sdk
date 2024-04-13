@@ -16,11 +16,6 @@ export type CreateParcelRequest = {
     parcelRequest?: components.ParcelRequest | undefined;
 };
 
-export type CreateParcelResponse = {
-    httpMeta: components.HTTPMetadata;
-    parcel?: components.Parcel | undefined;
-};
-
 /** @internal */
 export namespace CreateParcelRequest$ {
     export type Inbound = {
@@ -58,43 +53,6 @@ export namespace CreateParcelRequest$ {
                     ? null
                     : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
                 ...(v.parcelRequest === undefined ? null : { ParcelRequest: v.parcelRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateParcelResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Parcel?: components.Parcel$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateParcelResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Parcel: components.Parcel$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Parcel === undefined ? null : { parcel: v.Parcel }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Parcel?: components.Parcel$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateParcelResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            parcel: components.Parcel$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.parcel === undefined ? null : { Parcel: v.parcel }),
             };
         });
 }

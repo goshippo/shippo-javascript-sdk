@@ -50,7 +50,7 @@ export class Addresses extends ClientSDK {
         results?: number | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListAddressesResponse> {
+    ): Promise<components.AddressPaginatedList> {
         const input$: operations.ListAddressesRequest = {
             page: page,
             results: results,
@@ -118,28 +118,19 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListAddressesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AddressPaginatedList: val$,
-                    });
+                    return components.AddressPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -153,7 +144,7 @@ export class Addresses extends ClientSDK {
         shippoApiVersion?: string | undefined,
         addressCreateRequest?: components.AddressCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateAddressResponse> {
+    ): Promise<components.Address> {
         const input$: operations.CreateAddressRequest = {
             shippoApiVersion: shippoApiVersion,
             addressCreateRequest: addressCreateRequest,
@@ -213,28 +204,19 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateAddressResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Address: val$,
-                    });
+                    return components.Address$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -248,7 +230,7 @@ export class Addresses extends ClientSDK {
         addressId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetAddressResponse> {
+    ): Promise<components.Address> {
         const input$: operations.GetAddressRequest = {
             addressId: addressId,
             shippoApiVersion: shippoApiVersion,
@@ -313,28 +295,19 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetAddressResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Address: val$,
-                    });
+                    return components.Address$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -348,7 +321,7 @@ export class Addresses extends ClientSDK {
         addressId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ValidateAddressResponse> {
+    ): Promise<components.Address> {
         const input$: operations.ValidateAddressRequest = {
             addressId: addressId,
             shippoApiVersion: shippoApiVersion,
@@ -413,28 +386,19 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ValidateAddressResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Address: val$,
-                    });
+                    return components.Address$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

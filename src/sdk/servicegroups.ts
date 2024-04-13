@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class ServiceGroups extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -48,7 +49,7 @@ export class ServiceGroups extends ClientSDK {
     async list(
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListServiceGroupsResponse> {
+    ): Promise<Array<components.ServiceGroup>> {
         const input$: operations.ListServiceGroupsRequest = {
             shippoApiVersion: shippoApiVersion,
         };
@@ -106,28 +107,19 @@ export class ServiceGroups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListServiceGroupsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        serviceGroupListResponse: val$,
-                    });
+                    return z.array(components.ServiceGroup$.inboundSchema).parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -141,7 +133,7 @@ export class ServiceGroups extends ClientSDK {
         shippoApiVersion?: string | undefined,
         serviceGroupCreateRequest?: components.ServiceGroupCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateServiceGroupResponse> {
+    ): Promise<components.ServiceGroup> {
         const input$: operations.CreateServiceGroupRequest = {
             shippoApiVersion: shippoApiVersion,
             serviceGroupCreateRequest: serviceGroupCreateRequest,
@@ -203,28 +195,19 @@ export class ServiceGroups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateServiceGroupResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServiceGroup: val$,
-                    });
+                    return components.ServiceGroup$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -238,7 +221,7 @@ export class ServiceGroups extends ClientSDK {
         shippoApiVersion?: string | undefined,
         serviceGroupUpdateRequest?: components.ServiceGroupUpdateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateServiceGroupResponse> {
+    ): Promise<components.ServiceGroup> {
         const input$: operations.UpdateServiceGroupRequest = {
             shippoApiVersion: shippoApiVersion,
             serviceGroupUpdateRequest: serviceGroupUpdateRequest,
@@ -300,28 +283,19 @@ export class ServiceGroups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateServiceGroupResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServiceGroup: val$,
-                    });
+                    return components.ServiceGroup$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -335,7 +309,7 @@ export class ServiceGroups extends ClientSDK {
         serviceGroupId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.DeleteServiceGroupResponse> {
+    ): Promise<operations.DeleteServiceGroupResponse | void> {
         const input$: operations.DeleteServiceGroupRequest = {
             serviceGroupId: serviceGroupId,
             shippoApiVersion: shippoApiVersion,
@@ -400,23 +374,11 @@ export class ServiceGroups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteServiceGroupResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 }

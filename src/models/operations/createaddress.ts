@@ -16,11 +16,6 @@ export type CreateAddressRequest = {
     addressCreateRequest?: components.AddressCreateRequest | undefined;
 };
 
-export type CreateAddressResponse = {
-    httpMeta: components.HTTPMetadata;
-    address?: components.Address | undefined;
-};
-
 /** @internal */
 export namespace CreateAddressRequest$ {
     export type Inbound = {
@@ -62,43 +57,6 @@ export namespace CreateAddressRequest$ {
                 ...(v.addressCreateRequest === undefined
                     ? null
                     : { AddressCreateRequest: v.addressCreateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateAddressResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Address?: components.Address$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateAddressResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Address: components.Address$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Address === undefined ? null : { address: v.Address }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Address?: components.Address$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAddressResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            address: components.Address$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.address === undefined ? null : { Address: v.address }),
             };
         });
 }

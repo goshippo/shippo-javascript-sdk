@@ -67,7 +67,7 @@ export class Shipments extends ClientSDK {
         results?: number | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListShipmentsResponse> {
+    ): Promise<components.ShipmentPaginatedList> {
         const input$: operations.ListShipmentsRequest = {
             page: page,
             results: results,
@@ -135,28 +135,19 @@ export class Shipments extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListShipmentsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShipmentPaginatedList: val$,
-                    });
+                    return components.ShipmentPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -170,7 +161,7 @@ export class Shipments extends ClientSDK {
         shippoApiVersion?: string | undefined,
         shipmentCreateRequest?: components.ShipmentCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateShipmentResponse> {
+    ): Promise<components.Shipment> {
         const input$: operations.CreateShipmentRequest = {
             shippoApiVersion: shippoApiVersion,
             shipmentCreateRequest: shipmentCreateRequest,
@@ -230,28 +221,19 @@ export class Shipments extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateShipmentResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Shipment: val$,
-                    });
+                    return components.Shipment$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -265,7 +247,7 @@ export class Shipments extends ClientSDK {
         shipmentId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetShipmentResponse> {
+    ): Promise<components.Shipment> {
         const input$: operations.GetShipmentRequest = {
             shipmentId: shipmentId,
             shippoApiVersion: shippoApiVersion,
@@ -330,28 +312,19 @@ export class Shipments extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetShipmentResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Shipment: val$,
-                    });
+                    return components.Shipment$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

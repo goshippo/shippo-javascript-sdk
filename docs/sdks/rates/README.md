@@ -51,7 +51,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetRateResponse](../../models/operations/getrateresponse.md)>**
+**Promise<[components.Rate](../../models/components/rate.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -101,7 +101,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListShipmentRatesResponse](../../models/operations/listshipmentratesresponse.md)>**
+**Promise<[components.RatePaginatedList](../../models/components/ratepaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -152,7 +152,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListShipmentRatesByCurrencyCodeResponse](../../models/operations/listshipmentratesbycurrencycoderesponse.md)>**
+**Promise<[components.RatePaginatedList](../../models/components/ratepaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

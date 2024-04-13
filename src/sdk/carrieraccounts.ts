@@ -52,7 +52,7 @@ export class CarrierAccounts extends ClientSDK {
     async list(
         input: operations.ListCarrierAccountsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListCarrierAccountsResponse> {
+    ): Promise<components.CarrierAccountPaginatedList> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -127,28 +127,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListCarrierAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccountPaginatedList: val$,
-                    });
+                    return components.CarrierAccountPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -164,7 +155,7 @@ export class CarrierAccounts extends ClientSDK {
             | components.ConnectExistingOwnUPSAccountRequest
             | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateCarrierAccountResponse> {
+    ): Promise<components.CarrierAccount> {
         const input$: operations.CreateCarrierAccountRequest = {
             shippoApiVersion: shippoApiVersion,
             connectExistingOwnUPSAccountRequest: connectExistingOwnUPSAccountRequest,
@@ -238,10 +229,7 @@ export class CarrierAccounts extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateCarrierAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccount: val$,
-                    });
+                    return components.CarrierAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -260,7 +248,8 @@ export class CarrierAccounts extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -274,7 +263,7 @@ export class CarrierAccounts extends ClientSDK {
         carrierAccountId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetCarrierAccountResponse> {
+    ): Promise<components.CarrierAccountWithExtraInfo> {
         const input$: operations.GetCarrierAccountRequest = {
             carrierAccountId: carrierAccountId,
             shippoApiVersion: shippoApiVersion,
@@ -341,28 +330,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCarrierAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccountWithExtraInfo: val$,
-                    });
+                    return components.CarrierAccountWithExtraInfo$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -377,7 +357,7 @@ export class CarrierAccounts extends ClientSDK {
         shippoApiVersion?: string | undefined,
         carrierAccountBase?: components.CarrierAccountBase | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateCarrierAccountResponse> {
+    ): Promise<components.CarrierAccount> {
         const input$: operations.UpdateCarrierAccountRequest = {
             carrierAccountId: carrierAccountId,
             shippoApiVersion: shippoApiVersion,
@@ -446,28 +426,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateCarrierAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccount: val$,
-                    });
+                    return components.CarrierAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -483,7 +454,7 @@ export class CarrierAccounts extends ClientSDK {
         state?: string | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.InitiateOauth2SigninResponse> {
+    ): Promise<operations.InitiateOauth2SigninResponse | void> {
         const input$: operations.InitiateOauth2SigninRequest = {
             carrierAccountObjectId: carrierAccountObjectId,
             redirectUri: redirectUri,
@@ -622,7 +593,8 @@ export class CarrierAccounts extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -636,7 +608,7 @@ export class CarrierAccounts extends ClientSDK {
         shippoApiVersion?: string | undefined,
         requestBody?: operations.RegisterCarrierAccountRequestBody | undefined,
         options?: RequestOptions
-    ): Promise<operations.RegisterCarrierAccountResponse> {
+    ): Promise<components.CarrierAccount> {
         const input$: operations.RegisterCarrierAccountRequest = {
             shippoApiVersion: shippoApiVersion,
             requestBody: requestBody,
@@ -708,10 +680,7 @@ export class CarrierAccounts extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.RegisterCarrierAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccount: val$,
-                    });
+                    return components.CarrierAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -730,7 +699,8 @@ export class CarrierAccounts extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -744,7 +714,7 @@ export class CarrierAccounts extends ClientSDK {
         carrier: operations.Carrier,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetCarrierRegistrationStatusResponse> {
+    ): Promise<components.CarrierAccountRegistrationStatus> {
         const input$: operations.GetCarrierRegistrationStatusRequest = {
             carrier: carrier,
             shippoApiVersion: shippoApiVersion,
@@ -811,28 +781,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCarrierRegistrationStatusResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccountRegistrationStatus: val$,
-                    });
+                    return components.CarrierAccountRegistrationStatus$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

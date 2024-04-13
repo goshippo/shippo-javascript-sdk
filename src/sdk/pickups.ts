@@ -49,7 +49,7 @@ export class Pickups extends ClientSDK {
         shippoApiVersion?: string | undefined,
         pickupBase?: components.PickupBase | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreatePickupResponse> {
+    ): Promise<components.Pickup> {
         const input$: operations.CreatePickupRequest = {
             shippoApiVersion: shippoApiVersion,
             pickupBase: pickupBase,
@@ -109,28 +109,19 @@ export class Pickups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreatePickupResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Pickup: val$,
-                    });
+                    return components.Pickup$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

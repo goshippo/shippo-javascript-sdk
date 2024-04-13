@@ -13,11 +13,6 @@ export type UpdateServiceGroupRequest = {
     serviceGroupUpdateRequest?: components.ServiceGroupUpdateRequest | undefined;
 };
 
-export type UpdateServiceGroupResponse = {
-    httpMeta: components.HTTPMetadata;
-    serviceGroup?: components.ServiceGroup | undefined;
-};
-
 /** @internal */
 export namespace UpdateServiceGroupRequest$ {
     export type Inbound = {
@@ -61,43 +56,6 @@ export namespace UpdateServiceGroupRequest$ {
                 ...(v.serviceGroupUpdateRequest === undefined
                     ? null
                     : { ServiceGroupUpdateRequest: v.serviceGroupUpdateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace UpdateServiceGroupResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        ServiceGroup?: components.ServiceGroup$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateServiceGroupResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            ServiceGroup: components.ServiceGroup$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.ServiceGroup === undefined ? null : { serviceGroup: v.ServiceGroup }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        ServiceGroup?: components.ServiceGroup$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateServiceGroupResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            serviceGroup: components.ServiceGroup$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.serviceGroup === undefined ? null : { ServiceGroup: v.serviceGroup }),
             };
         });
 }

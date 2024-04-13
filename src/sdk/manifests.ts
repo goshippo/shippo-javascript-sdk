@@ -50,7 +50,7 @@ export class Manifests extends ClientSDK {
         results?: number | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListManifestsResponse> {
+    ): Promise<components.ManifestPaginatedList> {
         const input$: operations.ListManifestsRequest = {
             page: page,
             results: results,
@@ -118,28 +118,19 @@ export class Manifests extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListManifestsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ManifestPaginatedList: val$,
-                    });
+                    return components.ManifestPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -153,7 +144,7 @@ export class Manifests extends ClientSDK {
         shippoApiVersion?: string | undefined,
         manifestCreateRequest?: components.ManifestCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateManifestResponse> {
+    ): Promise<components.Manifest> {
         const input$: operations.CreateManifestRequest = {
             shippoApiVersion: shippoApiVersion,
             manifestCreateRequest: manifestCreateRequest,
@@ -213,28 +204,19 @@ export class Manifests extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateManifestResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Manifest: val$,
-                    });
+                    return components.Manifest$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -248,7 +230,7 @@ export class Manifests extends ClientSDK {
         manifestId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetManifestResponse> {
+    ): Promise<components.Manifest> {
         const input$: operations.GetManifestRequest = {
             manifestId: manifestId,
             shippoApiVersion: shippoApiVersion,
@@ -313,28 +295,19 @@ export class Manifests extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetManifestResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Manifest: val$,
-                    });
+                    return components.Manifest$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

@@ -51,7 +51,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTransactionsResponse](../../models/operations/listtransactionsresponse.md)>**
+**Promise<[components.TransactionPaginatedList](../../models/components/transactionpaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -103,7 +103,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTransactionResponse](../../models/operations/createtransactionresponse.md)>**
+**Promise<[components.Transaction](../../models/components/transaction.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -149,7 +149,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransactionResponse](../../models/operations/gettransactionresponse.md)>**
+**Promise<[components.Transaction](../../models/components/transaction.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -16,11 +16,6 @@ export type CreateShipmentRequest = {
     shipmentCreateRequest?: components.ShipmentCreateRequest | undefined;
 };
 
-export type CreateShipmentResponse = {
-    httpMeta: components.HTTPMetadata;
-    shipment?: components.Shipment | undefined;
-};
-
 /** @internal */
 export namespace CreateShipmentRequest$ {
     export type Inbound = {
@@ -62,43 +57,6 @@ export namespace CreateShipmentRequest$ {
                 ...(v.shipmentCreateRequest === undefined
                     ? null
                     : { ShipmentCreateRequest: v.shipmentCreateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateShipmentResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Shipment?: components.Shipment$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateShipmentResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Shipment: components.Shipment$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Shipment === undefined ? null : { shipment: v.Shipment }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Shipment?: components.Shipment$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateShipmentResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            shipment: components.Shipment$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.shipment === undefined ? null : { Shipment: v.shipment }),
             };
         });
 }

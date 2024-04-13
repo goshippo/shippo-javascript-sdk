@@ -16,11 +16,6 @@ export type CreateLiveRateRequest = {
     liveRateCreateRequest?: components.LiveRateCreateRequest | undefined;
 };
 
-export type CreateLiveRateResponse = {
-    httpMeta: components.HTTPMetadata;
-    liveRatePaginatedList?: components.LiveRatePaginatedList | undefined;
-};
-
 /** @internal */
 export namespace CreateLiveRateRequest$ {
     export type Inbound = {
@@ -62,47 +57,6 @@ export namespace CreateLiveRateRequest$ {
                 ...(v.liveRateCreateRequest === undefined
                     ? null
                     : { LiveRateCreateRequest: v.liveRateCreateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateLiveRateResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        LiveRatePaginatedList?: components.LiveRatePaginatedList$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateLiveRateResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            LiveRatePaginatedList: components.LiveRatePaginatedList$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.LiveRatePaginatedList === undefined
-                    ? null
-                    : { liveRatePaginatedList: v.LiveRatePaginatedList }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        LiveRatePaginatedList?: components.LiveRatePaginatedList$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateLiveRateResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            liveRatePaginatedList: components.LiveRatePaginatedList$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.liveRatePaginatedList === undefined
-                    ? null
-                    : { LiveRatePaginatedList: v.liveRatePaginatedList }),
             };
         });
 }

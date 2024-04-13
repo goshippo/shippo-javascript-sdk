@@ -16,11 +16,6 @@ export type CreateManifestRequest = {
     manifestCreateRequest?: components.ManifestCreateRequest | undefined;
 };
 
-export type CreateManifestResponse = {
-    httpMeta: components.HTTPMetadata;
-    manifest?: components.Manifest | undefined;
-};
-
 /** @internal */
 export namespace CreateManifestRequest$ {
     export type Inbound = {
@@ -62,43 +57,6 @@ export namespace CreateManifestRequest$ {
                 ...(v.manifestCreateRequest === undefined
                     ? null
                     : { ManifestCreateRequest: v.manifestCreateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateManifestResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Manifest?: components.Manifest$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateManifestResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Manifest: components.Manifest$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Manifest === undefined ? null : { manifest: v.Manifest }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Manifest?: components.Manifest$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateManifestResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            manifest: components.Manifest$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.manifest === undefined ? null : { Manifest: v.manifest }),
             };
         });
 }

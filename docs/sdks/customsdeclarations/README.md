@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListCustomsDeclarationsResponse](../../models/operations/listcustomsdeclarationsresponse.md)>**
+**Promise<[components.CustomsDeclarationPaginatedList](../../models/components/customsdeclarationpaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -145,7 +145,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateCustomsDeclarationResponse](../../models/operations/createcustomsdeclarationresponse.md)>**
+**Promise<[components.CustomsDeclaration](../../models/components/customsdeclaration.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -193,7 +193,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetCustomsDeclarationResponse](../../models/operations/getcustomsdeclarationresponse.md)>**
+**Promise<[components.CustomsDeclaration](../../models/components/customsdeclaration.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

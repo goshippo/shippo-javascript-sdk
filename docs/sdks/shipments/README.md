@@ -74,7 +74,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListShipmentsResponse](../../models/operations/listshipmentsresponse.md)>**
+**Promise<[components.ShipmentPaginatedList](../../models/components/shipmentpaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -188,7 +188,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateShipmentResponse](../../models/operations/createshipmentresponse.md)>**
+**Promise<[components.Shipment](../../models/components/shipment.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -234,7 +234,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetShipmentResponse](../../models/operations/getshipmentresponse.md)>**
+**Promise<[components.Shipment](../../models/components/shipment.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

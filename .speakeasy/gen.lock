@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 89ba5e19fde8c0a8c161d1abf1eb315f
+  docChecksum: 162c8b55c01b8a31d3379ae5249e86a4
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.243.0
-  generationVersion: 2.301.0
-  releaseVersion: 0.0.1
-  configChecksum: 7211aa00800abe8e011c9f434ef38523
+  speakeasyVersion: 1.244.2
+  generationVersion: 2.301.3
+  releaseVersion: 0.0.4
+  configChecksum: 19d24af8ed26716c4be7095145683111
 features:
   typescript:
     constsAndDefaults: 0.1.5
@@ -62,76 +62,10 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/operations/listaddresses.ts
-  - src/models/operations/createaddress.ts
-  - src/models/operations/getaddress.ts
-  - src/models/operations/validateaddress.ts
-  - src/models/operations/createbatch.ts
-  - src/models/operations/getbatch.ts
-  - src/models/operations/addshipmentstobatch.ts
-  - src/models/operations/purchasebatch.ts
-  - src/models/operations/removeshipmentsfrombatch.ts
-  - src/models/operations/listcarrieraccounts.ts
-  - src/models/operations/createcarrieraccount.ts
-  - src/models/operations/getcarrieraccount.ts
-  - src/models/operations/updatecarrieraccount.ts
-  - src/models/operations/initiateoauth2signin.ts
-  - src/models/operations/registercarrieraccount.ts
-  - src/models/operations/getcarrierregistrationstatus.ts
-  - src/models/operations/listcustomsdeclarations.ts
-  - src/models/operations/createcustomsdeclaration.ts
-  - src/models/operations/getcustomsdeclaration.ts
-  - src/models/operations/listcustomsitems.ts
-  - src/models/operations/createcustomsitem.ts
-  - src/models/operations/getcustomsitem.ts
-  - src/models/operations/createliverate.ts
-  - src/models/operations/getdefaultparceltemplate.ts
-  - src/models/operations/updatedefaultparceltemplate.ts
-  - src/models/operations/deletedefaultparceltemplate.ts
-  - src/models/operations/listmanifests.ts
-  - src/models/operations/createmanifest.ts
-  - src/models/operations/getmanifest.ts
-  - src/models/operations/listorders.ts
-  - src/models/operations/createorder.ts
-  - src/models/operations/getorder.ts
-  - src/models/operations/listcarrierparceltemplates.ts
-  - src/models/operations/getcarrierparceltemplate.ts
-  - src/models/operations/listparcels.ts
-  - src/models/operations/createparcel.ts
-  - src/models/operations/getparcel.ts
-  - src/models/operations/createpickup.ts
-  - src/models/operations/getrate.ts
-  - src/models/operations/listshipmentrates.ts
-  - src/models/operations/listshipmentratesbycurrencycode.ts
-  - src/models/operations/createrefund.ts
-  - src/models/operations/listrefunds.ts
-  - src/models/operations/getrefund.ts
-  - src/models/operations/listservicegroups.ts
-  - src/models/operations/createservicegroup.ts
-  - src/models/operations/updateservicegroup.ts
-  - src/models/operations/deleteservicegroup.ts
-  - src/models/operations/listshipments.ts
-  - src/models/operations/createshipment.ts
-  - src/models/operations/getshipment.ts
-  - src/models/operations/createtrack.ts
-  - src/models/operations/gettrack.ts
-  - src/models/operations/listtransactions.ts
-  - src/models/operations/createtransaction.ts
-  - src/models/operations/gettransaction.ts
-  - src/models/operations/listuserparceltemplates.ts
-  - src/models/operations/createuserparceltemplate.ts
-  - src/models/operations/deleteuserparceltemplate.ts
-  - src/models/operations/getuserparceltemplate.ts
-  - src/models/operations/updateuserparceltemplate.ts
-  - src/models/operations/listshippoaccounts.ts
-  - src/models/operations/createshippoaccount.ts
-  - src/models/operations/getshippoaccount.ts
-  - src/models/operations/updateshippoaccount.ts
   - src/models/components/addresspaginatedlist.ts
   - src/models/components/address.ts
   - src/models/components/addressvalidationresults.ts
   - src/models/components/addressvalidationresultsmessage.ts
-  - src/models/components/httpmetadata.ts
   - src/models/components/addresscreaterequest.ts
   - src/models/components/batch.ts
   - src/models/components/batchshipmentpaginatedlist.ts
@@ -167,6 +101,7 @@ generatedFiles:
   - src/models/components/connectexistingownupsaccountrequest.ts
   - src/models/components/upsconnectexistingownaccountparameters.ts
   - src/models/components/carrieraccountbase.ts
+  - src/models/components/httpmetadata.ts
   - src/models/components/carrieraccountcanadapostcreaterequest.ts
   - src/models/components/carrieraccountcanadapostcreateparameters.ts
   - src/models/components/carrieraccountchronopostcreaterequest.ts
@@ -177,7 +112,9 @@ generatedFiles:
   - src/models/components/carrieraccountdhlexpresscreaterequestparameters.ts
   - src/models/components/carrieraccountdpddecreaterequest.ts
   - src/models/components/carrieraccountdpdukcreaterequest.ts
+  - src/models/components/carrieraccountfedexcreaterequest.ts
   - src/models/components/carrieraccounthermesukcreaterequest.ts
+  - src/models/components/carrieraccountmondialrelaycreaterequest.ts
   - src/models/components/carrieraccountposteitalianecreaterequest.ts
   - src/models/components/carrieraccountupscreaterequest.ts
   - src/models/components/carrieraccountupscreaterequestparameters.ts
@@ -252,153 +189,83 @@ generatedFiles:
   - src/models/components/shippoaccountupdaterequest.ts
   - src/models/components/security.ts
   - src/models/components/servicelevelenumset.ts
+  - src/models/operations/listaddresses.ts
+  - src/models/operations/createaddress.ts
+  - src/models/operations/getaddress.ts
+  - src/models/operations/validateaddress.ts
+  - src/models/operations/createbatch.ts
+  - src/models/operations/getbatch.ts
+  - src/models/operations/addshipmentstobatch.ts
+  - src/models/operations/purchasebatch.ts
+  - src/models/operations/removeshipmentsfrombatch.ts
+  - src/models/operations/listcarrieraccounts.ts
+  - src/models/operations/createcarrieraccount.ts
+  - src/models/operations/getcarrieraccount.ts
+  - src/models/operations/updatecarrieraccount.ts
+  - src/models/operations/initiateoauth2signin.ts
+  - src/models/operations/registercarrieraccount.ts
+  - src/models/operations/getcarrierregistrationstatus.ts
+  - src/models/operations/listcustomsdeclarations.ts
+  - src/models/operations/createcustomsdeclaration.ts
+  - src/models/operations/getcustomsdeclaration.ts
+  - src/models/operations/listcustomsitems.ts
+  - src/models/operations/createcustomsitem.ts
+  - src/models/operations/getcustomsitem.ts
+  - src/models/operations/createliverate.ts
+  - src/models/operations/getdefaultparceltemplate.ts
+  - src/models/operations/updatedefaultparceltemplate.ts
+  - src/models/operations/deletedefaultparceltemplate.ts
+  - src/models/operations/listmanifests.ts
+  - src/models/operations/createmanifest.ts
+  - src/models/operations/getmanifest.ts
+  - src/models/operations/listorders.ts
+  - src/models/operations/createorder.ts
+  - src/models/operations/getorder.ts
+  - src/models/operations/listcarrierparceltemplates.ts
+  - src/models/operations/getcarrierparceltemplate.ts
+  - src/models/operations/listparcels.ts
+  - src/models/operations/createparcel.ts
+  - src/models/operations/getparcel.ts
+  - src/models/operations/createpickup.ts
+  - src/models/operations/getrate.ts
+  - src/models/operations/listshipmentrates.ts
+  - src/models/operations/listshipmentratesbycurrencycode.ts
+  - src/models/operations/createrefund.ts
+  - src/models/operations/listrefunds.ts
+  - src/models/operations/getrefund.ts
+  - src/models/operations/listservicegroups.ts
+  - src/models/operations/createservicegroup.ts
+  - src/models/operations/updateservicegroup.ts
+  - src/models/operations/deleteservicegroup.ts
+  - src/models/operations/listshipments.ts
+  - src/models/operations/createshipment.ts
+  - src/models/operations/getshipment.ts
+  - src/models/operations/createtrack.ts
+  - src/models/operations/gettrack.ts
+  - src/models/operations/listtransactions.ts
+  - src/models/operations/createtransaction.ts
+  - src/models/operations/gettransaction.ts
+  - src/models/operations/listuserparceltemplates.ts
+  - src/models/operations/createuserparceltemplate.ts
+  - src/models/operations/deleteuserparceltemplate.ts
+  - src/models/operations/getuserparceltemplate.ts
+  - src/models/operations/updateuserparceltemplate.ts
+  - src/models/operations/listshippoaccounts.ts
+  - src/models/operations/createshippoaccount.ts
+  - src/models/operations/getshippoaccount.ts
+  - src/models/operations/updateshippoaccount.ts
   - src/models/errors/badrequestwithdetail.ts
   - src/models/errors/initiateoauth2signin.ts
   - src/models/errors/badrequestwitherror.ts
   - src/models/errors/index.ts
-  - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/listaddressesrequest.md
-  - docs/models/operations/listaddressesresponse.md
-  - docs/models/operations/createaddressrequest.md
-  - docs/models/operations/createaddressresponse.md
-  - docs/models/operations/getaddressrequest.md
-  - docs/models/operations/getaddressresponse.md
-  - docs/models/operations/validateaddressrequest.md
-  - docs/models/operations/validateaddressresponse.md
-  - docs/models/operations/createbatchrequest.md
-  - docs/models/operations/createbatchresponse.md
-  - docs/models/operations/getbatchrequest.md
-  - docs/models/operations/getbatchresponse.md
-  - docs/models/operations/addshipmentstobatchrequest.md
-  - docs/models/operations/addshipmentstobatchresponse.md
-  - docs/models/operations/purchasebatchrequest.md
-  - docs/models/operations/purchasebatchresponse.md
-  - docs/models/operations/removeshipmentsfrombatchrequest.md
-  - docs/models/operations/removeshipmentsfrombatchresponse.md
-  - docs/models/operations/listcarrieraccountsrequest.md
-  - docs/models/operations/listcarrieraccountsresponse.md
-  - docs/models/operations/createcarrieraccountrequest.md
-  - docs/models/operations/createcarrieraccountresponse.md
-  - docs/models/operations/getcarrieraccountrequest.md
-  - docs/models/operations/getcarrieraccountresponse.md
-  - docs/models/operations/updatecarrieraccountrequest.md
-  - docs/models/operations/updatecarrieraccountresponse.md
-  - docs/models/operations/initiateoauth2signinrequest.md
-  - docs/models/operations/initiateoauth2signinresponse.md
-  - docs/models/operations/registercarrieraccountrequestbody.md
-  - docs/models/operations/registercarrieraccountrequest.md
-  - docs/models/operations/registercarrieraccountresponse.md
-  - docs/models/operations/carrier.md
-  - docs/models/operations/getcarrierregistrationstatusrequest.md
-  - docs/models/operations/getcarrierregistrationstatusresponse.md
-  - docs/models/operations/listcustomsdeclarationsrequest.md
-  - docs/models/operations/listcustomsdeclarationsresponse.md
-  - docs/models/operations/createcustomsdeclarationrequest.md
-  - docs/models/operations/createcustomsdeclarationresponse.md
-  - docs/models/operations/getcustomsdeclarationrequest.md
-  - docs/models/operations/getcustomsdeclarationresponse.md
-  - docs/models/operations/listcustomsitemsrequest.md
-  - docs/models/operations/listcustomsitemsresponse.md
-  - docs/models/operations/createcustomsitemrequest.md
-  - docs/models/operations/createcustomsitemresponse.md
-  - docs/models/operations/getcustomsitemrequest.md
-  - docs/models/operations/getcustomsitemresponse.md
-  - docs/models/operations/createliveraterequest.md
-  - docs/models/operations/createliverateresponse.md
-  - docs/models/operations/getdefaultparceltemplaterequest.md
-  - docs/models/operations/getdefaultparceltemplateresponse.md
-  - docs/models/operations/updatedefaultparceltemplaterequest.md
-  - docs/models/operations/updatedefaultparceltemplateresponse.md
-  - docs/models/operations/deletedefaultparceltemplaterequest.md
-  - docs/models/operations/deletedefaultparceltemplateresponse.md
-  - docs/models/operations/listmanifestsrequest.md
-  - docs/models/operations/listmanifestsresponse.md
-  - docs/models/operations/createmanifestrequest.md
-  - docs/models/operations/createmanifestresponse.md
-  - docs/models/operations/getmanifestrequest.md
-  - docs/models/operations/getmanifestresponse.md
-  - docs/models/operations/listordersrequest.md
-  - docs/models/operations/listordersresponse.md
-  - docs/models/operations/createorderrequest.md
-  - docs/models/operations/createorderresponse.md
-  - docs/models/operations/getorderrequest.md
-  - docs/models/operations/getorderresponse.md
-  - docs/models/operations/include.md
-  - docs/models/operations/listcarrierparceltemplatesrequest.md
-  - docs/models/operations/listcarrierparceltemplatesresponse.md
-  - docs/models/operations/getcarrierparceltemplaterequest.md
-  - docs/models/operations/getcarrierparceltemplateresponse.md
-  - docs/models/operations/listparcelsrequest.md
-  - docs/models/operations/listparcelsresponse.md
-  - docs/models/operations/createparcelrequest.md
-  - docs/models/operations/createparcelresponse.md
-  - docs/models/operations/getparcelrequest.md
-  - docs/models/operations/getparcelresponse.md
-  - docs/models/operations/createpickuprequest.md
-  - docs/models/operations/createpickupresponse.md
-  - docs/models/operations/getraterequest.md
-  - docs/models/operations/getrateresponse.md
-  - docs/models/operations/listshipmentratesrequest.md
-  - docs/models/operations/listshipmentratesresponse.md
-  - docs/models/operations/listshipmentratesbycurrencycoderequest.md
-  - docs/models/operations/listshipmentratesbycurrencycoderesponse.md
-  - docs/models/operations/createrefundrequest.md
-  - docs/models/operations/createrefundresponse.md
-  - docs/models/operations/listrefundsrequest.md
-  - docs/models/operations/listrefundsresponse.md
-  - docs/models/operations/getrefundrequest.md
-  - docs/models/operations/getrefundresponse.md
-  - docs/models/operations/listservicegroupsrequest.md
-  - docs/models/operations/listservicegroupsresponse.md
-  - docs/models/operations/createservicegrouprequest.md
-  - docs/models/operations/createservicegroupresponse.md
-  - docs/models/operations/updateservicegrouprequest.md
-  - docs/models/operations/updateservicegroupresponse.md
-  - docs/models/operations/deleteservicegrouprequest.md
-  - docs/models/operations/deleteservicegroupresponse.md
-  - docs/models/operations/listshipmentsrequest.md
-  - docs/models/operations/listshipmentsresponse.md
-  - docs/models/operations/createshipmentrequest.md
-  - docs/models/operations/createshipmentresponse.md
-  - docs/models/operations/getshipmentrequest.md
-  - docs/models/operations/getshipmentresponse.md
-  - docs/models/operations/createtrackrequest.md
-  - docs/models/operations/createtrackresponse.md
-  - docs/models/operations/gettrackrequest.md
-  - docs/models/operations/gettrackresponse.md
-  - docs/models/operations/listtransactionsrequest.md
-  - docs/models/operations/listtransactionsresponse.md
-  - docs/models/operations/createtransactionrequestbody.md
-  - docs/models/operations/createtransactionrequest.md
-  - docs/models/operations/createtransactionresponse.md
-  - docs/models/operations/gettransactionrequest.md
-  - docs/models/operations/gettransactionresponse.md
-  - docs/models/operations/listuserparceltemplatesrequest.md
-  - docs/models/operations/listuserparceltemplatesresponse.md
-  - docs/models/operations/createuserparceltemplaterequest.md
-  - docs/models/operations/createuserparceltemplateresponse.md
-  - docs/models/operations/deleteuserparceltemplaterequest.md
-  - docs/models/operations/deleteuserparceltemplateresponse.md
-  - docs/models/operations/getuserparceltemplaterequest.md
-  - docs/models/operations/getuserparceltemplateresponse.md
-  - docs/models/operations/updateuserparceltemplaterequest.md
-  - docs/models/operations/updateuserparceltemplateresponse.md
-  - docs/models/operations/listshippoaccountsrequest.md
-  - docs/models/operations/listshippoaccountsresponse.md
-  - docs/models/operations/createshippoaccountrequest.md
-  - docs/models/operations/createshippoaccountresponse.md
-  - docs/models/operations/getshippoaccountrequest.md
-  - docs/models/operations/getshippoaccountresponse.md
-  - docs/models/operations/updateshippoaccountrequest.md
-  - docs/models/operations/updateshippoaccountresponse.md
+  - src/models/operations/index.ts
   - docs/models/components/addresspaginatedlist.md
   - docs/models/components/address.md
   - docs/models/components/addressvalidationresults.md
   - docs/models/components/code.md
   - docs/models/components/source.md
   - docs/models/components/addressvalidationresultsmessage.md
-  - docs/models/components/httpmetadata.md
   - docs/models/components/addresscreaterequest.md
   - docs/models/components/objectresults.md
   - docs/models/components/batchstatus.md
@@ -462,6 +329,7 @@ generatedFiles:
   - docs/models/components/connectexistingownupsaccountrequest.md
   - docs/models/components/upsconnectexistingownaccountparameters.md
   - docs/models/components/carrieraccountbase.md
+  - docs/models/components/httpmetadata.md
   - docs/models/components/carrieraccountcanadapostcreaterequest.md
   - docs/models/components/carrieraccountcanadapostcreateparameters.md
   - docs/models/components/parameterst.md
@@ -478,8 +346,12 @@ generatedFiles:
   - docs/models/components/carrieraccountdpddecreaterequest.md
   - docs/models/components/carrieraccountdpdukcreaterequestparameters.md
   - docs/models/components/carrieraccountdpdukcreaterequest.md
+  - docs/models/components/carrieraccountfedexcreaterequestparameters.md
+  - docs/models/components/carrieraccountfedexcreaterequest.md
   - docs/models/components/carrieraccounthermesukcreaterequestparameters.md
   - docs/models/components/carrieraccounthermesukcreaterequest.md
+  - docs/models/components/carrieraccountmondialrelaycreaterequestparameters.md
+  - docs/models/components/carrieraccountmondialrelaycreaterequest.md
   - docs/models/components/carrieraccountposteitalianecreaterequestparameters.md
   - docs/models/components/carrieraccountposteitalianecreaterequest.md
   - docs/models/components/carrieraccountupscreaterequest.md
@@ -627,6 +499,79 @@ generatedFiles:
   - docs/models/components/servicelevelfedex.md
   - docs/models/components/servicelevelusps.md
   - docs/models/components/servicelevelenumset.md
+  - docs/models/operations/listaddressesrequest.md
+  - docs/models/operations/createaddressrequest.md
+  - docs/models/operations/getaddressrequest.md
+  - docs/models/operations/validateaddressrequest.md
+  - docs/models/operations/createbatchrequest.md
+  - docs/models/operations/getbatchrequest.md
+  - docs/models/operations/addshipmentstobatchrequest.md
+  - docs/models/operations/purchasebatchrequest.md
+  - docs/models/operations/removeshipmentsfrombatchrequest.md
+  - docs/models/operations/listcarrieraccountsrequest.md
+  - docs/models/operations/createcarrieraccountrequest.md
+  - docs/models/operations/getcarrieraccountrequest.md
+  - docs/models/operations/updatecarrieraccountrequest.md
+  - docs/models/operations/initiateoauth2signinrequest.md
+  - docs/models/operations/initiateoauth2signinresponse.md
+  - docs/models/operations/registercarrieraccountrequestbody.md
+  - docs/models/operations/registercarrieraccountrequest.md
+  - docs/models/operations/carrier.md
+  - docs/models/operations/getcarrierregistrationstatusrequest.md
+  - docs/models/operations/listcustomsdeclarationsrequest.md
+  - docs/models/operations/createcustomsdeclarationrequest.md
+  - docs/models/operations/getcustomsdeclarationrequest.md
+  - docs/models/operations/listcustomsitemsrequest.md
+  - docs/models/operations/createcustomsitemrequest.md
+  - docs/models/operations/getcustomsitemrequest.md
+  - docs/models/operations/createliveraterequest.md
+  - docs/models/operations/getdefaultparceltemplaterequest.md
+  - docs/models/operations/updatedefaultparceltemplaterequest.md
+  - docs/models/operations/deletedefaultparceltemplaterequest.md
+  - docs/models/operations/deletedefaultparceltemplateresponse.md
+  - docs/models/operations/listmanifestsrequest.md
+  - docs/models/operations/createmanifestrequest.md
+  - docs/models/operations/getmanifestrequest.md
+  - docs/models/operations/listordersrequest.md
+  - docs/models/operations/createorderrequest.md
+  - docs/models/operations/getorderrequest.md
+  - docs/models/operations/include.md
+  - docs/models/operations/listcarrierparceltemplatesrequest.md
+  - docs/models/operations/getcarrierparceltemplaterequest.md
+  - docs/models/operations/listparcelsrequest.md
+  - docs/models/operations/createparcelrequest.md
+  - docs/models/operations/getparcelrequest.md
+  - docs/models/operations/createpickuprequest.md
+  - docs/models/operations/getraterequest.md
+  - docs/models/operations/listshipmentratesrequest.md
+  - docs/models/operations/listshipmentratesbycurrencycoderequest.md
+  - docs/models/operations/createrefundrequest.md
+  - docs/models/operations/listrefundsrequest.md
+  - docs/models/operations/getrefundrequest.md
+  - docs/models/operations/listservicegroupsrequest.md
+  - docs/models/operations/createservicegrouprequest.md
+  - docs/models/operations/updateservicegrouprequest.md
+  - docs/models/operations/deleteservicegrouprequest.md
+  - docs/models/operations/deleteservicegroupresponse.md
+  - docs/models/operations/listshipmentsrequest.md
+  - docs/models/operations/createshipmentrequest.md
+  - docs/models/operations/getshipmentrequest.md
+  - docs/models/operations/createtrackrequest.md
+  - docs/models/operations/gettrackrequest.md
+  - docs/models/operations/listtransactionsrequest.md
+  - docs/models/operations/createtransactionrequestbody.md
+  - docs/models/operations/createtransactionrequest.md
+  - docs/models/operations/gettransactionrequest.md
+  - docs/models/operations/listuserparceltemplatesrequest.md
+  - docs/models/operations/createuserparceltemplaterequest.md
+  - docs/models/operations/deleteuserparceltemplaterequest.md
+  - docs/models/operations/deleteuserparceltemplateresponse.md
+  - docs/models/operations/getuserparceltemplaterequest.md
+  - docs/models/operations/updateuserparceltemplaterequest.md
+  - docs/models/operations/listshippoaccountsrequest.md
+  - docs/models/operations/createshippoaccountrequest.md
+  - docs/models/operations/getshippoaccountrequest.md
+  - docs/models/operations/updateshippoaccountrequest.md
   - docs/models/errors/badrequestwithdetail.md
   - docs/models/errors/initiateoauth2signincarrieraccountsresponseresponsebody.md
   - docs/models/errors/initiateoauth2signincarrieraccountsresponsebody.md

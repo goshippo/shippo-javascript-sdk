@@ -13,11 +13,6 @@ export type CreateShippoAccountRequest = {
     shippoAccountUpdateRequest?: components.ShippoAccountUpdateRequest | undefined;
 };
 
-export type CreateShippoAccountResponse = {
-    httpMeta: components.HTTPMetadata;
-    shippoAccount?: components.ShippoAccount | undefined;
-};
-
 /** @internal */
 export namespace CreateShippoAccountRequest$ {
     export type Inbound = {
@@ -61,43 +56,6 @@ export namespace CreateShippoAccountRequest$ {
                 ...(v.shippoAccountUpdateRequest === undefined
                     ? null
                     : { ShippoAccountUpdateRequest: v.shippoAccountUpdateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateShippoAccountResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        ShippoAccount?: components.ShippoAccount$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateShippoAccountResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            ShippoAccount: components.ShippoAccount$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.ShippoAccount === undefined ? null : { shippoAccount: v.ShippoAccount }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        ShippoAccount?: components.ShippoAccount$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateShippoAccountResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            shippoAccount: components.ShippoAccount$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.shippoAccount === undefined ? null : { ShippoAccount: v.shippoAccount }),
             };
         });
 }

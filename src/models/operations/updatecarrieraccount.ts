@@ -20,11 +20,6 @@ export type UpdateCarrierAccountRequest = {
     carrierAccountBase?: components.CarrierAccountBase | undefined;
 };
 
-export type UpdateCarrierAccountResponse = {
-    httpMeta: components.HTTPMetadata;
-    carrierAccount?: components.CarrierAccount | undefined;
-};
-
 /** @internal */
 export namespace UpdateCarrierAccountRequest$ {
     export type Inbound = {
@@ -72,43 +67,6 @@ export namespace UpdateCarrierAccountRequest$ {
                 ...(v.carrierAccountBase === undefined
                     ? null
                     : { CarrierAccountBase: v.carrierAccountBase }),
-            };
-        });
-}
-
-/** @internal */
-export namespace UpdateCarrierAccountResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CarrierAccount?: components.CarrierAccount$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateCarrierAccountResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CarrierAccount: components.CarrierAccount$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.CarrierAccount === undefined ? null : { carrierAccount: v.CarrierAccount }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CarrierAccount?: components.CarrierAccount$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateCarrierAccountResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            carrierAccount: components.CarrierAccount$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.carrierAccount === undefined ? null : { CarrierAccount: v.carrierAccount }),
             };
         });
 }

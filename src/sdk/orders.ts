@@ -50,7 +50,7 @@ export class Orders extends ClientSDK {
         results?: number | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListOrdersResponse> {
+    ): Promise<components.OrderPaginatedList> {
         const input$: operations.ListOrdersRequest = {
             page: page,
             results: results,
@@ -118,28 +118,19 @@ export class Orders extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListOrdersResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        OrderPaginatedList: val$,
-                    });
+                    return components.OrderPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -153,7 +144,7 @@ export class Orders extends ClientSDK {
         shippoApiVersion?: string | undefined,
         orderCreateRequest?: components.OrderCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateOrderResponse> {
+    ): Promise<components.Order> {
         const input$: operations.CreateOrderRequest = {
             shippoApiVersion: shippoApiVersion,
             orderCreateRequest: orderCreateRequest,
@@ -213,28 +204,19 @@ export class Orders extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateOrderResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Order: val$,
-                    });
+                    return components.Order$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -248,7 +230,7 @@ export class Orders extends ClientSDK {
         orderId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetOrderResponse> {
+    ): Promise<components.Order> {
         const input$: operations.GetOrderRequest = {
             orderId: orderId,
             shippoApiVersion: shippoApiVersion,
@@ -313,28 +295,19 @@ export class Orders extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetOrderResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Order: val$,
-                    });
+                    return components.Order$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

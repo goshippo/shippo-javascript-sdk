@@ -13,11 +13,6 @@ export type CreateTrackRequest = {
     tracksRequest?: components.TracksRequest | undefined;
 };
 
-export type CreateTrackResponse = {
-    httpMeta: components.HTTPMetadata;
-    track?: components.Track | undefined;
-};
-
 /** @internal */
 export namespace CreateTrackRequest$ {
     export type Inbound = {
@@ -55,43 +50,6 @@ export namespace CreateTrackRequest$ {
                     ? null
                     : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
                 ...(v.tracksRequest === undefined ? null : { TracksRequest: v.tracksRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateTrackResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Track?: components.Track$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateTrackResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Track: components.Track$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Track === undefined ? null : { track: v.Track }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Track?: components.Track$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateTrackResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            track: components.Track$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.track === undefined ? null : { Track: v.track }),
             };
         });
 }

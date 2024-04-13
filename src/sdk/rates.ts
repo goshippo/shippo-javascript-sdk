@@ -8,6 +8,7 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
@@ -48,7 +49,7 @@ export class Rates extends ClientSDK {
         rateId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetRateResponse> {
+    ): Promise<components.Rate> {
         const input$: operations.GetRateRequest = {
             rateId: rateId,
             shippoApiVersion: shippoApiVersion,
@@ -113,28 +114,19 @@ export class Rates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetRateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Rate: val$,
-                    });
+                    return components.Rate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -150,7 +142,7 @@ export class Rates extends ClientSDK {
         results?: number | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListShipmentRatesResponse> {
+    ): Promise<components.RatePaginatedList> {
         const input$: operations.ListShipmentRatesRequest = {
             shipmentId: shipmentId,
             page: page,
@@ -225,28 +217,19 @@ export class Rates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListShipmentRatesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        RatePaginatedList: val$,
-                    });
+                    return components.RatePaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -265,7 +248,7 @@ export class Rates extends ClientSDK {
     async listShipmentRatesByCurrencyCode(
         input: operations.ListShipmentRatesByCurrencyCodeRequest,
         options?: RequestOptions
-    ): Promise<operations.ListShipmentRatesByCurrencyCodeResponse> {
+    ): Promise<components.RatePaginatedList> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -341,28 +324,19 @@ export class Rates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListShipmentRatesByCurrencyCodeResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        RatePaginatedList: val$,
-                    });
+                    return components.RatePaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

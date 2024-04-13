@@ -49,7 +49,7 @@ export class TrackingStatus extends ClientSDK {
         shippoApiVersion?: string | undefined,
         tracksRequest?: components.TracksRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateTrackResponse> {
+    ): Promise<components.Track> {
         const input$: operations.CreateTrackRequest = {
             shippoApiVersion: shippoApiVersion,
             tracksRequest: tracksRequest,
@@ -121,10 +121,7 @@ export class TrackingStatus extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateTrackResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Track: val$,
-                    });
+                    return components.Track$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -143,7 +140,8 @@ export class TrackingStatus extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -158,7 +156,7 @@ export class TrackingStatus extends ClientSDK {
         carrier: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetTrackResponse> {
+    ): Promise<components.Track> {
         const input$: operations.GetTrackRequest = {
             trackingNumber: trackingNumber,
             carrier: carrier,
@@ -240,10 +238,7 @@ export class TrackingStatus extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetTrackResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Track: val$,
-                    });
+                    return components.Track$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -262,7 +257,8 @@ export class TrackingStatus extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

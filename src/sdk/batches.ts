@@ -49,7 +49,7 @@ export class Batches extends ClientSDK {
         shippoApiVersion?: string | undefined,
         batchCreateRequest?: components.BatchCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateBatchResponse> {
+    ): Promise<components.Batch> {
         const input$: operations.CreateBatchRequest = {
             shippoApiVersion: shippoApiVersion,
             batchCreateRequest: batchCreateRequest,
@@ -109,28 +109,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -147,7 +138,7 @@ export class Batches extends ClientSDK {
         batchId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetBatchResponse> {
+    ): Promise<components.Batch> {
         const input$: operations.GetBatchRequest = {
             batchId: batchId,
             shippoApiVersion: shippoApiVersion,
@@ -212,28 +203,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -248,7 +230,7 @@ export class Batches extends ClientSDK {
         shippoApiVersion?: string | undefined,
         requestBody?: Array<components.BatchShipmentBase> | undefined,
         options?: RequestOptions
-    ): Promise<operations.AddShipmentsToBatchResponse> {
+    ): Promise<components.Batch> {
         const input$: operations.AddShipmentsToBatchRequest = {
             batchId: batchId,
             shippoApiVersion: shippoApiVersion,
@@ -315,28 +297,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.AddShipmentsToBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -353,7 +326,7 @@ export class Batches extends ClientSDK {
         batchId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.PurchaseBatchResponse> {
+    ): Promise<components.Batch> {
         const input$: operations.PurchaseBatchRequest = {
             batchId: batchId,
             shippoApiVersion: shippoApiVersion,
@@ -418,28 +391,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.PurchaseBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -454,7 +418,7 @@ export class Batches extends ClientSDK {
         shippoApiVersion?: string | undefined,
         requestBody?: Array<string> | undefined,
         options?: RequestOptions
-    ): Promise<operations.RemoveShipmentsFromBatchResponse> {
+    ): Promise<components.Batch> {
         const input$: operations.RemoveShipmentsFromBatchRequest = {
             batchId: batchId,
             shippoApiVersion: shippoApiVersion,
@@ -521,28 +485,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.RemoveShipmentsFromBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

@@ -32,11 +32,6 @@ export type ListCarrierAccountsRequest = {
     shippoApiVersion?: string | undefined;
 };
 
-export type ListCarrierAccountsResponse = {
-    httpMeta: components.HTTPMetadata;
-    carrierAccountPaginatedList?: components.CarrierAccountPaginatedList | undefined;
-};
-
 /** @internal */
 export namespace ListCarrierAccountsRequest$ {
     export type Inbound = {
@@ -98,49 +93,6 @@ export namespace ListCarrierAccountsRequest$ {
                 ...(v.shippoApiVersion === undefined
                     ? null
                     : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
-            };
-        });
-}
-
-/** @internal */
-export namespace ListCarrierAccountsResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CarrierAccountPaginatedList?: components.CarrierAccountPaginatedList$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListCarrierAccountsResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CarrierAccountPaginatedList:
-                components.CarrierAccountPaginatedList$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.CarrierAccountPaginatedList === undefined
-                    ? null
-                    : { carrierAccountPaginatedList: v.CarrierAccountPaginatedList }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CarrierAccountPaginatedList?: components.CarrierAccountPaginatedList$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListCarrierAccountsResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            carrierAccountPaginatedList:
-                components.CarrierAccountPaginatedList$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.carrierAccountPaginatedList === undefined
-                    ? null
-                    : { CarrierAccountPaginatedList: v.carrierAccountPaginatedList }),
             };
         });
 }

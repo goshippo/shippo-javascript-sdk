@@ -10,3 +10,4 @@
 /.tsbuildinfo
 .idea
 *.iml
+/build

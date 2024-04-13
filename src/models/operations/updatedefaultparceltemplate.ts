@@ -13,11 +13,6 @@ export type UpdateDefaultParcelTemplateRequest = {
     defaultParcelTemplateUpdateRequest?: components.DefaultParcelTemplateUpdateRequest | undefined;
 };
 
-export type UpdateDefaultParcelTemplateResponse = {
-    httpMeta: components.HTTPMetadata;
-    defaultParcelTemplate?: components.DefaultParcelTemplate | undefined;
-};
-
 /** @internal */
 export namespace UpdateDefaultParcelTemplateRequest$ {
     export type Inbound = {
@@ -73,55 +68,6 @@ export namespace UpdateDefaultParcelTemplateRequest$ {
                 ...(v.defaultParcelTemplateUpdateRequest === undefined
                     ? null
                     : { DefaultParcelTemplateUpdateRequest: v.defaultParcelTemplateUpdateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace UpdateDefaultParcelTemplateResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        DefaultParcelTemplate?: components.DefaultParcelTemplate$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<
-        UpdateDefaultParcelTemplateResponse,
-        z.ZodTypeDef,
-        Inbound
-    > = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            DefaultParcelTemplate: components.DefaultParcelTemplate$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.DefaultParcelTemplate === undefined
-                    ? null
-                    : { defaultParcelTemplate: v.DefaultParcelTemplate }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        DefaultParcelTemplate?: components.DefaultParcelTemplate$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        UpdateDefaultParcelTemplateResponse
-    > = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            defaultParcelTemplate: components.DefaultParcelTemplate$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.defaultParcelTemplate === undefined
-                    ? null
-                    : { DefaultParcelTemplate: v.defaultParcelTemplate }),
             };
         });
 }

@@ -17,7 +17,9 @@ export type RegisterCarrierAccountRequestBody =
     | components.CarrierAccountDHLExpressCreateRequest
     | components.CarrierAccountDpdDeCreateRequest
     | components.CarrierAccountDPDUKCreateRequest
+    | components.CarrierAccountFedExCreateRequest
     | components.CarrierAccountHermesUKCreateRequest
+    | components.CarrierAccountMondialRelayCreateRequest
     | components.CarrierAccountPosteItalianeCreateRequest
     | components.CarrierAccountUPSCreateRequest
     | components.CarrierAccountUSPSCreateRequest;
@@ -39,16 +41,13 @@ export type RegisterCarrierAccountRequest = {
         | components.CarrierAccountDHLExpressCreateRequest
         | components.CarrierAccountDpdDeCreateRequest
         | components.CarrierAccountDPDUKCreateRequest
+        | components.CarrierAccountFedExCreateRequest
         | components.CarrierAccountHermesUKCreateRequest
+        | components.CarrierAccountMondialRelayCreateRequest
         | components.CarrierAccountPosteItalianeCreateRequest
         | components.CarrierAccountUPSCreateRequest
         | components.CarrierAccountUSPSCreateRequest
         | undefined;
-};
-
-export type RegisterCarrierAccountResponse = {
-    httpMeta: components.HTTPMetadata;
-    carrierAccount?: components.CarrierAccount | undefined;
 };
 
 /** @internal */
@@ -62,7 +61,9 @@ export namespace RegisterCarrierAccountRequestBody$ {
         | components.CarrierAccountDHLExpressCreateRequest$.Inbound
         | components.CarrierAccountDpdDeCreateRequest$.Inbound
         | components.CarrierAccountDPDUKCreateRequest$.Inbound
+        | components.CarrierAccountFedExCreateRequest$.Inbound
         | components.CarrierAccountHermesUKCreateRequest$.Inbound
+        | components.CarrierAccountMondialRelayCreateRequest$.Inbound
         | components.CarrierAccountPosteItalianeCreateRequest$.Inbound
         | components.CarrierAccountUPSCreateRequest$.Inbound
         | components.CarrierAccountUSPSCreateRequest$.Inbound;
@@ -76,7 +77,9 @@ export namespace RegisterCarrierAccountRequestBody$ {
         | components.CarrierAccountDHLExpressCreateRequest$.Outbound
         | components.CarrierAccountDpdDeCreateRequest$.Outbound
         | components.CarrierAccountDPDUKCreateRequest$.Outbound
+        | components.CarrierAccountFedExCreateRequest$.Outbound
         | components.CarrierAccountHermesUKCreateRequest$.Outbound
+        | components.CarrierAccountMondialRelayCreateRequest$.Outbound
         | components.CarrierAccountPosteItalianeCreateRequest$.Outbound
         | components.CarrierAccountUPSCreateRequest$.Outbound
         | components.CarrierAccountUSPSCreateRequest$.Outbound;
@@ -93,7 +96,9 @@ export namespace RegisterCarrierAccountRequestBody$ {
         components.CarrierAccountDHLExpressCreateRequest$.inboundSchema,
         components.CarrierAccountDpdDeCreateRequest$.inboundSchema,
         components.CarrierAccountDPDUKCreateRequest$.inboundSchema,
+        components.CarrierAccountFedExCreateRequest$.inboundSchema,
         components.CarrierAccountHermesUKCreateRequest$.inboundSchema,
+        components.CarrierAccountMondialRelayCreateRequest$.inboundSchema,
         components.CarrierAccountPosteItalianeCreateRequest$.inboundSchema,
         components.CarrierAccountUPSCreateRequest$.inboundSchema,
         components.CarrierAccountUSPSCreateRequest$.inboundSchema,
@@ -111,7 +116,9 @@ export namespace RegisterCarrierAccountRequestBody$ {
         components.CarrierAccountDHLExpressCreateRequest$.outboundSchema,
         components.CarrierAccountDpdDeCreateRequest$.outboundSchema,
         components.CarrierAccountDPDUKCreateRequest$.outboundSchema,
+        components.CarrierAccountFedExCreateRequest$.outboundSchema,
         components.CarrierAccountHermesUKCreateRequest$.outboundSchema,
+        components.CarrierAccountMondialRelayCreateRequest$.outboundSchema,
         components.CarrierAccountPosteItalianeCreateRequest$.outboundSchema,
         components.CarrierAccountUPSCreateRequest$.outboundSchema,
         components.CarrierAccountUSPSCreateRequest$.outboundSchema,
@@ -131,7 +138,9 @@ export namespace RegisterCarrierAccountRequest$ {
             | components.CarrierAccountDHLExpressCreateRequest$.Inbound
             | components.CarrierAccountDpdDeCreateRequest$.Inbound
             | components.CarrierAccountDPDUKCreateRequest$.Inbound
+            | components.CarrierAccountFedExCreateRequest$.Inbound
             | components.CarrierAccountHermesUKCreateRequest$.Inbound
+            | components.CarrierAccountMondialRelayCreateRequest$.Inbound
             | components.CarrierAccountPosteItalianeCreateRequest$.Inbound
             | components.CarrierAccountUPSCreateRequest$.Inbound
             | components.CarrierAccountUSPSCreateRequest$.Inbound
@@ -151,7 +160,9 @@ export namespace RegisterCarrierAccountRequest$ {
                     components.CarrierAccountDHLExpressCreateRequest$.inboundSchema,
                     components.CarrierAccountDpdDeCreateRequest$.inboundSchema,
                     components.CarrierAccountDPDUKCreateRequest$.inboundSchema,
+                    components.CarrierAccountFedExCreateRequest$.inboundSchema,
                     components.CarrierAccountHermesUKCreateRequest$.inboundSchema,
+                    components.CarrierAccountMondialRelayCreateRequest$.inboundSchema,
                     components.CarrierAccountPosteItalianeCreateRequest$.inboundSchema,
                     components.CarrierAccountUPSCreateRequest$.inboundSchema,
                     components.CarrierAccountUSPSCreateRequest$.inboundSchema,
@@ -178,7 +189,9 @@ export namespace RegisterCarrierAccountRequest$ {
             | components.CarrierAccountDHLExpressCreateRequest$.Outbound
             | components.CarrierAccountDpdDeCreateRequest$.Outbound
             | components.CarrierAccountDPDUKCreateRequest$.Outbound
+            | components.CarrierAccountFedExCreateRequest$.Outbound
             | components.CarrierAccountHermesUKCreateRequest$.Outbound
+            | components.CarrierAccountMondialRelayCreateRequest$.Outbound
             | components.CarrierAccountPosteItalianeCreateRequest$.Outbound
             | components.CarrierAccountUPSCreateRequest$.Outbound
             | components.CarrierAccountUSPSCreateRequest$.Outbound
@@ -199,7 +212,9 @@ export namespace RegisterCarrierAccountRequest$ {
                         components.CarrierAccountDHLExpressCreateRequest$.outboundSchema,
                         components.CarrierAccountDpdDeCreateRequest$.outboundSchema,
                         components.CarrierAccountDPDUKCreateRequest$.outboundSchema,
+                        components.CarrierAccountFedExCreateRequest$.outboundSchema,
                         components.CarrierAccountHermesUKCreateRequest$.outboundSchema,
+                        components.CarrierAccountMondialRelayCreateRequest$.outboundSchema,
                         components.CarrierAccountPosteItalianeCreateRequest$.outboundSchema,
                         components.CarrierAccountUPSCreateRequest$.outboundSchema,
                         components.CarrierAccountUSPSCreateRequest$.outboundSchema,
@@ -212,46 +227,6 @@ export namespace RegisterCarrierAccountRequest$ {
                         ? null
                         : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
                     ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
-                };
-            });
-}
-
-/** @internal */
-export namespace RegisterCarrierAccountResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CarrierAccount?: components.CarrierAccount$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RegisterCarrierAccountResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CarrierAccount: components.CarrierAccount$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.CarrierAccount === undefined ? null : { carrierAccount: v.CarrierAccount }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CarrierAccount?: components.CarrierAccount$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RegisterCarrierAccountResponse> =
-        z
-            .object({
-                httpMeta: components.HTTPMetadata$.outboundSchema,
-                carrierAccount: components.CarrierAccount$.outboundSchema.optional(),
-            })
-            .transform((v) => {
-                return {
-                    HttpMeta: v.httpMeta,
-                    ...(v.carrierAccount === undefined
-                        ? null
-                        : { CarrierAccount: v.carrierAccount }),
                 };
             });
 }

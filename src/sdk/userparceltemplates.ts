@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class UserParcelTemplates extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -48,7 +49,7 @@ export class UserParcelTemplates extends ClientSDK {
     async list(
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListUserParcelTemplatesResponse> {
+    ): Promise<Array<components.UserParcelTemplate>> {
         const input$: operations.ListUserParcelTemplatesRequest = {
             shippoApiVersion: shippoApiVersion,
         };
@@ -106,28 +107,19 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListUserParcelTemplatesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        userParcelTemplateListResponse: val$,
-                    });
+                    return z.array(components.UserParcelTemplate$.inboundSchema).parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -147,7 +139,7 @@ export class UserParcelTemplates extends ClientSDK {
         shippoApiVersion?: string | undefined,
         userParcelTemplateCreateRequest?: components.UserParcelTemplateCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateUserParcelTemplateResponse> {
+    ): Promise<components.UserParcelTemplate> {
         const input$: operations.CreateUserParcelTemplateRequest = {
             shippoApiVersion: shippoApiVersion,
             userParcelTemplateCreateRequest: userParcelTemplateCreateRequest,
@@ -209,28 +201,19 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateUserParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        UserParcelTemplate: val$,
-                    });
+                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -244,7 +227,7 @@ export class UserParcelTemplates extends ClientSDK {
         userParcelTemplateObjectId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.DeleteUserParcelTemplateResponse> {
+    ): Promise<operations.DeleteUserParcelTemplateResponse | void> {
         const input$: operations.DeleteUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
             shippoApiVersion: shippoApiVersion,
@@ -312,24 +295,12 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteUserParcelTemplateResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -343,7 +314,7 @@ export class UserParcelTemplates extends ClientSDK {
         userParcelTemplateObjectId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetUserParcelTemplateResponse> {
+    ): Promise<components.UserParcelTemplate> {
         const input$: operations.GetUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
             shippoApiVersion: shippoApiVersion,
@@ -411,28 +382,19 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetUserParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        UserParcelTemplate: val$,
-                    });
+                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -447,7 +409,7 @@ export class UserParcelTemplates extends ClientSDK {
         shippoApiVersion?: string | undefined,
         userParcelTemplateUpdateRequest?: components.UserParcelTemplateUpdateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateUserParcelTemplateResponse> {
+    ): Promise<components.UserParcelTemplate> {
         const input$: operations.UpdateUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
             shippoApiVersion: shippoApiVersion,
@@ -519,28 +481,19 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateUserParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        UserParcelTemplate: val$,
-                    });
+                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

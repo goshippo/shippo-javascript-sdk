@@ -1,6 +1,6 @@
 {
   "name": "shippo",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
@@ -22,7 +22,12 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.0",
     "mocha": "^10.4.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.2",
     "typescript": "^5.3.3",
     "zod": "^3.22.4"
+  },
+  "dependencies": {
+    
   }
 }

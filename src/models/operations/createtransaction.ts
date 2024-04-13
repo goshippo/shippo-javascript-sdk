@@ -26,11 +26,6 @@ export type CreateTransactionRequest = {
         | undefined;
 };
 
-export type CreateTransactionResponse = {
-    httpMeta: components.HTTPMetadata;
-    transaction?: components.Transaction | undefined;
-};
-
 /** @internal */
 export namespace CreateTransactionRequestBody$ {
     export type Inbound =
@@ -105,43 +100,6 @@ export namespace CreateTransactionRequest$ {
                     ? null
                     : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
                 ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateTransactionResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Transaction?: components.Transaction$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateTransactionResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Transaction: components.Transaction$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Transaction === undefined ? null : { transaction: v.Transaction }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Transaction?: components.Transaction$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateTransactionResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            transaction: components.Transaction$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.transaction === undefined ? null : { Transaction: v.transaction }),
             };
         });
 }

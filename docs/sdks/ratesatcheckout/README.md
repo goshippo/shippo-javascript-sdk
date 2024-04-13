@@ -83,7 +83,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateLiveRateResponse](../../models/operations/createliverateresponse.md)>**
+**Promise<[components.LiveRatePaginatedList](../../models/components/liveratepaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -127,7 +127,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetDefaultParcelTemplateResponse](../../models/operations/getdefaultparceltemplateresponse.md)>**
+**Promise<[components.DefaultParcelTemplate](../../models/components/defaultparceltemplate.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -175,7 +175,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateDefaultParcelTemplateResponse](../../models/operations/updatedefaultparceltemplateresponse.md)>**
+**Promise<[components.DefaultParcelTemplate](../../models/components/defaultparceltemplate.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

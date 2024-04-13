@@ -59,7 +59,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListManifestsResponse](../../models/operations/listmanifestsresponse.md)>**
+**Promise<[components.ManifestPaginatedList](../../models/components/manifestpaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -127,7 +127,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateManifestResponse](../../models/operations/createmanifestresponse.md)>**
+**Promise<[components.Manifest](../../models/components/manifest.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -173,7 +173,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetManifestResponse](../../models/operations/getmanifestresponse.md)>**
+**Promise<[components.Manifest](../../models/components/manifest.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

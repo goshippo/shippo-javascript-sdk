@@ -56,7 +56,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListUserParcelTemplatesResponse](../../models/operations/listuserparceltemplatesresponse.md)>**
+**Promise<[components.UserParcelTemplate[]](../../models/.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -112,7 +112,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateUserParcelTemplateResponse](../../models/operations/createuserparceltemplateresponse.md)>**
+**Promise<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -205,7 +205,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetUserParcelTemplateResponse](../../models/operations/getuserparceltemplateresponse.md)>**
+**Promise<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -262,7 +262,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateUserParcelTemplateResponse](../../models/operations/updateuserparceltemplateresponse.md)>**
+**Promise<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -16,11 +16,6 @@ export type CreateBatchRequest = {
     batchCreateRequest?: components.BatchCreateRequest | undefined;
 };
 
-export type CreateBatchResponse = {
-    httpMeta: components.HTTPMetadata;
-    batch?: components.Batch | undefined;
-};
-
 /** @internal */
 export namespace CreateBatchRequest$ {
     export type Inbound = {
@@ -62,43 +57,6 @@ export namespace CreateBatchRequest$ {
                 ...(v.batchCreateRequest === undefined
                     ? null
                     : { BatchCreateRequest: v.batchCreateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateBatchResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Batch?: components.Batch$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateBatchResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Batch: components.Batch$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Batch === undefined ? null : { batch: v.Batch }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Batch?: components.Batch$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateBatchResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            batch: components.Batch$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.batch === undefined ? null : { Batch: v.batch }),
             };
         });
 }

@@ -16,11 +16,6 @@ export type CreateOrderRequest = {
     orderCreateRequest?: components.OrderCreateRequest | undefined;
 };
 
-export type CreateOrderResponse = {
-    httpMeta: components.HTTPMetadata;
-    order?: components.Order | undefined;
-};
-
 /** @internal */
 export namespace CreateOrderRequest$ {
     export type Inbound = {
@@ -62,43 +57,6 @@ export namespace CreateOrderRequest$ {
                 ...(v.orderCreateRequest === undefined
                     ? null
                     : { OrderCreateRequest: v.orderCreateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateOrderResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Order?: components.Order$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateOrderResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Order: components.Order$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Order === undefined ? null : { order: v.Order }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Order?: components.Order$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateOrderResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            order: components.Order$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.order === undefined ? null : { Order: v.order }),
             };
         });
 }

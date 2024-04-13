@@ -12,12 +12,14 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 0.0.1
+  version: 0.0.4
   additionalDependencies:
     dependencies: {}
     devDependencies:
-      chai: "^5.1.0"
-      mocha: "^10.4.0"
+      chai: ^5.1.0
+      mocha: ^10.4.0
+      ts-node: ^10.9.2
+      tsx: ^4.7.2
     peerDependencies: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
@@ -34,5 +36,5 @@ typescript:
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: shippo
-  responseFormat: envelope-http
+  responseFormat: flat
   templateVersion: v2

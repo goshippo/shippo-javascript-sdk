@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateRefundResponse](../../models/operations/createrefundresponse.md)>**
+**Promise<[components.Refund](../../models/components/refund.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -98,7 +98,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListRefundsResponse](../../models/operations/listrefundsresponse.md)>**
+**Promise<[components.RefundPaginatedList](../../models/components/refundpaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -144,7 +144,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetRefundResponse](../../models/operations/getrefundresponse.md)>**
+**Promise<[components.Refund](../../models/components/refund.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

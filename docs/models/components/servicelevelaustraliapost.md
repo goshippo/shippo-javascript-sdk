@@ -11,6 +11,7 @@
 | australia_post_international_express | International Express|
 | australia_post_international_standard | International Standard|
 | australia_post_international_economy | International Economy|
+| australia_post_parcel_post_return | Parcel Post Return|
 
 
 
@@ -27,3 +28,4 @@
 | `AustraliaPostInternationalExpress`          | australia_post_international_express         |
 | `AustraliaPostInternationalStandard`         | australia_post_international_standard        |
 | `AustraliaPostInternationalEconomy`          | australia_post_international_economy         |
+| `AustraliaPostParcelPostReturn`              | australia_post_parcel_post_return            |

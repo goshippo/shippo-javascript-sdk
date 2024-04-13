@@ -16,11 +16,6 @@ export type CreateCustomsItemRequest = {
     customsItemBase?: components.CustomsItemBase | undefined;
 };
 
-export type CreateCustomsItemResponse = {
-    httpMeta: components.HTTPMetadata;
-    customsItem?: components.CustomsItem | undefined;
-};
-
 /** @internal */
 export namespace CreateCustomsItemRequest$ {
     export type Inbound = {
@@ -62,43 +57,6 @@ export namespace CreateCustomsItemRequest$ {
                 ...(v.customsItemBase === undefined
                     ? null
                     : { CustomsItemBase: v.customsItemBase }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateCustomsItemResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CustomsItem?: components.CustomsItem$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateCustomsItemResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CustomsItem: components.CustomsItem$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.CustomsItem === undefined ? null : { customsItem: v.CustomsItem }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CustomsItem?: components.CustomsItem$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateCustomsItemResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            customsItem: components.CustomsItem$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.customsItem === undefined ? null : { CustomsItem: v.customsItem }),
             };
         });
 }

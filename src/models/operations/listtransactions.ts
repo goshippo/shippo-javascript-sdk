@@ -32,11 +32,6 @@ export type ListTransactionsRequest = {
     shippoApiVersion?: string | undefined;
 };
 
-export type ListTransactionsResponse = {
-    httpMeta: components.HTTPMetadata;
-    transactionPaginatedList?: components.TransactionPaginatedList | undefined;
-};
-
 /** @internal */
 export namespace ListTransactionsRequest$ {
     export type Inbound = {
@@ -98,48 +93,6 @@ export namespace ListTransactionsRequest$ {
                 ...(v.shippoApiVersion === undefined
                     ? null
                     : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
-            };
-        });
-}
-
-/** @internal */
-export namespace ListTransactionsResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        TransactionPaginatedList?: components.TransactionPaginatedList$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListTransactionsResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            TransactionPaginatedList: components.TransactionPaginatedList$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.TransactionPaginatedList === undefined
-                    ? null
-                    : { transactionPaginatedList: v.TransactionPaginatedList }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        TransactionPaginatedList?: components.TransactionPaginatedList$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListTransactionsResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            transactionPaginatedList:
-                components.TransactionPaginatedList$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.transactionPaginatedList === undefined
-                    ? null
-                    : { TransactionPaginatedList: v.transactionPaginatedList }),
             };
         });
 }

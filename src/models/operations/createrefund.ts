@@ -16,11 +16,6 @@ export type CreateRefundRequest = {
     refundRequestBody?: components.RefundRequestBody | undefined;
 };
 
-export type CreateRefundResponse = {
-    httpMeta: components.HTTPMetadata;
-    refund?: components.Refund | undefined;
-};
-
 /** @internal */
 export namespace CreateRefundRequest$ {
     export type Inbound = {
@@ -62,43 +57,6 @@ export namespace CreateRefundRequest$ {
                 ...(v.refundRequestBody === undefined
                     ? null
                     : { RefundRequestBody: v.refundRequestBody }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateRefundResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Refund?: components.Refund$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateRefundResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Refund: components.Refund$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Refund === undefined ? null : { refund: v.Refund }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Refund?: components.Refund$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateRefundResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            refund: components.Refund$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.refund === undefined ? null : { Refund: v.refund }),
             };
         });
 }

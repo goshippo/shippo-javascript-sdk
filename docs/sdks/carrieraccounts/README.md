@@ -56,7 +56,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListCarrierAccountsResponse](../../models/operations/listcarrieraccountsresponse.md)>**
+**Promise<[components.CarrierAccountPaginatedList](../../models/components/carrieraccountpaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -132,7 +132,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateCarrierAccountResponse](../../models/operations/createcarrieraccountresponse.md)>**
+**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -179,7 +179,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetCarrierAccountResponse](../../models/operations/getcarrieraccountresponse.md)>**
+**Promise<[components.CarrierAccountWithExtraInfo](../../models/components/carrieraccountwithextrainfo.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -233,7 +233,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateCarrierAccountResponse](../../models/operations/updatecarrieraccountresponse.md)>**
+**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -335,7 +335,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RegisterCarrierAccountResponse](../../models/operations/registercarrieraccountresponse.md)>**
+**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -383,7 +383,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetCarrierRegistrationStatusResponse](../../models/operations/getcarrierregistrationstatusresponse.md)>**
+**Promise<[components.CarrierAccountRegistrationStatus](../../models/components/carrieraccountregistrationstatus.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

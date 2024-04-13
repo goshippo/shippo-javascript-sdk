@@ -50,7 +50,7 @@ export class ShippoAccounts extends ClientSDK {
         results?: number | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListShippoAccountsResponse> {
+    ): Promise<components.ShippoAccountPaginatedList> {
         const input$: operations.ListShippoAccountsRequest = {
             page: page,
             results: results,
@@ -118,28 +118,19 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListShippoAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippoAccountPaginatedList: val$,
-                    });
+                    return components.ShippoAccountPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -153,7 +144,7 @@ export class ShippoAccounts extends ClientSDK {
         shippoApiVersion?: string | undefined,
         shippoAccountUpdateRequest?: components.ShippoAccountUpdateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateShippoAccountResponse> {
+    ): Promise<components.ShippoAccount> {
         const input$: operations.CreateShippoAccountRequest = {
             shippoApiVersion: shippoApiVersion,
             shippoAccountUpdateRequest: shippoAccountUpdateRequest,
@@ -215,28 +206,19 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateShippoAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippoAccount: val$,
-                    });
+                    return components.ShippoAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -250,7 +232,7 @@ export class ShippoAccounts extends ClientSDK {
         shippoAccountId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetShippoAccountResponse> {
+    ): Promise<components.ShippoAccount> {
         const input$: operations.GetShippoAccountRequest = {
             shippoAccountId: shippoAccountId,
             shippoApiVersion: shippoApiVersion,
@@ -315,28 +297,19 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetShippoAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippoAccount: val$,
-                    });
+                    return components.ShippoAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -351,7 +324,7 @@ export class ShippoAccounts extends ClientSDK {
         shippoApiVersion?: string | undefined,
         shippoAccountUpdateRequest?: components.ShippoAccountUpdateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateShippoAccountResponse> {
+    ): Promise<components.ShippoAccount> {
         const input$: operations.UpdateShippoAccountRequest = {
             shippoAccountId: shippoAccountId,
             shippoApiVersion: shippoApiVersion,
@@ -420,28 +393,19 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateShippoAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippoAccount: val$,
-                    });
+                    return components.ShippoAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

@@ -142,7 +142,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateBatchResponse](../../models/operations/createbatchresponse.md)>**
+**Promise<[components.Batch](../../models/components/batch.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -191,7 +191,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBatchResponse](../../models/operations/getbatchresponse.md)>**
+**Promise<[components.Batch](../../models/components/batch.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -299,7 +299,7 @@ run();
 
 ### Response
 
-**Promise<[operations.AddShipmentsToBatchResponse](../../models/operations/addshipmentstobatchresponse.md)>**
+**Promise<[components.Batch](../../models/components/batch.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -348,7 +348,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PurchaseBatchResponse](../../models/operations/purchasebatchresponse.md)>**
+**Promise<[components.Batch](../../models/components/batch.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -398,7 +398,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RemoveShipmentsFromBatchResponse](../../models/operations/removeshipmentsfrombatchresponse.md)>**
+**Promise<[components.Batch](../../models/components/batch.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

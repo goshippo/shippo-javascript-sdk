@@ -79,7 +79,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreatePickupResponse](../../models/operations/createpickupresponse.md)>**
+**Promise<[components.Pickup](../../models/components/pickup.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

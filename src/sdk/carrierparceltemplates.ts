@@ -8,8 +8,10 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class CarrierParcelTemplates extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -49,7 +51,7 @@ export class CarrierParcelTemplates extends ClientSDK {
         carrier?: string | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListCarrierParcelTemplatesResponse> {
+    ): Promise<Array<components.CarrierParcelTemplate>> {
         const input$: operations.ListCarrierParcelTemplatesRequest = {
             include: include,
             carrier: carrier,
@@ -120,28 +122,19 @@ export class CarrierParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListCarrierParcelTemplatesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        carrierParcelTemplateListResponse: val$,
-                    });
+                    return z.array(components.CarrierParcelTemplate$.inboundSchema).parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -155,7 +148,7 @@ export class CarrierParcelTemplates extends ClientSDK {
         carrierParcelTemplateToken: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetCarrierParcelTemplateResponse> {
+    ): Promise<components.CarrierParcelTemplate> {
         const input$: operations.GetCarrierParcelTemplateRequest = {
             carrierParcelTemplateToken: carrierParcelTemplateToken,
             shippoApiVersion: shippoApiVersion,
@@ -223,28 +216,19 @@ export class CarrierParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCarrierParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierParcelTemplate: val$,
-                    });
+                    return components.CarrierParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

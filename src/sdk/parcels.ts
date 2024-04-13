@@ -50,7 +50,7 @@ export class Parcels extends ClientSDK {
         results?: number | undefined,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListParcelsResponse> {
+    ): Promise<components.ParcelPaginatedList> {
         const input$: operations.ListParcelsRequest = {
             page: page,
             results: results,
@@ -118,28 +118,19 @@ export class Parcels extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListParcelsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ParcelPaginatedList: val$,
-                    });
+                    return components.ParcelPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -153,7 +144,7 @@ export class Parcels extends ClientSDK {
         shippoApiVersion?: string | undefined,
         parcelRequest?: components.ParcelRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateParcelResponse> {
+    ): Promise<components.Parcel> {
         const input$: operations.CreateParcelRequest = {
             shippoApiVersion: shippoApiVersion,
             parcelRequest: parcelRequest,
@@ -213,28 +204,19 @@ export class Parcels extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateParcelResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Parcel: val$,
-                    });
+                    return components.Parcel$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -248,7 +230,7 @@ export class Parcels extends ClientSDK {
         parcelId: string,
         shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetParcelResponse> {
+    ): Promise<components.Parcel> {
         const input$: operations.GetParcelRequest = {
             parcelId: parcelId,
             shippoApiVersion: shippoApiVersion,
@@ -313,28 +295,19 @@ export class Parcels extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetParcelResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Parcel: val$,
-                    });
+                    return components.Parcel$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

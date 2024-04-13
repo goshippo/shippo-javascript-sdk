@@ -51,7 +51,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListServiceGroupsResponse](../../models/operations/listservicegroupsresponse.md)>**
+**Promise<[components.ServiceGroup[]](../../models/.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -113,7 +113,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateServiceGroupResponse](../../models/operations/createservicegroupresponse.md)>**
+**Promise<[components.ServiceGroup](../../models/components/servicegroup.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -177,7 +177,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateServiceGroupResponse](../../models/operations/updateservicegroupresponse.md)>**
+**Promise<[components.ServiceGroup](../../models/components/servicegroup.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

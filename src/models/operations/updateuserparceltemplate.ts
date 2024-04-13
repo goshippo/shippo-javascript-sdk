@@ -17,11 +17,6 @@ export type UpdateUserParcelTemplateRequest = {
     userParcelTemplateUpdateRequest?: components.UserParcelTemplateUpdateRequest | undefined;
 };
 
-export type UpdateUserParcelTemplateResponse = {
-    httpMeta: components.HTTPMetadata;
-    userParcelTemplate?: components.UserParcelTemplate | undefined;
-};
-
 /** @internal */
 export namespace UpdateUserParcelTemplateRequest$ {
     export type Inbound = {
@@ -80,52 +75,6 @@ export namespace UpdateUserParcelTemplateRequest$ {
                 ...(v.userParcelTemplateUpdateRequest === undefined
                     ? null
                     : { UserParcelTemplateUpdateRequest: v.userParcelTemplateUpdateRequest }),
-            };
-        });
-}
-
-/** @internal */
-export namespace UpdateUserParcelTemplateResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        UserParcelTemplate?: components.UserParcelTemplate$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateUserParcelTemplateResponse, z.ZodTypeDef, Inbound> =
-        z
-            .object({
-                HttpMeta: components.HTTPMetadata$.inboundSchema,
-                UserParcelTemplate: components.UserParcelTemplate$.inboundSchema.optional(),
-            })
-            .transform((v) => {
-                return {
-                    httpMeta: v.HttpMeta,
-                    ...(v.UserParcelTemplate === undefined
-                        ? null
-                        : { userParcelTemplate: v.UserParcelTemplate }),
-                };
-            });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        UserParcelTemplate?: components.UserParcelTemplate$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        UpdateUserParcelTemplateResponse
-    > = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            userParcelTemplate: components.UserParcelTemplate$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.userParcelTemplate === undefined
-                    ? null
-                    : { UserParcelTemplate: v.userParcelTemplate }),
             };
         });
 }
