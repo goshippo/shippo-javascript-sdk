@@ -29,8 +29,8 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  maxMethodParams: 4
+  maxMethodParams: 3
   outputModelSuffix: output
   packageName: shippo
-  responseFormat: envelope-http
+  responseFormat: flat
   templateVersion: v2
