@@ -1,4 +1,11 @@
-import {Awaitable, BeforeRequestContext, BeforeRequestHook, Hooks} from "./types";
+import {
+    AfterSuccessContext,
+    AfterSuccessHook,
+    Awaitable,
+    BeforeRequestContext,
+    BeforeRequestHook,
+    Hooks
+} from "./types";
 
 /*
  * This file is only ever generated once on the first generation and then is free to be modified.
@@ -16,6 +23,43 @@ export class PrefixApiKeyBeforeRequestHook implements BeforeRequestHook {
         }
         return request;
     }
+
+}
+
+
+/**
+ * Some of our APIs return null for values when they really should return nothing.  Since JS distinguishes between
+ * null and undefined AND Zod is very stringent, null values cause the serialization to explode when a null is received.
+ * While we could mark fields as 'nullable', there are a couple of reasons this is not ideal
+ *   1. there's no way to predict which fields will potentially return null, so every non-required field would need to
+ *   be marked nullable
+ *   2. other SDKs without a strict difference between null and undefined need to account for this difference when a
+ *   schema field is nullable; that is, it would make most of the other SDKs harder to use
+ *   3. we don't have any instance where null is different from undefined.  for example, a null field in an API could
+ *   be used to clear out a value during a PATCH request - but we don't have a single example of this in our 2018 API
+ * So, instead of jumping through hoops, we use this hook to drop any fields with null values.
+ */
+export class ConvertNullToUndefinedAfterSuccessHook implements AfterSuccessHook {
+
+    private deleteKeysWithNullValues(obj: any): any {
+        Object.keys(obj).forEach((key) => {
+            (obj[key] && typeof obj[key] === 'object') && this.deleteKeysWithNullValues(obj[key]) ||
+            (obj[key] === null) && delete obj[key];
+        });
+        return obj;
+    }
+
+    // @ts-expect-error unused argument hookCtx
+    async afterSuccess(hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
+        const content = await response.json();
+        const transformedContent = this.deleteKeysWithNullValues(content);
+        return new Response(JSON.stringify(transformedContent), {
+            status: response.status,
+            statusText: response.statusText,
+            headers: response.headers
+        });
+    }
+
 }
 
 export function initHooks(hooks: Hooks) {
@@ -23,4 +67,5 @@ export function initHooks(hooks: Hooks) {
     // with an instance of a hook that implements that specific Hook interface
     // Hooks are registered per SDK instance, and are valid for the lifetime of the SDK instance
     hooks.registerBeforeRequestHook(new PrefixApiKeyBeforeRequestHook());
+    hooks.registerAfterSuccessHook(new ConvertNullToUndefinedAfterSuccessHook());
 }
