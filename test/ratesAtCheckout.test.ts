@@ -1,4 +1,4 @@
-import {describe, it} from 'mocha';
+import {describe, it, beforeEach} from 'mocha';
 import {
     CarriersEnum,
     ServiceGroupAccountAndServiceLevel,
@@ -20,7 +20,7 @@ async function deleteAllServiceGroups() {
 
 describe('TestRatesAtCheckout', function() {
 
-    this.beforeEach(() => {
+    beforeEach(() => {
         deleteAllServiceGroups();
     });
 
