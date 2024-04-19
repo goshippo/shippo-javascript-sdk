@@ -24,7 +24,7 @@ describe('TestRatesAtCheckout', function() {
         deleteAllServiceGroups();
     });
 
-    it('testRatesAtCheckout', async () => {
+    it('test ratesAtCheckout', async () => {
         const carrierAccount =  await getCarrierAccount(CarriersEnum.Usps);
         const upsAccountObjectId =  carrierAccount.objectId;
 

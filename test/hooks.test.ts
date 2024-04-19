@@ -44,7 +44,7 @@ describe('TestConvertNullToUndefinedAfterSuccessHook', function () {
         expect(expected).to.deep.equal(actual);
     }
 
-    it('testShouldDoNothingIfNoNullValue', async () => {
+    it('should do nothing if no null value', async () => {
         await applyHookAndCompareExpected(
             {field: "value"},
             {field: "value"}
@@ -59,21 +59,21 @@ describe('TestConvertNullToUndefinedAfterSuccessHook', function () {
         );
     });
 
-    it('testShouldStripNullSimple', async () => {
+    it('should strip null in simple model', async () => {
         await applyHookAndCompareExpected(
             {field: null},
             {}
         );
     });
 
-    it('testShouldStripNullComplex', async () => {
+    it('should strip null in sub model', async () => {
         await applyHookAndCompareExpected(
             {field: {subField: "value", subFieldEmpty: null}},
             {field: {subField: "value"}}
         );
     });
 
-    it('testShouldStripNullArray', async () => {
+    it('should strip null in array', async () => {
         await applyHookAndCompareExpected(
             {field: [{subField: "value", subFieldEmpty: null}]},
             {field: [{subField: "value"}]}
