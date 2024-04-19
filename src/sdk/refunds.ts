@@ -46,13 +46,13 @@ export class Refunds extends ClientSDK {
      * Creates a new refund object.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        refundRequestBody?: components.RefundRequestBody | undefined,
+        transaction: string,
+        async?: boolean | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateRefundResponse> {
-        const input$: operations.CreateRefundRequest = {
-            shippoApiVersion: shippoApiVersion,
-            refundRequestBody: refundRequestBody,
+    ): Promise<components.Refund> {
+        const input$: components.RefundRequestBody | undefined = {
+            transaction: transaction,
+            async: async,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -61,10 +61,11 @@ export class Refunds extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.CreateRefundRequest$.outboundSchema.parse(value$),
+            (value$) => components.RefundRequestBody$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RefundRequestBody, { explode: true });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/refunds")();
 
@@ -72,11 +73,10 @@ export class Refunds extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -94,7 +94,7 @@ export class Refunds extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -109,28 +109,19 @@ export class Refunds extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateRefundResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Refund: val$,
-                    });
+                    return components.Refund$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -140,23 +131,10 @@ export class Refunds extends ClientSDK {
      * @remarks
      * Returns a list all refund objects.
      */
-    async list(
-        shippoApiVersion?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.ListRefundsResponse> {
-        const input$: operations.ListRefundsRequest = {
-            shippoApiVersion: shippoApiVersion,
-        };
+    async list(options?: RequestOptions): Promise<components.RefundPaginatedList> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.ListRefundsRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
 
         const path$ = this.templateURLComponent("/refunds/")();
 
@@ -164,11 +142,10 @@ export class Refunds extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -186,7 +163,7 @@ export class Refunds extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -194,35 +171,25 @@ export class Refunds extends ClientSDK {
                 path: path$,
                 headers: headers$,
                 query: query$,
-                body: body$,
             },
             options
         );
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListRefundsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        RefundPaginatedList: val$,
-                    });
+                    return components.RefundPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -232,14 +199,9 @@ export class Refunds extends ClientSDK {
      * @remarks
      * Returns an existing rate using a rate object ID.
      */
-    async get(
-        refundId: string,
-        shippoApiVersion?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetRefundResponse> {
+    async get(refundId: string, options?: RequestOptions): Promise<components.Refund> {
         const input$: operations.GetRefundRequest = {
             refundId: refundId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -264,11 +226,10 @@ export class Refunds extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -286,7 +247,7 @@ export class Refunds extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -301,28 +262,19 @@ export class Refunds extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetRefundResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Refund: val$,
-                    });
+                    return components.Refund$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

@@ -2,17 +2,16 @@
 ```typescript
 import { Shippo } from "shippo";
 
+const shippo = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+});
+
 async function run() {
-    const sdk = new Shippo({
-        apiKeyHeader: "<YOUR_API_KEY_HERE>",
-        shippoApiVersion: "2018-02-08",
-    });
-
     const page = 1;
-    const results = 25;
-    const shippoApiVersion = "2018-02-08";
+    const results = 5;
 
-    const result = await sdk.addresses.list(page, results, shippoApiVersion);
+    const result = await shippo.addresses.list(page, results);
 
     // Handle the result
     console.log(result);

@@ -6,19 +6,25 @@ import * as z from "zod";
 
 export type LiveRate = {
     /**
-     * The value of the price for the service group, in units of currency of the sender address
+     * Final Rate price, expressed in the currency used in the sender's country.
      */
     amount?: string | undefined;
     /**
-     * The value of the price for the service group, in the currency of the destination address
+     * Final Rate price, expressed in the currency used in the recipient's country.
      */
     amountLocal?: string | undefined;
     /**
-     * The ISO 4217 currency code for the price
+     * Currency used in the sender's country, refers to `amount`.
+     *
+     * @remarks
+     * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or `EUR`.
      */
     currency?: string | undefined;
     /**
-     * The ISO 4217 currency code for the currency describing amount_local
+     * Currency used in the recipient's country, refers to `amount_local`.
+     *
+     * @remarks
+     * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or "EUR".
      */
     currencyLocal?: string | undefined;
     /**

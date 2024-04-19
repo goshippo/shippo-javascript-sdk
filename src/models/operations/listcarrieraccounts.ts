@@ -13,7 +13,7 @@ export type ListCarrierAccountsRequest = {
     /**
      * Filter the response by the specified carrier
      */
-    carrier?: components.Carriers | undefined;
+    carrier?: components.CarriersEnum | undefined;
     /**
      * Filter the response by the specified carrier account Id
      */
@@ -26,36 +26,25 @@ export type ListCarrierAccountsRequest = {
      * The number of results to return per page (max 100, default 5)
      */
     results?: number | undefined;
-    /**
-     * String used to pick a non-default API version to use
-     */
-    shippoApiVersion?: string | undefined;
-};
-
-export type ListCarrierAccountsResponse = {
-    httpMeta: components.HTTPMetadata;
-    carrierAccountPaginatedList?: components.CarrierAccountPaginatedList | undefined;
 };
 
 /** @internal */
 export namespace ListCarrierAccountsRequest$ {
     export type Inbound = {
         service_levels?: boolean | undefined;
-        carrier?: components.Carriers | undefined;
+        carrier?: components.CarriersEnum | undefined;
         account_id?: string | undefined;
         page?: number | undefined;
         results?: number | undefined;
-        "SHIPPO-API-VERSION"?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<ListCarrierAccountsRequest, z.ZodTypeDef, Inbound> = z
         .object({
             service_levels: z.boolean().optional(),
-            carrier: components.Carriers$.optional(),
+            carrier: components.CarriersEnum$.optional(),
             account_id: z.string().optional(),
             page: z.number().int().default(1),
             results: z.number().int().default(5),
-            "SHIPPO-API-VERSION": z.string().optional(),
         })
         .transform((v) => {
             return {
@@ -64,29 +53,24 @@ export namespace ListCarrierAccountsRequest$ {
                 ...(v.account_id === undefined ? null : { accountId: v.account_id }),
                 page: v.page,
                 results: v.results,
-                ...(v["SHIPPO-API-VERSION"] === undefined
-                    ? null
-                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
             };
         });
 
     export type Outbound = {
         service_levels?: boolean | undefined;
-        carrier?: components.Carriers | undefined;
+        carrier?: components.CarriersEnum | undefined;
         account_id?: string | undefined;
         page: number;
         results: number;
-        "SHIPPO-API-VERSION"?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListCarrierAccountsRequest> = z
         .object({
             serviceLevels: z.boolean().optional(),
-            carrier: components.Carriers$.optional(),
+            carrier: components.CarriersEnum$.optional(),
             accountId: z.string().optional(),
             page: z.number().int().default(1),
             results: z.number().int().default(5),
-            shippoApiVersion: z.string().optional(),
         })
         .transform((v) => {
             return {
@@ -95,52 +79,6 @@ export namespace ListCarrierAccountsRequest$ {
                 ...(v.accountId === undefined ? null : { account_id: v.accountId }),
                 page: v.page,
                 results: v.results,
-                ...(v.shippoApiVersion === undefined
-                    ? null
-                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
-            };
-        });
-}
-
-/** @internal */
-export namespace ListCarrierAccountsResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CarrierAccountPaginatedList?: components.CarrierAccountPaginatedList$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListCarrierAccountsResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CarrierAccountPaginatedList:
-                components.CarrierAccountPaginatedList$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.CarrierAccountPaginatedList === undefined
-                    ? null
-                    : { carrierAccountPaginatedList: v.CarrierAccountPaginatedList }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CarrierAccountPaginatedList?: components.CarrierAccountPaginatedList$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListCarrierAccountsResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            carrierAccountPaginatedList:
-                components.CarrierAccountPaginatedList$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.carrierAccountPaginatedList === undefined
-                    ? null
-                    : { CarrierAccountPaginatedList: v.carrierAccountPaginatedList }),
             };
         });
 }

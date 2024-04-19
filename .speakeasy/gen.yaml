@@ -12,13 +12,15 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 0.0.1
+  version: 0.1.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
+  additionalPackageJSON: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
+  enumFormat: enum
   flattenGlobalSecurity: true
   imports:
     option: openapi

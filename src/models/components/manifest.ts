@@ -70,7 +70,7 @@ export type Manifest = {
 };
 
 /** @internal */
-export const ManifestStatus$ = z.nativeEnum(ManifestStatus);
+export const ManifestStatus$: z.ZodNativeEnum<typeof ManifestStatus> = z.nativeEnum(ManifestStatus);
 
 /** @internal */
 export namespace Manifest$ {

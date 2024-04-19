@@ -22,6 +22,20 @@ export type Rate = {
      */
     amountLocal: string;
     /**
+     * Currency used in the sender's country, refers to `amount`.
+     *
+     * @remarks
+     * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or `EUR`.
+     */
+    currency: string;
+    /**
+     * Currency used in the recipient's country, refers to `amount_local`.
+     *
+     * @remarks
+     * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or "EUR".
+     */
+    currencyLocal: string;
+    /**
      * Predicted time the carrier will deliver the package in the destination's local time zone. In the format `HH:MM:SS`.
      */
     arrivesBy?: string | undefined;
@@ -36,20 +50,6 @@ export type Rate = {
      * Object ID of the carrier account that has been used to retrieve the rate.
      */
     carrierAccount: string;
-    /**
-     * Currency used in the sender's country, refers to `amount`.
-     *
-     * @remarks
-     * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or `EUR`.
-     */
-    currency: string;
-    /**
-     * Currency used in the recipient's country, refers to `amount_local`.
-     *
-     * @remarks
-     * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or "EUR".
-     */
-    currencyLocal: string;
     /**
      * Further clarification of the transit times.
      *
@@ -128,18 +128,18 @@ export type Rate = {
 };
 
 /** @internal */
-export const Attributes$ = z.nativeEnum(Attributes);
+export const Attributes$: z.ZodNativeEnum<typeof Attributes> = z.nativeEnum(Attributes);
 
 /** @internal */
 export namespace Rate$ {
     export type Inbound = {
         amount: string;
         amount_local: string;
+        currency: string;
+        currency_local: string;
         arrives_by?: string | undefined;
         attributes: Array<Attributes>;
         carrier_account: string;
-        currency: string;
-        currency_local: string;
         duration_terms?: string | undefined;
         estimated_days?: number | undefined;
         included_insurance_price?: number | undefined;
@@ -160,11 +160,11 @@ export namespace Rate$ {
         .object({
             amount: z.string(),
             amount_local: z.string(),
+            currency: z.string(),
+            currency_local: z.string(),
             arrives_by: z.string().optional(),
             attributes: z.array(Attributes$),
             carrier_account: z.string(),
-            currency: z.string(),
-            currency_local: z.string(),
             duration_terms: z.string().optional(),
             estimated_days: z.number().int().optional(),
             included_insurance_price: z.number().optional(),
@@ -187,11 +187,11 @@ export namespace Rate$ {
             return {
                 amount: v.amount,
                 amountLocal: v.amount_local,
+                currency: v.currency,
+                currencyLocal: v.currency_local,
                 ...(v.arrives_by === undefined ? null : { arrivesBy: v.arrives_by }),
                 attributes: v.attributes,
                 carrierAccount: v.carrier_account,
-                currency: v.currency,
-                currencyLocal: v.currency_local,
                 ...(v.duration_terms === undefined ? null : { durationTerms: v.duration_terms }),
                 ...(v.estimated_days === undefined ? null : { estimatedDays: v.estimated_days }),
                 ...(v.included_insurance_price === undefined
@@ -218,11 +218,11 @@ export namespace Rate$ {
     export type Outbound = {
         amount: string;
         amount_local: string;
+        currency: string;
+        currency_local: string;
         arrives_by?: string | undefined;
         attributes: Array<Attributes>;
         carrier_account: string;
-        currency: string;
-        currency_local: string;
         duration_terms?: string | undefined;
         estimated_days?: number | undefined;
         included_insurance_price?: number | undefined;
@@ -243,11 +243,11 @@ export namespace Rate$ {
         .object({
             amount: z.string(),
             amountLocal: z.string(),
+            currency: z.string(),
+            currencyLocal: z.string(),
             arrivesBy: z.string().optional(),
             attributes: z.array(Attributes$),
             carrierAccount: z.string(),
-            currency: z.string(),
-            currencyLocal: z.string(),
             durationTerms: z.string().optional(),
             estimatedDays: z.number().int().optional(),
             includedInsurancePrice: z.number().optional(),
@@ -267,11 +267,11 @@ export namespace Rate$ {
             return {
                 amount: v.amount,
                 amount_local: v.amountLocal,
+                currency: v.currency,
+                currency_local: v.currencyLocal,
                 ...(v.arrivesBy === undefined ? null : { arrives_by: v.arrivesBy }),
                 attributes: v.attributes,
                 carrier_account: v.carrierAccount,
-                currency: v.currency,
-                currency_local: v.currencyLocal,
                 ...(v.durationTerms === undefined ? null : { duration_terms: v.durationTerms }),
                 ...(v.estimatedDays === undefined ? null : { estimated_days: v.estimatedDays }),
                 ...(v.includedInsurancePrice === undefined

@@ -48,13 +48,11 @@ export class Addresses extends ClientSDK {
     async list(
         page?: number | undefined,
         results?: number | undefined,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListAddressesResponse> {
+    ): Promise<components.AddressPaginatedList> {
         const input$: operations.ListAddressesRequest = {
             page: page,
             results: results,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -81,11 +79,10 @@ export class Addresses extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -103,7 +100,7 @@ export class Addresses extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -118,28 +115,19 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListAddressesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AddressPaginatedList: val$,
-                    });
+                    return components.AddressPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -150,25 +138,21 @@ export class Addresses extends ClientSDK {
      * Creates a new address object. You can use address objects to create new shipments, calculate rates, and to create orders.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        addressCreateRequest?: components.AddressCreateRequest | undefined,
+        input: components.AddressCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateAddressResponse> {
-        const input$: operations.CreateAddressRequest = {
-            shippoApiVersion: shippoApiVersion,
-            addressCreateRequest: addressCreateRequest,
-        };
+    ): Promise<components.Address> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateAddressRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) => components.AddressCreateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.AddressCreateRequest, { explode: true });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/addresses")();
 
@@ -176,11 +160,10 @@ export class Addresses extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -198,7 +181,7 @@ export class Addresses extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -213,28 +196,19 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateAddressResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Address: val$,
-                    });
+                    return components.Address$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -244,14 +218,9 @@ export class Addresses extends ClientSDK {
      * @remarks
      * Returns an existing address using an object ID.
      */
-    async get(
-        addressId: string,
-        shippoApiVersion?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetAddressResponse> {
+    async get(addressId: string, options?: RequestOptions): Promise<components.Address> {
         const input$: operations.GetAddressRequest = {
             addressId: addressId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -276,11 +245,10 @@ export class Addresses extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -298,7 +266,7 @@ export class Addresses extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -313,28 +281,19 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetAddressResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Address: val$,
-                    });
+                    return components.Address$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -344,14 +303,9 @@ export class Addresses extends ClientSDK {
      * @remarks
      * Validates an existing address using an object ID
      */
-    async validate(
-        addressId: string,
-        shippoApiVersion?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.ValidateAddressResponse> {
+    async validate(addressId: string, options?: RequestOptions): Promise<components.Address> {
         const input$: operations.ValidateAddressRequest = {
             addressId: addressId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -376,11 +330,10 @@ export class Addresses extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -398,7 +351,7 @@ export class Addresses extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -413,28 +366,19 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ValidateAddressResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Address: val$,
-                    });
+                    return components.Address$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

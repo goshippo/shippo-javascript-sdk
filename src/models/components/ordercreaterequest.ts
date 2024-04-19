@@ -4,23 +4,9 @@
 
 import { AddressCreateRequest, AddressCreateRequest$ } from "./addresscreaterequest";
 import { LineItemBase, LineItemBase$ } from "./lineitembase";
-import { WeightUnit, WeightUnit$ } from "./weightunit";
+import { OrderStatusEnum, OrderStatusEnum$ } from "./orderstatusenum";
+import { WeightUnitEnum, WeightUnitEnum$ } from "./weightunitenum";
 import * as z from "zod";
-
-/**
- * Current state of the order. See the <a href="https://docs.goshippo.com/docs/orders/orders/">orders tutorial</a>
- *
- * @remarks
- * for the logic of how the status is handled.
- */
-export enum OrderCreateRequestOrderStatus {
-    Unknown = "UNKNOWN",
-    Awaitpay = "AWAITPAY",
-    Paid = "PAID",
-    Refunded = "REFUNDED",
-    PartiallyFulfilled = "PARTIALLY_FULFILLED",
-    Shipped = "SHIPPED",
-}
 
 export type OrderCreateRequest = {
     /**
@@ -44,7 +30,7 @@ export type OrderCreateRequest = {
      * @remarks
      * for the logic of how the status is handled.
      */
-    orderStatus?: OrderCreateRequestOrderStatus | undefined;
+    orderStatus?: OrderStatusEnum | undefined;
     /**
      * Date and time when the order was placed. This datetime can be different from the datetime of the order object creation on Shippo.
      */
@@ -83,7 +69,7 @@ export type OrderCreateRequest = {
     /**
      * The unit used for weight.
      */
-    weightUnit?: WeightUnit | undefined;
+    weightUnit?: WeightUnitEnum | undefined;
     /**
      * <a href="#tag/Addresses">Address</a> object of the sender / seller. Will be returned expanded by default..
      */
@@ -102,15 +88,12 @@ export type OrderCreateRequest = {
 };
 
 /** @internal */
-export const OrderCreateRequestOrderStatus$ = z.nativeEnum(OrderCreateRequestOrderStatus);
-
-/** @internal */
 export namespace OrderCreateRequest$ {
     export type Inbound = {
         currency?: string | undefined;
         notes?: string | undefined;
         order_number?: string | undefined;
-        order_status?: OrderCreateRequestOrderStatus | undefined;
+        order_status?: OrderStatusEnum | undefined;
         placed_at: string;
         shipping_cost?: string | undefined;
         shipping_cost_currency?: string | undefined;
@@ -119,7 +102,7 @@ export namespace OrderCreateRequest$ {
         total_price?: string | undefined;
         total_tax?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnit | undefined;
+        weight_unit?: WeightUnitEnum | undefined;
         from_address?: AddressCreateRequest$.Inbound | undefined;
         to_address: AddressCreateRequest$.Inbound;
         line_items?: Array<LineItemBase$.Inbound> | undefined;
@@ -130,7 +113,7 @@ export namespace OrderCreateRequest$ {
             currency: z.string().optional(),
             notes: z.string().optional(),
             order_number: z.string().optional(),
-            order_status: OrderCreateRequestOrderStatus$.optional(),
+            order_status: OrderStatusEnum$.optional(),
             placed_at: z.string(),
             shipping_cost: z.string().optional(),
             shipping_cost_currency: z.string().optional(),
@@ -139,7 +122,7 @@ export namespace OrderCreateRequest$ {
             total_price: z.string().optional(),
             total_tax: z.string().optional(),
             weight: z.string().optional(),
-            weight_unit: WeightUnit$.optional(),
+            weight_unit: WeightUnitEnum$.optional(),
             from_address: AddressCreateRequest$.inboundSchema.optional(),
             to_address: AddressCreateRequest$.inboundSchema,
             line_items: z.array(LineItemBase$.inboundSchema).optional(),
@@ -171,7 +154,7 @@ export namespace OrderCreateRequest$ {
         currency?: string | undefined;
         notes?: string | undefined;
         order_number?: string | undefined;
-        order_status?: OrderCreateRequestOrderStatus | undefined;
+        order_status?: OrderStatusEnum | undefined;
         placed_at: string;
         shipping_cost?: string | undefined;
         shipping_cost_currency?: string | undefined;
@@ -180,7 +163,7 @@ export namespace OrderCreateRequest$ {
         total_price?: string | undefined;
         total_tax?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnit | undefined;
+        weight_unit?: WeightUnitEnum | undefined;
         from_address?: AddressCreateRequest$.Outbound | undefined;
         to_address: AddressCreateRequest$.Outbound;
         line_items?: Array<LineItemBase$.Outbound> | undefined;
@@ -191,7 +174,7 @@ export namespace OrderCreateRequest$ {
             currency: z.string().optional(),
             notes: z.string().optional(),
             orderNumber: z.string().optional(),
-            orderStatus: OrderCreateRequestOrderStatus$.optional(),
+            orderStatus: OrderStatusEnum$.optional(),
             placedAt: z.string(),
             shippingCost: z.string().optional(),
             shippingCostCurrency: z.string().optional(),
@@ -200,7 +183,7 @@ export namespace OrderCreateRequest$ {
             totalPrice: z.string().optional(),
             totalTax: z.string().optional(),
             weight: z.string().optional(),
-            weightUnit: WeightUnit$.optional(),
+            weightUnit: WeightUnitEnum$.optional(),
             fromAddress: AddressCreateRequest$.outboundSchema.optional(),
             toAddress: AddressCreateRequest$.outboundSchema,
             lineItems: z.array(LineItemBase$.outboundSchema).optional(),

@@ -48,13 +48,11 @@ export class ShippoAccounts extends ClientSDK {
     async list(
         page?: number | undefined,
         results?: number | undefined,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListShippoAccountsResponse> {
+    ): Promise<components.ShippoAccountPaginatedList> {
         const input$: operations.ListShippoAccountsRequest = {
             page: page,
             results: results,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -81,11 +79,10 @@ export class ShippoAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -103,7 +100,7 @@ export class ShippoAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -118,28 +115,19 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListShippoAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippoAccountPaginatedList: val$,
-                    });
+                    return components.ShippoAccountPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -150,27 +138,22 @@ export class ShippoAccounts extends ClientSDK {
      * Creates a Shippo Account object
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        shippoAccountUpdateRequest?: components.ShippoAccountUpdateRequest | undefined,
+        input: components.ShippoAccountUpdateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateShippoAccountResponse> {
-        const input$: operations.CreateShippoAccountRequest = {
-            shippoApiVersion: shippoApiVersion,
-            shippoAccountUpdateRequest: shippoAccountUpdateRequest,
-        };
+    ): Promise<components.ShippoAccount> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateShippoAccountRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) =>
+                components.ShippoAccountUpdateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.ShippoAccountUpdateRequest, {
-            explode: true,
-        });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/shippo-accounts")();
 
@@ -178,11 +161,10 @@ export class ShippoAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -200,7 +182,7 @@ export class ShippoAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -215,28 +197,19 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateShippoAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippoAccount: val$,
-                    });
+                    return components.ShippoAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -248,12 +221,10 @@ export class ShippoAccounts extends ClientSDK {
      */
     async get(
         shippoAccountId: string,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetShippoAccountResponse> {
+    ): Promise<components.ShippoAccount> {
         const input$: operations.GetShippoAccountRequest = {
             shippoAccountId: shippoAccountId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -278,11 +249,10 @@ export class ShippoAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -300,7 +270,7 @@ export class ShippoAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -315,28 +285,19 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetShippoAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippoAccount: val$,
-                    });
+                    return components.ShippoAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -348,13 +309,11 @@ export class ShippoAccounts extends ClientSDK {
      */
     async update(
         shippoAccountId: string,
-        shippoApiVersion?: string | undefined,
         shippoAccountUpdateRequest?: components.ShippoAccountUpdateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateShippoAccountResponse> {
+    ): Promise<components.ShippoAccount> {
         const input$: operations.UpdateShippoAccountRequest = {
             shippoAccountId: shippoAccountId,
-            shippoApiVersion: shippoApiVersion,
             shippoAccountUpdateRequest: shippoAccountUpdateRequest,
         };
         const headers$ = new Headers();
@@ -383,11 +342,10 @@ export class ShippoAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -405,7 +363,7 @@ export class ShippoAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -420,28 +378,19 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateShippoAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ShippoAccount: val$,
-                    });
+                    return components.ShippoAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

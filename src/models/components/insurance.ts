@@ -39,7 +39,7 @@ export type Insurance = {
 };
 
 /** @internal */
-export const Provider$ = z.nativeEnum(Provider);
+export const Provider$: z.ZodNativeEnum<typeof Provider> = z.nativeEnum(Provider);
 
 /** @internal */
 export namespace Insurance$ {

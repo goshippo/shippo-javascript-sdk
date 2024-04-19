@@ -40,7 +40,7 @@ export type Cod = {
 };
 
 /** @internal */
-export const PaymentMethod$ = z.nativeEnum(PaymentMethod);
+export const PaymentMethod$: z.ZodNativeEnum<typeof PaymentMethod> = z.nativeEnum(PaymentMethod);
 
 /** @internal */
 export namespace Cod$ {

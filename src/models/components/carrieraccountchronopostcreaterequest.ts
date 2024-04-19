@@ -4,29 +4,37 @@
 
 import * as z from "zod";
 
-export type ParametersT = {};
+export type CarrierAccountChronopostCreateRequestParameters = {};
 
 export type CarrierAccountChronopostCreateRequest = {
     carrier: string;
-    parameters: ParametersT;
+    parameters: CarrierAccountChronopostCreateRequestParameters;
 };
 
 /** @internal */
-export namespace ParametersT$ {
+export namespace CarrierAccountChronopostCreateRequestParameters$ {
     export type Inbound = {};
 
-    export const inboundSchema: z.ZodType<ParametersT, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<
+        CarrierAccountChronopostCreateRequestParameters,
+        z.ZodTypeDef,
+        Inbound
+    > = z.object({});
 
     export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParametersT> = z.object({});
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        CarrierAccountChronopostCreateRequestParameters
+    > = z.object({});
 }
 
 /** @internal */
 export namespace CarrierAccountChronopostCreateRequest$ {
     export type Inbound = {
         carrier: string;
-        parameters: ParametersT$.Inbound;
+        parameters: CarrierAccountChronopostCreateRequestParameters$.Inbound;
     };
 
     export const inboundSchema: z.ZodType<
@@ -36,7 +44,9 @@ export namespace CarrierAccountChronopostCreateRequest$ {
     > = z
         .object({
             carrier: z.string(),
-            parameters: z.lazy(() => ParametersT$.inboundSchema),
+            parameters: z.lazy(
+                () => CarrierAccountChronopostCreateRequestParameters$.inboundSchema
+            ),
         })
         .transform((v) => {
             return {
@@ -47,7 +57,7 @@ export namespace CarrierAccountChronopostCreateRequest$ {
 
     export type Outbound = {
         carrier: string;
-        parameters: ParametersT$.Outbound;
+        parameters: CarrierAccountChronopostCreateRequestParameters$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<
@@ -57,7 +67,9 @@ export namespace CarrierAccountChronopostCreateRequest$ {
     > = z
         .object({
             carrier: z.string(),
-            parameters: z.lazy(() => ParametersT$.outboundSchema),
+            parameters: z.lazy(
+                () => CarrierAccountChronopostCreateRequestParameters$.outboundSchema
+            ),
         })
         .transform((v) => {
             return {

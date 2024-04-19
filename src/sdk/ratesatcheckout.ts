@@ -49,25 +49,21 @@ export class RatesAtCheckout extends ClientSDK {
      * template or a fully formed user parcel template object as the parcel value.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        liveRateCreateRequest?: components.LiveRateCreateRequest | undefined,
+        input: components.LiveRateCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateLiveRateResponse> {
-        const input$: operations.CreateLiveRateRequest = {
-            shippoApiVersion: shippoApiVersion,
-            liveRateCreateRequest: liveRateCreateRequest,
-        };
+    ): Promise<components.LiveRatePaginatedList> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateLiveRateRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) => components.LiveRateCreateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.LiveRateCreateRequest, { explode: true });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/live-rates")();
 
@@ -75,11 +71,10 @@ export class RatesAtCheckout extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -97,7 +92,7 @@ export class RatesAtCheckout extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -112,28 +107,19 @@ export class RatesAtCheckout extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateLiveRateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        LiveRatePaginatedList: val$,
-                    });
+                    return components.LiveRatePaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -144,22 +130,11 @@ export class RatesAtCheckout extends ClientSDK {
      * Retrieve and display the currently configured default parcel template for live rates.
      */
     async getDefaultParcelTemplate(
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetDefaultParcelTemplateResponse> {
-        const input$: operations.GetDefaultParcelTemplateRequest = {
-            shippoApiVersion: shippoApiVersion,
-        };
+    ): Promise<components.DefaultParcelTemplate> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetDefaultParcelTemplateRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
 
         const path$ = this.templateURLComponent("/live-rates/settings/parcel-template")();
 
@@ -167,11 +142,10 @@ export class RatesAtCheckout extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -189,7 +163,7 @@ export class RatesAtCheckout extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -197,35 +171,25 @@ export class RatesAtCheckout extends ClientSDK {
                 path: path$,
                 headers: headers$,
                 query: query$,
-                body: body$,
             },
             options
         );
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetDefaultParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        DefaultParcelTemplate: val$,
-                    });
+                    return components.DefaultParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -236,15 +200,11 @@ export class RatesAtCheckout extends ClientSDK {
      * Update the currently configured default parcel template for live rates. The object_id in the request payload should identify the user parcel template to be the new default.
      */
     async updateDefaultParcelTemplate(
-        shippoApiVersion?: string | undefined,
-        defaultParcelTemplateUpdateRequest?:
-            | components.DefaultParcelTemplateUpdateRequest
-            | undefined,
+        objectId?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateDefaultParcelTemplateResponse> {
-        const input$: operations.UpdateDefaultParcelTemplateRequest = {
-            shippoApiVersion: shippoApiVersion,
-            defaultParcelTemplateUpdateRequest: defaultParcelTemplateUpdateRequest,
+    ): Promise<components.DefaultParcelTemplate> {
+        const input$: components.DefaultParcelTemplateUpdateRequest | undefined = {
+            objectId: objectId,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -253,12 +213,14 @@ export class RatesAtCheckout extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateDefaultParcelTemplateRequest$.outboundSchema.parse(value$),
+            (value$) =>
+                components.DefaultParcelTemplateUpdateRequest$.outboundSchema
+                    .optional()
+                    .parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.DefaultParcelTemplateUpdateRequest, {
-            explode: true,
-        });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/live-rates/settings/parcel-template")();
 
@@ -266,11 +228,10 @@ export class RatesAtCheckout extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -288,7 +249,7 @@ export class RatesAtCheckout extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -303,28 +264,19 @@ export class RatesAtCheckout extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateDefaultParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        DefaultParcelTemplate: val$,
-                    });
+                    return components.DefaultParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -335,22 +287,11 @@ export class RatesAtCheckout extends ClientSDK {
      * Clears the currently configured default parcel template for live rates.
      */
     async deleteDefaultParcelTemplate(
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.DeleteDefaultParcelTemplateResponse> {
-        const input$: operations.DeleteDefaultParcelTemplateRequest = {
-            shippoApiVersion: shippoApiVersion,
-        };
+    ): Promise<operations.DeleteDefaultParcelTemplateResponse | void> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "*/*");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.DeleteDefaultParcelTemplateRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
 
         const path$ = this.templateURLComponent("/live-rates/settings/parcel-template")();
 
@@ -358,11 +299,10 @@ export class RatesAtCheckout extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -380,7 +320,7 @@ export class RatesAtCheckout extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -388,33 +328,17 @@ export class RatesAtCheckout extends ClientSDK {
                 path: path$,
                 headers: headers$,
                 query: query$,
-                body: body$,
             },
             options
         );
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.DeleteDefaultParcelTemplateResponse$.inboundSchema.parse(
-                    responseFields$
-                ),
-            "Response validation failed"
-        );
     }
 }

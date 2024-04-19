@@ -6,7 +6,7 @@ import {
     ServiceGroupAccountAndServiceLevel,
     ServiceGroupAccountAndServiceLevel$,
 } from "./servicegroupaccountandservicelevel";
-import { ServiceGroupType, ServiceGroupType$ } from "./servicegrouptype";
+import { ServiceGroupTypeEnum, ServiceGroupTypeEnum$ } from "./servicegrouptypeenum";
 import * as z from "zod";
 
 export type ServiceGroupCreateRequest = {
@@ -47,7 +47,7 @@ export type ServiceGroupCreateRequest = {
     /**
      * The type of the service group.<br> `LIVE_RATE` - Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.<br> `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.<br> `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
      */
-    type: ServiceGroupType;
+    type: ServiceGroupTypeEnum;
     serviceLevels: Array<ServiceGroupAccountAndServiceLevel>;
 };
 
@@ -61,7 +61,7 @@ export namespace ServiceGroupCreateRequest$ {
         free_shipping_threshold_min?: string | undefined;
         name: string;
         rate_adjustment?: number | undefined;
-        type: ServiceGroupType;
+        type: ServiceGroupTypeEnum;
         service_levels: Array<ServiceGroupAccountAndServiceLevel$.Inbound>;
     };
 
@@ -74,7 +74,7 @@ export namespace ServiceGroupCreateRequest$ {
             free_shipping_threshold_min: z.string().optional(),
             name: z.string(),
             rate_adjustment: z.number().int().optional(),
-            type: ServiceGroupType$,
+            type: ServiceGroupTypeEnum$,
             service_levels: z.array(ServiceGroupAccountAndServiceLevel$.inboundSchema),
         })
         .transform((v) => {
@@ -105,7 +105,7 @@ export namespace ServiceGroupCreateRequest$ {
         free_shipping_threshold_min?: string | undefined;
         name: string;
         rate_adjustment?: number | undefined;
-        type: ServiceGroupType;
+        type: ServiceGroupTypeEnum;
         service_levels: Array<ServiceGroupAccountAndServiceLevel$.Outbound>;
     };
 
@@ -118,7 +118,7 @@ export namespace ServiceGroupCreateRequest$ {
             freeShippingThresholdMin: z.string().optional(),
             name: z.string(),
             rateAdjustment: z.number().int().optional(),
-            type: ServiceGroupType$,
+            type: ServiceGroupTypeEnum$,
             serviceLevels: z.array(ServiceGroupAccountAndServiceLevel$.outboundSchema),
         })
         .transform((v) => {

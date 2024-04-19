@@ -112,7 +112,7 @@ export type Pickup = {
 };
 
 /** @internal */
-export const PickupStatus$ = z.nativeEnum(PickupStatus);
+export const PickupStatus$: z.ZodNativeEnum<typeof PickupStatus> = z.nativeEnum(PickupStatus);
 
 /** @internal */
 export namespace Pickup$ {

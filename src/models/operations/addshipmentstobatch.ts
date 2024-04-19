@@ -11,100 +11,44 @@ export type AddShipmentsToBatchRequest = {
      */
     batchId: string;
     /**
-     * String used to pick a non-default API version to use
-     */
-    shippoApiVersion?: string | undefined;
-    /**
      * Array of shipments to add to the batch
      */
     requestBody?: Array<components.BatchShipmentBase> | undefined;
-};
-
-export type AddShipmentsToBatchResponse = {
-    httpMeta: components.HTTPMetadata;
-    batch?: components.Batch | undefined;
 };
 
 /** @internal */
 export namespace AddShipmentsToBatchRequest$ {
     export type Inbound = {
         BatchId: string;
-        "SHIPPO-API-VERSION"?: string | undefined;
         RequestBody?: Array<components.BatchShipmentBase$.Inbound> | undefined;
     };
 
     export const inboundSchema: z.ZodType<AddShipmentsToBatchRequest, z.ZodTypeDef, Inbound> = z
         .object({
             BatchId: z.string(),
-            "SHIPPO-API-VERSION": z.string().optional(),
             RequestBody: z.array(components.BatchShipmentBase$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 batchId: v.BatchId,
-                ...(v["SHIPPO-API-VERSION"] === undefined
-                    ? null
-                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
                 ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
             };
         });
 
     export type Outbound = {
         BatchId: string;
-        "SHIPPO-API-VERSION"?: string | undefined;
         RequestBody?: Array<components.BatchShipmentBase$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddShipmentsToBatchRequest> = z
         .object({
             batchId: z.string(),
-            shippoApiVersion: z.string().optional(),
             requestBody: z.array(components.BatchShipmentBase$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 BatchId: v.batchId,
-                ...(v.shippoApiVersion === undefined
-                    ? null
-                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
                 ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
-            };
-        });
-}
-
-/** @internal */
-export namespace AddShipmentsToBatchResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        Batch?: components.Batch$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddShipmentsToBatchResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Batch: components.Batch$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.Batch === undefined ? null : { batch: v.Batch }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        Batch?: components.Batch$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddShipmentsToBatchResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            batch: components.Batch$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.batch === undefined ? null : { Batch: v.batch }),
             };
         });
 }

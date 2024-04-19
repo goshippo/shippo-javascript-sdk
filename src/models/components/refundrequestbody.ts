@@ -5,43 +5,43 @@
 import * as z from "zod";
 
 export type RefundRequestBody = {
-    async?: boolean | undefined;
     transaction: string;
+    async?: boolean | undefined;
 };
 
 /** @internal */
 export namespace RefundRequestBody$ {
     export type Inbound = {
-        async?: boolean | undefined;
         transaction: string;
+        async?: boolean | undefined;
     };
 
     export const inboundSchema: z.ZodType<RefundRequestBody, z.ZodTypeDef, Inbound> = z
         .object({
-            async: z.boolean().optional(),
             transaction: z.string(),
+            async: z.boolean().optional(),
         })
         .transform((v) => {
             return {
-                ...(v.async === undefined ? null : { async: v.async }),
                 transaction: v.transaction,
+                ...(v.async === undefined ? null : { async: v.async }),
             };
         });
 
     export type Outbound = {
-        async?: boolean | undefined;
         transaction: string;
+        async?: boolean | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RefundRequestBody> = z
         .object({
-            async: z.boolean().optional(),
             transaction: z.string(),
+            async: z.boolean().optional(),
         })
         .transform((v) => {
             return {
-                ...(v.async === undefined ? null : { async: v.async }),
                 transaction: v.transaction,
+                ...(v.async === undefined ? null : { async: v.async }),
             };
         });
 }

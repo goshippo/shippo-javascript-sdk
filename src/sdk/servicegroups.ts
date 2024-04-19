@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class ServiceGroups extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -45,23 +46,10 @@ export class ServiceGroups extends ClientSDK {
      * @remarks
      * Returns a list of service group objects.
      */
-    async list(
-        shippoApiVersion?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.ListServiceGroupsResponse> {
-        const input$: operations.ListServiceGroupsRequest = {
-            shippoApiVersion: shippoApiVersion,
-        };
+    async list(options?: RequestOptions): Promise<Array<components.ServiceGroup>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.ListServiceGroupsRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
 
         const path$ = this.templateURLComponent("/service-groups")();
 
@@ -69,11 +57,10 @@ export class ServiceGroups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -91,7 +78,7 @@ export class ServiceGroups extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -99,35 +86,25 @@ export class ServiceGroups extends ClientSDK {
                 path: path$,
                 headers: headers$,
                 query: query$,
-                body: body$,
             },
             options
         );
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListServiceGroupsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        serviceGroupListResponse: val$,
-                    });
+                    return z.array(components.ServiceGroup$.inboundSchema).parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -138,27 +115,22 @@ export class ServiceGroups extends ClientSDK {
      * Creates a new service group.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        serviceGroupCreateRequest?: components.ServiceGroupCreateRequest | undefined,
+        input: components.ServiceGroupCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateServiceGroupResponse> {
-        const input$: operations.CreateServiceGroupRequest = {
-            shippoApiVersion: shippoApiVersion,
-            serviceGroupCreateRequest: serviceGroupCreateRequest,
-        };
+    ): Promise<components.ServiceGroup> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateServiceGroupRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) =>
+                components.ServiceGroupCreateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.ServiceGroupCreateRequest, {
-            explode: true,
-        });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/service-groups")();
 
@@ -166,11 +138,10 @@ export class ServiceGroups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -188,7 +159,7 @@ export class ServiceGroups extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -203,28 +174,19 @@ export class ServiceGroups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateServiceGroupResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServiceGroup: val$,
-                    });
+                    return components.ServiceGroup$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -235,27 +197,22 @@ export class ServiceGroups extends ClientSDK {
      * Updates an existing service group object. <br>The object_id cannot be updated as it is the unique identifier for the object.
      */
     async update(
-        shippoApiVersion?: string | undefined,
-        serviceGroupUpdateRequest?: components.ServiceGroupUpdateRequest | undefined,
+        input: components.ServiceGroupUpdateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateServiceGroupResponse> {
-        const input$: operations.UpdateServiceGroupRequest = {
-            shippoApiVersion: shippoApiVersion,
-            serviceGroupUpdateRequest: serviceGroupUpdateRequest,
-        };
+    ): Promise<components.ServiceGroup> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.UpdateServiceGroupRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) =>
+                components.ServiceGroupUpdateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.ServiceGroupUpdateRequest, {
-            explode: true,
-        });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/service-groups")();
 
@@ -263,11 +220,10 @@ export class ServiceGroups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -285,7 +241,7 @@ export class ServiceGroups extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -300,28 +256,19 @@ export class ServiceGroups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateServiceGroupResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServiceGroup: val$,
-                    });
+                    return components.ServiceGroup$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -333,12 +280,10 @@ export class ServiceGroups extends ClientSDK {
      */
     async delete(
         serviceGroupId: string,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.DeleteServiceGroupResponse> {
+    ): Promise<operations.DeleteServiceGroupResponse | void> {
         const input$: operations.DeleteServiceGroupRequest = {
             serviceGroupId: serviceGroupId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -363,11 +308,10 @@ export class ServiceGroups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -385,7 +329,7 @@ export class ServiceGroups extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -400,23 +344,11 @@ export class ServiceGroups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteServiceGroupResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 }

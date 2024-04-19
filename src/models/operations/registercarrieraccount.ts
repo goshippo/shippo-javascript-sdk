@@ -17,39 +17,12 @@ export type RegisterCarrierAccountRequestBody =
     | components.CarrierAccountDHLExpressCreateRequest
     | components.CarrierAccountDpdDeCreateRequest
     | components.CarrierAccountDPDUKCreateRequest
+    | components.CarrierAccountFedExCreateRequest
     | components.CarrierAccountHermesUKCreateRequest
+    | components.CarrierAccountMondialRelayCreateRequest
     | components.CarrierAccountPosteItalianeCreateRequest
     | components.CarrierAccountUPSCreateRequest
     | components.CarrierAccountUSPSCreateRequest;
-
-export type RegisterCarrierAccountRequest = {
-    /**
-     * String used to pick a non-default API version to use
-     */
-    shippoApiVersion?: string | undefined;
-    /**
-     * Examples.
-     */
-    requestBody?:
-        | components.CarrierAccountCanadaPostCreateRequest
-        | components.CarrierAccountChronopostCreateRequest
-        | components.CarrierAccountColissimoCreateRequest
-        | components.CarrierAccountCorreosCreateRequest
-        | components.CarrierAccountDeutschePostCreateRequest
-        | components.CarrierAccountDHLExpressCreateRequest
-        | components.CarrierAccountDpdDeCreateRequest
-        | components.CarrierAccountDPDUKCreateRequest
-        | components.CarrierAccountHermesUKCreateRequest
-        | components.CarrierAccountPosteItalianeCreateRequest
-        | components.CarrierAccountUPSCreateRequest
-        | components.CarrierAccountUSPSCreateRequest
-        | undefined;
-};
-
-export type RegisterCarrierAccountResponse = {
-    httpMeta: components.HTTPMetadata;
-    carrierAccount?: components.CarrierAccount | undefined;
-};
 
 /** @internal */
 export namespace RegisterCarrierAccountRequestBody$ {
@@ -62,7 +35,9 @@ export namespace RegisterCarrierAccountRequestBody$ {
         | components.CarrierAccountDHLExpressCreateRequest$.Inbound
         | components.CarrierAccountDpdDeCreateRequest$.Inbound
         | components.CarrierAccountDPDUKCreateRequest$.Inbound
+        | components.CarrierAccountFedExCreateRequest$.Inbound
         | components.CarrierAccountHermesUKCreateRequest$.Inbound
+        | components.CarrierAccountMondialRelayCreateRequest$.Inbound
         | components.CarrierAccountPosteItalianeCreateRequest$.Inbound
         | components.CarrierAccountUPSCreateRequest$.Inbound
         | components.CarrierAccountUSPSCreateRequest$.Inbound;
@@ -76,7 +51,9 @@ export namespace RegisterCarrierAccountRequestBody$ {
         | components.CarrierAccountDHLExpressCreateRequest$.Outbound
         | components.CarrierAccountDpdDeCreateRequest$.Outbound
         | components.CarrierAccountDPDUKCreateRequest$.Outbound
+        | components.CarrierAccountFedExCreateRequest$.Outbound
         | components.CarrierAccountHermesUKCreateRequest$.Outbound
+        | components.CarrierAccountMondialRelayCreateRequest$.Outbound
         | components.CarrierAccountPosteItalianeCreateRequest$.Outbound
         | components.CarrierAccountUPSCreateRequest$.Outbound
         | components.CarrierAccountUSPSCreateRequest$.Outbound;
@@ -93,7 +70,9 @@ export namespace RegisterCarrierAccountRequestBody$ {
         components.CarrierAccountDHLExpressCreateRequest$.inboundSchema,
         components.CarrierAccountDpdDeCreateRequest$.inboundSchema,
         components.CarrierAccountDPDUKCreateRequest$.inboundSchema,
+        components.CarrierAccountFedExCreateRequest$.inboundSchema,
         components.CarrierAccountHermesUKCreateRequest$.inboundSchema,
+        components.CarrierAccountMondialRelayCreateRequest$.inboundSchema,
         components.CarrierAccountPosteItalianeCreateRequest$.inboundSchema,
         components.CarrierAccountUPSCreateRequest$.inboundSchema,
         components.CarrierAccountUSPSCreateRequest$.inboundSchema,
@@ -111,147 +90,11 @@ export namespace RegisterCarrierAccountRequestBody$ {
         components.CarrierAccountDHLExpressCreateRequest$.outboundSchema,
         components.CarrierAccountDpdDeCreateRequest$.outboundSchema,
         components.CarrierAccountDPDUKCreateRequest$.outboundSchema,
+        components.CarrierAccountFedExCreateRequest$.outboundSchema,
         components.CarrierAccountHermesUKCreateRequest$.outboundSchema,
+        components.CarrierAccountMondialRelayCreateRequest$.outboundSchema,
         components.CarrierAccountPosteItalianeCreateRequest$.outboundSchema,
         components.CarrierAccountUPSCreateRequest$.outboundSchema,
         components.CarrierAccountUSPSCreateRequest$.outboundSchema,
     ]);
-}
-
-/** @internal */
-export namespace RegisterCarrierAccountRequest$ {
-    export type Inbound = {
-        "SHIPPO-API-VERSION"?: string | undefined;
-        RequestBody?:
-            | components.CarrierAccountCanadaPostCreateRequest$.Inbound
-            | components.CarrierAccountChronopostCreateRequest$.Inbound
-            | components.CarrierAccountColissimoCreateRequest$.Inbound
-            | components.CarrierAccountCorreosCreateRequest$.Inbound
-            | components.CarrierAccountDeutschePostCreateRequest$.Inbound
-            | components.CarrierAccountDHLExpressCreateRequest$.Inbound
-            | components.CarrierAccountDpdDeCreateRequest$.Inbound
-            | components.CarrierAccountDPDUKCreateRequest$.Inbound
-            | components.CarrierAccountHermesUKCreateRequest$.Inbound
-            | components.CarrierAccountPosteItalianeCreateRequest$.Inbound
-            | components.CarrierAccountUPSCreateRequest$.Inbound
-            | components.CarrierAccountUSPSCreateRequest$.Inbound
-            | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RegisterCarrierAccountRequest, z.ZodTypeDef, Inbound> = z
-        .object({
-            "SHIPPO-API-VERSION": z.string().optional(),
-            RequestBody: z
-                .union([
-                    components.CarrierAccountCanadaPostCreateRequest$.inboundSchema,
-                    components.CarrierAccountChronopostCreateRequest$.inboundSchema,
-                    components.CarrierAccountColissimoCreateRequest$.inboundSchema,
-                    components.CarrierAccountCorreosCreateRequest$.inboundSchema,
-                    components.CarrierAccountDeutschePostCreateRequest$.inboundSchema,
-                    components.CarrierAccountDHLExpressCreateRequest$.inboundSchema,
-                    components.CarrierAccountDpdDeCreateRequest$.inboundSchema,
-                    components.CarrierAccountDPDUKCreateRequest$.inboundSchema,
-                    components.CarrierAccountHermesUKCreateRequest$.inboundSchema,
-                    components.CarrierAccountPosteItalianeCreateRequest$.inboundSchema,
-                    components.CarrierAccountUPSCreateRequest$.inboundSchema,
-                    components.CarrierAccountUSPSCreateRequest$.inboundSchema,
-                ])
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v["SHIPPO-API-VERSION"] === undefined
-                    ? null
-                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
-            };
-        });
-
-    export type Outbound = {
-        "SHIPPO-API-VERSION"?: string | undefined;
-        RequestBody?:
-            | components.CarrierAccountCanadaPostCreateRequest$.Outbound
-            | components.CarrierAccountChronopostCreateRequest$.Outbound
-            | components.CarrierAccountColissimoCreateRequest$.Outbound
-            | components.CarrierAccountCorreosCreateRequest$.Outbound
-            | components.CarrierAccountDeutschePostCreateRequest$.Outbound
-            | components.CarrierAccountDHLExpressCreateRequest$.Outbound
-            | components.CarrierAccountDpdDeCreateRequest$.Outbound
-            | components.CarrierAccountDPDUKCreateRequest$.Outbound
-            | components.CarrierAccountHermesUKCreateRequest$.Outbound
-            | components.CarrierAccountPosteItalianeCreateRequest$.Outbound
-            | components.CarrierAccountUPSCreateRequest$.Outbound
-            | components.CarrierAccountUSPSCreateRequest$.Outbound
-            | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RegisterCarrierAccountRequest> =
-        z
-            .object({
-                shippoApiVersion: z.string().optional(),
-                requestBody: z
-                    .union([
-                        components.CarrierAccountCanadaPostCreateRequest$.outboundSchema,
-                        components.CarrierAccountChronopostCreateRequest$.outboundSchema,
-                        components.CarrierAccountColissimoCreateRequest$.outboundSchema,
-                        components.CarrierAccountCorreosCreateRequest$.outboundSchema,
-                        components.CarrierAccountDeutschePostCreateRequest$.outboundSchema,
-                        components.CarrierAccountDHLExpressCreateRequest$.outboundSchema,
-                        components.CarrierAccountDpdDeCreateRequest$.outboundSchema,
-                        components.CarrierAccountDPDUKCreateRequest$.outboundSchema,
-                        components.CarrierAccountHermesUKCreateRequest$.outboundSchema,
-                        components.CarrierAccountPosteItalianeCreateRequest$.outboundSchema,
-                        components.CarrierAccountUPSCreateRequest$.outboundSchema,
-                        components.CarrierAccountUSPSCreateRequest$.outboundSchema,
-                    ])
-                    .optional(),
-            })
-            .transform((v) => {
-                return {
-                    ...(v.shippoApiVersion === undefined
-                        ? null
-                        : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
-                    ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
-                };
-            });
-}
-
-/** @internal */
-export namespace RegisterCarrierAccountResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CarrierAccount?: components.CarrierAccount$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RegisterCarrierAccountResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CarrierAccount: components.CarrierAccount$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.CarrierAccount === undefined ? null : { carrierAccount: v.CarrierAccount }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CarrierAccount?: components.CarrierAccount$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RegisterCarrierAccountResponse> =
-        z
-            .object({
-                httpMeta: components.HTTPMetadata$.outboundSchema,
-                carrierAccount: components.CarrierAccount$.outboundSchema.optional(),
-            })
-            .transform((v) => {
-                return {
-                    HttpMeta: v.httpMeta,
-                    ...(v.carrierAccount === undefined
-                        ? null
-                        : { CarrierAccount: v.carrierAccount }),
-                };
-            });
 }

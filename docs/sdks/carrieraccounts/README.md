@@ -30,13 +30,13 @@ By default, if the query parameter is omitted, the `service_levels` property wil
 ```typescript
 import { Shippo } from "shippo";
 
-async function run() {
-  const sdk = new Shippo({
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08",
-  });
+const shippo = new Shippo({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
 
-  const result = await sdk.carrierAccounts.list({});
+async function run() {
+  const result = await shippo.carrierAccounts.list({});
 
   // Handle the result
   console.log(result)
@@ -56,7 +56,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListCarrierAccountsResponse](../../models/operations/listcarrieraccountsresponse.md)>**
+**Promise<[components.CarrierAccountPaginatedList](../../models/components/carrieraccountpaginatedlist.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -72,46 +72,21 @@ Creates a new carrier account or connects an existing carrier account to the Shi
 ```typescript
 import { Shippo } from "shippo";
 
-async function run() {
-  const sdk = new Shippo({
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08",
-  });
+const shippo = new Shippo({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
 
-  const shippoApiVersion = "2018-02-08";
-  const connectExistingOwnUPSAccountRequest = {
-    accountId: "<value>",
-    active: false,
-    carrier: "ups",
-    metadata: "UPS Account",
-    parameters: {
-      accountNumber: "94567e",
-      aiaCountryIso2: "US",
-      billingAddressCity: "San Francisco",
-      billingAddressCountryIso2: "US",
-      billingAddressState: "CA",
-      billingAddressStreet1: "731 Market St",
-      billingAddressStreet2: "STE 200",
-      billingAddressZip: "94103",
-      collecCountryIso2: "US",
-      collecZip: "94103",
-      company: "Shippo",
-      currencyCode: "USD",
-      email: "hippo@shippo.com",
-      fullName: "Shippo Meister",
-      hasInvoice: false,
-      invoiceControlid: "1234",
-      invoiceDate: "20210529",
-      invoiceNumber: "1112234",
-      invoiceValue: "11.23",
-      phone: "1112223333",
-      title: "Manager",
-      upsAgreements: false,
-    },
+async function run() {
+  const result = await shippo.carrierAccounts.create({
+    accountId: "321123",
+    carrier: "fedex",
+    metadata: "FEDEX Account",
+  parameters:     {
+        "key": "<value>",
+      },
     test: false,
-  };
-  
-  const result = await sdk.carrierAccounts.create(shippoApiVersion, connectExistingOwnUPSAccountRequest);
+  });
 
   // Handle the result
   console.log(result)
@@ -122,23 +97,21 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
-| `connectExistingOwnUPSAccountRequest`                                                                                                                                          | [components.ConnectExistingOwnUPSAccountRequest](../../models/components/connectexistingownupsaccountrequest.md)                                                               | :heavy_minus_sign:                                                                                                                                                             | Examples.                                                                                                                                                                      |                                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.ConnectExistingOwnAccountRequest](../../models/components/connectexistingownaccountrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise<[operations.CreateCarrierAccountResponse](../../models/operations/createcarrieraccountresponse.md)>**
+**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.BadRequestWithDetail | 400                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## get
 
@@ -149,16 +122,15 @@ Returns an existing carrier account using an object ID.
 ```typescript
 import { Shippo } from "shippo";
 
-async function run() {
-  const sdk = new Shippo({
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08",
-  });
+const shippo = new Shippo({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
 
+async function run() {
   const carrierAccountId = "<value>";
-  const shippoApiVersion = "2018-02-08";
   
-  const result = await sdk.carrierAccounts.get(carrierAccountId, shippoApiVersion);
+  const result = await shippo.carrierAccounts.get(carrierAccountId);
 
   // Handle the result
   console.log(result)
@@ -169,17 +141,16 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `carrierAccountId`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the carrier account                                                                                                                                               |                                                                                                                                                                                |
-| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `carrierAccountId`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the carrier account                                                                                                                                               |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise<[operations.GetCarrierAccountResponse](../../models/operations/getcarrieraccountresponse.md)>**
+**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -195,23 +166,43 @@ Updates an existing carrier account object. The account_id and carrier can't be 
 ```typescript
 import { Shippo } from "shippo";
 
-async function run() {
-  const sdk = new Shippo({
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08",
-  });
+const shippo = new Shippo({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
 
+async function run() {
   const carrierAccountId = "<value>";
-  const shippoApiVersion = "2018-02-08";
   const carrierAccountBase = {
     accountId: "****",
     carrier: "usps",
-    parameters: {
-      "key": "<value>",
-    },
+  parameters:     {
+        accountNumber: "94567e",
+        aiaCountryIso2: "US",
+        billingAddressCity: "San Francisco",
+        billingAddressCountryIso2: "US",
+        billingAddressState: "CA",
+        billingAddressStreet1: "731 Market St",
+        billingAddressStreet2: "STE 200",
+        billingAddressZip: "94103",
+        collecCountryIso2: "US",
+        collecZip: "94103",
+        company: "Shippo",
+        currencyCode: "USD",
+        email: "hippo@shippo.com",
+        fullName: "Shippo Meister",
+        hasInvoice: false,
+        invoiceControlid: "1234",
+        invoiceDate: "20210529",
+        invoiceNumber: "1112234",
+        invoiceValue: "11.23",
+        phone: "1112223333",
+        title: "Manager",
+        upsAgreements: false,
+      },
   };
   
-  const result = await sdk.carrierAccounts.update(carrierAccountId, shippoApiVersion, carrierAccountBase);
+  const result = await shippo.carrierAccounts.update(carrierAccountId, carrierAccountBase);
 
   // Handle the result
   console.log(result)
@@ -222,18 +213,17 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `carrierAccountId`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the carrier account                                                                                                                                               |                                                                                                                                                                                |
-| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
-| `carrierAccountBase`                                                                                                                                                           | [components.CarrierAccountBase](../../models/components/carrieraccountbase.md)                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Examples.                                                                                                                                                                      |                                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `carrierAccountId`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the carrier account                                                                                                                                               |
+| `carrierAccountBase`                                                                                                                                                           | [components.CarrierAccountBase](../../models/components/carrieraccountbase.md)                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Examples.                                                                                                                                                                      |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise<[operations.UpdateCarrierAccountResponse](../../models/operations/updatecarrieraccountresponse.md)>**
+**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -249,18 +239,17 @@ Used by client applications to setup or reconnect an existing carrier account wi
 ```typescript
 import { Shippo } from "shippo";
 
-async function run() {
-  const sdk = new Shippo({
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08",
-  });
+const shippo = new Shippo({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
 
+async function run() {
   const carrierAccountObjectId = "<value>";
   const redirectUri = "http://fine-cummerbund.biz";
   const state = "<value>";
-  const shippoApiVersion = "2018-02-08";
   
-  const result = await sdk.carrierAccounts.initiateOauth2Signin(carrierAccountObjectId, redirectUri, state, shippoApiVersion);
+  const result = await shippo.carrierAccounts.initiateOauth2Signin(carrierAccountObjectId, redirectUri, state);
 
   // Handle the result
   console.log(result)
@@ -271,14 +260,13 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                      | Type                                                                                                                                                                                                           | Required                                                                                                                                                                                                       | Description                                                                                                                                                                                                    | Example                                                                                                                                                                                                        |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `carrierAccountObjectId`                                                                                                                                                                                       | *string*                                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                             | The carrier account ID to start a signin process                                                                                                                                                               |                                                                                                                                                                                                                |
-| `redirectUri`                                                                                                                                                                                                  | *string*                                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                             | Callback URL. The URL that tells the authorization server where to send the user back to after they approve the request.                                                                                       |                                                                                                                                                                                                                |
-| `state`                                                                                                                                                                                                        | *string*                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                             | A random string generated by the consuming application and included in the request to prevent CSRF attacks. The consuming application checks that the same value is returned after the user authorizes Shippo. |                                                                                                                                                                                                                |
-| `shippoApiVersion`                                                                                                                                                                                             | *string*                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                                                           | [object Object]                                                                                                                                                                                                |
-| `options`                                                                                                                                                                                                      | RequestOptions                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                                                          |                                                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                 |                                                                                                                                                                                                                |
+| Parameter                                                                                                                                                                                                      | Type                                                                                                                                                                                                           | Required                                                                                                                                                                                                       | Description                                                                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `carrierAccountObjectId`                                                                                                                                                                                       | *string*                                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                             | The carrier account ID to start a signin process                                                                                                                                                               |
+| `redirectUri`                                                                                                                                                                                                  | *string*                                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                             | Callback URL. The URL that tells the authorization server where to send the user back to after they approve the request.                                                                                       |
+| `state`                                                                                                                                                                                                        | *string*                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                             | A random string generated by the consuming application and included in the request to prevent CSRF attacks. The consuming application checks that the same value is returned after the user authorizes Shippo. |
+| `options`                                                                                                                                                                                                      | RequestOptions                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                 |
 
 
 ### Response
@@ -302,19 +290,16 @@ Adds a Shippo carrier account
 ```typescript
 import { Shippo } from "shippo";
 
-async function run() {
-  const sdk = new Shippo({
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08",
-  });
+const shippo = new Shippo({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
 
-  const shippoApiVersion = "2018-02-08";
-  const requestBody = {
+async function run() {
+  const result = await shippo.carrierAccounts.register({
       carrier: "colissimo",
       parameters: {},
-    };
-  
-  const result = await sdk.carrierAccounts.register(shippoApiVersion, requestBody);
+    });
 
   // Handle the result
   console.log(result)
@@ -325,23 +310,21 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
-| `requestBody`                                                                                                                                                                  | *operations.RegisterCarrierAccountRequestBody*                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Examples.                                                                                                                                                                      |                                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.RegisterCarrierAccountRequestBody](../../models/operations/registercarrieraccountrequestbody.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise<[operations.RegisterCarrierAccountResponse](../../models/operations/registercarrieraccountresponse.md)>**
+**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
 ### Errors
 
-| Error Object               | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.BadRequestWithError | 400                        | application/json           |
-| errors.SDKError            | 4xx-5xx                    | */*                        |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## getRegistrationStatus
 
@@ -353,16 +336,15 @@ Returns the registration status for the given account for the given carrier
 import { Shippo } from "shippo";
 import { Carrier } from "shippo/models/operations";
 
-async function run() {
-  const sdk = new Shippo({
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08",
-  });
+const shippo = new Shippo({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
 
+async function run() {
   const carrier = Carrier.Usps;
-  const shippoApiVersion = "2018-02-08";
   
-  const result = await sdk.carrierAccounts.getRegistrationStatus(carrier, shippoApiVersion);
+  const result = await shippo.carrierAccounts.getRegistrationStatus(carrier);
 
   // Handle the result
   console.log(result)
@@ -373,17 +355,16 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `carrier`                                                                                                                                                                      | [operations.Carrier](../../models/operations/carrier.md)                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | filter by specific carrier                                                                                                                                                     |                                                                                                                                                                                |
-| `shippoApiVersion`                                                                                                                                                             | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                           | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `carrier`                                                                                                                                                                      | [operations.Carrier](../../models/operations/carrier.md)                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | filter by specific carrier                                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise<[operations.GetCarrierRegistrationStatusResponse](../../models/operations/getcarrierregistrationstatusresponse.md)>**
+**Promise<[components.CarrierAccountRegistrationStatus](../../models/components/carrieraccountregistrationstatus.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

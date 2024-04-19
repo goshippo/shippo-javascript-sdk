@@ -54,97 +54,97 @@ export class Shippo extends ClientSDK {
     }
 
     private _addresses?: Addresses;
-    get addresses() {
+    get addresses(): Addresses {
         return (this._addresses ??= new Addresses(this.options$));
     }
 
     private _batches?: Batches;
-    get batches() {
+    get batches(): Batches {
         return (this._batches ??= new Batches(this.options$));
     }
 
     private _carrierAccounts?: CarrierAccounts;
-    get carrierAccounts() {
+    get carrierAccounts(): CarrierAccounts {
         return (this._carrierAccounts ??= new CarrierAccounts(this.options$));
     }
 
     private _customsDeclarations?: CustomsDeclarations;
-    get customsDeclarations() {
+    get customsDeclarations(): CustomsDeclarations {
         return (this._customsDeclarations ??= new CustomsDeclarations(this.options$));
     }
 
     private _customsItems?: CustomsItems;
-    get customsItems() {
+    get customsItems(): CustomsItems {
         return (this._customsItems ??= new CustomsItems(this.options$));
     }
 
     private _ratesAtCheckout?: RatesAtCheckout;
-    get ratesAtCheckout() {
+    get ratesAtCheckout(): RatesAtCheckout {
         return (this._ratesAtCheckout ??= new RatesAtCheckout(this.options$));
     }
 
     private _manifests?: Manifests;
-    get manifests() {
+    get manifests(): Manifests {
         return (this._manifests ??= new Manifests(this.options$));
     }
 
     private _orders?: Orders;
-    get orders() {
+    get orders(): Orders {
         return (this._orders ??= new Orders(this.options$));
     }
 
     private _carrierParcelTemplates?: CarrierParcelTemplates;
-    get carrierParcelTemplates() {
+    get carrierParcelTemplates(): CarrierParcelTemplates {
         return (this._carrierParcelTemplates ??= new CarrierParcelTemplates(this.options$));
     }
 
     private _parcels?: Parcels;
-    get parcels() {
+    get parcels(): Parcels {
         return (this._parcels ??= new Parcels(this.options$));
     }
 
     private _pickups?: Pickups;
-    get pickups() {
+    get pickups(): Pickups {
         return (this._pickups ??= new Pickups(this.options$));
     }
 
     private _rates?: Rates;
-    get rates() {
+    get rates(): Rates {
         return (this._rates ??= new Rates(this.options$));
     }
 
     private _refunds?: Refunds;
-    get refunds() {
+    get refunds(): Refunds {
         return (this._refunds ??= new Refunds(this.options$));
     }
 
     private _serviceGroups?: ServiceGroups;
-    get serviceGroups() {
+    get serviceGroups(): ServiceGroups {
         return (this._serviceGroups ??= new ServiceGroups(this.options$));
     }
 
     private _shipments?: Shipments;
-    get shipments() {
+    get shipments(): Shipments {
         return (this._shipments ??= new Shipments(this.options$));
     }
 
     private _trackingStatus?: TrackingStatus;
-    get trackingStatus() {
+    get trackingStatus(): TrackingStatus {
         return (this._trackingStatus ??= new TrackingStatus(this.options$));
     }
 
     private _transactions?: Transactions;
-    get transactions() {
+    get transactions(): Transactions {
         return (this._transactions ??= new Transactions(this.options$));
     }
 
     private _userParcelTemplates?: UserParcelTemplates;
-    get userParcelTemplates() {
+    get userParcelTemplates(): UserParcelTemplates {
         return (this._userParcelTemplates ??= new UserParcelTemplates(this.options$));
     }
 
     private _shippoAccounts?: ShippoAccounts;
-    get shippoAccounts() {
+    get shippoAccounts(): ShippoAccounts {
         return (this._shippoAccounts ??= new ShippoAccounts(this.options$));
     }
 }

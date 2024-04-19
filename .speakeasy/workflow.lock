@@ -1,0 +1,16 @@
+speakeasyVersion: 1.260.6
+sources: {}
+targets: {}
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        openapi:
+            inputs:
+                - location: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+            overlays:
+                - location: https://docs.goshippo.com/spec/shippoapi/client-sdk-overlay.yaml
+    targets:
+        first-target:
+            target: typescript
+            source: openapi

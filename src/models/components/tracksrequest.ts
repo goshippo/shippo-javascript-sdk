@@ -10,54 +10,54 @@ export type TracksRequest = {
      */
     carrier: string;
     /**
-     * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
-     */
-    metadata?: string | undefined;
-    /**
      * Tracking number to track.
      */
     trackingNumber: string;
+    /**
+     * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
+     */
+    metadata?: string | undefined;
 };
 
 /** @internal */
 export namespace TracksRequest$ {
     export type Inbound = {
         carrier: string;
-        metadata?: string | undefined;
         tracking_number: string;
+        metadata?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<TracksRequest, z.ZodTypeDef, Inbound> = z
         .object({
             carrier: z.string(),
-            metadata: z.string().optional(),
             tracking_number: z.string(),
+            metadata: z.string().optional(),
         })
         .transform((v) => {
             return {
                 carrier: v.carrier,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 trackingNumber: v.tracking_number,
+                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
             };
         });
 
     export type Outbound = {
         carrier: string;
-        metadata?: string | undefined;
         tracking_number: string;
+        metadata?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TracksRequest> = z
         .object({
             carrier: z.string(),
-            metadata: z.string().optional(),
             trackingNumber: z.string(),
+            metadata: z.string().optional(),
         })
         .transform((v) => {
             return {
                 carrier: v.carrier,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 tracking_number: v.trackingNumber,
+                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
             };
         });
 }

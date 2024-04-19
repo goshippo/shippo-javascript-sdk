@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class UserParcelTemplates extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -45,23 +46,10 @@ export class UserParcelTemplates extends ClientSDK {
      * @remarks
      * Returns a list all of all user parcel template objects.
      */
-    async list(
-        shippoApiVersion?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.ListUserParcelTemplatesResponse> {
-        const input$: operations.ListUserParcelTemplatesRequest = {
-            shippoApiVersion: shippoApiVersion,
-        };
+    async list(options?: RequestOptions): Promise<Array<components.UserParcelTemplate>> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.ListUserParcelTemplatesRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
 
         const path$ = this.templateURLComponent("/user-parcel-templates")();
 
@@ -69,11 +57,10 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -91,7 +78,7 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -99,35 +86,25 @@ export class UserParcelTemplates extends ClientSDK {
                 path: path$,
                 headers: headers$,
                 query: query$,
-                body: body$,
             },
             options
         );
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListUserParcelTemplatesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        userParcelTemplateListResponse: val$,
-                    });
+                    return z.array(components.UserParcelTemplate$.inboundSchema).parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -144,27 +121,22 @@ export class UserParcelTemplates extends ClientSDK {
      * and depth, as well as their units."
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        userParcelTemplateCreateRequest?: components.UserParcelTemplateCreateRequest | undefined,
+        input: components.UserParcelTemplateCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateUserParcelTemplateResponse> {
-        const input$: operations.CreateUserParcelTemplateRequest = {
-            shippoApiVersion: shippoApiVersion,
-            userParcelTemplateCreateRequest: userParcelTemplateCreateRequest,
-        };
+    ): Promise<components.UserParcelTemplate> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateUserParcelTemplateRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) =>
+                components.UserParcelTemplateCreateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.UserParcelTemplateCreateRequest, {
-            explode: true,
-        });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/user-parcel-templates")();
 
@@ -172,11 +144,10 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -194,7 +165,7 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -209,28 +180,19 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateUserParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        UserParcelTemplate: val$,
-                    });
+                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -242,12 +204,10 @@ export class UserParcelTemplates extends ClientSDK {
      */
     async delete(
         userParcelTemplateObjectId: string,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.DeleteUserParcelTemplateResponse> {
+    ): Promise<operations.DeleteUserParcelTemplateResponse | void> {
         const input$: operations.DeleteUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -275,11 +235,10 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -297,7 +256,7 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -312,24 +271,12 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteUserParcelTemplateResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -341,12 +288,10 @@ export class UserParcelTemplates extends ClientSDK {
      */
     async get(
         userParcelTemplateObjectId: string,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetUserParcelTemplateResponse> {
+    ): Promise<components.UserParcelTemplate> {
         const input$: operations.GetUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -374,11 +319,10 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -396,7 +340,7 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -411,28 +355,19 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetUserParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        UserParcelTemplate: val$,
-                    });
+                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -444,13 +379,11 @@ export class UserParcelTemplates extends ClientSDK {
      */
     async update(
         userParcelTemplateObjectId: string,
-        shippoApiVersion?: string | undefined,
         userParcelTemplateUpdateRequest?: components.UserParcelTemplateUpdateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateUserParcelTemplateResponse> {
+    ): Promise<components.UserParcelTemplate> {
         const input$: operations.UpdateUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
-            shippoApiVersion: shippoApiVersion,
             userParcelTemplateUpdateRequest: userParcelTemplateUpdateRequest,
         };
         const headers$ = new Headers();
@@ -482,11 +415,10 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -504,7 +436,7 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -519,28 +451,19 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateUserParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        UserParcelTemplate: val$,
-                    });
+                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

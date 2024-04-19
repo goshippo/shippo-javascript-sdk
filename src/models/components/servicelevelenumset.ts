@@ -13,7 +13,7 @@ import * as z from "zod";
  * | next_day | Next Day|
  *
  */
-export enum ServiceLevelSwyft {
+export enum ServiceLevelSwyftEnum {
     SameDay = "same_day",
     NextDay = "next_day",
 }
@@ -26,7 +26,7 @@ export enum ServiceLevelSwyft {
  * | veho_next_day | Veho Next Day |
  *
  */
-export enum ServiceLevelVeho {
+export enum ServiceLevelVehoEnum {
     VehoNextDay = "veho_next_day",
 }
 
@@ -38,7 +38,7 @@ export enum ServiceLevelVeho {
  * | uds_next_day | Next Day|
  *
  */
-export enum ServiceLevelUDS {
+export enum ServiceLevelUDSEnum {
     UdsNextDay = "uds_next_day",
 }
 
@@ -54,7 +54,7 @@ export enum ServiceLevelUDS {
  * | hermes_uk_postable_nextday | Postable Next Day|
  *
  */
-export enum ServiceLevelEvriUK {
+export enum ServiceLevelEvriUKEnum {
     HermesUkCourierService = "hermes_uk_courier_service",
     HermesUkParcelshopDropoff = "hermes_uk_parcelshop_dropoff",
     HermesUkParcelshopDropoffNextday = "hermes_uk_parcelshop_dropoff_nextday",
@@ -70,7 +70,7 @@ export enum ServiceLevelEvriUK {
  * | lasership_routed_delivery | Routed Delivery|
  *
  */
-export enum ServiceLevelLasership {
+export enum ServiceLevelLasershipEnum {
     LasershipRoutedDelivery = "lasership_routed_delivery",
 }
 
@@ -84,7 +84,7 @@ export enum ServiceLevelLasership {
  * | ontrac_sunrise | Sunrise|
  *
  */
-export enum ServiceLevelOnTrac {
+export enum ServiceLevelOnTracEnum {
     OntracGround = "ontrac_ground",
     OntracSunriseGold = "ontrac_sunrise_gold",
     OntracSunrise = "ontrac_sunrise",
@@ -98,7 +98,7 @@ export enum ServiceLevelOnTrac {
  * | sendle_parcel | Sendle Parcel|
  *
  */
-export enum ServiceLevelSendle {
+export enum ServiceLevelSendleEnum {
     SendleParcel = "sendle_parcel",
 }
 
@@ -129,7 +129,7 @@ export enum ServiceLevelSendle {
  * | royal_mail_48_flat_rate | Royal Mail 48 Parcel Flat Rate
  *
  */
-export enum ServiceLevelRoyalMail {
+export enum ServiceLevelRoyalMailEnum {
     RoyalMailTrackedLetterBoxable24NoSignature = "royal_mail_tracked_letter_boxable_24_no_signature",
     RoyalMailTrackedLetterBoxable48NoSignature = "royal_mail_tracked_letter_boxable_48_no_signature",
     RoyalMailTracked24Returns = "royal_mail_tracked_24_returns",
@@ -172,7 +172,7 @@ export enum ServiceLevelRoyalMail {
  * | rr_donnelley_emi | Express Mail International|
  *
  */
-export enum ServiceLevelePostGlobal {
+export enum ServiceLevelePostGlobalEnum {
     RrDonnelleyDomesticEconomyParcel = "rr_donnelley_domestic_economy_parcel",
     RrDonnelleyDomesticPriorityParcel = "rr_donnelley_domestic_priority_parcel",
     RrDonnelleyDomesticParcelBpm = "rr_donnelley_domestic_parcel_bpm",
@@ -196,7 +196,7 @@ export enum ServiceLevelePostGlobal {
  * | poste_italiane_delivery_business_express | Poste Delivery Business Express|
  *
  */
-export enum ServiceLevelPostItaliane {
+export enum ServiceLevelPostItalianeEnum {
     PosteItalianeDeliveryBusinessExpress = "poste_italiane_delivery_business_express",
 }
 
@@ -210,7 +210,7 @@ export enum ServiceLevelPostItaliane {
  * | parcelforce_expressam | Express AM|
  *
  */
-export enum ServiceLevelParcelforce {
+export enum ServiceLevelParcelforceEnum {
     ParcelforceExpress48 = "parcelforce_express48",
     ParcelforceExpress24 = "parcelforce_express24",
     ParcelforceExpressam = "parcelforce_expressam",
@@ -224,7 +224,7 @@ export enum ServiceLevelParcelforce {
  * | x_delivery_expedited | Expedited|
  *
  */
-export enum ServiceLevelMaergo {
+export enum ServiceLevelMaergoEnum {
     XDeliveryExpedited = "x_delivery_expedited",
 }
 
@@ -236,7 +236,7 @@ export enum ServiceLevelMaergo {
  * | mondial_relay_pointrelais | Point Relais|
  *
  */
-export enum ServiceLevelMondialRelay {
+export enum ServiceLevelMondialRelayEnum {
     MondialRelayPointrelais = "mondial_relay_pointrelais",
 }
 
@@ -253,7 +253,7 @@ export enum ServiceLevelMondialRelay {
  * | lso_early_overnight | Early Overnight|
  *
  */
-export enum ServiceLevelLSO {
+export enum ServiceLevelLSOEnum {
     LsoGround = "lso_ground",
     LsoEconomyNextDay = "lso_economy_next_day",
     LsoSaturdayDelivery = "lso_saturday_delivery",
@@ -275,7 +275,7 @@ export enum ServiceLevelLSO {
  * | gls_us_sds | Saturday Delivery|
  *
  */
-export enum ServiceLevelGLSUS {
+export enum ServiceLevelGLSUSEnum {
     GlsUsCps = "gls_us_cps",
     GlsUsEps = "gls_us_eps",
     GlsUsEss = "gls_us_ess",
@@ -303,7 +303,7 @@ export enum ServiceLevelGLSUS {
  * | globegistics_ecom_international_surface_airlift | Globegistics eCom International Surface Air Lift|
  *
  */
-export enum ServiceLevelGlobegistics {
+export enum ServiceLevelGlobegisticsEnum {
     GlobegisticsPriorityMailExpressInternational = "globegistics_priority_mail_express_international",
     GlobegisticsPriorityMailInternational = "globegistics_priority_mail_international",
     GlobegisticsPriorityMailExpressInternationalPds = "globegistics_priority_mail_express_international_pds",
@@ -330,7 +330,7 @@ export enum ServiceLevelGlobegistics {
  * | fastway_australia_box_large | Box Large|
  *
  */
-export enum ServiceLevelAramexAustralia {
+export enum ServiceLevelAramexAustraliaEnum {
     FastwayAustraliaParcel = "fastway_australia_parcel",
     FastwayAustraliaSatchel = "fastway_australia_satchel",
     FastwayAustraliaBoxSmall = "fastway_australia_box_small",
@@ -355,7 +355,7 @@ export enum ServiceLevelAramexAustralia {
  * | deutsche_post_warenpost_international_l | Warenpost International L|
  *
  */
-export enum ServiceLevelDeutschePost {
+export enum ServiceLevelDeutschePostEnum {
     DeutschePostPostkarte = "deutsche_post_postkarte",
     DeutschePostStandardbrief = "deutsche_post_standardbrief",
     DeutschePostKompaktbrief = "deutsche_post_kompaktbrief",
@@ -392,7 +392,7 @@ export enum ServiceLevelDeutschePost {
  * | dpd_uk_pickup_returns | Pickup Returns|
  *
  */
-export enum ServiceLevelDPDUK {
+export enum ServiceLevelDPDUKEnum {
     DpdUkShipToShop = "dpd_uk_ship_to_shop",
     DpdUk1030 = "dpd_uk_1030",
     DpdUk1200 = "dpd_uk_1200",
@@ -420,7 +420,7 @@ export enum ServiceLevelDPDUK {
  * | dpd_de_classic | DPD Classic|
  *
  */
-export enum ServiceLevelDPDDE {
+export enum ServiceLevelDPDDEEnum {
     DpdDeClassic = "dpd_de_classic",
 }
 
@@ -437,7 +437,7 @@ export enum ServiceLevelDPDDE {
  * | dhl_germany_paket_sameday | DHL Germany Paket Sameday|
  *
  */
-export enum ServiceLevelDHLGermany {
+export enum ServiceLevelDHLGermanyEnum {
     DhlGermanyEuropaket = "dhl_germany_europaket",
     DhlGermanyPaket = "dhl_germany_paket",
     DhlGermanyPaketConnect = "dhl_germany_paket_connect",
@@ -481,7 +481,7 @@ export enum ServiceLevelDHLGermany {
  * | dhl_ecommerce_globalmail_packet_standard | GlobalMail Business Standard|
  *
  */
-export enum ServiceLevelDHLeCommerce {
+export enum ServiceLevelDHLeCommerceEnum {
     DhlEcommerceMarketingParcelExpedited = "dhl_ecommerce_marketing_parcel_expedited",
     DhlEcommerceGlobalmailBusinessIpa = "dhl_ecommerce_globalmail_business_ipa",
     DhlEcommerceParcelInternationalDirect = "dhl_ecommerce_parcel_international_direct",
@@ -541,7 +541,7 @@ export enum ServiceLevelDHLeCommerce {
  * | dhl_express_express_easy_nondoc | Express Easy NonDoc|
  *
  */
-export enum ServiceLevelDHLExpress {
+export enum ServiceLevelDHLExpressEnum {
     DhlExpressDomesticExpressDoc = "dhl_express_domestic_express_doc",
     DhlExpressEconomySelectDoc = "dhl_express_economy_select_doc",
     DhlExpressWorldwideNondoc = "dhl_express_worldwide_nondoc",
@@ -591,7 +591,7 @@ export enum ServiceLevelDHLExpress {
  * | purolator_express_international1200 | Express International 12pm|
  *
  */
-export enum ServiceLevelPurolator {
+export enum ServiceLevelPurolatorEnum {
     PurolatorGround = "purolator_ground",
     PurolatorGround9Am = "purolator_ground9_am",
     PurolatorGround1030Am = "purolator_ground1030_am",
@@ -622,7 +622,7 @@ export enum ServiceLevelPurolator {
  * | colissimo_return_mainland_france | Retour France|
  *
  */
-export enum ServiceLevelColissimo {
+export enum ServiceLevelColissimoEnum {
     ColissimoHome = "colissimo_home",
     ColissimoPickUpPoint = "colissimo_pick_up_point",
     ColissimoReturnMainlandFrance = "colissimo_return_mainland_france",
@@ -637,7 +637,7 @@ export enum ServiceLevelColissimo {
  * | correos_premium_home | Paquete Premium|
  *
  */
-export enum ServiceLevelCorreosEspana {
+export enum ServiceLevelCorreosEspanaEnum {
     CorreosStandardHome = "correos_standard_home",
     CorreosPremiumHome = "correos_premium_home",
 }
@@ -660,7 +660,7 @@ export enum ServiceLevelCorreosEspana {
  * | couriersplease_satchel_sign_required | Satchel - Signature Required|
  *
  */
-export enum ServiceLevelCouriersPlease {
+export enum ServiceLevelCouriersPleaseEnum {
     CourierspleaseDomesticPriorityAuthToLeave = "couriersplease_domestic_priority_auth_to_leave",
     CourierspleaseDomesticPrioritySignRequired = "couriersplease_domestic_priority_sign_required",
     CourierspleaseGoldDomesticAuthToLeave = "couriersplease_gold_domestic_auth_to_leave",
@@ -687,7 +687,7 @@ export enum ServiceLevelCouriersPlease {
  * | chronopost_express | Chrono Express International|
  *
  */
-export enum ServiceLevelChronopost {
+export enum ServiceLevelChronopostEnum {
     Chronopost13 = "chronopost_13",
     Chronopost10 = "chronopost_10",
     Chronopost18 = "chronopost_18",
@@ -704,7 +704,7 @@ export enum ServiceLevelChronopost {
  * | cdl_next_day | Next Day|
  *
  */
-export enum ServiceLevelCDL {
+export enum ServiceLevelCDLEnum {
     CdlNextDay = "cdl_next_day",
 }
 
@@ -726,7 +726,7 @@ export enum ServiceLevelCDL {
  * | canada_post_small_packet_international_air | Small Package International Air|
  *
  */
-export enum ServiceLevelCanadaPost {
+export enum ServiceLevelCanadaPostEnum {
     CanadaPostRegularParcel = "canada_post_regular_parcel",
     CanadaPostExpeditedParcel = "canada_post_expedited_parcel",
     CanadaPostPriority = "canada_post_priority",
@@ -749,7 +749,7 @@ export enum ServiceLevelCanadaPost {
  * | better_trucks_next_day | Next Day|
  *
  */
-export enum ServiceLevelBetterTrucks {
+export enum ServiceLevelBetterTrucksEnum {
     BetterTrucksSameDay = "better_trucks_same_day",
     BetterTrucksNextDay = "better_trucks_next_day",
 }
@@ -765,7 +765,7 @@ export enum ServiceLevelBetterTrucks {
  * | apg_eparcel_expedited | eParcel Expedited|
  *
  */
-export enum ServiceLevelAPG {
+export enum ServiceLevelAPGEnum {
     Epacket = "epacket",
     EpacketPlus = "epacket_plus",
     EparcelPremium = "eparcel_premium",
@@ -781,7 +781,7 @@ export enum ServiceLevelAPG {
  * | axlehire_next_day | Next Day|
  *
  */
-export enum ServiceLevelAxleHire {
+export enum ServiceLevelAxleHireEnum {
     AxlehireSameDay = "axlehire_same_day",
     AxlehireNextDay = "axlehire_next_day",
 }
@@ -800,9 +800,10 @@ export enum ServiceLevelAxleHire {
  * | australia_post_international_express | International Express|
  * | australia_post_international_standard | International Standard|
  * | australia_post_international_economy | International Economy|
+ * | australia_post_parcel_post_return | Parcel Post Return|
  *
  */
-export enum ServiceLevelAustraliaPost {
+export enum ServiceLevelAustraliaPostEnum {
     AustraliaPostExpressPost = "australia_post_express_post",
     AustraliaPostParcelPost = "australia_post_parcel_post",
     AustraliaPostPackAndTrackInternational = "australia_post_pack_and_track_international",
@@ -812,6 +813,7 @@ export enum ServiceLevelAustraliaPost {
     AustraliaPostInternationalExpress = "australia_post_international_express",
     AustraliaPostInternationalStandard = "australia_post_international_standard",
     AustraliaPostInternationalEconomy = "australia_post_international_economy",
+    AustraliaPostParcelPostReturn = "australia_post_parcel_post_return",
 }
 
 /**
@@ -829,7 +831,7 @@ export enum ServiceLevelAustraliaPost {
  * | asendia_us_other | Asendia USA Other Services (custom)|
  *
  */
-export enum ServiceLevelAsendia {
+export enum ServiceLevelAsendiaEnum {
     AsendiaUsPriorityTracked = "asendia_us_priority_tracked",
     AsendiaUsInternationalExpress = "asendia_us_international_express",
     AsendiaUsInternationalPriorityAirmail = "asendia_us_international_priority_airmail",
@@ -856,7 +858,7 @@ export enum ServiceLevelAsendia {
  * | apc_postal_parcelconnect_epmei | parcelConnect ePMEI|
  *
  */
-export enum ServiceLevelAPCPostal {
+export enum ServiceLevelAPCPostalEnum {
     ApcPostalParcelconnectExpedited = "apc_postal_parcelconnect_expedited",
     ApcPostalParcelconnectPriority = "apc_postal_parcelconnect_priority",
     ApcPostalParcelconnectPriorityDelcon = "apc_postal_parcelconnect_priority_delcon",
@@ -877,7 +879,7 @@ export enum ServiceLevelAPCPostal {
  * | airterra_postal | FastPost|
  *
  */
-export enum ServiceLevelAirterra {
+export enum ServiceLevelAirterraEnum {
     AirterraGround = "airterra_ground",
     AirterraPostal = "airterra_postal",
 }
@@ -914,7 +916,7 @@ export enum ServiceLevelAirterra {
  * | ups_access_point_economy | Access Point™ Economy|
  *
  */
-export enum ServiceLevelUPS {
+export enum ServiceLevelUPSEnum {
     UpsStandard = "ups_standard",
     UpsGround = "ups_ground",
     UpsSaver = "ups_saver",
@@ -969,7 +971,7 @@ export enum ServiceLevelUPS {
  * | international_priority_freight | FedEx International Priority® Freight|
  *
  */
-export enum ServiceLevelFedEx {
+export enum ServiceLevelFedExEnum {
     FedexGround = "fedex_ground",
     FedexHomeDelivery = "fedex_home_delivery",
     FedexSmartPost = "fedex_smart_post",
@@ -1007,7 +1009,7 @@ export enum ServiceLevelFedEx {
  * | usps_ground_advantage | Ground Advantage |
  *
  */
-export enum ServiceLevelUSPS {
+export enum ServiceLevelUSPSEnum {
     UspsPriority = "usps_priority",
     UspsPriorityExpress = "usps_priority_express",
     UspsMediaMail = "usps_media_mail",
@@ -1018,334 +1020,376 @@ export enum ServiceLevelUSPS {
 }
 
 export type ServiceLevelEnumSet =
-    | ServiceLevelUSPS
-    | ServiceLevelFedEx
-    | ServiceLevelUPS
-    | ServiceLevelAirterra
-    | ServiceLevelAPCPostal
-    | ServiceLevelAsendia
-    | ServiceLevelAustraliaPost
-    | ServiceLevelAxleHire
-    | ServiceLevelAPG
-    | ServiceLevelBetterTrucks
-    | ServiceLevelCanadaPost
-    | ServiceLevelCDL
-    | ServiceLevelChronopost
-    | ServiceLevelCouriersPlease
-    | ServiceLevelCorreosEspana
-    | ServiceLevelColissimo
-    | ServiceLevelPurolator
-    | ServiceLevelDHLExpress
-    | ServiceLevelDHLeCommerce
-    | ServiceLevelDHLGermany
-    | ServiceLevelDPDDE
-    | ServiceLevelDPDUK
-    | ServiceLevelDeutschePost
-    | ServiceLevelAramexAustralia
-    | ServiceLevelGlobegistics
-    | ServiceLevelGLSUS
-    | ServiceLevelLSO
-    | ServiceLevelMondialRelay
-    | ServiceLevelMaergo
-    | ServiceLevelParcelforce
-    | ServiceLevelPostItaliane
-    | ServiceLevelePostGlobal
-    | ServiceLevelRoyalMail
-    | ServiceLevelSendle
-    | ServiceLevelOnTrac
-    | ServiceLevelLasership
-    | ServiceLevelEvriUK
-    | ServiceLevelUDS
-    | ServiceLevelVeho
-    | ServiceLevelSwyft;
+    | ServiceLevelUSPSEnum
+    | ServiceLevelFedExEnum
+    | ServiceLevelUPSEnum
+    | ServiceLevelAirterraEnum
+    | ServiceLevelAPCPostalEnum
+    | ServiceLevelAsendiaEnum
+    | ServiceLevelAustraliaPostEnum
+    | ServiceLevelAxleHireEnum
+    | ServiceLevelAPGEnum
+    | ServiceLevelBetterTrucksEnum
+    | ServiceLevelCanadaPostEnum
+    | ServiceLevelCDLEnum
+    | ServiceLevelChronopostEnum
+    | ServiceLevelCouriersPleaseEnum
+    | ServiceLevelCorreosEspanaEnum
+    | ServiceLevelColissimoEnum
+    | ServiceLevelPurolatorEnum
+    | ServiceLevelDHLExpressEnum
+    | ServiceLevelDHLeCommerceEnum
+    | ServiceLevelDHLGermanyEnum
+    | ServiceLevelDPDDEEnum
+    | ServiceLevelDPDUKEnum
+    | ServiceLevelDeutschePostEnum
+    | ServiceLevelAramexAustraliaEnum
+    | ServiceLevelGlobegisticsEnum
+    | ServiceLevelGLSUSEnum
+    | ServiceLevelLSOEnum
+    | ServiceLevelMondialRelayEnum
+    | ServiceLevelMaergoEnum
+    | ServiceLevelParcelforceEnum
+    | ServiceLevelPostItalianeEnum
+    | ServiceLevelePostGlobalEnum
+    | ServiceLevelRoyalMailEnum
+    | ServiceLevelSendleEnum
+    | ServiceLevelOnTracEnum
+    | ServiceLevelLasershipEnum
+    | ServiceLevelEvriUKEnum
+    | ServiceLevelUDSEnum
+    | ServiceLevelVehoEnum
+    | ServiceLevelSwyftEnum;
 
 /** @internal */
-export const ServiceLevelSwyft$ = z.nativeEnum(ServiceLevelSwyft);
+export const ServiceLevelSwyftEnum$: z.ZodNativeEnum<typeof ServiceLevelSwyftEnum> =
+    z.nativeEnum(ServiceLevelSwyftEnum);
 
 /** @internal */
-export const ServiceLevelVeho$ = z.nativeEnum(ServiceLevelVeho);
+export const ServiceLevelVehoEnum$: z.ZodNativeEnum<typeof ServiceLevelVehoEnum> =
+    z.nativeEnum(ServiceLevelVehoEnum);
 
 /** @internal */
-export const ServiceLevelUDS$ = z.nativeEnum(ServiceLevelUDS);
+export const ServiceLevelUDSEnum$: z.ZodNativeEnum<typeof ServiceLevelUDSEnum> =
+    z.nativeEnum(ServiceLevelUDSEnum);
 
 /** @internal */
-export const ServiceLevelEvriUK$ = z.nativeEnum(ServiceLevelEvriUK);
+export const ServiceLevelEvriUKEnum$: z.ZodNativeEnum<typeof ServiceLevelEvriUKEnum> =
+    z.nativeEnum(ServiceLevelEvriUKEnum);
 
 /** @internal */
-export const ServiceLevelLasership$ = z.nativeEnum(ServiceLevelLasership);
+export const ServiceLevelLasershipEnum$: z.ZodNativeEnum<typeof ServiceLevelLasershipEnum> =
+    z.nativeEnum(ServiceLevelLasershipEnum);
 
 /** @internal */
-export const ServiceLevelOnTrac$ = z.nativeEnum(ServiceLevelOnTrac);
+export const ServiceLevelOnTracEnum$: z.ZodNativeEnum<typeof ServiceLevelOnTracEnum> =
+    z.nativeEnum(ServiceLevelOnTracEnum);
 
 /** @internal */
-export const ServiceLevelSendle$ = z.nativeEnum(ServiceLevelSendle);
+export const ServiceLevelSendleEnum$: z.ZodNativeEnum<typeof ServiceLevelSendleEnum> =
+    z.nativeEnum(ServiceLevelSendleEnum);
 
 /** @internal */
-export const ServiceLevelRoyalMail$ = z.nativeEnum(ServiceLevelRoyalMail);
+export const ServiceLevelRoyalMailEnum$: z.ZodNativeEnum<typeof ServiceLevelRoyalMailEnum> =
+    z.nativeEnum(ServiceLevelRoyalMailEnum);
 
 /** @internal */
-export const ServiceLevelePostGlobal$ = z.nativeEnum(ServiceLevelePostGlobal);
+export const ServiceLevelePostGlobalEnum$: z.ZodNativeEnum<typeof ServiceLevelePostGlobalEnum> =
+    z.nativeEnum(ServiceLevelePostGlobalEnum);
 
 /** @internal */
-export const ServiceLevelPostItaliane$ = z.nativeEnum(ServiceLevelPostItaliane);
+export const ServiceLevelPostItalianeEnum$: z.ZodNativeEnum<typeof ServiceLevelPostItalianeEnum> =
+    z.nativeEnum(ServiceLevelPostItalianeEnum);
 
 /** @internal */
-export const ServiceLevelParcelforce$ = z.nativeEnum(ServiceLevelParcelforce);
+export const ServiceLevelParcelforceEnum$: z.ZodNativeEnum<typeof ServiceLevelParcelforceEnum> =
+    z.nativeEnum(ServiceLevelParcelforceEnum);
 
 /** @internal */
-export const ServiceLevelMaergo$ = z.nativeEnum(ServiceLevelMaergo);
+export const ServiceLevelMaergoEnum$: z.ZodNativeEnum<typeof ServiceLevelMaergoEnum> =
+    z.nativeEnum(ServiceLevelMaergoEnum);
 
 /** @internal */
-export const ServiceLevelMondialRelay$ = z.nativeEnum(ServiceLevelMondialRelay);
+export const ServiceLevelMondialRelayEnum$: z.ZodNativeEnum<typeof ServiceLevelMondialRelayEnum> =
+    z.nativeEnum(ServiceLevelMondialRelayEnum);
 
 /** @internal */
-export const ServiceLevelLSO$ = z.nativeEnum(ServiceLevelLSO);
+export const ServiceLevelLSOEnum$: z.ZodNativeEnum<typeof ServiceLevelLSOEnum> =
+    z.nativeEnum(ServiceLevelLSOEnum);
 
 /** @internal */
-export const ServiceLevelGLSUS$ = z.nativeEnum(ServiceLevelGLSUS);
+export const ServiceLevelGLSUSEnum$: z.ZodNativeEnum<typeof ServiceLevelGLSUSEnum> =
+    z.nativeEnum(ServiceLevelGLSUSEnum);
 
 /** @internal */
-export const ServiceLevelGlobegistics$ = z.nativeEnum(ServiceLevelGlobegistics);
+export const ServiceLevelGlobegisticsEnum$: z.ZodNativeEnum<typeof ServiceLevelGlobegisticsEnum> =
+    z.nativeEnum(ServiceLevelGlobegisticsEnum);
 
 /** @internal */
-export const ServiceLevelAramexAustralia$ = z.nativeEnum(ServiceLevelAramexAustralia);
+export const ServiceLevelAramexAustraliaEnum$: z.ZodNativeEnum<
+    typeof ServiceLevelAramexAustraliaEnum
+> = z.nativeEnum(ServiceLevelAramexAustraliaEnum);
 
 /** @internal */
-export const ServiceLevelDeutschePost$ = z.nativeEnum(ServiceLevelDeutschePost);
+export const ServiceLevelDeutschePostEnum$: z.ZodNativeEnum<typeof ServiceLevelDeutschePostEnum> =
+    z.nativeEnum(ServiceLevelDeutschePostEnum);
 
 /** @internal */
-export const ServiceLevelDPDUK$ = z.nativeEnum(ServiceLevelDPDUK);
+export const ServiceLevelDPDUKEnum$: z.ZodNativeEnum<typeof ServiceLevelDPDUKEnum> =
+    z.nativeEnum(ServiceLevelDPDUKEnum);
 
 /** @internal */
-export const ServiceLevelDPDDE$ = z.nativeEnum(ServiceLevelDPDDE);
+export const ServiceLevelDPDDEEnum$: z.ZodNativeEnum<typeof ServiceLevelDPDDEEnum> =
+    z.nativeEnum(ServiceLevelDPDDEEnum);
 
 /** @internal */
-export const ServiceLevelDHLGermany$ = z.nativeEnum(ServiceLevelDHLGermany);
+export const ServiceLevelDHLGermanyEnum$: z.ZodNativeEnum<typeof ServiceLevelDHLGermanyEnum> =
+    z.nativeEnum(ServiceLevelDHLGermanyEnum);
 
 /** @internal */
-export const ServiceLevelDHLeCommerce$ = z.nativeEnum(ServiceLevelDHLeCommerce);
+export const ServiceLevelDHLeCommerceEnum$: z.ZodNativeEnum<typeof ServiceLevelDHLeCommerceEnum> =
+    z.nativeEnum(ServiceLevelDHLeCommerceEnum);
 
 /** @internal */
-export const ServiceLevelDHLExpress$ = z.nativeEnum(ServiceLevelDHLExpress);
+export const ServiceLevelDHLExpressEnum$: z.ZodNativeEnum<typeof ServiceLevelDHLExpressEnum> =
+    z.nativeEnum(ServiceLevelDHLExpressEnum);
 
 /** @internal */
-export const ServiceLevelPurolator$ = z.nativeEnum(ServiceLevelPurolator);
+export const ServiceLevelPurolatorEnum$: z.ZodNativeEnum<typeof ServiceLevelPurolatorEnum> =
+    z.nativeEnum(ServiceLevelPurolatorEnum);
 
 /** @internal */
-export const ServiceLevelColissimo$ = z.nativeEnum(ServiceLevelColissimo);
+export const ServiceLevelColissimoEnum$: z.ZodNativeEnum<typeof ServiceLevelColissimoEnum> =
+    z.nativeEnum(ServiceLevelColissimoEnum);
 
 /** @internal */
-export const ServiceLevelCorreosEspana$ = z.nativeEnum(ServiceLevelCorreosEspana);
+export const ServiceLevelCorreosEspanaEnum$: z.ZodNativeEnum<typeof ServiceLevelCorreosEspanaEnum> =
+    z.nativeEnum(ServiceLevelCorreosEspanaEnum);
 
 /** @internal */
-export const ServiceLevelCouriersPlease$ = z.nativeEnum(ServiceLevelCouriersPlease);
+export const ServiceLevelCouriersPleaseEnum$: z.ZodNativeEnum<
+    typeof ServiceLevelCouriersPleaseEnum
+> = z.nativeEnum(ServiceLevelCouriersPleaseEnum);
 
 /** @internal */
-export const ServiceLevelChronopost$ = z.nativeEnum(ServiceLevelChronopost);
+export const ServiceLevelChronopostEnum$: z.ZodNativeEnum<typeof ServiceLevelChronopostEnum> =
+    z.nativeEnum(ServiceLevelChronopostEnum);
 
 /** @internal */
-export const ServiceLevelCDL$ = z.nativeEnum(ServiceLevelCDL);
+export const ServiceLevelCDLEnum$: z.ZodNativeEnum<typeof ServiceLevelCDLEnum> =
+    z.nativeEnum(ServiceLevelCDLEnum);
 
 /** @internal */
-export const ServiceLevelCanadaPost$ = z.nativeEnum(ServiceLevelCanadaPost);
+export const ServiceLevelCanadaPostEnum$: z.ZodNativeEnum<typeof ServiceLevelCanadaPostEnum> =
+    z.nativeEnum(ServiceLevelCanadaPostEnum);
 
 /** @internal */
-export const ServiceLevelBetterTrucks$ = z.nativeEnum(ServiceLevelBetterTrucks);
+export const ServiceLevelBetterTrucksEnum$: z.ZodNativeEnum<typeof ServiceLevelBetterTrucksEnum> =
+    z.nativeEnum(ServiceLevelBetterTrucksEnum);
 
 /** @internal */
-export const ServiceLevelAPG$ = z.nativeEnum(ServiceLevelAPG);
+export const ServiceLevelAPGEnum$: z.ZodNativeEnum<typeof ServiceLevelAPGEnum> =
+    z.nativeEnum(ServiceLevelAPGEnum);
 
 /** @internal */
-export const ServiceLevelAxleHire$ = z.nativeEnum(ServiceLevelAxleHire);
+export const ServiceLevelAxleHireEnum$: z.ZodNativeEnum<typeof ServiceLevelAxleHireEnum> =
+    z.nativeEnum(ServiceLevelAxleHireEnum);
 
 /** @internal */
-export const ServiceLevelAustraliaPost$ = z.nativeEnum(ServiceLevelAustraliaPost);
+export const ServiceLevelAustraliaPostEnum$: z.ZodNativeEnum<typeof ServiceLevelAustraliaPostEnum> =
+    z.nativeEnum(ServiceLevelAustraliaPostEnum);
 
 /** @internal */
-export const ServiceLevelAsendia$ = z.nativeEnum(ServiceLevelAsendia);
+export const ServiceLevelAsendiaEnum$: z.ZodNativeEnum<typeof ServiceLevelAsendiaEnum> =
+    z.nativeEnum(ServiceLevelAsendiaEnum);
 
 /** @internal */
-export const ServiceLevelAPCPostal$ = z.nativeEnum(ServiceLevelAPCPostal);
+export const ServiceLevelAPCPostalEnum$: z.ZodNativeEnum<typeof ServiceLevelAPCPostalEnum> =
+    z.nativeEnum(ServiceLevelAPCPostalEnum);
 
 /** @internal */
-export const ServiceLevelAirterra$ = z.nativeEnum(ServiceLevelAirterra);
+export const ServiceLevelAirterraEnum$: z.ZodNativeEnum<typeof ServiceLevelAirterraEnum> =
+    z.nativeEnum(ServiceLevelAirterraEnum);
 
 /** @internal */
-export const ServiceLevelUPS$ = z.nativeEnum(ServiceLevelUPS);
+export const ServiceLevelUPSEnum$: z.ZodNativeEnum<typeof ServiceLevelUPSEnum> =
+    z.nativeEnum(ServiceLevelUPSEnum);
 
 /** @internal */
-export const ServiceLevelFedEx$ = z.nativeEnum(ServiceLevelFedEx);
+export const ServiceLevelFedExEnum$: z.ZodNativeEnum<typeof ServiceLevelFedExEnum> =
+    z.nativeEnum(ServiceLevelFedExEnum);
 
 /** @internal */
-export const ServiceLevelUSPS$ = z.nativeEnum(ServiceLevelUSPS);
+export const ServiceLevelUSPSEnum$: z.ZodNativeEnum<typeof ServiceLevelUSPSEnum> =
+    z.nativeEnum(ServiceLevelUSPSEnum);
 
 /** @internal */
 export namespace ServiceLevelEnumSet$ {
     export type Inbound =
-        | ServiceLevelUSPS
-        | ServiceLevelFedEx
-        | ServiceLevelUPS
-        | ServiceLevelAirterra
-        | ServiceLevelAPCPostal
-        | ServiceLevelAsendia
-        | ServiceLevelAustraliaPost
-        | ServiceLevelAxleHire
-        | ServiceLevelAPG
-        | ServiceLevelBetterTrucks
-        | ServiceLevelCanadaPost
-        | ServiceLevelCDL
-        | ServiceLevelChronopost
-        | ServiceLevelCouriersPlease
-        | ServiceLevelCorreosEspana
-        | ServiceLevelColissimo
-        | ServiceLevelPurolator
-        | ServiceLevelDHLExpress
-        | ServiceLevelDHLeCommerce
-        | ServiceLevelDHLGermany
-        | ServiceLevelDPDDE
-        | ServiceLevelDPDUK
-        | ServiceLevelDeutschePost
-        | ServiceLevelAramexAustralia
-        | ServiceLevelGlobegistics
-        | ServiceLevelGLSUS
-        | ServiceLevelLSO
-        | ServiceLevelMondialRelay
-        | ServiceLevelMaergo
-        | ServiceLevelParcelforce
-        | ServiceLevelPostItaliane
-        | ServiceLevelePostGlobal
-        | ServiceLevelRoyalMail
-        | ServiceLevelSendle
-        | ServiceLevelOnTrac
-        | ServiceLevelLasership
-        | ServiceLevelEvriUK
-        | ServiceLevelUDS
-        | ServiceLevelVeho
-        | ServiceLevelSwyft;
+        | ServiceLevelUSPSEnum
+        | ServiceLevelFedExEnum
+        | ServiceLevelUPSEnum
+        | ServiceLevelAirterraEnum
+        | ServiceLevelAPCPostalEnum
+        | ServiceLevelAsendiaEnum
+        | ServiceLevelAustraliaPostEnum
+        | ServiceLevelAxleHireEnum
+        | ServiceLevelAPGEnum
+        | ServiceLevelBetterTrucksEnum
+        | ServiceLevelCanadaPostEnum
+        | ServiceLevelCDLEnum
+        | ServiceLevelChronopostEnum
+        | ServiceLevelCouriersPleaseEnum
+        | ServiceLevelCorreosEspanaEnum
+        | ServiceLevelColissimoEnum
+        | ServiceLevelPurolatorEnum
+        | ServiceLevelDHLExpressEnum
+        | ServiceLevelDHLeCommerceEnum
+        | ServiceLevelDHLGermanyEnum
+        | ServiceLevelDPDDEEnum
+        | ServiceLevelDPDUKEnum
+        | ServiceLevelDeutschePostEnum
+        | ServiceLevelAramexAustraliaEnum
+        | ServiceLevelGlobegisticsEnum
+        | ServiceLevelGLSUSEnum
+        | ServiceLevelLSOEnum
+        | ServiceLevelMondialRelayEnum
+        | ServiceLevelMaergoEnum
+        | ServiceLevelParcelforceEnum
+        | ServiceLevelPostItalianeEnum
+        | ServiceLevelePostGlobalEnum
+        | ServiceLevelRoyalMailEnum
+        | ServiceLevelSendleEnum
+        | ServiceLevelOnTracEnum
+        | ServiceLevelLasershipEnum
+        | ServiceLevelEvriUKEnum
+        | ServiceLevelUDSEnum
+        | ServiceLevelVehoEnum
+        | ServiceLevelSwyftEnum;
 
     export type Outbound =
-        | ServiceLevelUSPS
-        | ServiceLevelFedEx
-        | ServiceLevelUPS
-        | ServiceLevelAirterra
-        | ServiceLevelAPCPostal
-        | ServiceLevelAsendia
-        | ServiceLevelAustraliaPost
-        | ServiceLevelAxleHire
-        | ServiceLevelAPG
-        | ServiceLevelBetterTrucks
-        | ServiceLevelCanadaPost
-        | ServiceLevelCDL
-        | ServiceLevelChronopost
-        | ServiceLevelCouriersPlease
-        | ServiceLevelCorreosEspana
-        | ServiceLevelColissimo
-        | ServiceLevelPurolator
-        | ServiceLevelDHLExpress
-        | ServiceLevelDHLeCommerce
-        | ServiceLevelDHLGermany
-        | ServiceLevelDPDDE
-        | ServiceLevelDPDUK
-        | ServiceLevelDeutschePost
-        | ServiceLevelAramexAustralia
-        | ServiceLevelGlobegistics
-        | ServiceLevelGLSUS
-        | ServiceLevelLSO
-        | ServiceLevelMondialRelay
-        | ServiceLevelMaergo
-        | ServiceLevelParcelforce
-        | ServiceLevelPostItaliane
-        | ServiceLevelePostGlobal
-        | ServiceLevelRoyalMail
-        | ServiceLevelSendle
-        | ServiceLevelOnTrac
-        | ServiceLevelLasership
-        | ServiceLevelEvriUK
-        | ServiceLevelUDS
-        | ServiceLevelVeho
-        | ServiceLevelSwyft;
+        | ServiceLevelUSPSEnum
+        | ServiceLevelFedExEnum
+        | ServiceLevelUPSEnum
+        | ServiceLevelAirterraEnum
+        | ServiceLevelAPCPostalEnum
+        | ServiceLevelAsendiaEnum
+        | ServiceLevelAustraliaPostEnum
+        | ServiceLevelAxleHireEnum
+        | ServiceLevelAPGEnum
+        | ServiceLevelBetterTrucksEnum
+        | ServiceLevelCanadaPostEnum
+        | ServiceLevelCDLEnum
+        | ServiceLevelChronopostEnum
+        | ServiceLevelCouriersPleaseEnum
+        | ServiceLevelCorreosEspanaEnum
+        | ServiceLevelColissimoEnum
+        | ServiceLevelPurolatorEnum
+        | ServiceLevelDHLExpressEnum
+        | ServiceLevelDHLeCommerceEnum
+        | ServiceLevelDHLGermanyEnum
+        | ServiceLevelDPDDEEnum
+        | ServiceLevelDPDUKEnum
+        | ServiceLevelDeutschePostEnum
+        | ServiceLevelAramexAustraliaEnum
+        | ServiceLevelGlobegisticsEnum
+        | ServiceLevelGLSUSEnum
+        | ServiceLevelLSOEnum
+        | ServiceLevelMondialRelayEnum
+        | ServiceLevelMaergoEnum
+        | ServiceLevelParcelforceEnum
+        | ServiceLevelPostItalianeEnum
+        | ServiceLevelePostGlobalEnum
+        | ServiceLevelRoyalMailEnum
+        | ServiceLevelSendleEnum
+        | ServiceLevelOnTracEnum
+        | ServiceLevelLasershipEnum
+        | ServiceLevelEvriUKEnum
+        | ServiceLevelUDSEnum
+        | ServiceLevelVehoEnum
+        | ServiceLevelSwyftEnum;
     export const inboundSchema: z.ZodType<ServiceLevelEnumSet, z.ZodTypeDef, Inbound> = z.union([
-        ServiceLevelUSPS$,
-        ServiceLevelFedEx$,
-        ServiceLevelUPS$,
-        ServiceLevelAirterra$,
-        ServiceLevelAPCPostal$,
-        ServiceLevelAsendia$,
-        ServiceLevelAustraliaPost$,
-        ServiceLevelAxleHire$,
-        ServiceLevelAPG$,
-        ServiceLevelBetterTrucks$,
-        ServiceLevelCanadaPost$,
-        ServiceLevelCDL$,
-        ServiceLevelChronopost$,
-        ServiceLevelCouriersPlease$,
-        ServiceLevelCorreosEspana$,
-        ServiceLevelColissimo$,
-        ServiceLevelPurolator$,
-        ServiceLevelDHLExpress$,
-        ServiceLevelDHLeCommerce$,
-        ServiceLevelDHLGermany$,
-        ServiceLevelDPDDE$,
-        ServiceLevelDPDUK$,
-        ServiceLevelDeutschePost$,
-        ServiceLevelAramexAustralia$,
-        ServiceLevelGlobegistics$,
-        ServiceLevelGLSUS$,
-        ServiceLevelLSO$,
-        ServiceLevelMondialRelay$,
-        ServiceLevelMaergo$,
-        ServiceLevelParcelforce$,
-        ServiceLevelPostItaliane$,
-        ServiceLevelePostGlobal$,
-        ServiceLevelRoyalMail$,
-        ServiceLevelSendle$,
-        ServiceLevelOnTrac$,
-        ServiceLevelLasership$,
-        ServiceLevelEvriUK$,
-        ServiceLevelUDS$,
-        ServiceLevelVeho$,
-        ServiceLevelSwyft$,
+        ServiceLevelUSPSEnum$,
+        ServiceLevelFedExEnum$,
+        ServiceLevelUPSEnum$,
+        ServiceLevelAirterraEnum$,
+        ServiceLevelAPCPostalEnum$,
+        ServiceLevelAsendiaEnum$,
+        ServiceLevelAustraliaPostEnum$,
+        ServiceLevelAxleHireEnum$,
+        ServiceLevelAPGEnum$,
+        ServiceLevelBetterTrucksEnum$,
+        ServiceLevelCanadaPostEnum$,
+        ServiceLevelCDLEnum$,
+        ServiceLevelChronopostEnum$,
+        ServiceLevelCouriersPleaseEnum$,
+        ServiceLevelCorreosEspanaEnum$,
+        ServiceLevelColissimoEnum$,
+        ServiceLevelPurolatorEnum$,
+        ServiceLevelDHLExpressEnum$,
+        ServiceLevelDHLeCommerceEnum$,
+        ServiceLevelDHLGermanyEnum$,
+        ServiceLevelDPDDEEnum$,
+        ServiceLevelDPDUKEnum$,
+        ServiceLevelDeutschePostEnum$,
+        ServiceLevelAramexAustraliaEnum$,
+        ServiceLevelGlobegisticsEnum$,
+        ServiceLevelGLSUSEnum$,
+        ServiceLevelLSOEnum$,
+        ServiceLevelMondialRelayEnum$,
+        ServiceLevelMaergoEnum$,
+        ServiceLevelParcelforceEnum$,
+        ServiceLevelPostItalianeEnum$,
+        ServiceLevelePostGlobalEnum$,
+        ServiceLevelRoyalMailEnum$,
+        ServiceLevelSendleEnum$,
+        ServiceLevelOnTracEnum$,
+        ServiceLevelLasershipEnum$,
+        ServiceLevelEvriUKEnum$,
+        ServiceLevelUDSEnum$,
+        ServiceLevelVehoEnum$,
+        ServiceLevelSwyftEnum$,
     ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ServiceLevelEnumSet> = z.union([
-        ServiceLevelUSPS$,
-        ServiceLevelFedEx$,
-        ServiceLevelUPS$,
-        ServiceLevelAirterra$,
-        ServiceLevelAPCPostal$,
-        ServiceLevelAsendia$,
-        ServiceLevelAustraliaPost$,
-        ServiceLevelAxleHire$,
-        ServiceLevelAPG$,
-        ServiceLevelBetterTrucks$,
-        ServiceLevelCanadaPost$,
-        ServiceLevelCDL$,
-        ServiceLevelChronopost$,
-        ServiceLevelCouriersPlease$,
-        ServiceLevelCorreosEspana$,
-        ServiceLevelColissimo$,
-        ServiceLevelPurolator$,
-        ServiceLevelDHLExpress$,
-        ServiceLevelDHLeCommerce$,
-        ServiceLevelDHLGermany$,
-        ServiceLevelDPDDE$,
-        ServiceLevelDPDUK$,
-        ServiceLevelDeutschePost$,
-        ServiceLevelAramexAustralia$,
-        ServiceLevelGlobegistics$,
-        ServiceLevelGLSUS$,
-        ServiceLevelLSO$,
-        ServiceLevelMondialRelay$,
-        ServiceLevelMaergo$,
-        ServiceLevelParcelforce$,
-        ServiceLevelPostItaliane$,
-        ServiceLevelePostGlobal$,
-        ServiceLevelRoyalMail$,
-        ServiceLevelSendle$,
-        ServiceLevelOnTrac$,
-        ServiceLevelLasership$,
-        ServiceLevelEvriUK$,
-        ServiceLevelUDS$,
-        ServiceLevelVeho$,
-        ServiceLevelSwyft$,
+        ServiceLevelUSPSEnum$,
+        ServiceLevelFedExEnum$,
+        ServiceLevelUPSEnum$,
+        ServiceLevelAirterraEnum$,
+        ServiceLevelAPCPostalEnum$,
+        ServiceLevelAsendiaEnum$,
+        ServiceLevelAustraliaPostEnum$,
+        ServiceLevelAxleHireEnum$,
+        ServiceLevelAPGEnum$,
+        ServiceLevelBetterTrucksEnum$,
+        ServiceLevelCanadaPostEnum$,
+        ServiceLevelCDLEnum$,
+        ServiceLevelChronopostEnum$,
+        ServiceLevelCouriersPleaseEnum$,
+        ServiceLevelCorreosEspanaEnum$,
+        ServiceLevelColissimoEnum$,
+        ServiceLevelPurolatorEnum$,
+        ServiceLevelDHLExpressEnum$,
+        ServiceLevelDHLeCommerceEnum$,
+        ServiceLevelDHLGermanyEnum$,
+        ServiceLevelDPDDEEnum$,
+        ServiceLevelDPDUKEnum$,
+        ServiceLevelDeutschePostEnum$,
+        ServiceLevelAramexAustraliaEnum$,
+        ServiceLevelGlobegisticsEnum$,
+        ServiceLevelGLSUSEnum$,
+        ServiceLevelLSOEnum$,
+        ServiceLevelMondialRelayEnum$,
+        ServiceLevelMaergoEnum$,
+        ServiceLevelParcelforceEnum$,
+        ServiceLevelPostItalianeEnum$,
+        ServiceLevelePostGlobalEnum$,
+        ServiceLevelRoyalMailEnum$,
+        ServiceLevelSendleEnum$,
+        ServiceLevelOnTracEnum$,
+        ServiceLevelLasershipEnum$,
+        ServiceLevelEvriUKEnum$,
+        ServiceLevelUDSEnum$,
+        ServiceLevelVehoEnum$,
+        ServiceLevelSwyftEnum$,
     ]);
 }

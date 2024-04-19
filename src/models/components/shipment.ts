@@ -171,7 +171,7 @@ export namespace Messages$ {
 }
 
 /** @internal */
-export const ShipmentStatus$ = z.nativeEnum(ShipmentStatus);
+export const ShipmentStatus$: z.ZodNativeEnum<typeof ShipmentStatus> = z.nativeEnum(ShipmentStatus);
 
 /** @internal */
 export namespace Shipment$ {

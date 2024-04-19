@@ -44,7 +44,8 @@ export type CustomsTaxIdentification = {
 };
 
 /** @internal */
-export const CustomsTaxIdentificationType$ = z.nativeEnum(CustomsTaxIdentificationType);
+export const CustomsTaxIdentificationType$: z.ZodNativeEnum<typeof CustomsTaxIdentificationType> =
+    z.nativeEnum(CustomsTaxIdentificationType);
 
 /** @internal */
 export namespace CustomsTaxIdentification$ {

@@ -4,23 +4,9 @@
 
 import { Address, Address$ } from "./address";
 import { LineItem, LineItem$ } from "./lineitem";
-import { WeightUnit, WeightUnit$ } from "./weightunit";
+import { OrderStatusEnum, OrderStatusEnum$ } from "./orderstatusenum";
+import { WeightUnitEnum, WeightUnitEnum$ } from "./weightunitenum";
 import * as z from "zod";
-
-/**
- * Current state of the order. See the <a href="https://docs.goshippo.com/docs/orders/orders/">orders tutorial</a>
- *
- * @remarks
- * for the logic of how the status is handled.
- */
-export enum OrderStatus {
-    Unknown = "UNKNOWN",
-    Awaitpay = "AWAITPAY",
-    Paid = "PAID",
-    Refunded = "REFUNDED",
-    PartiallyFulfilled = "PARTIALLY_FULFILLED",
-    Shipped = "SHIPPED",
-}
 
 /**
  * Platform the order was created on and, if applicable, imported from.
@@ -67,7 +53,7 @@ export type Order = {
      * @remarks
      * for the logic of how the status is handled.
      */
-    orderStatus?: OrderStatus | undefined;
+    orderStatus?: OrderStatusEnum | undefined;
     /**
      * Date and time when the order was placed. This datetime can be different from the datetime of the order object creation on Shippo.
      */
@@ -106,7 +92,7 @@ export type Order = {
     /**
      * The unit used for weight.
      */
-    weightUnit?: WeightUnit | undefined;
+    weightUnit?: WeightUnitEnum | undefined;
     /**
      * <a href="#tag/Addresses">Address</a> object of the sender / seller. Will be returned expanded by default.
      */
@@ -147,10 +133,7 @@ export type Order = {
 };
 
 /** @internal */
-export const OrderStatus$ = z.nativeEnum(OrderStatus);
-
-/** @internal */
-export const ShopApp$ = z.nativeEnum(ShopApp);
+export const ShopApp$: z.ZodNativeEnum<typeof ShopApp> = z.nativeEnum(ShopApp);
 
 /** @internal */
 export namespace Order$ {
@@ -158,7 +141,7 @@ export namespace Order$ {
         currency?: string | undefined;
         notes?: string | undefined;
         order_number?: string | undefined;
-        order_status?: OrderStatus | undefined;
+        order_status?: OrderStatusEnum | undefined;
         placed_at: string;
         shipping_cost?: string | undefined;
         shipping_cost_currency?: string | undefined;
@@ -167,7 +150,7 @@ export namespace Order$ {
         total_price?: string | undefined;
         total_tax?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnit | undefined;
+        weight_unit?: WeightUnitEnum | undefined;
         from_address?: Address$.Inbound | undefined;
         to_address: Address$.Inbound;
         line_items?: Array<LineItem$.Inbound> | undefined;
@@ -182,7 +165,7 @@ export namespace Order$ {
             currency: z.string().optional(),
             notes: z.string().optional(),
             order_number: z.string().optional(),
-            order_status: OrderStatus$.optional(),
+            order_status: OrderStatusEnum$.optional(),
             placed_at: z.string(),
             shipping_cost: z.string().optional(),
             shipping_cost_currency: z.string().optional(),
@@ -191,7 +174,7 @@ export namespace Order$ {
             total_price: z.string().optional(),
             total_tax: z.string().optional(),
             weight: z.string().optional(),
-            weight_unit: WeightUnit$.optional(),
+            weight_unit: WeightUnitEnum$.optional(),
             from_address: Address$.inboundSchema.optional(),
             to_address: Address$.inboundSchema,
             line_items: z.array(LineItem$.inboundSchema).optional(),
@@ -231,7 +214,7 @@ export namespace Order$ {
         currency?: string | undefined;
         notes?: string | undefined;
         order_number?: string | undefined;
-        order_status?: OrderStatus | undefined;
+        order_status?: OrderStatusEnum | undefined;
         placed_at: string;
         shipping_cost?: string | undefined;
         shipping_cost_currency?: string | undefined;
@@ -240,7 +223,7 @@ export namespace Order$ {
         total_price?: string | undefined;
         total_tax?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnit | undefined;
+        weight_unit?: WeightUnitEnum | undefined;
         from_address?: Address$.Outbound | undefined;
         to_address: Address$.Outbound;
         line_items?: Array<LineItem$.Outbound> | undefined;
@@ -255,7 +238,7 @@ export namespace Order$ {
             currency: z.string().optional(),
             notes: z.string().optional(),
             orderNumber: z.string().optional(),
-            orderStatus: OrderStatus$.optional(),
+            orderStatus: OrderStatusEnum$.optional(),
             placedAt: z.string(),
             shippingCost: z.string().optional(),
             shippingCostCurrency: z.string().optional(),
@@ -264,7 +247,7 @@ export namespace Order$ {
             totalPrice: z.string().optional(),
             totalTax: z.string().optional(),
             weight: z.string().optional(),
-            weightUnit: WeightUnit$.optional(),
+            weightUnit: WeightUnitEnum$.optional(),
             fromAddress: Address$.outboundSchema.optional(),
             toAddress: Address$.outboundSchema,
             lineItems: z.array(LineItem$.outboundSchema).optional(),
