@@ -15,7 +15,10 @@ typescript:
   version: 0.1.0
   additionalDependencies:
     dependencies: {}
-    devDependencies: {}
+    devDependencies:
+      chai: ^5.1.0
+      mocha: ^10.4.0
+      tsx: ^4.7.2
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Speakeasy
