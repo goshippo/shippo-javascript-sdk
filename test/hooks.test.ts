@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {describe, it} from 'mocha';
-import {PrefixApiKeyBeforeRequestHook} from "../src/hooks/registration";
+import {ConvertNullToUndefinedAfterSuccessHook, PrefixApiKeyBeforeRequestHook} from "../src/hooks/registration";
 
 describe('TestPrefixApiKeyBeforeRequestHook', function () {
 
@@ -28,6 +28,56 @@ describe('TestPrefixApiKeyBeforeRequestHook', function () {
                 expect(updatedAuthHeader).to.be.equal(authHeader);
             }
         });
+    });
+
+});
+
+describe('TestConvertNullToUndefinedAfterSuccessHook', function () {
+
+    const hook = new ConvertNullToUndefinedAfterSuccessHook();
+    const hookCtx = {operationID: "test"};
+
+    async function applyHookAndCompareExpected(inputJson: any, expected: any) {
+        const inputResponse = new Response(JSON.stringify(inputJson));
+        const outputResponse = await hook.afterSuccess(hookCtx, inputResponse);
+        const actual = await outputResponse.json();
+        expect(expected).to.deep.equal(actual);
+    }
+
+    it('testShouldDoNothingIfNoNullValue', async () => {
+        await applyHookAndCompareExpected(
+            {field: "value"},
+            {field: "value"}
+        );
+        await applyHookAndCompareExpected(
+            {field: {subField: "value"}},
+            {field: {subField: "value"}}
+        );
+        await applyHookAndCompareExpected(
+            {field: [{arrayField: "value"}]},
+            {field: [{arrayField: "value"}]}
+        );
+    });
+
+    it('testShouldStripNullSimple', async () => {
+        await applyHookAndCompareExpected(
+            {field: null},
+            {}
+        );
+    });
+
+    it('testShouldStripNullComplex', async () => {
+        await applyHookAndCompareExpected(
+            {field: {subField: "value", subFieldEmpty: null}},
+            {field: {subField: "value"}}
+        );
+    });
+
+    it('testShouldStripNullArray', async () => {
+        await applyHookAndCompareExpected(
+            {field: [{subField: "value", subFieldEmpty: null}]},
+            {field: [{subField: "value"}]}
+        );
     });
 
 });
