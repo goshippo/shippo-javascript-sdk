@@ -11,40 +11,26 @@ export type UpdateCarrierAccountRequest = {
      */
     carrierAccountId: string;
     /**
-     * String used to pick a non-default API version to use
-     */
-    shippoApiVersion?: string | undefined;
-    /**
      * Examples.
      */
     carrierAccountBase?: components.CarrierAccountBase | undefined;
-};
-
-export type UpdateCarrierAccountResponse = {
-    httpMeta: components.HTTPMetadata;
-    carrierAccount?: components.CarrierAccount | undefined;
 };
 
 /** @internal */
 export namespace UpdateCarrierAccountRequest$ {
     export type Inbound = {
         CarrierAccountId: string;
-        "SHIPPO-API-VERSION"?: string | undefined;
         CarrierAccountBase?: components.CarrierAccountBase$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<UpdateCarrierAccountRequest, z.ZodTypeDef, Inbound> = z
         .object({
             CarrierAccountId: z.string(),
-            "SHIPPO-API-VERSION": z.string().optional(),
             CarrierAccountBase: components.CarrierAccountBase$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 carrierAccountId: v.CarrierAccountId,
-                ...(v["SHIPPO-API-VERSION"] === undefined
-                    ? null
-                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
                 ...(v.CarrierAccountBase === undefined
                     ? null
                     : { carrierAccountBase: v.CarrierAccountBase }),
@@ -53,62 +39,20 @@ export namespace UpdateCarrierAccountRequest$ {
 
     export type Outbound = {
         CarrierAccountId: string;
-        "SHIPPO-API-VERSION"?: string | undefined;
         CarrierAccountBase?: components.CarrierAccountBase$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateCarrierAccountRequest> = z
         .object({
             carrierAccountId: z.string(),
-            shippoApiVersion: z.string().optional(),
             carrierAccountBase: components.CarrierAccountBase$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 CarrierAccountId: v.carrierAccountId,
-                ...(v.shippoApiVersion === undefined
-                    ? null
-                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
                 ...(v.carrierAccountBase === undefined
                     ? null
                     : { CarrierAccountBase: v.carrierAccountBase }),
-            };
-        });
-}
-
-/** @internal */
-export namespace UpdateCarrierAccountResponse$ {
-    export type Inbound = {
-        HttpMeta: components.HTTPMetadata$.Inbound;
-        CarrierAccount?: components.CarrierAccount$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateCarrierAccountResponse, z.ZodTypeDef, Inbound> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CarrierAccount: components.CarrierAccount$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                httpMeta: v.HttpMeta,
-                ...(v.CarrierAccount === undefined ? null : { carrierAccount: v.CarrierAccount }),
-            };
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CarrierAccount?: components.CarrierAccount$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateCarrierAccountResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            carrierAccount: components.CarrierAccount$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                HttpMeta: v.httpMeta,
-                ...(v.carrierAccount === undefined ? null : { CarrierAccount: v.carrierAccount }),
             };
         });
 }

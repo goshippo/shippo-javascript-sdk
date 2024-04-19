@@ -8,8 +8,10 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class CarrierParcelTemplates extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -47,13 +49,11 @@ export class CarrierParcelTemplates extends ClientSDK {
     async list(
         include?: operations.Include | undefined,
         carrier?: string | undefined,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListCarrierParcelTemplatesResponse> {
+    ): Promise<Array<components.CarrierParcelTemplate>> {
         const input$: operations.ListCarrierParcelTemplatesRequest = {
             include: include,
             carrier: carrier,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -83,11 +83,10 @@ export class CarrierParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -105,7 +104,7 @@ export class CarrierParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -120,28 +119,19 @@ export class CarrierParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListCarrierParcelTemplatesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        carrierParcelTemplateListResponse: val$,
-                    });
+                    return z.array(components.CarrierParcelTemplate$.inboundSchema).parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -153,12 +143,10 @@ export class CarrierParcelTemplates extends ClientSDK {
      */
     async get(
         carrierParcelTemplateToken: string,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetCarrierParcelTemplateResponse> {
+    ): Promise<components.CarrierParcelTemplate> {
         const input$: operations.GetCarrierParcelTemplateRequest = {
             carrierParcelTemplateToken: carrierParcelTemplateToken,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -186,11 +174,10 @@ export class CarrierParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -208,7 +195,7 @@ export class CarrierParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -223,28 +210,19 @@ export class CarrierParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCarrierParcelTemplateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierParcelTemplate: val$,
-                    });
+                    return components.CarrierParcelTemplate$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

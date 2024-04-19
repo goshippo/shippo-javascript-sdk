@@ -48,13 +48,11 @@ export class CustomsItems extends ClientSDK {
     async list(
         page?: number | undefined,
         results?: number | undefined,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListCustomsItemsResponse> {
+    ): Promise<components.CustomsItemPaginatedList> {
         const input$: operations.ListCustomsItemsRequest = {
             page: page,
             results: results,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -81,11 +79,10 @@ export class CustomsItems extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -103,7 +100,7 @@ export class CustomsItems extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -118,28 +115,19 @@ export class CustomsItems extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListCustomsItemsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CustomsItemPaginatedList: val$,
-                    });
+                    return components.CustomsItemPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -150,25 +138,22 @@ export class CustomsItems extends ClientSDK {
      * Creates a new customs item object.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        customsItemBase?: components.CustomsItemBase | undefined,
+        input: components.CustomsItemCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateCustomsItemResponse> {
-        const input$: operations.CreateCustomsItemRequest = {
-            shippoApiVersion: shippoApiVersion,
-            customsItemBase: customsItemBase,
-        };
+    ): Promise<components.CustomsItem> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateCustomsItemRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) =>
+                components.CustomsItemCreateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.CustomsItemBase, { explode: true });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/customs/items")();
 
@@ -176,11 +161,10 @@ export class CustomsItems extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -198,7 +182,7 @@ export class CustomsItems extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -213,28 +197,19 @@ export class CustomsItems extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateCustomsItemResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CustomsItem: val$,
-                    });
+                    return components.CustomsItem$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -247,13 +222,11 @@ export class CustomsItems extends ClientSDK {
     async get(
         customsItemId: string,
         page?: number | undefined,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetCustomsItemResponse> {
+    ): Promise<components.CustomsItem> {
         const input$: operations.GetCustomsItemRequest = {
             customsItemId: customsItemId,
             page: page,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -282,11 +255,10 @@ export class CustomsItems extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -304,7 +276,7 @@ export class CustomsItems extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -319,28 +291,19 @@ export class CustomsItems extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCustomsItemResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CustomsItem: val$,
-                    });
+                    return components.CustomsItem$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

@@ -52,7 +52,7 @@ export class CarrierAccounts extends ClientSDK {
     async list(
         input: operations.ListCarrierAccountsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListCarrierAccountsResponse> {
+    ): Promise<components.CarrierAccountPaginatedList> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -90,11 +90,10 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -112,7 +111,7 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -127,28 +126,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListCarrierAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccountPaginatedList: val$,
-                    });
+                    return components.CarrierAccountPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -159,29 +149,24 @@ export class CarrierAccounts extends ClientSDK {
      * Creates a new carrier account or connects an existing carrier account to the Shippo account.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        connectExistingOwnUPSAccountRequest?:
-            | components.ConnectExistingOwnUPSAccountRequest
-            | undefined,
+        input: components.ConnectExistingOwnAccountRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateCarrierAccountResponse> {
-        const input$: operations.CreateCarrierAccountRequest = {
-            shippoApiVersion: shippoApiVersion,
-            connectExistingOwnUPSAccountRequest: connectExistingOwnUPSAccountRequest,
-        };
+    ): Promise<components.CarrierAccount> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateCarrierAccountRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) =>
+                components.ConnectExistingOwnAccountRequest$.outboundSchema
+                    .optional()
+                    .parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.ConnectExistingOwnUPSAccountRequest, {
-            explode: true,
-        });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/carrier_accounts")();
 
@@ -189,11 +174,10 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -226,41 +210,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateCarrierAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccount: val$,
-                    });
+                    return components.CarrierAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.BadRequestWithDetail$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -272,12 +234,10 @@ export class CarrierAccounts extends ClientSDK {
      */
     async get(
         carrierAccountId: string,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetCarrierAccountResponse> {
+    ): Promise<components.CarrierAccount> {
         const input$: operations.GetCarrierAccountRequest = {
             carrierAccountId: carrierAccountId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -304,11 +264,10 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -326,7 +285,7 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -341,28 +300,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCarrierAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccountWithExtraInfo: val$,
-                    });
+                    return components.CarrierAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -374,13 +324,11 @@ export class CarrierAccounts extends ClientSDK {
      */
     async update(
         carrierAccountId: string,
-        shippoApiVersion?: string | undefined,
         carrierAccountBase?: components.CarrierAccountBase | undefined,
         options?: RequestOptions
-    ): Promise<operations.UpdateCarrierAccountResponse> {
+    ): Promise<components.CarrierAccount> {
         const input$: operations.UpdateCarrierAccountRequest = {
             carrierAccountId: carrierAccountId,
-            shippoApiVersion: shippoApiVersion,
             carrierAccountBase: carrierAccountBase,
         };
         const headers$ = new Headers();
@@ -409,11 +357,10 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -431,7 +378,7 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -446,28 +393,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateCarrierAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccount: val$,
-                    });
+                    return components.CarrierAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -481,14 +419,12 @@ export class CarrierAccounts extends ClientSDK {
         carrierAccountObjectId: string,
         redirectUri: string,
         state?: string | undefined,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.InitiateOauth2SigninResponse> {
+    ): Promise<operations.InitiateOauth2SigninResponse | void> {
         const input$: operations.InitiateOauth2SigninRequest = {
             carrierAccountObjectId: carrierAccountObjectId,
             redirectUri: redirectUri,
             state: state,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -524,11 +460,10 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -622,7 +557,8 @@ export class CarrierAccounts extends ClientSDK {
             );
             throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -633,25 +569,24 @@ export class CarrierAccounts extends ClientSDK {
      * Adds a Shippo carrier account
      */
     async register(
-        shippoApiVersion?: string | undefined,
-        requestBody?: operations.RegisterCarrierAccountRequestBody | undefined,
+        input: operations.RegisterCarrierAccountRequestBody | undefined,
         options?: RequestOptions
-    ): Promise<operations.RegisterCarrierAccountResponse> {
-        const input$: operations.RegisterCarrierAccountRequest = {
-            shippoApiVersion: shippoApiVersion,
-            requestBody: requestBody,
-        };
+    ): Promise<components.CarrierAccount> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.RegisterCarrierAccountRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) =>
+                operations.RegisterCarrierAccountRequestBody$.outboundSchema
+                    .optional()
+                    .parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/carrier_accounts/register/new")();
 
@@ -659,11 +594,10 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -696,41 +630,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.RegisterCarrierAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccount: val$,
-                    });
+                    return components.CarrierAccount$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.BadRequestWithError$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -742,12 +654,10 @@ export class CarrierAccounts extends ClientSDK {
      */
     async getRegistrationStatus(
         carrier: operations.Carrier,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetCarrierRegistrationStatusResponse> {
+    ): Promise<components.CarrierAccountRegistrationStatus> {
         const input$: operations.GetCarrierRegistrationStatusRequest = {
             carrier: carrier,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -774,11 +684,10 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -796,7 +705,7 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -811,28 +720,19 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCarrierRegistrationStatusResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CarrierAccountRegistrationStatus: val$,
-                    });
+                    return components.CarrierAccountRegistrationStatus$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

@@ -48,13 +48,11 @@ export class CustomsDeclarations extends ClientSDK {
     async list(
         page?: number | undefined,
         results?: number | undefined,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.ListCustomsDeclarationsResponse> {
+    ): Promise<components.CustomsDeclarationPaginatedList> {
         const input$: operations.ListCustomsDeclarationsRequest = {
             page: page,
             results: results,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -81,11 +79,10 @@ export class CustomsDeclarations extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -103,7 +100,7 @@ export class CustomsDeclarations extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -118,28 +115,19 @@ export class CustomsDeclarations extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListCustomsDeclarationsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CustomsDeclarationPaginatedList: val$,
-                    });
+                    return components.CustomsDeclarationPaginatedList$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -150,27 +138,22 @@ export class CustomsDeclarations extends ClientSDK {
      * Creates a new customs declaration object
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        customsDeclarationCreateRequest?: components.CustomsDeclarationCreateRequest | undefined,
+        input: components.CustomsDeclarationCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateCustomsDeclarationResponse> {
-        const input$: operations.CreateCustomsDeclarationRequest = {
-            shippoApiVersion: shippoApiVersion,
-            customsDeclarationCreateRequest: customsDeclarationCreateRequest,
-        };
+    ): Promise<components.CustomsDeclaration> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateCustomsDeclarationRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) =>
+                components.CustomsDeclarationCreateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.CustomsDeclarationCreateRequest, {
-            explode: true,
-        });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/customs/declarations")();
 
@@ -178,11 +161,10 @@ export class CustomsDeclarations extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -200,7 +182,7 @@ export class CustomsDeclarations extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -215,28 +197,19 @@ export class CustomsDeclarations extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateCustomsDeclarationResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CustomsDeclaration: val$,
-                    });
+                    return components.CustomsDeclaration$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -249,13 +222,11 @@ export class CustomsDeclarations extends ClientSDK {
     async get(
         customsDeclarationId: string,
         page?: number | undefined,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetCustomsDeclarationResponse> {
+    ): Promise<components.CustomsDeclaration> {
         const input$: operations.GetCustomsDeclarationRequest = {
             customsDeclarationId: customsDeclarationId,
             page: page,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -287,11 +258,10 @@ export class CustomsDeclarations extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -309,7 +279,7 @@ export class CustomsDeclarations extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -324,28 +294,19 @@ export class CustomsDeclarations extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetCustomsDeclarationResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CustomsDeclaration: val$,
-                    });
+                    return components.CustomsDeclaration$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

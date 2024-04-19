@@ -3,70 +3,28 @@
  */
 
 import { AddressImporter, AddressImporter$ } from "./addressimporter";
-import { CustomsItemBase, CustomsItemBase$ } from "./customsitembase";
+import {
+    CustomsDeclarationB13AFilingOptionEnum,
+    CustomsDeclarationB13AFilingOptionEnum$,
+} from "./customsdeclarationb13afilingoptionenum";
+import {
+    CustomsDeclarationContentsTypeEnum,
+    CustomsDeclarationContentsTypeEnum$,
+} from "./customsdeclarationcontentstypeenum";
+import {
+    CustomsDeclarationEelPfcEnum,
+    CustomsDeclarationEelPfcEnum$,
+} from "./customsdeclarationeelpfcenum";
+import {
+    CustomsDeclarationIncotermEnum,
+    CustomsDeclarationIncotermEnum$,
+} from "./customsdeclarationincotermenum";
+import {
+    CustomsDeclarationNonDeliveryOptionEnum,
+    CustomsDeclarationNonDeliveryOptionEnum$,
+} from "./customsdeclarationnondeliveryoptionenum";
+import { CustomsItemCreateRequest, CustomsItemCreateRequest$ } from "./customsitemcreaterequest";
 import * as z from "zod";
-
-/**
- * B13A Option details are obtained by filing a B13A Canada Export Declaration via the Canadian Export Reporting System (CERS).
- *
- * @remarks
- * <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
- */
-export enum CustomsDeclarationCreateRequestB13aFilingOption {
-    FiledElectronically = "FILED_ELECTRONICALLY",
-    SummaryReporting = "SUMMARY_REPORTING",
-    NotRequired = "NOT_REQUIRED",
-}
-
-/**
- * Type of goods of the shipment.
- */
-export enum CustomsDeclarationCreateRequestContentsType {
-    Documents = "DOCUMENTS",
-    Gift = "GIFT",
-    Sample = "SAMPLE",
-    Merchandise = "MERCHANDISE",
-    HumanitarianDonation = "HUMANITARIAN_DONATION",
-    ReturnMerchandise = "RETURN_MERCHANDISE",
-    Other = "OTHER",
-}
-
-/**
- * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most
- *
- * @remarks
- * other shipments from the US, `NOEEI_30_37_a` is applicable.
- */
-export enum CustomsDeclarationCreateRequestEelPfc {
-    NOEEI3037A = "NOEEI_30_37_a",
-    NOEEI3037H = "NOEEI_30_37_h",
-    NOEEI3037F = "NOEEI_30_37_f",
-    Noeei3036 = "NOEEI_30_36",
-    AesItn = "AES_ITN",
-}
-
-/**
- * The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only.
- *
- * @remarks
- * eDAP is available for DPD UK only. DAP is available for DHL Express and DPD UK.
- * If expecting DAP for other carriers, please use DDU.
- */
-export enum CustomsDeclarationCreateRequestIncoterm {
-    Ddp = "DDP",
-    Ddu = "DDU",
-    Fca = "FCA",
-    Dap = "DAP",
-    EDAP = "eDAP",
-}
-
-/**
- * Indicates how the carrier should proceed in case the shipment can't be delivered.
- */
-export enum CustomsDeclarationCreateRequestNonDeliveryOption {
-    Abandon = "ABANDON",
-    Return = "RETURN",
-}
 
 export type CustomsDeclarationCreateRequest = {
     /**
@@ -82,7 +40,7 @@ export type CustomsDeclarationCreateRequest = {
      * @remarks
      * <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
      */
-    b13aFilingOption?: CustomsDeclarationCreateRequestB13aFilingOption | undefined;
+    b13aFilingOption?: CustomsDeclarationB13AFilingOptionEnum | undefined;
     /**
      * **must be provided if and only if b13a_filing_option is provided**<br>
      *
@@ -118,7 +76,7 @@ export type CustomsDeclarationCreateRequest = {
     /**
      * Type of goods of the shipment.
      */
-    contentsType: CustomsDeclarationCreateRequestContentsType;
+    contentsType: CustomsDeclarationContentsTypeEnum;
     /**
      * Disclaimer for the shipment and customs information that have been provided.
      */
@@ -129,7 +87,7 @@ export type CustomsDeclarationCreateRequest = {
      * @remarks
      * other shipments from the US, `NOEEI_30_37_a` is applicable.
      */
-    eelPfc?: CustomsDeclarationCreateRequestEelPfc | undefined;
+    eelPfc?: CustomsDeclarationEelPfcEnum | undefined;
     /**
      * Exporter reference of an export shipment.
      */
@@ -145,7 +103,7 @@ export type CustomsDeclarationCreateRequest = {
      * eDAP is available for DPD UK only. DAP is available for DHL Express and DPD UK.
      * If expecting DAP for other carriers, please use DDU.
      */
-    incoterm?: CustomsDeclarationCreateRequestIncoterm | undefined;
+    incoterm?: CustomsDeclarationIncotermEnum | undefined;
     /**
      * Indicates whether the shipment's destination VAT has been collected. May be required for some destinations.
      */
@@ -168,7 +126,7 @@ export type CustomsDeclarationCreateRequest = {
     /**
      * Indicates how the carrier should proceed in case the shipment can't be delivered.
      */
-    nonDeliveryOption: CustomsDeclarationCreateRequestNonDeliveryOption;
+    nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum;
     /**
      * Additional notes to be included in the customs declaration.
      */
@@ -177,60 +135,35 @@ export type CustomsDeclarationCreateRequest = {
      * Object that represents the address of the importer
      */
     addressImporter?: AddressImporter | undefined;
-    items: Array<CustomsItemBase>;
+    items: Array<CustomsItemCreateRequest>;
     test?: boolean | undefined;
 };
-
-/** @internal */
-export const CustomsDeclarationCreateRequestB13aFilingOption$ = z.nativeEnum(
-    CustomsDeclarationCreateRequestB13aFilingOption
-);
-
-/** @internal */
-export const CustomsDeclarationCreateRequestContentsType$ = z.nativeEnum(
-    CustomsDeclarationCreateRequestContentsType
-);
-
-/** @internal */
-export const CustomsDeclarationCreateRequestEelPfc$ = z.nativeEnum(
-    CustomsDeclarationCreateRequestEelPfc
-);
-
-/** @internal */
-export const CustomsDeclarationCreateRequestIncoterm$ = z.nativeEnum(
-    CustomsDeclarationCreateRequestIncoterm
-);
-
-/** @internal */
-export const CustomsDeclarationCreateRequestNonDeliveryOption$ = z.nativeEnum(
-    CustomsDeclarationCreateRequestNonDeliveryOption
-);
 
 /** @internal */
 export namespace CustomsDeclarationCreateRequest$ {
     export type Inbound = {
         aes_itn?: string | undefined;
-        b13a_filing_option?: CustomsDeclarationCreateRequestB13aFilingOption | undefined;
+        b13a_filing_option?: CustomsDeclarationB13AFilingOptionEnum | undefined;
         b13a_number?: string | undefined;
         certificate?: string | undefined;
         certify: boolean;
         certify_signer: string;
         commercial_invoice?: string | undefined;
         contents_explanation?: string | undefined;
-        contents_type: CustomsDeclarationCreateRequestContentsType;
+        contents_type: CustomsDeclarationContentsTypeEnum;
         disclaimer?: string | undefined;
-        eel_pfc?: CustomsDeclarationCreateRequestEelPfc | undefined;
+        eel_pfc?: CustomsDeclarationEelPfcEnum | undefined;
         exporter_reference?: string | undefined;
         importer_reference?: string | undefined;
-        incoterm?: CustomsDeclarationCreateRequestIncoterm | undefined;
+        incoterm?: CustomsDeclarationIncotermEnum | undefined;
         is_vat_collected?: any | undefined;
         invoice?: string | undefined;
         license?: string | undefined;
         metadata?: string | undefined;
-        non_delivery_option: CustomsDeclarationCreateRequestNonDeliveryOption;
+        non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum;
         notes?: string | undefined;
         address_importer?: AddressImporter$.Inbound | undefined;
-        items: Array<CustomsItemBase$.Inbound>;
+        items: Array<CustomsItemCreateRequest$.Inbound>;
         test?: boolean | undefined;
     };
 
@@ -238,27 +171,27 @@ export namespace CustomsDeclarationCreateRequest$ {
         z
             .object({
                 aes_itn: z.string().optional(),
-                b13a_filing_option: CustomsDeclarationCreateRequestB13aFilingOption$.optional(),
+                b13a_filing_option: CustomsDeclarationB13AFilingOptionEnum$.optional(),
                 b13a_number: z.string().optional(),
                 certificate: z.string().optional(),
                 certify: z.boolean(),
                 certify_signer: z.string(),
                 commercial_invoice: z.string().optional(),
                 contents_explanation: z.string().optional(),
-                contents_type: CustomsDeclarationCreateRequestContentsType$,
+                contents_type: CustomsDeclarationContentsTypeEnum$,
                 disclaimer: z.string().optional(),
-                eel_pfc: CustomsDeclarationCreateRequestEelPfc$.optional(),
+                eel_pfc: CustomsDeclarationEelPfcEnum$.optional(),
                 exporter_reference: z.string().optional(),
                 importer_reference: z.string().optional(),
-                incoterm: CustomsDeclarationCreateRequestIncoterm$.optional(),
+                incoterm: CustomsDeclarationIncotermEnum$.optional(),
                 is_vat_collected: z.any().optional(),
                 invoice: z.string().optional(),
                 license: z.string().optional(),
                 metadata: z.string().optional(),
-                non_delivery_option: CustomsDeclarationCreateRequestNonDeliveryOption$,
+                non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum$,
                 notes: z.string().optional(),
                 address_importer: AddressImporter$.inboundSchema.optional(),
-                items: z.array(CustomsItemBase$.inboundSchema),
+                items: z.array(CustomsItemCreateRequest$.inboundSchema),
                 test: z.boolean().optional(),
             })
             .transform((v) => {
@@ -305,27 +238,27 @@ export namespace CustomsDeclarationCreateRequest$ {
 
     export type Outbound = {
         aes_itn?: string | undefined;
-        b13a_filing_option?: CustomsDeclarationCreateRequestB13aFilingOption | undefined;
+        b13a_filing_option?: CustomsDeclarationB13AFilingOptionEnum | undefined;
         b13a_number?: string | undefined;
         certificate?: string | undefined;
         certify: boolean;
         certify_signer: string;
         commercial_invoice?: string | undefined;
         contents_explanation?: string | undefined;
-        contents_type: CustomsDeclarationCreateRequestContentsType;
+        contents_type: CustomsDeclarationContentsTypeEnum;
         disclaimer?: string | undefined;
-        eel_pfc?: CustomsDeclarationCreateRequestEelPfc | undefined;
+        eel_pfc?: CustomsDeclarationEelPfcEnum | undefined;
         exporter_reference?: string | undefined;
         importer_reference?: string | undefined;
-        incoterm?: CustomsDeclarationCreateRequestIncoterm | undefined;
+        incoterm?: CustomsDeclarationIncotermEnum | undefined;
         is_vat_collected?: any | undefined;
         invoice?: string | undefined;
         license?: string | undefined;
         metadata?: string | undefined;
-        non_delivery_option: CustomsDeclarationCreateRequestNonDeliveryOption;
+        non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum;
         notes?: string | undefined;
         address_importer?: AddressImporter$.Outbound | undefined;
-        items: Array<CustomsItemBase$.Outbound>;
+        items: Array<CustomsItemCreateRequest$.Outbound>;
         test?: boolean | undefined;
     };
 
@@ -336,27 +269,27 @@ export namespace CustomsDeclarationCreateRequest$ {
     > = z
         .object({
             aesItn: z.string().optional(),
-            b13aFilingOption: CustomsDeclarationCreateRequestB13aFilingOption$.optional(),
+            b13aFilingOption: CustomsDeclarationB13AFilingOptionEnum$.optional(),
             b13aNumber: z.string().optional(),
             certificate: z.string().optional(),
             certify: z.boolean(),
             certifySigner: z.string(),
             commercialInvoice: z.string().optional(),
             contentsExplanation: z.string().optional(),
-            contentsType: CustomsDeclarationCreateRequestContentsType$,
+            contentsType: CustomsDeclarationContentsTypeEnum$,
             disclaimer: z.string().optional(),
-            eelPfc: CustomsDeclarationCreateRequestEelPfc$.optional(),
+            eelPfc: CustomsDeclarationEelPfcEnum$.optional(),
             exporterReference: z.string().optional(),
             importerReference: z.string().optional(),
-            incoterm: CustomsDeclarationCreateRequestIncoterm$.optional(),
+            incoterm: CustomsDeclarationIncotermEnum$.optional(),
             isVatCollected: z.any().optional(),
             invoice: z.string().optional(),
             license: z.string().optional(),
             metadata: z.string().optional(),
-            nonDeliveryOption: CustomsDeclarationCreateRequestNonDeliveryOption$,
+            nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum$,
             notes: z.string().optional(),
             addressImporter: AddressImporter$.outboundSchema.optional(),
-            items: z.array(CustomsItemBase$.outboundSchema),
+            items: z.array(CustomsItemCreateRequest$.outboundSchema),
             test: z.boolean().optional(),
         })
         .transform((v) => {

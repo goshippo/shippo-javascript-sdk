@@ -250,22 +250,27 @@ export type ShipmentExtra = {
 };
 
 /** @internal */
-export const AncillaryEndorsement$ = z.nativeEnum(AncillaryEndorsement);
+export const AncillaryEndorsement$: z.ZodNativeEnum<typeof AncillaryEndorsement> =
+    z.nativeEnum(AncillaryEndorsement);
 
 /** @internal */
-export const DangerousGoodsCode$ = z.nativeEnum(DangerousGoodsCode);
+export const DangerousGoodsCode$: z.ZodNativeEnum<typeof DangerousGoodsCode> =
+    z.nativeEnum(DangerousGoodsCode);
 
 /** @internal */
-export const LasershipAttrs$ = z.nativeEnum(LasershipAttrs);
+export const LasershipAttrs$: z.ZodNativeEnum<typeof LasershipAttrs> = z.nativeEnum(LasershipAttrs);
 
 /** @internal */
-export const PreferredDeliveryTimeframe$ = z.nativeEnum(PreferredDeliveryTimeframe);
+export const PreferredDeliveryTimeframe$: z.ZodNativeEnum<typeof PreferredDeliveryTimeframe> =
+    z.nativeEnum(PreferredDeliveryTimeframe);
 
 /** @internal */
-export const ReturnServiceType$ = z.nativeEnum(ReturnServiceType);
+export const ReturnServiceType$: z.ZodNativeEnum<typeof ReturnServiceType> =
+    z.nativeEnum(ReturnServiceType);
 
 /** @internal */
-export const SignatureConfirmation$ = z.nativeEnum(SignatureConfirmation);
+export const SignatureConfirmation$: z.ZodNativeEnum<typeof SignatureConfirmation> =
+    z.nativeEnum(SignatureConfirmation);
 
 /** @internal */
 export namespace ShipmentExtra$ {

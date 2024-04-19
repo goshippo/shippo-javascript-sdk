@@ -46,25 +46,21 @@ export class Batches extends ClientSDK {
      * Creates a new batch object for purchasing shipping labels for many shipments at once. Batches are created asynchronously. This means that the API response won't include your batch shipments yet. You need to retrieve the batch later to verify that all batch shipments are valid.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        batchCreateRequest?: components.BatchCreateRequest | undefined,
+        input: components.BatchCreateRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateBatchResponse> {
-        const input$: operations.CreateBatchRequest = {
-            shippoApiVersion: shippoApiVersion,
-            batchCreateRequest: batchCreateRequest,
-        };
+    ): Promise<components.Batch> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateBatchRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) => components.BatchCreateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.BatchCreateRequest, { explode: true });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/batches")();
 
@@ -72,11 +68,10 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -94,7 +89,7 @@ export class Batches extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -109,28 +104,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -143,14 +129,9 @@ export class Batches extends ClientSDK {
      * status, for example, by passing a query param like `?object_results=creation_failed`. <br>
      * For more details on filtering results, see our guide on <a href="https://docs.goshippo.com/docs/api_concepts/filtering/" target="blank"> filtering</a>.
      */
-    async get(
-        batchId: string,
-        shippoApiVersion?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetBatchResponse> {
+    async get(batchId: string, options?: RequestOptions): Promise<components.Batch> {
         const input$: operations.GetBatchRequest = {
             batchId: batchId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -175,11 +156,10 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -197,7 +177,7 @@ export class Batches extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -212,28 +192,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -245,13 +216,11 @@ export class Batches extends ClientSDK {
      */
     async addShipments(
         batchId: string,
-        shippoApiVersion?: string | undefined,
         requestBody?: Array<components.BatchShipmentBase> | undefined,
         options?: RequestOptions
-    ): Promise<operations.AddShipmentsToBatchResponse> {
+    ): Promise<components.Batch> {
         const input$: operations.AddShipmentsToBatchRequest = {
             batchId: batchId,
-            shippoApiVersion: shippoApiVersion,
             requestBody: requestBody,
         };
         const headers$ = new Headers();
@@ -278,11 +247,10 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -300,7 +268,7 @@ export class Batches extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -315,28 +283,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.AddShipmentsToBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -349,14 +308,9 @@ export class Batches extends ClientSDK {
      * When all the shipments are purchased, the status will change to `PURCHASED` and you will receive a
      * `batch_purchased` webhook indicating that the batch has been purchased
      */
-    async purchase(
-        batchId: string,
-        shippoApiVersion?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.PurchaseBatchResponse> {
+    async purchase(batchId: string, options?: RequestOptions): Promise<components.Batch> {
         const input$: operations.PurchaseBatchRequest = {
             batchId: batchId,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -381,11 +335,10 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -403,7 +356,7 @@ export class Batches extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -418,28 +371,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.PurchaseBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -451,13 +395,11 @@ export class Batches extends ClientSDK {
      */
     async removeShipments(
         batchId: string,
-        shippoApiVersion?: string | undefined,
         requestBody?: Array<string> | undefined,
         options?: RequestOptions
-    ): Promise<operations.RemoveShipmentsFromBatchResponse> {
+    ): Promise<components.Batch> {
         const input$: operations.RemoveShipmentsFromBatchRequest = {
             batchId: batchId,
-            shippoApiVersion: shippoApiVersion,
             requestBody: requestBody,
         };
         const headers$ = new Headers();
@@ -484,11 +426,10 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -506,7 +447,7 @@ export class Batches extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -521,28 +462,19 @@ export class Batches extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.RemoveShipmentsFromBatchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Batch: val$,
-                    });
+                    return components.Batch$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

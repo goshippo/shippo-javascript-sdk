@@ -10,7 +10,6 @@ import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
-import * as operations from "../models/operations";
 
 export class Pickups extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -46,25 +45,21 @@ export class Pickups extends ClientSDK {
      * Creates a pickup object. This request is for a carrier to come to a specified location to take a package for shipping.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        pickupBase?: components.PickupBase | undefined,
+        input: components.PickupBase | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreatePickupResponse> {
-        const input$: operations.CreatePickupRequest = {
-            shippoApiVersion: shippoApiVersion,
-            pickupBase: pickupBase,
-        };
+    ): Promise<components.Pickup> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreatePickupRequest$.outboundSchema.parse(value$),
+            input,
+            (value$) => components.PickupBase$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.PickupBase, { explode: true });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/pickups")();
 
@@ -72,11 +67,10 @@ export class Pickups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -94,7 +88,7 @@ export class Pickups extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -109,28 +103,19 @@ export class Pickups extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreatePickupResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Pickup: val$,
-                    });
+                    return components.Pickup$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

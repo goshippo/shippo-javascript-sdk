@@ -3,7 +3,7 @@
  */
 
 import { BatchShipmentBase, BatchShipmentBase$ } from "./batchshipmentbase";
-import { LabelFileType, LabelFileType$ } from "./labelfiletype";
+import { LabelFileTypeEnum, LabelFileTypeEnum$ } from "./labelfiletypeenum";
 import * as z from "zod";
 
 export type BatchCreateRequest = {
@@ -29,7 +29,7 @@ export type BatchCreateRequest = {
      * @remarks
      * <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
      */
-    labelFiletype?: LabelFileType | undefined;
+    labelFiletype?: LabelFileTypeEnum | undefined;
     /**
      * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
      */
@@ -45,7 +45,7 @@ export namespace BatchCreateRequest$ {
     export type Inbound = {
         default_carrier_account: string;
         default_servicelevel_token: string;
-        label_filetype?: LabelFileType | undefined;
+        label_filetype?: LabelFileTypeEnum | undefined;
         metadata?: string | undefined;
         batch_shipments: Array<BatchShipmentBase$.Inbound>;
     };
@@ -54,7 +54,7 @@ export namespace BatchCreateRequest$ {
         .object({
             default_carrier_account: z.string(),
             default_servicelevel_token: z.string(),
-            label_filetype: LabelFileType$.optional(),
+            label_filetype: LabelFileTypeEnum$.optional(),
             metadata: z.string().optional(),
             batch_shipments: z.array(BatchShipmentBase$.inboundSchema),
         })
@@ -71,7 +71,7 @@ export namespace BatchCreateRequest$ {
     export type Outbound = {
         default_carrier_account: string;
         default_servicelevel_token: string;
-        label_filetype?: LabelFileType | undefined;
+        label_filetype?: LabelFileTypeEnum | undefined;
         metadata?: string | undefined;
         batch_shipments: Array<BatchShipmentBase$.Outbound>;
     };
@@ -80,7 +80,7 @@ export namespace BatchCreateRequest$ {
         .object({
             defaultCarrierAccount: z.string(),
             defaultServicelevelToken: z.string(),
-            labelFiletype: LabelFileType$.optional(),
+            labelFiletype: LabelFileTypeEnum$.optional(),
             metadata: z.string().optional(),
             batchShipments: z.array(BatchShipmentBase$.outboundSchema),
         })

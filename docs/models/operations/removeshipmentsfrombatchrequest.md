@@ -3,8 +3,7 @@
 
 ## Fields
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            | Example                                                |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `batchId`                                              | *string*                                               | :heavy_check_mark:                                     | Object ID of the batch                                 |                                                        |
-| `shippoApiVersion`                                     | *string*                                               | :heavy_minus_sign:                                     | String used to pick a non-default API version to use   | 2018-02-08                                             |
-| `requestBody`                                          | *string*[]                                             | :heavy_minus_sign:                                     | Array of shipments object ids to remove from the batch |                                                        |
+| Field                                                  | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `batchId`                                              | *string*                                               | :heavy_check_mark:                                     | Object ID of the batch                                 |
+| `requestBody`                                          | *string*[]                                             | :heavy_minus_sign:                                     | Array of shipments object ids to remove from the batch |

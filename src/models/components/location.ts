@@ -71,10 +71,11 @@ export type Location = {
 };
 
 /** @internal */
-export const BuildingLocationType$ = z.nativeEnum(BuildingLocationType);
+export const BuildingLocationType$: z.ZodNativeEnum<typeof BuildingLocationType> =
+    z.nativeEnum(BuildingLocationType);
 
 /** @internal */
-export const BuildingType$ = z.nativeEnum(BuildingType);
+export const BuildingType$: z.ZodNativeEnum<typeof BuildingType> = z.nativeEnum(BuildingType);
 
 /** @internal */
 export namespace Location$ {

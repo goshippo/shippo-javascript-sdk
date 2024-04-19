@@ -1,15 +1,18 @@
 {
   "name": "shippo",
-  "version": "0.0.1",
-  "author": "Speakeasy",
+  "version": "0.1.0",
+  "author": "Speakeasy",  
   "main": "./index.js",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goshippo/shippo-javascript-sdk.git"
+  },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "keywords": [],
   "peerDependencies": {
     "zod": ">= 3"
   },

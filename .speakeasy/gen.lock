@@ -1,20 +1,23 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 89ba5e19fde8c0a8c161d1abf1eb315f
+  docChecksum: ecc238b3d1973c8ec75b082ab651b755
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.243.0
-  generationVersion: 2.301.0
-  releaseVersion: 0.0.1
-  configChecksum: 7211aa00800abe8e011c9f434ef38523
+  speakeasyVersion: 1.260.6
+  generationVersion: 2.311.1
+  releaseVersion: 0.1.0
+  configChecksum: c7fc850043882b5e91f0da573ff8fe34
+  repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
+  installationURL: https://github.com/goshippo/shippo-javascript-sdk
 features:
   typescript:
     constsAndDefaults: 0.1.5
-    core: 3.7.1
+    core: 3.8.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalServerURLs: 2.82.4
     globals: 2.82.1
+    hiddenGlobals: 0.1.0
     includes: 2.81.1
     nameOverrides: 2.81.2
     responseFormat: 0.2.3
@@ -43,6 +46,7 @@ generatedFiles:
   - .eslintrc.js
   - .npmignore
   - RUNTIMES.md
+  - jsr.json
   - package.json
   - src/index.ts
   - src/lib/base64.ts
@@ -62,76 +66,10 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/operations/listaddresses.ts
-  - src/models/operations/createaddress.ts
-  - src/models/operations/getaddress.ts
-  - src/models/operations/validateaddress.ts
-  - src/models/operations/createbatch.ts
-  - src/models/operations/getbatch.ts
-  - src/models/operations/addshipmentstobatch.ts
-  - src/models/operations/purchasebatch.ts
-  - src/models/operations/removeshipmentsfrombatch.ts
-  - src/models/operations/listcarrieraccounts.ts
-  - src/models/operations/createcarrieraccount.ts
-  - src/models/operations/getcarrieraccount.ts
-  - src/models/operations/updatecarrieraccount.ts
-  - src/models/operations/initiateoauth2signin.ts
-  - src/models/operations/registercarrieraccount.ts
-  - src/models/operations/getcarrierregistrationstatus.ts
-  - src/models/operations/listcustomsdeclarations.ts
-  - src/models/operations/createcustomsdeclaration.ts
-  - src/models/operations/getcustomsdeclaration.ts
-  - src/models/operations/listcustomsitems.ts
-  - src/models/operations/createcustomsitem.ts
-  - src/models/operations/getcustomsitem.ts
-  - src/models/operations/createliverate.ts
-  - src/models/operations/getdefaultparceltemplate.ts
-  - src/models/operations/updatedefaultparceltemplate.ts
-  - src/models/operations/deletedefaultparceltemplate.ts
-  - src/models/operations/listmanifests.ts
-  - src/models/operations/createmanifest.ts
-  - src/models/operations/getmanifest.ts
-  - src/models/operations/listorders.ts
-  - src/models/operations/createorder.ts
-  - src/models/operations/getorder.ts
-  - src/models/operations/listcarrierparceltemplates.ts
-  - src/models/operations/getcarrierparceltemplate.ts
-  - src/models/operations/listparcels.ts
-  - src/models/operations/createparcel.ts
-  - src/models/operations/getparcel.ts
-  - src/models/operations/createpickup.ts
-  - src/models/operations/getrate.ts
-  - src/models/operations/listshipmentrates.ts
-  - src/models/operations/listshipmentratesbycurrencycode.ts
-  - src/models/operations/createrefund.ts
-  - src/models/operations/listrefunds.ts
-  - src/models/operations/getrefund.ts
-  - src/models/operations/listservicegroups.ts
-  - src/models/operations/createservicegroup.ts
-  - src/models/operations/updateservicegroup.ts
-  - src/models/operations/deleteservicegroup.ts
-  - src/models/operations/listshipments.ts
-  - src/models/operations/createshipment.ts
-  - src/models/operations/getshipment.ts
-  - src/models/operations/createtrack.ts
-  - src/models/operations/gettrack.ts
-  - src/models/operations/listtransactions.ts
-  - src/models/operations/createtransaction.ts
-  - src/models/operations/gettransaction.ts
-  - src/models/operations/listuserparceltemplates.ts
-  - src/models/operations/createuserparceltemplate.ts
-  - src/models/operations/deleteuserparceltemplate.ts
-  - src/models/operations/getuserparceltemplate.ts
-  - src/models/operations/updateuserparceltemplate.ts
-  - src/models/operations/listshippoaccounts.ts
-  - src/models/operations/createshippoaccount.ts
-  - src/models/operations/getshippoaccount.ts
-  - src/models/operations/updateshippoaccount.ts
   - src/models/components/addresspaginatedlist.ts
   - src/models/components/address.ts
   - src/models/components/addressvalidationresults.ts
   - src/models/components/addressvalidationresultsmessage.ts
-  - src/models/components/httpmetadata.ts
   - src/models/components/addresscreaterequest.ts
   - src/models/components/batch.ts
   - src/models/components/batchshipmentpaginatedlist.ts
@@ -140,8 +78,8 @@ generatedFiles:
   - src/models/components/shipmentcreaterequest.ts
   - src/models/components/parcelcreaterequest.ts
   - src/models/components/parceltemplateenumset.ts
-  - src/models/components/weightunit.ts
-  - src/models/components/distanceunit.ts
+  - src/models/components/weightunitenum.ts
+  - src/models/components/distanceunitenum.ts
   - src/models/components/shipmentextra.ts
   - src/models/components/rmanumber.ts
   - src/models/components/ponumber.ts
@@ -156,17 +94,18 @@ generatedFiles:
   - src/models/components/cod.ts
   - src/models/components/billing.ts
   - src/models/components/alcohol.ts
-  - src/models/components/labelfiletype.ts
+  - src/models/components/labelfiletypeenum.ts
   - src/models/components/batchcreaterequest.ts
   - src/models/components/batchshipmentbase.ts
   - src/models/components/carrieraccountpaginatedlist.ts
   - src/models/components/carrieraccountwithextrainfo.ts
   - src/models/components/carrieraccountservicelevel.ts
-  - src/models/components/carriers.ts
-  - src/models/components/carrieraccount.ts
-  - src/models/components/connectexistingownupsaccountrequest.ts
   - src/models/components/upsconnectexistingownaccountparameters.ts
+  - src/models/components/carriersenum.ts
+  - src/models/components/carrieraccount.ts
+  - src/models/components/connectexistingownaccountrequest.ts
   - src/models/components/carrieraccountbase.ts
+  - src/models/components/httpmetadata.ts
   - src/models/components/carrieraccountcanadapostcreaterequest.ts
   - src/models/components/carrieraccountcanadapostcreateparameters.ts
   - src/models/components/carrieraccountchronopostcreaterequest.ts
@@ -177,7 +116,9 @@ generatedFiles:
   - src/models/components/carrieraccountdhlexpresscreaterequestparameters.ts
   - src/models/components/carrieraccountdpddecreaterequest.ts
   - src/models/components/carrieraccountdpdukcreaterequest.ts
+  - src/models/components/carrieraccountfedexcreaterequest.ts
   - src/models/components/carrieraccounthermesukcreaterequest.ts
+  - src/models/components/carrieraccountmondialrelaycreaterequest.ts
   - src/models/components/carrieraccountposteitalianecreaterequest.ts
   - src/models/components/carrieraccountupscreaterequest.ts
   - src/models/components/carrieraccountupscreaterequestparameters.ts
@@ -185,12 +126,17 @@ generatedFiles:
   - src/models/components/carrieraccountregistrationstatus.ts
   - src/models/components/customsdeclarationpaginatedlist.ts
   - src/models/components/customsdeclaration.ts
-  - src/models/components/objectstate.ts
+  - src/models/components/objectstateenum.ts
   - src/models/components/customsinvoicedcharges.ts
   - src/models/components/customsexporteridentification.ts
   - src/models/components/customstaxidentification.ts
+  - src/models/components/customsdeclarationnondeliveryoptionenum.ts
+  - src/models/components/customsdeclarationincotermenum.ts
+  - src/models/components/customsdeclarationeelpfcenum.ts
+  - src/models/components/customsdeclarationcontentstypeenum.ts
+  - src/models/components/customsdeclarationb13afilingoptionenum.ts
   - src/models/components/customsdeclarationcreaterequest.ts
-  - src/models/components/customsitembase.ts
+  - src/models/components/customsitemcreaterequest.ts
   - src/models/components/addressimporter.ts
   - src/models/components/customsitempaginatedlist.ts
   - src/models/components/customsitem.ts
@@ -211,6 +157,7 @@ generatedFiles:
   - src/models/components/manifestcreaterequest.ts
   - src/models/components/orderpaginatedlist.ts
   - src/models/components/order.ts
+  - src/models/components/orderstatusenum.ts
   - src/models/components/ordercreaterequest.ts
   - src/models/components/lineitembase.ts
   - src/models/components/parcelpaginatedlist.ts
@@ -226,7 +173,7 @@ generatedFiles:
   - src/models/components/refundrequestbody.ts
   - src/models/components/refundpaginatedlist.ts
   - src/models/components/servicegroup.ts
-  - src/models/components/servicegrouptype.ts
+  - src/models/components/servicegrouptypeenum.ts
   - src/models/components/servicegroupcreaterequest.ts
   - src/models/components/servicegroupaccountandservicelevel.ts
   - src/models/components/servicegroupupdaterequest.ts
@@ -241,8 +188,11 @@ generatedFiles:
   - src/models/components/transactionpaginatedlist.ts
   - src/models/components/transaction.ts
   - src/models/components/transactionstatusenum.ts
+  - src/models/components/transactioncreateresponse.ts
+  - src/models/components/instanttransactioncreateresponse.ts
+  - src/models/components/instanttransactionrate.ts
   - src/models/components/transactioncreaterequest.ts
-  - src/models/components/instanttransactionrequestbody.ts
+  - src/models/components/instanttransactioncreaterequest.ts
   - src/models/components/userparceltemplatecreaterequest.ts
   - src/models/components/userparceltemplatewithcarriertemplatecreaterequest.ts
   - src/models/components/userparceltemplatewithoutcarriertemplatecreaterequest.ts
@@ -252,153 +202,63 @@ generatedFiles:
   - src/models/components/shippoaccountupdaterequest.ts
   - src/models/components/security.ts
   - src/models/components/servicelevelenumset.ts
-  - src/models/errors/badrequestwithdetail.ts
+  - src/models/operations/listaddresses.ts
+  - src/models/operations/getaddress.ts
+  - src/models/operations/validateaddress.ts
+  - src/models/operations/getbatch.ts
+  - src/models/operations/addshipmentstobatch.ts
+  - src/models/operations/purchasebatch.ts
+  - src/models/operations/removeshipmentsfrombatch.ts
+  - src/models/operations/listcarrieraccounts.ts
+  - src/models/operations/getcarrieraccount.ts
+  - src/models/operations/updatecarrieraccount.ts
+  - src/models/operations/initiateoauth2signin.ts
+  - src/models/operations/registercarrieraccount.ts
+  - src/models/operations/getcarrierregistrationstatus.ts
+  - src/models/operations/listcustomsdeclarations.ts
+  - src/models/operations/getcustomsdeclaration.ts
+  - src/models/operations/listcustomsitems.ts
+  - src/models/operations/getcustomsitem.ts
+  - src/models/operations/getdefaultparceltemplate.ts
+  - src/models/operations/deletedefaultparceltemplate.ts
+  - src/models/operations/listmanifests.ts
+  - src/models/operations/getmanifest.ts
+  - src/models/operations/listorders.ts
+  - src/models/operations/getorder.ts
+  - src/models/operations/listcarrierparceltemplates.ts
+  - src/models/operations/getcarrierparceltemplate.ts
+  - src/models/operations/listparcels.ts
+  - src/models/operations/getparcel.ts
+  - src/models/operations/getrate.ts
+  - src/models/operations/listshipmentrates.ts
+  - src/models/operations/listshipmentratesbycurrencycode.ts
+  - src/models/operations/listrefunds.ts
+  - src/models/operations/getrefund.ts
+  - src/models/operations/listservicegroups.ts
+  - src/models/operations/deleteservicegroup.ts
+  - src/models/operations/listshipments.ts
+  - src/models/operations/getshipment.ts
+  - src/models/operations/gettrack.ts
+  - src/models/operations/listtransactions.ts
+  - src/models/operations/createtransaction.ts
+  - src/models/operations/gettransaction.ts
+  - src/models/operations/listuserparceltemplates.ts
+  - src/models/operations/deleteuserparceltemplate.ts
+  - src/models/operations/getuserparceltemplate.ts
+  - src/models/operations/updateuserparceltemplate.ts
+  - src/models/operations/listshippoaccounts.ts
+  - src/models/operations/getshippoaccount.ts
+  - src/models/operations/updateshippoaccount.ts
   - src/models/errors/initiateoauth2signin.ts
-  - src/models/errors/badrequestwitherror.ts
   - src/models/errors/index.ts
-  - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/listaddressesrequest.md
-  - docs/models/operations/listaddressesresponse.md
-  - docs/models/operations/createaddressrequest.md
-  - docs/models/operations/createaddressresponse.md
-  - docs/models/operations/getaddressrequest.md
-  - docs/models/operations/getaddressresponse.md
-  - docs/models/operations/validateaddressrequest.md
-  - docs/models/operations/validateaddressresponse.md
-  - docs/models/operations/createbatchrequest.md
-  - docs/models/operations/createbatchresponse.md
-  - docs/models/operations/getbatchrequest.md
-  - docs/models/operations/getbatchresponse.md
-  - docs/models/operations/addshipmentstobatchrequest.md
-  - docs/models/operations/addshipmentstobatchresponse.md
-  - docs/models/operations/purchasebatchrequest.md
-  - docs/models/operations/purchasebatchresponse.md
-  - docs/models/operations/removeshipmentsfrombatchrequest.md
-  - docs/models/operations/removeshipmentsfrombatchresponse.md
-  - docs/models/operations/listcarrieraccountsrequest.md
-  - docs/models/operations/listcarrieraccountsresponse.md
-  - docs/models/operations/createcarrieraccountrequest.md
-  - docs/models/operations/createcarrieraccountresponse.md
-  - docs/models/operations/getcarrieraccountrequest.md
-  - docs/models/operations/getcarrieraccountresponse.md
-  - docs/models/operations/updatecarrieraccountrequest.md
-  - docs/models/operations/updatecarrieraccountresponse.md
-  - docs/models/operations/initiateoauth2signinrequest.md
-  - docs/models/operations/initiateoauth2signinresponse.md
-  - docs/models/operations/registercarrieraccountrequestbody.md
-  - docs/models/operations/registercarrieraccountrequest.md
-  - docs/models/operations/registercarrieraccountresponse.md
-  - docs/models/operations/carrier.md
-  - docs/models/operations/getcarrierregistrationstatusrequest.md
-  - docs/models/operations/getcarrierregistrationstatusresponse.md
-  - docs/models/operations/listcustomsdeclarationsrequest.md
-  - docs/models/operations/listcustomsdeclarationsresponse.md
-  - docs/models/operations/createcustomsdeclarationrequest.md
-  - docs/models/operations/createcustomsdeclarationresponse.md
-  - docs/models/operations/getcustomsdeclarationrequest.md
-  - docs/models/operations/getcustomsdeclarationresponse.md
-  - docs/models/operations/listcustomsitemsrequest.md
-  - docs/models/operations/listcustomsitemsresponse.md
-  - docs/models/operations/createcustomsitemrequest.md
-  - docs/models/operations/createcustomsitemresponse.md
-  - docs/models/operations/getcustomsitemrequest.md
-  - docs/models/operations/getcustomsitemresponse.md
-  - docs/models/operations/createliveraterequest.md
-  - docs/models/operations/createliverateresponse.md
-  - docs/models/operations/getdefaultparceltemplaterequest.md
-  - docs/models/operations/getdefaultparceltemplateresponse.md
-  - docs/models/operations/updatedefaultparceltemplaterequest.md
-  - docs/models/operations/updatedefaultparceltemplateresponse.md
-  - docs/models/operations/deletedefaultparceltemplaterequest.md
-  - docs/models/operations/deletedefaultparceltemplateresponse.md
-  - docs/models/operations/listmanifestsrequest.md
-  - docs/models/operations/listmanifestsresponse.md
-  - docs/models/operations/createmanifestrequest.md
-  - docs/models/operations/createmanifestresponse.md
-  - docs/models/operations/getmanifestrequest.md
-  - docs/models/operations/getmanifestresponse.md
-  - docs/models/operations/listordersrequest.md
-  - docs/models/operations/listordersresponse.md
-  - docs/models/operations/createorderrequest.md
-  - docs/models/operations/createorderresponse.md
-  - docs/models/operations/getorderrequest.md
-  - docs/models/operations/getorderresponse.md
-  - docs/models/operations/include.md
-  - docs/models/operations/listcarrierparceltemplatesrequest.md
-  - docs/models/operations/listcarrierparceltemplatesresponse.md
-  - docs/models/operations/getcarrierparceltemplaterequest.md
-  - docs/models/operations/getcarrierparceltemplateresponse.md
-  - docs/models/operations/listparcelsrequest.md
-  - docs/models/operations/listparcelsresponse.md
-  - docs/models/operations/createparcelrequest.md
-  - docs/models/operations/createparcelresponse.md
-  - docs/models/operations/getparcelrequest.md
-  - docs/models/operations/getparcelresponse.md
-  - docs/models/operations/createpickuprequest.md
-  - docs/models/operations/createpickupresponse.md
-  - docs/models/operations/getraterequest.md
-  - docs/models/operations/getrateresponse.md
-  - docs/models/operations/listshipmentratesrequest.md
-  - docs/models/operations/listshipmentratesresponse.md
-  - docs/models/operations/listshipmentratesbycurrencycoderequest.md
-  - docs/models/operations/listshipmentratesbycurrencycoderesponse.md
-  - docs/models/operations/createrefundrequest.md
-  - docs/models/operations/createrefundresponse.md
-  - docs/models/operations/listrefundsrequest.md
-  - docs/models/operations/listrefundsresponse.md
-  - docs/models/operations/getrefundrequest.md
-  - docs/models/operations/getrefundresponse.md
-  - docs/models/operations/listservicegroupsrequest.md
-  - docs/models/operations/listservicegroupsresponse.md
-  - docs/models/operations/createservicegrouprequest.md
-  - docs/models/operations/createservicegroupresponse.md
-  - docs/models/operations/updateservicegrouprequest.md
-  - docs/models/operations/updateservicegroupresponse.md
-  - docs/models/operations/deleteservicegrouprequest.md
-  - docs/models/operations/deleteservicegroupresponse.md
-  - docs/models/operations/listshipmentsrequest.md
-  - docs/models/operations/listshipmentsresponse.md
-  - docs/models/operations/createshipmentrequest.md
-  - docs/models/operations/createshipmentresponse.md
-  - docs/models/operations/getshipmentrequest.md
-  - docs/models/operations/getshipmentresponse.md
-  - docs/models/operations/createtrackrequest.md
-  - docs/models/operations/createtrackresponse.md
-  - docs/models/operations/gettrackrequest.md
-  - docs/models/operations/gettrackresponse.md
-  - docs/models/operations/listtransactionsrequest.md
-  - docs/models/operations/listtransactionsresponse.md
-  - docs/models/operations/createtransactionrequestbody.md
-  - docs/models/operations/createtransactionrequest.md
-  - docs/models/operations/createtransactionresponse.md
-  - docs/models/operations/gettransactionrequest.md
-  - docs/models/operations/gettransactionresponse.md
-  - docs/models/operations/listuserparceltemplatesrequest.md
-  - docs/models/operations/listuserparceltemplatesresponse.md
-  - docs/models/operations/createuserparceltemplaterequest.md
-  - docs/models/operations/createuserparceltemplateresponse.md
-  - docs/models/operations/deleteuserparceltemplaterequest.md
-  - docs/models/operations/deleteuserparceltemplateresponse.md
-  - docs/models/operations/getuserparceltemplaterequest.md
-  - docs/models/operations/getuserparceltemplateresponse.md
-  - docs/models/operations/updateuserparceltemplaterequest.md
-  - docs/models/operations/updateuserparceltemplateresponse.md
-  - docs/models/operations/listshippoaccountsrequest.md
-  - docs/models/operations/listshippoaccountsresponse.md
-  - docs/models/operations/createshippoaccountrequest.md
-  - docs/models/operations/createshippoaccountresponse.md
-  - docs/models/operations/getshippoaccountrequest.md
-  - docs/models/operations/getshippoaccountresponse.md
-  - docs/models/operations/updateshippoaccountrequest.md
-  - docs/models/operations/updateshippoaccountresponse.md
+  - src/models/operations/index.ts
   - docs/models/components/addresspaginatedlist.md
   - docs/models/components/address.md
   - docs/models/components/addressvalidationresults.md
   - docs/models/components/code.md
   - docs/models/components/source.md
   - docs/models/components/addressvalidationresultsmessage.md
-  - docs/models/components/httpmetadata.md
   - docs/models/components/addresscreaterequest.md
   - docs/models/components/objectresults.md
   - docs/models/components/batchstatus.md
@@ -413,16 +273,16 @@ generatedFiles:
   - docs/models/components/parcels.md
   - docs/models/components/shipmentcreaterequest.md
   - docs/models/components/parcelcreaterequest.md
-  - docs/models/components/parceltemplatearamexaustralia.md
-  - docs/models/components/parceltemplatecouriersplease.md
-  - docs/models/components/parceltemplatedpduk.md
-  - docs/models/components/parceltemplatedhlecommerce.md
-  - docs/models/components/parceltemplateusps.md
-  - docs/models/components/parceltemplateups.md
-  - docs/models/components/parceltemplatefedex.md
+  - docs/models/components/parceltemplatearamexaustraliaenum.md
+  - docs/models/components/parceltemplatecourierspleaseenum.md
+  - docs/models/components/parceltemplatedpdukenum.md
+  - docs/models/components/parceltemplatedhlecommerceenum.md
+  - docs/models/components/parceltemplateuspsenum.md
+  - docs/models/components/parceltemplateupsenum.md
+  - docs/models/components/parceltemplatefedexenum.md
   - docs/models/components/parceltemplateenumset.md
-  - docs/models/components/weightunit.md
-  - docs/models/components/distanceunit.md
+  - docs/models/components/weightunitenum.md
+  - docs/models/components/distanceunitenum.md
   - docs/models/components/ancillaryendorsement.md
   - docs/models/components/dangerousgoodscode.md
   - docs/models/components/lasershipattrs.md
@@ -447,24 +307,29 @@ generatedFiles:
   - docs/models/components/billing.md
   - docs/models/components/recipienttype.md
   - docs/models/components/alcohol.md
-  - docs/models/components/labelfiletype.md
+  - docs/models/components/labelfiletypeenum.md
   - docs/models/components/batchcreaterequest.md
   - docs/models/components/batchshipmentbase.md
   - docs/models/components/carrieraccountpaginatedlist.md
+  - docs/models/components/parameterst.md
   - docs/models/components/carrieraccountwithextrainfotype.md
   - docs/models/components/carrieraccountwithextrainfostatus.md
   - docs/models/components/authentication.md
   - docs/models/components/objectinfo.md
   - docs/models/components/carrieraccountwithextrainfo.md
   - docs/models/components/carrieraccountservicelevel.md
-  - docs/models/components/carriers.md
-  - docs/models/components/carrieraccount.md
-  - docs/models/components/connectexistingownupsaccountrequest.md
   - docs/models/components/upsconnectexistingownaccountparameters.md
+  - docs/models/components/carriersenum.md
+  - docs/models/components/carrieraccountparameters.md
+  - docs/models/components/carrieraccount.md
+  - docs/models/components/connectexistingownaccountrequestparameters.md
+  - docs/models/components/connectexistingownaccountrequest.md
+  - docs/models/components/carrieraccountbaseparameters.md
   - docs/models/components/carrieraccountbase.md
+  - docs/models/components/httpmetadata.md
   - docs/models/components/carrieraccountcanadapostcreaterequest.md
   - docs/models/components/carrieraccountcanadapostcreateparameters.md
-  - docs/models/components/parameterst.md
+  - docs/models/components/carrieraccountchronopostcreaterequestparameters.md
   - docs/models/components/carrieraccountchronopostcreaterequest.md
   - docs/models/components/carrieraccountcolissimocreaterequestparameters.md
   - docs/models/components/carrieraccountcolissimocreaterequest.md
@@ -478,8 +343,12 @@ generatedFiles:
   - docs/models/components/carrieraccountdpddecreaterequest.md
   - docs/models/components/carrieraccountdpdukcreaterequestparameters.md
   - docs/models/components/carrieraccountdpdukcreaterequest.md
+  - docs/models/components/carrieraccountfedexcreaterequestparameters.md
+  - docs/models/components/carrieraccountfedexcreaterequest.md
   - docs/models/components/carrieraccounthermesukcreaterequestparameters.md
   - docs/models/components/carrieraccounthermesukcreaterequest.md
+  - docs/models/components/carrieraccountmondialrelaycreaterequestparameters.md
+  - docs/models/components/carrieraccountmondialrelaycreaterequest.md
   - docs/models/components/carrieraccountposteitalianecreaterequestparameters.md
   - docs/models/components/carrieraccountposteitalianecreaterequest.md
   - docs/models/components/carrieraccountupscreaterequest.md
@@ -488,25 +357,20 @@ generatedFiles:
   - docs/models/components/carrieraccountuspscreaterequest.md
   - docs/models/components/carrieraccountregistrationstatus.md
   - docs/models/components/customsdeclarationpaginatedlist.md
-  - docs/models/components/b13afilingoption.md
-  - docs/models/components/contentstype.md
-  - docs/models/components/eelpfc.md
-  - docs/models/components/incoterm.md
-  - docs/models/components/nondeliveryoption.md
   - docs/models/components/customsdeclarationaddressimporter.md
   - docs/models/components/customsdeclaration.md
-  - docs/models/components/objectstate.md
+  - docs/models/components/objectstateenum.md
   - docs/models/components/customsinvoicedcharges.md
   - docs/models/components/customsexporteridentification.md
   - docs/models/components/customstaxidentificationtype.md
   - docs/models/components/customstaxidentification.md
-  - docs/models/components/customsdeclarationcreaterequestb13afilingoption.md
-  - docs/models/components/customsdeclarationcreaterequestcontentstype.md
-  - docs/models/components/customsdeclarationcreaterequesteelpfc.md
-  - docs/models/components/customsdeclarationcreaterequestincoterm.md
-  - docs/models/components/customsdeclarationcreaterequestnondeliveryoption.md
+  - docs/models/components/customsdeclarationnondeliveryoptionenum.md
+  - docs/models/components/customsdeclarationincotermenum.md
+  - docs/models/components/customsdeclarationeelpfcenum.md
+  - docs/models/components/customsdeclarationcontentstypeenum.md
+  - docs/models/components/customsdeclarationb13afilingoptionenum.md
   - docs/models/components/customsdeclarationcreaterequest.md
-  - docs/models/components/customsitembase.md
+  - docs/models/components/customsitemcreaterequest.md
   - docs/models/components/addressimporter.md
   - docs/models/components/customsitempaginatedlist.md
   - docs/models/components/customsitem.md
@@ -516,7 +380,7 @@ generatedFiles:
   - docs/models/components/liveratecreaterequestaddressto.md
   - docs/models/components/liveratecreaterequestparcel.md
   - docs/models/components/liveratecreaterequest.md
-  - docs/models/components/parcelobjectstate.md
+  - docs/models/components/objectstate.md
   - docs/models/components/parcel.md
   - docs/models/components/parcelextra.md
   - docs/models/components/parcelinsuranceprovider.md
@@ -533,10 +397,9 @@ generatedFiles:
   - docs/models/components/manifestcreaterequestaddressfrom.md
   - docs/models/components/manifestcreaterequest.md
   - docs/models/components/orderpaginatedlist.md
-  - docs/models/components/orderstatus.md
   - docs/models/components/shopapp.md
   - docs/models/components/order.md
-  - docs/models/components/ordercreaterequestorderstatus.md
+  - docs/models/components/orderstatusenum.md
   - docs/models/components/ordercreaterequest.md
   - docs/models/components/lineitembase.md
   - docs/models/components/parcelpaginatedlist.md
@@ -557,7 +420,7 @@ generatedFiles:
   - docs/models/components/refundrequestbody.md
   - docs/models/components/refundpaginatedlist.md
   - docs/models/components/servicegroup.md
-  - docs/models/components/servicegrouptype.md
+  - docs/models/components/servicegrouptypeenum.md
   - docs/models/components/servicegroupcreaterequest.md
   - docs/models/components/servicegroupaccountandservicelevel.md
   - docs/models/components/servicegroupupdaterequest.md
@@ -573,11 +436,17 @@ generatedFiles:
   - docs/models/components/tracksrequest.md
   - docs/models/components/transactionpaginatedlist.md
   - docs/models/components/transactionmessages.md
+  - docs/models/components/responsetype.md
   - docs/models/components/transaction.md
   - docs/models/components/transactionstatusenum.md
+  - docs/models/components/transactioncreateresponse.md
+  - docs/models/components/instanttransactioncreateresponsemessages.md
+  - docs/models/components/instanttransactioncreateresponseresponsetype.md
+  - docs/models/components/instanttransactioncreateresponse.md
+  - docs/models/components/instanttransactionrate.md
   - docs/models/components/transactioncreaterequest.md
-  - docs/models/components/instanttransactionrequestbodylabelfiletype.md
-  - docs/models/components/instanttransactionrequestbody.md
+  - docs/models/components/labelfiletype.md
+  - docs/models/components/instanttransactioncreaterequest.md
   - docs/models/components/userparceltemplatecreaterequest.md
   - docs/models/components/userparceltemplatewithcarriertemplatecreaterequest.md
   - docs/models/components/userparceltemplatewithoutcarriertemplatecreaterequest.md
@@ -586,52 +455,103 @@ generatedFiles:
   - docs/models/components/shippoaccount.md
   - docs/models/components/shippoaccountupdaterequest.md
   - docs/models/components/security.md
-  - docs/models/components/servicelevelswyft.md
-  - docs/models/components/servicelevelveho.md
-  - docs/models/components/serviceleveluds.md
-  - docs/models/components/servicelevelevriuk.md
-  - docs/models/components/servicelevellasership.md
-  - docs/models/components/servicelevelontrac.md
-  - docs/models/components/servicelevelsendle.md
-  - docs/models/components/servicelevelroyalmail.md
-  - docs/models/components/servicelevelepostglobal.md
-  - docs/models/components/servicelevelpostitaliane.md
-  - docs/models/components/servicelevelparcelforce.md
-  - docs/models/components/servicelevelmaergo.md
-  - docs/models/components/servicelevelmondialrelay.md
-  - docs/models/components/servicelevellso.md
-  - docs/models/components/servicelevelglsus.md
-  - docs/models/components/servicelevelglobegistics.md
-  - docs/models/components/servicelevelaramexaustralia.md
-  - docs/models/components/serviceleveldeutschepost.md
-  - docs/models/components/serviceleveldpduk.md
-  - docs/models/components/serviceleveldpdde.md
-  - docs/models/components/serviceleveldhlgermany.md
-  - docs/models/components/serviceleveldhlecommerce.md
-  - docs/models/components/serviceleveldhlexpress.md
-  - docs/models/components/servicelevelpurolator.md
-  - docs/models/components/servicelevelcolissimo.md
-  - docs/models/components/servicelevelcorreosespana.md
-  - docs/models/components/servicelevelcouriersplease.md
-  - docs/models/components/servicelevelchronopost.md
-  - docs/models/components/servicelevelcdl.md
-  - docs/models/components/servicelevelcanadapost.md
-  - docs/models/components/servicelevelbettertrucks.md
-  - docs/models/components/servicelevelapg.md
-  - docs/models/components/servicelevelaxlehire.md
-  - docs/models/components/servicelevelaustraliapost.md
-  - docs/models/components/servicelevelasendia.md
-  - docs/models/components/servicelevelapcpostal.md
-  - docs/models/components/servicelevelairterra.md
-  - docs/models/components/servicelevelups.md
-  - docs/models/components/servicelevelfedex.md
-  - docs/models/components/servicelevelusps.md
+  - docs/models/components/servicelevelswyftenum.md
+  - docs/models/components/servicelevelvehoenum.md
+  - docs/models/components/serviceleveludsenum.md
+  - docs/models/components/servicelevelevriukenum.md
+  - docs/models/components/servicelevellasershipenum.md
+  - docs/models/components/servicelevelontracenum.md
+  - docs/models/components/servicelevelsendleenum.md
+  - docs/models/components/servicelevelroyalmailenum.md
+  - docs/models/components/servicelevelepostglobalenum.md
+  - docs/models/components/servicelevelpostitalianeenum.md
+  - docs/models/components/servicelevelparcelforceenum.md
+  - docs/models/components/servicelevelmaergoenum.md
+  - docs/models/components/servicelevelmondialrelayenum.md
+  - docs/models/components/servicelevellsoenum.md
+  - docs/models/components/servicelevelglsusenum.md
+  - docs/models/components/servicelevelglobegisticsenum.md
+  - docs/models/components/servicelevelaramexaustraliaenum.md
+  - docs/models/components/serviceleveldeutschepostenum.md
+  - docs/models/components/serviceleveldpdukenum.md
+  - docs/models/components/serviceleveldpddeenum.md
+  - docs/models/components/serviceleveldhlgermanyenum.md
+  - docs/models/components/serviceleveldhlecommerceenum.md
+  - docs/models/components/serviceleveldhlexpressenum.md
+  - docs/models/components/servicelevelpurolatorenum.md
+  - docs/models/components/servicelevelcolissimoenum.md
+  - docs/models/components/servicelevelcorreosespanaenum.md
+  - docs/models/components/servicelevelcourierspleaseenum.md
+  - docs/models/components/servicelevelchronopostenum.md
+  - docs/models/components/servicelevelcdlenum.md
+  - docs/models/components/servicelevelcanadapostenum.md
+  - docs/models/components/servicelevelbettertrucksenum.md
+  - docs/models/components/servicelevelapgenum.md
+  - docs/models/components/servicelevelaxlehireenum.md
+  - docs/models/components/servicelevelaustraliapostenum.md
+  - docs/models/components/servicelevelasendiaenum.md
+  - docs/models/components/servicelevelapcpostalenum.md
+  - docs/models/components/servicelevelairterraenum.md
+  - docs/models/components/servicelevelupsenum.md
+  - docs/models/components/servicelevelfedexenum.md
+  - docs/models/components/serviceleveluspsenum.md
   - docs/models/components/servicelevelenumset.md
-  - docs/models/errors/badrequestwithdetail.md
+  - docs/models/operations/listaddressesrequest.md
+  - docs/models/operations/getaddressrequest.md
+  - docs/models/operations/validateaddressrequest.md
+  - docs/models/operations/getbatchrequest.md
+  - docs/models/operations/addshipmentstobatchrequest.md
+  - docs/models/operations/purchasebatchrequest.md
+  - docs/models/operations/removeshipmentsfrombatchrequest.md
+  - docs/models/operations/listcarrieraccountsrequest.md
+  - docs/models/operations/getcarrieraccountrequest.md
+  - docs/models/operations/updatecarrieraccountrequest.md
+  - docs/models/operations/initiateoauth2signinrequest.md
+  - docs/models/operations/initiateoauth2signinresponse.md
+  - docs/models/operations/registercarrieraccountrequestbody.md
+  - docs/models/operations/carrier.md
+  - docs/models/operations/getcarrierregistrationstatusrequest.md
+  - docs/models/operations/listcustomsdeclarationsrequest.md
+  - docs/models/operations/getcustomsdeclarationrequest.md
+  - docs/models/operations/listcustomsitemsrequest.md
+  - docs/models/operations/getcustomsitemrequest.md
+  - docs/models/operations/getdefaultparceltemplaterequest.md
+  - docs/models/operations/deletedefaultparceltemplaterequest.md
+  - docs/models/operations/deletedefaultparceltemplateresponse.md
+  - docs/models/operations/listmanifestsrequest.md
+  - docs/models/operations/getmanifestrequest.md
+  - docs/models/operations/listordersrequest.md
+  - docs/models/operations/getorderrequest.md
+  - docs/models/operations/include.md
+  - docs/models/operations/listcarrierparceltemplatesrequest.md
+  - docs/models/operations/getcarrierparceltemplaterequest.md
+  - docs/models/operations/listparcelsrequest.md
+  - docs/models/operations/getparcelrequest.md
+  - docs/models/operations/getraterequest.md
+  - docs/models/operations/listshipmentratesrequest.md
+  - docs/models/operations/listshipmentratesbycurrencycoderequest.md
+  - docs/models/operations/listrefundsrequest.md
+  - docs/models/operations/getrefundrequest.md
+  - docs/models/operations/listservicegroupsrequest.md
+  - docs/models/operations/deleteservicegrouprequest.md
+  - docs/models/operations/deleteservicegroupresponse.md
+  - docs/models/operations/listshipmentsrequest.md
+  - docs/models/operations/getshipmentrequest.md
+  - docs/models/operations/gettrackrequest.md
+  - docs/models/operations/listtransactionsrequest.md
+  - docs/models/operations/createtransactionrequestbody.md
+  - docs/models/operations/gettransactionrequest.md
+  - docs/models/operations/listuserparceltemplatesrequest.md
+  - docs/models/operations/deleteuserparceltemplaterequest.md
+  - docs/models/operations/deleteuserparceltemplateresponse.md
+  - docs/models/operations/getuserparceltemplaterequest.md
+  - docs/models/operations/updateuserparceltemplaterequest.md
+  - docs/models/operations/listshippoaccountsrequest.md
+  - docs/models/operations/getshippoaccountrequest.md
+  - docs/models/operations/updateshippoaccountrequest.md
   - docs/models/errors/initiateoauth2signincarrieraccountsresponseresponsebody.md
   - docs/models/errors/initiateoauth2signincarrieraccountsresponsebody.md
   - docs/models/errors/initiateoauth2signinresponsebody.md
-  - docs/models/errors/badrequestwitherror.md
   - docs/sdks/shippo/README.md
   - docs/sdks/addresses/README.md
   - docs/sdks/batches/README.md

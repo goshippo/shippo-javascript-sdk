@@ -36,7 +36,8 @@ export type ParcelInsurance = {
 };
 
 /** @internal */
-export const ParcelInsuranceProvider$ = z.nativeEnum(ParcelInsuranceProvider);
+export const ParcelInsuranceProvider$: z.ZodNativeEnum<typeof ParcelInsuranceProvider> =
+    z.nativeEnum(ParcelInsuranceProvider);
 
 /** @internal */
 export namespace ParcelInsurance$ {

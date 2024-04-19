@@ -17,4 +17,5 @@ export enum TrackingStatusEnum {
 }
 
 /** @internal */
-export const TrackingStatusEnum$ = z.nativeEnum(TrackingStatusEnum);
+export const TrackingStatusEnum$: z.ZodNativeEnum<typeof TrackingStatusEnum> =
+    z.nativeEnum(TrackingStatusEnum);

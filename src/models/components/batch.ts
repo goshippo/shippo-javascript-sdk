@@ -6,7 +6,7 @@ import {
     BatchShipmentPaginatedList,
     BatchShipmentPaginatedList$,
 } from "./batchshipmentpaginatedlist";
-import { LabelFileType, LabelFileType$ } from "./labelfiletype";
+import { LabelFileTypeEnum, LabelFileTypeEnum$ } from "./labelfiletypeenum";
 import * as z from "zod";
 
 /**
@@ -59,7 +59,7 @@ export type Batch = {
      * @remarks
      * <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
      */
-    labelFiletype?: LabelFileType | undefined;
+    labelFiletype?: LabelFileTypeEnum | undefined;
     /**
      * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
      */
@@ -152,14 +152,14 @@ export namespace ObjectResults$ {
 }
 
 /** @internal */
-export const BatchStatus$ = z.nativeEnum(BatchStatus);
+export const BatchStatus$: z.ZodNativeEnum<typeof BatchStatus> = z.nativeEnum(BatchStatus);
 
 /** @internal */
 export namespace Batch$ {
     export type Inbound = {
         default_carrier_account: string;
         default_servicelevel_token: string;
-        label_filetype?: LabelFileType | undefined;
+        label_filetype?: LabelFileTypeEnum | undefined;
         metadata?: string | undefined;
         batch_shipments: BatchShipmentPaginatedList$.Inbound;
         label_url: Array<string>;
@@ -176,7 +176,7 @@ export namespace Batch$ {
         .object({
             default_carrier_account: z.string(),
             default_servicelevel_token: z.string(),
-            label_filetype: LabelFileType$.optional(),
+            label_filetype: LabelFileTypeEnum$.optional(),
             metadata: z.string().optional(),
             batch_shipments: BatchShipmentPaginatedList$.inboundSchema,
             label_url: z.array(z.string()),
@@ -209,7 +209,7 @@ export namespace Batch$ {
     export type Outbound = {
         default_carrier_account: string;
         default_servicelevel_token: string;
-        label_filetype?: LabelFileType | undefined;
+        label_filetype?: LabelFileTypeEnum | undefined;
         metadata?: string | undefined;
         batch_shipments: BatchShipmentPaginatedList$.Outbound;
         label_url: Array<string>;
@@ -226,7 +226,7 @@ export namespace Batch$ {
         .object({
             defaultCarrierAccount: z.string(),
             defaultServicelevelToken: z.string(),
-            labelFiletype: LabelFileType$.optional(),
+            labelFiletype: LabelFileTypeEnum$.optional(),
             metadata: z.string().optional(),
             batchShipments: BatchShipmentPaginatedList$.outboundSchema,
             labelUrl: z.array(z.string()),

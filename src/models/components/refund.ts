@@ -46,7 +46,7 @@ export type Refund = {
 };
 
 /** @internal */
-export const RefundStatus$ = z.nativeEnum(RefundStatus);
+export const RefundStatus$: z.ZodNativeEnum<typeof RefundStatus> = z.nativeEnum(RefundStatus);
 
 /** @internal */
 export namespace Refund$ {

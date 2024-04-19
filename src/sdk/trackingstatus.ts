@@ -46,13 +46,15 @@ export class TrackingStatus extends ClientSDK {
      * Registers a webhook that will send HTTP notifications to you when the status of your tracked package changes. For more details on creating a webhook, see our guides on <a href="https://docs.goshippo.com/docs/tracking/webhooks/">Webhooks</a> and <a href="https://docs.goshippo.com/docs/tracking/tracking/">Tracking</a>.
      */
     async create(
-        shippoApiVersion?: string | undefined,
-        tracksRequest?: components.TracksRequest | undefined,
+        carrier: string,
+        trackingNumber: string,
+        metadata?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateTrackResponse> {
-        const input$: operations.CreateTrackRequest = {
-            shippoApiVersion: shippoApiVersion,
-            tracksRequest: tracksRequest,
+    ): Promise<components.Track> {
+        const input$: components.TracksRequest | undefined = {
+            carrier: carrier,
+            trackingNumber: trackingNumber,
+            metadata: metadata,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -61,10 +63,11 @@ export class TrackingStatus extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.CreateTrackRequest$.outboundSchema.parse(value$),
+            (value$) => components.TracksRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.TracksRequest, { explode: true });
+        const body$ =
+            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/tracks")();
 
@@ -72,11 +75,10 @@ export class TrackingStatus extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -109,41 +111,19 @@ export class TrackingStatus extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateTrackResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Track: val$,
-                    });
+                    return components.Track$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.BadRequestWithDetail$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 
@@ -156,13 +136,11 @@ export class TrackingStatus extends ClientSDK {
     async get(
         trackingNumber: string,
         carrier: string,
-        shippoApiVersion?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.GetTrackResponse> {
+    ): Promise<components.Track> {
         const input$: operations.GetTrackRequest = {
             trackingNumber: trackingNumber,
             carrier: carrier,
-            shippoApiVersion: shippoApiVersion,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -191,11 +169,10 @@ export class TrackingStatus extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple(
-                "SHIPPO-API-VERSION",
-                payload$["SHIPPO-API-VERSION"] ?? this.options$.shippoApiVersion,
-                { explode: false, charEncoding: "none" }
-            )
+            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+                explode: false,
+                charEncoding: "none",
+            })
         );
 
         let security$;
@@ -228,41 +205,19 @@ export class TrackingStatus extends ClientSDK {
 
         const response = await this.do$(request, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request,
-            },
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetTrackResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Track: val$,
-                    });
+                    return components.Track$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.BadRequestWithDetail$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
         } else {
-            throw new errors.SDKError("Unexpected API response", { response, request });
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
     }
 }

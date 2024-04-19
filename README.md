@@ -22,13 +22,13 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add https://github.com/goshippo/shippo-javascript-sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET>
+yarn add https://github.com/goshippo/shippo-javascript-sdk
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -46,17 +46,16 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { Shippo } from "shippo";
 
+const shippo = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+});
+
 async function run() {
-    const sdk = new Shippo({
-        apiKeyHeader: "<YOUR_API_KEY_HERE>",
-        shippoApiVersion: "2018-02-08",
-    });
-
     const page = 1;
-    const results = 25;
-    const shippoApiVersion = "2018-02-08";
+    const results = 5;
 
-    const result = await sdk.addresses.list(page, results, shippoApiVersion);
+    const result = await shippo.addresses.list(page, results);
 
     // Handle the result
     console.log(result);
@@ -193,58 +192,17 @@ run();
 * [update](docs/sdks/shippoaccounts/README.md#update) - Update a Shippo Account
 <!-- End Available Resources and Operations [operations] -->
 
-<!-- Start Global Parameters [global-parameters] -->
-## Global Parameters
-
-A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
-
-For example, you can set `SHIPPO-API-VERSION` to `"2018-02-08"` at SDK initialization and then you do not have to pass the same value on calls to operations like `list`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
-
-
-### Available Globals
-
-The following global parameter is available.
-
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| shippoApiVersion | string |  | String used to pick a non-default API version to use |
-
-
-### Example
-
-```typescript
-import { Shippo } from "shippo";
-
-async function run() {
-    const sdk = new Shippo({
-        apiKeyHeader: "<YOUR_API_KEY_HERE>",
-        shippoApiVersion: "2018-02-08",
-    });
-
-    const page = 1;
-    const results = 25;
-    const shippoApiVersion = "2018-02-08";
-
-    const result = await sdk.addresses.list(page, results, shippoApiVersion);
-
-    // Handle the result
-    console.log(result);
-}
-
-run();
-
-```
-<!-- End Global Parameters [global-parameters] -->
-
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
 All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.BadRequestWithDetail | 400                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
+| Error Object                                                   | Status Code                                                    | Content Type                                                   |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| errors.InitiateOauth2SigninResponseBody                        | 400                                                            | application/json                                               |
+| errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401                                                            | application/json                                               |
+| errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 422                                                            | application/json                                               |
+| errors.SDKError                                                | 4xx-5xx                                                        | */*                                                            |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
 
@@ -253,50 +211,22 @@ Validation errors can also occur when either method arguments or data returned f
 import { Shippo } from "shippo";
 import * as errors from "shippo/models/errors";
 
-async function run() {
-    const sdk = new Shippo({
-        apiKeyHeader: "<YOUR_API_KEY_HERE>",
-        shippoApiVersion: "2018-02-08",
-    });
+const shippo = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+});
 
-    const shippoApiVersion = "2018-02-08";
-    const connectExistingOwnUPSAccountRequest = {
-        accountId: "<value>",
-        active: false,
-        carrier: "ups",
-        metadata: "UPS Account",
-        parameters: {
-            accountNumber: "94567e",
-            aiaCountryIso2: "US",
-            billingAddressCity: "San Francisco",
-            billingAddressCountryIso2: "US",
-            billingAddressState: "CA",
-            billingAddressStreet1: "731 Market St",
-            billingAddressStreet2: "STE 200",
-            billingAddressZip: "94103",
-            collecCountryIso2: "US",
-            collecZip: "94103",
-            company: "Shippo",
-            currencyCode: "USD",
-            email: "hippo@shippo.com",
-            fullName: "Shippo Meister",
-            hasInvoice: false,
-            invoiceControlid: "1234",
-            invoiceDate: "20210529",
-            invoiceNumber: "1112234",
-            invoiceValue: "11.23",
-            phone: "1112223333",
-            title: "Manager",
-            upsAgreements: false,
-        },
-        test: false,
-    };
+async function run() {
+    const carrierAccountObjectId = "<value>";
+    const redirectUri = "http://fine-cummerbund.biz";
+    const state = "<value>";
 
     let result;
     try {
-        result = await sdk.carrierAccounts.create(
-            shippoApiVersion,
-            connectExistingOwnUPSAccountRequest
+        result = await shippo.carrierAccounts.initiateOauth2Signin(
+            carrierAccountObjectId,
+            redirectUri,
+            state
         );
     } catch (err) {
         switch (true) {
@@ -307,7 +237,15 @@ async function run() {
                 console.error(err.rawValue);
                 return;
             }
-            case err instanceof errors.BadRequestWithDetail: {
+            case err instanceof errors.InitiateOauth2SigninResponseBody: {
+                console.error(err); // handle exception
+                return;
+            }
+            case err instanceof errors.InitiateOauth2SigninCarrierAccountsResponseBody: {
+                console.error(err); // handle exception
+                return;
+            }
+            case err instanceof errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody: {
                 console.error(err); // handle exception
                 return;
             }
@@ -340,18 +278,17 @@ You can override the default server globally by passing a server index to the `s
 ```typescript
 import { Shippo } from "shippo";
 
+const shippo = new Shippo({
+    serverIdx: 0,
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+});
+
 async function run() {
-    const sdk = new Shippo({
-        serverIdx: 0,
-        apiKeyHeader: "<YOUR_API_KEY_HERE>",
-        shippoApiVersion: "2018-02-08",
-    });
-
     const page = 1;
-    const results = 25;
-    const shippoApiVersion = "2018-02-08";
+    const results = 5;
 
-    const result = await sdk.addresses.list(page, results, shippoApiVersion);
+    const result = await shippo.addresses.list(page, results);
 
     // Handle the result
     console.log(result);
@@ -369,18 +306,17 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```typescript
 import { Shippo } from "shippo";
 
+const shippo = new Shippo({
+    serverURL: "https://api.goshippo.com",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+});
+
 async function run() {
-    const sdk = new Shippo({
-        serverURL: "https://api.goshippo.com",
-        apiKeyHeader: "<YOUR_API_KEY_HERE>",
-        shippoApiVersion: "2018-02-08",
-    });
-
     const page = 1;
-    const results = 25;
-    const shippoApiVersion = "2018-02-08";
+    const results = 5;
 
-    const result = await sdk.addresses.list(page, results, shippoApiVersion);
+    const result = await shippo.addresses.list(page, results);
 
     // Handle the result
     console.log(result);
@@ -455,17 +391,16 @@ To authenticate with the API the `apiKeyHeader` parameter must be set when initi
 ```typescript
 import { Shippo } from "shippo";
 
+const shippo = new Shippo({
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08",
+});
+
 async function run() {
-    const sdk = new Shippo({
-        apiKeyHeader: "<YOUR_API_KEY_HERE>",
-        shippoApiVersion: "2018-02-08",
-    });
-
     const page = 1;
-    const results = 25;
-    const shippoApiVersion = "2018-02-08";
+    const results = 5;
 
-    const result = await sdk.addresses.list(page, results, shippoApiVersion);
+    const result = await shippo.addresses.list(page, results);
 
     // Handle the result
     console.log(result);

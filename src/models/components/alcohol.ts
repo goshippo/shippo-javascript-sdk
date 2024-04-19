@@ -27,7 +27,7 @@ export type Alcohol = {
 };
 
 /** @internal */
-export const RecipientType$ = z.nativeEnum(RecipientType);
+export const RecipientType$: z.ZodNativeEnum<typeof RecipientType> = z.nativeEnum(RecipientType);
 
 /** @internal */
 export namespace Alcohol$ {

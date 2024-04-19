@@ -6,7 +6,13 @@ import {
     CarrierAccountServiceLevel,
     CarrierAccountServiceLevel$,
 } from "./carrieraccountservicelevel";
+import {
+    UPSConnectExistingOwnAccountParameters,
+    UPSConnectExistingOwnAccountParameters$,
+} from "./upsconnectexistingownaccountparameters";
 import * as z from "zod";
+
+export type CarrierAccountParameters = UPSConnectExistingOwnAccountParameters | Record<string, any>;
 
 export type CarrierAccount = {
     /**
@@ -31,14 +37,7 @@ export type CarrierAccount = {
      * Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for all supported carriers.
      */
     carrier: string;
-    /**
-     * An array of additional parameters for the account, such as e.g. password or token.
-     *
-     * @remarks
-     * Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for the parameters per carrier.<br>
-     * To protect account information, this field will be masked in any API response.
-     */
-    parameters?: Record<string, any> | undefined;
+    parameters?: UPSConnectExistingOwnAccountParameters | Record<string, any> | undefined;
     /**
      * Carrier name, see <a href="#tag/Carriers">Carriers</a><br>
      */
@@ -61,12 +60,26 @@ export type CarrierAccount = {
 };
 
 /** @internal */
+export namespace CarrierAccountParameters$ {
+    export type Inbound = UPSConnectExistingOwnAccountParameters$.Inbound | Record<string, any>;
+
+    export type Outbound = UPSConnectExistingOwnAccountParameters$.Outbound | Record<string, any>;
+    export const inboundSchema: z.ZodType<CarrierAccountParameters, z.ZodTypeDef, Inbound> =
+        z.union([UPSConnectExistingOwnAccountParameters$.inboundSchema, z.record(z.any())]);
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierAccountParameters> =
+        z.union([UPSConnectExistingOwnAccountParameters$.outboundSchema, z.record(z.any())]);
+}
+
+/** @internal */
 export namespace CarrierAccount$ {
     export type Inbound = {
         account_id: string;
         active?: boolean | undefined;
         carrier: string;
-        parameters?: Record<string, any> | undefined;
+        parameters?:
+            | UPSConnectExistingOwnAccountParameters$.Inbound
+            | Record<string, any>
+            | undefined;
         carrier_name?: any | undefined;
         is_shippo_account?: boolean | undefined;
         metadata?: string | undefined;
@@ -81,7 +94,9 @@ export namespace CarrierAccount$ {
             account_id: z.string(),
             active: z.boolean().optional(),
             carrier: z.string(),
-            parameters: z.record(z.any()).optional(),
+            parameters: z
+                .union([UPSConnectExistingOwnAccountParameters$.inboundSchema, z.record(z.any())])
+                .optional(),
             carrier_name: z.any().optional(),
             is_shippo_account: z.boolean().optional(),
             metadata: z.string().optional(),
@@ -112,7 +127,10 @@ export namespace CarrierAccount$ {
         account_id: string;
         active?: boolean | undefined;
         carrier: string;
-        parameters?: Record<string, any> | undefined;
+        parameters?:
+            | UPSConnectExistingOwnAccountParameters$.Outbound
+            | Record<string, any>
+            | undefined;
         carrier_name?: any | undefined;
         is_shippo_account?: boolean | undefined;
         metadata?: string | undefined;
@@ -127,7 +145,9 @@ export namespace CarrierAccount$ {
             accountId: z.string(),
             active: z.boolean().optional(),
             carrier: z.string(),
-            parameters: z.record(z.any()).optional(),
+            parameters: z
+                .union([UPSConnectExistingOwnAccountParameters$.outboundSchema, z.record(z.any())])
+                .optional(),
             carrierName: z.any().optional(),
             isShippoAccount: z.boolean().optional(),
             metadata: z.string().optional(),
