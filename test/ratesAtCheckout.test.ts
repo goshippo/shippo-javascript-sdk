@@ -11,17 +11,17 @@ import {expect} from "chai";
 import {getCarrierAccount, shippoSdk} from "./helpers";
 
 async function deleteAllServiceGroups() {
-    const serviceGroups = await shippoSdk.serviceGroups.list()
+    const serviceGroups = await shippoSdk.serviceGroups.list();
     const deleteServiceGroups = serviceGroups.map(serviceGroup => {
-        return shippoSdk.serviceGroups.delete(serviceGroup.objectId)
+        shippoSdk.serviceGroups.delete(serviceGroup.objectId);
     });
-    await Promise.all(deleteServiceGroups)
+    await Promise.all(deleteServiceGroups);
 }
 
 describe('TestRatesAtCheckout', function() {
 
     this.beforeEach(() => {
-        deleteAllServiceGroups()
+        deleteAllServiceGroups();
     });
 
     it('testRatesAtCheckout', async () => {
@@ -42,7 +42,7 @@ describe('TestRatesAtCheckout', function() {
             flatRateCurrency: "USD",
             type: ServiceGroupTypeEnum.LiveRate,
             serviceLevels: serviceLevels
-        })
+        });
         expect(serviceGroup).to.not.be.null;
 
         const liveRates = await shippoSdk.ratesAtCheckout.create(
@@ -83,12 +83,12 @@ describe('TestRatesAtCheckout', function() {
                     weight: "1",
                     massUnit: WeightUnitEnum.Lb
                 }
-            })
+            });
 
         expect(liveRates.results.length).to.be.greaterThan(0);
         liveRates.results.forEach(liveRate => {
             expect(liveRate.title).to.equal(serviceGroup.name);
         });
-    })
+    });
 
-})
+});

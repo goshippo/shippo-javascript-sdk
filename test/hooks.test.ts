@@ -7,7 +7,7 @@ describe('TestPrefixApiKeyBeforeRequestHook', function () {
     const hook = new PrefixApiKeyBeforeRequestHook();
     const hookCtx = {operationID: "test"};
 
-    const tests = [
+    const tests: { authHeader: string; shouldPrefix: boolean }[] = [
         {authHeader: "shippo_test_12345", shouldPrefix: true},
         {authHeader: "shippo_live_12345", shouldPrefix: true},
         {authHeader: "ShippoToken shippo_test_12345", shouldPrefix: false},
@@ -37,7 +37,7 @@ describe('TestConvertNullToUndefinedAfterSuccessHook', function () {
     const hook = new ConvertNullToUndefinedAfterSuccessHook();
     const hookCtx = {operationID: "test"};
 
-    async function applyHookAndCompareExpected(inputJson: any, expected: any) {
+    async function applyHookAndCompareExpected(inputJson: unknown, expected: unknown) {
         const inputResponse = new Response(JSON.stringify(inputJson));
         const outputResponse = await hook.afterSuccess(hookCtx, inputResponse);
         const actual = await outputResponse.json();
