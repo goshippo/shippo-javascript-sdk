@@ -74,7 +74,7 @@ export class TransactionCreateResponseAddDiscriminatorAfterSuccessHook implement
                 responseType = "instant";
             }
             if (responseType != undefined) {
-                content.responseType = responseType
+                content.responseType = responseType;
             }
             return new Response(JSON.stringify(content), {
                 status: response.status,

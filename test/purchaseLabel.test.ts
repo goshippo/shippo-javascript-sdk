@@ -11,7 +11,7 @@ describe('TestPurchaseLabel', function() {
         const carrierAccounts = await getCarrierAccounts(CarriersEnum.Usps);
         const carrierAccountIds = carrierAccounts
             .map((carrierAccount) => carrierAccount.objectId)
-            .filter((id) => id !== undefined)
+            .filter((id) => id !== undefined);
 
         const shipment = await shippoSdk.shipments.create({
             carrierAccounts: carrierAccountIds,
@@ -45,13 +45,13 @@ describe('TestPurchaseLabel', function() {
                     massUnit: WeightUnitEnum.Lb
                 }
             ]
-        })
+        });
 
         expect(shipment).to.not.be.null;
 
         const transaction = await shippoSdk.transactions.create({
             rate: shipment.rates[0].objectId
-        })
+        });
         expect(transaction).to.not.be.null;
     });
 
