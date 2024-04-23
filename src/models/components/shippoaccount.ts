@@ -8,7 +8,7 @@ export type ShippoAccount = {
     email: string;
     firstName: string;
     lastName: string;
-    companyName: string;
+    companyName?: string | undefined;
     objectCreated?: Date | undefined;
     objectId?: string | undefined;
     objectUpdated?: Date | undefined;
@@ -20,7 +20,7 @@ export namespace ShippoAccount$ {
         email: string;
         first_name: string;
         last_name: string;
-        company_name: string;
+        company_name?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_updated?: string | undefined;
@@ -31,7 +31,7 @@ export namespace ShippoAccount$ {
             email: z.string(),
             first_name: z.string(),
             last_name: z.string(),
-            company_name: z.string(),
+            company_name: z.string().optional(),
             object_created: z
                 .string()
                 .datetime({ offset: true })
@@ -49,7 +49,7 @@ export namespace ShippoAccount$ {
                 email: v.email,
                 firstName: v.first_name,
                 lastName: v.last_name,
-                companyName: v.company_name,
+                ...(v.company_name === undefined ? null : { companyName: v.company_name }),
                 ...(v.object_created === undefined ? null : { objectCreated: v.object_created }),
                 ...(v.object_id === undefined ? null : { objectId: v.object_id }),
                 ...(v.object_updated === undefined ? null : { objectUpdated: v.object_updated }),
@@ -60,7 +60,7 @@ export namespace ShippoAccount$ {
         email: string;
         first_name: string;
         last_name: string;
-        company_name: string;
+        company_name?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_updated?: string | undefined;
@@ -71,7 +71,7 @@ export namespace ShippoAccount$ {
             email: z.string(),
             firstName: z.string(),
             lastName: z.string(),
-            companyName: z.string(),
+            companyName: z.string().optional(),
             objectCreated: z
                 .date()
                 .transform((v) => v.toISOString())
@@ -87,7 +87,7 @@ export namespace ShippoAccount$ {
                 email: v.email,
                 first_name: v.firstName,
                 last_name: v.lastName,
-                company_name: v.companyName,
+                ...(v.companyName === undefined ? null : { company_name: v.companyName }),
                 ...(v.objectCreated === undefined ? null : { object_created: v.objectCreated }),
                 ...(v.objectId === undefined ? null : { object_id: v.objectId }),
                 ...(v.objectUpdated === undefined ? null : { object_updated: v.objectUpdated }),

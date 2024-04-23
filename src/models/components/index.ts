@@ -67,7 +67,6 @@ export * from "./departmentnumber";
 export * from "./distanceunitenum";
 export * from "./dryice";
 export * from "./errormessage";
-export * from "./httpmetadata";
 export * from "./instanttransactioncreaterequest";
 export * from "./instanttransactioncreateresponse";
 export * from "./instanttransactionrate";

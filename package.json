@@ -1,6 +1,6 @@
 {
   "name": "shippo",
-  "version": "0.2.0",
+  "version": "0.1.1",
   "author": "Speakeasy",  
   "main": "./index.js",
   "sideEffects": false,
@@ -17,7 +17,9 @@
     "zod": ">= 3"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.14",
     "@types/jsonpath": "^0.2.4",
+    "@types/mocha": "^10.0.6",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "chai": "^5.1.0",
