@@ -4,8 +4,16 @@ LOCAL_OVERLAY_FILE=./build/client-sdk-overlay.yaml
 install:
 	npm install
 
-test: install
+install-ci:
+	npm ci
+
+lint:
+	npm run lint
+
+test:
 	./node_modules/.bin/mocha --import=tsx --extensions ts src 'test/**/*.ts'
+
+check: lint test
 
 speakeasy-install: # dev task, locally install the speakeasy CLI
 	brew install speakeasy-api/homebrew-tap/speakeasy
@@ -29,3 +37,5 @@ speakeasy-generate: # dev task, run the generator on a local spec.  useful for t
 
 speakeasy-run: # dev task, locally run the complete speakeasy workflow.  useful if the generator workflow ever fails, to replicate locally
 	speakeasy run
+
+.PHONY: test
