@@ -1,6 +1,12 @@
 LOCAL_SPEC_FILE=./build/public-api.yaml
 LOCAL_OVERLAY_FILE=./build/client-sdk-overlay.yaml
 
+install:
+	npm install
+
+test: install
+	./node_modules/.bin/mocha --import=tsx --extensions ts src 'test/**/*.ts'
+
 speakeasy-install: # dev task, locally install the speakeasy CLI
 	brew install speakeasy-api/homebrew-tap/speakeasy
 	speakeasy auth login

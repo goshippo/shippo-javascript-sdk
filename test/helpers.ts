@@ -15,6 +15,7 @@ export async function getCarrierAccounts(carrier: CarriersEnum) : Promise<Array<
     }
 }
 
+
 export async function getCarrierAccount(carrier: CarriersEnum) : Promise<CarrierAccountWithExtraInfo> {
     const carrierAccounts = await getCarrierAccounts(carrier)
     return carrierAccounts[0];
