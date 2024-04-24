@@ -1,14 +1,15 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: ecc238b3d1973c8ec75b082ab651b755
+  docChecksum: fa40895abd3a0bbba66de436069a291c
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.260.6
-  generationVersion: 2.311.1
-  releaseVersion: 0.1.0
-  configChecksum: c7fc850043882b5e91f0da573ff8fe34
+  speakeasyVersion: 1.272.3
+  generationVersion: 2.312.1
+  releaseVersion: 2.0.0
+  configChecksum: 07b37bda33c165cc4d8837d3226cb6ce
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
+  published: true
 features:
   typescript:
     constsAndDefaults: 0.1.5
@@ -105,7 +106,6 @@ generatedFiles:
   - src/models/components/carrieraccount.ts
   - src/models/components/connectexistingownaccountrequest.ts
   - src/models/components/carrieraccountbase.ts
-  - src/models/components/httpmetadata.ts
   - src/models/components/carrieraccountcanadapostcreaterequest.ts
   - src/models/components/carrieraccountcanadapostcreateparameters.ts
   - src/models/components/carrieraccountchronopostcreaterequest.ts
@@ -326,7 +326,6 @@ generatedFiles:
   - docs/models/components/connectexistingownaccountrequest.md
   - docs/models/components/carrieraccountbaseparameters.md
   - docs/models/components/carrieraccountbase.md
-  - docs/models/components/httpmetadata.md
   - docs/models/components/carrieraccountcanadapostcreaterequest.md
   - docs/models/components/carrieraccountcanadapostcreateparameters.md
   - docs/models/components/carrieraccountchronopostcreaterequestparameters.md

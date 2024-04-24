@@ -1,4 +1,4 @@
-speakeasyVersion: 1.260.6
+speakeasyVersion: 1.272.3
 sources: {}
 targets: {}
 workflow:
@@ -14,3 +14,6 @@ workflow:
         first-target:
             target: typescript
             source: openapi
+            publish:
+                npm:
+                    token: $npm_token

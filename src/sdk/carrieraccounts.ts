@@ -481,7 +481,7 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "422", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -541,7 +541,7 @@ export class CarrierAccounts extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, 422, "application/json")) {
+        } else if (this.matchResponse(response, 404, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
