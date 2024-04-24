@@ -25,7 +25,7 @@ describe('TestRatesAtCheckout', function() {
     });
 
     it('test ratesAtCheckout', async () => {
-        const carrierAccount =  await getCarrierAccount(CarriersEnum.Usps);
+        const carrierAccount =  await getCarrierAccount(CarriersEnum.Ups);
         const upsAccountObjectId =  carrierAccount.objectId;
 
         const availableServiceLevels = [ServiceLevelUPSEnum.UpsGround, ServiceLevelUPSEnum.UpsNextDayAirSaver];
