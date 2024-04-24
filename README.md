@@ -1,4 +1,4 @@
-# <img src="https://docs.goshippo.com/images/Logo.png" width="30" alt="Shippo logo"> Shippo Python SDK
+# <img src="https://docs.goshippo.com/images/Logo.png" width="30" alt="Shippo logo"> Shippo JavaScript SDK
 
 Shippo is a shipping API that connects you with [multiple shipping carriers](https://goshippo.com/carriers) (such as USPS, UPS, DHL, Canada Post, Australia Post, and many others) through one interface.
 
