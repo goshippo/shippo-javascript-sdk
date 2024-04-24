@@ -6,7 +6,7 @@ import * as z from "zod";
 
 export type InitiateOauth2SigninRequest = {
     /**
-     * The carrier account ID to start a signin process
+     * The carrier account ID (UUID) to start a signin process.
      */
     carrierAccountObjectId: string;
     /**
