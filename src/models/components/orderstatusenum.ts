@@ -15,6 +15,7 @@ export enum OrderStatusEnum {
     Awaitpay = "AWAITPAY",
     Paid = "PAID",
     Refunded = "REFUNDED",
+    Cancelled = "CANCELLED",
     PartiallyFulfilled = "PARTIALLY_FULFILLED",
     Shipped = "SHIPPED",
 }

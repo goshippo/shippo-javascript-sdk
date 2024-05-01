@@ -102,6 +102,7 @@ export class ShippoAccounts extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -127,7 +128,11 @@ export class ShippoAccounts extends ClientSDK {
             return result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -184,6 +189,7 @@ export class ShippoAccounts extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -209,7 +215,11 @@ export class ShippoAccounts extends ClientSDK {
             return result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -272,6 +282,7 @@ export class ShippoAccounts extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -297,7 +308,11 @@ export class ShippoAccounts extends ClientSDK {
             return result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -365,6 +380,7 @@ export class ShippoAccounts extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "PUT",
@@ -390,7 +406,11 @@ export class ShippoAccounts extends ClientSDK {
             return result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 }

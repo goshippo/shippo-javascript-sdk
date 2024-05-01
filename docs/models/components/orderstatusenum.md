@@ -12,5 +12,6 @@ for the logic of how the status is handled.
 | `Awaitpay`           | AWAITPAY             |
 | `Paid`               | PAID                 |
 | `Refunded`           | REFUNDED             |
+| `Cancelled`          | CANCELLED            |
 | `PartiallyFulfilled` | PARTIALLY_FULFILLED  |
 | `Shipped`            | SHIPPED              |
