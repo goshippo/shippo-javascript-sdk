@@ -29,14 +29,14 @@ export namespace TransactionCreateRequest$ {
 
     export const inboundSchema: z.ZodType<TransactionCreateRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            async: z.boolean().optional(),
+            async: z.boolean().default(true),
             label_file_type: LabelFileTypeEnum$.optional(),
             metadata: z.string().optional(),
             rate: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.async === undefined ? null : { async: v.async }),
+                async: v.async,
                 ...(v.label_file_type === undefined ? null : { labelFileType: v.label_file_type }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 rate: v.rate,
@@ -44,7 +44,7 @@ export namespace TransactionCreateRequest$ {
         });
 
     export type Outbound = {
-        async?: boolean | undefined;
+        async: boolean;
         label_file_type?: LabelFileTypeEnum | undefined;
         metadata?: string | undefined;
         rate: string;
@@ -52,14 +52,14 @@ export namespace TransactionCreateRequest$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionCreateRequest> = z
         .object({
-            async: z.boolean().optional(),
+            async: z.boolean().default(true),
             labelFileType: LabelFileTypeEnum$.optional(),
             metadata: z.string().optional(),
             rate: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.async === undefined ? null : { async: v.async }),
+                async: v.async,
                 ...(v.labelFileType === undefined ? null : { label_file_type: v.labelFileType }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 rate: v.rate,

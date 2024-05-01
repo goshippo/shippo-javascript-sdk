@@ -17,7 +17,7 @@ export type TrackingStatus = {
     /**
      * An object containing zip, city, state and country information of the tracking event.
      */
-    location: TrackingStatusLocationBase;
+    location?: TrackingStatusLocationBase | undefined;
     objectCreated: Date;
     objectId: string;
     objectUpdated: Date;
@@ -42,7 +42,7 @@ export type TrackingStatus = {
 /** @internal */
 export namespace TrackingStatus$ {
     export type Inbound = {
-        location: TrackingStatusLocationBase$.Inbound;
+        location?: TrackingStatusLocationBase$.Inbound | undefined;
         object_created: string;
         object_id: string;
         object_updated: string;
@@ -54,7 +54,7 @@ export namespace TrackingStatus$ {
 
     export const inboundSchema: z.ZodType<TrackingStatus, z.ZodTypeDef, Inbound> = z
         .object({
-            location: TrackingStatusLocationBase$.inboundSchema,
+            location: TrackingStatusLocationBase$.inboundSchema.optional(),
             object_created: z
                 .string()
                 .datetime({ offset: true })
@@ -74,7 +74,7 @@ export namespace TrackingStatus$ {
         })
         .transform((v) => {
             return {
-                location: v.location,
+                ...(v.location === undefined ? null : { location: v.location }),
                 objectCreated: v.object_created,
                 objectId: v.object_id,
                 objectUpdated: v.object_updated,
@@ -86,7 +86,7 @@ export namespace TrackingStatus$ {
         });
 
     export type Outbound = {
-        location: TrackingStatusLocationBase$.Outbound;
+        location?: TrackingStatusLocationBase$.Outbound | undefined;
         object_created: string;
         object_id: string;
         object_updated: string;
@@ -98,7 +98,7 @@ export namespace TrackingStatus$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TrackingStatus> = z
         .object({
-            location: TrackingStatusLocationBase$.outboundSchema,
+            location: TrackingStatusLocationBase$.outboundSchema.optional(),
             objectCreated: z.date().transform((v) => v.toISOString()),
             objectId: z.string(),
             objectUpdated: z.date().transform((v) => v.toISOString()),
@@ -109,7 +109,7 @@ export namespace TrackingStatus$ {
         })
         .transform((v) => {
             return {
-                location: v.location,
+                ...(v.location === undefined ? null : { location: v.location }),
                 object_created: v.objectCreated,
                 object_id: v.objectId,
                 object_updated: v.objectUpdated,
