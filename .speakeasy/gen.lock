@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 29c0b384c21538dbbfb70dc3119a1d84
+  docChecksum: db7620a252dadc269b483fabc4e1b2a8
   docVersion: "2018-02-08"
   speakeasyVersion: 1.277.4
   generationVersion: 2.318.3
-  releaseVersion: 2.1.0
-  configChecksum: f0df5277c2e21ee0b980d7f3ce597ef2
+  releaseVersion: 2.1.1
+  configChecksum: 6c4ac705bcb1cba398d1e9998af76f09
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true

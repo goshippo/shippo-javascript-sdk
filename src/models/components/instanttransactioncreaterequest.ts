@@ -18,6 +18,7 @@ export enum LabelFileType {
 }
 
 export type InstantTransactionCreateRequest = {
+    async?: boolean | undefined;
     carrierAccount: string;
     labelFileType?: LabelFileType | undefined;
     metadata?: string | undefined;
@@ -31,6 +32,7 @@ export const LabelFileType$: z.ZodNativeEnum<typeof LabelFileType> = z.nativeEnu
 /** @internal */
 export namespace InstantTransactionCreateRequest$ {
     export type Inbound = {
+        async?: boolean | undefined;
         carrier_account: string;
         label_file_type?: LabelFileType | undefined;
         metadata?: string | undefined;
@@ -41,6 +43,7 @@ export namespace InstantTransactionCreateRequest$ {
     export const inboundSchema: z.ZodType<InstantTransactionCreateRequest, z.ZodTypeDef, Inbound> =
         z
             .object({
+                async: z.boolean().default(false),
                 carrier_account: z.string(),
                 label_file_type: LabelFileType$.optional(),
                 metadata: z.string().optional(),
@@ -49,6 +52,7 @@ export namespace InstantTransactionCreateRequest$ {
             })
             .transform((v) => {
                 return {
+                    async: v.async,
                     carrierAccount: v.carrier_account,
                     ...(v.label_file_type === undefined
                         ? null
@@ -60,6 +64,7 @@ export namespace InstantTransactionCreateRequest$ {
             });
 
     export type Outbound = {
+        async: boolean;
         carrier_account: string;
         label_file_type?: LabelFileType | undefined;
         metadata?: string | undefined;
@@ -73,6 +78,7 @@ export namespace InstantTransactionCreateRequest$ {
         InstantTransactionCreateRequest
     > = z
         .object({
+            async: z.boolean().default(false),
             carrierAccount: z.string(),
             labelFileType: LabelFileType$.optional(),
             metadata: z.string().optional(),
@@ -81,6 +87,7 @@ export namespace InstantTransactionCreateRequest$ {
         })
         .transform((v) => {
             return {
+                async: v.async,
                 carrier_account: v.carrierAccount,
                 ...(v.labelFileType === undefined ? null : { label_file_type: v.labelFileType }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
