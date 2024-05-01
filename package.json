@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "author": "Speakeasy",  
   "main": "./index.js",
+  "types": "./index.d.ts",
   "sideEffects": false,
   "repository": {
     "type": "git",
