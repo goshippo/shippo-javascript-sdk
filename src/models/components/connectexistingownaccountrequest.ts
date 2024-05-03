@@ -3,12 +3,17 @@
  */
 
 import {
+    FedExConnectExistingOwnAccountParameters,
+    FedExConnectExistingOwnAccountParameters$,
+} from "./fedexconnectexistingownaccountparameters";
+import {
     UPSConnectExistingOwnAccountParameters,
     UPSConnectExistingOwnAccountParameters$,
 } from "./upsconnectexistingownaccountparameters";
 import * as z from "zod";
 
 export type ConnectExistingOwnAccountRequestParameters =
+    | FedExConnectExistingOwnAccountParameters
     | UPSConnectExistingOwnAccountParameters
     | Record<string, any>;
 
@@ -17,25 +22,42 @@ export type ConnectExistingOwnAccountRequest = {
     active?: boolean | undefined;
     carrier: string;
     metadata?: string | undefined;
-    parameters: UPSConnectExistingOwnAccountParameters | Record<string, any>;
+    parameters:
+        | FedExConnectExistingOwnAccountParameters
+        | UPSConnectExistingOwnAccountParameters
+        | Record<string, any>;
     test?: boolean | undefined;
 };
 
 /** @internal */
 export namespace ConnectExistingOwnAccountRequestParameters$ {
-    export type Inbound = UPSConnectExistingOwnAccountParameters$.Inbound | Record<string, any>;
+    export type Inbound =
+        | FedExConnectExistingOwnAccountParameters$.Inbound
+        | UPSConnectExistingOwnAccountParameters$.Inbound
+        | Record<string, any>;
 
-    export type Outbound = UPSConnectExistingOwnAccountParameters$.Outbound | Record<string, any>;
+    export type Outbound =
+        | FedExConnectExistingOwnAccountParameters$.Outbound
+        | UPSConnectExistingOwnAccountParameters$.Outbound
+        | Record<string, any>;
     export const inboundSchema: z.ZodType<
         ConnectExistingOwnAccountRequestParameters,
         z.ZodTypeDef,
         Inbound
-    > = z.union([UPSConnectExistingOwnAccountParameters$.inboundSchema, z.record(z.any())]);
+    > = z.union([
+        FedExConnectExistingOwnAccountParameters$.inboundSchema,
+        UPSConnectExistingOwnAccountParameters$.inboundSchema,
+        z.record(z.any()),
+    ]);
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         ConnectExistingOwnAccountRequestParameters
-    > = z.union([UPSConnectExistingOwnAccountParameters$.outboundSchema, z.record(z.any())]);
+    > = z.union([
+        FedExConnectExistingOwnAccountParameters$.outboundSchema,
+        UPSConnectExistingOwnAccountParameters$.outboundSchema,
+        z.record(z.any()),
+    ]);
 }
 
 /** @internal */
@@ -45,7 +67,10 @@ export namespace ConnectExistingOwnAccountRequest$ {
         active?: boolean | undefined;
         carrier: string;
         metadata?: string | undefined;
-        parameters: UPSConnectExistingOwnAccountParameters$.Inbound | Record<string, any>;
+        parameters:
+            | FedExConnectExistingOwnAccountParameters$.Inbound
+            | UPSConnectExistingOwnAccountParameters$.Inbound
+            | Record<string, any>;
         test?: boolean | undefined;
     };
 
@@ -57,6 +82,7 @@ export namespace ConnectExistingOwnAccountRequest$ {
                 carrier: z.string(),
                 metadata: z.string().optional(),
                 parameters: z.union([
+                    FedExConnectExistingOwnAccountParameters$.inboundSchema,
                     UPSConnectExistingOwnAccountParameters$.inboundSchema,
                     z.record(z.any()),
                 ]),
@@ -78,7 +104,10 @@ export namespace ConnectExistingOwnAccountRequest$ {
         active?: boolean | undefined;
         carrier: string;
         metadata?: string | undefined;
-        parameters: UPSConnectExistingOwnAccountParameters$.Outbound | Record<string, any>;
+        parameters:
+            | FedExConnectExistingOwnAccountParameters$.Outbound
+            | UPSConnectExistingOwnAccountParameters$.Outbound
+            | Record<string, any>;
         test?: boolean | undefined;
     };
 
@@ -93,6 +122,7 @@ export namespace ConnectExistingOwnAccountRequest$ {
             carrier: z.string(),
             metadata: z.string().optional(),
             parameters: z.union([
+                FedExConnectExistingOwnAccountParameters$.outboundSchema,
                 UPSConnectExistingOwnAccountParameters$.outboundSchema,
                 z.record(z.any()),
             ]),

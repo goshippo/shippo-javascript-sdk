@@ -83,7 +83,14 @@ async function run() {
     carrier: "fedex",
     metadata: "FEDEX Account",
   parameters:     {
-        "key": "<value>",
+        firstName: "Jena",
+        lastName: "Nienow",
+        phoneNumber: "<value>",
+        fromAddressSt: "<value>",
+        fromAddressCity: "<value>",
+        fromAddressState: "<value>",
+        fromAddressZip: "<value>",
+        fromAddressCountryIso2: "<value>",
       },
     test: false,
   });

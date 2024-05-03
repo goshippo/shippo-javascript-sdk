@@ -7,12 +7,19 @@ import {
     CarrierAccountServiceLevel$,
 } from "./carrieraccountservicelevel";
 import {
+    FedExConnectExistingOwnAccountParameters,
+    FedExConnectExistingOwnAccountParameters$,
+} from "./fedexconnectexistingownaccountparameters";
+import {
     UPSConnectExistingOwnAccountParameters,
     UPSConnectExistingOwnAccountParameters$,
 } from "./upsconnectexistingownaccountparameters";
 import * as z from "zod";
 
-export type CarrierAccountParameters = UPSConnectExistingOwnAccountParameters | Record<string, any>;
+export type CarrierAccountParameters =
+    | FedExConnectExistingOwnAccountParameters
+    | UPSConnectExistingOwnAccountParameters
+    | Record<string, any>;
 
 export type CarrierAccount = {
     /**
@@ -37,7 +44,11 @@ export type CarrierAccount = {
      * Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for all supported carriers.
      */
     carrier: string;
-    parameters?: UPSConnectExistingOwnAccountParameters | Record<string, any> | undefined;
+    parameters?:
+        | FedExConnectExistingOwnAccountParameters
+        | UPSConnectExistingOwnAccountParameters
+        | Record<string, any>
+        | undefined;
     /**
      * Carrier name, see <a href="#tag/Carriers">Carriers</a><br>
      */
@@ -61,13 +72,27 @@ export type CarrierAccount = {
 
 /** @internal */
 export namespace CarrierAccountParameters$ {
-    export type Inbound = UPSConnectExistingOwnAccountParameters$.Inbound | Record<string, any>;
+    export type Inbound =
+        | FedExConnectExistingOwnAccountParameters$.Inbound
+        | UPSConnectExistingOwnAccountParameters$.Inbound
+        | Record<string, any>;
 
-    export type Outbound = UPSConnectExistingOwnAccountParameters$.Outbound | Record<string, any>;
+    export type Outbound =
+        | FedExConnectExistingOwnAccountParameters$.Outbound
+        | UPSConnectExistingOwnAccountParameters$.Outbound
+        | Record<string, any>;
     export const inboundSchema: z.ZodType<CarrierAccountParameters, z.ZodTypeDef, Inbound> =
-        z.union([UPSConnectExistingOwnAccountParameters$.inboundSchema, z.record(z.any())]);
+        z.union([
+            FedExConnectExistingOwnAccountParameters$.inboundSchema,
+            UPSConnectExistingOwnAccountParameters$.inboundSchema,
+            z.record(z.any()),
+        ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierAccountParameters> =
-        z.union([UPSConnectExistingOwnAccountParameters$.outboundSchema, z.record(z.any())]);
+        z.union([
+            FedExConnectExistingOwnAccountParameters$.outboundSchema,
+            UPSConnectExistingOwnAccountParameters$.outboundSchema,
+            z.record(z.any()),
+        ]);
 }
 
 /** @internal */
@@ -77,6 +102,7 @@ export namespace CarrierAccount$ {
         active?: boolean | undefined;
         carrier: string;
         parameters?:
+            | FedExConnectExistingOwnAccountParameters$.Inbound
             | UPSConnectExistingOwnAccountParameters$.Inbound
             | Record<string, any>
             | undefined;
@@ -95,7 +121,11 @@ export namespace CarrierAccount$ {
             active: z.boolean().optional(),
             carrier: z.string(),
             parameters: z
-                .union([UPSConnectExistingOwnAccountParameters$.inboundSchema, z.record(z.any())])
+                .union([
+                    FedExConnectExistingOwnAccountParameters$.inboundSchema,
+                    UPSConnectExistingOwnAccountParameters$.inboundSchema,
+                    z.record(z.any()),
+                ])
                 .optional(),
             carrier_name: z.any().optional(),
             is_shippo_account: z.boolean().optional(),
@@ -128,6 +158,7 @@ export namespace CarrierAccount$ {
         active?: boolean | undefined;
         carrier: string;
         parameters?:
+            | FedExConnectExistingOwnAccountParameters$.Outbound
             | UPSConnectExistingOwnAccountParameters$.Outbound
             | Record<string, any>
             | undefined;
@@ -146,7 +177,11 @@ export namespace CarrierAccount$ {
             active: z.boolean().optional(),
             carrier: z.string(),
             parameters: z
-                .union([UPSConnectExistingOwnAccountParameters$.outboundSchema, z.record(z.any())])
+                .union([
+                    FedExConnectExistingOwnAccountParameters$.outboundSchema,
+                    UPSConnectExistingOwnAccountParameters$.outboundSchema,
+                    z.record(z.any()),
+                ])
                 .optional(),
             carrierName: z.any().optional(),
             isShippoAccount: z.boolean().optional(),
