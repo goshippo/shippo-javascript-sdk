@@ -67,6 +67,7 @@ export * from "./departmentnumber";
 export * from "./distanceunitenum";
 export * from "./dryice";
 export * from "./errormessage";
+export * from "./fedexconnectexistingownaccountparameters";
 export * from "./instanttransactioncreaterequest";
 export * from "./instanttransactioncreateresponse";
 export * from "./instanttransactionrate";

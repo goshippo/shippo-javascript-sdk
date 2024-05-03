@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: db7620a252dadc269b483fabc4e1b2a8
+  docChecksum: 86e4fdfb1f96477372bdcf4a7e5bcd6f
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.277.4
-  generationVersion: 2.318.3
-  releaseVersion: 2.1.1
-  configChecksum: 6c4ac705bcb1cba398d1e9998af76f09
+  speakeasyVersion: 1.279.0
+  generationVersion: 2.322.5
+  releaseVersion: 2.1.2
+  configChecksum: e6e7be06ec8b8221580c5588118e9339
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
 features:
   typescript:
     constsAndDefaults: 0.1.5
-    core: 3.9.2
+    core: 3.9.3
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalServerURLs: 2.82.4
@@ -22,7 +22,7 @@ features:
     includes: 2.81.1
     nameOverrides: 2.81.2
     responseFormat: 0.2.3
-    unions: 2.85.3
+    unions: 2.85.4
 generatedFiles:
   - src/sdk/addresses.ts
   - src/sdk/batches.ts
@@ -101,6 +101,7 @@ generatedFiles:
   - src/models/components/carrieraccountpaginatedlist.ts
   - src/models/components/carrieraccountwithextrainfo.ts
   - src/models/components/carrieraccountservicelevel.ts
+  - src/models/components/fedexconnectexistingownaccountparameters.ts
   - src/models/components/upsconnectexistingownaccountparameters.ts
   - src/models/components/carriersenum.ts
   - src/models/components/carrieraccount.ts
@@ -318,6 +319,7 @@ generatedFiles:
   - docs/models/components/objectinfo.md
   - docs/models/components/carrieraccountwithextrainfo.md
   - docs/models/components/carrieraccountservicelevel.md
+  - docs/models/components/fedexconnectexistingownaccountparameters.md
   - docs/models/components/upsconnectexistingownaccountparameters.md
   - docs/models/components/carriersenum.md
   - docs/models/components/carrieraccountparameters.md

@@ -51,27 +51,15 @@ async function run() {
         shipment: {
           customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
           extra: {
-            alcohol: {},
-            billing: {},
             cod: {
               amount: "5.5",
               currency: "USD",
               paymentMethod: PaymentMethod.Cash,
             },
-            customerReference: {},
-            dangerousGoods: {
-              biologicalMaterial: {},
-              lithiumBatteries: {},
-            },
-            deptNumber: {},
-            dryIce: {},
             insurance: {
               amount: "5.5",
               currency: "USD",
             },
-            invoiceNumber: {},
-            poNumber: {},
-            rmaNumber: {},
           },
           metadata: "Customer ID 123456",
           shipmentDate: "2021-03-22T12:00:00Z",
@@ -217,27 +205,15 @@ async function run() {
       shipment: {
         customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
         extra: {
-          alcohol: {},
-          billing: {},
           cod: {
             amount: "5.5",
             currency: "USD",
             paymentMethod: PaymentMethod.Cash,
           },
-          customerReference: {},
-          dangerousGoods: {
-            biologicalMaterial: {},
-            lithiumBatteries: {},
-          },
-          deptNumber: {},
-          dryIce: {},
           insurance: {
             amount: "5.5",
             currency: "USD",
           },
-          invoiceNumber: {},
-          poNumber: {},
-          rmaNumber: {},
         },
         metadata: "Customer ID 123456",
         shipmentDate: "2021-03-22T12:00:00Z",

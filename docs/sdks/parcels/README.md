@@ -70,13 +70,7 @@ Creates a new parcel object.
 
 ```typescript
 import { Shippo } from "shippo";
-import {
-  DistanceUnitEnum,
-  ParcelInsuranceProvider,
-  ParcelTemplateDHLeCommerceEnum,
-  PaymentMethod,
-  WeightUnitEnum,
-} from "shippo/models/components";
+import { DistanceUnitEnum, ParcelInsuranceProvider, PaymentMethod, WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -102,7 +96,6 @@ async function run() {
     height: "1",
     length: "1",
     massUnit: WeightUnitEnum.Lb,
-  template: ParcelTemplateDHLeCommerceEnum.DHLeCIrregular,
     weight: "1",
     width: "1",
   });
