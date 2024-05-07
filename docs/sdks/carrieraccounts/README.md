@@ -135,9 +135,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const carrierAccountId = "<value>";
-  
-  const result = await shippo.carrierAccounts.get(carrierAccountId);
+  const result = await shippo.carrierAccounts.get("<value>");
 
   // Handle the result
   console.log(result)
@@ -179,8 +177,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const carrierAccountId = "<value>";
-  const carrierAccountBase = {
+  const result = await shippo.carrierAccounts.update("<value>", {
     accountId: "****",
     carrier: "usps",
   parameters:     {
@@ -207,9 +204,7 @@ async function run() {
         title: "Manager",
         upsAgreements: false,
       },
-  };
-  
-  const result = await shippo.carrierAccounts.update(carrierAccountId, carrierAccountBase);
+  });
 
   // Handle the result
   console.log(result)
@@ -252,11 +247,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const carrierAccountObjectId = "<value>";
-  const redirectUri = "http://fine-cummerbund.biz";
-  const state = "<value>";
-  
-  const result = await shippo.carrierAccounts.initiateOauth2Signin(carrierAccountObjectId, redirectUri, state);
+  const result = await shippo.carrierAccounts.initiateOauth2Signin("<value>", "http://fine-cummerbund.biz", "<value>");
 
   // Handle the result
   console.log(result)
@@ -349,9 +340,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const carrier = Carrier.Usps;
-  
-  const result = await shippo.carrierAccounts.getRegistrationStatus(carrier);
+  const result = await shippo.carrierAccounts.getRegistrationStatus(Carrier.Usps);
 
   // Handle the result
   console.log(result)

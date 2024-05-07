@@ -33,10 +33,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const page = 1;
-  const results = 5;
-  
-  const result = await shippo.manifests.list(page, results);
+  const result = await shippo.manifests.list(1, 5);
 
   // Handle the result
   console.log(result)
@@ -143,9 +140,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const manifestId = "<value>";
-  
-  const result = await shippo.manifests.get(manifestId);
+  const result = await shippo.manifests.get("<value>");
 
   // Handle the result
   console.log(result)

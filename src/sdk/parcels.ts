@@ -101,7 +101,7 @@ export class Parcels extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -114,7 +114,7 @@ export class Parcels extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -143,21 +143,21 @@ export class Parcels extends ClientSDK {
      * Creates a new parcel object.
      */
     async create(
-        input: components.ParcelRequest | undefined,
+        request: components.ParcelRequest,
         options?: RequestOptions
     ): Promise<components.Parcel> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) => components.ParcelRequest$.outboundSchema.optional().parse(value$),
+            input$,
+            (value$) => components.ParcelRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/parcels")();
 
@@ -187,7 +187,7 @@ export class Parcels extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -200,7 +200,7 @@ export class Parcels extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
@@ -277,7 +277,7 @@ export class Parcels extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -290,7 +290,7 @@ export class Parcels extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();

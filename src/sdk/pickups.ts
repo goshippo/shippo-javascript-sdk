@@ -45,21 +45,21 @@ export class Pickups extends ClientSDK {
      * Creates a pickup object. This request is for a carrier to come to a specified location to take a package for shipping.
      */
     async create(
-        input: components.PickupBase | undefined,
+        request: components.PickupBase,
         options?: RequestOptions
     ): Promise<components.Pickup> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) => components.PickupBase$.outboundSchema.optional().parse(value$),
+            input$,
+            (value$) => components.PickupBase$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/pickups")();
 
@@ -89,7 +89,7 @@ export class Pickups extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -102,7 +102,7 @@ export class Pickups extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();

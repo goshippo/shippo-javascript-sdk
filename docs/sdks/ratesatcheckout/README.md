@@ -101,7 +101,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.ratesAtCheckout.getDefaultParcelTemplate();
+  const result = await shippo.ratesAtCheckout.getDefaultParcelTemplate({});
 
   // Handle the result
   console.log(result)
@@ -114,6 +114,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDefaultParcelTemplateRequest](../../models/operations/getdefaultparceltemplaterequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -142,9 +143,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const objectId = "b958d3690bb04bb8b2986724872750f5";
-  
-  const result = await shippo.ratesAtCheckout.updateDefaultParcelTemplate(objectId);
+  const result = await shippo.ratesAtCheckout.updateDefaultParcelTemplate("b958d3690bb04bb8b2986724872750f5");
 
   // Handle the result
   console.log(result)
@@ -186,7 +185,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.ratesAtCheckout.deleteDefaultParcelTemplate();
+  const result = await shippo.ratesAtCheckout.deleteDefaultParcelTemplate({});
 
   // Handle the result
   console.log(result)
@@ -199,6 +198,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.DeleteDefaultParcelTemplateRequest](../../models/operations/deletedefaultparceltemplaterequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 

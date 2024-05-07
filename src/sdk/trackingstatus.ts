@@ -51,7 +51,7 @@ export class TrackingStatus extends ClientSDK {
         metadata?: string | undefined,
         options?: RequestOptions
     ): Promise<components.Track> {
-        const input$: components.TracksRequest | undefined = {
+        const input$: components.TracksRequest = {
             carrier: carrier,
             trackingNumber: trackingNumber,
             metadata: metadata,
@@ -63,11 +63,10 @@ export class TrackingStatus extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.TracksRequest$.outboundSchema.optional().parse(value$),
+            (value$) => components.TracksRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/tracks")();
 
@@ -97,7 +96,7 @@ export class TrackingStatus extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -110,7 +109,7 @@ export class TrackingStatus extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
@@ -196,7 +195,7 @@ export class TrackingStatus extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -209,7 +208,7 @@ export class TrackingStatus extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();

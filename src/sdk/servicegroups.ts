@@ -46,7 +46,12 @@ export class ServiceGroups extends ClientSDK {
      * @remarks
      * Returns a list of service group objects.
      */
-    async list(options?: RequestOptions): Promise<Array<components.ServiceGroup>> {
+    async list(
+        request: operations.ListServiceGroupsRequest,
+        options?: RequestOptions
+    ): Promise<Array<components.ServiceGroup>> {
+        const input$ = typeof request === "undefined" ? {} : request;
+        void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -79,7 +84,7 @@ export class ServiceGroups extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -91,7 +96,7 @@ export class ServiceGroups extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -120,22 +125,21 @@ export class ServiceGroups extends ClientSDK {
      * Creates a new service group.
      */
     async create(
-        input: components.ServiceGroupCreateRequest | undefined,
+        request: components.ServiceGroupCreateRequest,
         options?: RequestOptions
     ): Promise<components.ServiceGroup> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) =>
-                components.ServiceGroupCreateRequest$.outboundSchema.optional().parse(value$),
+            input$,
+            (value$) => components.ServiceGroupCreateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/service-groups")();
 
@@ -165,7 +169,7 @@ export class ServiceGroups extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -178,7 +182,7 @@ export class ServiceGroups extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
@@ -207,16 +211,17 @@ export class ServiceGroups extends ClientSDK {
      * Updates an existing service group object. <br>The object_id cannot be updated as it is the unique identifier for the object.
      */
     async update(
-        input: components.ServiceGroupUpdateRequest | undefined,
+        request?: components.ServiceGroupUpdateRequest | undefined,
         options?: RequestOptions
     ): Promise<components.ServiceGroup> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) =>
                 components.ServiceGroupUpdateRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
@@ -252,7 +257,7 @@ export class ServiceGroups extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -265,7 +270,7 @@ export class ServiceGroups extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -345,7 +350,7 @@ export class ServiceGroups extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -358,7 +363,7 @@ export class ServiceGroups extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchStatusCode(response, 204)) {
             return;

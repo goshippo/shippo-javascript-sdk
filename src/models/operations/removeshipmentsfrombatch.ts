@@ -12,32 +12,32 @@ export type RemoveShipmentsFromBatchRequest = {
     /**
      * Array of shipments object ids to remove from the batch
      */
-    requestBody?: Array<string> | undefined;
+    requestBody: Array<string>;
 };
 
 /** @internal */
 export namespace RemoveShipmentsFromBatchRequest$ {
     export type Inbound = {
         BatchId: string;
-        RequestBody?: Array<string> | undefined;
+        RequestBody: Array<string>;
     };
 
     export const inboundSchema: z.ZodType<RemoveShipmentsFromBatchRequest, z.ZodTypeDef, Inbound> =
         z
             .object({
                 BatchId: z.string(),
-                RequestBody: z.array(z.string()).optional(),
+                RequestBody: z.array(z.string()),
             })
             .transform((v) => {
                 return {
                     batchId: v.BatchId,
-                    ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
+                    requestBody: v.RequestBody,
                 };
             });
 
     export type Outbound = {
         BatchId: string;
-        RequestBody?: Array<string> | undefined;
+        RequestBody: Array<string>;
     };
 
     export const outboundSchema: z.ZodType<
@@ -47,12 +47,12 @@ export namespace RemoveShipmentsFromBatchRequest$ {
     > = z
         .object({
             batchId: z.string(),
-            requestBody: z.array(z.string()).optional(),
+            requestBody: z.array(z.string()),
         })
         .transform((v) => {
             return {
                 BatchId: v.batchId,
-                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
+                RequestBody: v.requestBody,
             };
         });
 }

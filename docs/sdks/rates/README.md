@@ -27,9 +27,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const rateId = "<value>";
-  
-  const result = await shippo.rates.get(rateId);
+  const result = await shippo.rates.get("<value>");
 
   // Handle the result
   console.log(result)
@@ -71,11 +69,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const shipmentId = "<value>";
-  const page = 1;
-  const results = 25;
-  
-  const result = await shippo.rates.listShipmentRates(shipmentId, page, results);
+  const result = await shippo.rates.listShipmentRates("<value>", 1, 25);
 
   // Handle the result
   console.log(result)

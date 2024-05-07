@@ -28,10 +28,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const page = 1;
-  const results = 5;
-  
-  const result = await shippo.customsDeclarations.list(page, results);
+  const result = await shippo.customsDeclarations.list(1, 5);
 
   // Handle the result
   console.log(result)
@@ -161,10 +158,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const customsDeclarationId = "<value>";
-  const page = 1;
-  
-  const result = await shippo.customsDeclarations.get(customsDeclarationId, page);
+  const result = await shippo.customsDeclarations.get("<value>", 1);
 
   // Handle the result
   console.log(result)

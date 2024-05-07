@@ -50,15 +50,16 @@ export class CarrierAccounts extends ClientSDK {
      * By default, if the query parameter is omitted, the `service_levels` property will not be included in the response.
      */
     async list(
-        input: operations.ListCarrierAccountsRequest,
+        request: operations.ListCarrierAccountsRequest,
         options?: RequestOptions
     ): Promise<components.CarrierAccountPaginatedList> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListCarrierAccountsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -112,7 +113,7 @@ export class CarrierAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -125,7 +126,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -154,24 +155,21 @@ export class CarrierAccounts extends ClientSDK {
      * Creates a new carrier account or connects an existing carrier account to the Shippo account.
      */
     async create(
-        input: components.ConnectExistingOwnAccountRequest | undefined,
+        request: components.ConnectExistingOwnAccountRequest,
         options?: RequestOptions
     ): Promise<components.CarrierAccount> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) =>
-                components.ConnectExistingOwnAccountRequest$.outboundSchema
-                    .optional()
-                    .parse(value$),
+            input$,
+            (value$) => components.ConnectExistingOwnAccountRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/carrier_accounts")();
 
@@ -201,7 +199,7 @@ export class CarrierAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -214,7 +212,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
@@ -296,7 +294,7 @@ export class CarrierAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -309,7 +307,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -394,7 +392,7 @@ export class CarrierAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -407,7 +405,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -502,7 +500,7 @@ export class CarrierAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -515,12 +513,12 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             HttpMeta: {
                 Response: response,
-                Request: request,
+                Request: request$,
             },
         };
 
@@ -594,24 +592,21 @@ export class CarrierAccounts extends ClientSDK {
      * Adds a Shippo carrier account
      */
     async register(
-        input: operations.RegisterCarrierAccountRequestBody | undefined,
+        request: operations.RegisterCarrierAccountRequestBody,
         options?: RequestOptions
     ): Promise<components.CarrierAccount> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) =>
-                operations.RegisterCarrierAccountRequestBody$.outboundSchema
-                    .optional()
-                    .parse(value$),
+            input$,
+            (value$) => operations.RegisterCarrierAccountRequestBody$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/carrier_accounts/register/new")();
 
@@ -641,7 +636,7 @@ export class CarrierAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -654,7 +649,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
@@ -736,7 +731,7 @@ export class CarrierAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -749,7 +744,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();

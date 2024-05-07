@@ -49,21 +49,21 @@ export class RatesAtCheckout extends ClientSDK {
      * template or a fully formed user parcel template object as the parcel value.
      */
     async create(
-        input: components.LiveRateCreateRequest | undefined,
+        request: components.LiveRateCreateRequest,
         options?: RequestOptions
     ): Promise<components.LiveRatePaginatedList> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) => components.LiveRateCreateRequest$.outboundSchema.optional().parse(value$),
+            input$,
+            (value$) => components.LiveRateCreateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/live-rates")();
 
@@ -93,7 +93,7 @@ export class RatesAtCheckout extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -106,7 +106,7 @@ export class RatesAtCheckout extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -135,8 +135,11 @@ export class RatesAtCheckout extends ClientSDK {
      * Retrieve and display the currently configured default parcel template for live rates.
      */
     async getDefaultParcelTemplate(
+        request: operations.GetDefaultParcelTemplateRequest,
         options?: RequestOptions
     ): Promise<components.DefaultParcelTemplate> {
+        const input$ = typeof request === "undefined" ? {} : request;
+        void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -169,7 +172,7 @@ export class RatesAtCheckout extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -181,7 +184,7 @@ export class RatesAtCheckout extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -260,7 +263,7 @@ export class RatesAtCheckout extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -273,7 +276,7 @@ export class RatesAtCheckout extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -302,8 +305,11 @@ export class RatesAtCheckout extends ClientSDK {
      * Clears the currently configured default parcel template for live rates.
      */
     async deleteDefaultParcelTemplate(
+        request: operations.DeleteDefaultParcelTemplateRequest,
         options?: RequestOptions
     ): Promise<operations.DeleteDefaultParcelTemplateResponse | void> {
+        const input$ = typeof request === "undefined" ? {} : request;
+        void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "*/*");
@@ -336,7 +342,7 @@ export class RatesAtCheckout extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -348,7 +354,7 @@ export class RatesAtCheckout extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchStatusCode(response, 204)) {
             return;

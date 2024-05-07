@@ -28,10 +28,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const page = 1;
-  const results = 5;
-  
-  const result = await shippo.addresses.list(page, results);
+  const result = await shippo.addresses.list(1, 5);
 
   // Handle the result
   console.log(result)
@@ -131,9 +128,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const addressId = "<value>";
-  
-  const result = await shippo.addresses.get(addressId);
+  const result = await shippo.addresses.get("<value>");
 
   // Handle the result
   console.log(result)
@@ -175,9 +170,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const addressId = "<value>";
-  
-  const result = await shippo.addresses.validate(addressId);
+  const result = await shippo.addresses.validate("<value>");
 
   // Handle the result
   console.log(result)

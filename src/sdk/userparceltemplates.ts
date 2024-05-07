@@ -46,7 +46,12 @@ export class UserParcelTemplates extends ClientSDK {
      * @remarks
      * Returns a list all of all user parcel template objects.
      */
-    async list(options?: RequestOptions): Promise<Array<components.UserParcelTemplate>> {
+    async list(
+        request: operations.ListUserParcelTemplatesRequest,
+        options?: RequestOptions
+    ): Promise<Array<components.UserParcelTemplate>> {
+        const input$ = typeof request === "undefined" ? {} : request;
+        void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -79,7 +84,7 @@ export class UserParcelTemplates extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -91,7 +96,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -126,22 +131,21 @@ export class UserParcelTemplates extends ClientSDK {
      * and depth, as well as their units."
      */
     async create(
-        input: components.UserParcelTemplateCreateRequest | undefined,
+        request: components.UserParcelTemplateCreateRequest,
         options?: RequestOptions
     ): Promise<components.UserParcelTemplate> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) =>
-                components.UserParcelTemplateCreateRequest$.outboundSchema.optional().parse(value$),
+            input$,
+            (value$) => components.UserParcelTemplateCreateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/user-parcel-templates")();
 
@@ -171,7 +175,7 @@ export class UserParcelTemplates extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -184,7 +188,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -267,7 +271,7 @@ export class UserParcelTemplates extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -280,7 +284,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchStatusCode(response, 204)) {
             return;
@@ -356,7 +360,7 @@ export class UserParcelTemplates extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -369,7 +373,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -457,7 +461,7 @@ export class UserParcelTemplates extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -470,7 +474,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();

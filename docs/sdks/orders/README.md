@@ -38,10 +38,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const page = 1;
-  const results = 25;
-  
-  const result = await shippo.orders.list(page, results);
+  const result = await shippo.orders.list(1, 25);
 
   // Handle the result
   console.log(result)
@@ -188,9 +185,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const orderId = "<value>";
-  
-  const result = await shippo.orders.get(orderId);
+  const result = await shippo.orders.get("<value>");
 
   // Handle the result
   console.log(result)

@@ -151,9 +151,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const batchId = "<value>";
-  
-  const result = await shippo.batches.get(batchId);
+  const result = await shippo.batches.get("<value>");
 
   // Handle the result
   console.log(result)
@@ -196,8 +194,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const batchId = "<value>";
-  const requestBody = [
+  const result = await shippo.batches.addShipments("<value>", [
     {
       carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
       metadata: "SHIPMENT #1",
@@ -244,9 +241,7 @@ async function run() {
         ],
       },
     },
-  ];
-  
-  const result = await shippo.batches.addShipments(batchId, requestBody);
+  ]);
 
   // Handle the result
   console.log(result)
@@ -260,7 +255,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `batchId`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the batch                                                                                                                                                         |
-| `requestBody`                                                                                                                                                                  | [components.BatchShipmentBase](../../models/components/batchshipmentbase.md)[]                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Array of shipments to add to the batch                                                                                                                                         |
+| `requestBody`                                                                                                                                                                  | [components.BatchShipmentBase](../../models/components/batchshipmentbase.md)[]                                                                                                 | :heavy_check_mark:                                                                                                                                                             | Array of shipments to add to the batch                                                                                                                                         |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -292,9 +287,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const batchId = "<value>";
-  
-  const result = await shippo.batches.purchase(batchId);
+  const result = await shippo.batches.purchase("<value>");
 
   // Handle the result
   console.log(result)
@@ -336,12 +329,9 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const batchId = "<value>";
-  const requestBody = [
+  const result = await shippo.batches.removeShipments("<value>", [
     "<value>",
-  ];
-  
-  const result = await shippo.batches.removeShipments(batchId, requestBody);
+  ]);
 
   // Handle the result
   console.log(result)
@@ -355,7 +345,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `batchId`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the batch                                                                                                                                                         |
-| `requestBody`                                                                                                                                                                  | *string*[]                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                             | Array of shipments object ids to remove from the batch                                                                                                                         |
+| `requestBody`                                                                                                                                                                  | *string*[]                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                             | Array of shipments object ids to remove from the batch                                                                                                                         |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 

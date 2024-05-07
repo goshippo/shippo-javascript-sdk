@@ -8,10 +8,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-    const page = 1;
-    const results = 5;
-
-    const result = await shippo.addresses.list(page, results);
+    const result = await shippo.addresses.list(1, 5);
 
     // Handle the result
     console.log(result);
