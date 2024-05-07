@@ -14,7 +14,7 @@ export type Track = {
     /**
      * The sender address with city, state, zip and country information.
      */
-    addressFrom: TrackingStatusLocationBase;
+    addressFrom?: TrackingStatusLocationBase | undefined;
     /**
      * The recipient address with city, state, zip and country information.
      */
@@ -39,7 +39,7 @@ export type Track = {
     /**
      * Contains details regarding the service level for the given rate.
      */
-    servicelevel: ServiceLevel;
+    servicelevel?: ServiceLevel | undefined;
     /**
      * A list of tracking events, following the same structure as <code>tracking_status</code>.
      *
@@ -67,14 +67,14 @@ export type Track = {
 /** @internal */
 export namespace Track$ {
     export type Inbound = {
-        address_from: TrackingStatusLocationBase$.Inbound;
+        address_from?: TrackingStatusLocationBase$.Inbound | undefined;
         address_to?: TrackingStatusLocationBase$.Inbound | undefined;
         carrier: string;
         eta?: string | undefined;
         messages: Array<string>;
         metadata?: string | undefined;
         original_eta?: string | undefined;
-        servicelevel: ServiceLevel$.Inbound;
+        servicelevel?: ServiceLevel$.Inbound | undefined;
         tracking_history: Array<TrackingStatus$.Inbound>;
         tracking_number: string;
         tracking_status?: TrackingStatus$.Inbound | undefined;
@@ -83,7 +83,7 @@ export namespace Track$ {
 
     export const inboundSchema: z.ZodType<Track, z.ZodTypeDef, Inbound> = z
         .object({
-            address_from: TrackingStatusLocationBase$.inboundSchema,
+            address_from: TrackingStatusLocationBase$.inboundSchema.optional(),
             address_to: TrackingStatusLocationBase$.inboundSchema.optional(),
             carrier: z.string(),
             eta: z
@@ -98,7 +98,7 @@ export namespace Track$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
-            servicelevel: ServiceLevel$.inboundSchema,
+            servicelevel: ServiceLevel$.inboundSchema.optional(),
             tracking_history: z.array(TrackingStatus$.inboundSchema),
             tracking_number: z.string(),
             tracking_status: TrackingStatus$.inboundSchema.optional(),
@@ -106,14 +106,14 @@ export namespace Track$ {
         })
         .transform((v) => {
             return {
-                addressFrom: v.address_from,
+                ...(v.address_from === undefined ? null : { addressFrom: v.address_from }),
                 ...(v.address_to === undefined ? null : { addressTo: v.address_to }),
                 carrier: v.carrier,
                 ...(v.eta === undefined ? null : { eta: v.eta }),
                 messages: v.messages,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.original_eta === undefined ? null : { originalEta: v.original_eta }),
-                servicelevel: v.servicelevel,
+                ...(v.servicelevel === undefined ? null : { servicelevel: v.servicelevel }),
                 trackingHistory: v.tracking_history,
                 trackingNumber: v.tracking_number,
                 ...(v.tracking_status === undefined ? null : { trackingStatus: v.tracking_status }),
@@ -122,14 +122,14 @@ export namespace Track$ {
         });
 
     export type Outbound = {
-        address_from: TrackingStatusLocationBase$.Outbound;
+        address_from?: TrackingStatusLocationBase$.Outbound | undefined;
         address_to?: TrackingStatusLocationBase$.Outbound | undefined;
         carrier: string;
         eta?: string | undefined;
         messages: Array<string>;
         metadata?: string | undefined;
         original_eta?: string | undefined;
-        servicelevel: ServiceLevel$.Outbound;
+        servicelevel?: ServiceLevel$.Outbound | undefined;
         tracking_history: Array<TrackingStatus$.Outbound>;
         tracking_number: string;
         tracking_status?: TrackingStatus$.Outbound | undefined;
@@ -138,7 +138,7 @@ export namespace Track$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Track> = z
         .object({
-            addressFrom: TrackingStatusLocationBase$.outboundSchema,
+            addressFrom: TrackingStatusLocationBase$.outboundSchema.optional(),
             addressTo: TrackingStatusLocationBase$.outboundSchema.optional(),
             carrier: z.string(),
             eta: z
@@ -151,7 +151,7 @@ export namespace Track$ {
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-            servicelevel: ServiceLevel$.outboundSchema,
+            servicelevel: ServiceLevel$.outboundSchema.optional(),
             trackingHistory: z.array(TrackingStatus$.outboundSchema),
             trackingNumber: z.string(),
             trackingStatus: TrackingStatus$.outboundSchema.optional(),
@@ -159,14 +159,14 @@ export namespace Track$ {
         })
         .transform((v) => {
             return {
-                address_from: v.addressFrom,
+                ...(v.addressFrom === undefined ? null : { address_from: v.addressFrom }),
                 ...(v.addressTo === undefined ? null : { address_to: v.addressTo }),
                 carrier: v.carrier,
                 ...(v.eta === undefined ? null : { eta: v.eta }),
                 messages: v.messages,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.originalEta === undefined ? null : { original_eta: v.originalEta }),
-                servicelevel: v.servicelevel,
+                ...(v.servicelevel === undefined ? null : { servicelevel: v.servicelevel }),
                 tracking_history: v.trackingHistory,
                 tracking_number: v.trackingNumber,
                 ...(v.trackingStatus === undefined ? null : { tracking_status: v.trackingStatus }),
