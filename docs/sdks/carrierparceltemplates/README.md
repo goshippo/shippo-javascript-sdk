@@ -28,10 +28,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const include = Include.Enabled;
-  const carrier = "fedex";
-  
-  const result = await shippo.carrierParcelTemplates.list(include, carrier);
+  const result = await shippo.carrierParcelTemplates.list(Include.Enabled, "fedex");
 
   // Handle the result
   console.log(result)
@@ -74,9 +71,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const carrierParcelTemplateToken = "<value>";
-  
-  const result = await shippo.carrierParcelTemplates.get(carrierParcelTemplateToken);
+  const result = await shippo.carrierParcelTemplates.get("<value>");
 
   // Handle the result
   console.log(result)

@@ -101,7 +101,7 @@ export class ShippoAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -114,7 +114,7 @@ export class ShippoAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -143,22 +143,21 @@ export class ShippoAccounts extends ClientSDK {
      * Creates a Shippo Account object
      */
     async create(
-        input: components.ShippoAccountUpdateRequest | undefined,
+        request: components.ShippoAccountUpdateRequest,
         options?: RequestOptions
     ): Promise<components.ShippoAccount> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) =>
-                components.ShippoAccountUpdateRequest$.outboundSchema.optional().parse(value$),
+            input$,
+            (value$) => components.ShippoAccountUpdateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/shippo-accounts")();
 
@@ -188,7 +187,7 @@ export class ShippoAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -201,7 +200,7 @@ export class ShippoAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -281,7 +280,7 @@ export class ShippoAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -294,7 +293,7 @@ export class ShippoAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -379,7 +378,7 @@ export class ShippoAccounts extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -392,7 +391,7 @@ export class ShippoAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();

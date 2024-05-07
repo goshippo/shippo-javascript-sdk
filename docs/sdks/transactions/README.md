@@ -121,9 +121,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const transactionId = "<value>";
-  
-  const result = await shippo.transactions.get(transactionId);
+  const result = await shippo.transactions.get("<value>");
 
   // Handle the result
   console.log(result)

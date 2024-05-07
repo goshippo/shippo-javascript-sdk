@@ -30,10 +30,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const page = 1;
-  const results = 25;
-  
-  const result = await shippo.shippoAccounts.list(page, results);
+  const result = await shippo.shippoAccounts.list(1, 25);
 
   // Handle the result
   console.log(result)
@@ -123,9 +120,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const shippoAccountId = "<value>";
-  
-  const result = await shippo.shippoAccounts.get(shippoAccountId);
+  const result = await shippo.shippoAccounts.get("<value>");
 
   // Handle the result
   console.log(result)
@@ -167,15 +162,12 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const shippoAccountId = "<value>";
-  const shippoAccountUpdateRequest = {
+  const result = await shippo.shippoAccounts.update("<value>", {
     email: "hippo@shippo.com",
     firstName: "Shippo",
     lastName: "Meister",
     companyName: "Acme",
-  };
-  
-  const result = await shippo.shippoAccounts.update(shippoAccountId, shippoAccountUpdateRequest);
+  });
 
   // Handle the result
   console.log(result)

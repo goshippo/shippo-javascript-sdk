@@ -50,7 +50,7 @@ export class Refunds extends ClientSDK {
         async?: boolean | undefined,
         options?: RequestOptions
     ): Promise<components.Refund> {
-        const input$: components.RefundRequestBody | undefined = {
+        const input$: components.RefundRequestBody = {
             transaction: transaction,
             async: async,
         };
@@ -61,11 +61,10 @@ export class Refunds extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.RefundRequestBody$.outboundSchema.optional().parse(value$),
+            (value$) => components.RefundRequestBody$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/refunds")();
 
@@ -95,7 +94,7 @@ export class Refunds extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -108,7 +107,7 @@ export class Refunds extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
@@ -136,7 +135,12 @@ export class Refunds extends ClientSDK {
      * @remarks
      * Returns a list all refund objects.
      */
-    async list(options?: RequestOptions): Promise<components.RefundPaginatedList> {
+    async list(
+        request: operations.ListRefundsRequest,
+        options?: RequestOptions
+    ): Promise<components.RefundPaginatedList> {
+        const input$ = typeof request === "undefined" ? {} : request;
+        void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -169,7 +173,7 @@ export class Refunds extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -181,7 +185,7 @@ export class Refunds extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -258,7 +262,7 @@ export class Refunds extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -271,7 +275,7 @@ export class Refunds extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();

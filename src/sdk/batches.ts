@@ -46,21 +46,21 @@ export class Batches extends ClientSDK {
      * Creates a new batch object for purchasing shipping labels for many shipments at once. Batches are created asynchronously. This means that the API response won't include your batch shipments yet. You need to retrieve the batch later to verify that all batch shipments are valid.
      */
     async create(
-        input: components.BatchCreateRequest | undefined,
+        request: components.BatchCreateRequest,
         options?: RequestOptions
     ): Promise<components.Batch> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
-            (value$) => components.BatchCreateRequest$.outboundSchema.optional().parse(value$),
+            input$,
+            (value$) => components.BatchCreateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/batches")();
 
@@ -90,7 +90,7 @@ export class Batches extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -103,7 +103,7 @@ export class Batches extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -183,7 +183,7 @@ export class Batches extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -196,7 +196,7 @@ export class Batches extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -226,7 +226,7 @@ export class Batches extends ClientSDK {
      */
     async addShipments(
         batchId: string,
-        requestBody?: Array<components.BatchShipmentBase> | undefined,
+        requestBody: Array<components.BatchShipmentBase>,
         options?: RequestOptions
     ): Promise<components.Batch> {
         const input$: operations.AddShipmentsToBatchRequest = {
@@ -279,7 +279,7 @@ export class Batches extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -292,7 +292,7 @@ export class Batches extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -372,7 +372,7 @@ export class Batches extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -385,7 +385,7 @@ export class Batches extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
@@ -415,7 +415,7 @@ export class Batches extends ClientSDK {
      */
     async removeShipments(
         batchId: string,
-        requestBody?: Array<string> | undefined,
+        requestBody: Array<string>,
         options?: RequestOptions
     ): Promise<components.Batch> {
         const input$: operations.RemoveShipmentsFromBatchRequest = {
@@ -468,7 +468,7 @@ export class Batches extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -481,7 +481,7 @@ export class Batches extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();

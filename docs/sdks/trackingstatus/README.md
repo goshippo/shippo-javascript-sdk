@@ -35,11 +35,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const carrier = "usps";
-  const trackingNumber = "9205590164917312751089";
-  const metadata = "Order 000123";
-  
-  const result = await shippo.trackingStatus.create(carrier, trackingNumber, metadata);
+  const result = await shippo.trackingStatus.create("usps", "9205590164917312751089", "Order 000123");
 
   // Handle the result
   console.log(result)
@@ -83,10 +79,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const trackingNumber = "<value>";
-  const carrier = "<value>";
-  
-  const result = await shippo.trackingStatus.get(trackingNumber, carrier);
+  const result = await shippo.trackingStatus.get("<value>", "<value>");
 
   // Handle the result
   console.log(result)

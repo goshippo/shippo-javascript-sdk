@@ -48,10 +48,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const page = 1;
-  const results = 25;
-  
-  const result = await shippo.shipments.list(page, results);
+  const result = await shippo.shipments.list(1, 25);
 
   // Handle the result
   console.log(result)
@@ -192,9 +189,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const shipmentId = "<value>";
-  
-  const result = await shippo.shipments.get(shipmentId);
+  const result = await shippo.shipments.get("<value>");
 
   // Handle the result
   console.log(result)

@@ -13,42 +13,42 @@ export type AddShipmentsToBatchRequest = {
     /**
      * Array of shipments to add to the batch
      */
-    requestBody?: Array<components.BatchShipmentBase> | undefined;
+    requestBody: Array<components.BatchShipmentBase>;
 };
 
 /** @internal */
 export namespace AddShipmentsToBatchRequest$ {
     export type Inbound = {
         BatchId: string;
-        RequestBody?: Array<components.BatchShipmentBase$.Inbound> | undefined;
+        RequestBody: Array<components.BatchShipmentBase$.Inbound>;
     };
 
     export const inboundSchema: z.ZodType<AddShipmentsToBatchRequest, z.ZodTypeDef, Inbound> = z
         .object({
             BatchId: z.string(),
-            RequestBody: z.array(components.BatchShipmentBase$.inboundSchema).optional(),
+            RequestBody: z.array(components.BatchShipmentBase$.inboundSchema),
         })
         .transform((v) => {
             return {
                 batchId: v.BatchId,
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
+                requestBody: v.RequestBody,
             };
         });
 
     export type Outbound = {
         BatchId: string;
-        RequestBody?: Array<components.BatchShipmentBase$.Outbound> | undefined;
+        RequestBody: Array<components.BatchShipmentBase$.Outbound>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddShipmentsToBatchRequest> = z
         .object({
             batchId: z.string(),
-            requestBody: z.array(components.BatchShipmentBase$.outboundSchema).optional(),
+            requestBody: z.array(components.BatchShipmentBase$.outboundSchema),
         })
         .transform((v) => {
             return {
                 BatchId: v.batchId,
-                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
+                RequestBody: v.requestBody,
             };
         });
 }

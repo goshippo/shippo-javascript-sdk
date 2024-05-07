@@ -34,7 +34,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.userParcelTemplates.list();
+  const result = await shippo.userParcelTemplates.list({});
 
   // Handle the result
   console.log(result)
@@ -47,6 +47,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ListUserParcelTemplatesRequest](../../models/operations/listuserparceltemplatesrequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -127,9 +128,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const userParcelTemplateObjectId = "<value>";
-  
-  const result = await shippo.userParcelTemplates.delete(userParcelTemplateObjectId);
+  const result = await shippo.userParcelTemplates.delete("<value>");
 
   // Handle the result
   console.log(result)
@@ -172,9 +171,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const userParcelTemplateObjectId = "<value>";
-  
-  const result = await shippo.userParcelTemplates.get(userParcelTemplateObjectId);
+  const result = await shippo.userParcelTemplates.get("<value>");
 
   // Handle the result
   console.log(result)
@@ -217,8 +214,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const userParcelTemplateObjectId = "<value>";
-  const userParcelTemplateUpdateRequest = {
+  const result = await shippo.userParcelTemplates.update("<value>", {
     distanceUnit: DistanceUnitEnum.In,
     height: "6",
     length: "10",
@@ -226,9 +222,7 @@ async function run() {
     weight: "12",
     weightUnit: WeightUnitEnum.Lb,
     width: "8",
-  };
-  
-  const result = await shippo.userParcelTemplates.update(userParcelTemplateObjectId, userParcelTemplateUpdateRequest);
+  });
 
   // Handle the result
   console.log(result)
