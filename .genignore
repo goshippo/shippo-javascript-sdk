@@ -1,0 +1,2 @@
+# manually export the shared models from the top level package
+src/index.ts
