@@ -23,7 +23,7 @@ typescript:
       tsx: ^4.7.2
     peerDependencies: {}
   additionalPackageJSON: {}
-  author: Speakeasy
+  author: Shippo
   clientServerStatusCodesAsErrors: true
   enumFormat: enum
   flattenGlobalSecurity: true
