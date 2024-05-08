@@ -135,11 +135,8 @@ export class Refunds extends ClientSDK {
      * @remarks
      * Returns a list all refund objects.
      */
-    async list(
-        request: operations.ListRefundsRequest,
-        options?: RequestOptions
-    ): Promise<components.RefundPaginatedList> {
-        const input$ = typeof request === "undefined" ? {} : request;
+    async list(options?: RequestOptions): Promise<components.RefundPaginatedList> {
+        const input$: operations.ListRefundsRequest = {};
         void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);

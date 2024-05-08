@@ -135,10 +135,9 @@ export class RatesAtCheckout extends ClientSDK {
      * Retrieve and display the currently configured default parcel template for live rates.
      */
     async getDefaultParcelTemplate(
-        request: operations.GetDefaultParcelTemplateRequest,
         options?: RequestOptions
     ): Promise<components.DefaultParcelTemplate> {
-        const input$ = typeof request === "undefined" ? {} : request;
+        const input$: operations.GetDefaultParcelTemplateRequest = {};
         void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -305,10 +304,9 @@ export class RatesAtCheckout extends ClientSDK {
      * Clears the currently configured default parcel template for live rates.
      */
     async deleteDefaultParcelTemplate(
-        request: operations.DeleteDefaultParcelTemplateRequest,
         options?: RequestOptions
     ): Promise<operations.DeleteDefaultParcelTemplateResponse | void> {
-        const input$ = typeof request === "undefined" ? {} : request;
+        const input$: operations.DeleteDefaultParcelTemplateRequest = {};
         void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);

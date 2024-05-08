@@ -3,6 +3,10 @@
  */
 
 import { AddressCreateRequest, AddressCreateRequest$ } from "./addresscreaterequest";
+import {
+    CustomsDeclarationCreateRequest,
+    CustomsDeclarationCreateRequest$,
+} from "./customsdeclarationcreaterequest";
 import { ParcelCreateRequest, ParcelCreateRequest$ } from "./parcelcreaterequest";
 import { ShipmentExtra, ShipmentExtra$ } from "./shipmentextra";
 import * as z from "zod";
@@ -13,13 +17,11 @@ export type AddressReturn = AddressCreateRequest | string;
 
 export type AddressTo = AddressCreateRequest | string;
 
+export type ShipmentCreateRequestCustomsDeclaration = CustomsDeclarationCreateRequest | string;
+
 export type Parcels = ParcelCreateRequest | string;
 
 export type ShipmentCreateRequest = {
-    /**
-     * ID of the Customs Declarations object for an international shipment.
-     */
-    customsDeclaration?: string | undefined;
     /**
      * An object holding optional extra services to be requested.
      */
@@ -39,6 +41,7 @@ export type ShipmentCreateRequest = {
     addressFrom: AddressCreateRequest | string;
     addressReturn?: AddressCreateRequest | string | undefined;
     addressTo: AddressCreateRequest | string;
+    customsDeclaration?: CustomsDeclarationCreateRequest | string | undefined;
     async?: boolean | undefined;
     /**
      * List of <a href="#tag/Carrier-Accounts/">Carrier Accounts</a> `object_id`s used to filter
@@ -96,6 +99,23 @@ export namespace AddressTo$ {
 }
 
 /** @internal */
+export namespace ShipmentCreateRequestCustomsDeclaration$ {
+    export type Inbound = CustomsDeclarationCreateRequest$.Inbound | string;
+
+    export type Outbound = CustomsDeclarationCreateRequest$.Outbound | string;
+    export const inboundSchema: z.ZodType<
+        ShipmentCreateRequestCustomsDeclaration,
+        z.ZodTypeDef,
+        Inbound
+    > = z.union([CustomsDeclarationCreateRequest$.inboundSchema, z.string()]);
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        ShipmentCreateRequestCustomsDeclaration
+    > = z.union([CustomsDeclarationCreateRequest$.outboundSchema, z.string()]);
+}
+
+/** @internal */
 export namespace Parcels$ {
     export type Inbound = ParcelCreateRequest$.Inbound | string;
 
@@ -113,13 +133,13 @@ export namespace Parcels$ {
 /** @internal */
 export namespace ShipmentCreateRequest$ {
     export type Inbound = {
-        customs_declaration?: string | undefined;
         extra?: ShipmentExtra$.Inbound | undefined;
         metadata?: string | undefined;
         shipment_date?: string | undefined;
         address_from: AddressCreateRequest$.Inbound | string;
         address_return?: AddressCreateRequest$.Inbound | string | undefined;
         address_to: AddressCreateRequest$.Inbound | string;
+        customs_declaration?: CustomsDeclarationCreateRequest$.Inbound | string | undefined;
         async?: boolean | undefined;
         carrier_accounts?: Array<string> | undefined;
         parcels: Array<ParcelCreateRequest$.Inbound | string>;
@@ -127,28 +147,30 @@ export namespace ShipmentCreateRequest$ {
 
     export const inboundSchema: z.ZodType<ShipmentCreateRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            customs_declaration: z.string().optional(),
             extra: ShipmentExtra$.inboundSchema.optional(),
             metadata: z.string().optional(),
             shipment_date: z.string().optional(),
             address_from: z.union([AddressCreateRequest$.inboundSchema, z.string()]),
             address_return: z.union([AddressCreateRequest$.inboundSchema, z.string()]).optional(),
             address_to: z.union([AddressCreateRequest$.inboundSchema, z.string()]),
+            customs_declaration: z
+                .union([CustomsDeclarationCreateRequest$.inboundSchema, z.string()])
+                .optional(),
             async: z.boolean().optional(),
             carrier_accounts: z.array(z.string()).optional(),
             parcels: z.array(z.union([ParcelCreateRequest$.inboundSchema, z.string()])),
         })
         .transform((v) => {
             return {
-                ...(v.customs_declaration === undefined
-                    ? null
-                    : { customsDeclaration: v.customs_declaration }),
                 ...(v.extra === undefined ? null : { extra: v.extra }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.shipment_date === undefined ? null : { shipmentDate: v.shipment_date }),
                 addressFrom: v.address_from,
                 ...(v.address_return === undefined ? null : { addressReturn: v.address_return }),
                 addressTo: v.address_to,
+                ...(v.customs_declaration === undefined
+                    ? null
+                    : { customsDeclaration: v.customs_declaration }),
                 ...(v.async === undefined ? null : { async: v.async }),
                 ...(v.carrier_accounts === undefined
                     ? null
@@ -158,13 +180,13 @@ export namespace ShipmentCreateRequest$ {
         });
 
     export type Outbound = {
-        customs_declaration?: string | undefined;
         extra?: ShipmentExtra$.Outbound | undefined;
         metadata?: string | undefined;
         shipment_date?: string | undefined;
         address_from: AddressCreateRequest$.Outbound | string;
         address_return?: AddressCreateRequest$.Outbound | string | undefined;
         address_to: AddressCreateRequest$.Outbound | string;
+        customs_declaration?: CustomsDeclarationCreateRequest$.Outbound | string | undefined;
         async?: boolean | undefined;
         carrier_accounts?: Array<string> | undefined;
         parcels: Array<ParcelCreateRequest$.Outbound | string>;
@@ -172,28 +194,30 @@ export namespace ShipmentCreateRequest$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ShipmentCreateRequest> = z
         .object({
-            customsDeclaration: z.string().optional(),
             extra: ShipmentExtra$.outboundSchema.optional(),
             metadata: z.string().optional(),
             shipmentDate: z.string().optional(),
             addressFrom: z.union([AddressCreateRequest$.outboundSchema, z.string()]),
             addressReturn: z.union([AddressCreateRequest$.outboundSchema, z.string()]).optional(),
             addressTo: z.union([AddressCreateRequest$.outboundSchema, z.string()]),
+            customsDeclaration: z
+                .union([CustomsDeclarationCreateRequest$.outboundSchema, z.string()])
+                .optional(),
             async: z.boolean().optional(),
             carrierAccounts: z.array(z.string()).optional(),
             parcels: z.array(z.union([ParcelCreateRequest$.outboundSchema, z.string()])),
         })
         .transform((v) => {
             return {
-                ...(v.customsDeclaration === undefined
-                    ? null
-                    : { customs_declaration: v.customsDeclaration }),
                 ...(v.extra === undefined ? null : { extra: v.extra }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.shipmentDate === undefined ? null : { shipment_date: v.shipmentDate }),
                 address_from: v.addressFrom,
                 ...(v.addressReturn === undefined ? null : { address_return: v.addressReturn }),
                 address_to: v.addressTo,
+                ...(v.customsDeclaration === undefined
+                    ? null
+                    : { customs_declaration: v.customsDeclaration }),
                 ...(v.async === undefined ? null : { async: v.async }),
                 ...(v.carrierAccounts === undefined
                     ? null

@@ -84,7 +84,7 @@ Creates a new shipment object.
 
 ```typescript
 import { Shippo } from "shippo";
-import { PaymentMethod } from "shippo/models/components";
+import { DistanceUnitEnum, PaymentMethod, WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -93,7 +93,6 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.shipments.create({
-    customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
     extra: {
       cod: {
         amount: "5.5",
@@ -139,13 +138,22 @@ async function run() {
         metadata: "Customer ID 123456",
         validate: true,
       },
-  addressTo: "<value>",
+  addressTo: "d799c2679e644279b59fe661ac8fa489",
+  customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
     carrierAccounts: [
       "065a4a8c10d24a34ab932163a1b87f52",
       "73f706f4bdb94b54a337563840ce52b0",
     ],
     parcels: [
-      "<value>",
+        {
+          distanceUnit: DistanceUnitEnum.In,
+          height: "1",
+          length: "1",
+          massUnit: WeightUnitEnum.Lb,
+          weight: "1",
+          width: "1",
+          metadata: "Customer ID 123456",
+        },
     ],
   });
 

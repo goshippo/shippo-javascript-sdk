@@ -3,6 +3,7 @@
  */
 
 import { Address, Address$ } from "./address";
+import { CustomsDeclaration, CustomsDeclaration$ } from "./customsdeclaration";
 import { Parcel, Parcel$ } from "./parcel";
 import { Rate, Rate$ } from "./rate";
 import { ShipmentExtra, ShipmentExtra$ } from "./shipmentextra";
@@ -33,10 +34,6 @@ export enum ShipmentStatus {
  * Shipment represents the parcel as retrieved from the database
  */
 export type Shipment = {
-    /**
-     * ID of the Customs Declarations object for an international shipment.
-     */
-    customsDeclaration?: string | undefined;
     /**
      * An object holding optional extra services to be requested.
      */
@@ -77,6 +74,7 @@ export type Shipment = {
      * carrier accounts that have the `active` field set.
      */
     carrierAccounts: Array<string>;
+    customsDeclaration?: CustomsDeclaration | undefined;
     /**
      * An array containing elements of the following schema:<br>`code` (string): an identifier for the corresponding message
      *
@@ -176,7 +174,6 @@ export const ShipmentStatus$: z.ZodNativeEnum<typeof ShipmentStatus> = z.nativeE
 /** @internal */
 export namespace Shipment$ {
     export type Inbound = {
-        customs_declaration?: string | undefined;
         extra?: ShipmentExtra$.Inbound | undefined;
         metadata: string;
         shipment_date?: string | undefined;
@@ -184,6 +181,7 @@ export namespace Shipment$ {
         address_return?: Address$.Inbound | undefined;
         address_to: Address$.Inbound;
         carrier_accounts: Array<string>;
+        customs_declaration?: CustomsDeclaration$.Inbound | undefined;
         messages: Array<Messages$.Inbound>;
         object_created: string;
         object_id: string;
@@ -197,7 +195,6 @@ export namespace Shipment$ {
 
     export const inboundSchema: z.ZodType<Shipment, z.ZodTypeDef, Inbound> = z
         .object({
-            customs_declaration: z.string().optional(),
             extra: ShipmentExtra$.inboundSchema.optional(),
             metadata: z.string(),
             shipment_date: z.string().optional(),
@@ -205,6 +202,7 @@ export namespace Shipment$ {
             address_return: Address$.inboundSchema.optional(),
             address_to: Address$.inboundSchema,
             carrier_accounts: z.array(z.string()),
+            customs_declaration: CustomsDeclaration$.inboundSchema.optional(),
             messages: z.array(z.lazy(() => Messages$.inboundSchema)),
             object_created: z
                 .string()
@@ -223,9 +221,6 @@ export namespace Shipment$ {
         })
         .transform((v) => {
             return {
-                ...(v.customs_declaration === undefined
-                    ? null
-                    : { customsDeclaration: v.customs_declaration }),
                 ...(v.extra === undefined ? null : { extra: v.extra }),
                 metadata: v.metadata,
                 ...(v.shipment_date === undefined ? null : { shipmentDate: v.shipment_date }),
@@ -233,6 +228,9 @@ export namespace Shipment$ {
                 ...(v.address_return === undefined ? null : { addressReturn: v.address_return }),
                 addressTo: v.address_to,
                 carrierAccounts: v.carrier_accounts,
+                ...(v.customs_declaration === undefined
+                    ? null
+                    : { customsDeclaration: v.customs_declaration }),
                 messages: v.messages,
                 objectCreated: v.object_created,
                 objectId: v.object_id,
@@ -246,7 +244,6 @@ export namespace Shipment$ {
         });
 
     export type Outbound = {
-        customs_declaration?: string | undefined;
         extra?: ShipmentExtra$.Outbound | undefined;
         metadata: string;
         shipment_date?: string | undefined;
@@ -254,6 +251,7 @@ export namespace Shipment$ {
         address_return?: Address$.Outbound | undefined;
         address_to: Address$.Outbound;
         carrier_accounts: Array<string>;
+        customs_declaration?: CustomsDeclaration$.Outbound | undefined;
         messages: Array<Messages$.Outbound>;
         object_created: string;
         object_id: string;
@@ -267,7 +265,6 @@ export namespace Shipment$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Shipment> = z
         .object({
-            customsDeclaration: z.string().optional(),
             extra: ShipmentExtra$.outboundSchema.optional(),
             metadata: z.string(),
             shipmentDate: z.string().optional(),
@@ -275,6 +272,7 @@ export namespace Shipment$ {
             addressReturn: Address$.outboundSchema.optional(),
             addressTo: Address$.outboundSchema,
             carrierAccounts: z.array(z.string()),
+            customsDeclaration: CustomsDeclaration$.outboundSchema.optional(),
             messages: z.array(z.lazy(() => Messages$.outboundSchema)),
             objectCreated: z.date().transform((v) => v.toISOString()),
             objectId: z.string(),
@@ -287,9 +285,6 @@ export namespace Shipment$ {
         })
         .transform((v) => {
             return {
-                ...(v.customsDeclaration === undefined
-                    ? null
-                    : { customs_declaration: v.customsDeclaration }),
                 ...(v.extra === undefined ? null : { extra: v.extra }),
                 metadata: v.metadata,
                 ...(v.shipmentDate === undefined ? null : { shipment_date: v.shipmentDate }),
@@ -297,6 +292,9 @@ export namespace Shipment$ {
                 ...(v.addressReturn === undefined ? null : { address_return: v.addressReturn }),
                 address_to: v.addressTo,
                 carrier_accounts: v.carrierAccounts,
+                ...(v.customsDeclaration === undefined
+                    ? null
+                    : { customs_declaration: v.customsDeclaration }),
                 messages: v.messages,
                 object_created: v.objectCreated,
                 object_id: v.objectId,

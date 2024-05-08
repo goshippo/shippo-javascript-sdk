@@ -46,11 +46,8 @@ export class UserParcelTemplates extends ClientSDK {
      * @remarks
      * Returns a list all of all user parcel template objects.
      */
-    async list(
-        request: operations.ListUserParcelTemplatesRequest,
-        options?: RequestOptions
-    ): Promise<Array<components.UserParcelTemplate>> {
-        const input$ = typeof request === "undefined" ? {} : request;
+    async list(options?: RequestOptions): Promise<Array<components.UserParcelTemplate>> {
+        const input$: operations.ListUserParcelTemplatesRequest = {};
         void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
