@@ -22,7 +22,8 @@ typescript:
       mocha: ^10.4.0
       tsx: ^4.7.2
     peerDependencies: {}
-  additionalPackageJSON: {}
+  additionalPackageJSON:
+    license: MIT
   author: Shippo
   clientServerStatusCodesAsErrors: true
   enumFormat: enum
