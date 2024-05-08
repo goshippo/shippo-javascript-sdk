@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: d62820c03783a98d936dcb8ec292e50f
+  docChecksum: 8c6e19ddb4c6e6af67e3c46a53afb372
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.283.0
-  generationVersion: 2.326.0
-  releaseVersion: 2.2.0
-  configChecksum: 33a388e3218cb888ad053389fc8f5434
+  speakeasyVersion: 1.285.0
+  generationVersion: 2.326.3
+  releaseVersion: 2.2.1
+  configChecksum: 71702f7c3698f6a0c02cbce29217ac9e
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -84,6 +84,14 @@ generatedFiles:
   - src/models/components/parceltemplateenumset.ts
   - src/models/components/weightunitenum.ts
   - src/models/components/distanceunitenum.ts
+  - src/models/components/customsdeclarationcreaterequest.ts
+  - src/models/components/customsitemcreaterequest.ts
+  - src/models/components/addressimporter.ts
+  - src/models/components/customsdeclarationnondeliveryoptionenum.ts
+  - src/models/components/customsdeclarationincotermenum.ts
+  - src/models/components/customsdeclarationeelpfcenum.ts
+  - src/models/components/customsdeclarationcontentstypeenum.ts
+  - src/models/components/customsdeclarationb13afilingoptionenum.ts
   - src/models/components/shipmentextra.ts
   - src/models/components/rmanumber.ts
   - src/models/components/ponumber.ts
@@ -134,14 +142,6 @@ generatedFiles:
   - src/models/components/customsinvoicedcharges.ts
   - src/models/components/customsexporteridentification.ts
   - src/models/components/customstaxidentification.ts
-  - src/models/components/customsdeclarationnondeliveryoptionenum.ts
-  - src/models/components/customsdeclarationincotermenum.ts
-  - src/models/components/customsdeclarationeelpfcenum.ts
-  - src/models/components/customsdeclarationcontentstypeenum.ts
-  - src/models/components/customsdeclarationb13afilingoptionenum.ts
-  - src/models/components/customsdeclarationcreaterequest.ts
-  - src/models/components/customsitemcreaterequest.ts
-  - src/models/components/addressimporter.ts
   - src/models/components/customsitempaginatedlist.ts
   - src/models/components/customsitem.ts
   - src/models/components/liveratepaginatedlist.ts
@@ -274,6 +274,7 @@ generatedFiles:
   - docs/models/components/addressfrom.md
   - docs/models/components/addressreturn.md
   - docs/models/components/addressto.md
+  - docs/models/components/shipmentcreaterequestcustomsdeclaration.md
   - docs/models/components/parcels.md
   - docs/models/components/shipmentcreaterequest.md
   - docs/models/components/parcelcreaterequest.md
@@ -287,6 +288,14 @@ generatedFiles:
   - docs/models/components/parceltemplateenumset.md
   - docs/models/components/weightunitenum.md
   - docs/models/components/distanceunitenum.md
+  - docs/models/components/customsdeclarationcreaterequest.md
+  - docs/models/components/customsitemcreaterequest.md
+  - docs/models/components/addressimporter.md
+  - docs/models/components/customsdeclarationnondeliveryoptionenum.md
+  - docs/models/components/customsdeclarationincotermenum.md
+  - docs/models/components/customsdeclarationeelpfcenum.md
+  - docs/models/components/customsdeclarationcontentstypeenum.md
+  - docs/models/components/customsdeclarationb13afilingoptionenum.md
   - docs/models/components/ancillaryendorsement.md
   - docs/models/components/dangerousgoodscode.md
   - docs/models/components/lasershipattrs.md
@@ -368,14 +377,6 @@ generatedFiles:
   - docs/models/components/customsexporteridentification.md
   - docs/models/components/customstaxidentificationtype.md
   - docs/models/components/customstaxidentification.md
-  - docs/models/components/customsdeclarationnondeliveryoptionenum.md
-  - docs/models/components/customsdeclarationincotermenum.md
-  - docs/models/components/customsdeclarationeelpfcenum.md
-  - docs/models/components/customsdeclarationcontentstypeenum.md
-  - docs/models/components/customsdeclarationb13afilingoptionenum.md
-  - docs/models/components/customsdeclarationcreaterequest.md
-  - docs/models/components/customsitemcreaterequest.md
-  - docs/models/components/addressimporter.md
   - docs/models/components/customsitempaginatedlist.md
   - docs/models/components/customsitem.md
   - docs/models/components/liveratepaginatedlist.md

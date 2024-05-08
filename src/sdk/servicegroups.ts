@@ -46,11 +46,8 @@ export class ServiceGroups extends ClientSDK {
      * @remarks
      * Returns a list of service group objects.
      */
-    async list(
-        request: operations.ListServiceGroupsRequest,
-        options?: RequestOptions
-    ): Promise<Array<components.ServiceGroup>> {
-        const input$ = typeof request === "undefined" ? {} : request;
+    async list(options?: RequestOptions): Promise<Array<components.ServiceGroup>> {
+        const input$: operations.ListServiceGroupsRequest = {};
         void input$; // request input is unused
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
