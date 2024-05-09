@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 8c6e19ddb4c6e6af67e3c46a53afb372
+  docChecksum: 53a065d9c2bd7f9f3d4a2c3335d2cbee
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.285.0
+  speakeasyVersion: 1.285.1
   generationVersion: 2.326.3
-  releaseVersion: 2.2.1
-  configChecksum: 71702f7c3698f6a0c02cbce29217ac9e
+  releaseVersion: 2.2.2
+  configChecksum: 26df178a9e13134d024d654a1646ae2d
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -78,7 +78,7 @@ generatedFiles:
   - src/models/components/batch.ts
   - src/models/components/batchshipmentpaginatedlist.ts
   - src/models/components/batchshipment.ts
-  - src/models/components/errormessage.ts
+  - src/models/components/batchshipmenterrormessage.ts
   - src/models/components/shipmentcreaterequest.ts
   - src/models/components/parcelcreaterequest.ts
   - src/models/components/parceltemplateenumset.ts
@@ -171,7 +171,7 @@ generatedFiles:
   - src/models/components/pickupbase.ts
   - src/models/components/rate.ts
   - src/models/components/servicelevel.ts
-  - src/models/components/ratemessage.ts
+  - src/models/components/responsemessage.ts
   - src/models/components/ratepaginatedlist.ts
   - src/models/components/refund.ts
   - src/models/components/refundrequestbody.ts
@@ -270,7 +270,7 @@ generatedFiles:
   - docs/models/components/batchshipmentpaginatedlist.md
   - docs/models/components/status.md
   - docs/models/components/batchshipment.md
-  - docs/models/components/errormessage.md
+  - docs/models/components/batchshipmenterrormessage.md
   - docs/models/components/addressfrom.md
   - docs/models/components/addressreturn.md
   - docs/models/components/addressto.md
@@ -418,7 +418,7 @@ generatedFiles:
   - docs/models/components/attributes.md
   - docs/models/components/rate.md
   - docs/models/components/servicelevel.md
-  - docs/models/components/ratemessage.md
+  - docs/models/components/responsemessage.md
   - docs/models/components/ratepaginatedlist.md
   - docs/models/components/refundstatus.md
   - docs/models/components/refund.md
@@ -430,7 +430,6 @@ generatedFiles:
   - docs/models/components/servicegroupaccountandservicelevel.md
   - docs/models/components/servicegroupupdaterequest.md
   - docs/models/components/shipmentpaginatedlist.md
-  - docs/models/components/messages.md
   - docs/models/components/shipmentstatus.md
   - docs/models/components/shipment.md
   - docs/models/components/track.md
@@ -440,12 +439,10 @@ generatedFiles:
   - docs/models/components/trackingstatuslocationbase.md
   - docs/models/components/tracksrequest.md
   - docs/models/components/transactionpaginatedlist.md
-  - docs/models/components/transactionmessages.md
   - docs/models/components/responsetype.md
   - docs/models/components/transaction.md
   - docs/models/components/transactionstatusenum.md
   - docs/models/components/transactioncreateresponse.md
-  - docs/models/components/instanttransactioncreateresponsemessages.md
   - docs/models/components/instanttransactioncreateresponseresponsetype.md
   - docs/models/components/instanttransactioncreateresponse.md
   - docs/models/components/instanttransactionrate.md

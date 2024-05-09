@@ -4,21 +4,36 @@
 
 import * as z from "zod";
 
-export type RateMessage = {
+/**
+ * Message returned with supporting information from a request. In some cases this can be an error message,
+ *
+ * @remarks
+ * for example a timeout from a carrier. If available, the origin of the message is displayed in `source`.
+ */
+export type ResponseMessage = {
+    /**
+     * Origin of message
+     */
     source?: string | undefined;
+    /**
+     * Classification of message
+     */
     code?: string | undefined;
+    /**
+     * Message content
+     */
     text?: string | undefined;
 };
 
 /** @internal */
-export namespace RateMessage$ {
+export namespace ResponseMessage$ {
     export type Inbound = {
         source?: string | undefined;
         code?: string | undefined;
         text?: string | undefined;
     };
 
-    export const inboundSchema: z.ZodType<RateMessage, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ResponseMessage, z.ZodTypeDef, Inbound> = z
         .object({
             source: z.string().optional(),
             code: z.string().optional(),
@@ -38,7 +53,7 @@ export namespace RateMessage$ {
         text?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RateMessage> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResponseMessage> = z
         .object({
             source: z.string().optional(),
             code: z.string().optional(),
