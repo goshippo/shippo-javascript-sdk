@@ -4,11 +4,10 @@
 
 import { LabelFileTypeEnum, LabelFileTypeEnum$ } from "./labelfiletypeenum";
 import { ObjectStateEnum, ObjectStateEnum$ } from "./objectstateenum";
+import { ResponseMessage, ResponseMessage$ } from "./responsemessage";
 import { TrackingStatusEnum, TrackingStatusEnum$ } from "./trackingstatusenum";
 import { TransactionStatusEnum, TransactionStatusEnum$ } from "./transactionstatusenum";
 import * as z from "zod";
-
-export type TransactionMessages = {};
 
 export enum ResponseType {
     Standard = "standard",
@@ -40,14 +39,7 @@ export type Transaction = {
      * A value will only be returned if the Transactions has been processed successfully.
      */
     labelUrl?: string | undefined;
-    /**
-     * An array containing elements of the following schema:<br>
-     *
-     * @remarks
-     * `code` (string): an identifier for the corresponding message (not always available)<br>
-     * `message` (string): a publishable message containing further information.
-     */
-    messages?: Array<TransactionMessages> | undefined;
+    messages?: Array<ResponseMessage> | undefined;
     /**
      * A string of up to 100 characters that can be filled with any additional information you want to
      *
@@ -119,21 +111,6 @@ export type Transaction = {
 };
 
 /** @internal */
-export namespace TransactionMessages$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TransactionMessages, z.ZodTypeDef, Inbound> = z.object(
-        {}
-    );
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionMessages> = z.object(
-        {}
-    );
-}
-
-/** @internal */
 export const ResponseType$: z.ZodNativeEnum<typeof ResponseType> = z.nativeEnum(ResponseType);
 
 /** @internal */
@@ -143,7 +120,7 @@ export namespace Transaction$ {
         eta?: string | undefined;
         label_file_type?: LabelFileTypeEnum | undefined;
         label_url?: string | undefined;
-        messages?: Array<TransactionMessages$.Inbound> | undefined;
+        messages?: Array<ResponseMessage$.Inbound> | undefined;
         metadata?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
@@ -166,7 +143,7 @@ export namespace Transaction$ {
             eta: z.string().optional(),
             label_file_type: LabelFileTypeEnum$.optional(),
             label_url: z.string().optional(),
-            messages: z.array(z.lazy(() => TransactionMessages$.inboundSchema)).optional(),
+            messages: z.array(ResponseMessage$.inboundSchema).optional(),
             metadata: z.string().optional(),
             object_created: z
                 .string()
@@ -223,7 +200,7 @@ export namespace Transaction$ {
         eta?: string | undefined;
         label_file_type?: LabelFileTypeEnum | undefined;
         label_url?: string | undefined;
-        messages?: Array<TransactionMessages$.Outbound> | undefined;
+        messages?: Array<ResponseMessage$.Outbound> | undefined;
         metadata?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
@@ -246,7 +223,7 @@ export namespace Transaction$ {
             eta: z.string().optional(),
             labelFileType: LabelFileTypeEnum$.optional(),
             labelUrl: z.string().optional(),
-            messages: z.array(z.lazy(() => TransactionMessages$.outboundSchema)).optional(),
+            messages: z.array(ResponseMessage$.outboundSchema).optional(),
             metadata: z.string().optional(),
             objectCreated: z
                 .date()

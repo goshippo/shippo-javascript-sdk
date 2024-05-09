@@ -5,11 +5,10 @@
 import { InstantTransactionRate, InstantTransactionRate$ } from "./instanttransactionrate";
 import { LabelFileTypeEnum, LabelFileTypeEnum$ } from "./labelfiletypeenum";
 import { ObjectStateEnum, ObjectStateEnum$ } from "./objectstateenum";
+import { ResponseMessage, ResponseMessage$ } from "./responsemessage";
 import { TrackingStatusEnum, TrackingStatusEnum$ } from "./trackingstatusenum";
 import { TransactionStatusEnum, TransactionStatusEnum$ } from "./transactionstatusenum";
 import * as z from "zod";
-
-export type InstantTransactionCreateResponseMessages = {};
 
 export enum InstantTransactionCreateResponseResponseType {
     Instant = "instant",
@@ -41,14 +40,7 @@ export type InstantTransactionCreateResponse = {
      * A value will only be returned if the Transactions has been processed successfully.
      */
     labelUrl?: string | undefined;
-    /**
-     * An array containing elements of the following schema:<br>
-     *
-     * @remarks
-     * `code` (string): an identifier for the corresponding message (not always available)<br>
-     * `message` (string): a publishable message containing further information.
-     */
-    messages?: Array<InstantTransactionCreateResponseMessages> | undefined;
+    messages?: Array<ResponseMessage> | undefined;
     /**
      * A string of up to 100 characters that can be filled with any additional information you want to
      *
@@ -114,25 +106,6 @@ export type InstantTransactionCreateResponse = {
 };
 
 /** @internal */
-export namespace InstantTransactionCreateResponseMessages$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<
-        InstantTransactionCreateResponseMessages,
-        z.ZodTypeDef,
-        Inbound
-    > = z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        InstantTransactionCreateResponseMessages
-    > = z.object({});
-}
-
-/** @internal */
 export const InstantTransactionCreateResponseResponseType$: z.ZodNativeEnum<
     typeof InstantTransactionCreateResponseResponseType
 > = z.nativeEnum(InstantTransactionCreateResponseResponseType);
@@ -144,7 +117,7 @@ export namespace InstantTransactionCreateResponse$ {
         eta?: string | undefined;
         label_file_type?: LabelFileTypeEnum | undefined;
         label_url?: string | undefined;
-        messages?: Array<InstantTransactionCreateResponseMessages$.Inbound> | undefined;
+        messages?: Array<ResponseMessage$.Inbound> | undefined;
         metadata?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
@@ -168,9 +141,7 @@ export namespace InstantTransactionCreateResponse$ {
                 eta: z.string().optional(),
                 label_file_type: LabelFileTypeEnum$.optional(),
                 label_url: z.string().optional(),
-                messages: z
-                    .array(z.lazy(() => InstantTransactionCreateResponseMessages$.inboundSchema))
-                    .optional(),
+                messages: z.array(ResponseMessage$.inboundSchema).optional(),
                 metadata: z.string().optional(),
                 object_created: z
                     .string()
@@ -237,7 +208,7 @@ export namespace InstantTransactionCreateResponse$ {
         eta?: string | undefined;
         label_file_type?: LabelFileTypeEnum | undefined;
         label_url?: string | undefined;
-        messages?: Array<InstantTransactionCreateResponseMessages$.Outbound> | undefined;
+        messages?: Array<ResponseMessage$.Outbound> | undefined;
         metadata?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
@@ -264,9 +235,7 @@ export namespace InstantTransactionCreateResponse$ {
             eta: z.string().optional(),
             labelFileType: LabelFileTypeEnum$.optional(),
             labelUrl: z.string().optional(),
-            messages: z
-                .array(z.lazy(() => InstantTransactionCreateResponseMessages$.outboundSchema))
-                .optional(),
+            messages: z.array(ResponseMessage$.outboundSchema).optional(),
             metadata: z.string().optional(),
             objectCreated: z
                 .date()

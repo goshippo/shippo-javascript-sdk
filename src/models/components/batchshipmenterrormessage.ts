@@ -4,17 +4,17 @@
 
 import * as z from "zod";
 
-export type ErrorMessage = {
+export type BatchShipmentErrorMessage = {
     shipment?: Array<Record<string, Array<string>>> | undefined;
 };
 
 /** @internal */
-export namespace ErrorMessage$ {
+export namespace BatchShipmentErrorMessage$ {
     export type Inbound = {
         shipment?: Array<Record<string, Array<string>>> | undefined;
     };
 
-    export const inboundSchema: z.ZodType<ErrorMessage, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BatchShipmentErrorMessage, z.ZodTypeDef, Inbound> = z
         .object({
             shipment: z.array(z.record(z.array(z.string()))).optional(),
         })
@@ -28,7 +28,7 @@ export namespace ErrorMessage$ {
         shipment?: Array<Record<string, Array<string>>> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ErrorMessage> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BatchShipmentErrorMessage> = z
         .object({
             shipment: z.array(z.record(z.array(z.string()))).optional(),
         })

@@ -6,14 +6,9 @@ import { Address, Address$ } from "./address";
 import { CustomsDeclaration, CustomsDeclaration$ } from "./customsdeclaration";
 import { Parcel, Parcel$ } from "./parcel";
 import { Rate, Rate$ } from "./rate";
+import { ResponseMessage, ResponseMessage$ } from "./responsemessage";
 import { ShipmentExtra, ShipmentExtra$ } from "./shipmentextra";
 import * as z from "zod";
-
-export type Messages = {
-    code?: string | undefined;
-    source?: string | undefined;
-    text?: string | undefined;
-};
 
 /**
  * `Waiting` shipments have been successfully submitted but not yet been processed.
@@ -75,13 +70,7 @@ export type Shipment = {
      */
     carrierAccounts: Array<string>;
     customsDeclaration?: CustomsDeclaration | undefined;
-    /**
-     * An array containing elements of the following schema:<br>`code` (string): an identifier for the corresponding message
-     *
-     * @remarks
-     * (not always available)<br>`message` (string): a publishable message containing further information.
-     */
-    messages: Array<Messages>;
+    messages: Array<ResponseMessage>;
     /**
      * Date and time of Shipment creation.
      */
@@ -126,49 +115,6 @@ export type Shipment = {
 };
 
 /** @internal */
-export namespace Messages$ {
-    export type Inbound = {
-        code?: string | undefined;
-        source?: string | undefined;
-        text?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Messages, z.ZodTypeDef, Inbound> = z
-        .object({
-            code: z.string().optional(),
-            source: z.string().optional(),
-            text: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.source === undefined ? null : { source: v.source }),
-                ...(v.text === undefined ? null : { text: v.text }),
-            };
-        });
-
-    export type Outbound = {
-        code?: string | undefined;
-        source?: string | undefined;
-        text?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Messages> = z
-        .object({
-            code: z.string().optional(),
-            source: z.string().optional(),
-            text: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.source === undefined ? null : { source: v.source }),
-                ...(v.text === undefined ? null : { text: v.text }),
-            };
-        });
-}
-
-/** @internal */
 export const ShipmentStatus$: z.ZodNativeEnum<typeof ShipmentStatus> = z.nativeEnum(ShipmentStatus);
 
 /** @internal */
@@ -182,7 +128,7 @@ export namespace Shipment$ {
         address_to: Address$.Inbound;
         carrier_accounts: Array<string>;
         customs_declaration?: CustomsDeclaration$.Inbound | undefined;
-        messages: Array<Messages$.Inbound>;
+        messages: Array<ResponseMessage$.Inbound>;
         object_created: string;
         object_id: string;
         object_owner: string;
@@ -203,7 +149,7 @@ export namespace Shipment$ {
             address_to: Address$.inboundSchema,
             carrier_accounts: z.array(z.string()),
             customs_declaration: CustomsDeclaration$.inboundSchema.optional(),
-            messages: z.array(z.lazy(() => Messages$.inboundSchema)),
+            messages: z.array(ResponseMessage$.inboundSchema),
             object_created: z
                 .string()
                 .datetime({ offset: true })
@@ -252,7 +198,7 @@ export namespace Shipment$ {
         address_to: Address$.Outbound;
         carrier_accounts: Array<string>;
         customs_declaration?: CustomsDeclaration$.Outbound | undefined;
-        messages: Array<Messages$.Outbound>;
+        messages: Array<ResponseMessage$.Outbound>;
         object_created: string;
         object_id: string;
         object_owner: string;
@@ -273,7 +219,7 @@ export namespace Shipment$ {
             addressTo: Address$.outboundSchema,
             carrierAccounts: z.array(z.string()),
             customsDeclaration: CustomsDeclaration$.outboundSchema.optional(),
-            messages: z.array(z.lazy(() => Messages$.outboundSchema)),
+            messages: z.array(ResponseMessage$.outboundSchema),
             objectCreated: z.date().transform((v) => v.toISOString()),
             objectId: z.string(),
             objectOwner: z.string(),
