@@ -9,6 +9,7 @@ import * as z from "zod";
  *
  * @remarks
  * other shipments from the US, `NOEEI_30_37_a` is applicable.
+ * Allowed values available <a href="#tag/Customs-Declaration-EELPFC">here</a>
  */
 export enum CustomsDeclarationEelPfcEnum {
     NOEEI3037A = "NOEEI_30_37_a",

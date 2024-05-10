@@ -6,6 +6,9 @@ import * as z from "zod";
 
 /**
  * Type of goods of the shipment.
+ *
+ * @remarks
+ * Allowed values available <a href="#tag/Customs-Declaration-Contents-Type">here</a>
  */
 export enum CustomsDeclarationContentsTypeEnum {
     Documents = "DOCUMENTS",
