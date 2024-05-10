@@ -6,6 +6,9 @@ import * as z from "zod";
 
 /**
  * Indicates how the carrier should proceed in case the shipment can't be delivered.
+ *
+ * @remarks
+ * Allowed values available <a href="#tag/Customs-Declaration-Non-Delivery-Option">here</a>
  */
 export enum CustomsDeclarationNonDeliveryOptionEnum {
     Abandon = "ABANDON",

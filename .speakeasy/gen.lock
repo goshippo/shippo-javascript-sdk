@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 53a065d9c2bd7f9f3d4a2c3335d2cbee
+  docChecksum: 749a6b8340701a4d197414d869c714a6
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.285.1
+  speakeasyVersion: 1.285.6
   generationVersion: 2.326.3
-  releaseVersion: 2.2.2
-  configChecksum: 26df178a9e13134d024d654a1646ae2d
+  releaseVersion: 2.2.3
+  configChecksum: e8b5b32f1968b0f63a3b7d493227836b
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -85,12 +85,12 @@ generatedFiles:
   - src/models/components/weightunitenum.ts
   - src/models/components/distanceunitenum.ts
   - src/models/components/customsdeclarationcreaterequest.ts
-  - src/models/components/customsitemcreaterequest.ts
-  - src/models/components/addressimporter.ts
   - src/models/components/customsdeclarationnondeliveryoptionenum.ts
+  - src/models/components/customsitemcreaterequest.ts
   - src/models/components/customsdeclarationincotermenum.ts
   - src/models/components/customsdeclarationeelpfcenum.ts
   - src/models/components/customsdeclarationcontentstypeenum.ts
+  - src/models/components/addressimporter.ts
   - src/models/components/customsdeclarationb13afilingoptionenum.ts
   - src/models/components/shipmentextra.ts
   - src/models/components/rmanumber.ts
@@ -289,12 +289,12 @@ generatedFiles:
   - docs/models/components/weightunitenum.md
   - docs/models/components/distanceunitenum.md
   - docs/models/components/customsdeclarationcreaterequest.md
-  - docs/models/components/customsitemcreaterequest.md
-  - docs/models/components/addressimporter.md
   - docs/models/components/customsdeclarationnondeliveryoptionenum.md
+  - docs/models/components/customsitemcreaterequest.md
   - docs/models/components/customsdeclarationincotermenum.md
   - docs/models/components/customsdeclarationeelpfcenum.md
   - docs/models/components/customsdeclarationcontentstypeenum.md
+  - docs/models/components/addressimporter.md
   - docs/models/components/customsdeclarationb13afilingoptionenum.md
   - docs/models/components/ancillaryendorsement.md
   - docs/models/components/dangerousgoodscode.md

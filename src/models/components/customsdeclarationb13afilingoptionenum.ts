@@ -9,6 +9,7 @@ import * as z from "zod";
  *
  * @remarks
  * <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
+ * Allowed values available <a href="#tag/Customs-Declaration-B13A-Filing-Option">here</a>
  */
 export enum CustomsDeclarationB13AFilingOptionEnum {
     FiledElectronically = "FILED_ELECTRONICALLY",

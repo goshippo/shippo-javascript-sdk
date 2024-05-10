@@ -3,26 +3,6 @@
  */
 
 import {
-    CustomsDeclarationB13AFilingOptionEnum,
-    CustomsDeclarationB13AFilingOptionEnum$,
-} from "./customsdeclarationb13afilingoptionenum";
-import {
-    CustomsDeclarationContentsTypeEnum,
-    CustomsDeclarationContentsTypeEnum$,
-} from "./customsdeclarationcontentstypeenum";
-import {
-    CustomsDeclarationEelPfcEnum,
-    CustomsDeclarationEelPfcEnum$,
-} from "./customsdeclarationeelpfcenum";
-import {
-    CustomsDeclarationIncotermEnum,
-    CustomsDeclarationIncotermEnum$,
-} from "./customsdeclarationincotermenum";
-import {
-    CustomsDeclarationNonDeliveryOptionEnum,
-    CustomsDeclarationNonDeliveryOptionEnum$,
-} from "./customsdeclarationnondeliveryoptionenum";
-import {
     CustomsExporterIdentification,
     CustomsExporterIdentification$,
 } from "./customsexporteridentification";
@@ -48,8 +28,9 @@ export type CustomsDeclaration = {
      *
      * @remarks
      * <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
+     * Allowed values available <a href="#tag/Customs-Declaration-B13A-Filing-Option">here</a>
      */
-    b13aFilingOption?: CustomsDeclarationB13AFilingOptionEnum | undefined;
+    b13aFilingOption?: string | undefined;
     /**
      * **must be provided if and only if b13a_filing_option is provided**<br>
      *
@@ -83,20 +64,9 @@ export type CustomsDeclaration = {
      */
     contentsExplanation?: string | undefined;
     /**
-     * Type of goods of the shipment.
-     */
-    contentsType: CustomsDeclarationContentsTypeEnum;
-    /**
      * Disclaimer for the shipment and customs information that have been provided.
      */
     disclaimer?: string | undefined;
-    /**
-     * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most
-     *
-     * @remarks
-     * other shipments from the US, `NOEEI_30_37_a` is applicable.
-     */
-    eelPfc?: CustomsDeclarationEelPfcEnum | undefined;
     /**
      * Exporter reference of an export shipment.
      */
@@ -105,14 +75,6 @@ export type CustomsDeclaration = {
      * Importer reference of an import shipment.
      */
     importerReference?: string | undefined;
-    /**
-     * The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only.
-     *
-     * @remarks
-     * eDAP is available for DPD UK only. DAP is available for DHL Express and DPD UK.
-     * If expecting DAP for other carriers, please use DDU.
-     */
-    incoterm?: CustomsDeclarationIncotermEnum | undefined;
     /**
      * Indicates whether the shipment's destination VAT has been collected. May be required for some destinations.
      */
@@ -133,10 +95,6 @@ export type CustomsDeclaration = {
      */
     metadata?: string | undefined;
     /**
-     * Indicates how the carrier should proceed in case the shipment can't be delivered.
-     */
-    nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum;
-    /**
      * Additional notes to be included in the customs declaration.
      */
     notes?: string | undefined;
@@ -145,9 +103,33 @@ export type CustomsDeclaration = {
      */
     addressImporter?: CustomsDeclarationAddressImporter | undefined;
     /**
+     * Type of goods of the shipment.
+     *
+     * @remarks
+     * Allowed values available <a href="#tag/Customs-Declaration-Contents-Type">here</a>
+     */
+    contentsType: string;
+    /**
+     * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most
+     *
+     * @remarks
+     * other shipments from the US, `NOEEI_30_37_a` is applicable.
+     * Allowed values available <a href="#tag/Customs-Declaration-EELPFC">here</a>
+     */
+    eelPfc?: string | undefined;
+    /**
      * Additional exporter identification that may be required to ship in certain countries
      */
     exporterIdentification?: CustomsExporterIdentification | undefined;
+    /**
+     * The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only.
+     *
+     * @remarks
+     * eDAP is available for DPD UK only. DAP is available for DHL Express and DPD UK.
+     * If expecting DAP for other carriers, please use DDU.
+     * Allowed values available <a href="#tag/Customs-Declaration-Incoterm">here</a>
+     */
+    incoterm?: string | undefined;
     /**
      * Additional invoiced charges to be shown on the Customs Declaration Commercial Invoice.
      */
@@ -156,6 +138,13 @@ export type CustomsDeclaration = {
      * Distinct Parcel content items as Customs Items object_ids.
      */
     items: Array<string>;
+    /**
+     * Indicates how the carrier should proceed in case the shipment can't be delivered.
+     *
+     * @remarks
+     * Allowed values available <a href="#tag/Customs-Declaration-Non-Delivery-Option">here</a>
+     */
+    nonDeliveryOption: string;
     /**
      * Date and time of object creation.
      */
@@ -205,29 +194,29 @@ export namespace CustomsDeclarationAddressImporter$ {
 export namespace CustomsDeclaration$ {
     export type Inbound = {
         aes_itn?: string | undefined;
-        b13a_filing_option?: CustomsDeclarationB13AFilingOptionEnum | undefined;
+        b13a_filing_option?: string | undefined;
         b13a_number?: string | undefined;
         certificate?: string | undefined;
         certify: boolean;
         certify_signer: string;
         commercial_invoice?: string | undefined;
         contents_explanation?: string | undefined;
-        contents_type: CustomsDeclarationContentsTypeEnum;
         disclaimer?: string | undefined;
-        eel_pfc?: CustomsDeclarationEelPfcEnum | undefined;
         exporter_reference?: string | undefined;
         importer_reference?: string | undefined;
-        incoterm?: CustomsDeclarationIncotermEnum | undefined;
         is_vat_collected?: any | undefined;
         invoice?: string | undefined;
         license?: string | undefined;
         metadata?: string | undefined;
-        non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum;
         notes?: string | undefined;
         address_importer?: CustomsDeclarationAddressImporter$.Inbound | undefined;
+        contents_type: string;
+        eel_pfc?: string | undefined;
         exporter_identification?: CustomsExporterIdentification$.Inbound | undefined;
+        incoterm?: string | undefined;
         invoiced_charges?: CustomsInvoicedCharges$.Inbound | undefined;
         items: Array<string>;
+        non_delivery_option: string;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
@@ -239,31 +228,31 @@ export namespace CustomsDeclaration$ {
     export const inboundSchema: z.ZodType<CustomsDeclaration, z.ZodTypeDef, Inbound> = z
         .object({
             aes_itn: z.string().optional(),
-            b13a_filing_option: CustomsDeclarationB13AFilingOptionEnum$.optional(),
+            b13a_filing_option: z.string().optional(),
             b13a_number: z.string().optional(),
             certificate: z.string().optional(),
             certify: z.boolean(),
             certify_signer: z.string(),
             commercial_invoice: z.string().optional(),
             contents_explanation: z.string().optional(),
-            contents_type: CustomsDeclarationContentsTypeEnum$,
             disclaimer: z.string().optional(),
-            eel_pfc: CustomsDeclarationEelPfcEnum$.optional(),
             exporter_reference: z.string().optional(),
             importer_reference: z.string().optional(),
-            incoterm: CustomsDeclarationIncotermEnum$.optional(),
             is_vat_collected: z.any().optional(),
             invoice: z.string().optional(),
             license: z.string().optional(),
             metadata: z.string().optional(),
-            non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum$,
             notes: z.string().optional(),
             address_importer: z
                 .lazy(() => CustomsDeclarationAddressImporter$.inboundSchema)
                 .optional(),
+            contents_type: z.string(),
+            eel_pfc: z.string().optional(),
             exporter_identification: CustomsExporterIdentification$.inboundSchema.optional(),
+            incoterm: z.string().optional(),
             invoiced_charges: CustomsInvoicedCharges$.inboundSchema.optional(),
             items: z.array(z.string()),
+            non_delivery_option: z.string(),
             object_created: z
                 .string()
                 .datetime({ offset: true })
@@ -295,34 +284,34 @@ export namespace CustomsDeclaration$ {
                 ...(v.contents_explanation === undefined
                     ? null
                     : { contentsExplanation: v.contents_explanation }),
-                contentsType: v.contents_type,
                 ...(v.disclaimer === undefined ? null : { disclaimer: v.disclaimer }),
-                ...(v.eel_pfc === undefined ? null : { eelPfc: v.eel_pfc }),
                 ...(v.exporter_reference === undefined
                     ? null
                     : { exporterReference: v.exporter_reference }),
                 ...(v.importer_reference === undefined
                     ? null
                     : { importerReference: v.importer_reference }),
-                ...(v.incoterm === undefined ? null : { incoterm: v.incoterm }),
                 ...(v.is_vat_collected === undefined
                     ? null
                     : { isVatCollected: v.is_vat_collected }),
                 ...(v.invoice === undefined ? null : { invoice: v.invoice }),
                 ...(v.license === undefined ? null : { license: v.license }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                nonDeliveryOption: v.non_delivery_option,
                 ...(v.notes === undefined ? null : { notes: v.notes }),
                 ...(v.address_importer === undefined
                     ? null
                     : { addressImporter: v.address_importer }),
+                contentsType: v.contents_type,
+                ...(v.eel_pfc === undefined ? null : { eelPfc: v.eel_pfc }),
                 ...(v.exporter_identification === undefined
                     ? null
                     : { exporterIdentification: v.exporter_identification }),
+                ...(v.incoterm === undefined ? null : { incoterm: v.incoterm }),
                 ...(v.invoiced_charges === undefined
                     ? null
                     : { invoicedCharges: v.invoiced_charges }),
                 items: v.items,
+                nonDeliveryOption: v.non_delivery_option,
                 ...(v.object_created === undefined ? null : { objectCreated: v.object_created }),
                 ...(v.object_id === undefined ? null : { objectId: v.object_id }),
                 ...(v.object_owner === undefined ? null : { objectOwner: v.object_owner }),
@@ -334,29 +323,29 @@ export namespace CustomsDeclaration$ {
 
     export type Outbound = {
         aes_itn?: string | undefined;
-        b13a_filing_option?: CustomsDeclarationB13AFilingOptionEnum | undefined;
+        b13a_filing_option?: string | undefined;
         b13a_number?: string | undefined;
         certificate?: string | undefined;
         certify: boolean;
         certify_signer: string;
         commercial_invoice?: string | undefined;
         contents_explanation?: string | undefined;
-        contents_type: CustomsDeclarationContentsTypeEnum;
         disclaimer?: string | undefined;
-        eel_pfc?: CustomsDeclarationEelPfcEnum | undefined;
         exporter_reference?: string | undefined;
         importer_reference?: string | undefined;
-        incoterm?: CustomsDeclarationIncotermEnum | undefined;
         is_vat_collected?: any | undefined;
         invoice?: string | undefined;
         license?: string | undefined;
         metadata?: string | undefined;
-        non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum;
         notes?: string | undefined;
         address_importer?: CustomsDeclarationAddressImporter$.Outbound | undefined;
+        contents_type: string;
+        eel_pfc?: string | undefined;
         exporter_identification?: CustomsExporterIdentification$.Outbound | undefined;
+        incoterm?: string | undefined;
         invoiced_charges?: CustomsInvoicedCharges$.Outbound | undefined;
         items: Array<string>;
+        non_delivery_option: string;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
@@ -368,31 +357,31 @@ export namespace CustomsDeclaration$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CustomsDeclaration> = z
         .object({
             aesItn: z.string().optional(),
-            b13aFilingOption: CustomsDeclarationB13AFilingOptionEnum$.optional(),
+            b13aFilingOption: z.string().optional(),
             b13aNumber: z.string().optional(),
             certificate: z.string().optional(),
             certify: z.boolean(),
             certifySigner: z.string(),
             commercialInvoice: z.string().optional(),
             contentsExplanation: z.string().optional(),
-            contentsType: CustomsDeclarationContentsTypeEnum$,
             disclaimer: z.string().optional(),
-            eelPfc: CustomsDeclarationEelPfcEnum$.optional(),
             exporterReference: z.string().optional(),
             importerReference: z.string().optional(),
-            incoterm: CustomsDeclarationIncotermEnum$.optional(),
             isVatCollected: z.any().optional(),
             invoice: z.string().optional(),
             license: z.string().optional(),
             metadata: z.string().optional(),
-            nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum$,
             notes: z.string().optional(),
             addressImporter: z
                 .lazy(() => CustomsDeclarationAddressImporter$.outboundSchema)
                 .optional(),
+            contentsType: z.string(),
+            eelPfc: z.string().optional(),
             exporterIdentification: CustomsExporterIdentification$.outboundSchema.optional(),
+            incoterm: z.string().optional(),
             invoicedCharges: CustomsInvoicedCharges$.outboundSchema.optional(),
             items: z.array(z.string()),
+            nonDeliveryOption: z.string(),
             objectCreated: z
                 .date()
                 .transform((v) => v.toISOString())
@@ -422,32 +411,32 @@ export namespace CustomsDeclaration$ {
                 ...(v.contentsExplanation === undefined
                     ? null
                     : { contents_explanation: v.contentsExplanation }),
-                contents_type: v.contentsType,
                 ...(v.disclaimer === undefined ? null : { disclaimer: v.disclaimer }),
-                ...(v.eelPfc === undefined ? null : { eel_pfc: v.eelPfc }),
                 ...(v.exporterReference === undefined
                     ? null
                     : { exporter_reference: v.exporterReference }),
                 ...(v.importerReference === undefined
                     ? null
                     : { importer_reference: v.importerReference }),
-                ...(v.incoterm === undefined ? null : { incoterm: v.incoterm }),
                 ...(v.isVatCollected === undefined ? null : { is_vat_collected: v.isVatCollected }),
                 ...(v.invoice === undefined ? null : { invoice: v.invoice }),
                 ...(v.license === undefined ? null : { license: v.license }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                non_delivery_option: v.nonDeliveryOption,
                 ...(v.notes === undefined ? null : { notes: v.notes }),
                 ...(v.addressImporter === undefined
                     ? null
                     : { address_importer: v.addressImporter }),
+                contents_type: v.contentsType,
+                ...(v.eelPfc === undefined ? null : { eel_pfc: v.eelPfc }),
                 ...(v.exporterIdentification === undefined
                     ? null
                     : { exporter_identification: v.exporterIdentification }),
+                ...(v.incoterm === undefined ? null : { incoterm: v.incoterm }),
                 ...(v.invoicedCharges === undefined
                     ? null
                     : { invoiced_charges: v.invoicedCharges }),
                 items: v.items,
+                non_delivery_option: v.nonDeliveryOption,
                 ...(v.objectCreated === undefined ? null : { object_created: v.objectCreated }),
                 ...(v.objectId === undefined ? null : { object_id: v.objectId }),
                 ...(v.objectOwner === undefined ? null : { object_owner: v.objectOwner }),

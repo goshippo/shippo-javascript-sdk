@@ -65,6 +65,7 @@ Creates a new customs declaration object
 ```typescript
 import { Shippo } from "shippo";
 import {
+  CustomsDeclarationB13AFilingOptionEnum,
   CustomsDeclarationContentsTypeEnum,
   CustomsDeclarationEelPfcEnum,
   CustomsDeclarationIncotermEnum,
@@ -79,15 +80,12 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.customsDeclarations.create({
+    b13aFilingOption: CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
     certify: true,
     certifySigner: "Shawn Ippotle",
     contentsExplanation: "T-Shirt purchase",
-    contentsType: CustomsDeclarationContentsTypeEnum.Merchandise,
-    eelPfc: CustomsDeclarationEelPfcEnum.NOEEI3037A,
-    incoterm: CustomsDeclarationIncotermEnum.Ddp,
     invoice: "#123123",
     metadata: "Order ID #123123",
-    nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum.Abandon,
     addressImporter: {
       name: "Shwan Ippotle",
       company: "Shippo",
@@ -102,6 +100,9 @@ async function run() {
       email: "shippotle@shippo.com",
       isResidential: true,
     },
+    contentsType: CustomsDeclarationContentsTypeEnum.Merchandise,
+    eelPfc: CustomsDeclarationEelPfcEnum.NOEEI3037A,
+    incoterm: CustomsDeclarationIncotermEnum.Ddp,
     items: [
       {
         description: "T-Shirt",
@@ -115,6 +116,7 @@ async function run() {
         valueCurrency: "USD",
       },
     ],
+    nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum.Return,
     test: true,
   });
 
