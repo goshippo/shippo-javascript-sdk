@@ -74,21 +74,7 @@ export const ManifestStatus$: z.ZodNativeEnum<typeof ManifestStatus> = z.nativeE
 
 /** @internal */
 export namespace Manifest$ {
-    export type Inbound = {
-        carrier_account: string;
-        shipment_date: string;
-        transactions?: Array<string> | undefined;
-        address_from: string;
-        documents: Array<string>;
-        errors?: Array<string> | undefined;
-        object_created: string;
-        object_id: string;
-        object_owner: string;
-        object_updated: string;
-        status: ManifestStatus;
-    };
-
-    export const inboundSchema: z.ZodType<Manifest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Manifest, z.ZodTypeDef, unknown> = z
         .object({
             carrier_account: z.string(),
             shipment_date: z.string(),

@@ -87,14 +87,7 @@ export const Source$: z.ZodNativeEnum<typeof Source> = z.nativeEnum(Source);
 
 /** @internal */
 export namespace AddressValidationResultsMessage$ {
-    export type Inbound = {
-        code?: Code | undefined;
-        source?: Source | undefined;
-        text?: string | undefined;
-        type?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddressValidationResultsMessage, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<AddressValidationResultsMessage, z.ZodTypeDef, unknown> =
         z
             .object({
                 code: Code$.optional(),

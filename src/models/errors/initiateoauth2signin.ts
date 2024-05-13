@@ -120,15 +120,10 @@ export class InitiateOauth2SigninResponseBody extends Error {
 
 /** @internal */
 export namespace InitiateOauth2SigninCarrierAccountsResponseResponseBody$ {
-    export type Inbound = {
-        title?: string | undefined;
-        detail?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         InitiateOauth2SigninCarrierAccountsResponseResponseBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             title: z.string().optional(),
@@ -170,15 +165,10 @@ export namespace InitiateOauth2SigninCarrierAccountsResponseResponseBody$ {
 
 /** @internal */
 export namespace InitiateOauth2SigninCarrierAccountsResponseBody$ {
-    export type Inbound = {
-        title?: string | undefined;
-        detail?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         InitiateOauth2SigninCarrierAccountsResponseBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             title: z.string().optional(),
@@ -220,12 +210,7 @@ export namespace InitiateOauth2SigninCarrierAccountsResponseBody$ {
 
 /** @internal */
 export namespace InitiateOauth2SigninResponseBody$ {
-    export type Inbound = {
-        title?: string | undefined;
-        detail?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<InitiateOauth2SigninResponseBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<InitiateOauth2SigninResponseBody, z.ZodTypeDef, unknown> =
         z
             .object({
                 title: z.string().optional(),

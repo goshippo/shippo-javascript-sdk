@@ -20,14 +20,7 @@ export type TransactionCreateRequest = {
 
 /** @internal */
 export namespace TransactionCreateRequest$ {
-    export type Inbound = {
-        async?: boolean | undefined;
-        label_file_type?: LabelFileTypeEnum | undefined;
-        metadata?: string | undefined;
-        rate: string;
-    };
-
-    export const inboundSchema: z.ZodType<TransactionCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransactionCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             async: z.boolean().default(true),
             label_file_type: LabelFileTypeEnum$.optional(),

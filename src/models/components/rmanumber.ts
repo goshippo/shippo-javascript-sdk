@@ -24,12 +24,7 @@ export type RmaNumber = {
 
 /** @internal */
 export namespace RmaNumber$ {
-    export type Inbound = {
-        prefix?: string | undefined;
-        value?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RmaNumber, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RmaNumber, z.ZodTypeDef, unknown> = z
         .object({
             prefix: z.string().optional(),
             value: z.string().optional(),

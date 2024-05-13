@@ -26,41 +26,10 @@ export type RegisterCarrierAccountRequestBody =
 
 /** @internal */
 export namespace RegisterCarrierAccountRequestBody$ {
-    export type Inbound =
-        | components.CarrierAccountCanadaPostCreateRequest$.Inbound
-        | components.CarrierAccountChronopostCreateRequest$.Inbound
-        | components.CarrierAccountColissimoCreateRequest$.Inbound
-        | components.CarrierAccountCorreosCreateRequest$.Inbound
-        | components.CarrierAccountDeutschePostCreateRequest$.Inbound
-        | components.CarrierAccountDHLExpressCreateRequest$.Inbound
-        | components.CarrierAccountDpdDeCreateRequest$.Inbound
-        | components.CarrierAccountDPDUKCreateRequest$.Inbound
-        | components.CarrierAccountFedExCreateRequest$.Inbound
-        | components.CarrierAccountHermesUKCreateRequest$.Inbound
-        | components.CarrierAccountMondialRelayCreateRequest$.Inbound
-        | components.CarrierAccountPosteItalianeCreateRequest$.Inbound
-        | components.CarrierAccountUPSCreateRequest$.Inbound
-        | components.CarrierAccountUSPSCreateRequest$.Inbound;
-
-    export type Outbound =
-        | components.CarrierAccountCanadaPostCreateRequest$.Outbound
-        | components.CarrierAccountChronopostCreateRequest$.Outbound
-        | components.CarrierAccountColissimoCreateRequest$.Outbound
-        | components.CarrierAccountCorreosCreateRequest$.Outbound
-        | components.CarrierAccountDeutschePostCreateRequest$.Outbound
-        | components.CarrierAccountDHLExpressCreateRequest$.Outbound
-        | components.CarrierAccountDpdDeCreateRequest$.Outbound
-        | components.CarrierAccountDPDUKCreateRequest$.Outbound
-        | components.CarrierAccountFedExCreateRequest$.Outbound
-        | components.CarrierAccountHermesUKCreateRequest$.Outbound
-        | components.CarrierAccountMondialRelayCreateRequest$.Outbound
-        | components.CarrierAccountPosteItalianeCreateRequest$.Outbound
-        | components.CarrierAccountUPSCreateRequest$.Outbound
-        | components.CarrierAccountUSPSCreateRequest$.Outbound;
     export const inboundSchema: z.ZodType<
         RegisterCarrierAccountRequestBody,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.union([
         components.CarrierAccountCanadaPostCreateRequest$.inboundSchema,
         components.CarrierAccountChronopostCreateRequest$.inboundSchema,
@@ -77,6 +46,22 @@ export namespace RegisterCarrierAccountRequestBody$ {
         components.CarrierAccountUPSCreateRequest$.inboundSchema,
         components.CarrierAccountUSPSCreateRequest$.inboundSchema,
     ]);
+
+    export type Outbound =
+        | components.CarrierAccountCanadaPostCreateRequest$.Outbound
+        | components.CarrierAccountChronopostCreateRequest$.Outbound
+        | components.CarrierAccountColissimoCreateRequest$.Outbound
+        | components.CarrierAccountCorreosCreateRequest$.Outbound
+        | components.CarrierAccountDeutschePostCreateRequest$.Outbound
+        | components.CarrierAccountDHLExpressCreateRequest$.Outbound
+        | components.CarrierAccountDpdDeCreateRequest$.Outbound
+        | components.CarrierAccountDPDUKCreateRequest$.Outbound
+        | components.CarrierAccountFedExCreateRequest$.Outbound
+        | components.CarrierAccountHermesUKCreateRequest$.Outbound
+        | components.CarrierAccountMondialRelayCreateRequest$.Outbound
+        | components.CarrierAccountPosteItalianeCreateRequest$.Outbound
+        | components.CarrierAccountUPSCreateRequest$.Outbound
+        | components.CarrierAccountUSPSCreateRequest$.Outbound;
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,

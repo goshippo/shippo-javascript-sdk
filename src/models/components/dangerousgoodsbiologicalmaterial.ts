@@ -16,11 +16,7 @@ export type DangerousGoodsBiologicalMaterial = {
 
 /** @internal */
 export namespace DangerousGoodsBiologicalMaterial$ {
-    export type Inbound = {
-        contains?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DangerousGoodsBiologicalMaterial, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<DangerousGoodsBiologicalMaterial, z.ZodTypeDef, unknown> =
         z
             .object({
                 contains: z.boolean().optional(),

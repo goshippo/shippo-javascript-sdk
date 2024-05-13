@@ -13,11 +13,7 @@ export type GetTransactionRequest = {
 
 /** @internal */
 export namespace GetTransactionRequest$ {
-    export type Inbound = {
-        TransactionId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransactionRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransactionRequest, z.ZodTypeDef, unknown> = z
         .object({
             TransactionId: z.string(),
         })

@@ -30,15 +30,7 @@ export type ListCarrierAccountsRequest = {
 
 /** @internal */
 export namespace ListCarrierAccountsRequest$ {
-    export type Inbound = {
-        service_levels?: boolean | undefined;
-        carrier?: components.CarriersEnum | undefined;
-        account_id?: string | undefined;
-        page?: number | undefined;
-        results?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListCarrierAccountsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListCarrierAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             service_levels: z.boolean().optional(),
             carrier: components.CarriersEnum$.optional(),

@@ -20,12 +20,7 @@ export type DryIce = {
 
 /** @internal */
 export namespace DryIce$ {
-    export type Inbound = {
-        contains_dry_ice?: boolean | undefined;
-        weight?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DryIce, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DryIce, z.ZodTypeDef, unknown> = z
         .object({
             contains_dry_ice: z.boolean().optional(),
             weight: z.string().optional(),

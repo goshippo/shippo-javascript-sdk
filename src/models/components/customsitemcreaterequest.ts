@@ -63,21 +63,7 @@ export type CustomsItemCreateRequest = {
 
 /** @internal */
 export namespace CustomsItemCreateRequest$ {
-    export type Inbound = {
-        description: string;
-        eccn_ear99?: string | undefined;
-        mass_unit: WeightUnitEnum;
-        metadata?: string | undefined;
-        net_weight: string;
-        origin_country: string;
-        quantity: number;
-        sku_code?: string | undefined;
-        tariff_number?: string | undefined;
-        value_amount: string;
-        value_currency: string;
-    };
-
-    export const inboundSchema: z.ZodType<CustomsItemCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CustomsItemCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             description: z.string(),
             eccn_ear99: z.string().optional(),

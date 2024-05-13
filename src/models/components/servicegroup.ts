@@ -58,21 +58,7 @@ export type ServiceGroup = {
 
 /** @internal */
 export namespace ServiceGroup$ {
-    export type Inbound = {
-        description: string;
-        flat_rate?: string | undefined;
-        flat_rate_currency?: string | undefined;
-        free_shipping_threshold_currency?: string | undefined;
-        free_shipping_threshold_min?: string | undefined;
-        name: string;
-        rate_adjustment?: number | undefined;
-        type: ServiceGroupTypeEnum;
-        object_id: string;
-        is_active?: boolean | undefined;
-        service_levels: Array<ServiceLevel$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<ServiceGroup, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ServiceGroup, z.ZodTypeDef, unknown> = z
         .object({
             description: z.string(),
             flat_rate: z.string().optional(),

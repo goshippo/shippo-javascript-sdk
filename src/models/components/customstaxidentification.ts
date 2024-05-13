@@ -49,12 +49,7 @@ export const CustomsTaxIdentificationType$: z.ZodNativeEnum<typeof CustomsTaxIde
 
 /** @internal */
 export namespace CustomsTaxIdentification$ {
-    export type Inbound = {
-        number?: string | undefined;
-        type?: CustomsTaxIdentificationType | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CustomsTaxIdentification, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CustomsTaxIdentification, z.ZodTypeDef, unknown> = z
         .object({
             number: z.string().optional(),
             type: CustomsTaxIdentificationType$.optional(),

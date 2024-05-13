@@ -15,12 +15,7 @@ export type CarrierAccountUPSCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountUPSCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters?: CarrierAccountUPSCreateRequestParameters$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierAccountUPSCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CarrierAccountUPSCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             carrier: z.string(),
             parameters: CarrierAccountUPSCreateRequestParameters$.inboundSchema.optional(),

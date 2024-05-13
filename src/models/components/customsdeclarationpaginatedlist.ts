@@ -13,13 +13,7 @@ export type CustomsDeclarationPaginatedList = {
 
 /** @internal */
 export namespace CustomsDeclarationPaginatedList$ {
-    export type Inbound = {
-        next?: string | undefined;
-        previous?: string | undefined;
-        results?: Array<CustomsDeclaration$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CustomsDeclarationPaginatedList, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<CustomsDeclarationPaginatedList, z.ZodTypeDef, unknown> =
         z
             .object({
                 next: z.string().optional(),

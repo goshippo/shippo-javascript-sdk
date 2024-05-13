@@ -13,14 +13,10 @@ export type CarrierAccountDHLExpressCreateRequestParameters = {
 
 /** @internal */
 export namespace CarrierAccountDHLExpressCreateRequestParameters$ {
-    export type Inbound = {
-        user_accepted_terms_and_conditions: boolean;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountDHLExpressCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             user_accepted_terms_and_conditions: z.boolean(),

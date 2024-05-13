@@ -15,11 +15,7 @@ export type DeleteServiceGroupResponse = {};
 
 /** @internal */
 export namespace DeleteServiceGroupRequest$ {
-    export type Inbound = {
-        ServiceGroupId: string;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteServiceGroupRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteServiceGroupRequest, z.ZodTypeDef, unknown> = z
         .object({
             ServiceGroupId: z.string(),
         })
@@ -46,9 +42,7 @@ export namespace DeleteServiceGroupRequest$ {
 
 /** @internal */
 export namespace DeleteServiceGroupResponse$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<DeleteServiceGroupResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<DeleteServiceGroupResponse, z.ZodTypeDef, unknown> =
         z.object({});
 
     export type Outbound = {};

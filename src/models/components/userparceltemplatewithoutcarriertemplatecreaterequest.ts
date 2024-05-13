@@ -39,20 +39,10 @@ export type UserParcelTemplateWithoutCarrierTemplateCreateRequest = {
 
 /** @internal */
 export namespace UserParcelTemplateWithoutCarrierTemplateCreateRequest$ {
-    export type Inbound = {
-        distance_unit: DistanceUnitEnum;
-        height: string;
-        length: string;
-        name: string;
-        weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
-        width: string;
-    };
-
     export const inboundSchema: z.ZodType<
         UserParcelTemplateWithoutCarrierTemplateCreateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             distance_unit: DistanceUnitEnum$,

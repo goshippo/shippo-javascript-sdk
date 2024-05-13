@@ -11,12 +11,7 @@ export type RefundRequestBody = {
 
 /** @internal */
 export namespace RefundRequestBody$ {
-    export type Inbound = {
-        transaction: string;
-        async?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RefundRequestBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RefundRequestBody, z.ZodTypeDef, unknown> = z
         .object({
             transaction: z.string(),
             async: z.boolean().optional(),

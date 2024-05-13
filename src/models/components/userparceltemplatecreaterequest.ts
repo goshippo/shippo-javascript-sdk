@@ -18,18 +18,15 @@ export type UserParcelTemplateCreateRequest =
 
 /** @internal */
 export namespace UserParcelTemplateCreateRequest$ {
-    export type Inbound =
-        | UserParcelTemplateWithCarrierTemplateCreateRequest$.Inbound
-        | UserParcelTemplateWithoutCarrierTemplateCreateRequest$.Inbound;
-
-    export type Outbound =
-        | UserParcelTemplateWithCarrierTemplateCreateRequest$.Outbound
-        | UserParcelTemplateWithoutCarrierTemplateCreateRequest$.Outbound;
-    export const inboundSchema: z.ZodType<UserParcelTemplateCreateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<UserParcelTemplateCreateRequest, z.ZodTypeDef, unknown> =
         z.union([
             UserParcelTemplateWithCarrierTemplateCreateRequest$.inboundSchema,
             UserParcelTemplateWithoutCarrierTemplateCreateRequest$.inboundSchema,
         ]);
+
+    export type Outbound =
+        | UserParcelTemplateWithCarrierTemplateCreateRequest$.Outbound
+        | UserParcelTemplateWithoutCarrierTemplateCreateRequest$.Outbound;
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,

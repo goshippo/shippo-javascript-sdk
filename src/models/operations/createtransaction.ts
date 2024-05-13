@@ -14,18 +14,15 @@ export type CreateTransactionRequestBody =
 
 /** @internal */
 export namespace CreateTransactionRequestBody$ {
-    export type Inbound =
-        | components.TransactionCreateRequest$.Inbound
-        | components.InstantTransactionCreateRequest$.Inbound;
-
-    export type Outbound =
-        | components.TransactionCreateRequest$.Outbound
-        | components.InstantTransactionCreateRequest$.Outbound;
-    export const inboundSchema: z.ZodType<CreateTransactionRequestBody, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<CreateTransactionRequestBody, z.ZodTypeDef, unknown> =
         z.union([
             components.TransactionCreateRequest$.inboundSchema,
             components.InstantTransactionCreateRequest$.inboundSchema,
         ]);
+
+    export type Outbound =
+        | components.TransactionCreateRequest$.Outbound
+        | components.InstantTransactionCreateRequest$.Outbound;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateTransactionRequestBody> =
         z.union([
             components.TransactionCreateRequest$.outboundSchema,

@@ -59,7 +59,7 @@ export type CustomsDeclarationCreateRequest = {
      * information provided.
      */
     certifySigner: string;
-    commercialInvoice?: string | undefined;
+    commercialInvoice?: boolean | undefined;
     /**
      * **required if contents_type is `OTHER`**<br>
      *
@@ -116,33 +116,7 @@ export type CustomsDeclarationCreateRequest = {
 
 /** @internal */
 export namespace CustomsDeclarationCreateRequest$ {
-    export type Inbound = {
-        aes_itn?: string | undefined;
-        b13a_filing_option?: CustomsDeclarationB13AFilingOptionEnum | undefined;
-        b13a_number?: string | undefined;
-        certificate?: string | undefined;
-        certify: boolean;
-        certify_signer: string;
-        commercial_invoice?: string | undefined;
-        contents_explanation?: string | undefined;
-        disclaimer?: string | undefined;
-        exporter_reference?: string | undefined;
-        importer_reference?: string | undefined;
-        is_vat_collected?: any | undefined;
-        invoice?: string | undefined;
-        license?: string | undefined;
-        metadata?: string | undefined;
-        notes?: string | undefined;
-        address_importer?: AddressImporter$.Inbound | undefined;
-        contents_type: CustomsDeclarationContentsTypeEnum;
-        eel_pfc?: CustomsDeclarationEelPfcEnum | undefined;
-        incoterm?: CustomsDeclarationIncotermEnum | undefined;
-        items: Array<CustomsItemCreateRequest$.Inbound>;
-        non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum;
-        test?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CustomsDeclarationCreateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<CustomsDeclarationCreateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 aes_itn: z.string().optional(),
@@ -151,7 +125,7 @@ export namespace CustomsDeclarationCreateRequest$ {
                 certificate: z.string().optional(),
                 certify: z.boolean(),
                 certify_signer: z.string(),
-                commercial_invoice: z.string().optional(),
+                commercial_invoice: z.boolean().optional(),
                 contents_explanation: z.string().optional(),
                 disclaimer: z.string().optional(),
                 exporter_reference: z.string().optional(),
@@ -218,7 +192,7 @@ export namespace CustomsDeclarationCreateRequest$ {
         certificate?: string | undefined;
         certify: boolean;
         certify_signer: string;
-        commercial_invoice?: string | undefined;
+        commercial_invoice?: boolean | undefined;
         contents_explanation?: string | undefined;
         disclaimer?: string | undefined;
         exporter_reference?: string | undefined;
@@ -249,7 +223,7 @@ export namespace CustomsDeclarationCreateRequest$ {
             certificate: z.string().optional(),
             certify: z.boolean(),
             certifySigner: z.string(),
-            commercialInvoice: z.string().optional(),
+            commercialInvoice: z.boolean().optional(),
             contentsExplanation: z.string().optional(),
             disclaimer: z.string().optional(),
             exporterReference: z.string().optional(),

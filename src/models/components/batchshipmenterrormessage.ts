@@ -10,11 +10,7 @@ export type BatchShipmentErrorMessage = {
 
 /** @internal */
 export namespace BatchShipmentErrorMessage$ {
-    export type Inbound = {
-        shipment?: Array<Record<string, Array<string>>> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<BatchShipmentErrorMessage, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BatchShipmentErrorMessage, z.ZodTypeDef, unknown> = z
         .object({
             shipment: z.array(z.record(z.array(z.string()))).optional(),
         })

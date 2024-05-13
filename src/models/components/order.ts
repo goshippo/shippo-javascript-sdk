@@ -137,30 +137,7 @@ export const ShopApp$: z.ZodNativeEnum<typeof ShopApp> = z.nativeEnum(ShopApp);
 
 /** @internal */
 export namespace Order$ {
-    export type Inbound = {
-        currency?: string | undefined;
-        notes?: string | undefined;
-        order_number?: string | undefined;
-        order_status?: OrderStatusEnum | undefined;
-        placed_at: string;
-        shipping_cost?: string | undefined;
-        shipping_cost_currency?: string | undefined;
-        shipping_method?: string | undefined;
-        subtotal_price?: string | undefined;
-        total_price?: string | undefined;
-        total_tax?: string | undefined;
-        weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
-        from_address?: Address$.Inbound | undefined;
-        to_address: Address$.Inbound;
-        line_items?: Array<LineItem$.Inbound> | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        shop_app?: ShopApp | undefined;
-        transactions?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Order, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Order, z.ZodTypeDef, unknown> = z
         .object({
             currency: z.string().optional(),
             notes: z.string().optional(),

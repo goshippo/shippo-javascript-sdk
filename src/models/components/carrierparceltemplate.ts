@@ -42,18 +42,7 @@ export type CarrierParcelTemplate = {
 
 /** @internal */
 export namespace CarrierParcelTemplate$ {
-    export type Inbound = {
-        carrier?: string | undefined;
-        distance_unit?: DistanceUnitEnum | undefined;
-        height?: string | undefined;
-        is_variable_dimensions?: string | undefined;
-        length?: string | undefined;
-        name?: string | undefined;
-        token?: string | undefined;
-        width?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierParcelTemplate, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CarrierParcelTemplate, z.ZodTypeDef, unknown> = z
         .object({
             carrier: z.string().optional(),
             distance_unit: DistanceUnitEnum$.optional(),

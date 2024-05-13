@@ -10,14 +10,10 @@ export type DefaultParcelTemplateUpdateRequest = {
 
 /** @internal */
 export namespace DefaultParcelTemplateUpdateRequest$ {
-    export type Inbound = {
-        object_id?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         DefaultParcelTemplateUpdateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             object_id: z.string().optional(),

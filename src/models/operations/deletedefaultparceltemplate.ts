@@ -10,12 +10,10 @@ export type DeleteDefaultParcelTemplateResponse = {};
 
 /** @internal */
 export namespace DeleteDefaultParcelTemplateRequest$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         DeleteDefaultParcelTemplateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -29,12 +27,10 @@ export namespace DeleteDefaultParcelTemplateRequest$ {
 
 /** @internal */
 export namespace DeleteDefaultParcelTemplateResponse$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         DeleteDefaultParcelTemplateResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};

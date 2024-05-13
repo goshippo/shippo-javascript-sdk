@@ -88,27 +88,7 @@ export type CustomsItem = {
 
 /** @internal */
 export namespace CustomsItem$ {
-    export type Inbound = {
-        description: string;
-        eccn_ear99?: string | undefined;
-        mass_unit: WeightUnitEnum;
-        metadata?: string | undefined;
-        net_weight: string;
-        origin_country: string;
-        quantity: number;
-        sku_code?: string | undefined;
-        tariff_number?: string | undefined;
-        value_amount: string;
-        value_currency: string;
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        object_state?: ObjectStateEnum | undefined;
-        object_updated?: string | undefined;
-        test?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CustomsItem, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CustomsItem, z.ZodTypeDef, unknown> = z
         .object({
             description: z.string(),
             eccn_ear99: z.string().optional(),

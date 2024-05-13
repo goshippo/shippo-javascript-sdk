@@ -19,13 +19,7 @@ export type BatchShipmentPaginatedList = {
 
 /** @internal */
 export namespace BatchShipmentPaginatedList$ {
-    export type Inbound = {
-        next?: string | undefined;
-        previous?: string | undefined;
-        results?: Array<BatchShipment$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<BatchShipmentPaginatedList, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BatchShipmentPaginatedList, z.ZodTypeDef, unknown> = z
         .object({
             next: z.string().optional(),
             previous: z.string().optional(),

@@ -16,17 +16,7 @@ export type ShippoAccount = {
 
 /** @internal */
 export namespace ShippoAccount$ {
-    export type Inbound = {
-        email: string;
-        first_name: string;
-        last_name: string;
-        company_name?: string | undefined;
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_updated?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ShippoAccount, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ShippoAccount, z.ZodTypeDef, unknown> = z
         .object({
             email: z.string(),
             first_name: z.string(),

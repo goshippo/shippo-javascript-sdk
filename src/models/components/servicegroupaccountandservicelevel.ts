@@ -20,15 +20,10 @@ export type ServiceGroupAccountAndServiceLevel = {
 
 /** @internal */
 export namespace ServiceGroupAccountAndServiceLevel$ {
-    export type Inbound = {
-        account_object_id?: string | undefined;
-        service_level_token?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         ServiceGroupAccountAndServiceLevel,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             account_object_id: z.string().optional(),

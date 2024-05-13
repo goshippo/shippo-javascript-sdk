@@ -32,15 +32,7 @@ export type CustomsInvoicedCharges = {
 
 /** @internal */
 export namespace CustomsInvoicedCharges$ {
-    export type Inbound = {
-        currency: string;
-        total_shipping?: string | undefined;
-        total_taxes?: string | undefined;
-        total_duties?: string | undefined;
-        other_fees?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CustomsInvoicedCharges, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CustomsInvoicedCharges, z.ZodTypeDef, unknown> = z
         .object({
             currency: z.string(),
             total_shipping: z.string().optional(),

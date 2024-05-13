@@ -21,13 +21,7 @@ export type ListShipmentRatesRequest = {
 
 /** @internal */
 export namespace ListShipmentRatesRequest$ {
-    export type Inbound = {
-        ShipmentId: string;
-        page?: number | undefined;
-        results?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListShipmentRatesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListShipmentRatesRequest, z.ZodTypeDef, unknown> = z
         .object({
             ShipmentId: z.string(),
             page: z.number().int().default(1),

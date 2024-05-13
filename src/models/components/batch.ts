@@ -104,14 +104,7 @@ export type Batch = {
 
 /** @internal */
 export namespace ObjectResults$ {
-    export type Inbound = {
-        creation_failed: number;
-        creation_succeeded: number;
-        purchase_failed: number;
-        purchase_succeeded: number;
-    };
-
-    export const inboundSchema: z.ZodType<ObjectResults, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ObjectResults, z.ZodTypeDef, unknown> = z
         .object({
             creation_failed: z.number().int(),
             creation_succeeded: z.number().int(),
@@ -156,23 +149,7 @@ export const BatchStatus$: z.ZodNativeEnum<typeof BatchStatus> = z.nativeEnum(Ba
 
 /** @internal */
 export namespace Batch$ {
-    export type Inbound = {
-        default_carrier_account: string;
-        default_servicelevel_token: string;
-        label_filetype?: LabelFileTypeEnum | undefined;
-        metadata?: string | undefined;
-        batch_shipments: BatchShipmentPaginatedList$.Inbound;
-        label_url: Array<string>;
-        object_created: string;
-        object_id: string;
-        object_owner: string;
-        object_results: ObjectResults$.Inbound;
-        object_updated: string;
-        status: BatchStatus;
-        test?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Batch, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Batch, z.ZodTypeDef, unknown> = z
         .object({
             default_carrier_account: z.string(),
             default_servicelevel_token: z.string(),

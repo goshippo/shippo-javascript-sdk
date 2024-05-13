@@ -13,12 +13,10 @@ export type CarrierAccountFedExCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountFedExCreateRequestParameters$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         CarrierAccountFedExCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -32,12 +30,7 @@ export namespace CarrierAccountFedExCreateRequestParameters$ {
 
 /** @internal */
 export namespace CarrierAccountFedExCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters: CarrierAccountFedExCreateRequestParameters$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierAccountFedExCreateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<CarrierAccountFedExCreateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 carrier: z.string(),

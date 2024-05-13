@@ -62,11 +62,10 @@ export type LiveRateCreateRequest = {
 
 /** @internal */
 export namespace LiveRateCreateRequestAddressFrom$ {
-    export type Inbound = AddressCompleteCreateRequest$.Inbound | string;
+    export const inboundSchema: z.ZodType<LiveRateCreateRequestAddressFrom, z.ZodTypeDef, unknown> =
+        z.union([AddressCompleteCreateRequest$.inboundSchema, z.string()]);
 
     export type Outbound = AddressCompleteCreateRequest$.Outbound | string;
-    export const inboundSchema: z.ZodType<LiveRateCreateRequestAddressFrom, z.ZodTypeDef, Inbound> =
-        z.union([AddressCompleteCreateRequest$.inboundSchema, z.string()]);
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
@@ -76,36 +75,27 @@ export namespace LiveRateCreateRequestAddressFrom$ {
 
 /** @internal */
 export namespace LiveRateCreateRequestAddressTo$ {
-    export type Inbound = AddressCompleteCreateRequest$.Inbound | string;
+    export const inboundSchema: z.ZodType<LiveRateCreateRequestAddressTo, z.ZodTypeDef, unknown> =
+        z.union([AddressCompleteCreateRequest$.inboundSchema, z.string()]);
 
     export type Outbound = AddressCompleteCreateRequest$.Outbound | string;
-    export const inboundSchema: z.ZodType<LiveRateCreateRequestAddressTo, z.ZodTypeDef, Inbound> =
-        z.union([AddressCompleteCreateRequest$.inboundSchema, z.string()]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LiveRateCreateRequestAddressTo> =
         z.union([AddressCompleteCreateRequest$.outboundSchema, z.string()]);
 }
 
 /** @internal */
 export namespace LiveRateCreateRequestParcel$ {
-    export type Inbound = Parcel$.Inbound | string;
+    export const inboundSchema: z.ZodType<LiveRateCreateRequestParcel, z.ZodTypeDef, unknown> =
+        z.union([Parcel$.inboundSchema, z.string()]);
 
     export type Outbound = Parcel$.Outbound | string;
-    export const inboundSchema: z.ZodType<LiveRateCreateRequestParcel, z.ZodTypeDef, Inbound> =
-        z.union([Parcel$.inboundSchema, z.string()]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LiveRateCreateRequestParcel> =
         z.union([Parcel$.outboundSchema, z.string()]);
 }
 
 /** @internal */
 export namespace LiveRateCreateRequest$ {
-    export type Inbound = {
-        address_from?: AddressCompleteCreateRequest$.Inbound | string | undefined;
-        address_to: AddressCompleteCreateRequest$.Inbound | string;
-        line_items: Array<LineItem$.Inbound>;
-        parcel?: Parcel$.Inbound | string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<LiveRateCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LiveRateCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             address_from: z
                 .union([AddressCompleteCreateRequest$.inboundSchema, z.string()])

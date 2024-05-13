@@ -30,14 +30,7 @@ export type BatchShipmentBase = {
 
 /** @internal */
 export namespace BatchShipmentBase$ {
-    export type Inbound = {
-        carrier_account?: string | undefined;
-        metadata?: string | undefined;
-        servicelevel_token?: string | undefined;
-        shipment: ShipmentCreateRequest$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<BatchShipmentBase, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BatchShipmentBase, z.ZodTypeDef, unknown> = z
         .object({
             carrier_account: z.string().optional(),
             metadata: z.string().optional(),

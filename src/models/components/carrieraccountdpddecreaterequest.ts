@@ -13,12 +13,10 @@ export type CarrierAccountDpdDeCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountDpdDeCreateRequestParameters$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         CarrierAccountDpdDeCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -32,12 +30,7 @@ export namespace CarrierAccountDpdDeCreateRequestParameters$ {
 
 /** @internal */
 export namespace CarrierAccountDpdDeCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters: CarrierAccountDpdDeCreateRequestParameters$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierAccountDpdDeCreateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<CarrierAccountDpdDeCreateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 carrier: z.string(),

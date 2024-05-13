@@ -44,13 +44,7 @@ export const PaymentMethod$: z.ZodNativeEnum<typeof PaymentMethod> = z.nativeEnu
 
 /** @internal */
 export namespace Cod$ {
-    export type Inbound = {
-        amount?: string | undefined;
-        currency?: string | undefined;
-        payment_method?: PaymentMethod | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Cod, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Cod, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.string().optional(),
             currency: z.string().optional(),

@@ -39,16 +39,7 @@ export type LiveRate = {
 
 /** @internal */
 export namespace LiveRate$ {
-    export type Inbound = {
-        amount?: string | undefined;
-        amount_local?: string | undefined;
-        currency?: string | undefined;
-        currency_local?: string | undefined;
-        estimated_days?: number | undefined;
-        title?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<LiveRate, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LiveRate, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.string().optional(),
             amount_local: z.string().optional(),

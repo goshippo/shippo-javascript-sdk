@@ -89,26 +89,7 @@ export type OrderCreateRequest = {
 
 /** @internal */
 export namespace OrderCreateRequest$ {
-    export type Inbound = {
-        currency?: string | undefined;
-        notes?: string | undefined;
-        order_number?: string | undefined;
-        order_status?: OrderStatusEnum | undefined;
-        placed_at: string;
-        shipping_cost?: string | undefined;
-        shipping_cost_currency?: string | undefined;
-        shipping_method?: string | undefined;
-        subtotal_price?: string | undefined;
-        total_price?: string | undefined;
-        total_tax?: string | undefined;
-        weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
-        from_address?: AddressCreateRequest$.Inbound | undefined;
-        to_address: AddressCreateRequest$.Inbound;
-        line_items?: Array<LineItemBase$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<OrderCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<OrderCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             currency: z.string().optional(),
             notes: z.string().optional(),

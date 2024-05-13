@@ -55,7 +55,7 @@ export type CustomsDeclaration = {
      * information provided.
      */
     certifySigner: string;
-    commercialInvoice?: string | undefined;
+    commercialInvoice?: boolean | undefined;
     /**
      * **required if contents_type is `OTHER`**<br>
      *
@@ -173,12 +173,10 @@ export type CustomsDeclaration = {
 
 /** @internal */
 export namespace CustomsDeclarationAddressImporter$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         CustomsDeclarationAddressImporter,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -192,40 +190,7 @@ export namespace CustomsDeclarationAddressImporter$ {
 
 /** @internal */
 export namespace CustomsDeclaration$ {
-    export type Inbound = {
-        aes_itn?: string | undefined;
-        b13a_filing_option?: string | undefined;
-        b13a_number?: string | undefined;
-        certificate?: string | undefined;
-        certify: boolean;
-        certify_signer: string;
-        commercial_invoice?: string | undefined;
-        contents_explanation?: string | undefined;
-        disclaimer?: string | undefined;
-        exporter_reference?: string | undefined;
-        importer_reference?: string | undefined;
-        is_vat_collected?: any | undefined;
-        invoice?: string | undefined;
-        license?: string | undefined;
-        metadata?: string | undefined;
-        notes?: string | undefined;
-        address_importer?: CustomsDeclarationAddressImporter$.Inbound | undefined;
-        contents_type: string;
-        eel_pfc?: string | undefined;
-        exporter_identification?: CustomsExporterIdentification$.Inbound | undefined;
-        incoterm?: string | undefined;
-        invoiced_charges?: CustomsInvoicedCharges$.Inbound | undefined;
-        items: Array<string>;
-        non_delivery_option: string;
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        object_state?: ObjectStateEnum | undefined;
-        object_updated?: string | undefined;
-        test?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CustomsDeclaration, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CustomsDeclaration, z.ZodTypeDef, unknown> = z
         .object({
             aes_itn: z.string().optional(),
             b13a_filing_option: z.string().optional(),
@@ -233,7 +198,7 @@ export namespace CustomsDeclaration$ {
             certificate: z.string().optional(),
             certify: z.boolean(),
             certify_signer: z.string(),
-            commercial_invoice: z.string().optional(),
+            commercial_invoice: z.boolean().optional(),
             contents_explanation: z.string().optional(),
             disclaimer: z.string().optional(),
             exporter_reference: z.string().optional(),
@@ -328,7 +293,7 @@ export namespace CustomsDeclaration$ {
         certificate?: string | undefined;
         certify: boolean;
         certify_signer: string;
-        commercial_invoice?: string | undefined;
+        commercial_invoice?: boolean | undefined;
         contents_explanation?: string | undefined;
         disclaimer?: string | undefined;
         exporter_reference?: string | undefined;
@@ -362,7 +327,7 @@ export namespace CustomsDeclaration$ {
             certificate: z.string().optional(),
             certify: z.boolean(),
             certifySigner: z.string(),
-            commercialInvoice: z.string().optional(),
+            commercialInvoice: z.boolean().optional(),
             contentsExplanation: z.string().optional(),
             disclaimer: z.string().optional(),
             exporterReference: z.string().optional(),

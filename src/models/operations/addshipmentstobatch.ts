@@ -18,12 +18,7 @@ export type AddShipmentsToBatchRequest = {
 
 /** @internal */
 export namespace AddShipmentsToBatchRequest$ {
-    export type Inbound = {
-        BatchId: string;
-        RequestBody: Array<components.BatchShipmentBase$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<AddShipmentsToBatchRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddShipmentsToBatchRequest, z.ZodTypeDef, unknown> = z
         .object({
             BatchId: z.string(),
             RequestBody: z.array(components.BatchShipmentBase$.inboundSchema),

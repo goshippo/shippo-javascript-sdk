@@ -113,27 +113,7 @@ export type AddressCreateRequest = {
 
 /** @internal */
 export namespace AddressCreateRequest$ {
-    export type Inbound = {
-        name?: string | undefined;
-        company?: string | undefined;
-        street1?: string | undefined;
-        street2?: string | undefined;
-        street3?: string | undefined;
-        street_no?: string | undefined;
-        city?: string | undefined;
-        state?: string | undefined;
-        zip?: string | undefined;
-        country: string;
-        phone?: string | undefined;
-        email?: string | undefined;
-        is_residential?: boolean | undefined;
-        metadata?: string | undefined;
-        latitude?: number | undefined;
-        longitude?: number | undefined;
-        validate?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddressCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddressCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             company: z.string().optional(),

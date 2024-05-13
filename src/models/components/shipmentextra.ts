@@ -274,45 +274,7 @@ export const SignatureConfirmation$: z.ZodNativeEnum<typeof SignatureConfirmatio
 
 /** @internal */
 export namespace ShipmentExtra$ {
-    export type Inbound = {
-        ancillary_endorsement?: AncillaryEndorsement | undefined;
-        authority_to_leave?: boolean | undefined;
-        alcohol?: Alcohol$.Inbound | undefined;
-        billing?: Billing$.Inbound | undefined;
-        bypass_address_validation?: boolean | undefined;
-        carbon_neutral?: boolean | undefined;
-        carrier_hub_id?: string | undefined;
-        carrier_hub_travel_time?: number | undefined;
-        COD?: Cod$.Inbound | undefined;
-        container_type?: string | undefined;
-        critical_pull_time?: string | undefined;
-        customer_branch?: string | undefined;
-        customer_reference?: CustomerReference$.Inbound | undefined;
-        dangerous_goods_code?: DangerousGoodsCode | undefined;
-        dangerous_goods?: DangerousGoodsObject$.Inbound | undefined;
-        delivery_instructions?: string | undefined;
-        dept_number?: DepartmentNumber$.Inbound | undefined;
-        dry_ice?: DryIce$.Inbound | undefined;
-        fulfillment_center?: string | undefined;
-        insurance?: Insurance$.Inbound | undefined;
-        invoice_number?: InvoiceNumber$.Inbound | undefined;
-        is_return?: boolean | undefined;
-        lasership_attrs?: LasershipAttrs | undefined;
-        lasership_declared_value?: string | undefined;
-        po_number?: PoNumber$.Inbound | undefined;
-        preferred_delivery_timeframe?: PreferredDeliveryTimeframe | undefined;
-        premium?: boolean | undefined;
-        qr_code_requested?: boolean | undefined;
-        reference_1?: string | undefined;
-        reference_2?: string | undefined;
-        request_retail_rates?: boolean | undefined;
-        return_service_type?: ReturnServiceType | undefined;
-        rma_number?: RmaNumber$.Inbound | undefined;
-        saturday_delivery?: boolean | undefined;
-        signature_confirmation?: SignatureConfirmation | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ShipmentExtra, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ShipmentExtra, z.ZodTypeDef, unknown> = z
         .object({
             ancillary_endorsement: AncillaryEndorsement$.optional(),
             authority_to_leave: z.boolean().optional(),

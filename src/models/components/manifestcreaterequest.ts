@@ -32,11 +32,10 @@ export type ManifestCreateRequest = {
 
 /** @internal */
 export namespace ManifestCreateRequestAddressFrom$ {
-    export type Inbound = AddressCreateRequest$.Inbound | string;
+    export const inboundSchema: z.ZodType<ManifestCreateRequestAddressFrom, z.ZodTypeDef, unknown> =
+        z.union([AddressCreateRequest$.inboundSchema, z.string()]);
 
     export type Outbound = AddressCreateRequest$.Outbound | string;
-    export const inboundSchema: z.ZodType<ManifestCreateRequestAddressFrom, z.ZodTypeDef, Inbound> =
-        z.union([AddressCreateRequest$.inboundSchema, z.string()]);
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
@@ -46,15 +45,7 @@ export namespace ManifestCreateRequestAddressFrom$ {
 
 /** @internal */
 export namespace ManifestCreateRequest$ {
-    export type Inbound = {
-        carrier_account: string;
-        shipment_date: string;
-        transactions?: Array<string> | undefined;
-        address_from: AddressCreateRequest$.Inbound | string;
-        async?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ManifestCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ManifestCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             carrier_account: z.string(),
             shipment_date: z.string(),

@@ -17,12 +17,7 @@ export type GetCustomsItemRequest = {
 
 /** @internal */
 export namespace GetCustomsItemRequest$ {
-    export type Inbound = {
-        CustomsItemId: string;
-        page?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetCustomsItemRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetCustomsItemRequest, z.ZodTypeDef, unknown> = z
         .object({
             CustomsItemId: z.string(),
             page: z.number().int().default(1),

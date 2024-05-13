@@ -79,14 +79,7 @@ export const BuildingType$: z.ZodNativeEnum<typeof BuildingType> = z.nativeEnum(
 
 /** @internal */
 export namespace Location$ {
-    export type Inbound = {
-        address: AddressCompleteCreateRequest$.Inbound;
-        building_location_type: BuildingLocationType;
-        building_type?: BuildingType | undefined;
-        instructions?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Location, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Location, z.ZodTypeDef, unknown> = z
         .object({
             address: AddressCompleteCreateRequest$.inboundSchema,
             building_location_type: BuildingLocationType$,

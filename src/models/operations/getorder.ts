@@ -13,11 +13,7 @@ export type GetOrderRequest = {
 
 /** @internal */
 export namespace GetOrderRequest$ {
-    export type Inbound = {
-        OrderId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetOrderRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOrderRequest, z.ZodTypeDef, unknown> = z
         .object({
             OrderId: z.string(),
         })

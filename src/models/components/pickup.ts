@@ -116,27 +116,7 @@ export const PickupStatus$: z.ZodNativeEnum<typeof PickupStatus> = z.nativeEnum(
 
 /** @internal */
 export namespace Pickup$ {
-    export type Inbound = {
-        carrier_account: string;
-        location: Location$.Inbound;
-        metadata?: string | undefined;
-        requested_end_time: string;
-        requested_start_time: string;
-        transactions: Array<string>;
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_updated?: string | undefined;
-        confirmed_start_time?: string | undefined;
-        confirmed_end_time?: string | undefined;
-        cancel_by_time?: string | undefined;
-        status?: PickupStatus | undefined;
-        confirmation_code?: string | undefined;
-        timezone?: string | undefined;
-        messages?: Array<string> | undefined;
-        is_test?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Pickup, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Pickup, z.ZodTypeDef, unknown> = z
         .object({
             carrier_account: z.string(),
             location: Location$.inboundSchema,

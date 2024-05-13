@@ -70,18 +70,7 @@ export const Status$: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
 
 /** @internal */
 export namespace BatchShipment$ {
-    export type Inbound = {
-        carrier_account?: string | undefined;
-        metadata?: string | undefined;
-        servicelevel_token?: string | undefined;
-        shipment: ShipmentCreateRequest$.Inbound;
-        messages?: Array<BatchShipmentErrorMessage$.Inbound> | undefined;
-        object_id: string;
-        status: Status;
-        transaction?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<BatchShipment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BatchShipment, z.ZodTypeDef, unknown> = z
         .object({
             carrier_account: z.string().optional(),
             metadata: z.string().optional(),

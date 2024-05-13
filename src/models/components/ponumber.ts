@@ -27,12 +27,7 @@ export type PoNumber = {
 
 /** @internal */
 export namespace PoNumber$ {
-    export type Inbound = {
-        prefix?: string | undefined;
-        value?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PoNumber, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PoNumber, z.ZodTypeDef, unknown> = z
         .object({
             prefix: z.string().optional(),
             value: z.string().optional(),

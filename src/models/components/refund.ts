@@ -50,17 +50,7 @@ export const RefundStatus$: z.ZodNativeEnum<typeof RefundStatus> = z.nativeEnum(
 
 /** @internal */
 export namespace Refund$ {
-    export type Inbound = {
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        object_updated?: string | undefined;
-        status?: RefundStatus | undefined;
-        test?: boolean | undefined;
-        transaction?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Refund, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Refund, z.ZodTypeDef, unknown> = z
         .object({
             object_created: z
                 .string()

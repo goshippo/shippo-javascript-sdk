@@ -24,13 +24,7 @@ export type TrackingStatusSubstatus = {
 
 /** @internal */
 export namespace TrackingStatusSubstatus$ {
-    export type Inbound = {
-        code: string;
-        text: string;
-        action_required: boolean;
-    };
-
-    export const inboundSchema: z.ZodType<TrackingStatusSubstatus, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TrackingStatusSubstatus, z.ZodTypeDef, unknown> = z
         .object({
             code: z.string(),
             text: z.string(),

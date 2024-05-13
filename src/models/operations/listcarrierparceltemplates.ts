@@ -29,15 +29,10 @@ export const Include$: z.ZodNativeEnum<typeof Include> = z.nativeEnum(Include);
 
 /** @internal */
 export namespace ListCarrierParcelTemplatesRequest$ {
-    export type Inbound = {
-        include?: Include | undefined;
-        carrier?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         ListCarrierParcelTemplatesRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             include: Include$.optional(),

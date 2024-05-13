@@ -66,22 +66,7 @@ export type Track = {
 
 /** @internal */
 export namespace Track$ {
-    export type Inbound = {
-        address_from?: TrackingStatusLocationBase$.Inbound | undefined;
-        address_to?: TrackingStatusLocationBase$.Inbound | undefined;
-        carrier: string;
-        eta?: string | undefined;
-        messages: Array<string>;
-        metadata?: string | undefined;
-        original_eta?: string | undefined;
-        servicelevel?: ServiceLevel$.Inbound | undefined;
-        tracking_history: Array<TrackingStatus$.Inbound>;
-        tracking_number: string;
-        tracking_status?: TrackingStatus$.Inbound | undefined;
-        transaction?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Track, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Track, z.ZodTypeDef, unknown> = z
         .object({
             address_from: TrackingStatusLocationBase$.inboundSchema.optional(),
             address_to: TrackingStatusLocationBase$.inboundSchema.optional(),

@@ -13,11 +13,7 @@ export type GetAddressRequest = {
 
 /** @internal */
 export namespace GetAddressRequest$ {
-    export type Inbound = {
-        AddressId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetAddressRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetAddressRequest, z.ZodTypeDef, unknown> = z
         .object({
             AddressId: z.string(),
         })

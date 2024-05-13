@@ -22,16 +22,10 @@ export type UserParcelTemplateWithCarrierTemplateCreateRequest = {
 
 /** @internal */
 export namespace UserParcelTemplateWithCarrierTemplateCreateRequest$ {
-    export type Inbound = {
-        template?: string | undefined;
-        weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         UserParcelTemplateWithCarrierTemplateCreateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             template: z.string().optional(),

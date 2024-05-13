@@ -46,16 +46,7 @@ export type PickupBase = {
 
 /** @internal */
 export namespace PickupBase$ {
-    export type Inbound = {
-        carrier_account: string;
-        location: Location$.Inbound;
-        metadata?: string | undefined;
-        requested_end_time: string;
-        requested_start_time: string;
-        transactions: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<PickupBase, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PickupBase, z.ZodTypeDef, unknown> = z
         .object({
             carrier_account: z.string(),
             location: Location$.inboundSchema,

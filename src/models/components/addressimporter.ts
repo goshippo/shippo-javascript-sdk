@@ -82,23 +82,7 @@ export type AddressImporter = {
 
 /** @internal */
 export namespace AddressImporter$ {
-    export type Inbound = {
-        name?: string | undefined;
-        company?: string | undefined;
-        street1?: string | undefined;
-        street2?: string | undefined;
-        street3?: string | undefined;
-        street_no?: string | undefined;
-        city?: string | undefined;
-        state?: string | undefined;
-        zip?: string | undefined;
-        country?: string | undefined;
-        phone?: string | undefined;
-        email?: string | undefined;
-        is_residential?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddressImporter, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddressImporter, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             company: z.string().optional(),

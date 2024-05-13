@@ -14,15 +14,7 @@ export type CarrierAccountRegistrationStatus = {
 
 /** @internal */
 export namespace CarrierAccountRegistrationStatus$ {
-    export type Inbound = {
-        carrier_account?: string | undefined;
-        object_created?: string | undefined;
-        object_owner?: string | undefined;
-        object_updated?: string | undefined;
-        status?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierAccountRegistrationStatus, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<CarrierAccountRegistrationStatus, z.ZodTypeDef, unknown> =
         z
             .object({
                 carrier_account: z.string().optional(),

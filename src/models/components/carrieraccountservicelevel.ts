@@ -32,13 +32,7 @@ export type CarrierAccountServiceLevel = {
 
 /** @internal */
 export namespace CarrierAccountServiceLevel$ {
-    export type Inbound = {
-        name?: string | undefined;
-        token?: string | undefined;
-        supports_return_labels?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierAccountServiceLevel, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CarrierAccountServiceLevel, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             token: z.string().optional(),

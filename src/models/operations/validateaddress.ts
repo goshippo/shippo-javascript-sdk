@@ -13,11 +13,7 @@ export type ValidateAddressRequest = {
 
 /** @internal */
 export namespace ValidateAddressRequest$ {
-    export type Inbound = {
-        AddressId: string;
-    };
-
-    export const inboundSchema: z.ZodType<ValidateAddressRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ValidateAddressRequest, z.ZodTypeDef, unknown> = z
         .object({
             AddressId: z.string(),
         })

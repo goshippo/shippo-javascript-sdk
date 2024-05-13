@@ -17,12 +17,7 @@ export type ListCustomsDeclarationsRequest = {
 
 /** @internal */
 export namespace ListCustomsDeclarationsRequest$ {
-    export type Inbound = {
-        page?: number | undefined;
-        results?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListCustomsDeclarationsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListCustomsDeclarationsRequest, z.ZodTypeDef, unknown> = z
         .object({
             page: z.number().int().default(1),
             results: z.number().int().default(5),

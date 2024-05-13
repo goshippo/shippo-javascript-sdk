@@ -13,13 +13,7 @@ export type RefundPaginatedList = {
 
 /** @internal */
 export namespace RefundPaginatedList$ {
-    export type Inbound = {
-        next?: string | undefined;
-        previous?: string | undefined;
-        results?: Array<Refund$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RefundPaginatedList, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RefundPaginatedList, z.ZodTypeDef, unknown> = z
         .object({
             next: z.string().optional(),
             previous: z.string().optional(),

@@ -17,12 +17,7 @@ export type GetTrackRequest = {
 
 /** @internal */
 export namespace GetTrackRequest$ {
-    export type Inbound = {
-        TrackingNumber: string;
-        Carrier: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetTrackRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTrackRequest, z.ZodTypeDef, unknown> = z
         .object({
             TrackingNumber: z.string(),
             Carrier: z.string(),
