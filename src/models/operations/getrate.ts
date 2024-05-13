@@ -13,11 +13,7 @@ export type GetRateRequest = {
 
 /** @internal */
 export namespace GetRateRequest$ {
-    export type Inbound = {
-        RateId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetRateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetRateRequest, z.ZodTypeDef, unknown> = z
         .object({
             RateId: z.string(),
         })

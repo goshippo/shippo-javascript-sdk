@@ -18,12 +18,7 @@ export type UpdateCarrierAccountRequest = {
 
 /** @internal */
 export namespace UpdateCarrierAccountRequest$ {
-    export type Inbound = {
-        CarrierAccountId: string;
-        CarrierAccountBase?: components.CarrierAccountBase$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateCarrierAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateCarrierAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             CarrierAccountId: z.string(),
             CarrierAccountBase: components.CarrierAccountBase$.inboundSchema.optional(),

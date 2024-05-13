@@ -13,11 +13,7 @@ export type GetCarrierAccountRequest = {
 
 /** @internal */
 export namespace GetCarrierAccountRequest$ {
-    export type Inbound = {
-        CarrierAccountId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetCarrierAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetCarrierAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             CarrierAccountId: z.string(),
         })

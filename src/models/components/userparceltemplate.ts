@@ -57,22 +57,7 @@ export type UserParcelTemplate = {
 
 /** @internal */
 export namespace UserParcelTemplate$ {
-    export type Inbound = {
-        distance_unit?: DistanceUnitEnum | undefined;
-        height?: string | undefined;
-        length?: string | undefined;
-        name?: string | undefined;
-        weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
-        width?: string | undefined;
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        object_updated?: string | undefined;
-        template?: CarrierParcelTemplate$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UserParcelTemplate, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UserParcelTemplate, z.ZodTypeDef, unknown> = z
         .object({
             distance_unit: DistanceUnitEnum$.optional(),
             height: z.string().optional(),

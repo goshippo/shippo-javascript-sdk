@@ -55,13 +55,12 @@ export type ShipmentCreateRequest = {
 
 /** @internal */
 export namespace AddressFrom$ {
-    export type Inbound = AddressCreateRequest$.Inbound | string;
-
-    export type Outbound = AddressCreateRequest$.Outbound | string;
-    export const inboundSchema: z.ZodType<AddressFrom, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<AddressFrom, z.ZodTypeDef, unknown> = z.union([
         AddressCreateRequest$.inboundSchema,
         z.string(),
     ]);
+
+    export type Outbound = AddressCreateRequest$.Outbound | string;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddressFrom> = z.union([
         AddressCreateRequest$.outboundSchema,
         z.string(),
@@ -70,13 +69,12 @@ export namespace AddressFrom$ {
 
 /** @internal */
 export namespace AddressReturn$ {
-    export type Inbound = AddressCreateRequest$.Inbound | string;
-
-    export type Outbound = AddressCreateRequest$.Outbound | string;
-    export const inboundSchema: z.ZodType<AddressReturn, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<AddressReturn, z.ZodTypeDef, unknown> = z.union([
         AddressCreateRequest$.inboundSchema,
         z.string(),
     ]);
+
+    export type Outbound = AddressCreateRequest$.Outbound | string;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddressReturn> = z.union([
         AddressCreateRequest$.outboundSchema,
         z.string(),
@@ -85,13 +83,12 @@ export namespace AddressReturn$ {
 
 /** @internal */
 export namespace AddressTo$ {
-    export type Inbound = AddressCreateRequest$.Inbound | string;
-
-    export type Outbound = AddressCreateRequest$.Outbound | string;
-    export const inboundSchema: z.ZodType<AddressTo, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<AddressTo, z.ZodTypeDef, unknown> = z.union([
         AddressCreateRequest$.inboundSchema,
         z.string(),
     ]);
+
+    export type Outbound = AddressCreateRequest$.Outbound | string;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddressTo> = z.union([
         AddressCreateRequest$.outboundSchema,
         z.string(),
@@ -100,14 +97,13 @@ export namespace AddressTo$ {
 
 /** @internal */
 export namespace ShipmentCreateRequestCustomsDeclaration$ {
-    export type Inbound = CustomsDeclarationCreateRequest$.Inbound | string;
-
-    export type Outbound = CustomsDeclarationCreateRequest$.Outbound | string;
     export const inboundSchema: z.ZodType<
         ShipmentCreateRequestCustomsDeclaration,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.union([CustomsDeclarationCreateRequest$.inboundSchema, z.string()]);
+
+    export type Outbound = CustomsDeclarationCreateRequest$.Outbound | string;
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
@@ -117,13 +113,12 @@ export namespace ShipmentCreateRequestCustomsDeclaration$ {
 
 /** @internal */
 export namespace Parcels$ {
-    export type Inbound = ParcelCreateRequest$.Inbound | string;
-
-    export type Outbound = ParcelCreateRequest$.Outbound | string;
-    export const inboundSchema: z.ZodType<Parcels, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<Parcels, z.ZodTypeDef, unknown> = z.union([
         ParcelCreateRequest$.inboundSchema,
         z.string(),
     ]);
+
+    export type Outbound = ParcelCreateRequest$.Outbound | string;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Parcels> = z.union([
         ParcelCreateRequest$.outboundSchema,
         z.string(),
@@ -132,20 +127,7 @@ export namespace Parcels$ {
 
 /** @internal */
 export namespace ShipmentCreateRequest$ {
-    export type Inbound = {
-        extra?: ShipmentExtra$.Inbound | undefined;
-        metadata?: string | undefined;
-        shipment_date?: string | undefined;
-        address_from: AddressCreateRequest$.Inbound | string;
-        address_return?: AddressCreateRequest$.Inbound | string | undefined;
-        address_to: AddressCreateRequest$.Inbound | string;
-        customs_declaration?: CustomsDeclarationCreateRequest$.Inbound | string | undefined;
-        async?: boolean | undefined;
-        carrier_accounts?: Array<string> | undefined;
-        parcels: Array<ParcelCreateRequest$.Inbound | string>;
-    };
-
-    export const inboundSchema: z.ZodType<ShipmentCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ShipmentCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             extra: ShipmentExtra$.inboundSchema.optional(),
             metadata: z.string().optional(),

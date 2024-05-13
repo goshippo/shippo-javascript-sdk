@@ -13,11 +13,7 @@ export type PurchaseBatchRequest = {
 
 /** @internal */
 export namespace PurchaseBatchRequest$ {
-    export type Inbound = {
-        BatchId: string;
-    };
-
-    export const inboundSchema: z.ZodType<PurchaseBatchRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PurchaseBatchRequest, z.ZodTypeDef, unknown> = z
         .object({
             BatchId: z.string(),
         })

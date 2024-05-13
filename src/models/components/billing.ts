@@ -46,15 +46,7 @@ export const Type$: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
 
 /** @internal */
 export namespace Billing$ {
-    export type Inbound = {
-        account?: string | undefined;
-        country?: string | undefined;
-        participation_code?: string | undefined;
-        type?: Type | undefined;
-        zip?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Billing, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Billing, z.ZodTypeDef, unknown> = z
         .object({
             account: z.string().optional(),
             country: z.string().optional(),

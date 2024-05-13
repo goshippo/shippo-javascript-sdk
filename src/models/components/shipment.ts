@@ -119,27 +119,7 @@ export const ShipmentStatus$: z.ZodNativeEnum<typeof ShipmentStatus> = z.nativeE
 
 /** @internal */
 export namespace Shipment$ {
-    export type Inbound = {
-        extra?: ShipmentExtra$.Inbound | undefined;
-        metadata: string;
-        shipment_date?: string | undefined;
-        address_from: Address$.Inbound;
-        address_return?: Address$.Inbound | undefined;
-        address_to: Address$.Inbound;
-        carrier_accounts: Array<string>;
-        customs_declaration?: CustomsDeclaration$.Inbound | undefined;
-        messages: Array<ResponseMessage$.Inbound>;
-        object_created: string;
-        object_id: string;
-        object_owner: string;
-        object_updated: string;
-        parcels: Array<Parcel$.Inbound>;
-        rates: Array<Rate$.Inbound>;
-        status: ShipmentStatus;
-        test?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Shipment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Shipment, z.ZodTypeDef, unknown> = z
         .object({
             extra: ShipmentExtra$.inboundSchema.optional(),
             metadata: z.string(),

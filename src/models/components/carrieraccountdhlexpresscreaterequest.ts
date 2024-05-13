@@ -15,15 +15,10 @@ export type CarrierAccountDHLExpressCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountDHLExpressCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters: CarrierAccountDHLExpressCreateRequestParameters$.Inbound;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountDHLExpressCreateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             carrier: z.string(),

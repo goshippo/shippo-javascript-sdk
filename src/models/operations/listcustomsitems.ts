@@ -17,12 +17,7 @@ export type ListCustomsItemsRequest = {
 
 /** @internal */
 export namespace ListCustomsItemsRequest$ {
-    export type Inbound = {
-        page?: number | undefined;
-        results?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListCustomsItemsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListCustomsItemsRequest, z.ZodTypeDef, unknown> = z
         .object({
             page: z.number().int().default(1),
             results: z.number().int().default(25),

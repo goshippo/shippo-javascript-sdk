@@ -20,18 +20,10 @@ export type CarrierAccountCanadaPostCreateParameters = {
 
 /** @internal */
 export namespace CarrierAccountCanadaPostCreateParameters$ {
-    export type Inbound = {
-        canada_post_terms: boolean;
-        company: string;
-        email: string;
-        full_name: string;
-        phone: string;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountCanadaPostCreateParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             canada_post_terms: z.boolean(),

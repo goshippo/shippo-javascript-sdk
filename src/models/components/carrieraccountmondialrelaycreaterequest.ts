@@ -13,12 +13,10 @@ export type CarrierAccountMondialRelayCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountMondialRelayCreateRequestParameters$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         CarrierAccountMondialRelayCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -32,15 +30,10 @@ export namespace CarrierAccountMondialRelayCreateRequestParameters$ {
 
 /** @internal */
 export namespace CarrierAccountMondialRelayCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters: CarrierAccountMondialRelayCreateRequestParameters$.Inbound;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountMondialRelayCreateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             carrier: z.string(),

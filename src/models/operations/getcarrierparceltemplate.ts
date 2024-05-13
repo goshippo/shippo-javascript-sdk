@@ -13,11 +13,7 @@ export type GetCarrierParcelTemplateRequest = {
 
 /** @internal */
 export namespace GetCarrierParcelTemplateRequest$ {
-    export type Inbound = {
-        CarrierParcelTemplateToken: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetCarrierParcelTemplateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetCarrierParcelTemplateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 CarrierParcelTemplateToken: z.string(),

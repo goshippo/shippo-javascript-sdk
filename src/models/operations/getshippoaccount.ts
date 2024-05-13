@@ -13,11 +13,7 @@ export type GetShippoAccountRequest = {
 
 /** @internal */
 export namespace GetShippoAccountRequest$ {
-    export type Inbound = {
-        ShippoAccountId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetShippoAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetShippoAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             ShippoAccountId: z.string(),
         })

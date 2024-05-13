@@ -15,14 +15,7 @@ export type UpdateUserParcelTemplateRequest = {
 
 /** @internal */
 export namespace UpdateUserParcelTemplateRequest$ {
-    export type Inbound = {
-        UserParcelTemplateObjectId: string;
-        UserParcelTemplateUpdateRequest?:
-            | components.UserParcelTemplateUpdateRequest$.Inbound
-            | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateUserParcelTemplateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<UpdateUserParcelTemplateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 UserParcelTemplateObjectId: z.string(),

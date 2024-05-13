@@ -18,18 +18,7 @@ export type TransactionCreateResponse =
 
 /** @internal */
 export namespace TransactionCreateResponse$ {
-    export type Inbound =
-        | (Transaction$.Inbound & { responseType: ResponseType.Standard })
-        | (InstantTransactionCreateResponse$.Inbound & {
-              responseType: InstantTransactionCreateResponseResponseType.Instant;
-          });
-
-    export type Outbound =
-        | (Transaction$.Outbound & { responseType: ResponseType.Standard })
-        | (InstantTransactionCreateResponse$.Outbound & {
-              responseType: InstantTransactionCreateResponseResponseType.Instant;
-          });
-    export const inboundSchema: z.ZodType<TransactionCreateResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<TransactionCreateResponse, z.ZodTypeDef, unknown> =
         z.union([
             Transaction$.inboundSchema.and(
                 z
@@ -46,6 +35,12 @@ export namespace TransactionCreateResponse$ {
                     .transform((v) => ({ responseType: v.responseType }))
             ),
         ]);
+
+    export type Outbound =
+        | (Transaction$.Outbound & { responseType: ResponseType.Standard })
+        | (InstantTransactionCreateResponse$.Outbound & {
+              responseType: InstantTransactionCreateResponseResponseType.Instant;
+          });
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionCreateResponse> =
         z.union([
             Transaction$.outboundSchema.and(

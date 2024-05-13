@@ -28,12 +28,7 @@ export type CustomsExporterIdentification = {
 
 /** @internal */
 export namespace CustomsExporterIdentification$ {
-    export type Inbound = {
-        eori_number?: string | undefined;
-        tax_id?: CustomsTaxIdentification$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CustomsExporterIdentification, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CustomsExporterIdentification, z.ZodTypeDef, unknown> = z
         .object({
             eori_number: z.string().optional(),
             tax_id: CustomsTaxIdentification$.inboundSchema.optional(),

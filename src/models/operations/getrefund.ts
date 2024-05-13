@@ -13,11 +13,7 @@ export type GetRefundRequest = {
 
 /** @internal */
 export namespace GetRefundRequest$ {
-    export type Inbound = {
-        RefundId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetRefundRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetRefundRequest, z.ZodTypeDef, unknown> = z
         .object({
             RefundId: z.string(),
         })

@@ -47,15 +47,7 @@ export type ServiceLevel = {
 
 /** @internal */
 export namespace ServiceLevel$ {
-    export type Inbound = {
-        name?: string | undefined;
-        terms?: string | undefined;
-        token?: string | undefined;
-        extended_token?: string | undefined;
-        parent_servicelevel?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ServiceLevel, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ServiceLevel, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             terms: z.string().optional(),

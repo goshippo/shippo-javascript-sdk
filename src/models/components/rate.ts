@@ -124,31 +124,7 @@ export const Attributes$: z.ZodNativeEnum<typeof Attributes> = z.nativeEnum(Attr
 
 /** @internal */
 export namespace Rate$ {
-    export type Inbound = {
-        amount: string;
-        amount_local: string;
-        currency: string;
-        currency_local: string;
-        arrives_by?: string | undefined;
-        attributes: Array<Attributes>;
-        carrier_account: string;
-        duration_terms?: string | undefined;
-        estimated_days?: number | undefined;
-        included_insurance_price?: number | undefined;
-        messages?: Array<ResponseMessage$.Inbound> | undefined;
-        object_created: string;
-        object_id: string;
-        object_owner: string;
-        provider: string;
-        provider_image_75?: string | undefined;
-        provider_image_200?: string | undefined;
-        servicelevel: ServiceLevel$.Inbound;
-        shipment: string;
-        test?: boolean | undefined;
-        zone?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Rate, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Rate, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.string(),
             amount_local: z.string(),

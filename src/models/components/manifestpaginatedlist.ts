@@ -13,13 +13,7 @@ export type ManifestPaginatedList = {
 
 /** @internal */
 export namespace ManifestPaginatedList$ {
-    export type Inbound = {
-        next?: string | undefined;
-        previous?: string | undefined;
-        results?: Array<Manifest$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ManifestPaginatedList, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ManifestPaginatedList, z.ZodTypeDef, unknown> = z
         .object({
             next: z.string().optional(),
             previous: z.string().optional(),

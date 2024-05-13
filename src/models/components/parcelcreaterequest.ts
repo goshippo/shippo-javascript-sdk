@@ -50,18 +50,7 @@ export type ParcelCreateRequest = {
 
 /** @internal */
 export namespace ParcelCreateRequest$ {
-    export type Inbound = {
-        distance_unit: DistanceUnitEnum;
-        height: string;
-        length: string;
-        mass_unit: WeightUnitEnum;
-        template?: ParcelTemplateEnumSet$.Inbound | undefined;
-        weight: string;
-        width: string;
-        metadata?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ParcelCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ParcelCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             distance_unit: DistanceUnitEnum$,
             height: z.string(),

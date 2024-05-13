@@ -21,12 +21,7 @@ export type AddressValidationResults = {
 
 /** @internal */
 export namespace AddressValidationResults$ {
-    export type Inbound = {
-        is_valid?: boolean | undefined;
-        messages?: Array<AddressValidationResultsMessage$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AddressValidationResults, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddressValidationResults, z.ZodTypeDef, unknown> = z
         .object({
             is_valid: z.boolean().optional(),
             messages: z.array(AddressValidationResultsMessage$.inboundSchema).optional(),

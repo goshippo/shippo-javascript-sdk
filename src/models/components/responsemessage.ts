@@ -27,13 +27,7 @@ export type ResponseMessage = {
 
 /** @internal */
 export namespace ResponseMessage$ {
-    export type Inbound = {
-        source?: string | undefined;
-        code?: string | undefined;
-        text?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ResponseMessage, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ResponseMessage, z.ZodTypeDef, unknown> = z
         .object({
             source: z.string().optional(),
             code: z.string().optional(),

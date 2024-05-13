@@ -13,14 +13,7 @@ export type TrackingStatusLocationBase = {
 
 /** @internal */
 export namespace TrackingStatusLocationBase$ {
-    export type Inbound = {
-        city?: string | undefined;
-        country?: string | undefined;
-        state?: string | undefined;
-        zip?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TrackingStatusLocationBase, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TrackingStatusLocationBase, z.ZodTypeDef, unknown> = z
         .object({
             city: z.string().optional(),
             country: z.string().optional(),

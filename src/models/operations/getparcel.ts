@@ -13,11 +13,7 @@ export type GetParcelRequest = {
 
 /** @internal */
 export namespace GetParcelRequest$ {
-    export type Inbound = {
-        ParcelId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetParcelRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetParcelRequest, z.ZodTypeDef, unknown> = z
         .object({
             ParcelId: z.string(),
         })

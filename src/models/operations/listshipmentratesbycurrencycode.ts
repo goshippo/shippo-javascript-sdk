@@ -25,17 +25,10 @@ export type ListShipmentRatesByCurrencyCodeRequest = {
 
 /** @internal */
 export namespace ListShipmentRatesByCurrencyCodeRequest$ {
-    export type Inbound = {
-        ShipmentId: string;
-        CurrencyCode?: string | undefined;
-        page?: number | undefined;
-        results?: number | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         ListShipmentRatesByCurrencyCodeRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ShipmentId: z.string(),

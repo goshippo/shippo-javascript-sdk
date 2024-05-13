@@ -95,25 +95,7 @@ export const ObjectState$: z.ZodNativeEnum<typeof ObjectState> = z.nativeEnum(Ob
 
 /** @internal */
 export namespace Parcel$ {
-    export type Inbound = {
-        distance_unit: DistanceUnitEnum;
-        extra?: ParcelExtra$.Inbound | undefined;
-        height: string;
-        length: string;
-        mass_unit: WeightUnitEnum;
-        metadata?: string | undefined;
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        object_state?: ObjectState | undefined;
-        object_updated?: string | undefined;
-        template?: ParcelTemplateEnumSet$.Inbound | undefined;
-        test?: boolean | undefined;
-        weight: string;
-        width: string;
-    };
-
-    export const inboundSchema: z.ZodType<Parcel, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Parcel, z.ZodTypeDef, unknown> = z
         .object({
             distance_unit: DistanceUnitEnum$,
             extra: ParcelExtra$.inboundSchema.optional(),

@@ -111,20 +111,16 @@ export type CarrierAccountWithExtraInfo = {
 
 /** @internal */
 export namespace ParametersT$ {
-    export type Inbound =
-        | FedExConnectExistingOwnAccountParameters$.Inbound
-        | UPSConnectExistingOwnAccountParameters$.Inbound
-        | Record<string, any>;
+    export const inboundSchema: z.ZodType<ParametersT, z.ZodTypeDef, unknown> = z.union([
+        FedExConnectExistingOwnAccountParameters$.inboundSchema,
+        UPSConnectExistingOwnAccountParameters$.inboundSchema,
+        z.record(z.any()),
+    ]);
 
     export type Outbound =
         | FedExConnectExistingOwnAccountParameters$.Outbound
         | UPSConnectExistingOwnAccountParameters$.Outbound
         | Record<string, any>;
-    export const inboundSchema: z.ZodType<ParametersT, z.ZodTypeDef, Inbound> = z.union([
-        FedExConnectExistingOwnAccountParameters$.inboundSchema,
-        UPSConnectExistingOwnAccountParameters$.inboundSchema,
-        z.record(z.any()),
-    ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParametersT> = z.union([
         FedExConnectExistingOwnAccountParameters$.outboundSchema,
         UPSConnectExistingOwnAccountParameters$.outboundSchema,
@@ -144,12 +140,7 @@ export const CarrierAccountWithExtraInfoStatus$: z.ZodNativeEnum<
 
 /** @internal */
 export namespace Authentication$ {
-    export type Inbound = {
-        type?: CarrierAccountWithExtraInfoType | undefined;
-        status?: CarrierAccountWithExtraInfoStatus | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Authentication, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Authentication, z.ZodTypeDef, unknown> = z
         .object({
             type: CarrierAccountWithExtraInfoType$.optional(),
             status: CarrierAccountWithExtraInfoStatus$.optional(),
@@ -181,11 +172,7 @@ export namespace Authentication$ {
 
 /** @internal */
 export namespace ObjectInfo$ {
-    export type Inbound = {
-        authentication?: Authentication$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ObjectInfo, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ObjectInfo, z.ZodTypeDef, unknown> = z
         .object({
             authentication: z.lazy(() => Authentication$.inboundSchema).optional(),
         })
@@ -212,26 +199,7 @@ export namespace ObjectInfo$ {
 
 /** @internal */
 export namespace CarrierAccountWithExtraInfo$ {
-    export type Inbound = {
-        account_id: string;
-        active?: boolean | undefined;
-        carrier: string;
-        parameters?:
-            | FedExConnectExistingOwnAccountParameters$.Inbound
-            | UPSConnectExistingOwnAccountParameters$.Inbound
-            | Record<string, any>
-            | undefined;
-        carrier_name?: any | undefined;
-        is_shippo_account?: boolean | undefined;
-        metadata?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        service_levels?: Array<CarrierAccountServiceLevel$.Inbound> | undefined;
-        test?: boolean | undefined;
-        object_info?: ObjectInfo$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierAccountWithExtraInfo, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CarrierAccountWithExtraInfo, z.ZodTypeDef, unknown> = z
         .object({
             account_id: z.string(),
             active: z.boolean().optional(),

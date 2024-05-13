@@ -112,29 +112,7 @@ export const InstantTransactionCreateResponseResponseType$: z.ZodNativeEnum<
 
 /** @internal */
 export namespace InstantTransactionCreateResponse$ {
-    export type Inbound = {
-        commercial_invoice_url?: string | undefined;
-        eta?: string | undefined;
-        label_file_type?: LabelFileTypeEnum | undefined;
-        label_url?: string | undefined;
-        messages?: Array<ResponseMessage$.Inbound> | undefined;
-        metadata?: string | undefined;
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        object_state?: ObjectStateEnum | undefined;
-        object_updated?: string | undefined;
-        qr_code_url?: string | undefined;
-        status?: TransactionStatusEnum | undefined;
-        test?: boolean | undefined;
-        tracking_number?: string | undefined;
-        tracking_status?: TrackingStatusEnum | undefined;
-        tracking_url_provider?: string | undefined;
-        rate?: InstantTransactionRate$.Inbound | undefined;
-        responseType?: InstantTransactionCreateResponseResponseType | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<InstantTransactionCreateResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<InstantTransactionCreateResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 commercial_invoice_url: z.string().optional(),

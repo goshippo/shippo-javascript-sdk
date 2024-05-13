@@ -41,18 +41,7 @@ export type TrackingStatus = {
 
 /** @internal */
 export namespace TrackingStatus$ {
-    export type Inbound = {
-        location?: TrackingStatusLocationBase$.Inbound | undefined;
-        object_created: string;
-        object_id: string;
-        object_updated: string;
-        status: TrackingStatusEnum;
-        substatus?: TrackingStatusSubstatus$.Inbound | undefined;
-        status_date: string;
-        status_details: string;
-    };
-
-    export const inboundSchema: z.ZodType<TrackingStatus, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TrackingStatus, z.ZodTypeDef, unknown> = z
         .object({
             location: TrackingStatusLocationBase$.inboundSchema.optional(),
             object_created: z

@@ -11,11 +11,7 @@ export type DefaultParcelTemplate = {
 
 /** @internal */
 export namespace DefaultParcelTemplate$ {
-    export type Inbound = {
-        result?: UserParcelTemplate$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DefaultParcelTemplate, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DefaultParcelTemplate, z.ZodTypeDef, unknown> = z
         .object({
             result: UserParcelTemplate$.inboundSchema.optional(),
         })

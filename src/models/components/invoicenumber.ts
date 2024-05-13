@@ -27,12 +27,7 @@ export type InvoiceNumber = {
 
 /** @internal */
 export namespace InvoiceNumber$ {
-    export type Inbound = {
-        prefix?: string | undefined;
-        value?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<InvoiceNumber, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<InvoiceNumber, z.ZodTypeDef, unknown> = z
         .object({
             prefix: z.string().optional(),
             value: z.string().optional(),

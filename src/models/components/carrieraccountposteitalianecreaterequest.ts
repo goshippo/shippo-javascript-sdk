@@ -13,12 +13,10 @@ export type CarrierAccountPosteItalianeCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountPosteItalianeCreateRequestParameters$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         CarrierAccountPosteItalianeCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -32,15 +30,10 @@ export namespace CarrierAccountPosteItalianeCreateRequestParameters$ {
 
 /** @internal */
 export namespace CarrierAccountPosteItalianeCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters: CarrierAccountPosteItalianeCreateRequestParameters$.Inbound;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountPosteItalianeCreateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             carrier: z.string(),

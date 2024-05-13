@@ -1225,47 +1225,48 @@ export const ServiceLevelUSPSEnum$: z.ZodNativeEnum<typeof ServiceLevelUSPSEnum>
 
 /** @internal */
 export namespace ServiceLevelEnumSet$ {
-    export type Inbound =
-        | ServiceLevelUSPSEnum
-        | ServiceLevelFedExEnum
-        | ServiceLevelUPSEnum
-        | ServiceLevelAirterraEnum
-        | ServiceLevelAPCPostalEnum
-        | ServiceLevelAsendiaEnum
-        | ServiceLevelAustraliaPostEnum
-        | ServiceLevelAxleHireEnum
-        | ServiceLevelAPGEnum
-        | ServiceLevelBetterTrucksEnum
-        | ServiceLevelCanadaPostEnum
-        | ServiceLevelCDLEnum
-        | ServiceLevelChronopostEnum
-        | ServiceLevelCouriersPleaseEnum
-        | ServiceLevelCorreosEspanaEnum
-        | ServiceLevelColissimoEnum
-        | ServiceLevelPurolatorEnum
-        | ServiceLevelDHLExpressEnum
-        | ServiceLevelDHLeCommerceEnum
-        | ServiceLevelDHLGermanyEnum
-        | ServiceLevelDPDDEEnum
-        | ServiceLevelDPDUKEnum
-        | ServiceLevelDeutschePostEnum
-        | ServiceLevelAramexAustraliaEnum
-        | ServiceLevelGlobegisticsEnum
-        | ServiceLevelGLSUSEnum
-        | ServiceLevelLSOEnum
-        | ServiceLevelMondialRelayEnum
-        | ServiceLevelMaergoEnum
-        | ServiceLevelParcelforceEnum
-        | ServiceLevelPostItalianeEnum
-        | ServiceLevelePostGlobalEnum
-        | ServiceLevelRoyalMailEnum
-        | ServiceLevelSendleEnum
-        | ServiceLevelOnTracEnum
-        | ServiceLevelLasershipEnum
-        | ServiceLevelEvriUKEnum
-        | ServiceLevelUDSEnum
-        | ServiceLevelVehoEnum
-        | ServiceLevelSwyftEnum;
+    export const inboundSchema: z.ZodType<ServiceLevelEnumSet, z.ZodTypeDef, unknown> = z.union([
+        ServiceLevelUSPSEnum$,
+        ServiceLevelFedExEnum$,
+        ServiceLevelUPSEnum$,
+        ServiceLevelAirterraEnum$,
+        ServiceLevelAPCPostalEnum$,
+        ServiceLevelAsendiaEnum$,
+        ServiceLevelAustraliaPostEnum$,
+        ServiceLevelAxleHireEnum$,
+        ServiceLevelAPGEnum$,
+        ServiceLevelBetterTrucksEnum$,
+        ServiceLevelCanadaPostEnum$,
+        ServiceLevelCDLEnum$,
+        ServiceLevelChronopostEnum$,
+        ServiceLevelCouriersPleaseEnum$,
+        ServiceLevelCorreosEspanaEnum$,
+        ServiceLevelColissimoEnum$,
+        ServiceLevelPurolatorEnum$,
+        ServiceLevelDHLExpressEnum$,
+        ServiceLevelDHLeCommerceEnum$,
+        ServiceLevelDHLGermanyEnum$,
+        ServiceLevelDPDDEEnum$,
+        ServiceLevelDPDUKEnum$,
+        ServiceLevelDeutschePostEnum$,
+        ServiceLevelAramexAustraliaEnum$,
+        ServiceLevelGlobegisticsEnum$,
+        ServiceLevelGLSUSEnum$,
+        ServiceLevelLSOEnum$,
+        ServiceLevelMondialRelayEnum$,
+        ServiceLevelMaergoEnum$,
+        ServiceLevelParcelforceEnum$,
+        ServiceLevelPostItalianeEnum$,
+        ServiceLevelePostGlobalEnum$,
+        ServiceLevelRoyalMailEnum$,
+        ServiceLevelSendleEnum$,
+        ServiceLevelOnTracEnum$,
+        ServiceLevelLasershipEnum$,
+        ServiceLevelEvriUKEnum$,
+        ServiceLevelUDSEnum$,
+        ServiceLevelVehoEnum$,
+        ServiceLevelSwyftEnum$,
+    ]);
 
     export type Outbound =
         | ServiceLevelUSPSEnum
@@ -1308,48 +1309,6 @@ export namespace ServiceLevelEnumSet$ {
         | ServiceLevelUDSEnum
         | ServiceLevelVehoEnum
         | ServiceLevelSwyftEnum;
-    export const inboundSchema: z.ZodType<ServiceLevelEnumSet, z.ZodTypeDef, Inbound> = z.union([
-        ServiceLevelUSPSEnum$,
-        ServiceLevelFedExEnum$,
-        ServiceLevelUPSEnum$,
-        ServiceLevelAirterraEnum$,
-        ServiceLevelAPCPostalEnum$,
-        ServiceLevelAsendiaEnum$,
-        ServiceLevelAustraliaPostEnum$,
-        ServiceLevelAxleHireEnum$,
-        ServiceLevelAPGEnum$,
-        ServiceLevelBetterTrucksEnum$,
-        ServiceLevelCanadaPostEnum$,
-        ServiceLevelCDLEnum$,
-        ServiceLevelChronopostEnum$,
-        ServiceLevelCouriersPleaseEnum$,
-        ServiceLevelCorreosEspanaEnum$,
-        ServiceLevelColissimoEnum$,
-        ServiceLevelPurolatorEnum$,
-        ServiceLevelDHLExpressEnum$,
-        ServiceLevelDHLeCommerceEnum$,
-        ServiceLevelDHLGermanyEnum$,
-        ServiceLevelDPDDEEnum$,
-        ServiceLevelDPDUKEnum$,
-        ServiceLevelDeutschePostEnum$,
-        ServiceLevelAramexAustraliaEnum$,
-        ServiceLevelGlobegisticsEnum$,
-        ServiceLevelGLSUSEnum$,
-        ServiceLevelLSOEnum$,
-        ServiceLevelMondialRelayEnum$,
-        ServiceLevelMaergoEnum$,
-        ServiceLevelParcelforceEnum$,
-        ServiceLevelPostItalianeEnum$,
-        ServiceLevelePostGlobalEnum$,
-        ServiceLevelRoyalMailEnum$,
-        ServiceLevelSendleEnum$,
-        ServiceLevelOnTracEnum$,
-        ServiceLevelLasershipEnum$,
-        ServiceLevelEvriUKEnum$,
-        ServiceLevelUDSEnum$,
-        ServiceLevelVehoEnum$,
-        ServiceLevelSwyftEnum$,
-    ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ServiceLevelEnumSet> = z.union([
         ServiceLevelUSPSEnum$,
         ServiceLevelFedExEnum$,

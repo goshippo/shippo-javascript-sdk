@@ -41,14 +41,7 @@ export const ParcelInsuranceProvider$: z.ZodNativeEnum<typeof ParcelInsurancePro
 
 /** @internal */
 export namespace ParcelInsurance$ {
-    export type Inbound = {
-        amount?: string | undefined;
-        content?: string | undefined;
-        currency?: string | undefined;
-        provider?: ParcelInsuranceProvider | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ParcelInsurance, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ParcelInsurance, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.string().optional(),
             content: z.string().optional(),

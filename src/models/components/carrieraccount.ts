@@ -72,21 +72,17 @@ export type CarrierAccount = {
 
 /** @internal */
 export namespace CarrierAccountParameters$ {
-    export type Inbound =
-        | FedExConnectExistingOwnAccountParameters$.Inbound
-        | UPSConnectExistingOwnAccountParameters$.Inbound
-        | Record<string, any>;
-
-    export type Outbound =
-        | FedExConnectExistingOwnAccountParameters$.Outbound
-        | UPSConnectExistingOwnAccountParameters$.Outbound
-        | Record<string, any>;
-    export const inboundSchema: z.ZodType<CarrierAccountParameters, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<CarrierAccountParameters, z.ZodTypeDef, unknown> =
         z.union([
             FedExConnectExistingOwnAccountParameters$.inboundSchema,
             UPSConnectExistingOwnAccountParameters$.inboundSchema,
             z.record(z.any()),
         ]);
+
+    export type Outbound =
+        | FedExConnectExistingOwnAccountParameters$.Outbound
+        | UPSConnectExistingOwnAccountParameters$.Outbound
+        | Record<string, any>;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierAccountParameters> =
         z.union([
             FedExConnectExistingOwnAccountParameters$.outboundSchema,
@@ -97,25 +93,7 @@ export namespace CarrierAccountParameters$ {
 
 /** @internal */
 export namespace CarrierAccount$ {
-    export type Inbound = {
-        account_id: string;
-        active?: boolean | undefined;
-        carrier: string;
-        parameters?:
-            | FedExConnectExistingOwnAccountParameters$.Inbound
-            | UPSConnectExistingOwnAccountParameters$.Inbound
-            | Record<string, any>
-            | undefined;
-        carrier_name?: any | undefined;
-        is_shippo_account?: boolean | undefined;
-        metadata?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        service_levels?: Array<CarrierAccountServiceLevel$.Inbound> | undefined;
-        test?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierAccount, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CarrierAccount, z.ZodTypeDef, unknown> = z
         .object({
             account_id: z.string(),
             active: z.boolean().optional(),

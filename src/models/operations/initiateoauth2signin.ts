@@ -25,13 +25,7 @@ export type InitiateOauth2SigninResponse = {
 
 /** @internal */
 export namespace InitiateOauth2SigninRequest$ {
-    export type Inbound = {
-        CarrierAccountObjectId: string;
-        redirect_uri: string;
-        state?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<InitiateOauth2SigninRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<InitiateOauth2SigninRequest, z.ZodTypeDef, unknown> = z
         .object({
             CarrierAccountObjectId: z.string(),
             redirect_uri: z.string(),
@@ -68,11 +62,7 @@ export namespace InitiateOauth2SigninRequest$ {
 
 /** @internal */
 export namespace InitiateOauth2SigninResponse$ {
-    export type Inbound = {
-        Headers: Record<string, Array<string>>;
-    };
-
-    export const inboundSchema: z.ZodType<InitiateOauth2SigninResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<InitiateOauth2SigninResponse, z.ZodTypeDef, unknown> = z
         .object({
             Headers: z.record(z.array(z.string())),
         })

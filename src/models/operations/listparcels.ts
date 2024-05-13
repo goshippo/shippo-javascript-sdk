@@ -17,12 +17,7 @@ export type ListParcelsRequest = {
 
 /** @internal */
 export namespace ListParcelsRequest$ {
-    export type Inbound = {
-        page?: number | undefined;
-        results?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListParcelsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListParcelsRequest, z.ZodTypeDef, unknown> = z
         .object({
             page: z.number().int().default(1),
             results: z.number().int().default(25),

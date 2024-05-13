@@ -263,14 +263,15 @@ export const ParcelTemplateFedExEnum$: z.ZodNativeEnum<typeof ParcelTemplateFedE
 
 /** @internal */
 export namespace ParcelTemplateEnumSet$ {
-    export type Inbound =
-        | ParcelTemplateFedExEnum
-        | ParcelTemplateUPSEnum
-        | ParcelTemplateUSPSEnum
-        | ParcelTemplateDHLeCommerceEnum
-        | ParcelTemplateDPDUKEnum
-        | ParcelTemplateCouriersPleaseEnum
-        | ParcelTemplateAramexAustraliaEnum;
+    export const inboundSchema: z.ZodType<ParcelTemplateEnumSet, z.ZodTypeDef, unknown> = z.union([
+        ParcelTemplateFedExEnum$,
+        ParcelTemplateUPSEnum$,
+        ParcelTemplateUSPSEnum$,
+        ParcelTemplateDHLeCommerceEnum$,
+        ParcelTemplateDPDUKEnum$,
+        ParcelTemplateCouriersPleaseEnum$,
+        ParcelTemplateAramexAustraliaEnum$,
+    ]);
 
     export type Outbound =
         | ParcelTemplateFedExEnum
@@ -280,15 +281,6 @@ export namespace ParcelTemplateEnumSet$ {
         | ParcelTemplateDPDUKEnum
         | ParcelTemplateCouriersPleaseEnum
         | ParcelTemplateAramexAustraliaEnum;
-    export const inboundSchema: z.ZodType<ParcelTemplateEnumSet, z.ZodTypeDef, Inbound> = z.union([
-        ParcelTemplateFedExEnum$,
-        ParcelTemplateUPSEnum$,
-        ParcelTemplateUSPSEnum$,
-        ParcelTemplateDHLeCommerceEnum$,
-        ParcelTemplateDPDUKEnum$,
-        ParcelTemplateCouriersPleaseEnum$,
-        ParcelTemplateAramexAustraliaEnum$,
-    ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelTemplateEnumSet> = z.union(
         [
             ParcelTemplateFedExEnum$,

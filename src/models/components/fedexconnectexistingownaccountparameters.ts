@@ -41,21 +41,10 @@ export type FedExConnectExistingOwnAccountParameters = {
 
 /** @internal */
 export namespace FedExConnectExistingOwnAccountParameters$ {
-    export type Inbound = {
-        first_name: string;
-        last_name: string;
-        phone_number: string;
-        from_address_st: string;
-        from_address_city: string;
-        from_address_state: string;
-        from_address_zip: string;
-        from_address_country_iso2: string;
-    };
-
     export const inboundSchema: z.ZodType<
         FedExConnectExistingOwnAccountParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             first_name: z.string(),

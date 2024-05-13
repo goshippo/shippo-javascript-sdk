@@ -13,13 +13,7 @@ export type TransactionPaginatedList = {
 
 /** @internal */
 export namespace TransactionPaginatedList$ {
-    export type Inbound = {
-        next?: string | undefined;
-        previous?: string | undefined;
-        results?: Array<Transaction$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TransactionPaginatedList, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransactionPaginatedList, z.ZodTypeDef, unknown> = z
         .object({
             next: z.string().optional(),
             previous: z.string().optional(),

@@ -57,31 +57,10 @@ export type CarrierAccountUPSCreateRequestParameters = {
 
 /** @internal */
 export namespace CarrierAccountUPSCreateRequestParameters$ {
-    export type Inbound = {
-        billing_address_city: string;
-        billing_address_country_iso2: string;
-        billing_address_state: string;
-        billing_address_street1: string;
-        billing_address_street2?: string | undefined;
-        billing_address_zip: string;
-        company?: string | undefined;
-        email?: string | undefined;
-        full_name?: string | undefined;
-        phone?: string | undefined;
-        pickup_address_city: string;
-        pickup_address_country_iso2: string;
-        pickup_address_same_as_billing_address?: boolean | undefined;
-        pickup_address_state: string;
-        pickup_address_street1: string;
-        pickup_address_street2?: string | undefined;
-        pickup_address_zip: string;
-        ups_agreements: boolean;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountUPSCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             billing_address_city: z.string(),

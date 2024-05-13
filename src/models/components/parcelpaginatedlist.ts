@@ -13,13 +13,7 @@ export type ParcelPaginatedList = {
 
 /** @internal */
 export namespace ParcelPaginatedList$ {
-    export type Inbound = {
-        next?: string | undefined;
-        previous?: string | undefined;
-        results?: Array<Parcel$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ParcelPaginatedList, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ParcelPaginatedList, z.ZodTypeDef, unknown> = z
         .object({
             next: z.string().optional(),
             previous: z.string().optional(),

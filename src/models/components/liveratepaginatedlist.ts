@@ -14,14 +14,7 @@ export type LiveRatePaginatedList = {
 
 /** @internal */
 export namespace LiveRatePaginatedList$ {
-    export type Inbound = {
-        next?: string | undefined;
-        previous?: string | undefined;
-        count?: number | undefined;
-        results?: Array<LiveRate$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<LiveRatePaginatedList, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LiveRatePaginatedList, z.ZodTypeDef, unknown> = z
         .object({
             next: z.string().optional(),
             previous: z.string().optional(),

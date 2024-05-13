@@ -15,11 +15,7 @@ export type DeleteUserParcelTemplateResponse = {};
 
 /** @internal */
 export namespace DeleteUserParcelTemplateRequest$ {
-    export type Inbound = {
-        UserParcelTemplateObjectId: string;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteUserParcelTemplateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<DeleteUserParcelTemplateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 UserParcelTemplateObjectId: z.string(),
@@ -51,9 +47,7 @@ export namespace DeleteUserParcelTemplateRequest$ {
 
 /** @internal */
 export namespace DeleteUserParcelTemplateResponse$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<DeleteUserParcelTemplateResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<DeleteUserParcelTemplateResponse, z.ZodTypeDef, unknown> =
         z.object({});
 
     export type Outbound = {};

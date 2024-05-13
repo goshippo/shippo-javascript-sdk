@@ -30,15 +30,7 @@ export type ListTransactionsRequest = {
 
 /** @internal */
 export namespace ListTransactionsRequest$ {
-    export type Inbound = {
-        rate?: string | undefined;
-        object_status?: components.TransactionStatusEnum | undefined;
-        tracking_status?: components.TrackingStatusEnum | undefined;
-        page?: number | undefined;
-        results?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListTransactionsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListTransactionsRequest, z.ZodTypeDef, unknown> = z
         .object({
             rate: z.string().optional(),
             object_status: components.TransactionStatusEnum$.optional(),

@@ -17,12 +17,7 @@ export type GetCustomsDeclarationRequest = {
 
 /** @internal */
 export namespace GetCustomsDeclarationRequest$ {
-    export type Inbound = {
-        CustomsDeclarationId: string;
-        page?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetCustomsDeclarationRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetCustomsDeclarationRequest, z.ZodTypeDef, unknown> = z
         .object({
             CustomsDeclarationId: z.string(),
             page: z.number().int().default(1),

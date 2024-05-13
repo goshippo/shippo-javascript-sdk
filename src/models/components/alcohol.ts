@@ -31,12 +31,7 @@ export const RecipientType$: z.ZodNativeEnum<typeof RecipientType> = z.nativeEnu
 
 /** @internal */
 export namespace Alcohol$ {
-    export type Inbound = {
-        contains_alcohol?: boolean | undefined;
-        recipient_type?: RecipientType | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Alcohol, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Alcohol, z.ZodTypeDef, unknown> = z
         .object({
             contains_alcohol: z.boolean().optional(),
             recipient_type: RecipientType$.optional(),

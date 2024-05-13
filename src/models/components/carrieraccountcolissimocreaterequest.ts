@@ -13,12 +13,10 @@ export type CarrierAccountColissimoCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountColissimoCreateRequestParameters$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         CarrierAccountColissimoCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -32,15 +30,10 @@ export namespace CarrierAccountColissimoCreateRequestParameters$ {
 
 /** @internal */
 export namespace CarrierAccountColissimoCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters: CarrierAccountColissimoCreateRequestParameters$.Inbound;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountColissimoCreateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             carrier: z.string(),

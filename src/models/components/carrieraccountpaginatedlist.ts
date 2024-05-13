@@ -16,13 +16,7 @@ export type CarrierAccountPaginatedList = {
 
 /** @internal */
 export namespace CarrierAccountPaginatedList$ {
-    export type Inbound = {
-        next?: string | undefined;
-        previous?: string | undefined;
-        results?: Array<CarrierAccountWithExtraInfo$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CarrierAccountPaginatedList, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CarrierAccountPaginatedList, z.ZodTypeDef, unknown> = z
         .object({
             next: z.string().optional(),
             previous: z.string().optional(),

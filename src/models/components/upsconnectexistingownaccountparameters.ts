@@ -74,35 +74,10 @@ export type UPSConnectExistingOwnAccountParameters = {
 
 /** @internal */
 export namespace UPSConnectExistingOwnAccountParameters$ {
-    export type Inbound = {
-        account_number: string;
-        aia_country_iso2?: string | undefined;
-        billing_address_city: string;
-        billing_address_country_iso2: string;
-        billing_address_state: string;
-        billing_address_street1: string;
-        billing_address_street2?: string | undefined;
-        billing_address_zip: string;
-        collec_country_iso2: string;
-        collec_zip: string;
-        company: string;
-        currency_code?: string | undefined;
-        email: string;
-        full_name: string;
-        has_invoice: boolean;
-        invoice_controlid?: string | undefined;
-        invoice_date?: string | undefined;
-        invoice_number?: string | undefined;
-        invoice_value?: string | undefined;
-        phone: string;
-        title: string;
-        ups_agreements: boolean;
-    };
-
     export const inboundSchema: z.ZodType<
         UPSConnectExistingOwnAccountParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             account_number: z.string(),

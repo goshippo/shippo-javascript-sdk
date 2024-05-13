@@ -13,12 +13,10 @@ export type CarrierAccountHermesUKCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountHermesUKCreateRequestParameters$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         CarrierAccountHermesUKCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -32,15 +30,10 @@ export namespace CarrierAccountHermesUKCreateRequestParameters$ {
 
 /** @internal */
 export namespace CarrierAccountHermesUKCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters: CarrierAccountHermesUKCreateRequestParameters$.Inbound;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountHermesUKCreateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             carrier: z.string(),

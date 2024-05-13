@@ -8,9 +8,7 @@ export type GetDefaultParcelTemplateRequest = {};
 
 /** @internal */
 export namespace GetDefaultParcelTemplateRequest$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<GetDefaultParcelTemplateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<GetDefaultParcelTemplateRequest, z.ZodTypeDef, unknown> =
         z.object({});
 
     export type Outbound = {};

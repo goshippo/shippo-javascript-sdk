@@ -42,15 +42,7 @@ export type BatchCreateRequest = {
 
 /** @internal */
 export namespace BatchCreateRequest$ {
-    export type Inbound = {
-        default_carrier_account: string;
-        default_servicelevel_token: string;
-        label_filetype?: LabelFileTypeEnum | undefined;
-        metadata?: string | undefined;
-        batch_shipments: Array<BatchShipmentBase$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<BatchCreateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BatchCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             default_carrier_account: z.string(),
             default_servicelevel_token: z.string(),

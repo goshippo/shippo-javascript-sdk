@@ -73,22 +73,7 @@ export type LineItem = {
 
 /** @internal */
 export namespace LineItem$ {
-    export type Inbound = {
-        currency?: string | undefined;
-        manufacture_country?: string | undefined;
-        max_delivery_time?: string | undefined;
-        max_ship_time?: string | undefined;
-        quantity?: number | undefined;
-        sku?: string | undefined;
-        title?: string | undefined;
-        total_price?: string | undefined;
-        variant_title?: string | undefined;
-        weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
-        object_id?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<LineItem, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LineItem, z.ZodTypeDef, unknown> = z
         .object({
             currency: z.string().optional(),
             manufacture_country: z.string().optional(),

@@ -152,33 +152,7 @@ export type Address = {
 
 /** @internal */
 export namespace Address$ {
-    export type Inbound = {
-        name?: string | undefined;
-        company?: string | undefined;
-        street1?: string | undefined;
-        street2?: string | undefined;
-        street3?: string | undefined;
-        street_no?: string | undefined;
-        city?: string | undefined;
-        state?: string | undefined;
-        zip?: string | undefined;
-        country: string;
-        phone?: string | undefined;
-        email?: string | undefined;
-        is_residential?: boolean | undefined;
-        metadata?: string | undefined;
-        latitude?: number | undefined;
-        longitude?: number | undefined;
-        is_complete?: boolean | undefined;
-        object_created?: string | undefined;
-        object_id?: string | undefined;
-        object_owner?: string | undefined;
-        object_updated?: string | undefined;
-        validation_results?: AddressValidationResults$.Inbound | undefined;
-        test?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Address, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             company: z.string().optional(),

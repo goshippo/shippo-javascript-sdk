@@ -13,11 +13,7 @@ export type GetUserParcelTemplateRequest = {
 
 /** @internal */
 export namespace GetUserParcelTemplateRequest$ {
-    export type Inbound = {
-        UserParcelTemplateObjectId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetUserParcelTemplateRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetUserParcelTemplateRequest, z.ZodTypeDef, unknown> = z
         .object({
             UserParcelTemplateObjectId: z.string(),
         })

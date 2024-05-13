@@ -33,14 +33,7 @@ export type ParcelExtra = {
 
 /** @internal */
 export namespace ParcelExtra$ {
-    export type Inbound = {
-        COD?: Cod$.Inbound | undefined;
-        insurance?: ParcelInsurance$.Inbound | undefined;
-        reference_1?: string | undefined;
-        reference_2?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ParcelExtra, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ParcelExtra, z.ZodTypeDef, unknown> = z
         .object({
             COD: Cod$.inboundSchema.optional(),
             insurance: ParcelInsurance$.inboundSchema.optional(),

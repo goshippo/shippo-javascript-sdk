@@ -21,13 +21,7 @@ export type TracksRequest = {
 
 /** @internal */
 export namespace TracksRequest$ {
-    export type Inbound = {
-        carrier: string;
-        tracking_number: string;
-        metadata?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TracksRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TracksRequest, z.ZodTypeDef, unknown> = z
         .object({
             carrier: z.string(),
             tracking_number: z.string(),

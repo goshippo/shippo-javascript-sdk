@@ -25,14 +25,10 @@ export const Carrier$: z.ZodNativeEnum<typeof Carrier> = z.nativeEnum(Carrier);
 
 /** @internal */
 export namespace GetCarrierRegistrationStatusRequest$ {
-    export type Inbound = {
-        carrier: Carrier;
-    };
-
     export const inboundSchema: z.ZodType<
         GetCarrierRegistrationStatusRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             carrier: Carrier$,

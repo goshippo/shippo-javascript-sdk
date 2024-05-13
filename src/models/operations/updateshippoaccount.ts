@@ -15,12 +15,7 @@ export type UpdateShippoAccountRequest = {
 
 /** @internal */
 export namespace UpdateShippoAccountRequest$ {
-    export type Inbound = {
-        ShippoAccountId: string;
-        ShippoAccountUpdateRequest?: components.ShippoAccountUpdateRequest$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateShippoAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateShippoAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             ShippoAccountId: z.string(),
             ShippoAccountUpdateRequest:

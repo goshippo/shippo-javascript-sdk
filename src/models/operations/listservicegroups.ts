@@ -8,9 +8,7 @@ export type ListServiceGroupsRequest = {};
 
 /** @internal */
 export namespace ListServiceGroupsRequest$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<ListServiceGroupsRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<ListServiceGroupsRequest, z.ZodTypeDef, unknown> =
         z.object({});
 
     export type Outbound = {};

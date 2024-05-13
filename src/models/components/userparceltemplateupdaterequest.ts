@@ -39,17 +39,7 @@ export type UserParcelTemplateUpdateRequest = {
 
 /** @internal */
 export namespace UserParcelTemplateUpdateRequest$ {
-    export type Inbound = {
-        distance_unit: DistanceUnitEnum;
-        height: string;
-        length: string;
-        name: string;
-        weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
-        width: string;
-    };
-
-    export const inboundSchema: z.ZodType<UserParcelTemplateUpdateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<UserParcelTemplateUpdateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 distance_unit: DistanceUnitEnum$,

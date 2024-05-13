@@ -13,11 +13,7 @@ export type GetManifestRequest = {
 
 /** @internal */
 export namespace GetManifestRequest$ {
-    export type Inbound = {
-        ManifestId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetManifestRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetManifestRequest, z.ZodTypeDef, unknown> = z
         .object({
             ManifestId: z.string(),
         })

@@ -31,16 +31,7 @@ export const LabelFileType$: z.ZodNativeEnum<typeof LabelFileType> = z.nativeEnu
 
 /** @internal */
 export namespace InstantTransactionCreateRequest$ {
-    export type Inbound = {
-        async?: boolean | undefined;
-        carrier_account: string;
-        label_file_type?: LabelFileType | undefined;
-        metadata?: string | undefined;
-        servicelevel_token: string;
-        shipment: ShipmentCreateRequest$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<InstantTransactionCreateRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<InstantTransactionCreateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 async: z.boolean().default(false),

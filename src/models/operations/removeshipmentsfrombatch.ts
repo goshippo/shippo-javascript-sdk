@@ -17,12 +17,7 @@ export type RemoveShipmentsFromBatchRequest = {
 
 /** @internal */
 export namespace RemoveShipmentsFromBatchRequest$ {
-    export type Inbound = {
-        BatchId: string;
-        RequestBody: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<RemoveShipmentsFromBatchRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<RemoveShipmentsFromBatchRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 BatchId: z.string(),

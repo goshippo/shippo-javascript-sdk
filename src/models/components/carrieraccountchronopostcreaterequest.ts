@@ -13,12 +13,10 @@ export type CarrierAccountChronopostCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountChronopostCreateRequestParameters$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         CarrierAccountChronopostCreateRequestParameters,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -32,15 +30,10 @@ export namespace CarrierAccountChronopostCreateRequestParameters$ {
 
 /** @internal */
 export namespace CarrierAccountChronopostCreateRequest$ {
-    export type Inbound = {
-        carrier: string;
-        parameters: CarrierAccountChronopostCreateRequestParameters$.Inbound;
-    };
-
     export const inboundSchema: z.ZodType<
         CarrierAccountChronopostCreateRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             carrier: z.string(),
