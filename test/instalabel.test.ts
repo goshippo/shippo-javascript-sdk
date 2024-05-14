@@ -4,6 +4,7 @@ import {CarriersEnum, DistanceUnitEnum, WeightUnitEnum} from '../models/componen
 import {shippoSdk, getCarrierAccount} from "./helpers";
 
 describe('TestInstalabel', function() {
+
     it('testInstalabel', async () => {
         const carrierAccount = await getCarrierAccount(CarriersEnum.Usps);
 
@@ -45,5 +46,64 @@ describe('TestInstalabel', function() {
         });
 
         expect(transaction).to.not.be.null;
+
+        try {
+            const rate = await shippoSdk.rates.get(transaction?.rate?.objectId)
+            console.log(rate)
+        } catch(err) {
+            console.log(err)
+        }
+
     });
+
+    it('testInstalabel ups', async () => {
+        const carrierAccount = await getCarrierAccount(CarriersEnum.Ups);
+
+        const transaction = await shippoSdk.transactions.create({
+            carrierAccount: carrierAccount.objectId,
+            servicelevelToken: "ups_express",
+            shipment: {
+                addressFrom: {
+                    name: "Rachael",
+                    street1: "1092 Indian Summer Ct",
+                    city: "San Jose",
+                    state: "CA",
+                    zip: "95122",
+                    country: "US",
+                    phone: "4159876543",
+                    email: "rachael@alltheyarnz.com"
+                },
+                addressTo: {
+                    name: "Mr Hippo",
+                    street1: "965 Mission St #572",
+                    city: "San Francisco",
+                    state: "CA",
+                    zip: "94103",
+                    country: "US",
+                    phone: "4151234567",
+                    email: "mrhippo@shippo.com"
+                },
+                parcels: [
+                    {
+                        length: "5",
+                        width: "5",
+                        height: "5",
+                        distanceUnit: DistanceUnitEnum.Cm,
+                        weight: "2",
+                        massUnit: WeightUnitEnum.Lb
+                    }
+                ]
+            }
+        });
+
+        expect(transaction).to.not.be.null;
+
+        try {
+            const rate = await shippoSdk.rates.get(transaction?.rate?.objectId)
+            console.log(rate.servicelevel)
+        } catch(err) {
+            console.log(err)
+        }
+
+    })
 });
