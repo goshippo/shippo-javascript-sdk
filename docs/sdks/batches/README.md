@@ -50,14 +50,104 @@ async function run() {
         servicelevelToken: "fedex_ground",
         shipment: {
           extra: {
+            accountsReceivableCustomerAccount: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            appropriationNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            billOfLadingNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
             cod: {
               amount: "5.5",
               currency: "USD",
               paymentMethod: PaymentMethod.Cash,
             },
+            codNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            customerReference: {
+              refSort: 1,
+            },
+            dealerOrderNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            deptNumber: {
+              refSort: 3,
+            },
+            fdaProductCode: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
             insurance: {
               amount: "5.5",
               currency: "USD",
+            },
+            invoiceNumber: {
+              refSort: 2,
+            },
+            manifestNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            modelNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            partNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            poNumber: {
+              refSort: 2,
+            },
+            productionCode: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            purchaseRequestNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            rmaNumber: {
+              refSort: 1,
+            },
+            salespersonNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            serialNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            storeNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            transactionReferenceNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
             },
           },
           metadata: "Customer ID 123456",
@@ -209,14 +299,104 @@ async function run() {
       servicelevelToken: "fedex_ground",
       shipment: {
         extra: {
+          accountsReceivableCustomerAccount: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          appropriationNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          billOfLadingNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
           cod: {
             amount: "5.5",
             currency: "USD",
             paymentMethod: PaymentMethod.Cash,
           },
+          codNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          customerReference: {
+            refSort: 1,
+          },
+          dealerOrderNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          deptNumber: {
+            refSort: 3,
+          },
+          fdaProductCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
           insurance: {
             amount: "5.5",
             currency: "USD",
+          },
+          invoiceNumber: {
+            refSort: 2,
+          },
+          manifestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          modelNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          partNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          poNumber: {
+            refSort: 2,
+          },
+          productionCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          purchaseRequestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          rmaNumber: {
+            refSort: 1,
+          },
+          salespersonNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          serialNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          storeNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          transactionReferenceNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
           },
         },
         metadata: "Customer ID 123456",

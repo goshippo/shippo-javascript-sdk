@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 39e10349affb3dc3eb679b2b5a3bd921
+  docChecksum: a1a9f6cea74a5a729b15b587d72b766b
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.286.1
-  generationVersion: 2.329.0
-  releaseVersion: 2.2.4
-  configChecksum: 5f22f7c7ae7eaeafa9634727fa44bcd7
+  speakeasyVersion: 1.288.0
+  generationVersion: 2.331.0
+  releaseVersion: 2.2.5
+  configChecksum: 5c10ca66fcdfc9e0531ddff2f9690c1c
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -93,6 +93,7 @@ generatedFiles:
   - src/models/components/addressimporter.ts
   - src/models/components/customsdeclarationb13afilingoptionenum.ts
   - src/models/components/shipmentextra.ts
+  - src/models/components/upsreferencefields.ts
   - src/models/components/rmanumber.ts
   - src/models/components/ponumber.ts
   - src/models/components/invoicenumber.ts
@@ -170,7 +171,7 @@ generatedFiles:
   - src/models/components/location.ts
   - src/models/components/pickupbase.ts
   - src/models/components/rate.ts
-  - src/models/components/servicelevel.ts
+  - src/models/components/servicelevelwithparent.ts
   - src/models/components/responsemessage.ts
   - src/models/components/ratepaginatedlist.ts
   - src/models/components/refund.ts
@@ -205,6 +206,7 @@ generatedFiles:
   - src/models/components/shippoaccount.ts
   - src/models/components/shippoaccountupdaterequest.ts
   - src/models/components/security.ts
+  - src/models/components/servicelevel.ts
   - src/models/components/servicelevelenumset.ts
   - src/models/operations/listaddresses.ts
   - src/models/operations/getaddress.ts
@@ -303,6 +305,7 @@ generatedFiles:
   - docs/models/components/returnservicetype.md
   - docs/models/components/signatureconfirmation.md
   - docs/models/components/shipmentextra.md
+  - docs/models/components/upsreferencefields.md
   - docs/models/components/rmanumber.md
   - docs/models/components/ponumber.md
   - docs/models/components/invoicenumber.md
@@ -417,7 +420,8 @@ generatedFiles:
   - docs/models/components/pickupbase.md
   - docs/models/components/attributes.md
   - docs/models/components/rate.md
-  - docs/models/components/servicelevel.md
+  - docs/models/components/parentservicelevel.md
+  - docs/models/components/servicelevelwithparent.md
   - docs/models/components/responsemessage.md
   - docs/models/components/ratepaginatedlist.md
   - docs/models/components/refundstatus.md
@@ -457,6 +461,7 @@ generatedFiles:
   - docs/models/components/shippoaccount.md
   - docs/models/components/shippoaccountupdaterequest.md
   - docs/models/components/security.md
+  - docs/models/components/servicelevel.md
   - docs/models/components/servicelevelswyftenum.md
   - docs/models/components/servicelevelvehoenum.md
   - docs/models/components/serviceleveludsenum.md

@@ -3,7 +3,7 @@
  */
 
 import { ResponseMessage, ResponseMessage$ } from "./responsemessage";
-import { ServiceLevel, ServiceLevel$ } from "./servicelevel";
+import { ServiceLevelWithParent, ServiceLevelWithParent$ } from "./servicelevelwithparent";
 import * as z from "zod";
 
 export enum Attributes {
@@ -104,10 +104,7 @@ export type Rate = {
      * Please refer to the provider's Logo Usage Guidelines before using the logo.
      */
     providerImage200?: string | undefined;
-    /**
-     * Contains details regarding the service level for the given rate.
-     */
-    servicelevel: ServiceLevel;
+    servicelevel: ServiceLevelWithParent;
     shipment: string;
     /**
      * Indicates whether the object has been created in test mode.
@@ -146,7 +143,7 @@ export namespace Rate$ {
             provider: z.string(),
             provider_image_75: z.string().optional(),
             provider_image_200: z.string().optional(),
-            servicelevel: ServiceLevel$.inboundSchema,
+            servicelevel: ServiceLevelWithParent$.inboundSchema,
             shipment: z.string(),
             test: z.boolean().optional(),
             zone: z.string().optional(),
@@ -201,7 +198,7 @@ export namespace Rate$ {
         provider: string;
         provider_image_75?: string | undefined;
         provider_image_200?: string | undefined;
-        servicelevel: ServiceLevel$.Outbound;
+        servicelevel: ServiceLevelWithParent$.Outbound;
         shipment: string;
         test?: boolean | undefined;
         zone?: string | undefined;
@@ -226,7 +223,7 @@ export namespace Rate$ {
             provider: z.string(),
             providerImage75: z.string().optional(),
             providerImage200: z.string().optional(),
-            servicelevel: ServiceLevel$.outboundSchema,
+            servicelevel: ServiceLevelWithParent$.outboundSchema,
             shipment: z.string(),
             test: z.boolean().optional(),
             zone: z.string().optional(),

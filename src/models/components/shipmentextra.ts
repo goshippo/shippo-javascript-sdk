@@ -13,6 +13,7 @@ import { Insurance, Insurance$ } from "./insurance";
 import { InvoiceNumber, InvoiceNumber$ } from "./invoicenumber";
 import { PoNumber, PoNumber$ } from "./ponumber";
 import { RmaNumber, RmaNumber$ } from "./rmanumber";
+import { UPSReferenceFields, UPSReferenceFields$ } from "./upsreferencefields";
 import * as z from "zod";
 
 /**
@@ -93,10 +94,16 @@ export enum SignatureConfirmation {
  * An object holding optional extra services to be requested.
  */
 export type ShipmentExtra = {
+    accountsReceivableCustomerAccount?: UPSReferenceFields | undefined;
+    /**
+     * Indicates that a shipment contains Alcohol (Fedex and UPS only).
+     */
+    alcohol?: Alcohol | undefined;
     /**
      * Specify an ancillary service endorsement to provide the USPS with instructions on how to handle undeliverable-as-addressed pieces (DHL eCommerce only).
      */
     ancillaryEndorsement?: AncillaryEndorsement | undefined;
+    appropriationNumber?: UPSReferenceFields | undefined;
     /**
      * Request `true` to give carrier permission to leave the parcel in a safe place if no one answers the
      *
@@ -105,10 +112,7 @@ export type ShipmentExtra = {
      * will not be left (*surcharges may be applicable).
      */
     authorityToLeave?: boolean | undefined;
-    /**
-     * Indicates that a shipment contains Alcohol (Fedex and UPS only).
-     */
-    alcohol?: Alcohol | undefined;
+    billOfLadingNumber?: UPSReferenceFields | undefined;
     /**
      * Specify billing details (UPS, FedEx, and DHL Germany only).
      */
@@ -133,6 +137,7 @@ export type ShipmentExtra = {
      * Specify collection on delivery details (UPS only).
      */
     cod?: Cod | undefined;
+    codNumber?: UPSReferenceFields | undefined;
     /**
      * Specify container type.
      */
@@ -149,13 +154,9 @@ export type ShipmentExtra = {
      */
     customerBranch?: string | undefined;
     /**
-     * Specify the reference field on the label (FedEx only).
+     * Specify the reference field on the label (FedEx and UPS only).
      */
     customerReference?: CustomerReference | undefined;
-    /**
-     * Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
-     */
-    dangerousGoodsCode?: DangerousGoodsCode | undefined;
     /**
      * Container for specifying the presence of dangerous materials. This is specific to USPS, and if any contents
      *
@@ -165,17 +166,23 @@ export type ShipmentExtra = {
      */
     dangerousGoods?: DangerousGoodsObject | undefined;
     /**
+     * Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
+     */
+    dangerousGoodsCode?: DangerousGoodsCode | undefined;
+    dealerOrderNumber?: UPSReferenceFields | undefined;
+    /**
      * Specify delivery instructions. Up to 500 characters. (FedEx and OnTrac only).
      */
     deliveryInstructions?: string | undefined;
     /**
-     * Specify the department number field on the label (FedEx only).
+     * Specify the department number field on the label (FedEx and UPS only).
      */
     deptNumber?: DepartmentNumber | undefined;
     /**
      * Specify that the package contains Dry Ice (FedEx, Veho, and UPS only).
      */
     dryIce?: DryIce | undefined;
+    fdaProductCode?: UPSReferenceFields | undefined;
     /**
      * The fulfilment center where the package originates from.
      */
@@ -185,7 +192,7 @@ export type ShipmentExtra = {
      */
     insurance?: Insurance | undefined;
     /**
-     * Specify the invoice number field on the label (FedEx only).
+     * Specify the invoice number field on the label (FedEx and UPS only).
      */
     invoiceNumber?: InvoiceNumber | undefined;
     /**
@@ -200,8 +207,11 @@ export type ShipmentExtra = {
      * Declared value (Lasership only). Defaults to `50.00`.
      */
     lasershipDeclaredValue?: string | undefined;
+    manifestNumber?: UPSReferenceFields | undefined;
+    modelNumber?: UPSReferenceFields | undefined;
+    partNumber?: UPSReferenceFields | undefined;
     /**
-     * Specify the PO number field on the label (FedEx only).
+     * Specify the PO number field on the label (FedEx and UPS only).
      */
     poNumber?: PoNumber | undefined;
     /**
@@ -212,6 +222,8 @@ export type ShipmentExtra = {
      * Add premium service to a shipment (DHL Germany international shipments only).
      */
     premium?: boolean | undefined;
+    productionCode?: UPSReferenceFields | undefined;
+    purchaseRequestNumber?: UPSReferenceFields | undefined;
     /**
      * Request a QR code for a given transaction when creating a shipping label (USPS domestic and Evri UK only).
      */
@@ -233,13 +245,15 @@ export type ShipmentExtra = {
      */
     returnServiceType?: ReturnServiceType | undefined;
     /**
-     * Specify the RMA number field on the label (FedEx only).
+     * Specify the RMA number field on the label (FedEx and UPS only).
      */
     rmaNumber?: RmaNumber | undefined;
     /**
      * Marks shipment as to be delivered on a Saturday.
      */
     saturdayDelivery?: boolean | undefined;
+    salespersonNumber?: UPSReferenceFields | undefined;
+    serialNumber?: UPSReferenceFields | undefined;
     /**
      * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only)
      *
@@ -247,6 +261,8 @@ export type ShipmentExtra = {
      * or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
      */
     signatureConfirmation?: SignatureConfirmation | undefined;
+    storeNumber?: UPSReferenceFields | undefined;
+    transactionReferenceNumber?: UPSReferenceFields | undefined;
 };
 
 /** @internal */
@@ -276,33 +292,44 @@ export const SignatureConfirmation$: z.ZodNativeEnum<typeof SignatureConfirmatio
 export namespace ShipmentExtra$ {
     export const inboundSchema: z.ZodType<ShipmentExtra, z.ZodTypeDef, unknown> = z
         .object({
-            ancillary_endorsement: AncillaryEndorsement$.optional(),
-            authority_to_leave: z.boolean().optional(),
+            accounts_receivable_customer_account: UPSReferenceFields$.inboundSchema.optional(),
             alcohol: Alcohol$.inboundSchema.optional(),
+            ancillary_endorsement: AncillaryEndorsement$.optional(),
+            appropriation_number: UPSReferenceFields$.inboundSchema.optional(),
+            authority_to_leave: z.boolean().optional(),
+            bill_of_lading_number: UPSReferenceFields$.inboundSchema.optional(),
             billing: Billing$.inboundSchema.optional(),
             bypass_address_validation: z.boolean().optional(),
             carbon_neutral: z.boolean().optional(),
             carrier_hub_id: z.string().optional(),
             carrier_hub_travel_time: z.number().int().optional(),
             COD: Cod$.inboundSchema.optional(),
+            cod_number: UPSReferenceFields$.inboundSchema.optional(),
             container_type: z.string().optional(),
             critical_pull_time: z.string().optional(),
             customer_branch: z.string().optional(),
             customer_reference: CustomerReference$.inboundSchema.optional(),
-            dangerous_goods_code: DangerousGoodsCode$.optional(),
             dangerous_goods: DangerousGoodsObject$.inboundSchema.optional(),
+            dangerous_goods_code: DangerousGoodsCode$.optional(),
+            dealer_order_number: UPSReferenceFields$.inboundSchema.optional(),
             delivery_instructions: z.string().optional(),
             dept_number: DepartmentNumber$.inboundSchema.optional(),
             dry_ice: DryIce$.inboundSchema.optional(),
+            fda_product_code: UPSReferenceFields$.inboundSchema.optional(),
             fulfillment_center: z.string().optional(),
             insurance: Insurance$.inboundSchema.optional(),
             invoice_number: InvoiceNumber$.inboundSchema.optional(),
             is_return: z.boolean().optional(),
             lasership_attrs: LasershipAttrs$.optional(),
             lasership_declared_value: z.string().optional(),
+            manifest_number: UPSReferenceFields$.inboundSchema.optional(),
+            model_number: UPSReferenceFields$.inboundSchema.optional(),
+            part_number: UPSReferenceFields$.inboundSchema.optional(),
             po_number: PoNumber$.inboundSchema.optional(),
             preferred_delivery_timeframe: PreferredDeliveryTimeframe$.optional(),
             premium: z.boolean().optional(),
+            production_code: UPSReferenceFields$.inboundSchema.optional(),
+            purchase_request_number: UPSReferenceFields$.inboundSchema.optional(),
             qr_code_requested: z.boolean().optional(),
             reference_1: z.string().optional(),
             reference_2: z.string().optional(),
@@ -310,17 +337,32 @@ export namespace ShipmentExtra$ {
             return_service_type: ReturnServiceType$.optional(),
             rma_number: RmaNumber$.inboundSchema.optional(),
             saturday_delivery: z.boolean().optional(),
+            salesperson_number: UPSReferenceFields$.inboundSchema.optional(),
+            serial_number: UPSReferenceFields$.inboundSchema.optional(),
             signature_confirmation: SignatureConfirmation$.optional(),
+            store_number: UPSReferenceFields$.inboundSchema.optional(),
+            transaction_reference_number: UPSReferenceFields$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                ...(v.accounts_receivable_customer_account === undefined
+                    ? null
+                    : {
+                          accountsReceivableCustomerAccount: v.accounts_receivable_customer_account,
+                      }),
+                ...(v.alcohol === undefined ? null : { alcohol: v.alcohol }),
                 ...(v.ancillary_endorsement === undefined
                     ? null
                     : { ancillaryEndorsement: v.ancillary_endorsement }),
+                ...(v.appropriation_number === undefined
+                    ? null
+                    : { appropriationNumber: v.appropriation_number }),
                 ...(v.authority_to_leave === undefined
                     ? null
                     : { authorityToLeave: v.authority_to_leave }),
-                ...(v.alcohol === undefined ? null : { alcohol: v.alcohol }),
+                ...(v.bill_of_lading_number === undefined
+                    ? null
+                    : { billOfLadingNumber: v.bill_of_lading_number }),
                 ...(v.billing === undefined ? null : { billing: v.billing }),
                 ...(v.bypass_address_validation === undefined
                     ? null
@@ -331,6 +373,7 @@ export namespace ShipmentExtra$ {
                     ? null
                     : { carrierHubTravelTime: v.carrier_hub_travel_time }),
                 ...(v.COD === undefined ? null : { cod: v.COD }),
+                ...(v.cod_number === undefined ? null : { codNumber: v.cod_number }),
                 ...(v.container_type === undefined ? null : { containerType: v.container_type }),
                 ...(v.critical_pull_time === undefined
                     ? null
@@ -339,15 +382,21 @@ export namespace ShipmentExtra$ {
                 ...(v.customer_reference === undefined
                     ? null
                     : { customerReference: v.customer_reference }),
+                ...(v.dangerous_goods === undefined ? null : { dangerousGoods: v.dangerous_goods }),
                 ...(v.dangerous_goods_code === undefined
                     ? null
                     : { dangerousGoodsCode: v.dangerous_goods_code }),
-                ...(v.dangerous_goods === undefined ? null : { dangerousGoods: v.dangerous_goods }),
+                ...(v.dealer_order_number === undefined
+                    ? null
+                    : { dealerOrderNumber: v.dealer_order_number }),
                 ...(v.delivery_instructions === undefined
                     ? null
                     : { deliveryInstructions: v.delivery_instructions }),
                 ...(v.dept_number === undefined ? null : { deptNumber: v.dept_number }),
                 ...(v.dry_ice === undefined ? null : { dryIce: v.dry_ice }),
+                ...(v.fda_product_code === undefined
+                    ? null
+                    : { fdaProductCode: v.fda_product_code }),
                 ...(v.fulfillment_center === undefined
                     ? null
                     : { fulfillmentCenter: v.fulfillment_center }),
@@ -358,11 +407,18 @@ export namespace ShipmentExtra$ {
                 ...(v.lasership_declared_value === undefined
                     ? null
                     : { lasershipDeclaredValue: v.lasership_declared_value }),
+                ...(v.manifest_number === undefined ? null : { manifestNumber: v.manifest_number }),
+                ...(v.model_number === undefined ? null : { modelNumber: v.model_number }),
+                ...(v.part_number === undefined ? null : { partNumber: v.part_number }),
                 ...(v.po_number === undefined ? null : { poNumber: v.po_number }),
                 ...(v.preferred_delivery_timeframe === undefined
                     ? null
                     : { preferredDeliveryTimeframe: v.preferred_delivery_timeframe }),
                 ...(v.premium === undefined ? null : { premium: v.premium }),
+                ...(v.production_code === undefined ? null : { productionCode: v.production_code }),
+                ...(v.purchase_request_number === undefined
+                    ? null
+                    : { purchaseRequestNumber: v.purchase_request_number }),
                 ...(v.qr_code_requested === undefined
                     ? null
                     : { qrCodeRequested: v.qr_code_requested }),
@@ -378,40 +434,59 @@ export namespace ShipmentExtra$ {
                 ...(v.saturday_delivery === undefined
                     ? null
                     : { saturdayDelivery: v.saturday_delivery }),
+                ...(v.salesperson_number === undefined
+                    ? null
+                    : { salespersonNumber: v.salesperson_number }),
+                ...(v.serial_number === undefined ? null : { serialNumber: v.serial_number }),
                 ...(v.signature_confirmation === undefined
                     ? null
                     : { signatureConfirmation: v.signature_confirmation }),
+                ...(v.store_number === undefined ? null : { storeNumber: v.store_number }),
+                ...(v.transaction_reference_number === undefined
+                    ? null
+                    : { transactionReferenceNumber: v.transaction_reference_number }),
             };
         });
 
     export type Outbound = {
-        ancillary_endorsement?: AncillaryEndorsement | undefined;
-        authority_to_leave?: boolean | undefined;
+        accounts_receivable_customer_account?: UPSReferenceFields$.Outbound | undefined;
         alcohol?: Alcohol$.Outbound | undefined;
+        ancillary_endorsement?: AncillaryEndorsement | undefined;
+        appropriation_number?: UPSReferenceFields$.Outbound | undefined;
+        authority_to_leave?: boolean | undefined;
+        bill_of_lading_number?: UPSReferenceFields$.Outbound | undefined;
         billing?: Billing$.Outbound | undefined;
         bypass_address_validation?: boolean | undefined;
         carbon_neutral?: boolean | undefined;
         carrier_hub_id?: string | undefined;
         carrier_hub_travel_time?: number | undefined;
         COD?: Cod$.Outbound | undefined;
+        cod_number?: UPSReferenceFields$.Outbound | undefined;
         container_type?: string | undefined;
         critical_pull_time?: string | undefined;
         customer_branch?: string | undefined;
         customer_reference?: CustomerReference$.Outbound | undefined;
-        dangerous_goods_code?: DangerousGoodsCode | undefined;
         dangerous_goods?: DangerousGoodsObject$.Outbound | undefined;
+        dangerous_goods_code?: DangerousGoodsCode | undefined;
+        dealer_order_number?: UPSReferenceFields$.Outbound | undefined;
         delivery_instructions?: string | undefined;
         dept_number?: DepartmentNumber$.Outbound | undefined;
         dry_ice?: DryIce$.Outbound | undefined;
+        fda_product_code?: UPSReferenceFields$.Outbound | undefined;
         fulfillment_center?: string | undefined;
         insurance?: Insurance$.Outbound | undefined;
         invoice_number?: InvoiceNumber$.Outbound | undefined;
         is_return?: boolean | undefined;
         lasership_attrs?: LasershipAttrs | undefined;
         lasership_declared_value?: string | undefined;
+        manifest_number?: UPSReferenceFields$.Outbound | undefined;
+        model_number?: UPSReferenceFields$.Outbound | undefined;
+        part_number?: UPSReferenceFields$.Outbound | undefined;
         po_number?: PoNumber$.Outbound | undefined;
         preferred_delivery_timeframe?: PreferredDeliveryTimeframe | undefined;
         premium?: boolean | undefined;
+        production_code?: UPSReferenceFields$.Outbound | undefined;
+        purchase_request_number?: UPSReferenceFields$.Outbound | undefined;
         qr_code_requested?: boolean | undefined;
         reference_1?: string | undefined;
         reference_2?: string | undefined;
@@ -419,38 +494,53 @@ export namespace ShipmentExtra$ {
         return_service_type?: ReturnServiceType | undefined;
         rma_number?: RmaNumber$.Outbound | undefined;
         saturday_delivery?: boolean | undefined;
+        salesperson_number?: UPSReferenceFields$.Outbound | undefined;
+        serial_number?: UPSReferenceFields$.Outbound | undefined;
         signature_confirmation?: SignatureConfirmation | undefined;
+        store_number?: UPSReferenceFields$.Outbound | undefined;
+        transaction_reference_number?: UPSReferenceFields$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ShipmentExtra> = z
         .object({
-            ancillaryEndorsement: AncillaryEndorsement$.optional(),
-            authorityToLeave: z.boolean().optional(),
+            accountsReceivableCustomerAccount: UPSReferenceFields$.outboundSchema.optional(),
             alcohol: Alcohol$.outboundSchema.optional(),
+            ancillaryEndorsement: AncillaryEndorsement$.optional(),
+            appropriationNumber: UPSReferenceFields$.outboundSchema.optional(),
+            authorityToLeave: z.boolean().optional(),
+            billOfLadingNumber: UPSReferenceFields$.outboundSchema.optional(),
             billing: Billing$.outboundSchema.optional(),
             bypassAddressValidation: z.boolean().optional(),
             carbonNeutral: z.boolean().optional(),
             carrierHubId: z.string().optional(),
             carrierHubTravelTime: z.number().int().optional(),
             cod: Cod$.outboundSchema.optional(),
+            codNumber: UPSReferenceFields$.outboundSchema.optional(),
             containerType: z.string().optional(),
             criticalPullTime: z.string().optional(),
             customerBranch: z.string().optional(),
             customerReference: CustomerReference$.outboundSchema.optional(),
-            dangerousGoodsCode: DangerousGoodsCode$.optional(),
             dangerousGoods: DangerousGoodsObject$.outboundSchema.optional(),
+            dangerousGoodsCode: DangerousGoodsCode$.optional(),
+            dealerOrderNumber: UPSReferenceFields$.outboundSchema.optional(),
             deliveryInstructions: z.string().optional(),
             deptNumber: DepartmentNumber$.outboundSchema.optional(),
             dryIce: DryIce$.outboundSchema.optional(),
+            fdaProductCode: UPSReferenceFields$.outboundSchema.optional(),
             fulfillmentCenter: z.string().optional(),
             insurance: Insurance$.outboundSchema.optional(),
             invoiceNumber: InvoiceNumber$.outboundSchema.optional(),
             isReturn: z.boolean().optional(),
             lasershipAttrs: LasershipAttrs$.optional(),
             lasershipDeclaredValue: z.string().optional(),
+            manifestNumber: UPSReferenceFields$.outboundSchema.optional(),
+            modelNumber: UPSReferenceFields$.outboundSchema.optional(),
+            partNumber: UPSReferenceFields$.outboundSchema.optional(),
             poNumber: PoNumber$.outboundSchema.optional(),
             preferredDeliveryTimeframe: PreferredDeliveryTimeframe$.optional(),
             premium: z.boolean().optional(),
+            productionCode: UPSReferenceFields$.outboundSchema.optional(),
+            purchaseRequestNumber: UPSReferenceFields$.outboundSchema.optional(),
             qrCodeRequested: z.boolean().optional(),
             reference1: z.string().optional(),
             reference2: z.string().optional(),
@@ -458,17 +548,32 @@ export namespace ShipmentExtra$ {
             returnServiceType: ReturnServiceType$.optional(),
             rmaNumber: RmaNumber$.outboundSchema.optional(),
             saturdayDelivery: z.boolean().optional(),
+            salespersonNumber: UPSReferenceFields$.outboundSchema.optional(),
+            serialNumber: UPSReferenceFields$.outboundSchema.optional(),
             signatureConfirmation: SignatureConfirmation$.optional(),
+            storeNumber: UPSReferenceFields$.outboundSchema.optional(),
+            transactionReferenceNumber: UPSReferenceFields$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                ...(v.accountsReceivableCustomerAccount === undefined
+                    ? null
+                    : {
+                          accounts_receivable_customer_account: v.accountsReceivableCustomerAccount,
+                      }),
+                ...(v.alcohol === undefined ? null : { alcohol: v.alcohol }),
                 ...(v.ancillaryEndorsement === undefined
                     ? null
                     : { ancillary_endorsement: v.ancillaryEndorsement }),
+                ...(v.appropriationNumber === undefined
+                    ? null
+                    : { appropriation_number: v.appropriationNumber }),
                 ...(v.authorityToLeave === undefined
                     ? null
                     : { authority_to_leave: v.authorityToLeave }),
-                ...(v.alcohol === undefined ? null : { alcohol: v.alcohol }),
+                ...(v.billOfLadingNumber === undefined
+                    ? null
+                    : { bill_of_lading_number: v.billOfLadingNumber }),
                 ...(v.billing === undefined ? null : { billing: v.billing }),
                 ...(v.bypassAddressValidation === undefined
                     ? null
@@ -479,6 +584,7 @@ export namespace ShipmentExtra$ {
                     ? null
                     : { carrier_hub_travel_time: v.carrierHubTravelTime }),
                 ...(v.cod === undefined ? null : { COD: v.cod }),
+                ...(v.codNumber === undefined ? null : { cod_number: v.codNumber }),
                 ...(v.containerType === undefined ? null : { container_type: v.containerType }),
                 ...(v.criticalPullTime === undefined
                     ? null
@@ -487,15 +593,19 @@ export namespace ShipmentExtra$ {
                 ...(v.customerReference === undefined
                     ? null
                     : { customer_reference: v.customerReference }),
+                ...(v.dangerousGoods === undefined ? null : { dangerous_goods: v.dangerousGoods }),
                 ...(v.dangerousGoodsCode === undefined
                     ? null
                     : { dangerous_goods_code: v.dangerousGoodsCode }),
-                ...(v.dangerousGoods === undefined ? null : { dangerous_goods: v.dangerousGoods }),
+                ...(v.dealerOrderNumber === undefined
+                    ? null
+                    : { dealer_order_number: v.dealerOrderNumber }),
                 ...(v.deliveryInstructions === undefined
                     ? null
                     : { delivery_instructions: v.deliveryInstructions }),
                 ...(v.deptNumber === undefined ? null : { dept_number: v.deptNumber }),
                 ...(v.dryIce === undefined ? null : { dry_ice: v.dryIce }),
+                ...(v.fdaProductCode === undefined ? null : { fda_product_code: v.fdaProductCode }),
                 ...(v.fulfillmentCenter === undefined
                     ? null
                     : { fulfillment_center: v.fulfillmentCenter }),
@@ -506,11 +616,18 @@ export namespace ShipmentExtra$ {
                 ...(v.lasershipDeclaredValue === undefined
                     ? null
                     : { lasership_declared_value: v.lasershipDeclaredValue }),
+                ...(v.manifestNumber === undefined ? null : { manifest_number: v.manifestNumber }),
+                ...(v.modelNumber === undefined ? null : { model_number: v.modelNumber }),
+                ...(v.partNumber === undefined ? null : { part_number: v.partNumber }),
                 ...(v.poNumber === undefined ? null : { po_number: v.poNumber }),
                 ...(v.preferredDeliveryTimeframe === undefined
                     ? null
                     : { preferred_delivery_timeframe: v.preferredDeliveryTimeframe }),
                 ...(v.premium === undefined ? null : { premium: v.premium }),
+                ...(v.productionCode === undefined ? null : { production_code: v.productionCode }),
+                ...(v.purchaseRequestNumber === undefined
+                    ? null
+                    : { purchase_request_number: v.purchaseRequestNumber }),
                 ...(v.qrCodeRequested === undefined
                     ? null
                     : { qr_code_requested: v.qrCodeRequested }),
@@ -526,9 +643,17 @@ export namespace ShipmentExtra$ {
                 ...(v.saturdayDelivery === undefined
                     ? null
                     : { saturday_delivery: v.saturdayDelivery }),
+                ...(v.salespersonNumber === undefined
+                    ? null
+                    : { salesperson_number: v.salespersonNumber }),
+                ...(v.serialNumber === undefined ? null : { serial_number: v.serialNumber }),
                 ...(v.signatureConfirmation === undefined
                     ? null
                     : { signature_confirmation: v.signatureConfirmation }),
+                ...(v.storeNumber === undefined ? null : { store_number: v.storeNumber }),
+                ...(v.transactionReferenceNumber === undefined
+                    ? null
+                    : { transaction_reference_number: v.transactionReferenceNumber }),
             };
         });
 }
