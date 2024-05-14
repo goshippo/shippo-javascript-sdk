@@ -4,20 +4,13 @@
 
 import * as z from "zod";
 
-/**
- * Specify the RMA number field on the label (FedEx and UPS only).
- */
-export type RmaNumber = {
+export type UPSReferenceFields = {
     /**
-     * Custom prefix for RMA number field (ZPL labels only). Up to 11 characters, including trailing
-     *
-     * @remarks
-     * spaces. Empty string indicates removal of default prefix. To use the default prefix, do not include
-     * this property.
+     * Custom prefix text.
      */
     prefix?: string | undefined;
     /**
-     * Optional text to be printed on the shipping label for RMA number. Up to 40 characters.
+     * Label reference text. 35 character limit.
      */
     value?: string | undefined;
     /**
@@ -27,8 +20,8 @@ export type RmaNumber = {
 };
 
 /** @internal */
-export namespace RmaNumber$ {
-    export const inboundSchema: z.ZodType<RmaNumber, z.ZodTypeDef, unknown> = z
+export namespace UPSReferenceFields$ {
+    export const inboundSchema: z.ZodType<UPSReferenceFields, z.ZodTypeDef, unknown> = z
         .object({
             prefix: z.string().optional(),
             value: z.string().optional(),
@@ -48,7 +41,7 @@ export namespace RmaNumber$ {
         ref_sort?: number | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RmaNumber> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UPSReferenceFields> = z
         .object({
             prefix: z.string().optional(),
             value: z.string().optional(),

@@ -34,15 +34,6 @@ export type ServiceLevel = {
      * Guaranteed to be unique across all Service Levels, and may help offer insight into the specific Service Level it describes.
      */
     extendedToken?: string | undefined;
-    /**
-     * Used for some Service Levels to link to the more "generic" version of this Service Level - for example,
-     *
-     * @remarks
-     * if this Service Level is a variation specific to shipments to Europe("ups_saver_eu"), the "parent" is
-     * the fully generic version ("ups_saver"). Helpful when displaying Service Levels to users. Has the same
-     * structure of the servicelevel - "name", "token", "terms", and "extended_token", or it is otherwise null.
-     */
-    parentServicelevel?: string | undefined;
 };
 
 /** @internal */
@@ -53,7 +44,6 @@ export namespace ServiceLevel$ {
             terms: z.string().optional(),
             token: z.string().optional(),
             extended_token: z.string().optional(),
-            parent_servicelevel: z.string().optional(),
         })
         .transform((v) => {
             return {
@@ -61,9 +51,6 @@ export namespace ServiceLevel$ {
                 ...(v.terms === undefined ? null : { terms: v.terms }),
                 ...(v.token === undefined ? null : { token: v.token }),
                 ...(v.extended_token === undefined ? null : { extendedToken: v.extended_token }),
-                ...(v.parent_servicelevel === undefined
-                    ? null
-                    : { parentServicelevel: v.parent_servicelevel }),
             };
         });
 
@@ -72,7 +59,6 @@ export namespace ServiceLevel$ {
         terms?: string | undefined;
         token?: string | undefined;
         extended_token?: string | undefined;
-        parent_servicelevel?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ServiceLevel> = z
@@ -81,7 +67,6 @@ export namespace ServiceLevel$ {
             terms: z.string().optional(),
             token: z.string().optional(),
             extendedToken: z.string().optional(),
-            parentServicelevel: z.string().optional(),
         })
         .transform((v) => {
             return {
@@ -89,9 +74,6 @@ export namespace ServiceLevel$ {
                 ...(v.terms === undefined ? null : { terms: v.terms }),
                 ...(v.token === undefined ? null : { token: v.token }),
                 ...(v.extendedToken === undefined ? null : { extended_token: v.extendedToken }),
-                ...(v.parentServicelevel === undefined
-                    ? null
-                    : { parent_servicelevel: v.parentServicelevel }),
             };
         });
 }

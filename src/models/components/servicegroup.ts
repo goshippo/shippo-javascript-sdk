@@ -3,7 +3,7 @@
  */
 
 import { ServiceGroupTypeEnum, ServiceGroupTypeEnum$ } from "./servicegrouptypeenum";
-import { ServiceLevel, ServiceLevel$ } from "./servicelevel";
+import { ServiceLevelWithParent, ServiceLevelWithParent$ } from "./servicelevelwithparent";
 import * as z from "zod";
 
 export type ServiceGroup = {
@@ -53,7 +53,7 @@ export type ServiceGroup = {
      * True if the service group is enabled, false otherwise.
      */
     isActive?: boolean | undefined;
-    serviceLevels: Array<ServiceLevel>;
+    serviceLevels: Array<ServiceLevelWithParent>;
 };
 
 /** @internal */
@@ -70,7 +70,7 @@ export namespace ServiceGroup$ {
             type: ServiceGroupTypeEnum$,
             object_id: z.string(),
             is_active: z.boolean().optional(),
-            service_levels: z.array(ServiceLevel$.inboundSchema),
+            service_levels: z.array(ServiceLevelWithParent$.inboundSchema),
         })
         .transform((v) => {
             return {
@@ -105,7 +105,7 @@ export namespace ServiceGroup$ {
         type: ServiceGroupTypeEnum;
         object_id: string;
         is_active?: boolean | undefined;
-        service_levels: Array<ServiceLevel$.Outbound>;
+        service_levels: Array<ServiceLevelWithParent$.Outbound>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ServiceGroup> = z
@@ -120,7 +120,7 @@ export namespace ServiceGroup$ {
             type: ServiceGroupTypeEnum$,
             objectId: z.string(),
             isActive: z.boolean().optional(),
-            serviceLevels: z.array(ServiceLevel$.outboundSchema),
+            serviceLevels: z.array(ServiceLevelWithParent$.outboundSchema),
         })
         .transform((v) => {
             return {
