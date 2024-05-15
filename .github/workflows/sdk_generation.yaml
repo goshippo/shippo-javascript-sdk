@@ -24,3 +24,18 @@ jobs:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+
+  update-package-json:
+    runs-on: ubuntu-latest
+    needs: generate
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Add types to package.json
+        run: |
+          make apply-types-to-package-json
+          git add package.json
+          GIT_COMMITTER_NAME=ci GIT_COMMITTER_EMAIL=ci git commit --amend --no-edit
+          git push --force
