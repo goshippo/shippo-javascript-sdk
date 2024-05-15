@@ -4,6 +4,7 @@
   "author": "Shippo",  
   "license": "MIT",
   "main": "./index.js",
+  "types": "./index.d.ts",
   "sideEffects": false,
   "repository": {
     "type": "git",
