@@ -15,6 +15,9 @@ test:
 
 check: lint test
 
+apply-types-to-package-json:
+	sed -i '' -e '/main/a\'$$'\n''  "types": "./index.d.ts",'$$'\n' package.json
+
 speakeasy-install: # dev task, locally install the speakeasy CLI
 	brew install speakeasy-api/homebrew-tap/speakeasy
 	speakeasy auth login
