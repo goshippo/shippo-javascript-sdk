@@ -36,8 +36,10 @@ export type ParcelInsurance = {
 };
 
 /** @internal */
-export const ParcelInsuranceProvider$: z.ZodNativeEnum<typeof ParcelInsuranceProvider> =
-    z.nativeEnum(ParcelInsuranceProvider);
+export namespace ParcelInsuranceProvider$ {
+    export const inboundSchema = z.nativeEnum(ParcelInsuranceProvider);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ParcelInsurance$ {
@@ -46,7 +48,7 @@ export namespace ParcelInsurance$ {
             amount: z.string().optional(),
             content: z.string().optional(),
             currency: z.string().optional(),
-            provider: ParcelInsuranceProvider$.optional(),
+            provider: ParcelInsuranceProvider$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -61,7 +63,7 @@ export namespace ParcelInsurance$ {
         amount?: string | undefined;
         content?: string | undefined;
         currency?: string | undefined;
-        provider?: ParcelInsuranceProvider | undefined;
+        provider?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelInsurance> = z
@@ -69,7 +71,7 @@ export namespace ParcelInsurance$ {
             amount: z.string().optional(),
             content: z.string().optional(),
             currency: z.string().optional(),
-            provider: ParcelInsuranceProvider$.optional(),
+            provider: ParcelInsuranceProvider$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

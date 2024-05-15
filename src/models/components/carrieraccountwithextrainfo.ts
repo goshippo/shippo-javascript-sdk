@@ -129,21 +129,23 @@ export namespace ParametersT$ {
 }
 
 /** @internal */
-export const CarrierAccountWithExtraInfoType$: z.ZodNativeEnum<
-    typeof CarrierAccountWithExtraInfoType
-> = z.nativeEnum(CarrierAccountWithExtraInfoType);
+export namespace CarrierAccountWithExtraInfoType$ {
+    export const inboundSchema = z.nativeEnum(CarrierAccountWithExtraInfoType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const CarrierAccountWithExtraInfoStatus$: z.ZodNativeEnum<
-    typeof CarrierAccountWithExtraInfoStatus
-> = z.nativeEnum(CarrierAccountWithExtraInfoStatus);
+export namespace CarrierAccountWithExtraInfoStatus$ {
+    export const inboundSchema = z.nativeEnum(CarrierAccountWithExtraInfoStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Authentication$ {
     export const inboundSchema: z.ZodType<Authentication, z.ZodTypeDef, unknown> = z
         .object({
-            type: CarrierAccountWithExtraInfoType$.optional(),
-            status: CarrierAccountWithExtraInfoStatus$.optional(),
+            type: CarrierAccountWithExtraInfoType$.inboundSchema.optional(),
+            status: CarrierAccountWithExtraInfoStatus$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -153,14 +155,14 @@ export namespace Authentication$ {
         });
 
     export type Outbound = {
-        type?: CarrierAccountWithExtraInfoType | undefined;
-        status?: CarrierAccountWithExtraInfoStatus | undefined;
+        type?: string | undefined;
+        status?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Authentication> = z
         .object({
-            type: CarrierAccountWithExtraInfoType$.optional(),
-            status: CarrierAccountWithExtraInfoStatus$.optional(),
+            type: CarrierAccountWithExtraInfoType$.outboundSchema.optional(),
+            status: CarrierAccountWithExtraInfoStatus$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

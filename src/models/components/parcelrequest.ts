@@ -58,11 +58,11 @@ export type ParcelRequest = {
 export namespace ParcelRequest$ {
     export const inboundSchema: z.ZodType<ParcelRequest, z.ZodTypeDef, unknown> = z
         .object({
-            distance_unit: DistanceUnitEnum$,
+            distance_unit: DistanceUnitEnum$.inboundSchema,
             extra: ParcelExtra$.inboundSchema.optional(),
             height: z.string(),
             length: z.string(),
-            mass_unit: WeightUnitEnum$,
+            mass_unit: WeightUnitEnum$.inboundSchema,
             metadata: z.string().optional(),
             template: ParcelTemplateEnumSet$.inboundSchema.optional(),
             test: z.boolean().optional(),
@@ -85,11 +85,11 @@ export namespace ParcelRequest$ {
         });
 
     export type Outbound = {
-        distance_unit: DistanceUnitEnum;
+        distance_unit: string;
         extra?: ParcelExtra$.Outbound | undefined;
         height: string;
         length: string;
-        mass_unit: WeightUnitEnum;
+        mass_unit: string;
         metadata?: string | undefined;
         template?: ParcelTemplateEnumSet$.Outbound | undefined;
         test?: boolean | undefined;
@@ -99,11 +99,11 @@ export namespace ParcelRequest$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelRequest> = z
         .object({
-            distanceUnit: DistanceUnitEnum$,
+            distanceUnit: DistanceUnitEnum$.outboundSchema,
             extra: ParcelExtra$.outboundSchema.optional(),
             height: z.string(),
             length: z.string(),
-            massUnit: WeightUnitEnum$,
+            massUnit: WeightUnitEnum$.outboundSchema,
             metadata: z.string().optional(),
             template: ParcelTemplateEnumSet$.outboundSchema.optional(),
             test: z.boolean().optional(),

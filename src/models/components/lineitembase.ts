@@ -89,7 +89,7 @@ export namespace LineItemBase$ {
             total_price: z.string().optional(),
             variant_title: z.string().optional(),
             weight: z.string().optional(),
-            weight_unit: WeightUnitEnum$.optional(),
+            weight_unit: WeightUnitEnum$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -122,7 +122,7 @@ export namespace LineItemBase$ {
         total_price?: string | undefined;
         variant_title?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
+        weight_unit?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LineItemBase> = z
@@ -143,7 +143,7 @@ export namespace LineItemBase$ {
             totalPrice: z.string().optional(),
             variantTitle: z.string().optional(),
             weight: z.string().optional(),
-            weightUnit: WeightUnitEnum$.optional(),
+            weightUnit: WeightUnitEnum$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

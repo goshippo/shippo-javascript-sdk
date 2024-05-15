@@ -112,7 +112,10 @@ export type Pickup = {
 };
 
 /** @internal */
-export const PickupStatus$: z.ZodNativeEnum<typeof PickupStatus> = z.nativeEnum(PickupStatus);
+export namespace PickupStatus$ {
+    export const inboundSchema = z.nativeEnum(PickupStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Pickup$ {
@@ -144,7 +147,7 @@ export namespace Pickup$ {
             confirmed_start_time: z.string().optional(),
             confirmed_end_time: z.string().optional(),
             cancel_by_time: z.string().optional(),
-            status: PickupStatus$.optional(),
+            status: PickupStatus$.inboundSchema.optional(),
             confirmation_code: z.string().optional(),
             timezone: z.string().optional(),
             messages: z.array(z.string()).optional(),
@@ -191,7 +194,7 @@ export namespace Pickup$ {
         confirmed_start_time?: string | undefined;
         confirmed_end_time?: string | undefined;
         cancel_by_time?: string | undefined;
-        status?: PickupStatus | undefined;
+        status?: string | undefined;
         confirmation_code?: string | undefined;
         timezone?: string | undefined;
         messages?: Array<string> | undefined;
@@ -218,7 +221,7 @@ export namespace Pickup$ {
             confirmedStartTime: z.string().optional(),
             confirmedEndTime: z.string().optional(),
             cancelByTime: z.string().optional(),
-            status: PickupStatus$.optional(),
+            status: PickupStatus$.outboundSchema.optional(),
             confirmationCode: z.string().optional(),
             timezone: z.string().optional(),
             messages: z.array(z.string()).optional(),

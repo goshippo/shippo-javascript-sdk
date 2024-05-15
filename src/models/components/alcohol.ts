@@ -27,14 +27,17 @@ export type Alcohol = {
 };
 
 /** @internal */
-export const RecipientType$: z.ZodNativeEnum<typeof RecipientType> = z.nativeEnum(RecipientType);
+export namespace RecipientType$ {
+    export const inboundSchema = z.nativeEnum(RecipientType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Alcohol$ {
     export const inboundSchema: z.ZodType<Alcohol, z.ZodTypeDef, unknown> = z
         .object({
             contains_alcohol: z.boolean().optional(),
-            recipient_type: RecipientType$.optional(),
+            recipient_type: RecipientType$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -47,13 +50,13 @@ export namespace Alcohol$ {
 
     export type Outbound = {
         contains_alcohol?: boolean | undefined;
-        recipient_type?: RecipientType | undefined;
+        recipient_type?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Alcohol> = z
         .object({
             containsAlcohol: z.boolean().optional(),
-            recipientType: RecipientType$.optional(),
+            recipientType: RecipientType$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

@@ -13,5 +13,7 @@ export enum ObjectStateEnum {
 }
 
 /** @internal */
-export const ObjectStateEnum$: z.ZodNativeEnum<typeof ObjectStateEnum> =
-    z.nativeEnum(ObjectStateEnum);
+export namespace ObjectStateEnum$ {
+    export const inboundSchema = z.nativeEnum(ObjectStateEnum);
+    export const outboundSchema = inboundSchema;
+}

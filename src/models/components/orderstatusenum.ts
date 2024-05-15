@@ -21,5 +21,7 @@ export enum OrderStatusEnum {
 }
 
 /** @internal */
-export const OrderStatusEnum$: z.ZodNativeEnum<typeof OrderStatusEnum> =
-    z.nativeEnum(OrderStatusEnum);
+export namespace OrderStatusEnum$ {
+    export const inboundSchema = z.nativeEnum(OrderStatusEnum);
+    export const outboundSchema = inboundSchema;
+}

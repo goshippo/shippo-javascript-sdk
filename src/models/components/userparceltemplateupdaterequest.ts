@@ -42,12 +42,12 @@ export namespace UserParcelTemplateUpdateRequest$ {
     export const inboundSchema: z.ZodType<UserParcelTemplateUpdateRequest, z.ZodTypeDef, unknown> =
         z
             .object({
-                distance_unit: DistanceUnitEnum$,
+                distance_unit: DistanceUnitEnum$.inboundSchema,
                 height: z.string(),
                 length: z.string(),
                 name: z.string(),
                 weight: z.string().optional(),
-                weight_unit: WeightUnitEnum$.optional(),
+                weight_unit: WeightUnitEnum$.inboundSchema.optional(),
                 width: z.string(),
             })
             .transform((v) => {
@@ -63,12 +63,12 @@ export namespace UserParcelTemplateUpdateRequest$ {
             });
 
     export type Outbound = {
-        distance_unit: DistanceUnitEnum;
+        distance_unit: string;
         height: string;
         length: string;
         name: string;
         weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
+        weight_unit?: string | undefined;
         width: string;
     };
 
@@ -78,12 +78,12 @@ export namespace UserParcelTemplateUpdateRequest$ {
         UserParcelTemplateUpdateRequest
     > = z
         .object({
-            distanceUnit: DistanceUnitEnum$,
+            distanceUnit: DistanceUnitEnum$.outboundSchema,
             height: z.string(),
             length: z.string(),
             name: z.string(),
             weight: z.string().optional(),
-            weightUnit: WeightUnitEnum$.optional(),
+            weightUnit: WeightUnitEnum$.outboundSchema.optional(),
             width: z.string(),
         })
         .transform((v) => {
