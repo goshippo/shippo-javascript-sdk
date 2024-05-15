@@ -62,7 +62,7 @@ export namespace ServiceGroupCreateRequest$ {
             free_shipping_threshold_min: z.string().optional(),
             name: z.string(),
             rate_adjustment: z.number().int().optional(),
-            type: ServiceGroupTypeEnum$,
+            type: ServiceGroupTypeEnum$.inboundSchema,
             service_levels: z.array(ServiceGroupAccountAndServiceLevel$.inboundSchema),
         })
         .transform((v) => {
@@ -93,7 +93,7 @@ export namespace ServiceGroupCreateRequest$ {
         free_shipping_threshold_min?: string | undefined;
         name: string;
         rate_adjustment?: number | undefined;
-        type: ServiceGroupTypeEnum;
+        type: string;
         service_levels: Array<ServiceGroupAccountAndServiceLevel$.Outbound>;
     };
 
@@ -106,7 +106,7 @@ export namespace ServiceGroupCreateRequest$ {
             freeShippingThresholdMin: z.string().optional(),
             name: z.string(),
             rateAdjustment: z.number().int().optional(),
-            type: ServiceGroupTypeEnum$,
+            type: ServiceGroupTypeEnum$.outboundSchema,
             serviceLevels: z.array(ServiceGroupAccountAndServiceLevel$.outboundSchema),
         })
         .transform((v) => {

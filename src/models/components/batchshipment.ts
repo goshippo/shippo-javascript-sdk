@@ -66,7 +66,10 @@ export type BatchShipment = {
 };
 
 /** @internal */
-export const Status$: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
+export namespace Status$ {
+    export const inboundSchema = z.nativeEnum(Status);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace BatchShipment$ {
@@ -78,7 +81,7 @@ export namespace BatchShipment$ {
             shipment: ShipmentCreateRequest$.inboundSchema,
             messages: z.array(BatchShipmentErrorMessage$.inboundSchema).optional(),
             object_id: z.string(),
-            status: Status$,
+            status: Status$.inboundSchema,
             transaction: z.string().optional(),
         })
         .transform((v) => {
@@ -103,7 +106,7 @@ export namespace BatchShipment$ {
         shipment: ShipmentCreateRequest$.Outbound;
         messages?: Array<BatchShipmentErrorMessage$.Outbound> | undefined;
         object_id: string;
-        status: Status;
+        status: string;
         transaction?: string | undefined;
     };
 
@@ -115,7 +118,7 @@ export namespace BatchShipment$ {
             shipment: ShipmentCreateRequest$.outboundSchema,
             messages: z.array(BatchShipmentErrorMessage$.outboundSchema).optional(),
             objectId: z.string(),
-            status: Status$,
+            status: Status$.outboundSchema,
             transaction: z.string().optional(),
         })
         .transform((v) => {

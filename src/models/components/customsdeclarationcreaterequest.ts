@@ -120,7 +120,8 @@ export namespace CustomsDeclarationCreateRequest$ {
         z
             .object({
                 aes_itn: z.string().optional(),
-                b13a_filing_option: CustomsDeclarationB13AFilingOptionEnum$.optional(),
+                b13a_filing_option:
+                    CustomsDeclarationB13AFilingOptionEnum$.inboundSchema.optional(),
                 b13a_number: z.string().optional(),
                 certificate: z.string().optional(),
                 certify: z.boolean(),
@@ -136,11 +137,11 @@ export namespace CustomsDeclarationCreateRequest$ {
                 metadata: z.string().optional(),
                 notes: z.string().optional(),
                 address_importer: AddressImporter$.inboundSchema.optional(),
-                contents_type: CustomsDeclarationContentsTypeEnum$,
-                eel_pfc: CustomsDeclarationEelPfcEnum$.optional(),
-                incoterm: CustomsDeclarationIncotermEnum$.optional(),
+                contents_type: CustomsDeclarationContentsTypeEnum$.inboundSchema,
+                eel_pfc: CustomsDeclarationEelPfcEnum$.inboundSchema.optional(),
+                incoterm: CustomsDeclarationIncotermEnum$.inboundSchema.optional(),
                 items: z.array(CustomsItemCreateRequest$.inboundSchema),
-                non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum$,
+                non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum$.inboundSchema,
                 test: z.boolean().optional(),
             })
             .transform((v) => {
@@ -187,7 +188,7 @@ export namespace CustomsDeclarationCreateRequest$ {
 
     export type Outbound = {
         aes_itn?: string | undefined;
-        b13a_filing_option?: CustomsDeclarationB13AFilingOptionEnum | undefined;
+        b13a_filing_option?: string | undefined;
         b13a_number?: string | undefined;
         certificate?: string | undefined;
         certify: boolean;
@@ -203,11 +204,11 @@ export namespace CustomsDeclarationCreateRequest$ {
         metadata?: string | undefined;
         notes?: string | undefined;
         address_importer?: AddressImporter$.Outbound | undefined;
-        contents_type: CustomsDeclarationContentsTypeEnum;
-        eel_pfc?: CustomsDeclarationEelPfcEnum | undefined;
-        incoterm?: CustomsDeclarationIncotermEnum | undefined;
+        contents_type: string;
+        eel_pfc?: string | undefined;
+        incoterm?: string | undefined;
         items: Array<CustomsItemCreateRequest$.Outbound>;
-        non_delivery_option: CustomsDeclarationNonDeliveryOptionEnum;
+        non_delivery_option: string;
         test?: boolean | undefined;
     };
 
@@ -218,7 +219,7 @@ export namespace CustomsDeclarationCreateRequest$ {
     > = z
         .object({
             aesItn: z.string().optional(),
-            b13aFilingOption: CustomsDeclarationB13AFilingOptionEnum$.optional(),
+            b13aFilingOption: CustomsDeclarationB13AFilingOptionEnum$.outboundSchema.optional(),
             b13aNumber: z.string().optional(),
             certificate: z.string().optional(),
             certify: z.boolean(),
@@ -234,11 +235,11 @@ export namespace CustomsDeclarationCreateRequest$ {
             metadata: z.string().optional(),
             notes: z.string().optional(),
             addressImporter: AddressImporter$.outboundSchema.optional(),
-            contentsType: CustomsDeclarationContentsTypeEnum$,
-            eelPfc: CustomsDeclarationEelPfcEnum$.optional(),
-            incoterm: CustomsDeclarationIncotermEnum$.optional(),
+            contentsType: CustomsDeclarationContentsTypeEnum$.outboundSchema,
+            eelPfc: CustomsDeclarationEelPfcEnum$.outboundSchema.optional(),
+            incoterm: CustomsDeclarationIncotermEnum$.outboundSchema.optional(),
             items: z.array(CustomsItemCreateRequest$.outboundSchema),
-            nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum$,
+            nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum$.outboundSchema,
             test: z.boolean().optional(),
         })
         .transform((v) => {

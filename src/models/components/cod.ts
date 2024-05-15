@@ -40,7 +40,10 @@ export type Cod = {
 };
 
 /** @internal */
-export const PaymentMethod$: z.ZodNativeEnum<typeof PaymentMethod> = z.nativeEnum(PaymentMethod);
+export namespace PaymentMethod$ {
+    export const inboundSchema = z.nativeEnum(PaymentMethod);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Cod$ {
@@ -48,7 +51,7 @@ export namespace Cod$ {
         .object({
             amount: z.string().optional(),
             currency: z.string().optional(),
-            payment_method: PaymentMethod$.optional(),
+            payment_method: PaymentMethod$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -61,14 +64,14 @@ export namespace Cod$ {
     export type Outbound = {
         amount?: string | undefined;
         currency?: string | undefined;
-        payment_method?: PaymentMethod | undefined;
+        payment_method?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Cod> = z
         .object({
             amount: z.string().optional(),
             currency: z.string().optional(),
-            paymentMethod: PaymentMethod$.optional(),
+            paymentMethod: PaymentMethod$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

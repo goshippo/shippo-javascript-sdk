@@ -42,7 +42,10 @@ export type Billing = {
 };
 
 /** @internal */
-export const Type$: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
+export namespace Type$ {
+    export const inboundSchema = z.nativeEnum(Type);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Billing$ {
@@ -51,7 +54,7 @@ export namespace Billing$ {
             account: z.string().optional(),
             country: z.string().optional(),
             participation_code: z.string().optional(),
-            type: Type$.optional(),
+            type: Type$.inboundSchema.optional(),
             zip: z.string().optional(),
         })
         .transform((v) => {
@@ -70,7 +73,7 @@ export namespace Billing$ {
         account?: string | undefined;
         country?: string | undefined;
         participation_code?: string | undefined;
-        type?: Type | undefined;
+        type?: string | undefined;
         zip?: string | undefined;
     };
 
@@ -79,7 +82,7 @@ export namespace Billing$ {
             account: z.string().optional(),
             country: z.string().optional(),
             participationCode: z.string().optional(),
-            type: Type$.optional(),
+            type: Type$.outboundSchema.optional(),
             zip: z.string().optional(),
         })
         .transform((v) => {

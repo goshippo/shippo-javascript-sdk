@@ -67,7 +67,7 @@ export namespace ServiceGroup$ {
             free_shipping_threshold_min: z.string().optional(),
             name: z.string(),
             rate_adjustment: z.number().int().optional(),
-            type: ServiceGroupTypeEnum$,
+            type: ServiceGroupTypeEnum$.inboundSchema,
             object_id: z.string(),
             is_active: z.boolean().optional(),
             service_levels: z.array(ServiceLevelWithParent$.inboundSchema),
@@ -102,7 +102,7 @@ export namespace ServiceGroup$ {
         free_shipping_threshold_min?: string | undefined;
         name: string;
         rate_adjustment?: number | undefined;
-        type: ServiceGroupTypeEnum;
+        type: string;
         object_id: string;
         is_active?: boolean | undefined;
         service_levels: Array<ServiceLevelWithParent$.Outbound>;
@@ -117,7 +117,7 @@ export namespace ServiceGroup$ {
             freeShippingThresholdMin: z.string().optional(),
             name: z.string(),
             rateAdjustment: z.number().int().optional(),
-            type: ServiceGroupTypeEnum$,
+            type: ServiceGroupTypeEnum$.outboundSchema,
             objectId: z.string(),
             isActive: z.boolean().optional(),
             serviceLevels: z.array(ServiceLevelWithParent$.outboundSchema),

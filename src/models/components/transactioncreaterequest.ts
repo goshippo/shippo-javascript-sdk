@@ -23,7 +23,7 @@ export namespace TransactionCreateRequest$ {
     export const inboundSchema: z.ZodType<TransactionCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             async: z.boolean().default(true),
-            label_file_type: LabelFileTypeEnum$.optional(),
+            label_file_type: LabelFileTypeEnum$.inboundSchema.optional(),
             metadata: z.string().optional(),
             rate: z.string(),
         })
@@ -38,7 +38,7 @@ export namespace TransactionCreateRequest$ {
 
     export type Outbound = {
         async: boolean;
-        label_file_type?: LabelFileTypeEnum | undefined;
+        label_file_type?: string | undefined;
         metadata?: string | undefined;
         rate: string;
     };
@@ -46,7 +46,7 @@ export namespace TransactionCreateRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionCreateRequest> = z
         .object({
             async: z.boolean().default(true),
-            labelFileType: LabelFileTypeEnum$.optional(),
+            labelFileType: LabelFileTypeEnum$.outboundSchema.optional(),
             metadata: z.string().optional(),
             rate: z.string(),
         })

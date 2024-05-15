@@ -39,7 +39,10 @@ export type Insurance = {
 };
 
 /** @internal */
-export const Provider$: z.ZodNativeEnum<typeof Provider> = z.nativeEnum(Provider);
+export namespace Provider$ {
+    export const inboundSchema = z.nativeEnum(Provider);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Insurance$ {
@@ -48,7 +51,7 @@ export namespace Insurance$ {
             amount: z.string().optional(),
             content: z.string().optional(),
             currency: z.string().optional(),
-            provider: Provider$.optional(),
+            provider: Provider$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -63,7 +66,7 @@ export namespace Insurance$ {
         amount?: string | undefined;
         content?: string | undefined;
         currency?: string | undefined;
-        provider?: Provider | undefined;
+        provider?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Insurance> = z
@@ -71,7 +74,7 @@ export namespace Insurance$ {
             amount: z.string().optional(),
             content: z.string().optional(),
             currency: z.string().optional(),
-            provider: Provider$.optional(),
+            provider: Provider$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

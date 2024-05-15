@@ -1,10 +1,9 @@
 {
   "name": "shippo",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "author": "Shippo",  
   "license": "MIT",
   "main": "./index.js",
-  "types": "./index.d.ts",
   "sideEffects": false,
   "repository": {
     "type": "git",

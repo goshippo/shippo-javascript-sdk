@@ -133,7 +133,10 @@ export type Order = {
 };
 
 /** @internal */
-export const ShopApp$: z.ZodNativeEnum<typeof ShopApp> = z.nativeEnum(ShopApp);
+export namespace ShopApp$ {
+    export const inboundSchema = z.nativeEnum(ShopApp);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Order$ {
@@ -142,7 +145,7 @@ export namespace Order$ {
             currency: z.string().optional(),
             notes: z.string().optional(),
             order_number: z.string().optional(),
-            order_status: OrderStatusEnum$.optional(),
+            order_status: OrderStatusEnum$.inboundSchema.optional(),
             placed_at: z.string(),
             shipping_cost: z.string().optional(),
             shipping_cost_currency: z.string().optional(),
@@ -151,13 +154,13 @@ export namespace Order$ {
             total_price: z.string().optional(),
             total_tax: z.string().optional(),
             weight: z.string().optional(),
-            weight_unit: WeightUnitEnum$.optional(),
+            weight_unit: WeightUnitEnum$.inboundSchema.optional(),
             from_address: Address$.inboundSchema.optional(),
             to_address: Address$.inboundSchema,
             line_items: z.array(LineItem$.inboundSchema).optional(),
             object_id: z.string().optional(),
             object_owner: z.string().optional(),
-            shop_app: ShopApp$.optional(),
+            shop_app: ShopApp$.inboundSchema.optional(),
             transactions: z.array(z.string()).optional(),
         })
         .transform((v) => {
@@ -191,7 +194,7 @@ export namespace Order$ {
         currency?: string | undefined;
         notes?: string | undefined;
         order_number?: string | undefined;
-        order_status?: OrderStatusEnum | undefined;
+        order_status?: string | undefined;
         placed_at: string;
         shipping_cost?: string | undefined;
         shipping_cost_currency?: string | undefined;
@@ -200,13 +203,13 @@ export namespace Order$ {
         total_price?: string | undefined;
         total_tax?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
+        weight_unit?: string | undefined;
         from_address?: Address$.Outbound | undefined;
         to_address: Address$.Outbound;
         line_items?: Array<LineItem$.Outbound> | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
-        shop_app?: ShopApp | undefined;
+        shop_app?: string | undefined;
         transactions?: Array<string> | undefined;
     };
 
@@ -215,7 +218,7 @@ export namespace Order$ {
             currency: z.string().optional(),
             notes: z.string().optional(),
             orderNumber: z.string().optional(),
-            orderStatus: OrderStatusEnum$.optional(),
+            orderStatus: OrderStatusEnum$.outboundSchema.optional(),
             placedAt: z.string(),
             shippingCost: z.string().optional(),
             shippingCostCurrency: z.string().optional(),
@@ -224,13 +227,13 @@ export namespace Order$ {
             totalPrice: z.string().optional(),
             totalTax: z.string().optional(),
             weight: z.string().optional(),
-            weightUnit: WeightUnitEnum$.optional(),
+            weightUnit: WeightUnitEnum$.outboundSchema.optional(),
             fromAddress: Address$.outboundSchema.optional(),
             toAddress: Address$.outboundSchema,
             lineItems: z.array(LineItem$.outboundSchema).optional(),
             objectId: z.string().optional(),
             objectOwner: z.string().optional(),
-            shopApp: ShopApp$.optional(),
+            shopApp: ShopApp$.outboundSchema.optional(),
             transactions: z.array(z.string()).optional(),
         })
         .transform((v) => {

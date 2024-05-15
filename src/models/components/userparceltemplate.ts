@@ -59,12 +59,12 @@ export type UserParcelTemplate = {
 export namespace UserParcelTemplate$ {
     export const inboundSchema: z.ZodType<UserParcelTemplate, z.ZodTypeDef, unknown> = z
         .object({
-            distance_unit: DistanceUnitEnum$.optional(),
+            distance_unit: DistanceUnitEnum$.inboundSchema.optional(),
             height: z.string().optional(),
             length: z.string().optional(),
             name: z.string().optional(),
             weight: z.string().optional(),
-            weight_unit: WeightUnitEnum$.optional(),
+            weight_unit: WeightUnitEnum$.inboundSchema.optional(),
             width: z.string().optional(),
             object_created: z
                 .string()
@@ -98,12 +98,12 @@ export namespace UserParcelTemplate$ {
         });
 
     export type Outbound = {
-        distance_unit?: DistanceUnitEnum | undefined;
+        distance_unit?: string | undefined;
         height?: string | undefined;
         length?: string | undefined;
         name?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
+        weight_unit?: string | undefined;
         width?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
@@ -114,12 +114,12 @@ export namespace UserParcelTemplate$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UserParcelTemplate> = z
         .object({
-            distanceUnit: DistanceUnitEnum$.optional(),
+            distanceUnit: DistanceUnitEnum$.outboundSchema.optional(),
             height: z.string().optional(),
             length: z.string().optional(),
             name: z.string().optional(),
             weight: z.string().optional(),
-            weightUnit: WeightUnitEnum$.optional(),
+            weightUnit: WeightUnitEnum$.outboundSchema.optional(),
             width: z.string().optional(),
             objectCreated: z
                 .date()

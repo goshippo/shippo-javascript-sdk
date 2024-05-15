@@ -21,6 +21,7 @@ export enum CustomsDeclarationIncotermEnum {
 }
 
 /** @internal */
-export const CustomsDeclarationIncotermEnum$: z.ZodNativeEnum<
-    typeof CustomsDeclarationIncotermEnum
-> = z.nativeEnum(CustomsDeclarationIncotermEnum);
+export namespace CustomsDeclarationIncotermEnum$ {
+    export const inboundSchema = z.nativeEnum(CustomsDeclarationIncotermEnum);
+    export const outboundSchema = inboundSchema;
+}

@@ -46,7 +46,7 @@ export namespace BatchCreateRequest$ {
         .object({
             default_carrier_account: z.string(),
             default_servicelevel_token: z.string(),
-            label_filetype: LabelFileTypeEnum$.optional(),
+            label_filetype: LabelFileTypeEnum$.inboundSchema.optional(),
             metadata: z.string().optional(),
             batch_shipments: z.array(BatchShipmentBase$.inboundSchema),
         })
@@ -63,7 +63,7 @@ export namespace BatchCreateRequest$ {
     export type Outbound = {
         default_carrier_account: string;
         default_servicelevel_token: string;
-        label_filetype?: LabelFileTypeEnum | undefined;
+        label_filetype?: string | undefined;
         metadata?: string | undefined;
         batch_shipments: Array<BatchShipmentBase$.Outbound>;
     };
@@ -72,7 +72,7 @@ export namespace BatchCreateRequest$ {
         .object({
             defaultCarrierAccount: z.string(),
             defaultServicelevelToken: z.string(),
-            labelFiletype: LabelFileTypeEnum$.optional(),
+            labelFiletype: LabelFileTypeEnum$.outboundSchema.optional(),
             metadata: z.string().optional(),
             batchShipments: z.array(BatchShipmentBase$.outboundSchema),
         })

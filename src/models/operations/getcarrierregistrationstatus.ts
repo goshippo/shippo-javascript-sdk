@@ -21,7 +21,10 @@ export type GetCarrierRegistrationStatusRequest = {
 };
 
 /** @internal */
-export const Carrier$: z.ZodNativeEnum<typeof Carrier> = z.nativeEnum(Carrier);
+export namespace Carrier$ {
+    export const inboundSchema = z.nativeEnum(Carrier);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace GetCarrierRegistrationStatusRequest$ {
@@ -31,7 +34,7 @@ export namespace GetCarrierRegistrationStatusRequest$ {
         unknown
     > = z
         .object({
-            carrier: Carrier$,
+            carrier: Carrier$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -40,7 +43,7 @@ export namespace GetCarrierRegistrationStatusRequest$ {
         });
 
     export type Outbound = {
-        carrier: Carrier;
+        carrier: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -49,7 +52,7 @@ export namespace GetCarrierRegistrationStatusRequest$ {
         GetCarrierRegistrationStatusRequest
     > = z
         .object({
-            carrier: Carrier$,
+            carrier: Carrier$.outboundSchema,
         })
         .transform((v) => {
             return {

@@ -53,7 +53,7 @@ export namespace TrackingStatus$ {
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
-            status: TrackingStatusEnum$,
+            status: TrackingStatusEnum$.inboundSchema,
             substatus: TrackingStatusSubstatus$.inboundSchema.optional(),
             status_date: z
                 .string()
@@ -79,7 +79,7 @@ export namespace TrackingStatus$ {
         object_created: string;
         object_id: string;
         object_updated: string;
-        status: TrackingStatusEnum;
+        status: string;
         substatus?: TrackingStatusSubstatus$.Outbound | undefined;
         status_date: string;
         status_details: string;
@@ -91,7 +91,7 @@ export namespace TrackingStatus$ {
             objectCreated: z.date().transform((v) => v.toISOString()),
             objectId: z.string(),
             objectUpdated: z.date().transform((v) => v.toISOString()),
-            status: TrackingStatusEnum$,
+            status: TrackingStatusEnum$.outboundSchema,
             substatus: TrackingStatusSubstatus$.outboundSchema.optional(),
             statusDate: z.date().transform((v) => v.toISOString()),
             statusDetails: z.string(),

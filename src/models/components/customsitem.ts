@@ -92,7 +92,7 @@ export namespace CustomsItem$ {
         .object({
             description: z.string(),
             eccn_ear99: z.string().optional(),
-            mass_unit: WeightUnitEnum$,
+            mass_unit: WeightUnitEnum$.inboundSchema,
             metadata: z.string().optional(),
             net_weight: z.string(),
             origin_country: z.string(),
@@ -108,7 +108,7 @@ export namespace CustomsItem$ {
                 .optional(),
             object_id: z.string().optional(),
             object_owner: z.string().optional(),
-            object_state: ObjectStateEnum$.optional(),
+            object_state: ObjectStateEnum$.inboundSchema.optional(),
             object_updated: z
                 .string()
                 .datetime({ offset: true })
@@ -141,7 +141,7 @@ export namespace CustomsItem$ {
     export type Outbound = {
         description: string;
         eccn_ear99?: string | undefined;
-        mass_unit: WeightUnitEnum;
+        mass_unit: string;
         metadata?: string | undefined;
         net_weight: string;
         origin_country: string;
@@ -153,7 +153,7 @@ export namespace CustomsItem$ {
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
-        object_state?: ObjectStateEnum | undefined;
+        object_state?: string | undefined;
         object_updated?: string | undefined;
         test?: boolean | undefined;
     };
@@ -162,7 +162,7 @@ export namespace CustomsItem$ {
         .object({
             description: z.string(),
             eccnEar99: z.string().optional(),
-            massUnit: WeightUnitEnum$,
+            massUnit: WeightUnitEnum$.outboundSchema,
             metadata: z.string().optional(),
             netWeight: z.string(),
             originCountry: z.string(),
@@ -177,7 +177,7 @@ export namespace CustomsItem$ {
                 .optional(),
             objectId: z.string().optional(),
             objectOwner: z.string().optional(),
-            objectState: ObjectStateEnum$.optional(),
+            objectState: ObjectStateEnum$.outboundSchema.optional(),
             objectUpdated: z
                 .date()
                 .transform((v) => v.toISOString())

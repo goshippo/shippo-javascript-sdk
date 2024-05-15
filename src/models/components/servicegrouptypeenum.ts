@@ -14,5 +14,7 @@ export enum ServiceGroupTypeEnum {
 }
 
 /** @internal */
-export const ServiceGroupTypeEnum$: z.ZodNativeEnum<typeof ServiceGroupTypeEnum> =
-    z.nativeEnum(ServiceGroupTypeEnum);
+export namespace ServiceGroupTypeEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceGroupTypeEnum);
+    export const outboundSchema = inboundSchema;
+}
