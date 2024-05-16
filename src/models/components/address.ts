@@ -99,14 +99,6 @@ export type Address = {
      */
     metadata?: string | undefined;
     /**
-     * Latitude of address
-     */
-    latitude?: number | undefined;
-    /**
-     * Longitude of address
-     */
-    longitude?: number | undefined;
-    /**
      * Complete addresses contain all required values.<br><br>Incomplete addresses have failed one or multiple
      *
      * @remarks
@@ -114,6 +106,14 @@ export type Address = {
      * value for purchasing labels.
      */
     isComplete?: boolean | undefined;
+    /**
+     * Latitude of address
+     */
+    latitude?: number | undefined;
+    /**
+     * Longitude of address
+     */
+    longitude?: number | undefined;
     /**
      * Date and time of Address creation.
      */
@@ -168,9 +168,9 @@ export namespace Address$ {
             email: z.string().optional(),
             is_residential: z.boolean().optional(),
             metadata: z.string().optional(),
+            is_complete: z.boolean().optional(),
             latitude: z.number().optional(),
             longitude: z.number().optional(),
-            is_complete: z.boolean().optional(),
             object_created: z
                 .string()
                 .datetime({ offset: true })
@@ -202,9 +202,9 @@ export namespace Address$ {
                 ...(v.email === undefined ? null : { email: v.email }),
                 ...(v.is_residential === undefined ? null : { isResidential: v.is_residential }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
+                ...(v.is_complete === undefined ? null : { isComplete: v.is_complete }),
                 ...(v.latitude === undefined ? null : { latitude: v.latitude }),
                 ...(v.longitude === undefined ? null : { longitude: v.longitude }),
-                ...(v.is_complete === undefined ? null : { isComplete: v.is_complete }),
                 ...(v.object_created === undefined ? null : { objectCreated: v.object_created }),
                 ...(v.object_id === undefined ? null : { objectId: v.object_id }),
                 ...(v.object_owner === undefined ? null : { objectOwner: v.object_owner }),
@@ -231,9 +231,9 @@ export namespace Address$ {
         email?: string | undefined;
         is_residential?: boolean | undefined;
         metadata?: string | undefined;
+        is_complete?: boolean | undefined;
         latitude?: number | undefined;
         longitude?: number | undefined;
-        is_complete?: boolean | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
@@ -258,9 +258,9 @@ export namespace Address$ {
             email: z.string().optional(),
             isResidential: z.boolean().optional(),
             metadata: z.string().optional(),
+            isComplete: z.boolean().optional(),
             latitude: z.number().optional(),
             longitude: z.number().optional(),
-            isComplete: z.boolean().optional(),
             objectCreated: z
                 .date()
                 .transform((v) => v.toISOString())
@@ -290,9 +290,9 @@ export namespace Address$ {
                 ...(v.email === undefined ? null : { email: v.email }),
                 ...(v.isResidential === undefined ? null : { is_residential: v.isResidential }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
+                ...(v.isComplete === undefined ? null : { is_complete: v.isComplete }),
                 ...(v.latitude === undefined ? null : { latitude: v.latitude }),
                 ...(v.longitude === undefined ? null : { longitude: v.longitude }),
-                ...(v.isComplete === undefined ? null : { is_complete: v.isComplete }),
                 ...(v.objectCreated === undefined ? null : { object_created: v.objectCreated }),
                 ...(v.objectId === undefined ? null : { object_id: v.objectId }),
                 ...(v.objectOwner === undefined ? null : { object_owner: v.objectOwner }),

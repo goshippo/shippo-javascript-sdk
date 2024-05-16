@@ -52,10 +52,10 @@ export type ParcelCreateRequest = {
 export namespace ParcelCreateRequest$ {
     export const inboundSchema: z.ZodType<ParcelCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
-            distance_unit: DistanceUnitEnum$,
+            distance_unit: DistanceUnitEnum$.inboundSchema,
             height: z.string(),
             length: z.string(),
-            mass_unit: WeightUnitEnum$,
+            mass_unit: WeightUnitEnum$.inboundSchema,
             template: ParcelTemplateEnumSet$.inboundSchema.optional(),
             weight: z.string(),
             width: z.string(),
@@ -75,10 +75,10 @@ export namespace ParcelCreateRequest$ {
         });
 
     export type Outbound = {
-        distance_unit: DistanceUnitEnum;
+        distance_unit: string;
         height: string;
         length: string;
-        mass_unit: WeightUnitEnum;
+        mass_unit: string;
         template?: ParcelTemplateEnumSet$.Outbound | undefined;
         weight: string;
         width: string;
@@ -87,10 +87,10 @@ export namespace ParcelCreateRequest$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelCreateRequest> = z
         .object({
-            distanceUnit: DistanceUnitEnum$,
+            distanceUnit: DistanceUnitEnum$.outboundSchema,
             height: z.string(),
             length: z.string(),
-            massUnit: WeightUnitEnum$,
+            massUnit: WeightUnitEnum$.outboundSchema,
             template: ParcelTemplateEnumSet$.outboundSchema.optional(),
             weight: z.string(),
             width: z.string(),

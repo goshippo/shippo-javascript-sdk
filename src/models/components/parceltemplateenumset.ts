@@ -231,65 +231,69 @@ export type ParcelTemplateEnumSet =
     | ParcelTemplateAramexAustraliaEnum;
 
 /** @internal */
-export const ParcelTemplateAramexAustraliaEnum$: z.ZodNativeEnum<
-    typeof ParcelTemplateAramexAustraliaEnum
-> = z.nativeEnum(ParcelTemplateAramexAustraliaEnum);
+export namespace ParcelTemplateAramexAustraliaEnum$ {
+    export const inboundSchema = z.nativeEnum(ParcelTemplateAramexAustraliaEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ParcelTemplateCouriersPleaseEnum$: z.ZodNativeEnum<
-    typeof ParcelTemplateCouriersPleaseEnum
-> = z.nativeEnum(ParcelTemplateCouriersPleaseEnum);
+export namespace ParcelTemplateCouriersPleaseEnum$ {
+    export const inboundSchema = z.nativeEnum(ParcelTemplateCouriersPleaseEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ParcelTemplateDPDUKEnum$: z.ZodNativeEnum<typeof ParcelTemplateDPDUKEnum> =
-    z.nativeEnum(ParcelTemplateDPDUKEnum);
+export namespace ParcelTemplateDPDUKEnum$ {
+    export const inboundSchema = z.nativeEnum(ParcelTemplateDPDUKEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ParcelTemplateDHLeCommerceEnum$: z.ZodNativeEnum<
-    typeof ParcelTemplateDHLeCommerceEnum
-> = z.nativeEnum(ParcelTemplateDHLeCommerceEnum);
+export namespace ParcelTemplateDHLeCommerceEnum$ {
+    export const inboundSchema = z.nativeEnum(ParcelTemplateDHLeCommerceEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ParcelTemplateUSPSEnum$: z.ZodNativeEnum<typeof ParcelTemplateUSPSEnum> =
-    z.nativeEnum(ParcelTemplateUSPSEnum);
+export namespace ParcelTemplateUSPSEnum$ {
+    export const inboundSchema = z.nativeEnum(ParcelTemplateUSPSEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ParcelTemplateUPSEnum$: z.ZodNativeEnum<typeof ParcelTemplateUPSEnum> =
-    z.nativeEnum(ParcelTemplateUPSEnum);
+export namespace ParcelTemplateUPSEnum$ {
+    export const inboundSchema = z.nativeEnum(ParcelTemplateUPSEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ParcelTemplateFedExEnum$: z.ZodNativeEnum<typeof ParcelTemplateFedExEnum> =
-    z.nativeEnum(ParcelTemplateFedExEnum);
+export namespace ParcelTemplateFedExEnum$ {
+    export const inboundSchema = z.nativeEnum(ParcelTemplateFedExEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ParcelTemplateEnumSet$ {
     export const inboundSchema: z.ZodType<ParcelTemplateEnumSet, z.ZodTypeDef, unknown> = z.union([
-        ParcelTemplateFedExEnum$,
-        ParcelTemplateUPSEnum$,
-        ParcelTemplateUSPSEnum$,
-        ParcelTemplateDHLeCommerceEnum$,
-        ParcelTemplateDPDUKEnum$,
-        ParcelTemplateCouriersPleaseEnum$,
-        ParcelTemplateAramexAustraliaEnum$,
+        ParcelTemplateFedExEnum$.inboundSchema,
+        ParcelTemplateUPSEnum$.inboundSchema,
+        ParcelTemplateUSPSEnum$.inboundSchema,
+        ParcelTemplateDHLeCommerceEnum$.inboundSchema,
+        ParcelTemplateDPDUKEnum$.inboundSchema,
+        ParcelTemplateCouriersPleaseEnum$.inboundSchema,
+        ParcelTemplateAramexAustraliaEnum$.inboundSchema,
     ]);
 
-    export type Outbound =
-        | ParcelTemplateFedExEnum
-        | ParcelTemplateUPSEnum
-        | ParcelTemplateUSPSEnum
-        | ParcelTemplateDHLeCommerceEnum
-        | ParcelTemplateDPDUKEnum
-        | ParcelTemplateCouriersPleaseEnum
-        | ParcelTemplateAramexAustraliaEnum;
+    export type Outbound = string | string | string | string | string | string | string;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelTemplateEnumSet> = z.union(
         [
-            ParcelTemplateFedExEnum$,
-            ParcelTemplateUPSEnum$,
-            ParcelTemplateUSPSEnum$,
-            ParcelTemplateDHLeCommerceEnum$,
-            ParcelTemplateDPDUKEnum$,
-            ParcelTemplateCouriersPleaseEnum$,
-            ParcelTemplateAramexAustraliaEnum$,
+            ParcelTemplateFedExEnum$.outboundSchema,
+            ParcelTemplateUPSEnum$.outboundSchema,
+            ParcelTemplateUSPSEnum$.outboundSchema,
+            ParcelTemplateDHLeCommerceEnum$.outboundSchema,
+            ParcelTemplateDPDUKEnum$.outboundSchema,
+            ParcelTemplateCouriersPleaseEnum$.outboundSchema,
+            ParcelTemplateAramexAustraliaEnum$.outboundSchema,
         ]
     );
 }

@@ -115,7 +115,10 @@ export type Shipment = {
 };
 
 /** @internal */
-export const ShipmentStatus$: z.ZodNativeEnum<typeof ShipmentStatus> = z.nativeEnum(ShipmentStatus);
+export namespace ShipmentStatus$ {
+    export const inboundSchema = z.nativeEnum(ShipmentStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Shipment$ {
@@ -142,7 +145,7 @@ export namespace Shipment$ {
                 .transform((v) => new Date(v)),
             parcels: z.array(Parcel$.inboundSchema),
             rates: z.array(Rate$.inboundSchema),
-            status: ShipmentStatus$,
+            status: ShipmentStatus$.inboundSchema,
             test: z.boolean().optional(),
         })
         .transform((v) => {
@@ -185,7 +188,7 @@ export namespace Shipment$ {
         object_updated: string;
         parcels: Array<Parcel$.Outbound>;
         rates: Array<Rate$.Outbound>;
-        status: ShipmentStatus;
+        status: string;
         test?: boolean | undefined;
     };
 
@@ -206,7 +209,7 @@ export namespace Shipment$ {
             objectUpdated: z.date().transform((v) => v.toISOString()),
             parcels: z.array(Parcel$.outboundSchema),
             rates: z.array(Rate$.outboundSchema),
-            status: ShipmentStatus$,
+            status: ShipmentStatus$.outboundSchema,
             test: z.boolean().optional(),
         })
         .transform((v) => {
