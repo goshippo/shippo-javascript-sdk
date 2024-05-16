@@ -71,19 +71,24 @@ export type Location = {
 };
 
 /** @internal */
-export const BuildingLocationType$: z.ZodNativeEnum<typeof BuildingLocationType> =
-    z.nativeEnum(BuildingLocationType);
+export namespace BuildingLocationType$ {
+    export const inboundSchema = z.nativeEnum(BuildingLocationType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const BuildingType$: z.ZodNativeEnum<typeof BuildingType> = z.nativeEnum(BuildingType);
+export namespace BuildingType$ {
+    export const inboundSchema = z.nativeEnum(BuildingType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Location$ {
     export const inboundSchema: z.ZodType<Location, z.ZodTypeDef, unknown> = z
         .object({
             address: AddressCompleteCreateRequest$.inboundSchema,
-            building_location_type: BuildingLocationType$,
-            building_type: BuildingType$.optional(),
+            building_location_type: BuildingLocationType$.inboundSchema,
+            building_type: BuildingType$.inboundSchema.optional(),
             instructions: z.string().optional(),
         })
         .transform((v) => {
@@ -97,16 +102,16 @@ export namespace Location$ {
 
     export type Outbound = {
         address: AddressCompleteCreateRequest$.Outbound;
-        building_location_type: BuildingLocationType;
-        building_type?: BuildingType | undefined;
+        building_location_type: string;
+        building_type?: string | undefined;
         instructions?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Location> = z
         .object({
             address: AddressCompleteCreateRequest$.outboundSchema,
-            buildingLocationType: BuildingLocationType$,
-            buildingType: BuildingType$.optional(),
+            buildingLocationType: BuildingLocationType$.outboundSchema,
+            buildingType: BuildingType$.outboundSchema.optional(),
             instructions: z.string().optional(),
         })
         .transform((v) => {

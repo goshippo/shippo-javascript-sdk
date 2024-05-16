@@ -46,7 +46,10 @@ export type Refund = {
 };
 
 /** @internal */
-export const RefundStatus$: z.ZodNativeEnum<typeof RefundStatus> = z.nativeEnum(RefundStatus);
+export namespace RefundStatus$ {
+    export const inboundSchema = z.nativeEnum(RefundStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Refund$ {
@@ -64,7 +67,7 @@ export namespace Refund$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
-            status: RefundStatus$.optional(),
+            status: RefundStatus$.inboundSchema.optional(),
             test: z.boolean().optional(),
             transaction: z.string().optional(),
         })
@@ -85,7 +88,7 @@ export namespace Refund$ {
         object_id?: string | undefined;
         object_owner?: string | undefined;
         object_updated?: string | undefined;
-        status?: RefundStatus | undefined;
+        status?: string | undefined;
         test?: boolean | undefined;
         transaction?: string | undefined;
     };
@@ -102,7 +105,7 @@ export namespace Refund$ {
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-            status: RefundStatus$.optional(),
+            status: RefundStatus$.outboundSchema.optional(),
             test: z.boolean().optional(),
             transaction: z.string().optional(),
         })

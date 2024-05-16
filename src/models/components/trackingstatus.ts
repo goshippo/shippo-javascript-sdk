@@ -32,7 +32,7 @@ export type TrackingStatus = {
     /**
      * Date and time when the carrier scanned this tracking event. This is displayed in UTC.
      */
-    statusDate: Date;
+    statusDate?: Date | undefined;
     /**
      * The human-readable description of the status.
      */
@@ -53,12 +53,13 @@ export namespace TrackingStatus$ {
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
-            status: TrackingStatusEnum$,
+            status: TrackingStatusEnum$.inboundSchema,
             substatus: TrackingStatusSubstatus$.inboundSchema.optional(),
             status_date: z
                 .string()
                 .datetime({ offset: true })
-                .transform((v) => new Date(v)),
+                .transform((v) => new Date(v))
+                .optional(),
             status_details: z.string(),
         })
         .transform((v) => {
@@ -69,7 +70,7 @@ export namespace TrackingStatus$ {
                 objectUpdated: v.object_updated,
                 status: v.status,
                 ...(v.substatus === undefined ? null : { substatus: v.substatus }),
-                statusDate: v.status_date,
+                ...(v.status_date === undefined ? null : { statusDate: v.status_date }),
                 statusDetails: v.status_details,
             };
         });
@@ -79,9 +80,9 @@ export namespace TrackingStatus$ {
         object_created: string;
         object_id: string;
         object_updated: string;
-        status: TrackingStatusEnum;
+        status: string;
         substatus?: TrackingStatusSubstatus$.Outbound | undefined;
-        status_date: string;
+        status_date?: string | undefined;
         status_details: string;
     };
 
@@ -91,9 +92,12 @@ export namespace TrackingStatus$ {
             objectCreated: z.date().transform((v) => v.toISOString()),
             objectId: z.string(),
             objectUpdated: z.date().transform((v) => v.toISOString()),
-            status: TrackingStatusEnum$,
+            status: TrackingStatusEnum$.outboundSchema,
             substatus: TrackingStatusSubstatus$.outboundSchema.optional(),
-            statusDate: z.date().transform((v) => v.toISOString()),
+            statusDate: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
             statusDetails: z.string(),
         })
         .transform((v) => {
@@ -104,7 +108,7 @@ export namespace TrackingStatus$ {
                 object_updated: v.objectUpdated,
                 status: v.status,
                 ...(v.substatus === undefined ? null : { substatus: v.substatus }),
-                status_date: v.statusDate,
+                ...(v.statusDate === undefined ? null : { status_date: v.statusDate }),
                 status_details: v.statusDetails,
             };
         });

@@ -17,5 +17,7 @@ export enum DistanceUnitEnum {
 }
 
 /** @internal */
-export const DistanceUnitEnum$: z.ZodNativeEnum<typeof DistanceUnitEnum> =
-    z.nativeEnum(DistanceUnitEnum);
+export namespace DistanceUnitEnum$ {
+    export const inboundSchema = z.nativeEnum(DistanceUnitEnum);
+    export const outboundSchema = inboundSchema;
+}

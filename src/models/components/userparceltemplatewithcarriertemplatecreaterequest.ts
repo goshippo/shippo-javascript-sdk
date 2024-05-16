@@ -30,7 +30,7 @@ export namespace UserParcelTemplateWithCarrierTemplateCreateRequest$ {
         .object({
             template: z.string().optional(),
             weight: z.string().optional(),
-            weight_unit: WeightUnitEnum$.optional(),
+            weight_unit: WeightUnitEnum$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -43,7 +43,7 @@ export namespace UserParcelTemplateWithCarrierTemplateCreateRequest$ {
     export type Outbound = {
         template?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
+        weight_unit?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -54,7 +54,7 @@ export namespace UserParcelTemplateWithCarrierTemplateCreateRequest$ {
         .object({
             template: z.string().optional(),
             weight: z.string().optional(),
-            weightUnit: WeightUnitEnum$.optional(),
+            weightUnit: WeightUnitEnum$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

@@ -225,7 +225,7 @@ export namespace CustomsDeclaration$ {
                 .optional(),
             object_id: z.string().optional(),
             object_owner: z.string().optional(),
-            object_state: ObjectStateEnum$.optional(),
+            object_state: ObjectStateEnum$.inboundSchema.optional(),
             object_updated: z
                 .string()
                 .datetime({ offset: true })
@@ -314,7 +314,7 @@ export namespace CustomsDeclaration$ {
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
-        object_state?: ObjectStateEnum | undefined;
+        object_state?: string | undefined;
         object_updated?: string | undefined;
         test?: boolean | undefined;
     };
@@ -353,7 +353,7 @@ export namespace CustomsDeclaration$ {
                 .optional(),
             objectId: z.string().optional(),
             objectOwner: z.string().optional(),
-            objectState: ObjectStateEnum$.optional(),
+            objectState: ObjectStateEnum$.outboundSchema.optional(),
             objectUpdated: z
                 .date()
                 .transform((v) => v.toISOString())

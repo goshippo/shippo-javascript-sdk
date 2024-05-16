@@ -15,4 +15,7 @@ export enum WeightUnitEnum {
 }
 
 /** @internal */
-export const WeightUnitEnum$: z.ZodNativeEnum<typeof WeightUnitEnum> = z.nativeEnum(WeightUnitEnum);
+export namespace WeightUnitEnum$ {
+    export const inboundSchema = z.nativeEnum(WeightUnitEnum);
+    export const outboundSchema = inboundSchema;
+}

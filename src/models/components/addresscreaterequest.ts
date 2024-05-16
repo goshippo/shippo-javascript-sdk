@@ -98,14 +98,6 @@ export type AddressCreateRequest = {
      */
     metadata?: string | undefined;
     /**
-     * Latitude of address
-     */
-    latitude?: number | undefined;
-    /**
-     * Longitude of address
-     */
-    longitude?: number | undefined;
-    /**
      * Set to true to validate Address object.
      */
     validate?: boolean | undefined;
@@ -129,8 +121,6 @@ export namespace AddressCreateRequest$ {
             email: z.string().optional(),
             is_residential: z.boolean().optional(),
             metadata: z.string().optional(),
-            latitude: z.number().optional(),
-            longitude: z.number().optional(),
             validate: z.boolean().optional(),
         })
         .transform((v) => {
@@ -149,8 +139,6 @@ export namespace AddressCreateRequest$ {
                 ...(v.email === undefined ? null : { email: v.email }),
                 ...(v.is_residential === undefined ? null : { isResidential: v.is_residential }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.latitude === undefined ? null : { latitude: v.latitude }),
-                ...(v.longitude === undefined ? null : { longitude: v.longitude }),
                 ...(v.validate === undefined ? null : { validate: v.validate }),
             };
         });
@@ -170,8 +158,6 @@ export namespace AddressCreateRequest$ {
         email?: string | undefined;
         is_residential?: boolean | undefined;
         metadata?: string | undefined;
-        latitude?: number | undefined;
-        longitude?: number | undefined;
         validate?: boolean | undefined;
     };
 
@@ -191,8 +177,6 @@ export namespace AddressCreateRequest$ {
             email: z.string().optional(),
             isResidential: z.boolean().optional(),
             metadata: z.string().optional(),
-            latitude: z.number().optional(),
-            longitude: z.number().optional(),
             validate: z.boolean().optional(),
         })
         .transform((v) => {
@@ -211,8 +195,6 @@ export namespace AddressCreateRequest$ {
                 ...(v.email === undefined ? null : { email: v.email }),
                 ...(v.isResidential === undefined ? null : { is_residential: v.isResidential }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.latitude === undefined ? null : { latitude: v.latitude }),
-                ...(v.longitude === undefined ? null : { longitude: v.longitude }),
                 ...(v.validate === undefined ? null : { validate: v.validate }),
             };
         });

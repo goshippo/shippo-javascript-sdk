@@ -266,27 +266,40 @@ export type ShipmentExtra = {
 };
 
 /** @internal */
-export const AncillaryEndorsement$: z.ZodNativeEnum<typeof AncillaryEndorsement> =
-    z.nativeEnum(AncillaryEndorsement);
+export namespace AncillaryEndorsement$ {
+    export const inboundSchema = z.nativeEnum(AncillaryEndorsement);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const DangerousGoodsCode$: z.ZodNativeEnum<typeof DangerousGoodsCode> =
-    z.nativeEnum(DangerousGoodsCode);
+export namespace DangerousGoodsCode$ {
+    export const inboundSchema = z.nativeEnum(DangerousGoodsCode);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const LasershipAttrs$: z.ZodNativeEnum<typeof LasershipAttrs> = z.nativeEnum(LasershipAttrs);
+export namespace LasershipAttrs$ {
+    export const inboundSchema = z.nativeEnum(LasershipAttrs);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const PreferredDeliveryTimeframe$: z.ZodNativeEnum<typeof PreferredDeliveryTimeframe> =
-    z.nativeEnum(PreferredDeliveryTimeframe);
+export namespace PreferredDeliveryTimeframe$ {
+    export const inboundSchema = z.nativeEnum(PreferredDeliveryTimeframe);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ReturnServiceType$: z.ZodNativeEnum<typeof ReturnServiceType> =
-    z.nativeEnum(ReturnServiceType);
+export namespace ReturnServiceType$ {
+    export const inboundSchema = z.nativeEnum(ReturnServiceType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const SignatureConfirmation$: z.ZodNativeEnum<typeof SignatureConfirmation> =
-    z.nativeEnum(SignatureConfirmation);
+export namespace SignatureConfirmation$ {
+    export const inboundSchema = z.nativeEnum(SignatureConfirmation);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ShipmentExtra$ {
@@ -294,7 +307,7 @@ export namespace ShipmentExtra$ {
         .object({
             accounts_receivable_customer_account: UPSReferenceFields$.inboundSchema.optional(),
             alcohol: Alcohol$.inboundSchema.optional(),
-            ancillary_endorsement: AncillaryEndorsement$.optional(),
+            ancillary_endorsement: AncillaryEndorsement$.inboundSchema.optional(),
             appropriation_number: UPSReferenceFields$.inboundSchema.optional(),
             authority_to_leave: z.boolean().optional(),
             bill_of_lading_number: UPSReferenceFields$.inboundSchema.optional(),
@@ -310,7 +323,7 @@ export namespace ShipmentExtra$ {
             customer_branch: z.string().optional(),
             customer_reference: CustomerReference$.inboundSchema.optional(),
             dangerous_goods: DangerousGoodsObject$.inboundSchema.optional(),
-            dangerous_goods_code: DangerousGoodsCode$.optional(),
+            dangerous_goods_code: DangerousGoodsCode$.inboundSchema.optional(),
             dealer_order_number: UPSReferenceFields$.inboundSchema.optional(),
             delivery_instructions: z.string().optional(),
             dept_number: DepartmentNumber$.inboundSchema.optional(),
@@ -320,13 +333,13 @@ export namespace ShipmentExtra$ {
             insurance: Insurance$.inboundSchema.optional(),
             invoice_number: InvoiceNumber$.inboundSchema.optional(),
             is_return: z.boolean().optional(),
-            lasership_attrs: LasershipAttrs$.optional(),
+            lasership_attrs: LasershipAttrs$.inboundSchema.optional(),
             lasership_declared_value: z.string().optional(),
             manifest_number: UPSReferenceFields$.inboundSchema.optional(),
             model_number: UPSReferenceFields$.inboundSchema.optional(),
             part_number: UPSReferenceFields$.inboundSchema.optional(),
             po_number: PoNumber$.inboundSchema.optional(),
-            preferred_delivery_timeframe: PreferredDeliveryTimeframe$.optional(),
+            preferred_delivery_timeframe: PreferredDeliveryTimeframe$.inboundSchema.optional(),
             premium: z.boolean().optional(),
             production_code: UPSReferenceFields$.inboundSchema.optional(),
             purchase_request_number: UPSReferenceFields$.inboundSchema.optional(),
@@ -334,12 +347,12 @@ export namespace ShipmentExtra$ {
             reference_1: z.string().optional(),
             reference_2: z.string().optional(),
             request_retail_rates: z.boolean().optional(),
-            return_service_type: ReturnServiceType$.optional(),
+            return_service_type: ReturnServiceType$.inboundSchema.optional(),
             rma_number: RmaNumber$.inboundSchema.optional(),
             saturday_delivery: z.boolean().optional(),
             salesperson_number: UPSReferenceFields$.inboundSchema.optional(),
             serial_number: UPSReferenceFields$.inboundSchema.optional(),
-            signature_confirmation: SignatureConfirmation$.optional(),
+            signature_confirmation: SignatureConfirmation$.inboundSchema.optional(),
             store_number: UPSReferenceFields$.inboundSchema.optional(),
             transaction_reference_number: UPSReferenceFields$.inboundSchema.optional(),
         })
@@ -451,7 +464,7 @@ export namespace ShipmentExtra$ {
     export type Outbound = {
         accounts_receivable_customer_account?: UPSReferenceFields$.Outbound | undefined;
         alcohol?: Alcohol$.Outbound | undefined;
-        ancillary_endorsement?: AncillaryEndorsement | undefined;
+        ancillary_endorsement?: string | undefined;
         appropriation_number?: UPSReferenceFields$.Outbound | undefined;
         authority_to_leave?: boolean | undefined;
         bill_of_lading_number?: UPSReferenceFields$.Outbound | undefined;
@@ -467,7 +480,7 @@ export namespace ShipmentExtra$ {
         customer_branch?: string | undefined;
         customer_reference?: CustomerReference$.Outbound | undefined;
         dangerous_goods?: DangerousGoodsObject$.Outbound | undefined;
-        dangerous_goods_code?: DangerousGoodsCode | undefined;
+        dangerous_goods_code?: string | undefined;
         dealer_order_number?: UPSReferenceFields$.Outbound | undefined;
         delivery_instructions?: string | undefined;
         dept_number?: DepartmentNumber$.Outbound | undefined;
@@ -477,13 +490,13 @@ export namespace ShipmentExtra$ {
         insurance?: Insurance$.Outbound | undefined;
         invoice_number?: InvoiceNumber$.Outbound | undefined;
         is_return?: boolean | undefined;
-        lasership_attrs?: LasershipAttrs | undefined;
+        lasership_attrs?: string | undefined;
         lasership_declared_value?: string | undefined;
         manifest_number?: UPSReferenceFields$.Outbound | undefined;
         model_number?: UPSReferenceFields$.Outbound | undefined;
         part_number?: UPSReferenceFields$.Outbound | undefined;
         po_number?: PoNumber$.Outbound | undefined;
-        preferred_delivery_timeframe?: PreferredDeliveryTimeframe | undefined;
+        preferred_delivery_timeframe?: string | undefined;
         premium?: boolean | undefined;
         production_code?: UPSReferenceFields$.Outbound | undefined;
         purchase_request_number?: UPSReferenceFields$.Outbound | undefined;
@@ -491,12 +504,12 @@ export namespace ShipmentExtra$ {
         reference_1?: string | undefined;
         reference_2?: string | undefined;
         request_retail_rates?: boolean | undefined;
-        return_service_type?: ReturnServiceType | undefined;
+        return_service_type?: string | undefined;
         rma_number?: RmaNumber$.Outbound | undefined;
         saturday_delivery?: boolean | undefined;
         salesperson_number?: UPSReferenceFields$.Outbound | undefined;
         serial_number?: UPSReferenceFields$.Outbound | undefined;
-        signature_confirmation?: SignatureConfirmation | undefined;
+        signature_confirmation?: string | undefined;
         store_number?: UPSReferenceFields$.Outbound | undefined;
         transaction_reference_number?: UPSReferenceFields$.Outbound | undefined;
     };
@@ -505,7 +518,7 @@ export namespace ShipmentExtra$ {
         .object({
             accountsReceivableCustomerAccount: UPSReferenceFields$.outboundSchema.optional(),
             alcohol: Alcohol$.outboundSchema.optional(),
-            ancillaryEndorsement: AncillaryEndorsement$.optional(),
+            ancillaryEndorsement: AncillaryEndorsement$.outboundSchema.optional(),
             appropriationNumber: UPSReferenceFields$.outboundSchema.optional(),
             authorityToLeave: z.boolean().optional(),
             billOfLadingNumber: UPSReferenceFields$.outboundSchema.optional(),
@@ -521,7 +534,7 @@ export namespace ShipmentExtra$ {
             customerBranch: z.string().optional(),
             customerReference: CustomerReference$.outboundSchema.optional(),
             dangerousGoods: DangerousGoodsObject$.outboundSchema.optional(),
-            dangerousGoodsCode: DangerousGoodsCode$.optional(),
+            dangerousGoodsCode: DangerousGoodsCode$.outboundSchema.optional(),
             dealerOrderNumber: UPSReferenceFields$.outboundSchema.optional(),
             deliveryInstructions: z.string().optional(),
             deptNumber: DepartmentNumber$.outboundSchema.optional(),
@@ -531,13 +544,13 @@ export namespace ShipmentExtra$ {
             insurance: Insurance$.outboundSchema.optional(),
             invoiceNumber: InvoiceNumber$.outboundSchema.optional(),
             isReturn: z.boolean().optional(),
-            lasershipAttrs: LasershipAttrs$.optional(),
+            lasershipAttrs: LasershipAttrs$.outboundSchema.optional(),
             lasershipDeclaredValue: z.string().optional(),
             manifestNumber: UPSReferenceFields$.outboundSchema.optional(),
             modelNumber: UPSReferenceFields$.outboundSchema.optional(),
             partNumber: UPSReferenceFields$.outboundSchema.optional(),
             poNumber: PoNumber$.outboundSchema.optional(),
-            preferredDeliveryTimeframe: PreferredDeliveryTimeframe$.optional(),
+            preferredDeliveryTimeframe: PreferredDeliveryTimeframe$.outboundSchema.optional(),
             premium: z.boolean().optional(),
             productionCode: UPSReferenceFields$.outboundSchema.optional(),
             purchaseRequestNumber: UPSReferenceFields$.outboundSchema.optional(),
@@ -545,12 +558,12 @@ export namespace ShipmentExtra$ {
             reference1: z.string().optional(),
             reference2: z.string().optional(),
             requestRetailRates: z.boolean().optional(),
-            returnServiceType: ReturnServiceType$.optional(),
+            returnServiceType: ReturnServiceType$.outboundSchema.optional(),
             rmaNumber: RmaNumber$.outboundSchema.optional(),
             saturdayDelivery: z.boolean().optional(),
             salespersonNumber: UPSReferenceFields$.outboundSchema.optional(),
             serialNumber: UPSReferenceFields$.outboundSchema.optional(),
-            signatureConfirmation: SignatureConfirmation$.optional(),
+            signatureConfirmation: SignatureConfirmation$.outboundSchema.optional(),
             storeNumber: UPSReferenceFields$.outboundSchema.optional(),
             transactionReferenceNumber: UPSReferenceFields$.outboundSchema.optional(),
         })

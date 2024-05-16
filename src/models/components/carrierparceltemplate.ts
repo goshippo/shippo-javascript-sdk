@@ -45,7 +45,7 @@ export namespace CarrierParcelTemplate$ {
     export const inboundSchema: z.ZodType<CarrierParcelTemplate, z.ZodTypeDef, unknown> = z
         .object({
             carrier: z.string().optional(),
-            distance_unit: DistanceUnitEnum$.optional(),
+            distance_unit: DistanceUnitEnum$.inboundSchema.optional(),
             height: z.string().optional(),
             is_variable_dimensions: z.string().optional(),
             length: z.string().optional(),
@@ -70,7 +70,7 @@ export namespace CarrierParcelTemplate$ {
 
     export type Outbound = {
         carrier?: string | undefined;
-        distance_unit?: DistanceUnitEnum | undefined;
+        distance_unit?: string | undefined;
         height?: string | undefined;
         is_variable_dimensions?: string | undefined;
         length?: string | undefined;
@@ -82,7 +82,7 @@ export namespace CarrierParcelTemplate$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierParcelTemplate> = z
         .object({
             carrier: z.string().optional(),
-            distanceUnit: DistanceUnitEnum$.optional(),
+            distanceUnit: DistanceUnitEnum$.outboundSchema.optional(),
             height: z.string().optional(),
             isVariableDimensions: z.string().optional(),
             length: z.string().optional(),
