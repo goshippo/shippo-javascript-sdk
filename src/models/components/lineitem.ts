@@ -93,7 +93,7 @@ export namespace LineItem$ {
             total_price: z.string().optional(),
             variant_title: z.string().optional(),
             weight: z.string().optional(),
-            weight_unit: WeightUnitEnum$.optional(),
+            weight_unit: WeightUnitEnum$.inboundSchema.optional(),
             object_id: z.string().optional(),
         })
         .transform((v) => {
@@ -128,7 +128,7 @@ export namespace LineItem$ {
         total_price?: string | undefined;
         variant_title?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
+        weight_unit?: string | undefined;
         object_id?: string | undefined;
     };
 
@@ -150,7 +150,7 @@ export namespace LineItem$ {
             totalPrice: z.string().optional(),
             variantTitle: z.string().optional(),
             weight: z.string().optional(),
-            weightUnit: WeightUnitEnum$.optional(),
+            weightUnit: WeightUnitEnum$.outboundSchema.optional(),
             objectId: z.string().optional(),
         })
         .transform((v) => {

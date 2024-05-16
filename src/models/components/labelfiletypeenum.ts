@@ -24,5 +24,7 @@ export enum LabelFileTypeEnum {
 }
 
 /** @internal */
-export const LabelFileTypeEnum$: z.ZodNativeEnum<typeof LabelFileTypeEnum> =
-    z.nativeEnum(LabelFileTypeEnum);
+export namespace LabelFileTypeEnum$ {
+    export const inboundSchema = z.nativeEnum(LabelFileTypeEnum);
+    export const outboundSchema = inboundSchema;
+}

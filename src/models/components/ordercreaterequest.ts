@@ -94,7 +94,7 @@ export namespace OrderCreateRequest$ {
             currency: z.string().optional(),
             notes: z.string().optional(),
             order_number: z.string().optional(),
-            order_status: OrderStatusEnum$.optional(),
+            order_status: OrderStatusEnum$.inboundSchema.optional(),
             placed_at: z.string(),
             shipping_cost: z.string().optional(),
             shipping_cost_currency: z.string().optional(),
@@ -103,7 +103,7 @@ export namespace OrderCreateRequest$ {
             total_price: z.string().optional(),
             total_tax: z.string().optional(),
             weight: z.string().optional(),
-            weight_unit: WeightUnitEnum$.optional(),
+            weight_unit: WeightUnitEnum$.inboundSchema.optional(),
             from_address: AddressCreateRequest$.inboundSchema.optional(),
             to_address: AddressCreateRequest$.inboundSchema,
             line_items: z.array(LineItemBase$.inboundSchema).optional(),
@@ -135,7 +135,7 @@ export namespace OrderCreateRequest$ {
         currency?: string | undefined;
         notes?: string | undefined;
         order_number?: string | undefined;
-        order_status?: OrderStatusEnum | undefined;
+        order_status?: string | undefined;
         placed_at: string;
         shipping_cost?: string | undefined;
         shipping_cost_currency?: string | undefined;
@@ -144,7 +144,7 @@ export namespace OrderCreateRequest$ {
         total_price?: string | undefined;
         total_tax?: string | undefined;
         weight?: string | undefined;
-        weight_unit?: WeightUnitEnum | undefined;
+        weight_unit?: string | undefined;
         from_address?: AddressCreateRequest$.Outbound | undefined;
         to_address: AddressCreateRequest$.Outbound;
         line_items?: Array<LineItemBase$.Outbound> | undefined;
@@ -155,7 +155,7 @@ export namespace OrderCreateRequest$ {
             currency: z.string().optional(),
             notes: z.string().optional(),
             orderNumber: z.string().optional(),
-            orderStatus: OrderStatusEnum$.optional(),
+            orderStatus: OrderStatusEnum$.outboundSchema.optional(),
             placedAt: z.string(),
             shippingCost: z.string().optional(),
             shippingCostCurrency: z.string().optional(),
@@ -164,7 +164,7 @@ export namespace OrderCreateRequest$ {
             totalPrice: z.string().optional(),
             totalTax: z.string().optional(),
             weight: z.string().optional(),
-            weightUnit: WeightUnitEnum$.optional(),
+            weightUnit: WeightUnitEnum$.outboundSchema.optional(),
             fromAddress: AddressCreateRequest$.outboundSchema.optional(),
             toAddress: AddressCreateRequest$.outboundSchema,
             lineItems: z.array(LineItemBase$.outboundSchema).optional(),

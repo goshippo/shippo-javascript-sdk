@@ -27,7 +27,10 @@ export type InstantTransactionCreateRequest = {
 };
 
 /** @internal */
-export const LabelFileType$: z.ZodNativeEnum<typeof LabelFileType> = z.nativeEnum(LabelFileType);
+export namespace LabelFileType$ {
+    export const inboundSchema = z.nativeEnum(LabelFileType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace InstantTransactionCreateRequest$ {
@@ -36,7 +39,7 @@ export namespace InstantTransactionCreateRequest$ {
             .object({
                 async: z.boolean().default(false),
                 carrier_account: z.string(),
-                label_file_type: LabelFileType$.optional(),
+                label_file_type: LabelFileType$.inboundSchema.optional(),
                 metadata: z.string().optional(),
                 servicelevel_token: z.string(),
                 shipment: ShipmentCreateRequest$.inboundSchema,
@@ -57,7 +60,7 @@ export namespace InstantTransactionCreateRequest$ {
     export type Outbound = {
         async: boolean;
         carrier_account: string;
-        label_file_type?: LabelFileType | undefined;
+        label_file_type?: string | undefined;
         metadata?: string | undefined;
         servicelevel_token: string;
         shipment: ShipmentCreateRequest$.Outbound;
@@ -71,7 +74,7 @@ export namespace InstantTransactionCreateRequest$ {
         .object({
             async: z.boolean().default(false),
             carrierAccount: z.string(),
-            labelFileType: LabelFileType$.optional(),
+            labelFileType: LabelFileType$.outboundSchema.optional(),
             metadata: z.string().optional(),
             servicelevelToken: z.string(),
             shipment: ShipmentCreateRequest$.outboundSchema,

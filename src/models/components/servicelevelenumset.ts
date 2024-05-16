@@ -1062,293 +1062,371 @@ export type ServiceLevelEnumSet =
     | ServiceLevelSwyftEnum;
 
 /** @internal */
-export const ServiceLevelSwyftEnum$: z.ZodNativeEnum<typeof ServiceLevelSwyftEnum> =
-    z.nativeEnum(ServiceLevelSwyftEnum);
+export namespace ServiceLevelSwyftEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelSwyftEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelVehoEnum$: z.ZodNativeEnum<typeof ServiceLevelVehoEnum> =
-    z.nativeEnum(ServiceLevelVehoEnum);
+export namespace ServiceLevelVehoEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelVehoEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelUDSEnum$: z.ZodNativeEnum<typeof ServiceLevelUDSEnum> =
-    z.nativeEnum(ServiceLevelUDSEnum);
+export namespace ServiceLevelUDSEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelUDSEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelEvriUKEnum$: z.ZodNativeEnum<typeof ServiceLevelEvriUKEnum> =
-    z.nativeEnum(ServiceLevelEvriUKEnum);
+export namespace ServiceLevelEvriUKEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelEvriUKEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelLasershipEnum$: z.ZodNativeEnum<typeof ServiceLevelLasershipEnum> =
-    z.nativeEnum(ServiceLevelLasershipEnum);
+export namespace ServiceLevelLasershipEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelLasershipEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelOnTracEnum$: z.ZodNativeEnum<typeof ServiceLevelOnTracEnum> =
-    z.nativeEnum(ServiceLevelOnTracEnum);
+export namespace ServiceLevelOnTracEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelOnTracEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelSendleEnum$: z.ZodNativeEnum<typeof ServiceLevelSendleEnum> =
-    z.nativeEnum(ServiceLevelSendleEnum);
+export namespace ServiceLevelSendleEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelSendleEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelRoyalMailEnum$: z.ZodNativeEnum<typeof ServiceLevelRoyalMailEnum> =
-    z.nativeEnum(ServiceLevelRoyalMailEnum);
+export namespace ServiceLevelRoyalMailEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelRoyalMailEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelePostGlobalEnum$: z.ZodNativeEnum<typeof ServiceLevelePostGlobalEnum> =
-    z.nativeEnum(ServiceLevelePostGlobalEnum);
+export namespace ServiceLevelePostGlobalEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelePostGlobalEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelPostItalianeEnum$: z.ZodNativeEnum<typeof ServiceLevelPostItalianeEnum> =
-    z.nativeEnum(ServiceLevelPostItalianeEnum);
+export namespace ServiceLevelPostItalianeEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelPostItalianeEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelParcelforceEnum$: z.ZodNativeEnum<typeof ServiceLevelParcelforceEnum> =
-    z.nativeEnum(ServiceLevelParcelforceEnum);
+export namespace ServiceLevelParcelforceEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelParcelforceEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelMaergoEnum$: z.ZodNativeEnum<typeof ServiceLevelMaergoEnum> =
-    z.nativeEnum(ServiceLevelMaergoEnum);
+export namespace ServiceLevelMaergoEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelMaergoEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelMondialRelayEnum$: z.ZodNativeEnum<typeof ServiceLevelMondialRelayEnum> =
-    z.nativeEnum(ServiceLevelMondialRelayEnum);
+export namespace ServiceLevelMondialRelayEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelMondialRelayEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelLSOEnum$: z.ZodNativeEnum<typeof ServiceLevelLSOEnum> =
-    z.nativeEnum(ServiceLevelLSOEnum);
+export namespace ServiceLevelLSOEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelLSOEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelGLSUSEnum$: z.ZodNativeEnum<typeof ServiceLevelGLSUSEnum> =
-    z.nativeEnum(ServiceLevelGLSUSEnum);
+export namespace ServiceLevelGLSUSEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelGLSUSEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelGlobegisticsEnum$: z.ZodNativeEnum<typeof ServiceLevelGlobegisticsEnum> =
-    z.nativeEnum(ServiceLevelGlobegisticsEnum);
+export namespace ServiceLevelGlobegisticsEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelGlobegisticsEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelAramexAustraliaEnum$: z.ZodNativeEnum<
-    typeof ServiceLevelAramexAustraliaEnum
-> = z.nativeEnum(ServiceLevelAramexAustraliaEnum);
+export namespace ServiceLevelAramexAustraliaEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelAramexAustraliaEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelDeutschePostEnum$: z.ZodNativeEnum<typeof ServiceLevelDeutschePostEnum> =
-    z.nativeEnum(ServiceLevelDeutschePostEnum);
+export namespace ServiceLevelDeutschePostEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelDeutschePostEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelDPDUKEnum$: z.ZodNativeEnum<typeof ServiceLevelDPDUKEnum> =
-    z.nativeEnum(ServiceLevelDPDUKEnum);
+export namespace ServiceLevelDPDUKEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelDPDUKEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelDPDDEEnum$: z.ZodNativeEnum<typeof ServiceLevelDPDDEEnum> =
-    z.nativeEnum(ServiceLevelDPDDEEnum);
+export namespace ServiceLevelDPDDEEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelDPDDEEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelDHLGermanyEnum$: z.ZodNativeEnum<typeof ServiceLevelDHLGermanyEnum> =
-    z.nativeEnum(ServiceLevelDHLGermanyEnum);
+export namespace ServiceLevelDHLGermanyEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelDHLGermanyEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelDHLeCommerceEnum$: z.ZodNativeEnum<typeof ServiceLevelDHLeCommerceEnum> =
-    z.nativeEnum(ServiceLevelDHLeCommerceEnum);
+export namespace ServiceLevelDHLeCommerceEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelDHLeCommerceEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelDHLExpressEnum$: z.ZodNativeEnum<typeof ServiceLevelDHLExpressEnum> =
-    z.nativeEnum(ServiceLevelDHLExpressEnum);
+export namespace ServiceLevelDHLExpressEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelDHLExpressEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelPurolatorEnum$: z.ZodNativeEnum<typeof ServiceLevelPurolatorEnum> =
-    z.nativeEnum(ServiceLevelPurolatorEnum);
+export namespace ServiceLevelPurolatorEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelPurolatorEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelColissimoEnum$: z.ZodNativeEnum<typeof ServiceLevelColissimoEnum> =
-    z.nativeEnum(ServiceLevelColissimoEnum);
+export namespace ServiceLevelColissimoEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelColissimoEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelCorreosEspanaEnum$: z.ZodNativeEnum<typeof ServiceLevelCorreosEspanaEnum> =
-    z.nativeEnum(ServiceLevelCorreosEspanaEnum);
+export namespace ServiceLevelCorreosEspanaEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelCorreosEspanaEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelCouriersPleaseEnum$: z.ZodNativeEnum<
-    typeof ServiceLevelCouriersPleaseEnum
-> = z.nativeEnum(ServiceLevelCouriersPleaseEnum);
+export namespace ServiceLevelCouriersPleaseEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelCouriersPleaseEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelChronopostEnum$: z.ZodNativeEnum<typeof ServiceLevelChronopostEnum> =
-    z.nativeEnum(ServiceLevelChronopostEnum);
+export namespace ServiceLevelChronopostEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelChronopostEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelCDLEnum$: z.ZodNativeEnum<typeof ServiceLevelCDLEnum> =
-    z.nativeEnum(ServiceLevelCDLEnum);
+export namespace ServiceLevelCDLEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelCDLEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelCanadaPostEnum$: z.ZodNativeEnum<typeof ServiceLevelCanadaPostEnum> =
-    z.nativeEnum(ServiceLevelCanadaPostEnum);
+export namespace ServiceLevelCanadaPostEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelCanadaPostEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelBetterTrucksEnum$: z.ZodNativeEnum<typeof ServiceLevelBetterTrucksEnum> =
-    z.nativeEnum(ServiceLevelBetterTrucksEnum);
+export namespace ServiceLevelBetterTrucksEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelBetterTrucksEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelAPGEnum$: z.ZodNativeEnum<typeof ServiceLevelAPGEnum> =
-    z.nativeEnum(ServiceLevelAPGEnum);
+export namespace ServiceLevelAPGEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelAPGEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelAxleHireEnum$: z.ZodNativeEnum<typeof ServiceLevelAxleHireEnum> =
-    z.nativeEnum(ServiceLevelAxleHireEnum);
+export namespace ServiceLevelAxleHireEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelAxleHireEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelAustraliaPostEnum$: z.ZodNativeEnum<typeof ServiceLevelAustraliaPostEnum> =
-    z.nativeEnum(ServiceLevelAustraliaPostEnum);
+export namespace ServiceLevelAustraliaPostEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelAustraliaPostEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelAsendiaEnum$: z.ZodNativeEnum<typeof ServiceLevelAsendiaEnum> =
-    z.nativeEnum(ServiceLevelAsendiaEnum);
+export namespace ServiceLevelAsendiaEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelAsendiaEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelAPCPostalEnum$: z.ZodNativeEnum<typeof ServiceLevelAPCPostalEnum> =
-    z.nativeEnum(ServiceLevelAPCPostalEnum);
+export namespace ServiceLevelAPCPostalEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelAPCPostalEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelAirterraEnum$: z.ZodNativeEnum<typeof ServiceLevelAirterraEnum> =
-    z.nativeEnum(ServiceLevelAirterraEnum);
+export namespace ServiceLevelAirterraEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelAirterraEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelUPSEnum$: z.ZodNativeEnum<typeof ServiceLevelUPSEnum> =
-    z.nativeEnum(ServiceLevelUPSEnum);
+export namespace ServiceLevelUPSEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelUPSEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelFedExEnum$: z.ZodNativeEnum<typeof ServiceLevelFedExEnum> =
-    z.nativeEnum(ServiceLevelFedExEnum);
+export namespace ServiceLevelFedExEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelFedExEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const ServiceLevelUSPSEnum$: z.ZodNativeEnum<typeof ServiceLevelUSPSEnum> =
-    z.nativeEnum(ServiceLevelUSPSEnum);
+export namespace ServiceLevelUSPSEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelUSPSEnum);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ServiceLevelEnumSet$ {
     export const inboundSchema: z.ZodType<ServiceLevelEnumSet, z.ZodTypeDef, unknown> = z.union([
-        ServiceLevelUSPSEnum$,
-        ServiceLevelFedExEnum$,
-        ServiceLevelUPSEnum$,
-        ServiceLevelAirterraEnum$,
-        ServiceLevelAPCPostalEnum$,
-        ServiceLevelAsendiaEnum$,
-        ServiceLevelAustraliaPostEnum$,
-        ServiceLevelAxleHireEnum$,
-        ServiceLevelAPGEnum$,
-        ServiceLevelBetterTrucksEnum$,
-        ServiceLevelCanadaPostEnum$,
-        ServiceLevelCDLEnum$,
-        ServiceLevelChronopostEnum$,
-        ServiceLevelCouriersPleaseEnum$,
-        ServiceLevelCorreosEspanaEnum$,
-        ServiceLevelColissimoEnum$,
-        ServiceLevelPurolatorEnum$,
-        ServiceLevelDHLExpressEnum$,
-        ServiceLevelDHLeCommerceEnum$,
-        ServiceLevelDHLGermanyEnum$,
-        ServiceLevelDPDDEEnum$,
-        ServiceLevelDPDUKEnum$,
-        ServiceLevelDeutschePostEnum$,
-        ServiceLevelAramexAustraliaEnum$,
-        ServiceLevelGlobegisticsEnum$,
-        ServiceLevelGLSUSEnum$,
-        ServiceLevelLSOEnum$,
-        ServiceLevelMondialRelayEnum$,
-        ServiceLevelMaergoEnum$,
-        ServiceLevelParcelforceEnum$,
-        ServiceLevelPostItalianeEnum$,
-        ServiceLevelePostGlobalEnum$,
-        ServiceLevelRoyalMailEnum$,
-        ServiceLevelSendleEnum$,
-        ServiceLevelOnTracEnum$,
-        ServiceLevelLasershipEnum$,
-        ServiceLevelEvriUKEnum$,
-        ServiceLevelUDSEnum$,
-        ServiceLevelVehoEnum$,
-        ServiceLevelSwyftEnum$,
+        ServiceLevelUSPSEnum$.inboundSchema,
+        ServiceLevelFedExEnum$.inboundSchema,
+        ServiceLevelUPSEnum$.inboundSchema,
+        ServiceLevelAirterraEnum$.inboundSchema,
+        ServiceLevelAPCPostalEnum$.inboundSchema,
+        ServiceLevelAsendiaEnum$.inboundSchema,
+        ServiceLevelAustraliaPostEnum$.inboundSchema,
+        ServiceLevelAxleHireEnum$.inboundSchema,
+        ServiceLevelAPGEnum$.inboundSchema,
+        ServiceLevelBetterTrucksEnum$.inboundSchema,
+        ServiceLevelCanadaPostEnum$.inboundSchema,
+        ServiceLevelCDLEnum$.inboundSchema,
+        ServiceLevelChronopostEnum$.inboundSchema,
+        ServiceLevelCouriersPleaseEnum$.inboundSchema,
+        ServiceLevelCorreosEspanaEnum$.inboundSchema,
+        ServiceLevelColissimoEnum$.inboundSchema,
+        ServiceLevelPurolatorEnum$.inboundSchema,
+        ServiceLevelDHLExpressEnum$.inboundSchema,
+        ServiceLevelDHLeCommerceEnum$.inboundSchema,
+        ServiceLevelDHLGermanyEnum$.inboundSchema,
+        ServiceLevelDPDDEEnum$.inboundSchema,
+        ServiceLevelDPDUKEnum$.inboundSchema,
+        ServiceLevelDeutschePostEnum$.inboundSchema,
+        ServiceLevelAramexAustraliaEnum$.inboundSchema,
+        ServiceLevelGlobegisticsEnum$.inboundSchema,
+        ServiceLevelGLSUSEnum$.inboundSchema,
+        ServiceLevelLSOEnum$.inboundSchema,
+        ServiceLevelMondialRelayEnum$.inboundSchema,
+        ServiceLevelMaergoEnum$.inboundSchema,
+        ServiceLevelParcelforceEnum$.inboundSchema,
+        ServiceLevelPostItalianeEnum$.inboundSchema,
+        ServiceLevelePostGlobalEnum$.inboundSchema,
+        ServiceLevelRoyalMailEnum$.inboundSchema,
+        ServiceLevelSendleEnum$.inboundSchema,
+        ServiceLevelOnTracEnum$.inboundSchema,
+        ServiceLevelLasershipEnum$.inboundSchema,
+        ServiceLevelEvriUKEnum$.inboundSchema,
+        ServiceLevelUDSEnum$.inboundSchema,
+        ServiceLevelVehoEnum$.inboundSchema,
+        ServiceLevelSwyftEnum$.inboundSchema,
     ]);
 
     export type Outbound =
-        | ServiceLevelUSPSEnum
-        | ServiceLevelFedExEnum
-        | ServiceLevelUPSEnum
-        | ServiceLevelAirterraEnum
-        | ServiceLevelAPCPostalEnum
-        | ServiceLevelAsendiaEnum
-        | ServiceLevelAustraliaPostEnum
-        | ServiceLevelAxleHireEnum
-        | ServiceLevelAPGEnum
-        | ServiceLevelBetterTrucksEnum
-        | ServiceLevelCanadaPostEnum
-        | ServiceLevelCDLEnum
-        | ServiceLevelChronopostEnum
-        | ServiceLevelCouriersPleaseEnum
-        | ServiceLevelCorreosEspanaEnum
-        | ServiceLevelColissimoEnum
-        | ServiceLevelPurolatorEnum
-        | ServiceLevelDHLExpressEnum
-        | ServiceLevelDHLeCommerceEnum
-        | ServiceLevelDHLGermanyEnum
-        | ServiceLevelDPDDEEnum
-        | ServiceLevelDPDUKEnum
-        | ServiceLevelDeutschePostEnum
-        | ServiceLevelAramexAustraliaEnum
-        | ServiceLevelGlobegisticsEnum
-        | ServiceLevelGLSUSEnum
-        | ServiceLevelLSOEnum
-        | ServiceLevelMondialRelayEnum
-        | ServiceLevelMaergoEnum
-        | ServiceLevelParcelforceEnum
-        | ServiceLevelPostItalianeEnum
-        | ServiceLevelePostGlobalEnum
-        | ServiceLevelRoyalMailEnum
-        | ServiceLevelSendleEnum
-        | ServiceLevelOnTracEnum
-        | ServiceLevelLasershipEnum
-        | ServiceLevelEvriUKEnum
-        | ServiceLevelUDSEnum
-        | ServiceLevelVehoEnum
-        | ServiceLevelSwyftEnum;
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string
+        | string;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ServiceLevelEnumSet> = z.union([
-        ServiceLevelUSPSEnum$,
-        ServiceLevelFedExEnum$,
-        ServiceLevelUPSEnum$,
-        ServiceLevelAirterraEnum$,
-        ServiceLevelAPCPostalEnum$,
-        ServiceLevelAsendiaEnum$,
-        ServiceLevelAustraliaPostEnum$,
-        ServiceLevelAxleHireEnum$,
-        ServiceLevelAPGEnum$,
-        ServiceLevelBetterTrucksEnum$,
-        ServiceLevelCanadaPostEnum$,
-        ServiceLevelCDLEnum$,
-        ServiceLevelChronopostEnum$,
-        ServiceLevelCouriersPleaseEnum$,
-        ServiceLevelCorreosEspanaEnum$,
-        ServiceLevelColissimoEnum$,
-        ServiceLevelPurolatorEnum$,
-        ServiceLevelDHLExpressEnum$,
-        ServiceLevelDHLeCommerceEnum$,
-        ServiceLevelDHLGermanyEnum$,
-        ServiceLevelDPDDEEnum$,
-        ServiceLevelDPDUKEnum$,
-        ServiceLevelDeutschePostEnum$,
-        ServiceLevelAramexAustraliaEnum$,
-        ServiceLevelGlobegisticsEnum$,
-        ServiceLevelGLSUSEnum$,
-        ServiceLevelLSOEnum$,
-        ServiceLevelMondialRelayEnum$,
-        ServiceLevelMaergoEnum$,
-        ServiceLevelParcelforceEnum$,
-        ServiceLevelPostItalianeEnum$,
-        ServiceLevelePostGlobalEnum$,
-        ServiceLevelRoyalMailEnum$,
-        ServiceLevelSendleEnum$,
-        ServiceLevelOnTracEnum$,
-        ServiceLevelLasershipEnum$,
-        ServiceLevelEvriUKEnum$,
-        ServiceLevelUDSEnum$,
-        ServiceLevelVehoEnum$,
-        ServiceLevelSwyftEnum$,
+        ServiceLevelUSPSEnum$.outboundSchema,
+        ServiceLevelFedExEnum$.outboundSchema,
+        ServiceLevelUPSEnum$.outboundSchema,
+        ServiceLevelAirterraEnum$.outboundSchema,
+        ServiceLevelAPCPostalEnum$.outboundSchema,
+        ServiceLevelAsendiaEnum$.outboundSchema,
+        ServiceLevelAustraliaPostEnum$.outboundSchema,
+        ServiceLevelAxleHireEnum$.outboundSchema,
+        ServiceLevelAPGEnum$.outboundSchema,
+        ServiceLevelBetterTrucksEnum$.outboundSchema,
+        ServiceLevelCanadaPostEnum$.outboundSchema,
+        ServiceLevelCDLEnum$.outboundSchema,
+        ServiceLevelChronopostEnum$.outboundSchema,
+        ServiceLevelCouriersPleaseEnum$.outboundSchema,
+        ServiceLevelCorreosEspanaEnum$.outboundSchema,
+        ServiceLevelColissimoEnum$.outboundSchema,
+        ServiceLevelPurolatorEnum$.outboundSchema,
+        ServiceLevelDHLExpressEnum$.outboundSchema,
+        ServiceLevelDHLeCommerceEnum$.outboundSchema,
+        ServiceLevelDHLGermanyEnum$.outboundSchema,
+        ServiceLevelDPDDEEnum$.outboundSchema,
+        ServiceLevelDPDUKEnum$.outboundSchema,
+        ServiceLevelDeutschePostEnum$.outboundSchema,
+        ServiceLevelAramexAustraliaEnum$.outboundSchema,
+        ServiceLevelGlobegisticsEnum$.outboundSchema,
+        ServiceLevelGLSUSEnum$.outboundSchema,
+        ServiceLevelLSOEnum$.outboundSchema,
+        ServiceLevelMondialRelayEnum$.outboundSchema,
+        ServiceLevelMaergoEnum$.outboundSchema,
+        ServiceLevelParcelforceEnum$.outboundSchema,
+        ServiceLevelPostItalianeEnum$.outboundSchema,
+        ServiceLevelePostGlobalEnum$.outboundSchema,
+        ServiceLevelRoyalMailEnum$.outboundSchema,
+        ServiceLevelSendleEnum$.outboundSchema,
+        ServiceLevelOnTracEnum$.outboundSchema,
+        ServiceLevelLasershipEnum$.outboundSchema,
+        ServiceLevelEvriUKEnum$.outboundSchema,
+        ServiceLevelUDSEnum$.outboundSchema,
+        ServiceLevelVehoEnum$.outboundSchema,
+        ServiceLevelSwyftEnum$.outboundSchema,
     ]);
 }

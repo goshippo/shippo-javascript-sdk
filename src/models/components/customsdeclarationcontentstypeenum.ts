@@ -21,6 +21,7 @@ export enum CustomsDeclarationContentsTypeEnum {
 }
 
 /** @internal */
-export const CustomsDeclarationContentsTypeEnum$: z.ZodNativeEnum<
-    typeof CustomsDeclarationContentsTypeEnum
-> = z.nativeEnum(CustomsDeclarationContentsTypeEnum);
+export namespace CustomsDeclarationContentsTypeEnum$ {
+    export const inboundSchema = z.nativeEnum(CustomsDeclarationContentsTypeEnum);
+    export const outboundSchema = inboundSchema;
+}

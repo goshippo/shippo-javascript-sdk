@@ -33,7 +33,7 @@ export namespace ListCarrierAccountsRequest$ {
     export const inboundSchema: z.ZodType<ListCarrierAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             service_levels: z.boolean().optional(),
-            carrier: components.CarriersEnum$.optional(),
+            carrier: components.CarriersEnum$.inboundSchema.optional(),
             account_id: z.string().optional(),
             page: z.number().int().default(1),
             results: z.number().int().default(5),
@@ -50,7 +50,7 @@ export namespace ListCarrierAccountsRequest$ {
 
     export type Outbound = {
         service_levels?: boolean | undefined;
-        carrier?: components.CarriersEnum | undefined;
+        carrier?: string | undefined;
         account_id?: string | undefined;
         page: number;
         results: number;
@@ -59,7 +59,7 @@ export namespace ListCarrierAccountsRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListCarrierAccountsRequest> = z
         .object({
             serviceLevels: z.boolean().optional(),
-            carrier: components.CarriersEnum$.optional(),
+            carrier: components.CarriersEnum$.outboundSchema.optional(),
             accountId: z.string().optional(),
             page: z.number().int().default(1),
             results: z.number().int().default(5),

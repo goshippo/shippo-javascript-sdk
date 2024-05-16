@@ -25,7 +25,10 @@ export type ListCarrierParcelTemplatesRequest = {
 };
 
 /** @internal */
-export const Include$: z.ZodNativeEnum<typeof Include> = z.nativeEnum(Include);
+export namespace Include$ {
+    export const inboundSchema = z.nativeEnum(Include);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ListCarrierParcelTemplatesRequest$ {
@@ -35,7 +38,7 @@ export namespace ListCarrierParcelTemplatesRequest$ {
         unknown
     > = z
         .object({
-            include: Include$.optional(),
+            include: Include$.inboundSchema.optional(),
             carrier: z.string().optional(),
         })
         .transform((v) => {
@@ -46,7 +49,7 @@ export namespace ListCarrierParcelTemplatesRequest$ {
         });
 
     export type Outbound = {
-        include?: Include | undefined;
+        include?: string | undefined;
         carrier?: string | undefined;
     };
 
@@ -56,7 +59,7 @@ export namespace ListCarrierParcelTemplatesRequest$ {
         ListCarrierParcelTemplatesRequest
     > = z
         .object({
-            include: Include$.optional(),
+            include: Include$.outboundSchema.optional(),
             carrier: z.string().optional(),
         })
         .transform((v) => {

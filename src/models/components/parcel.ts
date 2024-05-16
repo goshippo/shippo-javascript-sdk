@@ -91,17 +91,20 @@ export type Parcel = {
 };
 
 /** @internal */
-export const ObjectState$: z.ZodNativeEnum<typeof ObjectState> = z.nativeEnum(ObjectState);
+export namespace ObjectState$ {
+    export const inboundSchema = z.nativeEnum(ObjectState);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Parcel$ {
     export const inboundSchema: z.ZodType<Parcel, z.ZodTypeDef, unknown> = z
         .object({
-            distance_unit: DistanceUnitEnum$,
+            distance_unit: DistanceUnitEnum$.inboundSchema,
             extra: ParcelExtra$.inboundSchema.optional(),
             height: z.string(),
             length: z.string(),
-            mass_unit: WeightUnitEnum$,
+            mass_unit: WeightUnitEnum$.inboundSchema,
             metadata: z.string().optional(),
             object_created: z
                 .string()
@@ -110,7 +113,7 @@ export namespace Parcel$ {
                 .optional(),
             object_id: z.string().optional(),
             object_owner: z.string().optional(),
-            object_state: ObjectState$.optional(),
+            object_state: ObjectState$.inboundSchema.optional(),
             object_updated: z
                 .string()
                 .datetime({ offset: true })
@@ -142,16 +145,16 @@ export namespace Parcel$ {
         });
 
     export type Outbound = {
-        distance_unit: DistanceUnitEnum;
+        distance_unit: string;
         extra?: ParcelExtra$.Outbound | undefined;
         height: string;
         length: string;
-        mass_unit: WeightUnitEnum;
+        mass_unit: string;
         metadata?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
-        object_state?: ObjectState | undefined;
+        object_state?: string | undefined;
         object_updated?: string | undefined;
         template?: ParcelTemplateEnumSet$.Outbound | undefined;
         test?: boolean | undefined;
@@ -161,11 +164,11 @@ export namespace Parcel$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Parcel> = z
         .object({
-            distanceUnit: DistanceUnitEnum$,
+            distanceUnit: DistanceUnitEnum$.outboundSchema,
             extra: ParcelExtra$.outboundSchema.optional(),
             height: z.string(),
             length: z.string(),
-            massUnit: WeightUnitEnum$,
+            massUnit: WeightUnitEnum$.outboundSchema,
             metadata: z.string().optional(),
             objectCreated: z
                 .date()
@@ -173,7 +176,7 @@ export namespace Parcel$ {
                 .optional(),
             objectId: z.string().optional(),
             objectOwner: z.string().optional(),
-            objectState: ObjectState$.optional(),
+            objectState: ObjectState$.outboundSchema.optional(),
             objectUpdated: z
                 .date()
                 .transform((v) => v.toISOString())

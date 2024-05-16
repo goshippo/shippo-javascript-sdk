@@ -20,5 +20,7 @@ export enum CustomsDeclarationEelPfcEnum {
 }
 
 /** @internal */
-export const CustomsDeclarationEelPfcEnum$: z.ZodNativeEnum<typeof CustomsDeclarationEelPfcEnum> =
-    z.nativeEnum(CustomsDeclarationEelPfcEnum);
+export namespace CustomsDeclarationEelPfcEnum$ {
+    export const inboundSchema = z.nativeEnum(CustomsDeclarationEelPfcEnum);
+    export const outboundSchema = inboundSchema;
+}
