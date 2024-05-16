@@ -67,7 +67,7 @@ export namespace CustomsItemCreateRequest$ {
         .object({
             description: z.string(),
             eccn_ear99: z.string().optional(),
-            mass_unit: WeightUnitEnum$,
+            mass_unit: WeightUnitEnum$.inboundSchema,
             metadata: z.string().optional(),
             net_weight: z.string(),
             origin_country: z.string(),
@@ -96,7 +96,7 @@ export namespace CustomsItemCreateRequest$ {
     export type Outbound = {
         description: string;
         eccn_ear99?: string | undefined;
-        mass_unit: WeightUnitEnum;
+        mass_unit: string;
         metadata?: string | undefined;
         net_weight: string;
         origin_country: string;
@@ -111,7 +111,7 @@ export namespace CustomsItemCreateRequest$ {
         .object({
             description: z.string(),
             eccnEar99: z.string().optional(),
-            massUnit: WeightUnitEnum$,
+            massUnit: WeightUnitEnum$.outboundSchema,
             metadata: z.string().optional(),
             netWeight: z.string(),
             originCountry: z.string(),

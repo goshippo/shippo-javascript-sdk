@@ -33,8 +33,8 @@ export namespace ListTransactionsRequest$ {
     export const inboundSchema: z.ZodType<ListTransactionsRequest, z.ZodTypeDef, unknown> = z
         .object({
             rate: z.string().optional(),
-            object_status: components.TransactionStatusEnum$.optional(),
-            tracking_status: components.TrackingStatusEnum$.optional(),
+            object_status: components.TransactionStatusEnum$.inboundSchema.optional(),
+            tracking_status: components.TrackingStatusEnum$.inboundSchema.optional(),
             page: z.number().int().default(1),
             results: z.number().int().default(25),
         })
@@ -50,8 +50,8 @@ export namespace ListTransactionsRequest$ {
 
     export type Outbound = {
         rate?: string | undefined;
-        object_status?: components.TransactionStatusEnum | undefined;
-        tracking_status?: components.TrackingStatusEnum | undefined;
+        object_status?: string | undefined;
+        tracking_status?: string | undefined;
         page: number;
         results: number;
     };
@@ -59,8 +59,8 @@ export namespace ListTransactionsRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListTransactionsRequest> = z
         .object({
             rate: z.string().optional(),
-            objectStatus: components.TransactionStatusEnum$.optional(),
-            trackingStatus: components.TrackingStatusEnum$.optional(),
+            objectStatus: components.TransactionStatusEnum$.outboundSchema.optional(),
+            trackingStatus: components.TrackingStatusEnum$.outboundSchema.optional(),
             page: z.number().int().default(1),
             results: z.number().int().default(25),
         })

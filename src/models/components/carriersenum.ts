@@ -143,4 +143,7 @@ export enum CarriersEnum {
 }
 
 /** @internal */
-export const CarriersEnum$: z.ZodNativeEnum<typeof CarriersEnum> = z.nativeEnum(CarriersEnum);
+export namespace CarriersEnum$ {
+    export const inboundSchema = z.nativeEnum(CarriersEnum);
+    export const outboundSchema = inboundSchema;
+}

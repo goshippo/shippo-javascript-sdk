@@ -106,9 +106,10 @@ export type InstantTransactionCreateResponse = {
 };
 
 /** @internal */
-export const InstantTransactionCreateResponseResponseType$: z.ZodNativeEnum<
-    typeof InstantTransactionCreateResponseResponseType
-> = z.nativeEnum(InstantTransactionCreateResponseResponseType);
+export namespace InstantTransactionCreateResponseResponseType$ {
+    export const inboundSchema = z.nativeEnum(InstantTransactionCreateResponseResponseType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace InstantTransactionCreateResponse$ {
@@ -117,7 +118,7 @@ export namespace InstantTransactionCreateResponse$ {
             .object({
                 commercial_invoice_url: z.string().optional(),
                 eta: z.string().optional(),
-                label_file_type: LabelFileTypeEnum$.optional(),
+                label_file_type: LabelFileTypeEnum$.inboundSchema.optional(),
                 label_url: z.string().optional(),
                 messages: z.array(ResponseMessage$.inboundSchema).optional(),
                 metadata: z.string().optional(),
@@ -128,20 +129,21 @@ export namespace InstantTransactionCreateResponse$ {
                     .optional(),
                 object_id: z.string().optional(),
                 object_owner: z.string().optional(),
-                object_state: ObjectStateEnum$.optional(),
+                object_state: ObjectStateEnum$.inboundSchema.optional(),
                 object_updated: z
                     .string()
                     .datetime({ offset: true })
                     .transform((v) => new Date(v))
                     .optional(),
                 qr_code_url: z.string().optional(),
-                status: TransactionStatusEnum$.optional(),
+                status: TransactionStatusEnum$.inboundSchema.optional(),
                 test: z.boolean().optional(),
                 tracking_number: z.string().optional(),
-                tracking_status: TrackingStatusEnum$.optional(),
+                tracking_status: TrackingStatusEnum$.inboundSchema.optional(),
                 tracking_url_provider: z.string().optional(),
                 rate: InstantTransactionRate$.inboundSchema.optional(),
-                responseType: InstantTransactionCreateResponseResponseType$.optional(),
+                responseType:
+                    InstantTransactionCreateResponseResponseType$.inboundSchema.optional(),
             })
             .transform((v) => {
                 return {
@@ -184,23 +186,23 @@ export namespace InstantTransactionCreateResponse$ {
     export type Outbound = {
         commercial_invoice_url?: string | undefined;
         eta?: string | undefined;
-        label_file_type?: LabelFileTypeEnum | undefined;
+        label_file_type?: string | undefined;
         label_url?: string | undefined;
         messages?: Array<ResponseMessage$.Outbound> | undefined;
         metadata?: string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
-        object_state?: ObjectStateEnum | undefined;
+        object_state?: string | undefined;
         object_updated?: string | undefined;
         qr_code_url?: string | undefined;
-        status?: TransactionStatusEnum | undefined;
+        status?: string | undefined;
         test?: boolean | undefined;
         tracking_number?: string | undefined;
-        tracking_status?: TrackingStatusEnum | undefined;
+        tracking_status?: string | undefined;
         tracking_url_provider?: string | undefined;
         rate?: InstantTransactionRate$.Outbound | undefined;
-        responseType?: InstantTransactionCreateResponseResponseType | undefined;
+        responseType?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -211,7 +213,7 @@ export namespace InstantTransactionCreateResponse$ {
         .object({
             commercialInvoiceUrl: z.string().optional(),
             eta: z.string().optional(),
-            labelFileType: LabelFileTypeEnum$.optional(),
+            labelFileType: LabelFileTypeEnum$.outboundSchema.optional(),
             labelUrl: z.string().optional(),
             messages: z.array(ResponseMessage$.outboundSchema).optional(),
             metadata: z.string().optional(),
@@ -221,19 +223,19 @@ export namespace InstantTransactionCreateResponse$ {
                 .optional(),
             objectId: z.string().optional(),
             objectOwner: z.string().optional(),
-            objectState: ObjectStateEnum$.optional(),
+            objectState: ObjectStateEnum$.outboundSchema.optional(),
             objectUpdated: z
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
             qrCodeUrl: z.string().optional(),
-            status: TransactionStatusEnum$.optional(),
+            status: TransactionStatusEnum$.outboundSchema.optional(),
             test: z.boolean().optional(),
             trackingNumber: z.string().optional(),
-            trackingStatus: TrackingStatusEnum$.optional(),
+            trackingStatus: TrackingStatusEnum$.outboundSchema.optional(),
             trackingUrlProvider: z.string().optional(),
             rate: InstantTransactionRate$.outboundSchema.optional(),
-            responseType: InstantTransactionCreateResponseResponseType$.optional(),
+            responseType: InstantTransactionCreateResponseResponseType$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

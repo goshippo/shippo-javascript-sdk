@@ -80,18 +80,24 @@ export type AddressValidationResultsMessage = {
 };
 
 /** @internal */
-export const Code$: z.ZodNativeEnum<typeof Code> = z.nativeEnum(Code);
+export namespace Code$ {
+    export const inboundSchema = z.nativeEnum(Code);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const Source$: z.ZodNativeEnum<typeof Source> = z.nativeEnum(Source);
+export namespace Source$ {
+    export const inboundSchema = z.nativeEnum(Source);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace AddressValidationResultsMessage$ {
     export const inboundSchema: z.ZodType<AddressValidationResultsMessage, z.ZodTypeDef, unknown> =
         z
             .object({
-                code: Code$.optional(),
-                source: Source$.optional(),
+                code: Code$.inboundSchema.optional(),
+                source: Source$.inboundSchema.optional(),
                 text: z.string().optional(),
                 type: z.string().optional(),
             })
@@ -105,8 +111,8 @@ export namespace AddressValidationResultsMessage$ {
             });
 
     export type Outbound = {
-        code?: Code | undefined;
-        source?: Source | undefined;
+        code?: string | undefined;
+        source?: string | undefined;
         text?: string | undefined;
         type?: string | undefined;
     };
@@ -117,8 +123,8 @@ export namespace AddressValidationResultsMessage$ {
         AddressValidationResultsMessage
     > = z
         .object({
-            code: Code$.optional(),
-            source: Source$.optional(),
+            code: Code$.outboundSchema.optional(),
+            source: Source$.outboundSchema.optional(),
             text: z.string().optional(),
             type: z.string().optional(),
         })
