@@ -9,7 +9,6 @@ import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
-import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
 export class ShippoAccounts extends ClientSDK {
@@ -116,24 +115,12 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ShippoAccountPaginatedList$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.ShippoAccountPaginatedList>()
+            .json(200, components.ShippoAccountPaginatedList$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -202,24 +189,12 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ShippoAccount$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.ShippoAccount>()
+            .json(201, components.ShippoAccount$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -295,24 +270,12 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ShippoAccount$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.ShippoAccount>()
+            .json(200, components.ShippoAccount$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -393,23 +356,11 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ShippoAccount$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.ShippoAccount>()
+            .json(200, components.ShippoAccount$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 }

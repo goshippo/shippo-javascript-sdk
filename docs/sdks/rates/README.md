@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise<[components.Rate](../../models/components/rate.md)>**
+**Promise\<[components.Rate](../../models/components/rate.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -91,7 +91,7 @@ run();
 
 ### Response
 
-**Promise<[components.RatePaginatedList](../../models/components/ratepaginatedlist.md)>**
+**Promise\<[components.RatePaginatedList](../../models/components/ratepaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -142,7 +142,7 @@ run();
 
 ### Response
 
-**Promise<[components.RatePaginatedList](../../models/components/ratepaginatedlist.md)>**
+**Promise\<[components.RatePaginatedList](../../models/components/ratepaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

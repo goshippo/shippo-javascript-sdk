@@ -9,7 +9,6 @@ import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
-import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
 export class Addresses extends ClientSDK {
@@ -116,24 +115,12 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.AddressPaginatedList$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.AddressPaginatedList>()
+            .json(200, components.AddressPaginatedList$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -202,24 +189,12 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.Address$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.Address>()
+            .json(201, components.Address$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -292,24 +267,12 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.Address$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.Address>()
+            .json(200, components.Address$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -382,23 +345,11 @@ export class Addresses extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.Address$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.Address>()
+            .json(200, components.Address$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 }

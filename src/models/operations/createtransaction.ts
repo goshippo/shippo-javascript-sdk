@@ -5,12 +5,50 @@
 import * as components from "../components";
 import * as z from "zod";
 
+export type CreateTransactionGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 /**
  * Examples.
  */
 export type CreateTransactionRequestBody =
     | components.TransactionCreateRequest
     | components.InstantTransactionCreateRequest;
+
+/** @internal */
+export namespace CreateTransactionGlobals$ {
+    export const inboundSchema: z.ZodType<CreateTransactionGlobals, z.ZodTypeDef, unknown> = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateTransactionGlobals> = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
 
 /** @internal */
 export namespace CreateTransactionRequestBody$ {

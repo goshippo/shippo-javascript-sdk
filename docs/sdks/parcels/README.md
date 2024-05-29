@@ -52,7 +52,7 @@ run();
 
 ### Response
 
-**Promise<[components.ParcelPaginatedList](../../models/components/parcelpaginatedlist.md)>**
+**Promise\<[components.ParcelPaginatedList](../../models/components/parcelpaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -115,7 +115,7 @@ run();
 
 ### Response
 
-**Promise<[components.Parcel](../../models/components/parcel.md)>**
+**Promise\<[components.Parcel](../../models/components/parcel.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -157,7 +157,7 @@ run();
 
 ### Response
 
-**Promise<[components.Parcel](../../models/components/parcel.md)>**
+**Promise\<[components.Parcel](../../models/components/parcel.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

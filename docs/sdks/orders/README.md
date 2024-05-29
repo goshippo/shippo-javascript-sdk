@@ -59,7 +59,7 @@ run();
 
 ### Response
 
-**Promise<[components.OrderPaginatedList](../../models/components/orderpaginatedlist.md)>**
+**Promise\<[components.OrderPaginatedList](../../models/components/orderpaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -163,7 +163,7 @@ run();
 
 ### Response
 
-**Promise<[components.Order](../../models/components/order.md)>**
+**Promise\<[components.Order](../../models/components/order.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -205,7 +205,7 @@ run();
 
 ### Response
 
-**Promise<[components.Order](../../models/components/order.md)>**
+**Promise\<[components.Order](../../models/components/order.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

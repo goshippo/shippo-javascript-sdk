@@ -9,7 +9,6 @@ import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
-import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 
 export class Manifests extends ClientSDK {
@@ -116,24 +115,12 @@ export class Manifests extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.ManifestPaginatedList$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.ManifestPaginatedList>()
+            .json(200, components.ManifestPaginatedList$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -202,24 +189,12 @@ export class Manifests extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.Manifest$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.Manifest>()
+            .json(201, components.Manifest$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -292,23 +267,11 @@ export class Manifests extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.Manifest$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.Manifest>()
+            .json(200, components.Manifest$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 }

@@ -49,7 +49,7 @@ run();
 
 ### Response
 
-**Promise<[components.CustomsDeclarationPaginatedList](../../models/components/customsdeclarationpaginatedlist.md)>**
+**Promise\<[components.CustomsDeclarationPaginatedList](../../models/components/customsdeclarationpaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -138,7 +138,7 @@ run();
 
 ### Response
 
-**Promise<[components.CustomsDeclaration](../../models/components/customsdeclaration.md)>**
+**Promise\<[components.CustomsDeclaration](../../models/components/customsdeclaration.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -181,7 +181,7 @@ run();
 
 ### Response
 
-**Promise<[components.CustomsDeclaration](../../models/components/customsdeclaration.md)>**
+**Promise\<[components.CustomsDeclaration](../../models/components/customsdeclaration.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

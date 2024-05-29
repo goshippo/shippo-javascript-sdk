@@ -53,7 +53,7 @@ run();
 
 ### Response
 
-**Promise<[components.UserParcelTemplate[]](../../models/.md)>**
+**Promise\<[components.UserParcelTemplateList](../../models/components/userparceltemplatelist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -105,7 +105,7 @@ run();
 
 ### Response
 
-**Promise<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)>**
+**Promise\<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -127,10 +127,9 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.userParcelTemplates.delete("<value>");
+  await shippo.userParcelTemplates.delete("<value>");
 
-  // Handle the result
-  console.log(result)
+  
 }
 
 run();
@@ -147,7 +146,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteUserParcelTemplateResponse](../../models/operations/deleteuserparceltemplateresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -190,7 +189,7 @@ run();
 
 ### Response
 
-**Promise<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)>**
+**Promise\<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -242,7 +241,7 @@ run();
 
 ### Response
 
-**Promise<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)>**
+**Promise\<[components.UserParcelTemplate](../../models/components/userparceltemplate.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

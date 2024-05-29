@@ -56,7 +56,7 @@ run();
 
 ### Response
 
-**Promise<[components.CarrierAccountPaginatedList](../../models/components/carrieraccountpaginatedlist.md)>**
+**Promise\<[components.CarrierAccountPaginatedList](../../models/components/carrieraccountpaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -113,7 +113,7 @@ run();
 
 ### Response
 
-**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
+**Promise\<[components.CarrierAccount](../../models/components/carrieraccount.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -155,7 +155,7 @@ run();
 
 ### Response
 
-**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
+**Promise\<[components.CarrierAccount](../../models/components/carrieraccount.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -225,7 +225,7 @@ run();
 
 ### Response
 
-**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
+**Promise\<[components.CarrierAccount](../../models/components/carrieraccount.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -269,7 +269,7 @@ run();
 
 ### Response
 
-**Promise<[operations.InitiateOauth2SigninResponse](../../models/operations/initiateoauth2signinresponse.md)>**
+**Promise\<[operations.InitiateOauth2SigninResponse](../../models/operations/initiateoauth2signinresponse.md)\>**
 ### Errors
 
 | Error Object                                                   | Status Code                                                    | Content Type                                                   |
@@ -317,7 +317,7 @@ run();
 
 ### Response
 
-**Promise<[components.CarrierAccount](../../models/components/carrieraccount.md)>**
+**Promise\<[components.CarrierAccount](../../models/components/carrieraccount.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -360,7 +360,7 @@ run();
 
 ### Response
 
-**Promise<[components.CarrierAccountRegistrationStatus](../../models/components/carrieraccountregistrationstatus.md)>**
+**Promise\<[components.CarrierAccountRegistrationStatus](../../models/components/carrieraccountregistrationstatus.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -4,12 +4,55 @@
 
 import * as z from "zod";
 
+export type GetCarrierParcelTemplateGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 export type GetCarrierParcelTemplateRequest = {
     /**
      * The unique string representation of the carrier parcel template
      */
     carrierParcelTemplateToken: string;
 };
+
+/** @internal */
+export namespace GetCarrierParcelTemplateGlobals$ {
+    export const inboundSchema: z.ZodType<GetCarrierParcelTemplateGlobals, z.ZodTypeDef, unknown> =
+        z
+            .object({
+                "SHIPPO-API-VERSION": z.string().optional(),
+            })
+            .transform((v) => {
+                return {
+                    ...(v["SHIPPO-API-VERSION"] === undefined
+                        ? null
+                        : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+                };
+            });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        GetCarrierParcelTemplateGlobals
+    > = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
 
 /** @internal */
 export namespace GetCarrierParcelTemplateRequest$ {
