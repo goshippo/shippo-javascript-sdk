@@ -9,8 +9,8 @@ import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
-import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class RatesAtCheckout extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -108,24 +108,12 @@ export class RatesAtCheckout extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.LiveRatePaginatedList$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.LiveRatePaginatedList>()
+            .json(200, components.LiveRatePaginatedList$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -185,24 +173,12 @@ export class RatesAtCheckout extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.DefaultParcelTemplate$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.DefaultParcelTemplate>()
+            .json(200, components.DefaultParcelTemplate$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -277,24 +253,12 @@ export class RatesAtCheckout extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.DefaultParcelTemplate$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.DefaultParcelTemplate>()
+            .json(200, components.DefaultParcelTemplate$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -303,9 +267,7 @@ export class RatesAtCheckout extends ClientSDK {
      * @remarks
      * Clears the currently configured default parcel template for live rates.
      */
-    async deleteDefaultParcelTemplate(
-        options?: RequestOptions
-    ): Promise<operations.DeleteDefaultParcelTemplateResponse | void> {
+    async deleteDefaultParcelTemplate(options?: RequestOptions): Promise<void> {
         const input$: operations.DeleteDefaultParcelTemplateRequest = {};
         void input$; // request input is unused
         const headers$ = new Headers();
@@ -354,15 +316,11 @@ export class RatesAtCheckout extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchStatusCode(response, 204)) {
-            return;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 }

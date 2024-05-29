@@ -51,7 +51,7 @@ run();
 
 ### Response
 
-**Promise<[components.ShippoAccountPaginatedList](../../models/components/shippoaccountpaginatedlist.md)>**
+**Promise\<[components.ShippoAccountPaginatedList](../../models/components/shippoaccountpaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -98,7 +98,7 @@ run();
 
 ### Response
 
-**Promise<[components.ShippoAccount](../../models/components/shippoaccount.md)>**
+**Promise\<[components.ShippoAccount](../../models/components/shippoaccount.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -140,7 +140,7 @@ run();
 
 ### Response
 
-**Promise<[components.ShippoAccount](../../models/components/shippoaccount.md)>**
+**Promise\<[components.ShippoAccount](../../models/components/shippoaccount.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -188,7 +188,7 @@ run();
 
 ### Response
 
-**Promise<[components.ShippoAccount](../../models/components/shippoaccount.md)>**
+**Promise\<[components.ShippoAccount](../../models/components/shippoaccount.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

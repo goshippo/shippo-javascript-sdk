@@ -9,9 +9,7 @@ import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
-import * as errors from "../models/errors";
 import * as operations from "../models/operations";
-import * as z from "zod";
 
 export class CarrierParcelTemplates extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -50,7 +48,7 @@ export class CarrierParcelTemplates extends ClientSDK {
         include?: operations.Include | undefined,
         carrier?: string | undefined,
         options?: RequestOptions
-    ): Promise<Array<components.CarrierParcelTemplate>> {
+    ): Promise<components.CarrierParcelTemplateList> {
         const input$: operations.ListCarrierParcelTemplatesRequest = {
             include: include,
             carrier: carrier,
@@ -120,24 +118,12 @@ export class CarrierParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return z.array(components.CarrierParcelTemplate$.inboundSchema).parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.CarrierParcelTemplateList>()
+            .json(200, components.CarrierParcelTemplateList$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -216,23 +202,11 @@ export class CarrierParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.CarrierParcelTemplate$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.CarrierParcelTemplate>()
+            .json(200, components.CarrierParcelTemplate$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 }

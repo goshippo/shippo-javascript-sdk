@@ -9,7 +9,6 @@ import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
-import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 import * as z from "zod";
 
@@ -46,7 +45,7 @@ export class UserParcelTemplates extends ClientSDK {
      * @remarks
      * Returns a list all of all user parcel template objects.
      */
-    async list(options?: RequestOptions): Promise<Array<components.UserParcelTemplate>> {
+    async list(options?: RequestOptions): Promise<components.UserParcelTemplateList> {
         const input$: operations.ListUserParcelTemplatesRequest = {};
         void input$; // request input is unused
         const headers$ = new Headers();
@@ -95,24 +94,12 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return z.array(components.UserParcelTemplate$.inboundSchema).parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.UserParcelTemplateList>()
+            .json(200, components.UserParcelTemplateList$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -187,24 +174,12 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.UserParcelTemplate>()
+            .json(200, components.UserParcelTemplate$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -213,10 +188,7 @@ export class UserParcelTemplates extends ClientSDK {
      * @remarks
      * Deletes a user parcel template using an object ID.
      */
-    async delete(
-        userParcelTemplateObjectId: string,
-        options?: RequestOptions
-    ): Promise<operations.DeleteUserParcelTemplateResponse | void> {
+    async delete(userParcelTemplateObjectId: string, options?: RequestOptions): Promise<void> {
         const input$: operations.DeleteUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
         };
@@ -283,16 +255,12 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchStatusCode(response, 204)) {
-            return;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -372,24 +340,12 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.UserParcelTemplate>()
+            .json(200, components.UserParcelTemplate$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -473,23 +429,11 @@ export class UserParcelTemplates extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.UserParcelTemplate$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.UserParcelTemplate>()
+            .json(200, components.UserParcelTemplate$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 }

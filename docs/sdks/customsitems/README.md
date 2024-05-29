@@ -48,7 +48,7 @@ run();
 
 ### Response
 
-**Promise<[components.CustomsItemPaginatedList](../../models/components/customsitempaginatedlist.md)>**
+**Promise\<[components.CustomsItemPaginatedList](../../models/components/customsitempaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -101,7 +101,7 @@ run();
 
 ### Response
 
-**Promise<[components.CustomsItem](../../models/components/customsitem.md)>**
+**Promise\<[components.CustomsItem](../../models/components/customsitem.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -144,7 +144,7 @@ run();
 
 ### Response
 
-**Promise<[components.CustomsItem](../../models/components/customsitem.md)>**
+**Promise\<[components.CustomsItem](../../models/components/customsitem.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

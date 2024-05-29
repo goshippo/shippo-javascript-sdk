@@ -224,7 +224,7 @@ run();
 
 ### Response
 
-**Promise<[components.Batch](../../models/components/batch.md)>**
+**Promise\<[components.Batch](../../models/components/batch.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -269,7 +269,7 @@ run();
 
 ### Response
 
-**Promise<[components.Batch](../../models/components/batch.md)>**
+**Promise\<[components.Batch](../../models/components/batch.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -451,14 +451,14 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `batchId`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the batch                                                                                                                                                         |
-| `requestBody`                                                                                                                                                                  | [components.BatchShipmentBase](../../models/components/batchshipmentbase.md)[]                                                                                                 | :heavy_check_mark:                                                                                                                                                             | Array of shipments to add to the batch                                                                                                                                         |
+| `requestBody`                                                                                                                                                                  | [components.BatchShipmentCreateRequest](../../models/components/batchshipmentcreaterequest.md)[]                                                                               | :heavy_check_mark:                                                                                                                                                             | Array of shipments to add to the batch                                                                                                                                         |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
 
 ### Response
 
-**Promise<[components.Batch](../../models/components/batch.md)>**
+**Promise\<[components.Batch](../../models/components/batch.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -503,7 +503,7 @@ run();
 
 ### Response
 
-**Promise<[components.Batch](../../models/components/batch.md)>**
+**Promise\<[components.Batch](../../models/components/batch.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -548,7 +548,7 @@ run();
 
 ### Response
 
-**Promise<[components.Batch](../../models/components/batch.md)>**
+**Promise\<[components.Batch](../../models/components/batch.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

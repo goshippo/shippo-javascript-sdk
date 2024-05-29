@@ -48,7 +48,7 @@ run();
 
 ### Response
 
-**Promise<[components.Refund](../../models/components/refund.md)>**
+**Promise\<[components.Refund](../../models/components/refund.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -89,7 +89,7 @@ run();
 
 ### Response
 
-**Promise<[components.RefundPaginatedList](../../models/components/refundpaginatedlist.md)>**
+**Promise\<[components.RefundPaginatedList](../../models/components/refundpaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -131,7 +131,7 @@ run();
 
 ### Response
 
-**Promise<[components.Refund](../../models/components/refund.md)>**
+**Promise\<[components.Refund](../../models/components/refund.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

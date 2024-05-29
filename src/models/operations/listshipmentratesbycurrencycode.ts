@@ -4,6 +4,13 @@
 
 import * as z from "zod";
 
+export type ListShipmentRatesByCurrencyCodeGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 export type ListShipmentRatesByCurrencyCodeRequest = {
     /**
      * Object ID of the shipment to update
@@ -22,6 +29,45 @@ export type ListShipmentRatesByCurrencyCodeRequest = {
      */
     results?: number | undefined;
 };
+
+/** @internal */
+export namespace ListShipmentRatesByCurrencyCodeGlobals$ {
+    export const inboundSchema: z.ZodType<
+        ListShipmentRatesByCurrencyCodeGlobals,
+        z.ZodTypeDef,
+        unknown
+    > = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        ListShipmentRatesByCurrencyCodeGlobals
+    > = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
 
 /** @internal */
 export namespace ListShipmentRatesByCurrencyCodeRequest$ {

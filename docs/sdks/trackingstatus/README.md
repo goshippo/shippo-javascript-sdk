@@ -57,7 +57,7 @@ run();
 
 ### Response
 
-**Promise<[components.Track](../../models/components/track.md)>**
+**Promise\<[components.Track](../../models/components/track.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -100,7 +100,7 @@ run();
 
 ### Response
 
-**Promise<[components.Track](../../models/components/track.md)>**
+**Promise\<[components.Track](../../models/components/track.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
