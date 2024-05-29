@@ -5,6 +5,13 @@
 import * as components from "../components";
 import * as z from "zod";
 
+export type AddShipmentsToBatchGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 export type AddShipmentsToBatchRequest = {
     /**
      * Object ID of the batch
@@ -13,15 +20,46 @@ export type AddShipmentsToBatchRequest = {
     /**
      * Array of shipments to add to the batch
      */
-    requestBody: Array<components.BatchShipmentBase>;
+    requestBody: Array<components.BatchShipmentCreateRequest>;
 };
+
+/** @internal */
+export namespace AddShipmentsToBatchGlobals$ {
+    export const inboundSchema: z.ZodType<AddShipmentsToBatchGlobals, z.ZodTypeDef, unknown> = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddShipmentsToBatchGlobals> = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
 
 /** @internal */
 export namespace AddShipmentsToBatchRequest$ {
     export const inboundSchema: z.ZodType<AddShipmentsToBatchRequest, z.ZodTypeDef, unknown> = z
         .object({
             BatchId: z.string(),
-            RequestBody: z.array(components.BatchShipmentBase$.inboundSchema),
+            RequestBody: z.array(components.BatchShipmentCreateRequest$.inboundSchema),
         })
         .transform((v) => {
             return {
@@ -32,13 +70,13 @@ export namespace AddShipmentsToBatchRequest$ {
 
     export type Outbound = {
         BatchId: string;
-        RequestBody: Array<components.BatchShipmentBase$.Outbound>;
+        RequestBody: Array<components.BatchShipmentCreateRequest$.Outbound>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddShipmentsToBatchRequest> = z
         .object({
             batchId: z.string(),
-            requestBody: z.array(components.BatchShipmentBase$.outboundSchema),
+            requestBody: z.array(components.BatchShipmentCreateRequest$.outboundSchema),
         })
         .transform((v) => {
             return {

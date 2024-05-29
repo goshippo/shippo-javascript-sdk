@@ -128,24 +128,12 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.CarrierAccountPaginatedList$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.CarrierAccountPaginatedList>()
+            .json(200, components.CarrierAccountPaginatedList$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -214,24 +202,12 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.CarrierAccount$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.CarrierAccount>()
+            .json(201, components.CarrierAccount$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -309,24 +285,12 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.CarrierAccount$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.CarrierAccount>()
+            .json(200, components.CarrierAccount$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -407,24 +371,12 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.CarrierAccount$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.CarrierAccount>()
+            .json(200, components.CarrierAccount$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -438,7 +390,7 @@ export class CarrierAccounts extends ClientSDK {
         redirectUri: string,
         state?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.InitiateOauth2SigninResponse | void> {
+    ): Promise<operations.InitiateOauth2SigninResponse | undefined> {
         const input$: operations.InitiateOauth2SigninRequest = {
             carrierAccountObjectId: carrierAccountObjectId,
             redirectUri: redirectUri,
@@ -516,73 +468,22 @@ export class CarrierAccounts extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request$,
-            },
+            HttpMeta: { Response: response, Request: request$ },
         };
 
-        if (this.matchStatusCode(response, 302)) {
-            return schemas$.parse(
-                this.unpackHeaders(response.headers),
-                (val$) =>
-                    operations.InitiateOauth2SigninResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Headers: val$,
-                    }),
-                "Response validation failed"
-            );
-        } else if (this.matchResponse(response, 400, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.InitiateOauth2SigninResponseBody$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 401, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.InitiateOauth2SigninCarrierAccountsResponseBody$.inboundSchema.parse(
-                        {
-                            ...responseFields$,
-                            ...val$,
-                        }
-                    );
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody$.inboundSchema.parse(
-                        {
-                            ...responseFields$,
-                            ...val$,
-                        }
-                    );
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.InitiateOauth2SigninResponse | undefined>()
+            .void(302, operations.InitiateOauth2SigninResponse$.inboundSchema.optional(), {
+                hdrs: true,
+            })
+            .json(400, errors.InitiateOauth2SigninResponseBody$, { err: true })
+            .json(401, errors.InitiateOauth2SigninCarrierAccountsResponseBody$, { err: true })
+            .json(404, errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody$, {
+                err: true,
+            })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -651,24 +552,12 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.CarrierAccount$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.CarrierAccount>()
+            .json(201, components.CarrierAccount$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 
     /**
@@ -746,23 +635,11 @@ export class CarrierAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return components.CarrierAccountRegistrationStatus$.inboundSchema.parse(val$);
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<components.CarrierAccountRegistrationStatus>()
+            .json(200, components.CarrierAccountRegistrationStatus$)
+            .fail([400, "4XX", "5XX"])
+            .match(response);
+
+        return result$;
     }
 }

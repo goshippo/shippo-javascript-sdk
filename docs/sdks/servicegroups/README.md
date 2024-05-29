@@ -48,7 +48,7 @@ run();
 
 ### Response
 
-**Promise<[components.ServiceGroup[]](../../models/.md)>**
+**Promise\<[components.ServiceGroup[]](../../models/.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -106,7 +106,7 @@ run();
 
 ### Response
 
-**Promise<[components.ServiceGroup](../../models/components/servicegroup.md)>**
+**Promise\<[components.ServiceGroup](../../models/components/servicegroup.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -166,7 +166,7 @@ run();
 
 ### Response
 
-**Promise<[components.ServiceGroup](../../models/components/servicegroup.md)>**
+**Promise\<[components.ServiceGroup](../../models/components/servicegroup.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -188,10 +188,9 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.serviceGroups.delete("<value>");
+  await shippo.serviceGroups.delete("<value>");
 
-  // Handle the result
-  console.log(result)
+  
 }
 
 run();
@@ -208,7 +207,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteServiceGroupResponse](../../models/operations/deleteservicegroupresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

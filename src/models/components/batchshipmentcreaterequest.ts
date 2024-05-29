@@ -5,7 +5,7 @@
 import { ShipmentCreateRequest, ShipmentCreateRequest$ } from "./shipmentcreaterequest";
 import * as z from "zod";
 
-export type BatchShipmentBase = {
+export type BatchShipmentCreateRequest = {
     /**
      * Object ID of the carrier account to be used for this shipment (will override batch default)
      */
@@ -29,8 +29,8 @@ export type BatchShipmentBase = {
 };
 
 /** @internal */
-export namespace BatchShipmentBase$ {
-    export const inboundSchema: z.ZodType<BatchShipmentBase, z.ZodTypeDef, unknown> = z
+export namespace BatchShipmentCreateRequest$ {
+    export const inboundSchema: z.ZodType<BatchShipmentCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
             carrier_account: z.string().optional(),
             metadata: z.string().optional(),
@@ -55,7 +55,7 @@ export namespace BatchShipmentBase$ {
         shipment: ShipmentCreateRequest$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BatchShipmentBase> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BatchShipmentCreateRequest> = z
         .object({
             carrierAccount: z.string().optional(),
             metadata: z.string().optional(),

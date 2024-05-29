@@ -19,7 +19,7 @@ import * as z from "zod";
 export type CarrierAccountParameters =
     | FedExConnectExistingOwnAccountParameters
     | UPSConnectExistingOwnAccountParameters
-    | Record<string, any>;
+    | { [k: string]: any };
 
 export type CarrierAccount = {
     /**
@@ -47,7 +47,7 @@ export type CarrierAccount = {
     parameters?:
         | FedExConnectExistingOwnAccountParameters
         | UPSConnectExistingOwnAccountParameters
-        | Record<string, any>
+        | { [k: string]: any }
         | undefined;
     /**
      * Carrier name, see <a href="#tag/Carriers">Carriers</a><br>
@@ -82,7 +82,7 @@ export namespace CarrierAccountParameters$ {
     export type Outbound =
         | FedExConnectExistingOwnAccountParameters$.Outbound
         | UPSConnectExistingOwnAccountParameters$.Outbound
-        | Record<string, any>;
+        | { [k: string]: any };
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierAccountParameters> =
         z.union([
             FedExConnectExistingOwnAccountParameters$.outboundSchema,
@@ -138,7 +138,7 @@ export namespace CarrierAccount$ {
         parameters?:
             | FedExConnectExistingOwnAccountParameters$.Outbound
             | UPSConnectExistingOwnAccountParameters$.Outbound
-            | Record<string, any>
+            | { [k: string]: any }
             | undefined;
         carrier_name?: any | undefined;
         is_shippo_account?: boolean | undefined;

@@ -19,7 +19,7 @@ import * as z from "zod";
 export type ParametersT =
     | FedExConnectExistingOwnAccountParameters
     | UPSConnectExistingOwnAccountParameters
-    | Record<string, any>;
+    | { [k: string]: any };
 
 /**
  * Authentication method used by this account.
@@ -82,7 +82,7 @@ export type CarrierAccountWithExtraInfo = {
     parameters?:
         | FedExConnectExistingOwnAccountParameters
         | UPSConnectExistingOwnAccountParameters
-        | Record<string, any>
+        | { [k: string]: any }
         | undefined;
     /**
      * Carrier name, see <a href="#tag/Carriers">Carriers</a><br>
@@ -120,7 +120,7 @@ export namespace ParametersT$ {
     export type Outbound =
         | FedExConnectExistingOwnAccountParameters$.Outbound
         | UPSConnectExistingOwnAccountParameters$.Outbound
-        | Record<string, any>;
+        | { [k: string]: any };
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParametersT> = z.union([
         FedExConnectExistingOwnAccountParameters$.outboundSchema,
         UPSConnectExistingOwnAccountParameters$.outboundSchema,
@@ -248,7 +248,7 @@ export namespace CarrierAccountWithExtraInfo$ {
         parameters?:
             | FedExConnectExistingOwnAccountParameters$.Outbound
             | UPSConnectExistingOwnAccountParameters$.Outbound
-            | Record<string, any>
+            | { [k: string]: any }
             | undefined;
         carrier_name?: any | undefined;
         is_shippo_account?: boolean | undefined;
