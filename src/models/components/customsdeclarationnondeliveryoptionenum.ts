@@ -16,6 +16,7 @@ export enum CustomsDeclarationNonDeliveryOptionEnum {
 }
 
 /** @internal */
-export const CustomsDeclarationNonDeliveryOptionEnum$: z.ZodNativeEnum<
-    typeof CustomsDeclarationNonDeliveryOptionEnum
-> = z.nativeEnum(CustomsDeclarationNonDeliveryOptionEnum);
+export namespace CustomsDeclarationNonDeliveryOptionEnum$ {
+    export const inboundSchema = z.nativeEnum(CustomsDeclarationNonDeliveryOptionEnum);
+    export const outboundSchema = inboundSchema;
+}

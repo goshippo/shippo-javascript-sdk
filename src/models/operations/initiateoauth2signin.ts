@@ -4,6 +4,13 @@
 
 import * as z from "zod";
 
+export type InitiateOauth2SigninGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 export type InitiateOauth2SigninRequest = {
     /**
      * The carrier account ID (UUID) to start a signin process.
@@ -20,8 +27,39 @@ export type InitiateOauth2SigninRequest = {
 };
 
 export type InitiateOauth2SigninResponse = {
-    headers: Record<string, Array<string>>;
+    headers: { [k: string]: Array<string> };
 };
+
+/** @internal */
+export namespace InitiateOauth2SigninGlobals$ {
+    export const inboundSchema: z.ZodType<InitiateOauth2SigninGlobals, z.ZodTypeDef, unknown> = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InitiateOauth2SigninGlobals> = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
 
 /** @internal */
 export namespace InitiateOauth2SigninRequest$ {
@@ -73,7 +111,7 @@ export namespace InitiateOauth2SigninResponse$ {
         });
 
     export type Outbound = {
-        Headers: Record<string, Array<string>>;
+        Headers: { [k: string]: Array<string> };
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InitiateOauth2SigninResponse> = z

@@ -117,7 +117,10 @@ export type Rate = {
 };
 
 /** @internal */
-export const Attributes$: z.ZodNativeEnum<typeof Attributes> = z.nativeEnum(Attributes);
+export namespace Attributes$ {
+    export const inboundSchema = z.nativeEnum(Attributes);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Rate$ {
@@ -128,7 +131,7 @@ export namespace Rate$ {
             currency: z.string(),
             currency_local: z.string(),
             arrives_by: z.string().optional(),
-            attributes: z.array(Attributes$),
+            attributes: z.array(Attributes$.inboundSchema),
             carrier_account: z.string(),
             duration_terms: z.string().optional(),
             estimated_days: z.number().int().optional(),
@@ -186,7 +189,7 @@ export namespace Rate$ {
         currency: string;
         currency_local: string;
         arrives_by?: string | undefined;
-        attributes: Array<Attributes>;
+        attributes: Array<string>;
         carrier_account: string;
         duration_terms?: string | undefined;
         estimated_days?: number | undefined;
@@ -211,7 +214,7 @@ export namespace Rate$ {
             currency: z.string(),
             currencyLocal: z.string(),
             arrivesBy: z.string().optional(),
-            attributes: z.array(Attributes$),
+            attributes: z.array(Attributes$.outboundSchema),
             carrierAccount: z.string(),
             durationTerms: z.string().optional(),
             estimatedDays: z.number().int().optional(),

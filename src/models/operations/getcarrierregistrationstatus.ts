@@ -4,6 +4,13 @@
 
 import * as z from "zod";
 
+export type GetCarrierRegistrationStatusGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 /**
  * filter by specific carrier
  */
@@ -21,7 +28,49 @@ export type GetCarrierRegistrationStatusRequest = {
 };
 
 /** @internal */
-export const Carrier$: z.ZodNativeEnum<typeof Carrier> = z.nativeEnum(Carrier);
+export namespace GetCarrierRegistrationStatusGlobals$ {
+    export const inboundSchema: z.ZodType<
+        GetCarrierRegistrationStatusGlobals,
+        z.ZodTypeDef,
+        unknown
+    > = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        GetCarrierRegistrationStatusGlobals
+    > = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
+
+/** @internal */
+export namespace Carrier$ {
+    export const inboundSchema = z.nativeEnum(Carrier);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace GetCarrierRegistrationStatusRequest$ {
@@ -31,7 +80,7 @@ export namespace GetCarrierRegistrationStatusRequest$ {
         unknown
     > = z
         .object({
-            carrier: Carrier$,
+            carrier: Carrier$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -40,7 +89,7 @@ export namespace GetCarrierRegistrationStatusRequest$ {
         });
 
     export type Outbound = {
-        carrier: Carrier;
+        carrier: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -49,7 +98,7 @@ export namespace GetCarrierRegistrationStatusRequest$ {
         GetCarrierRegistrationStatusRequest
     > = z
         .object({
-            carrier: Carrier$,
+            carrier: Carrier$.outboundSchema,
         })
         .transform((v) => {
             return {

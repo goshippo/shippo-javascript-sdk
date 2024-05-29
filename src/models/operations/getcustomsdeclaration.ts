@@ -4,6 +4,13 @@
 
 import * as z from "zod";
 
+export type GetCustomsDeclarationGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 export type GetCustomsDeclarationRequest = {
     /**
      * Object ID of the customs declaration
@@ -14,6 +21,37 @@ export type GetCustomsDeclarationRequest = {
      */
     page?: number | undefined;
 };
+
+/** @internal */
+export namespace GetCustomsDeclarationGlobals$ {
+    export const inboundSchema: z.ZodType<GetCustomsDeclarationGlobals, z.ZodTypeDef, unknown> = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetCustomsDeclarationGlobals> = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
 
 /** @internal */
 export namespace GetCustomsDeclarationRequest$ {

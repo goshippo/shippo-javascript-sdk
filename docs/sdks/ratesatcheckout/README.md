@@ -79,7 +79,7 @@ run();
 
 ### Response
 
-**Promise<[components.LiveRatePaginatedList](../../models/components/liveratepaginatedlist.md)>**
+**Promise\<[components.LiveRatePaginatedList](../../models/components/liveratepaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -120,7 +120,7 @@ run();
 
 ### Response
 
-**Promise<[components.DefaultParcelTemplate](../../models/components/defaultparceltemplate.md)>**
+**Promise\<[components.DefaultParcelTemplate](../../models/components/defaultparceltemplate.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -162,7 +162,7 @@ run();
 
 ### Response
 
-**Promise<[components.DefaultParcelTemplate](../../models/components/defaultparceltemplate.md)>**
+**Promise\<[components.DefaultParcelTemplate](../../models/components/defaultparceltemplate.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -184,10 +184,9 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.ratesAtCheckout.deleteDefaultParcelTemplate();
+  await shippo.ratesAtCheckout.deleteDefaultParcelTemplate();
 
-  // Handle the result
-  console.log(result)
+  
 }
 
 run();
@@ -203,7 +202,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteDefaultParcelTemplateResponse](../../models/operations/deletedefaultparceltemplateresponse.md)>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

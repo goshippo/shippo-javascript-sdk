@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise<[components.ManifestPaginatedList](../../models/components/manifestpaginatedlist.md)>**
+**Promise\<[components.ManifestPaginatedList](../../models/components/manifestpaginatedlist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -118,7 +118,7 @@ run();
 
 ### Response
 
-**Promise<[components.Manifest](../../models/components/manifest.md)>**
+**Promise\<[components.Manifest](../../models/components/manifest.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -160,7 +160,7 @@ run();
 
 ### Response
 
-**Promise<[components.Manifest](../../models/components/manifest.md)>**
+**Promise\<[components.Manifest](../../models/components/manifest.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

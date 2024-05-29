@@ -49,7 +49,7 @@ run();
 
 ### Response
 
-**Promise<[components.CarrierParcelTemplate[]](../../models/.md)>**
+**Promise\<[components.CarrierParcelTemplateList](../../models/components/carrierparceltemplatelist.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -91,7 +91,7 @@ run();
 
 ### Response
 
-**Promise<[components.CarrierParcelTemplate](../../models/components/carrierparceltemplate.md)>**
+**Promise\<[components.CarrierParcelTemplate](../../models/components/carrierparceltemplate.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -75,7 +75,7 @@ run();
 
 ### Response
 
-**Promise<[components.Pickup](../../models/components/pickup.md)>**
+**Promise\<[components.Pickup](../../models/components/pickup.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

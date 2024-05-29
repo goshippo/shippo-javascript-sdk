@@ -145,7 +145,10 @@ export namespace ObjectResults$ {
 }
 
 /** @internal */
-export const BatchStatus$: z.ZodNativeEnum<typeof BatchStatus> = z.nativeEnum(BatchStatus);
+export namespace BatchStatus$ {
+    export const inboundSchema = z.nativeEnum(BatchStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Batch$ {
@@ -153,7 +156,7 @@ export namespace Batch$ {
         .object({
             default_carrier_account: z.string(),
             default_servicelevel_token: z.string(),
-            label_filetype: LabelFileTypeEnum$.optional(),
+            label_filetype: LabelFileTypeEnum$.inboundSchema.optional(),
             metadata: z.string().optional(),
             batch_shipments: BatchShipmentPaginatedList$.inboundSchema,
             label_url: z.array(z.string()),
@@ -162,7 +165,7 @@ export namespace Batch$ {
             object_owner: z.string(),
             object_results: z.lazy(() => ObjectResults$.inboundSchema),
             object_updated: z.string(),
-            status: BatchStatus$,
+            status: BatchStatus$.inboundSchema,
             test: z.boolean().optional(),
         })
         .transform((v) => {
@@ -186,7 +189,7 @@ export namespace Batch$ {
     export type Outbound = {
         default_carrier_account: string;
         default_servicelevel_token: string;
-        label_filetype?: LabelFileTypeEnum | undefined;
+        label_filetype?: string | undefined;
         metadata?: string | undefined;
         batch_shipments: BatchShipmentPaginatedList$.Outbound;
         label_url: Array<string>;
@@ -195,7 +198,7 @@ export namespace Batch$ {
         object_owner: string;
         object_results: ObjectResults$.Outbound;
         object_updated: string;
-        status: BatchStatus;
+        status: string;
         test?: boolean | undefined;
     };
 
@@ -203,7 +206,7 @@ export namespace Batch$ {
         .object({
             defaultCarrierAccount: z.string(),
             defaultServicelevelToken: z.string(),
-            labelFiletype: LabelFileTypeEnum$.optional(),
+            labelFiletype: LabelFileTypeEnum$.outboundSchema.optional(),
             metadata: z.string().optional(),
             batchShipments: BatchShipmentPaginatedList$.outboundSchema,
             labelUrl: z.array(z.string()),
@@ -212,7 +215,7 @@ export namespace Batch$ {
             objectOwner: z.string(),
             objectResults: z.lazy(() => ObjectResults$.outboundSchema),
             objectUpdated: z.string(),
-            status: BatchStatus$,
+            status: BatchStatus$.outboundSchema,
             test: z.boolean().optional(),
         })
         .transform((v) => {

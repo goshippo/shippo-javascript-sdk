@@ -4,9 +4,53 @@
 
 import * as z from "zod";
 
+export type DeleteDefaultParcelTemplateGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 export type DeleteDefaultParcelTemplateRequest = {};
 
-export type DeleteDefaultParcelTemplateResponse = {};
+/** @internal */
+export namespace DeleteDefaultParcelTemplateGlobals$ {
+    export const inboundSchema: z.ZodType<
+        DeleteDefaultParcelTemplateGlobals,
+        z.ZodTypeDef,
+        unknown
+    > = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<
+        Outbound,
+        z.ZodTypeDef,
+        DeleteDefaultParcelTemplateGlobals
+    > = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
 
 /** @internal */
 export namespace DeleteDefaultParcelTemplateRequest$ {
@@ -22,22 +66,5 @@ export namespace DeleteDefaultParcelTemplateRequest$ {
         Outbound,
         z.ZodTypeDef,
         DeleteDefaultParcelTemplateRequest
-    > = z.object({});
-}
-
-/** @internal */
-export namespace DeleteDefaultParcelTemplateResponse$ {
-    export const inboundSchema: z.ZodType<
-        DeleteDefaultParcelTemplateResponse,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        DeleteDefaultParcelTemplateResponse
     > = z.object({});
 }

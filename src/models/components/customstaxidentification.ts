@@ -44,15 +44,17 @@ export type CustomsTaxIdentification = {
 };
 
 /** @internal */
-export const CustomsTaxIdentificationType$: z.ZodNativeEnum<typeof CustomsTaxIdentificationType> =
-    z.nativeEnum(CustomsTaxIdentificationType);
+export namespace CustomsTaxIdentificationType$ {
+    export const inboundSchema = z.nativeEnum(CustomsTaxIdentificationType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace CustomsTaxIdentification$ {
     export const inboundSchema: z.ZodType<CustomsTaxIdentification, z.ZodTypeDef, unknown> = z
         .object({
             number: z.string().optional(),
-            type: CustomsTaxIdentificationType$.optional(),
+            type: CustomsTaxIdentificationType$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -63,13 +65,13 @@ export namespace CustomsTaxIdentification$ {
 
     export type Outbound = {
         number?: string | undefined;
-        type?: CustomsTaxIdentificationType | undefined;
+        type?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CustomsTaxIdentification> = z
         .object({
             number: z.string().optional(),
-            type: CustomsTaxIdentificationType$.optional(),
+            type: CustomsTaxIdentificationType$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {

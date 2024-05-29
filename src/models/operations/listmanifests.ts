@@ -4,6 +4,13 @@
 
 import * as z from "zod";
 
+export type ListManifestsGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 export type ListManifestsRequest = {
     /**
      * The page number you want to select
@@ -14,6 +21,37 @@ export type ListManifestsRequest = {
      */
     results?: number | undefined;
 };
+
+/** @internal */
+export namespace ListManifestsGlobals$ {
+    export const inboundSchema: z.ZodType<ListManifestsGlobals, z.ZodTypeDef, unknown> = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListManifestsGlobals> = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
 
 /** @internal */
 export namespace ListManifestsRequest$ {

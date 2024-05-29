@@ -15,7 +15,7 @@ import * as z from "zod";
 export type CarrierAccountBaseParameters =
     | FedExConnectExistingOwnAccountParameters
     | UPSConnectExistingOwnAccountParameters
-    | Record<string, any>;
+    | { [k: string]: any };
 
 export type CarrierAccountBase = {
     /**
@@ -43,7 +43,7 @@ export type CarrierAccountBase = {
     parameters?:
         | FedExConnectExistingOwnAccountParameters
         | UPSConnectExistingOwnAccountParameters
-        | Record<string, any>
+        | { [k: string]: any }
         | undefined;
 };
 
@@ -59,7 +59,7 @@ export namespace CarrierAccountBaseParameters$ {
     export type Outbound =
         | FedExConnectExistingOwnAccountParameters$.Outbound
         | UPSConnectExistingOwnAccountParameters$.Outbound
-        | Record<string, any>;
+        | { [k: string]: any };
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierAccountBaseParameters> =
         z.union([
             FedExConnectExistingOwnAccountParameters$.outboundSchema,
@@ -99,7 +99,7 @@ export namespace CarrierAccountBase$ {
         parameters?:
             | FedExConnectExistingOwnAccountParameters$.Outbound
             | UPSConnectExistingOwnAccountParameters$.Outbound
-            | Record<string, any>
+            | { [k: string]: any }
             | undefined;
     };
 

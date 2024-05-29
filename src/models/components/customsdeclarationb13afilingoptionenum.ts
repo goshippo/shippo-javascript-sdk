@@ -18,6 +18,7 @@ export enum CustomsDeclarationB13AFilingOptionEnum {
 }
 
 /** @internal */
-export const CustomsDeclarationB13AFilingOptionEnum$: z.ZodNativeEnum<
-    typeof CustomsDeclarationB13AFilingOptionEnum
-> = z.nativeEnum(CustomsDeclarationB13AFilingOptionEnum);
+export namespace CustomsDeclarationB13AFilingOptionEnum$ {
+    export const inboundSchema = z.nativeEnum(CustomsDeclarationB13AFilingOptionEnum);
+    export const outboundSchema = inboundSchema;
+}

@@ -5,6 +5,13 @@
 import * as components from "../components";
 import * as z from "zod";
 
+export type ListCarrierAccountsGlobals = {
+    /**
+     * String used to pick a non-default API version to use
+     */
+    shippoApiVersion?: string | undefined;
+};
+
 export type ListCarrierAccountsRequest = {
     /**
      * Appends the property `service_levels` to each returned carrier account
@@ -29,11 +36,42 @@ export type ListCarrierAccountsRequest = {
 };
 
 /** @internal */
+export namespace ListCarrierAccountsGlobals$ {
+    export const inboundSchema: z.ZodType<ListCarrierAccountsGlobals, z.ZodTypeDef, unknown> = z
+        .object({
+            "SHIPPO-API-VERSION": z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v["SHIPPO-API-VERSION"] === undefined
+                    ? null
+                    : { shippoApiVersion: v["SHIPPO-API-VERSION"] }),
+            };
+        });
+
+    export type Outbound = {
+        "SHIPPO-API-VERSION"?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListCarrierAccountsGlobals> = z
+        .object({
+            shippoApiVersion: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.shippoApiVersion === undefined
+                    ? null
+                    : { "SHIPPO-API-VERSION": v.shippoApiVersion }),
+            };
+        });
+}
+
+/** @internal */
 export namespace ListCarrierAccountsRequest$ {
     export const inboundSchema: z.ZodType<ListCarrierAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             service_levels: z.boolean().optional(),
-            carrier: components.CarriersEnum$.optional(),
+            carrier: components.CarriersEnum$.inboundSchema.optional(),
             account_id: z.string().optional(),
             page: z.number().int().default(1),
             results: z.number().int().default(5),
@@ -50,7 +88,7 @@ export namespace ListCarrierAccountsRequest$ {
 
     export type Outbound = {
         service_levels?: boolean | undefined;
-        carrier?: components.CarriersEnum | undefined;
+        carrier?: string | undefined;
         account_id?: string | undefined;
         page: number;
         results: number;
@@ -59,7 +97,7 @@ export namespace ListCarrierAccountsRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListCarrierAccountsRequest> = z
         .object({
             serviceLevels: z.boolean().optional(),
-            carrier: components.CarriersEnum$.optional(),
+            carrier: components.CarriersEnum$.outboundSchema.optional(),
             accountId: z.string().optional(),
             page: z.number().int().default(1),
             results: z.number().int().default(5),

@@ -70,7 +70,10 @@ export type Manifest = {
 };
 
 /** @internal */
-export const ManifestStatus$: z.ZodNativeEnum<typeof ManifestStatus> = z.nativeEnum(ManifestStatus);
+export namespace ManifestStatus$ {
+    export const inboundSchema = z.nativeEnum(ManifestStatus);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Manifest$ {
@@ -92,7 +95,7 @@ export namespace Manifest$ {
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
-            status: ManifestStatus$,
+            status: ManifestStatus$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -121,7 +124,7 @@ export namespace Manifest$ {
         object_id: string;
         object_owner: string;
         object_updated: string;
-        status: ManifestStatus;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Manifest> = z
@@ -136,7 +139,7 @@ export namespace Manifest$ {
             objectId: z.string(),
             objectOwner: z.string(),
             objectUpdated: z.date().transform((v) => v.toISOString()),
-            status: ManifestStatus$,
+            status: ManifestStatus$.outboundSchema,
         })
         .transform((v) => {
             return {
