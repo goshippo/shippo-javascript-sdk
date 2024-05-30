@@ -351,7 +351,7 @@ export class Batches extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const [result$] = await this.matcher<components.Batch>()
-            .json(200, components.Batch$)
+            .json(202, components.Batch$)
             .fail([400, "4XX", "5XX"])
             .match(response);
 
