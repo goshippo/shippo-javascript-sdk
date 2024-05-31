@@ -61,37 +61,10 @@ export class ConvertNullToUndefinedAfterSuccessHook implements AfterSuccessHook 
 
 }
 
-export class TransactionCreateResponseAddDiscriminatorAfterSuccessHook implements AfterSuccessHook {
-
-    async afterSuccess(hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
-        if (hookCtx.operationID == "CreateTransaction" && response.status == 201) {
-            const content = await response.json();
-            const rate = content.rate;
-            let responseType = undefined;
-            if (typeof rate === 'string') {
-                responseType = "standard";
-            } else if (rate?.object_id) {
-                responseType = "instant";
-            }
-            if (responseType != undefined) {
-                content.responseType = responseType;
-            }
-            return new Response(JSON.stringify(content), {
-                status: response.status,
-                statusText: response.statusText,
-                headers: response.headers
-            });
-        }
-        return response;
-    }
-
-}
-
 export function initHooks(hooks: Hooks) {
     // Add hooks by calling hooks.register{ClientInit/BeforeRequest/AfterSuccess/AfterError}Hook
     // with an instance of a hook that implements that specific Hook interface
     // Hooks are registered per SDK instance, and are valid for the lifetime of the SDK instance
     hooks.registerBeforeRequestHook(new PrefixApiKeyBeforeRequestHook());
     hooks.registerAfterSuccessHook(new ConvertNullToUndefinedAfterSuccessHook());
-    hooks.registerAfterSuccessHook(new TransactionCreateResponseAddDiscriminatorAfterSuccessHook());
 }

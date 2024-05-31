@@ -53,6 +53,7 @@ describe('TestPurchaseLabel', function() {
             rate: shipment.rates[0].objectId
         });
         expect(transaction).to.not.be.null;
+        expect(transaction.rate).to.be.a('string')
     });
 
     it('testPurchaseLabelUsingReferenceIds', async () => {
@@ -105,6 +106,7 @@ describe('TestPurchaseLabel', function() {
             rate: shipment.rates[0].objectId
         })
         expect(transaction).to.not.be.null;
+        expect(transaction.rate).to.be.a('string')
     })
 
 });

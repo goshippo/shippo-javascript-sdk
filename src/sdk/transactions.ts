@@ -137,7 +137,7 @@ export class Transactions extends ClientSDK {
     async create(
         request: operations.CreateTransactionRequestBody,
         options?: RequestOptions
-    ): Promise<components.TransactionCreateResponse> {
+    ): Promise<components.Transaction> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -194,8 +194,8 @@ export class Transactions extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const [result$] = await this.matcher<components.TransactionCreateResponse>()
-            .json(201, components.TransactionCreateResponse$)
+        const [result$] = await this.matcher<components.Transaction>()
+            .json(201, components.Transaction$)
             .fail([400, "4XX", "5XX"])
             .match(response);
 
