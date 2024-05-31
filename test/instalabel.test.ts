@@ -45,5 +45,6 @@ describe('TestInstalabel', function() {
         });
 
         expect(transaction).to.not.be.null;
+        expect(transaction.rate.objectId).to.not.be.null;
     });
 });
