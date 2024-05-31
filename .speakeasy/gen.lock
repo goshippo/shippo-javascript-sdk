@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 9f7d04d5659ec0b9eeb44850ff26491c
+  docChecksum: 609002aee5b1500e5e73ec2eb80f268d
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.299.3
+  speakeasyVersion: 1.299.4
   generationVersion: 2.338.7
-  releaseVersion: 2.2.8
-  configChecksum: df16a2469a90b46036c859ec2059eb61
+  releaseVersion: 2.2.9
+  configChecksum: 3986607c3ac0c16bdd19c8879b4e7dc5
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -195,9 +195,7 @@ generatedFiles:
   - src/models/components/transactionpaginatedlist.ts
   - src/models/components/transaction.ts
   - src/models/components/transactionstatusenum.ts
-  - src/models/components/transactioncreateresponse.ts
-  - src/models/components/instanttransactioncreateresponse.ts
-  - src/models/components/instanttransactionrate.ts
+  - src/models/components/corerate.ts
   - src/models/components/transactioncreaterequest.ts
   - src/models/components/instanttransactioncreaterequest.ts
   - src/models/components/userparceltemplatelist.ts
@@ -464,13 +462,10 @@ generatedFiles:
   - docs/models/components/trackingstatuslocationbase.md
   - docs/models/components/tracksrequest.md
   - docs/models/components/transactionpaginatedlist.md
-  - docs/models/components/responsetype.md
+  - docs/models/components/transactionrate.md
   - docs/models/components/transaction.md
   - docs/models/components/transactionstatusenum.md
-  - docs/models/components/transactioncreateresponse.md
-  - docs/models/components/instanttransactioncreateresponseresponsetype.md
-  - docs/models/components/instanttransactioncreateresponse.md
-  - docs/models/components/instanttransactionrate.md
+  - docs/models/components/corerate.md
   - docs/models/components/transactioncreaterequest.md
   - docs/models/components/labelfiletype.md
   - docs/models/components/instanttransactioncreaterequest.md

@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 
-export type InstantTransactionRate = {
+export type CoreRate = {
     /**
      * Final Rate price, expressed in the currency used in the sender's country.
      */
@@ -58,8 +58,8 @@ export type InstantTransactionRate = {
 };
 
 /** @internal */
-export namespace InstantTransactionRate$ {
-    export const inboundSchema: z.ZodType<InstantTransactionRate, z.ZodTypeDef, unknown> = z
+export namespace CoreRate$ {
+    export const inboundSchema: z.ZodType<CoreRate, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.string().optional(),
             amount_local: z.string().optional(),
@@ -101,7 +101,7 @@ export namespace InstantTransactionRate$ {
         servicelevel_token?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InstantTransactionRate> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CoreRate> = z
         .object({
             amount: z.string().optional(),
             amountLocal: z.string().optional(),

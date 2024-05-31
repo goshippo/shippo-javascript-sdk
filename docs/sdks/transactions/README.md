@@ -99,7 +99,7 @@ run();
 
 ### Response
 
-**Promise\<[components.TransactionCreateResponse](../../models/components/transactioncreateresponse.md)\>**
+**Promise\<[components.Transaction](../../models/components/transaction.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

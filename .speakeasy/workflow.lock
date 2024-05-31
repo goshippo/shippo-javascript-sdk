@@ -1,18 +1,18 @@
-speakeasyVersion: 1.299.3
+speakeasyVersion: 1.299.4
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:14930e2b5e8fff496c38443e78806ba68c35da0da310e3b035c7d2d48955b159
-        sourceBlobDigest: sha256:6c5cca209b61d8a07637cd9b482d4bb1ef4eb8c59141b79fc2b12b42b65b999a
+        sourceRevisionDigest: sha256:809852a1888d2a908db04ce03869b0574aa407b7852244bf26c7de05e9c6ae91
+        sourceBlobDigest: sha256:cb40025f1badac09cf5837db332862318944783ab4c57e2c37e8cfc698ca7793
         tags:
             - latest
-            - main
+            - remove-transaction-response-type
 targets:
     first-target:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:14930e2b5e8fff496c38443e78806ba68c35da0da310e3b035c7d2d48955b159
-        sourceBlobDigest: sha256:6c5cca209b61d8a07637cd9b482d4bb1ef4eb8c59141b79fc2b12b42b65b999a
+        sourceRevisionDigest: sha256:809852a1888d2a908db04ce03869b0574aa407b7852244bf26c7de05e9c6ae91
+        sourceBlobDigest: sha256:cb40025f1badac09cf5837db332862318944783ab4c57e2c37e8cfc698ca7793
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
@@ -21,8 +21,6 @@ workflow:
         openapi:
             inputs:
                 - location: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
-            overlays:
-                - location: https://docs.goshippo.com/spec/shippoapi/client-sdk-overlay.yaml
             registry:
                 location: registry.speakeasyapi.dev/shippo/shippo/openapi
     targets:
