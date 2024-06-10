@@ -13,19 +13,11 @@ export type RatePaginatedList = {
 
 /** @internal */
 export namespace RatePaginatedList$ {
-    export const inboundSchema: z.ZodType<RatePaginatedList, z.ZodTypeDef, unknown> = z
-        .object({
-            next: z.string().optional(),
-            previous: z.string().optional(),
-            results: z.array(Rate$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.next === undefined ? null : { next: v.next }),
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
-        });
+    export const inboundSchema: z.ZodType<RatePaginatedList, z.ZodTypeDef, unknown> = z.object({
+        next: z.string().optional(),
+        previous: z.string().optional(),
+        results: z.array(Rate$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         next?: string | undefined;
@@ -33,17 +25,9 @@ export namespace RatePaginatedList$ {
         results?: Array<Rate$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RatePaginatedList> = z
-        .object({
-            next: z.string().optional(),
-            previous: z.string().optional(),
-            results: z.array(Rate$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.next === undefined ? null : { next: v.next }),
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RatePaginatedList> = z.object({
+        next: z.string().optional(),
+        previous: z.string().optional(),
+        results: z.array(Rate$.outboundSchema).optional(),
+    });
 }

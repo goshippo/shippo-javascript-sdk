@@ -34,17 +34,10 @@ export namespace CarrierAccountColissimoCreateRequest$ {
         CarrierAccountColissimoCreateRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(() => CarrierAccountColissimoCreateRequestParameters$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountColissimoCreateRequestParameters$.inboundSchema),
+    });
 
     export type Outbound = {
         carrier: string;
@@ -55,17 +48,8 @@ export namespace CarrierAccountColissimoCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountColissimoCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(
-                () => CarrierAccountColissimoCreateRequestParameters$.outboundSchema
-            ),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountColissimoCreateRequestParameters$.outboundSchema),
+    });
 }

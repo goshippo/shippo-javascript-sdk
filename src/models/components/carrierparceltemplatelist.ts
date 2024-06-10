@@ -11,27 +11,17 @@ export type CarrierParcelTemplateList = {
 
 /** @internal */
 export namespace CarrierParcelTemplateList$ {
-    export const inboundSchema: z.ZodType<CarrierParcelTemplateList, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<CarrierParcelTemplateList, z.ZodTypeDef, unknown> =
+        z.object({
             results: z.array(CarrierParcelTemplate$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 
     export type Outbound = {
         results?: Array<CarrierParcelTemplate$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierParcelTemplateList> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierParcelTemplateList> =
+        z.object({
             results: z.array(CarrierParcelTemplate$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 }

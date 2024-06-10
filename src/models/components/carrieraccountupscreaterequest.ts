@@ -15,16 +15,10 @@ export type CarrierAccountUPSCreateRequest = {
 
 /** @internal */
 export namespace CarrierAccountUPSCreateRequest$ {
-    export const inboundSchema: z.ZodType<CarrierAccountUPSCreateRequest, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<CarrierAccountUPSCreateRequest, z.ZodTypeDef, unknown> =
+        z.object({
             carrier: z.string(),
             parameters: CarrierAccountUPSCreateRequestParameters$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                ...(v.parameters === undefined ? null : { parameters: v.parameters }),
-            };
         });
 
     export type Outbound = {
@@ -33,15 +27,8 @@ export namespace CarrierAccountUPSCreateRequest$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierAccountUPSCreateRequest> =
-        z
-            .object({
-                carrier: z.string(),
-                parameters: CarrierAccountUPSCreateRequestParameters$.outboundSchema.optional(),
-            })
-            .transform((v) => {
-                return {
-                    carrier: v.carrier,
-                    ...(v.parameters === undefined ? null : { parameters: v.parameters }),
-                };
-            });
+        z.object({
+            carrier: z.string(),
+            parameters: CarrierAccountUPSCreateRequestParameters$.outboundSchema.optional(),
+        });
 }

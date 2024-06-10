@@ -1,18 +1,18 @@
-speakeasyVersion: 1.299.4
+speakeasyVersion: 1.300.1
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:809852a1888d2a908db04ce03869b0574aa407b7852244bf26c7de05e9c6ae91
-        sourceBlobDigest: sha256:cb40025f1badac09cf5837db332862318944783ab4c57e2c37e8cfc698ca7793
+        sourceRevisionDigest: sha256:db731c7bb9d100808a591a41fe8fea2af341e87f6f73b0b1f754f7af8748099f
+        sourceBlobDigest: sha256:a65fc0984a88f07c7fd4ea3cd8502bafab911db376f47993fdceb9c9b9355e0e
         tags:
             - latest
-            - remove-transaction-response-type
+            - main
 targets:
     first-target:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:809852a1888d2a908db04ce03869b0574aa407b7852244bf26c7de05e9c6ae91
-        sourceBlobDigest: sha256:cb40025f1badac09cf5837db332862318944783ab4c57e2c37e8cfc698ca7793
+        sourceRevisionDigest: sha256:db731c7bb9d100808a591a41fe8fea2af341e87f6f73b0b1f754f7af8748099f
+        sourceBlobDigest: sha256:a65fc0984a88f07c7fd4ea3cd8502bafab911db376f47993fdceb9c9b9355e0e
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0

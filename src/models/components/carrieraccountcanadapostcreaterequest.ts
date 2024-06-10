@@ -19,17 +19,10 @@ export namespace CarrierAccountCanadaPostCreateRequest$ {
         CarrierAccountCanadaPostCreateRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: CarrierAccountCanadaPostCreateParameters$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: CarrierAccountCanadaPostCreateParameters$.inboundSchema,
+    });
 
     export type Outbound = {
         carrier: string;
@@ -40,15 +33,8 @@ export namespace CarrierAccountCanadaPostCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountCanadaPostCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: CarrierAccountCanadaPostCreateParameters$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: CarrierAccountCanadaPostCreateParameters$.outboundSchema,
+    });
 }

@@ -51,16 +51,10 @@ export namespace CustomsTaxIdentificationType$ {
 
 /** @internal */
 export namespace CustomsTaxIdentification$ {
-    export const inboundSchema: z.ZodType<CustomsTaxIdentification, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<CustomsTaxIdentification, z.ZodTypeDef, unknown> =
+        z.object({
             number: z.string().optional(),
             type: CustomsTaxIdentificationType$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.number === undefined ? null : { number: v.number }),
-                ...(v.type === undefined ? null : { type: v.type }),
-            };
         });
 
     export type Outbound = {
@@ -68,15 +62,9 @@ export namespace CustomsTaxIdentification$ {
         type?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CustomsTaxIdentification> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CustomsTaxIdentification> =
+        z.object({
             number: z.string().optional(),
             type: CustomsTaxIdentificationType$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.number === undefined ? null : { number: v.number }),
-                ...(v.type === undefined ? null : { type: v.type }),
-            };
         });
 }

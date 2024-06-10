@@ -11,27 +11,18 @@ export type UserParcelTemplateList = {
 
 /** @internal */
 export namespace UserParcelTemplateList$ {
-    export const inboundSchema: z.ZodType<UserParcelTemplateList, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<UserParcelTemplateList, z.ZodTypeDef, unknown> = z.object(
+        {
             results: z.array(UserParcelTemplate$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         results?: Array<UserParcelTemplate$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UserParcelTemplateList> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UserParcelTemplateList> =
+        z.object({
             results: z.array(UserParcelTemplate$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 }
