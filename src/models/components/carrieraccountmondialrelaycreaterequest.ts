@@ -34,19 +34,10 @@ export namespace CarrierAccountMondialRelayCreateRequest$ {
         CarrierAccountMondialRelayCreateRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(
-                () => CarrierAccountMondialRelayCreateRequestParameters$.inboundSchema
-            ),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountMondialRelayCreateRequestParameters$.inboundSchema),
+    });
 
     export type Outbound = {
         carrier: string;
@@ -57,17 +48,8 @@ export namespace CarrierAccountMondialRelayCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountMondialRelayCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(
-                () => CarrierAccountMondialRelayCreateRequestParameters$.outboundSchema
-            ),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountMondialRelayCreateRequestParameters$.outboundSchema),
+    });
 }

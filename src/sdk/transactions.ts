@@ -4,7 +4,11 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeJSON as encodeJSON$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -62,28 +66,17 @@ export class Transactions extends ClientSDK {
 
         const path$ = this.templateURLComponent("/transactions")();
 
-        const query$ = [
-            enc$.encodeForm("object_status", payload$.object_status, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("page", payload$.page, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("rate", payload$.rate, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("results", payload$.results, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("tracking_status", payload$.tracking_status, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            page: payload$.page,
+            results: payload$.results,
+            rate: payload$.rate,
+            object_status: payload$.object_status,
+            tracking_status: payload$.tracking_status,
+        });
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -149,7 +142,7 @@ export class Transactions extends ClientSDK {
             (value$) => operations.CreateTransactionRequestBody$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/transactions")();
 
@@ -157,7 +150,7 @@ export class Transactions extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -224,7 +217,7 @@ export class Transactions extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            TransactionId: enc$.encodeSimple("TransactionId", payload$.TransactionId, {
+            TransactionId: encodeSimple$("TransactionId", payload$.TransactionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -235,7 +228,7 @@ export class Transactions extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })

@@ -43,21 +43,12 @@ export namespace ParcelInsuranceProvider$ {
 
 /** @internal */
 export namespace ParcelInsurance$ {
-    export const inboundSchema: z.ZodType<ParcelInsurance, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: z.string().optional(),
-            content: z.string().optional(),
-            currency: z.string().optional(),
-            provider: ParcelInsuranceProvider$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.content === undefined ? null : { content: v.content }),
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ParcelInsurance, z.ZodTypeDef, unknown> = z.object({
+        amount: z.string().optional(),
+        content: z.string().optional(),
+        currency: z.string().optional(),
+        provider: ParcelInsuranceProvider$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         amount?: string | undefined;
@@ -66,19 +57,10 @@ export namespace ParcelInsurance$ {
         provider?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelInsurance> = z
-        .object({
-            amount: z.string().optional(),
-            content: z.string().optional(),
-            currency: z.string().optional(),
-            provider: ParcelInsuranceProvider$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.content === undefined ? null : { content: v.content }),
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelInsurance> = z.object({
+        amount: z.string().optional(),
+        content: z.string().optional(),
+        currency: z.string().optional(),
+        provider: ParcelInsuranceProvider$.outboundSchema.optional(),
+    });
 }

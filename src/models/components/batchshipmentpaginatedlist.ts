@@ -19,18 +19,11 @@ export type BatchShipmentPaginatedList = {
 
 /** @internal */
 export namespace BatchShipmentPaginatedList$ {
-    export const inboundSchema: z.ZodType<BatchShipmentPaginatedList, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<BatchShipmentPaginatedList, z.ZodTypeDef, unknown> =
+        z.object({
             next: z.string().optional(),
             previous: z.string().optional(),
             results: z.array(BatchShipment$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.next === undefined ? null : { next: v.next }),
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 
     export type Outbound = {
@@ -39,17 +32,10 @@ export namespace BatchShipmentPaginatedList$ {
         results?: Array<BatchShipment$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BatchShipmentPaginatedList> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BatchShipmentPaginatedList> =
+        z.object({
             next: z.string().optional(),
             previous: z.string().optional(),
             results: z.array(BatchShipment$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.next === undefined ? null : { next: v.next }),
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 }

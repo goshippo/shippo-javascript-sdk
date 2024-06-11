@@ -11,27 +11,16 @@ export type DefaultParcelTemplate = {
 
 /** @internal */
 export namespace DefaultParcelTemplate$ {
-    export const inboundSchema: z.ZodType<DefaultParcelTemplate, z.ZodTypeDef, unknown> = z
-        .object({
-            result: UserParcelTemplate$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
-        });
+    export const inboundSchema: z.ZodType<DefaultParcelTemplate, z.ZodTypeDef, unknown> = z.object({
+        result: UserParcelTemplate$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         result?: UserParcelTemplate$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DefaultParcelTemplate> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DefaultParcelTemplate> =
+        z.object({
             result: UserParcelTemplate$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
         });
 }

@@ -34,19 +34,10 @@ export namespace CarrierAccountDeutschePostCreateRequest$ {
         CarrierAccountDeutschePostCreateRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(
-                () => CarrierAccountDeutschePostCreateRequestParameters$.inboundSchema
-            ),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountDeutschePostCreateRequestParameters$.inboundSchema),
+    });
 
     export type Outbound = {
         carrier: string;
@@ -57,17 +48,8 @@ export namespace CarrierAccountDeutschePostCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountDeutschePostCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(
-                () => CarrierAccountDeutschePostCreateRequestParameters$.outboundSchema
-            ),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountDeutschePostCreateRequestParameters$.outboundSchema),
+    });
 }

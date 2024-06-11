@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -58,7 +58,7 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -129,7 +129,7 @@ export class UserParcelTemplates extends ClientSDK {
             (value$) => components.UserParcelTemplateCreateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/user-parcel-templates")();
 
@@ -137,7 +137,7 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -204,7 +204,7 @@ export class UserParcelTemplates extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            UserParcelTemplateObjectId: enc$.encodeSimple(
+            UserParcelTemplateObjectId: encodeSimple$(
                 "UserParcelTemplateObjectId",
                 payload$.UserParcelTemplateObjectId,
                 { explode: false, charEncoding: "percent" }
@@ -218,7 +218,7 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -289,7 +289,7 @@ export class UserParcelTemplates extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            UserParcelTemplateObjectId: enc$.encodeSimple(
+            UserParcelTemplateObjectId: encodeSimple$(
                 "UserParcelTemplateObjectId",
                 payload$.UserParcelTemplateObjectId,
                 { explode: false, charEncoding: "percent" }
@@ -303,7 +303,7 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -373,12 +373,12 @@ export class UserParcelTemplates extends ClientSDK {
             (value$) => operations.UpdateUserParcelTemplateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.UserParcelTemplateUpdateRequest, {
+        const body$ = encodeJSON$("body", payload$.UserParcelTemplateUpdateRequest, {
             explode: true,
         });
 
         const pathParams$ = {
-            UserParcelTemplateObjectId: enc$.encodeSimple(
+            UserParcelTemplateObjectId: encodeSimple$(
                 "UserParcelTemplateObjectId",
                 payload$.UserParcelTemplateObjectId,
                 { explode: false, charEncoding: "percent" }
@@ -392,7 +392,7 @@ export class UserParcelTemplates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })

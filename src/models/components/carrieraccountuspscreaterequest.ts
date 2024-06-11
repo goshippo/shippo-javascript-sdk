@@ -31,17 +31,10 @@ export namespace CarrierAccountUSPSCreateRequestParameters$ {
 /** @internal */
 export namespace CarrierAccountUSPSCreateRequest$ {
     export const inboundSchema: z.ZodType<CarrierAccountUSPSCreateRequest, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                carrier: z.string(),
-                parameters: z.lazy(() => CarrierAccountUSPSCreateRequestParameters$.inboundSchema),
-            })
-            .transform((v) => {
-                return {
-                    carrier: v.carrier,
-                    parameters: v.parameters,
-                };
-            });
+        z.object({
+            carrier: z.string(),
+            parameters: z.lazy(() => CarrierAccountUSPSCreateRequestParameters$.inboundSchema),
+        });
 
     export type Outbound = {
         carrier: string;
@@ -52,15 +45,8 @@ export namespace CarrierAccountUSPSCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountUSPSCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(() => CarrierAccountUSPSCreateRequestParameters$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountUSPSCreateRequestParameters$.outboundSchema),
+    });
 }

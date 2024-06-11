@@ -13,18 +13,11 @@ export type ShippoAccountPaginatedList = {
 
 /** @internal */
 export namespace ShippoAccountPaginatedList$ {
-    export const inboundSchema: z.ZodType<ShippoAccountPaginatedList, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ShippoAccountPaginatedList, z.ZodTypeDef, unknown> =
+        z.object({
             next: z.string().optional(),
             previous: z.string().optional(),
             results: z.array(ShippoAccount$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.next === undefined ? null : { next: v.next }),
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 
     export type Outbound = {
@@ -33,17 +26,10 @@ export namespace ShippoAccountPaginatedList$ {
         results?: Array<ShippoAccount$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ShippoAccountPaginatedList> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ShippoAccountPaginatedList> =
+        z.object({
             next: z.string().optional(),
             previous: z.string().optional(),
             results: z.array(ShippoAccount$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.next === undefined ? null : { next: v.next }),
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 }

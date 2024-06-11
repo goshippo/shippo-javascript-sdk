@@ -16,14 +16,9 @@ export type DangerousGoodsLithiumBatteries = {
 
 /** @internal */
 export namespace DangerousGoodsLithiumBatteries$ {
-    export const inboundSchema: z.ZodType<DangerousGoodsLithiumBatteries, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<DangerousGoodsLithiumBatteries, z.ZodTypeDef, unknown> =
+        z.object({
             contains: z.boolean().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.contains === undefined ? null : { contains: v.contains }),
-            };
         });
 
     export type Outbound = {
@@ -31,13 +26,7 @@ export namespace DangerousGoodsLithiumBatteries$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DangerousGoodsLithiumBatteries> =
-        z
-            .object({
-                contains: z.boolean().optional(),
-            })
-            .transform((v) => {
-                return {
-                    ...(v.contains === undefined ? null : { contains: v.contains }),
-                };
-            });
+        z.object({
+            contains: z.boolean().optional(),
+        });
 }

@@ -130,10 +130,7 @@ export namespace InitiateOauth2SigninCarrierAccountsResponseResponseBody$ {
             detail: z.string().optional(),
         })
         .transform((v) => {
-            return new InitiateOauth2SigninCarrierAccountsResponseResponseBody({
-                ...(v.title === undefined ? null : { title: v.title }),
-                ...(v.detail === undefined ? null : { detail: v.detail }),
-            });
+            return new InitiateOauth2SigninCarrierAccountsResponseResponseBody(v);
         });
 
     export type Outbound = {
@@ -149,17 +146,10 @@ export namespace InitiateOauth2SigninCarrierAccountsResponseResponseBody$ {
         .instanceof(InitiateOauth2SigninCarrierAccountsResponseResponseBody)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    title: z.string().optional(),
-                    detail: z.string().optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.title === undefined ? null : { title: v.title }),
-                        ...(v.detail === undefined ? null : { detail: v.detail }),
-                    };
-                })
+            z.object({
+                title: z.string().optional(),
+                detail: z.string().optional(),
+            })
         );
 }
 
@@ -175,10 +165,7 @@ export namespace InitiateOauth2SigninCarrierAccountsResponseBody$ {
             detail: z.string().optional(),
         })
         .transform((v) => {
-            return new InitiateOauth2SigninCarrierAccountsResponseBody({
-                ...(v.title === undefined ? null : { title: v.title }),
-                ...(v.detail === undefined ? null : { detail: v.detail }),
-            });
+            return new InitiateOauth2SigninCarrierAccountsResponseBody(v);
         });
 
     export type Outbound = {
@@ -194,17 +181,10 @@ export namespace InitiateOauth2SigninCarrierAccountsResponseBody$ {
         .instanceof(InitiateOauth2SigninCarrierAccountsResponseBody)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    title: z.string().optional(),
-                    detail: z.string().optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.title === undefined ? null : { title: v.title }),
-                        ...(v.detail === undefined ? null : { detail: v.detail }),
-                    };
-                })
+            z.object({
+                title: z.string().optional(),
+                detail: z.string().optional(),
+            })
         );
 }
 
@@ -217,10 +197,7 @@ export namespace InitiateOauth2SigninResponseBody$ {
                 detail: z.string().optional(),
             })
             .transform((v) => {
-                return new InitiateOauth2SigninResponseBody({
-                    ...(v.title === undefined ? null : { title: v.title }),
-                    ...(v.detail === undefined ? null : { detail: v.detail }),
-                });
+                return new InitiateOauth2SigninResponseBody(v);
             });
 
     export type Outbound = {
@@ -236,16 +213,9 @@ export namespace InitiateOauth2SigninResponseBody$ {
         .instanceof(InitiateOauth2SigninResponseBody)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    title: z.string().optional(),
-                    detail: z.string().optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.title === undefined ? null : { title: v.title }),
-                        ...(v.detail === undefined ? null : { detail: v.detail }),
-                    };
-                })
+            z.object({
+                title: z.string().optional(),
+                detail: z.string().optional(),
+            })
         );
 }

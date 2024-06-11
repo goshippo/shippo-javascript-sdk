@@ -31,17 +31,10 @@ export namespace CarrierAccountFedExCreateRequestParameters$ {
 /** @internal */
 export namespace CarrierAccountFedExCreateRequest$ {
     export const inboundSchema: z.ZodType<CarrierAccountFedExCreateRequest, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                carrier: z.string(),
-                parameters: z.lazy(() => CarrierAccountFedExCreateRequestParameters$.inboundSchema),
-            })
-            .transform((v) => {
-                return {
-                    carrier: v.carrier,
-                    parameters: v.parameters,
-                };
-            });
+        z.object({
+            carrier: z.string(),
+            parameters: z.lazy(() => CarrierAccountFedExCreateRequestParameters$.inboundSchema),
+        });
 
     export type Outbound = {
         carrier: string;
@@ -52,15 +45,8 @@ export namespace CarrierAccountFedExCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountFedExCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(() => CarrierAccountFedExCreateRequestParameters$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountFedExCreateRequestParameters$.outboundSchema),
+    });
 }

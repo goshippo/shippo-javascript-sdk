@@ -34,17 +34,10 @@ export namespace CarrierAccountHermesUKCreateRequest$ {
         CarrierAccountHermesUKCreateRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(() => CarrierAccountHermesUKCreateRequestParameters$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountHermesUKCreateRequestParameters$.inboundSchema),
+    });
 
     export type Outbound = {
         carrier: string;
@@ -55,15 +48,8 @@ export namespace CarrierAccountHermesUKCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountHermesUKCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(() => CarrierAccountHermesUKCreateRequestParameters$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountHermesUKCreateRequestParameters$.outboundSchema),
+    });
 }
