@@ -94,21 +94,12 @@ export namespace Source$ {
 /** @internal */
 export namespace AddressValidationResultsMessage$ {
     export const inboundSchema: z.ZodType<AddressValidationResultsMessage, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                code: Code$.inboundSchema.optional(),
-                source: Source$.inboundSchema.optional(),
-                text: z.string().optional(),
-                type: z.string().optional(),
-            })
-            .transform((v) => {
-                return {
-                    ...(v.code === undefined ? null : { code: v.code }),
-                    ...(v.source === undefined ? null : { source: v.source }),
-                    ...(v.text === undefined ? null : { text: v.text }),
-                    ...(v.type === undefined ? null : { type: v.type }),
-                };
-            });
+        z.object({
+            code: Code$.inboundSchema.optional(),
+            source: Source$.inboundSchema.optional(),
+            text: z.string().optional(),
+            type: z.string().optional(),
+        });
 
     export type Outbound = {
         code?: string | undefined;
@@ -121,19 +112,10 @@ export namespace AddressValidationResultsMessage$ {
         Outbound,
         z.ZodTypeDef,
         AddressValidationResultsMessage
-    > = z
-        .object({
-            code: Code$.outboundSchema.optional(),
-            source: Source$.outboundSchema.optional(),
-            text: z.string().optional(),
-            type: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.source === undefined ? null : { source: v.source }),
-                ...(v.text === undefined ? null : { text: v.text }),
-                ...(v.type === undefined ? null : { type: v.type }),
-            };
-        });
+    > = z.object({
+        code: Code$.outboundSchema.optional(),
+        source: Source$.outboundSchema.optional(),
+        text: z.string().optional(),
+        type: z.string().optional(),
+    });
 }

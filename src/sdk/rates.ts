@@ -4,7 +4,10 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -60,7 +63,7 @@ export class Rates extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            RateId: enc$.encodeSimple("RateId", payload$.RateId, {
+            RateId: encodeSimple$("RateId", payload$.RateId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -71,7 +74,7 @@ export class Rates extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -145,26 +148,21 @@ export class Rates extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            ShipmentId: enc$.encodeSimple("ShipmentId", payload$.ShipmentId, {
+            ShipmentId: encodeSimple$("ShipmentId", payload$.ShipmentId, {
                 explode: false,
                 charEncoding: "percent",
             }),
         };
         const path$ = this.templateURLComponent("/shipments/{ShipmentId}/rates")(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("page", payload$.page, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("results", payload$.results, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            page: payload$.page,
+            results: payload$.results,
+        });
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -239,11 +237,11 @@ export class Rates extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            CurrencyCode: enc$.encodeSimple("CurrencyCode", payload$.CurrencyCode, {
+            CurrencyCode: encodeSimple$("CurrencyCode", payload$.CurrencyCode, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            ShipmentId: enc$.encodeSimple("ShipmentId", payload$.ShipmentId, {
+            ShipmentId: encodeSimple$("ShipmentId", payload$.ShipmentId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -252,19 +250,14 @@ export class Rates extends ClientSDK {
             pathParams$
         );
 
-        const query$ = [
-            enc$.encodeForm("page", payload$.page, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("results", payload$.results, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            page: payload$.page,
+            results: payload$.results,
+        });
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })

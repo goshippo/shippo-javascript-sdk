@@ -27,19 +27,11 @@ export type ResponseMessage = {
 
 /** @internal */
 export namespace ResponseMessage$ {
-    export const inboundSchema: z.ZodType<ResponseMessage, z.ZodTypeDef, unknown> = z
-        .object({
-            source: z.string().optional(),
-            code: z.string().optional(),
-            text: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.source === undefined ? null : { source: v.source }),
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.text === undefined ? null : { text: v.text }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ResponseMessage, z.ZodTypeDef, unknown> = z.object({
+        source: z.string().optional(),
+        code: z.string().optional(),
+        text: z.string().optional(),
+    });
 
     export type Outbound = {
         source?: string | undefined;
@@ -47,17 +39,9 @@ export namespace ResponseMessage$ {
         text?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResponseMessage> = z
-        .object({
-            source: z.string().optional(),
-            code: z.string().optional(),
-            text: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.source === undefined ? null : { source: v.source }),
-                ...(v.code === undefined ? null : { code: v.code }),
-                ...(v.text === undefined ? null : { text: v.text }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResponseMessage> = z.object({
+        source: z.string().optional(),
+        code: z.string().optional(),
+        text: z.string().optional(),
+    });
 }

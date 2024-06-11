@@ -19,17 +19,10 @@ export namespace CarrierAccountDHLExpressCreateRequest$ {
         CarrierAccountDHLExpressCreateRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: CarrierAccountDHLExpressCreateRequestParameters$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: CarrierAccountDHLExpressCreateRequestParameters$.inboundSchema,
+    });
 
     export type Outbound = {
         carrier: string;
@@ -40,15 +33,8 @@ export namespace CarrierAccountDHLExpressCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountDHLExpressCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: CarrierAccountDHLExpressCreateRequestParameters$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: CarrierAccountDHLExpressCreateRequestParameters$.outboundSchema,
+    });
 }

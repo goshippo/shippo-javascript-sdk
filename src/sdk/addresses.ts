@@ -4,7 +4,11 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeJSON as encodeJSON$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -66,19 +70,14 @@ export class Addresses extends ClientSDK {
 
         const path$ = this.templateURLComponent("/addresses")();
 
-        const query$ = [
-            enc$.encodeForm("page", payload$.page, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("results", payload$.results, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            page: payload$.page,
+            results: payload$.results,
+        });
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -144,7 +143,7 @@ export class Addresses extends ClientSDK {
             (value$) => components.AddressCreateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/addresses")();
 
@@ -152,7 +151,7 @@ export class Addresses extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -219,7 +218,7 @@ export class Addresses extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            AddressId: enc$.encodeSimple("AddressId", payload$.AddressId, {
+            AddressId: encodeSimple$("AddressId", payload$.AddressId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -230,7 +229,7 @@ export class Addresses extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -297,7 +296,7 @@ export class Addresses extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            AddressId: enc$.encodeSimple("AddressId", payload$.AddressId, {
+            AddressId: encodeSimple$("AddressId", payload$.AddressId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -308,7 +307,7 @@ export class Addresses extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })

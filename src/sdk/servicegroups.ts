@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -58,7 +58,7 @@ export class ServiceGroups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -123,7 +123,7 @@ export class ServiceGroups extends ClientSDK {
             (value$) => components.ServiceGroupCreateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/service-groups")();
 
@@ -131,7 +131,7 @@ export class ServiceGroups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -199,7 +199,7 @@ export class ServiceGroups extends ClientSDK {
             "Input validation failed"
         );
         const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+            payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/service-groups")();
 
@@ -207,7 +207,7 @@ export class ServiceGroups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -274,7 +274,7 @@ export class ServiceGroups extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            ServiceGroupId: enc$.encodeSimple("ServiceGroupId", payload$.ServiceGroupId, {
+            ServiceGroupId: encodeSimple$("ServiceGroupId", payload$.ServiceGroupId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -285,7 +285,7 @@ export class ServiceGroups extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })

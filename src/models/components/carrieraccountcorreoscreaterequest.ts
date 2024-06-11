@@ -34,17 +34,10 @@ export namespace CarrierAccountCorreosCreateRequest$ {
         CarrierAccountCorreosCreateRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(() => CarrierAccountCorreosCreateRequestParameters$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountCorreosCreateRequestParameters$.inboundSchema),
+    });
 
     export type Outbound = {
         carrier: string;
@@ -55,15 +48,8 @@ export namespace CarrierAccountCorreosCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountCorreosCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(() => CarrierAccountCorreosCreateRequestParameters$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountCorreosCreateRequestParameters$.outboundSchema),
+    });
 }

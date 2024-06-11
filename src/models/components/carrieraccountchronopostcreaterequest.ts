@@ -34,19 +34,10 @@ export namespace CarrierAccountChronopostCreateRequest$ {
         CarrierAccountChronopostCreateRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(
-                () => CarrierAccountChronopostCreateRequestParameters$.inboundSchema
-            ),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountChronopostCreateRequestParameters$.inboundSchema),
+    });
 
     export type Outbound = {
         carrier: string;
@@ -57,17 +48,8 @@ export namespace CarrierAccountChronopostCreateRequest$ {
         Outbound,
         z.ZodTypeDef,
         CarrierAccountChronopostCreateRequest
-    > = z
-        .object({
-            carrier: z.string(),
-            parameters: z.lazy(
-                () => CarrierAccountChronopostCreateRequestParameters$.outboundSchema
-            ),
-        })
-        .transform((v) => {
-            return {
-                carrier: v.carrier,
-                parameters: v.parameters,
-            };
-        });
+    > = z.object({
+        carrier: z.string(),
+        parameters: z.lazy(() => CarrierAccountChronopostCreateRequestParameters$.outboundSchema),
+    });
 }

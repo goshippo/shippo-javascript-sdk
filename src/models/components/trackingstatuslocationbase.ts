@@ -13,20 +13,12 @@ export type TrackingStatusLocationBase = {
 
 /** @internal */
 export namespace TrackingStatusLocationBase$ {
-    export const inboundSchema: z.ZodType<TrackingStatusLocationBase, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TrackingStatusLocationBase, z.ZodTypeDef, unknown> =
+        z.object({
             city: z.string().optional(),
             country: z.string().optional(),
             state: z.string().optional(),
             zip: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.city === undefined ? null : { city: v.city }),
-                ...(v.country === undefined ? null : { country: v.country }),
-                ...(v.state === undefined ? null : { state: v.state }),
-                ...(v.zip === undefined ? null : { zip: v.zip }),
-            };
         });
 
     export type Outbound = {
@@ -36,19 +28,11 @@ export namespace TrackingStatusLocationBase$ {
         zip?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TrackingStatusLocationBase> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TrackingStatusLocationBase> =
+        z.object({
             city: z.string().optional(),
             country: z.string().optional(),
             state: z.string().optional(),
             zip: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.city === undefined ? null : { city: v.city }),
-                ...(v.country === undefined ? null : { country: v.country }),
-                ...(v.state === undefined ? null : { state: v.state }),
-                ...(v.zip === undefined ? null : { zip: v.zip }),
-            };
         });
 }

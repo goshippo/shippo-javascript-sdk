@@ -46,21 +46,12 @@ export namespace Provider$ {
 
 /** @internal */
 export namespace Insurance$ {
-    export const inboundSchema: z.ZodType<Insurance, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: z.string().optional(),
-            content: z.string().optional(),
-            currency: z.string().optional(),
-            provider: Provider$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.content === undefined ? null : { content: v.content }),
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Insurance, z.ZodTypeDef, unknown> = z.object({
+        amount: z.string().optional(),
+        content: z.string().optional(),
+        currency: z.string().optional(),
+        provider: Provider$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         amount?: string | undefined;
@@ -69,19 +60,10 @@ export namespace Insurance$ {
         provider?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Insurance> = z
-        .object({
-            amount: z.string().optional(),
-            content: z.string().optional(),
-            currency: z.string().optional(),
-            provider: Provider$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.content === undefined ? null : { content: v.content }),
-                ...(v.currency === undefined ? null : { currency: v.currency }),
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Insurance> = z.object({
+        amount: z.string().optional(),
+        content: z.string().optional(),
+        currency: z.string().optional(),
+        provider: Provider$.outboundSchema.optional(),
+    });
 }

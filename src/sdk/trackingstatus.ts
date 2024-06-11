@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -65,7 +65,7 @@ export class TrackingStatus extends ClientSDK {
             (value$) => components.TracksRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/tracks")();
 
@@ -73,7 +73,7 @@ export class TrackingStatus extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -145,11 +145,11 @@ export class TrackingStatus extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            Carrier: enc$.encodeSimple("Carrier", payload$.Carrier, {
+            Carrier: encodeSimple$("Carrier", payload$.Carrier, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            TrackingNumber: enc$.encodeSimple("TrackingNumber", payload$.TrackingNumber, {
+            TrackingNumber: encodeSimple$("TrackingNumber", payload$.TrackingNumber, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -160,7 +160,7 @@ export class TrackingStatus extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })

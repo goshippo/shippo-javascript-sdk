@@ -16,18 +16,11 @@ export type CarrierAccountPaginatedList = {
 
 /** @internal */
 export namespace CarrierAccountPaginatedList$ {
-    export const inboundSchema: z.ZodType<CarrierAccountPaginatedList, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<CarrierAccountPaginatedList, z.ZodTypeDef, unknown> =
+        z.object({
             next: z.string().optional(),
             previous: z.string().optional(),
             results: z.array(CarrierAccountWithExtraInfo$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.next === undefined ? null : { next: v.next }),
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 
     export type Outbound = {
@@ -36,17 +29,10 @@ export namespace CarrierAccountPaginatedList$ {
         results?: Array<CarrierAccountWithExtraInfo$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierAccountPaginatedList> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CarrierAccountPaginatedList> =
+        z.object({
             next: z.string().optional(),
             previous: z.string().optional(),
             results: z.array(CarrierAccountWithExtraInfo$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.next === undefined ? null : { next: v.next }),
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-                ...(v.results === undefined ? null : { results: v.results }),
-            };
         });
 }

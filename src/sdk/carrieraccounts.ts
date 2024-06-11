@@ -4,7 +4,11 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeJSON as encodeJSON$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -67,31 +71,17 @@ export class CarrierAccounts extends ClientSDK {
 
         const path$ = this.templateURLComponent("/carrier_accounts")();
 
-        const query$ = [
-            enc$.encodeForm("account_id", payload$.account_id, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("carrier", payload$.carrier, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("page", payload$.page, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("results", payload$.results, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("service_levels", payload$.service_levels, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            carrier: payload$.carrier,
+            account_id: payload$.account_id,
+            page: payload$.page,
+            results: payload$.results,
+            service_levels: payload$.service_levels,
+        });
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -157,7 +147,7 @@ export class CarrierAccounts extends ClientSDK {
             (value$) => components.ConnectExistingOwnAccountRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/carrier_accounts")();
 
@@ -165,7 +155,7 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -235,7 +225,7 @@ export class CarrierAccounts extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            CarrierAccountId: enc$.encodeSimple("CarrierAccountId", payload$.CarrierAccountId, {
+            CarrierAccountId: encodeSimple$("CarrierAccountId", payload$.CarrierAccountId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -248,7 +238,7 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -318,10 +308,10 @@ export class CarrierAccounts extends ClientSDK {
             (value$) => operations.UpdateCarrierAccountRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.CarrierAccountBase, { explode: true });
+        const body$ = encodeJSON$("body", payload$.CarrierAccountBase, { explode: true });
 
         const pathParams$ = {
-            CarrierAccountId: enc$.encodeSimple("CarrierAccountId", payload$.CarrierAccountId, {
+            CarrierAccountId: encodeSimple$("CarrierAccountId", payload$.CarrierAccountId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -334,7 +324,7 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -408,7 +398,7 @@ export class CarrierAccounts extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            CarrierAccountObjectId: enc$.encodeSimple(
+            CarrierAccountObjectId: encodeSimple$(
                 "CarrierAccountObjectId",
                 payload$.CarrierAccountObjectId,
                 { explode: false, charEncoding: "percent" }
@@ -418,19 +408,14 @@ export class CarrierAccounts extends ClientSDK {
             "/carrier_accounts/{CarrierAccountObjectId}/signin/initiate"
         )(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("redirect_uri", payload$.redirect_uri, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("state", payload$.state, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            state: payload$.state,
+            redirect_uri: payload$.redirect_uri,
+        });
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -507,7 +492,7 @@ export class CarrierAccounts extends ClientSDK {
             (value$) => operations.RegisterCarrierAccountRequestBody$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/carrier_accounts/register/new")();
 
@@ -515,7 +500,7 @@ export class CarrierAccounts extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -587,18 +572,13 @@ export class CarrierAccounts extends ClientSDK {
 
         const path$ = this.templateURLComponent("/carrier_accounts/reg-status")();
 
-        const query$ = [
-            enc$.encodeForm("carrier", payload$.carrier, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            carrier: payload$.carrier,
+        });
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })

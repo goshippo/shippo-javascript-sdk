@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -59,7 +59,7 @@ export class Batches extends ClientSDK {
             (value$) => components.BatchCreateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/batches")();
 
@@ -67,7 +67,7 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -137,7 +137,7 @@ export class Batches extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            BatchId: enc$.encodeSimple("BatchId", payload$.BatchId, {
+            BatchId: encodeSimple$("BatchId", payload$.BatchId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -148,7 +148,7 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -218,10 +218,10 @@ export class Batches extends ClientSDK {
             (value$) => operations.AddShipmentsToBatchRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
 
         const pathParams$ = {
-            BatchId: enc$.encodeSimple("BatchId", payload$.BatchId, {
+            BatchId: encodeSimple$("BatchId", payload$.BatchId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -232,7 +232,7 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -302,7 +302,7 @@ export class Batches extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            BatchId: enc$.encodeSimple("BatchId", payload$.BatchId, {
+            BatchId: encodeSimple$("BatchId", payload$.BatchId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -313,7 +313,7 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
@@ -383,10 +383,10 @@ export class Batches extends ClientSDK {
             (value$) => operations.RemoveShipmentsFromBatchRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
 
         const pathParams$ = {
-            BatchId: enc$.encodeSimple("BatchId", payload$.BatchId, {
+            BatchId: encodeSimple$("BatchId", payload$.BatchId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -397,7 +397,7 @@ export class Batches extends ClientSDK {
 
         headers$.set(
             "SHIPPO-API-VERSION",
-            enc$.encodeSimple("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
+            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
                 explode: false,
                 charEncoding: "none",
             })
