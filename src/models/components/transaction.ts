@@ -12,6 +12,20 @@ import { TransactionStatusEnum, TransactionStatusEnum$ } from "./transactionstat
 import * as z from "zod";
 
 /**
+ * An object with details about the user who created the Transaction (purchased the label).
+ *
+ * @remarks
+ * A value will be returned only for Transactions that can be associated with a specific user, e.g. when a logged-in
+ * user purchases a label via the Shippo Web application; but not for Transactions purchased e.g. via the API using a ShippoToken,
+ * which is associated with the account but not any specific user.
+ */
+export type CreatedBy = {
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    username?: string | undefined;
+};
+
+/**
  * ID of the Rate object for which a Label has to be obtained.
  *
  * @remarks
@@ -29,6 +43,7 @@ export type Transaction = {
      * A value will only be returned if the Transactions has been processed successfully and if the shipment is international.
      */
     commercialInvoiceUrl?: string | undefined;
+    createdBy?: CreatedBy | null | undefined;
     /**
      * The estimated time of arrival according to the carrier.
      */
@@ -120,6 +135,41 @@ export type Transaction = {
 };
 
 /** @internal */
+export namespace CreatedBy$ {
+    export const inboundSchema: z.ZodType<CreatedBy, z.ZodTypeDef, unknown> = z
+        .object({
+            first_name: z.string().optional(),
+            last_name: z.string().optional(),
+            username: z.string().optional(),
+        })
+        .transform((v) => {
+            return remap$(v, {
+                first_name: "firstName",
+                last_name: "lastName",
+            });
+        });
+
+    export type Outbound = {
+        first_name?: string | undefined;
+        last_name?: string | undefined;
+        username?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreatedBy> = z
+        .object({
+            firstName: z.string().optional(),
+            lastName: z.string().optional(),
+            username: z.string().optional(),
+        })
+        .transform((v) => {
+            return remap$(v, {
+                firstName: "first_name",
+                lastName: "last_name",
+            });
+        });
+}
+
+/** @internal */
 export namespace TransactionRate$ {
     export const inboundSchema: z.ZodType<TransactionRate, z.ZodTypeDef, unknown> = z.union([
         CoreRate$.inboundSchema,
@@ -138,6 +188,7 @@ export namespace Transaction$ {
     export const inboundSchema: z.ZodType<Transaction, z.ZodTypeDef, unknown> = z
         .object({
             commercial_invoice_url: z.string().optional(),
+            created_by: z.nullable(z.lazy(() => CreatedBy$.inboundSchema)).optional(),
             eta: z.string().optional(),
             label_file_type: LabelFileTypeEnum$.inboundSchema.optional(),
             label_url: z.string().optional(),
@@ -167,6 +218,7 @@ export namespace Transaction$ {
         .transform((v) => {
             return remap$(v, {
                 commercial_invoice_url: "commercialInvoiceUrl",
+                created_by: "createdBy",
                 label_file_type: "labelFileType",
                 label_url: "labelUrl",
                 object_created: "objectCreated",
@@ -183,6 +235,7 @@ export namespace Transaction$ {
 
     export type Outbound = {
         commercial_invoice_url?: string | undefined;
+        created_by?: CreatedBy$.Outbound | null | undefined;
         eta?: string | undefined;
         label_file_type?: string | undefined;
         label_url?: string | undefined;
@@ -205,6 +258,7 @@ export namespace Transaction$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Transaction> = z
         .object({
             commercialInvoiceUrl: z.string().optional(),
+            createdBy: z.nullable(z.lazy(() => CreatedBy$.outboundSchema)).optional(),
             eta: z.string().optional(),
             labelFileType: LabelFileTypeEnum$.outboundSchema.optional(),
             labelUrl: z.string().optional(),
@@ -232,6 +286,7 @@ export namespace Transaction$ {
         .transform((v) => {
             return remap$(v, {
                 commercialInvoiceUrl: "commercial_invoice_url",
+                createdBy: "created_by",
                 labelFileType: "label_file_type",
                 labelUrl: "label_url",
                 objectCreated: "object_created",

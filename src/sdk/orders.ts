@@ -71,8 +71,8 @@ export class Orders extends ClientSDK {
         const path$ = this.templateURLComponent("/orders")();
 
         const query$ = encodeFormQuery$({
-            results: payload$.results,
             page: payload$.page,
+            results: payload$.results,
         });
 
         headers$.set(

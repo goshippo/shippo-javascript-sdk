@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 5f3530e1b29cad621760a07269fb6df8
+  docChecksum: 59d2f5c3153947aecd9df397497acc52
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.304.0
+  speakeasyVersion: 1.305.0
   generationVersion: 2.340.3
-  releaseVersion: 2.2.10
-  configChecksum: 3653f14e9e309a06c295dd874c8097c9
+  releaseVersion: 2.3.0
+  configChecksum: 90703ed87561cdf055b3e5323c6799d5
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -24,6 +24,7 @@ features:
     hiddenGlobals: 0.1.0
     includes: 2.81.1
     nameOverrides: 2.81.2
+    nullables: 0.1.0
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
     unions: 2.85.5
@@ -280,6 +281,8 @@ generatedFiles:
   - src/models/components/index.ts
   - src/models/operations/index.ts
   - docs/models/components/addresspaginatedlist.md
+  - docs/models/components/latitude.md
+  - docs/models/components/longitude.md
   - docs/models/components/address.md
   - docs/models/components/addressvalidationresults.md
   - docs/models/components/code.md
@@ -463,6 +466,7 @@ generatedFiles:
   - docs/models/components/trackingstatuslocationbase.md
   - docs/models/components/tracksrequest.md
   - docs/models/components/transactionpaginatedlist.md
+  - docs/models/components/createdby.md
   - docs/models/components/transactionrate.md
   - docs/models/components/transaction.md
   - docs/models/components/transactionstatusenum.md

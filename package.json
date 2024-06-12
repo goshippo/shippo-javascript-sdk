@@ -1,6 +1,6 @@
 {
   "name": "shippo",
-  "version": "2.2.10",
+  "version": "2.3.0",
   "author": "Shippo",  
   "license": "MIT",
   "main": "./index.js",

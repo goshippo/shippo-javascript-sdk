@@ -71,8 +71,8 @@ export class Parcels extends ClientSDK {
         const path$ = this.templateURLComponent("/parcels")();
 
         const query$ = encodeFormQuery$({
-            results: payload$.results,
             page: payload$.page,
+            results: payload$.results,
         });
 
         headers$.set(
