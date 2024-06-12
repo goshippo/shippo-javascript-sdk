@@ -71,8 +71,8 @@ export class ShippoAccounts extends ClientSDK {
         const path$ = this.templateURLComponent("/shippo-accounts")();
 
         const query$ = encodeFormQuery$({
-            page: payload$.page,
             results: payload$.results,
+            page: payload$.page,
         });
 
         headers$.set(

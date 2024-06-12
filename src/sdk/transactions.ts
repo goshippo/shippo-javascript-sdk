@@ -67,11 +67,11 @@ export class Transactions extends ClientSDK {
         const path$ = this.templateURLComponent("/transactions")();
 
         const query$ = encodeFormQuery$({
+            tracking_status: payload$.tracking_status,
             page: payload$.page,
             results: payload$.results,
             rate: payload$.rate,
             object_status: payload$.object_status,
-            tracking_status: payload$.tracking_status,
         });
 
         headers$.set(

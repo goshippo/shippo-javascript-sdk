@@ -72,11 +72,11 @@ export class CarrierAccounts extends ClientSDK {
         const path$ = this.templateURLComponent("/carrier_accounts")();
 
         const query$ = encodeFormQuery$({
-            carrier: payload$.carrier,
-            account_id: payload$.account_id,
             page: payload$.page,
             results: payload$.results,
             service_levels: payload$.service_levels,
+            carrier: payload$.carrier,
+            account_id: payload$.account_id,
         });
 
         headers$.set(
@@ -409,8 +409,8 @@ export class CarrierAccounts extends ClientSDK {
         )(pathParams$);
 
         const query$ = encodeFormQuery$({
-            state: payload$.state,
             redirect_uri: payload$.redirect_uri,
+            state: payload$.state,
         });
 
         headers$.set(

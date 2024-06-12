@@ -6,6 +6,10 @@ import { remap as remap$ } from "../../lib/primitives";
 import { AddressValidationResults, AddressValidationResults$ } from "./addressvalidationresults";
 import * as z from "zod";
 
+export type Latitude = number | string;
+
+export type Longitude = number | string;
+
 /**
  * Address represents the address as retrieved from the database
  */
@@ -110,11 +114,11 @@ export type Address = {
     /**
      * Latitude of address
      */
-    latitude?: number | undefined;
+    latitude?: number | string | undefined;
     /**
      * Longitude of address
      */
-    longitude?: number | undefined;
+    longitude?: number | string | undefined;
     /**
      * Date and time of Address creation.
      */
@@ -152,6 +156,34 @@ export type Address = {
 };
 
 /** @internal */
+export namespace Latitude$ {
+    export const inboundSchema: z.ZodType<Latitude, z.ZodTypeDef, unknown> = z.union([
+        z.number(),
+        z.string(),
+    ]);
+
+    export type Outbound = number | string;
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Latitude> = z.union([
+        z.number(),
+        z.string(),
+    ]);
+}
+
+/** @internal */
+export namespace Longitude$ {
+    export const inboundSchema: z.ZodType<Longitude, z.ZodTypeDef, unknown> = z.union([
+        z.number(),
+        z.string(),
+    ]);
+
+    export type Outbound = number | string;
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Longitude> = z.union([
+        z.number(),
+        z.string(),
+    ]);
+}
+
+/** @internal */
 export namespace Address$ {
     export const inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> = z
         .object({
@@ -170,8 +202,8 @@ export namespace Address$ {
             is_residential: z.boolean().optional(),
             metadata: z.string().optional(),
             is_complete: z.boolean().optional(),
-            latitude: z.number().optional(),
-            longitude: z.number().optional(),
+            latitude: z.union([z.number(), z.string()]).optional(),
+            longitude: z.union([z.number(), z.string()]).optional(),
             object_created: z
                 .string()
                 .datetime({ offset: true })
@@ -216,8 +248,8 @@ export namespace Address$ {
         is_residential?: boolean | undefined;
         metadata?: string | undefined;
         is_complete?: boolean | undefined;
-        latitude?: number | undefined;
-        longitude?: number | undefined;
+        latitude?: number | string | undefined;
+        longitude?: number | string | undefined;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
@@ -243,8 +275,8 @@ export namespace Address$ {
             isResidential: z.boolean().optional(),
             metadata: z.string().optional(),
             isComplete: z.boolean().optional(),
-            latitude: z.number().optional(),
-            longitude: z.number().optional(),
+            latitude: z.union([z.number(), z.string()]).optional(),
+            longitude: z.union([z.number(), z.string()]).optional(),
             objectCreated: z
                 .date()
                 .transform((v) => v.toISOString())
