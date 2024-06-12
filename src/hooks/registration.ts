@@ -48,11 +48,24 @@ export class ConvertNullToUndefinedAfterSuccessHook implements AfterSuccessHook 
         return obj;
     }
 
+    private isResponseJson(response: Response): boolean {
+        const contentType = response.headers.get("content-type");
+        return !!(contentType && contentType.indexOf("application/json") !== -1);
+    }
+
     // @ts-expect-error unused argument hookCtx
     async afterSuccess(hookCtx: AfterSuccessContext, response: Response): Promise<Response> {
-        const content = await response.json();
-        const transformedContent = this.deleteKeysWithNullValues(content);
-        return new Response(JSON.stringify(transformedContent), {
+        let body = null;
+        if (response.status != 204) {
+            if (this.isResponseJson(response)) {
+                let jsonContent = await response.json();
+                jsonContent = this.deleteKeysWithNullValues(jsonContent);
+                body = JSON.stringify(jsonContent);
+            } else {
+                body = await response.text();
+            }
+        }
+        return new Response(body, {
             status: response.status,
             statusText: response.statusText,
             headers: response.headers

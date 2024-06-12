@@ -15,7 +15,7 @@ describe('TestPrefixApiKeyBeforeRequestHook', function () {
     ];
 
     tests.forEach(({authHeader, shouldPrefix}) => {
-        it(`should${shouldPrefix ? " ": " not "}prefix ${authHeader}`, async() => {
+        it(`should${shouldPrefix ? " " : " not "}prefix ${authHeader}`, async () => {
             const headers = new Headers();
             headers.set("Authorization", authHeader);
             const inputRequest = new Request(new URL("http://localhost"), {headers});
@@ -38,7 +38,7 @@ describe('TestConvertNullToUndefinedAfterSuccessHook', function () {
     const hookCtx = {operationID: "test"};
 
     async function applyHookAndCompareExpected(inputJson: unknown, expected: unknown) {
-        const inputResponse = new Response(JSON.stringify(inputJson));
+        const inputResponse = new Response(JSON.stringify(inputJson), {headers: {"Content-Type": "application/json"}});
         const outputResponse = await hook.afterSuccess(hookCtx, inputResponse);
         const actual = await outputResponse.json();
         expect(expected).to.deep.equal(actual);
@@ -79,5 +79,21 @@ describe('TestConvertNullToUndefinedAfterSuccessHook', function () {
             {field: [{subField: "value"}]}
         );
     });
+
+    it('should handle no content response', async () => {
+        const inputResponse = new Response(null, {status: 204});
+        const outputResponse = await hook.afterSuccess(hookCtx, inputResponse);
+        expect(inputResponse.status).to.equal(outputResponse.status);
+        const responseText = await outputResponse.text();
+        expect(responseText).to.be.empty;
+    })
+
+    it('should handle text response', async () => {
+        const content = "some content";
+        const inputResponse = new Response(content, {status: 200, headers: {"Content-Type": "text"}});
+        const outputResponse = await hook.afterSuccess(hookCtx, inputResponse);
+        const responseText = await outputResponse.text();
+        expect(responseText).to.be.equal(content);
+    })
 
 });
