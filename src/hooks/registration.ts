@@ -50,7 +50,7 @@ export class ConvertNullToUndefinedAfterSuccessHook implements AfterSuccessHook 
 
     private isResponseJson(response: Response): boolean {
         const contentType = response.headers.get("content-type");
-        return !!(contentType && contentType.indexOf("application/json") !== -1);
+        return contentType?.includes("application/json") ?? false;
     }
 
     // @ts-expect-error unused argument hookCtx
