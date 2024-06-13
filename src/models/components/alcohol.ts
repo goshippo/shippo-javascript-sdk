@@ -3,15 +3,20 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 /**
  * Mandatory for Fedex only. License type of the recipient of the Alcohol Package.
  */
-export enum RecipientType {
-    Licensee = "licensee",
-    Consumer = "consumer",
-}
+export const RecipientType = {
+    Licensee: "licensee",
+    Consumer: "consumer",
+} as const;
+/**
+ * Mandatory for Fedex only. License type of the recipient of the Alcohol Package.
+ */
+export type RecipientType = ClosedEnum<typeof RecipientType>;
 
 /**
  * Indicates that a shipment contains Alcohol (Fedex and UPS only).

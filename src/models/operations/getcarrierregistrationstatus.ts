@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 export type GetCarrierRegistrationStatusGlobals = {
@@ -15,11 +16,15 @@ export type GetCarrierRegistrationStatusGlobals = {
 /**
  * filter by specific carrier
  */
-export enum Carrier {
-    Ups = "ups",
-    Usps = "usps",
-    CanadaPost = "canada_post",
-}
+export const Carrier = {
+    Ups: "ups",
+    Usps: "usps",
+    CanadaPost: "canada_post",
+} as const;
+/**
+ * filter by specific carrier
+ */
+export type Carrier = ClosedEnum<typeof Carrier>;
 
 export type GetCarrierRegistrationStatusRequest = {
     /**

@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import { Address, Address$ } from "./address";
 import { CustomsDeclaration, CustomsDeclaration$ } from "./customsdeclaration";
 import { Parcel, Parcel$ } from "./parcel";
@@ -19,12 +20,21 @@ import * as z from "zod";
  * `Success` shipments have been processed successfully, meaning that rate generation has concluded.
  * `Error` does not occur currently and is reserved for future use.
  */
-export enum ShipmentStatus {
-    Error = "ERROR",
-    Queued = "QUEUED",
-    Success = "SUCCESS",
-    Status = "STATUS",
-}
+export const ShipmentStatus = {
+    Error: "ERROR",
+    Queued: "QUEUED",
+    Success: "SUCCESS",
+    Status: "STATUS",
+} as const;
+/**
+ * `Waiting` shipments have been successfully submitted but not yet been processed.
+ *
+ * @remarks
+ * `Queued` shipments are currently being processed.
+ * `Success` shipments have been processed successfully, meaning that rate generation has concluded.
+ * `Error` does not occur currently and is reserved for future use.
+ */
+export type ShipmentStatus = ClosedEnum<typeof ShipmentStatus>;
 
 /**
  * Shipment represents the parcel as retrieved from the database

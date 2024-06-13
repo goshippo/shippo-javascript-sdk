@@ -3,10 +3,10 @@ id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
   docChecksum: 43b97613270f92d7505e2d0e1529b817
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.307.0
-  generationVersion: 2.342.0
-  releaseVersion: 2.3.2
-  configChecksum: df5d1862a8ace1f8536643c026addac7
+  speakeasyVersion: 1.307.1
+  generationVersion: 2.342.2
+  releaseVersion: 2.3.3
+  configChecksum: 577a8799bafcd7b29d5dd3687feb5e4b
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true

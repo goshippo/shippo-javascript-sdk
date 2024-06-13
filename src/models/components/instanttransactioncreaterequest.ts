@@ -3,20 +3,22 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import { ShipmentCreateRequest, ShipmentCreateRequest$ } from "./shipmentcreaterequest";
 import * as z from "zod";
 
-export enum LabelFileType {
-    Png = "PNG",
-    PNG23x75 = "PNG_2.3x7.5",
-    Pdf = "PDF",
-    PDF23x75 = "PDF_2.3x7.5",
-    PDF4x6 = "PDF_4x6",
-    PDF4x8 = "PDF_4x8",
-    PdfA4 = "PDF_A4",
-    PdfA6 = "PDF_A6",
-    Zplii = "ZPLII",
-}
+export const LabelFileType = {
+    Png: "PNG",
+    PNG23x75: "PNG_2.3x7.5",
+    Pdf: "PDF",
+    PDF23x75: "PDF_2.3x7.5",
+    PDF4x6: "PDF_4x6",
+    PDF4x8: "PDF_4x8",
+    PdfA4: "PDF_A4",
+    PdfA6: "PDF_A6",
+    Zplii: "ZPLII",
+} as const;
+export type LabelFileType = ClosedEnum<typeof LabelFileType>;
 
 export type InstantTransactionCreateRequest = {
     async?: boolean | undefined;
