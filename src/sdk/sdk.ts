@@ -25,6 +25,7 @@ import { ShippoAccounts } from "./shippoaccounts";
 import { TrackingStatus } from "./trackingstatus";
 import { Transactions } from "./transactions";
 import { UserParcelTemplates } from "./userparceltemplates";
+import { Webhooks } from "./webhooks";
 
 export class Shippo extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -146,5 +147,10 @@ export class Shippo extends ClientSDK {
     private _shippoAccounts?: ShippoAccounts;
     get shippoAccounts(): ShippoAccounts {
         return (this._shippoAccounts ??= new ShippoAccounts(this.options$));
+    }
+
+    private _webhooks?: Webhooks;
+    get webhooks(): Webhooks {
+        return (this._webhooks ??= new Webhooks(this.options$));
     }
 }

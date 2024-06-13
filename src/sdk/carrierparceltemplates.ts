@@ -70,8 +70,8 @@ export class CarrierParcelTemplates extends ClientSDK {
         const path$ = this.templateURLComponent("/parcel-templates")();
 
         const query$ = encodeFormQuery$({
-            include: payload$.include,
             carrier: payload$.carrier,
+            include: payload$.include,
         });
 
         headers$.set(

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 59d2f5c3153947aecd9df397497acc52
+  docChecksum: ffb090c3bb6c323817bcc3a795f9cfdf
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.305.0
-  generationVersion: 2.340.3
-  releaseVersion: 2.3.0
-  configChecksum: 90703ed87561cdf055b3e5323c6799d5
+  speakeasyVersion: 1.307.0
+  generationVersion: 2.342.0
+  releaseVersion: 2.3.1
+  configChecksum: 6cfda4c94082191055847b86ae50f088
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.13
+    core: 3.9.14
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -48,6 +48,7 @@ generatedFiles:
   - src/sdk/transactions.ts
   - src/sdk/userparceltemplates.ts
   - src/sdk/shippoaccounts.ts
+  - src/sdk/webhooks.ts
   - src/sdk/sdk.ts
   - .eslintrc.js
   - .npmignore
@@ -208,6 +209,10 @@ generatedFiles:
   - src/models/components/shippoaccountpaginatedlist.ts
   - src/models/components/shippoaccount.ts
   - src/models/components/shippoaccountupdaterequest.ts
+  - src/models/components/webhook.ts
+  - src/models/components/webhookupdaterequest.ts
+  - src/models/components/webhookeventtypeenum.ts
+  - src/models/components/webhookpaginatedlist.ts
   - src/models/components/security.ts
   - src/models/components/servicelevel.ts
   - src/models/components/servicelevelenumset.ts
@@ -258,6 +263,9 @@ generatedFiles:
   - src/models/operations/listshippoaccounts.ts
   - src/models/operations/getshippoaccount.ts
   - src/models/operations/updateshippoaccount.ts
+  - src/models/operations/getwebhook.ts
+  - src/models/operations/updatewebhook.ts
+  - src/models/operations/deletewebhook.ts
   - src/models/operations/createaddress.ts
   - src/models/operations/createbatch.ts
   - src/models/operations/createcarrieraccount.ts
@@ -482,6 +490,10 @@ generatedFiles:
   - docs/models/components/shippoaccountpaginatedlist.md
   - docs/models/components/shippoaccount.md
   - docs/models/components/shippoaccountupdaterequest.md
+  - docs/models/components/webhook.md
+  - docs/models/components/webhookupdaterequest.md
+  - docs/models/components/webhookeventtypeenum.md
+  - docs/models/components/webhookpaginatedlist.md
   - docs/models/components/security.md
   - docs/models/components/servicelevel.md
   - docs/models/components/servicelevelswyftenum.md
@@ -622,6 +634,9 @@ generatedFiles:
   - docs/models/operations/getshippoaccountrequest.md
   - docs/models/operations/updateshippoaccountglobals.md
   - docs/models/operations/updateshippoaccountrequest.md
+  - docs/models/operations/getwebhookrequest.md
+  - docs/models/operations/updatewebhookrequest.md
+  - docs/models/operations/deletewebhookrequest.md
   - docs/models/operations/createaddressglobals.md
   - docs/models/operations/createbatchglobals.md
   - docs/models/operations/createcarrieraccountglobals.md
@@ -663,6 +678,7 @@ generatedFiles:
   - docs/sdks/transactions/README.md
   - docs/sdks/userparceltemplates/README.md
   - docs/sdks/shippoaccounts/README.md
+  - docs/sdks/webhooks/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts

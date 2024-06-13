@@ -4,18 +4,15 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import {
-    encodeFormQuery as encodeFormQuery$,
-    encodeJSON as encodeJSON$,
-    encodeSimple as encodeSimple$,
-} from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
-export class ShippoAccounts extends ClientSDK {
+export class Webhooks extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
 
     constructor(options: SDKOptions = {}) {
@@ -43,95 +40,15 @@ export class ShippoAccounts extends ClientSDK {
     }
 
     /**
-     * List all Shippo Accounts
+     * Create a new webhook
      *
      * @remarks
-     * Returns a list of Shippo Accounts objects
+     * Creates a new webhook to send notifications to a URL when a specific event occurs.
      */
-    async list(
-        page?: number | undefined,
-        results?: number | undefined,
+    async createWebhook(
+        request: components.WebhookUpdateRequest,
         options?: RequestOptions
-    ): Promise<components.ShippoAccountPaginatedList> {
-        const input$: operations.ListShippoAccountsRequest = {
-            page: page,
-            results: results,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.ListShippoAccountsRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const path$ = this.templateURLComponent("/shippo-accounts")();
-
-        const query$ = encodeFormQuery$({
-            page: payload$.page,
-            results: payload$.results,
-        });
-
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
-
-        let security$;
-        if (typeof this.options$.apiKeyHeader === "function") {
-            security$ = { apiKeyHeader: await this.options$.apiKeyHeader() };
-        } else if (this.options$.apiKeyHeader) {
-            security$ = { apiKeyHeader: this.options$.apiKeyHeader };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "ListShippoAccounts",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKeyHeader,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const [result$] = await this.matcher<components.ShippoAccountPaginatedList>()
-            .json(200, components.ShippoAccountPaginatedList$)
-            .fail([400, "4XX", "5XX"])
-            .match(response);
-
-        return result$;
-    }
-
-    /**
-     * Create a Shippo Account
-     *
-     * @remarks
-     * Creates a Shippo Account object
-     */
-    async create(
-        request: components.ShippoAccountUpdateRequest,
-        options?: RequestOptions
-    ): Promise<components.ShippoAccount> {
+    ): Promise<components.Webhook> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -140,22 +57,14 @@ export class ShippoAccounts extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.ShippoAccountUpdateRequest$.outboundSchema.parse(value$),
+            (value$) => components.WebhookUpdateRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
 
-        const path$ = this.templateURLComponent("/shippo-accounts")();
+        const path$ = this.templateURLComponent("/webhooks")();
 
         const query$ = "";
-
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -166,13 +75,13 @@ export class ShippoAccounts extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "CreateShippoAccount",
+            operationID: "createWebhook",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKeyHeader,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -188,55 +97,28 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const [result$] = await this.matcher<components.ShippoAccount>()
-            .json(201, components.ShippoAccount$)
-            .fail([400, "4XX", "5XX"])
+        const [result$] = await this.matcher<components.Webhook>()
+            .json(201, components.Webhook$)
+            .fail(["4XX", "5XX"])
             .match(response);
 
         return result$;
     }
 
     /**
-     * Retrieve a Shippo Account
+     * List all webhooks
      *
      * @remarks
-     * Returns a Shippo Account using an object ID
+     * Returns a list of all webhooks you have created.
      */
-    async get(
-        shippoAccountId: string,
-        options?: RequestOptions
-    ): Promise<components.ShippoAccount> {
-        const input$: operations.GetShippoAccountRequest = {
-            shippoAccountId: shippoAccountId,
-        };
+    async listWebhooks(options?: RequestOptions): Promise<components.WebhookPaginatedList> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetShippoAccountRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            ShippoAccountId: encodeSimple$("ShippoAccountId", payload$.ShippoAccountId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent("/shippo-accounts/{ShippoAccountId}")(pathParams$);
+        const path$ = this.templateURLComponent("/webhooks")();
 
         const query$ = "";
-
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -247,13 +129,82 @@ export class ShippoAccounts extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "GetShippoAccount",
+            operationID: "listWebhooks",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKeyHeader,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<components.WebhookPaginatedList>()
+            .json(200, components.WebhookPaginatedList$)
+            .fail(["4XX", "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Retrieve a specific webhook
+     *
+     * @remarks
+     * Returns the details of a specific webhook using the webhook object ID.
+     */
+    async getWebhook(webhookId: string, options?: RequestOptions): Promise<components.Webhook> {
+        const input$: operations.GetWebhookRequest = {
+            webhookId: webhookId,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.GetWebhookRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            webhookId: encodeSimple$("webhookId", payload$.webhookId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/webhooks/{webhookId}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKeyHeader === "function") {
+            security$ = { apiKeyHeader: await this.options$.apiKeyHeader() };
+        } else if (this.options$.apiKeyHeader) {
+            security$ = { apiKeyHeader: this.options$.apiKeyHeader };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "getWebhook",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKeyHeader,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -269,28 +220,28 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const [result$] = await this.matcher<components.ShippoAccount>()
-            .json(200, components.ShippoAccount$)
-            .fail([400, "4XX", "5XX"])
+        const [result$] = await this.matcher<components.Webhook>()
+            .json(200, components.Webhook$)
+            .fail(["4XX", "5XX"])
             .match(response);
 
         return result$;
     }
 
     /**
-     * Update a Shippo Account
+     * Update an existing webhook
      *
      * @remarks
-     * Updates a Shippo Account object
+     * Updates an existing webhook using the webhook object ID.
      */
-    async update(
-        shippoAccountId: string,
-        shippoAccountUpdateRequest?: components.ShippoAccountUpdateRequest | undefined,
+    async updateWebhook(
+        webhookId: string,
+        webhookUpdateRequest: components.WebhookUpdateRequest,
         options?: RequestOptions
-    ): Promise<components.ShippoAccount> {
-        const input$: operations.UpdateShippoAccountRequest = {
-            shippoAccountId: shippoAccountId,
-            shippoAccountUpdateRequest: shippoAccountUpdateRequest,
+    ): Promise<components.Webhook> {
+        const input$: operations.UpdateWebhookRequest = {
+            webhookId: webhookId,
+            webhookUpdateRequest: webhookUpdateRequest,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -299,28 +250,20 @@ export class ShippoAccounts extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateShippoAccountRequest$.outboundSchema.parse(value$),
+            (value$) => operations.UpdateWebhookRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = encodeJSON$("body", payload$.ShippoAccountUpdateRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.WebhookUpdateRequest, { explode: true });
 
         const pathParams$ = {
-            ShippoAccountId: encodeSimple$("ShippoAccountId", payload$.ShippoAccountId, {
+            webhookId: encodeSimple$("webhookId", payload$.webhookId, {
                 explode: false,
                 charEncoding: "percent",
             }),
         };
-        const path$ = this.templateURLComponent("/shippo-accounts/{ShippoAccountId}")(pathParams$);
+        const path$ = this.templateURLComponent("/webhooks/{webhookId}")(pathParams$);
 
         const query$ = "";
-
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -331,13 +274,13 @@ export class ShippoAccounts extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "UpdateShippoAccount",
+            operationID: "updateWebhook",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKeyHeader,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -353,9 +296,79 @@ export class ShippoAccounts extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const [result$] = await this.matcher<components.ShippoAccount>()
-            .json(200, components.ShippoAccount$)
-            .fail([400, "4XX", "5XX"])
+        const [result$] = await this.matcher<components.Webhook>()
+            .json(200, components.Webhook$)
+            .fail(["4XX", "5XX"])
+            .match(response);
+
+        return result$;
+    }
+
+    /**
+     * Delete a specific webhook
+     *
+     * @remarks
+     * Deletes a specific webhook using the webhook object ID.
+     */
+    async deleteWebhook(webhookId: string, options?: RequestOptions): Promise<void> {
+        const input$: operations.DeleteWebhookRequest = {
+            webhookId: webhookId,
+        };
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "*/*");
+
+        const payload$ = schemas$.parse(
+            input$,
+            (value$) => operations.DeleteWebhookRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            webhookId: encodeSimple$("webhookId", payload$.webhookId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/webhooks/{webhookId}")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKeyHeader === "function") {
+            security$ = { apiKeyHeader: await this.options$.apiKeyHeader() };
+        } else if (this.options$.apiKeyHeader) {
+            security$ = { apiKeyHeader: this.options$.apiKeyHeader };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "deleteWebhook",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKeyHeader,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
+            .fail(["4XX", "5XX"])
             .match(response);
 
         return result$;
