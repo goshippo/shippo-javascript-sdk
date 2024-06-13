@@ -14,6 +14,10 @@ import { Insurance, Insurance$ } from "./insurance";
 import { InvoiceNumber, InvoiceNumber$ } from "./invoicenumber";
 import { PoNumber, PoNumber$ } from "./ponumber";
 import { RmaNumber, RmaNumber$ } from "./rmanumber";
+import {
+    ShipmentExtraLasershipAttributesEnum,
+    ShipmentExtraLasershipAttributesEnum$,
+} from "./shipmentextralasershipattributesenum";
 import { UPSReferenceFields, UPSReferenceFields$ } from "./upsreferencefields";
 import * as z from "zod";
 
@@ -38,21 +42,6 @@ export enum DangerousGoodsCode {
     Seven = "07",
     Eight = "08",
     Nine = "09",
-}
-
-/**
- * Specify Lasership Attributes (Lasership only). Multiple options accepted.
- */
-export enum LasershipAttrs {
-    TwoPersonDelivery = "TwoPersonDelivery",
-    Explosive = "Explosive",
-    Alcohol = "Alcohol",
-    Hazmat = "Hazmat",
-    ControlledSubstance = "ControlledSubstance",
-    Refrigerated = "Refrigerated",
-    DryIce = "DryIce",
-    Perishable = "Perishable",
-    NoRTS = "NoRTS",
 }
 
 /**
@@ -203,7 +192,7 @@ export type ShipmentExtra = {
     /**
      * Specify Lasership Attributes (Lasership only). Multiple options accepted.
      */
-    lasershipAttrs?: LasershipAttrs | undefined;
+    lasershipAttrs?: Array<ShipmentExtraLasershipAttributesEnum> | undefined;
     /**
      * Declared value (Lasership only). Defaults to `50.00`.
      */
@@ -279,12 +268,6 @@ export namespace DangerousGoodsCode$ {
 }
 
 /** @internal */
-export namespace LasershipAttrs$ {
-    export const inboundSchema = z.nativeEnum(LasershipAttrs);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
 export namespace PreferredDeliveryTimeframe$ {
     export const inboundSchema = z.nativeEnum(PreferredDeliveryTimeframe);
     export const outboundSchema = inboundSchema;
@@ -334,7 +317,9 @@ export namespace ShipmentExtra$ {
             insurance: Insurance$.inboundSchema.optional(),
             invoice_number: InvoiceNumber$.inboundSchema.optional(),
             is_return: z.boolean().optional(),
-            lasership_attrs: LasershipAttrs$.inboundSchema.optional(),
+            lasership_attrs: z
+                .array(ShipmentExtraLasershipAttributesEnum$.inboundSchema)
+                .optional(),
             lasership_declared_value: z.string().optional(),
             manifest_number: UPSReferenceFields$.inboundSchema.optional(),
             model_number: UPSReferenceFields$.inboundSchema.optional(),
@@ -437,7 +422,7 @@ export namespace ShipmentExtra$ {
         insurance?: Insurance$.Outbound | undefined;
         invoice_number?: InvoiceNumber$.Outbound | undefined;
         is_return?: boolean | undefined;
-        lasership_attrs?: string | undefined;
+        lasership_attrs?: Array<string> | undefined;
         lasership_declared_value?: string | undefined;
         manifest_number?: UPSReferenceFields$.Outbound | undefined;
         model_number?: UPSReferenceFields$.Outbound | undefined;
@@ -491,7 +476,9 @@ export namespace ShipmentExtra$ {
             insurance: Insurance$.outboundSchema.optional(),
             invoiceNumber: InvoiceNumber$.outboundSchema.optional(),
             isReturn: z.boolean().optional(),
-            lasershipAttrs: LasershipAttrs$.outboundSchema.optional(),
+            lasershipAttrs: z
+                .array(ShipmentExtraLasershipAttributesEnum$.outboundSchema)
+                .optional(),
             lasershipDeclaredValue: z.string().optional(),
             manifestNumber: UPSReferenceFields$.outboundSchema.optional(),
             modelNumber: UPSReferenceFields$.outboundSchema.optional(),

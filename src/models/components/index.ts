@@ -116,6 +116,7 @@ export * from "./servicelevelwithparent";
 export * from "./shipment";
 export * from "./shipmentcreaterequest";
 export * from "./shipmentextra";
+export * from "./shipmentextralasershipattributesenum";
 export * from "./shipmentpaginatedlist";
 export * from "./shippoaccount";
 export * from "./shippoaccountpaginatedlist";
