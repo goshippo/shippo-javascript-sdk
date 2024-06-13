@@ -9,6 +9,8 @@ export * from "./addressimporter";
 export * from "./addresspaginatedlist";
 export * from "./addressvalidationresults";
 export * from "./addressvalidationresultsmessage";
+export * from "./addressvalidationresultsmessagecodeenum";
+export * from "./addressvalidationresultsmessagesourceenum";
 export * from "./alcohol";
 export * from "./batch";
 export * from "./batchcreaterequest";
