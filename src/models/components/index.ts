@@ -138,4 +138,8 @@ export * from "./userparceltemplatelist";
 export * from "./userparceltemplateupdaterequest";
 export * from "./userparceltemplatewithcarriertemplatecreaterequest";
 export * from "./userparceltemplatewithoutcarriertemplatecreaterequest";
+export * from "./webhook";
+export * from "./webhookeventtypeenum";
+export * from "./webhookpaginatedlist";
+export * from "./webhookupdaterequest";
 export * from "./weightunitenum";
