@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 43b97613270f92d7505e2d0e1529b817
+  docChecksum: 83260d88128c46673f69c31c772447dc
   docVersion: "2018-02-08"
   speakeasyVersion: 1.307.1
   generationVersion: 2.342.2
-  releaseVersion: 2.3.3
-  configChecksum: 577a8799bafcd7b29d5dd3687feb5e4b
+  releaseVersion: 2.3.4
+  configChecksum: 0ad1fc2b154a6e105871572bf785ce51
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -215,6 +215,8 @@ generatedFiles:
   - src/models/components/webhookeventtypeenum.ts
   - src/models/components/webhookpaginatedlist.ts
   - src/models/components/security.ts
+  - src/models/components/addressvalidationresultsmessagecodeenum.ts
+  - src/models/components/addressvalidationresultsmessagesourceenum.ts
   - src/models/components/servicelevel.ts
   - src/models/components/servicelevelenumset.ts
   - src/models/operations/listaddresses.ts
@@ -294,8 +296,6 @@ generatedFiles:
   - docs/models/components/longitude.md
   - docs/models/components/address.md
   - docs/models/components/addressvalidationresults.md
-  - docs/models/components/code.md
-  - docs/models/components/source.md
   - docs/models/components/addressvalidationresultsmessage.md
   - docs/models/components/addresscreaterequest.md
   - docs/models/components/objectresults.md
@@ -496,6 +496,8 @@ generatedFiles:
   - docs/models/components/webhookeventtypeenum.md
   - docs/models/components/webhookpaginatedlist.md
   - docs/models/components/security.md
+  - docs/models/components/addressvalidationresultsmessagecodeenum.md
+  - docs/models/components/addressvalidationresultsmessagesourceenum.md
   - docs/models/components/servicelevel.md
   - docs/models/components/servicelevelswyftenum.md
   - docs/models/components/servicelevelvehoenum.md
