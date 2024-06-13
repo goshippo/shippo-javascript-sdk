@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 /**
@@ -12,11 +13,19 @@ import * as z from "zod";
  * <a href="https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html">UPS</a> for details).
  * If no payment_method inputted the value defaults to "ANY".)
  */
-export enum PaymentMethod {
-    SecuredFunds = "SECURED_FUNDS",
-    Cash = "CASH",
-    Any = "ANY",
-}
+export const PaymentMethod = {
+    SecuredFunds: "SECURED_FUNDS",
+    Cash: "CASH",
+    Any: "ANY",
+} as const;
+/**
+ * Secured funds include money orders, certified cheques and others (see
+ *
+ * @remarks
+ * <a href="https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html">UPS</a> for details).
+ * If no payment_method inputted the value defaults to "ANY".)
+ */
+export type PaymentMethod = ClosedEnum<typeof PaymentMethod>;
 
 /**
  * Specify collection on delivery details (UPS only).

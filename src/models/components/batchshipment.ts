@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 /**
@@ -13,12 +14,21 @@ import * as z from "zod";
  * Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field<br>
  * `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
  */
-export enum Status {
-    Invalid = "INVALID",
-    Valid = "VALID",
-    Incomplete = "INCOMPLETE",
-    TransactionFailed = "TRANSACTION_FAILED",
-}
+export const Status = {
+    Invalid: "INVALID",
+    Valid: "VALID",
+    Incomplete: "INCOMPLETE",
+    TransactionFailed: "TRANSACTION_FAILED",
+} as const;
+/**
+ * `INVALID` batch shipments cannot be purchased and will have to be removed, fixed, and added to the batch again.<br>
+ *
+ * @remarks
+ * `VALID` batch shipments can be purchased. <br>
+ * Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field<br>
+ * `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
+ */
+export type Status = ClosedEnum<typeof Status>;
 
 export type BatchShipment = {
     /**

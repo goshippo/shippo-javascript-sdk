@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 export type ListCarrierParcelTemplatesGlobals = {
@@ -15,11 +16,15 @@ export type ListCarrierParcelTemplatesGlobals = {
 /**
  * filter by user or enabled
  */
-export enum Include {
-    All = "all",
-    User = "user",
-    Enabled = "enabled",
-}
+export const Include = {
+    All: "all",
+    User: "user",
+    Enabled: "enabled",
+} as const;
+/**
+ * filter by user or enabled
+ */
+export type Include = ClosedEnum<typeof Include>;
 
 export type ListCarrierParcelTemplatesRequest = {
     /**

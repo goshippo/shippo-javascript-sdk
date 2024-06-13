@@ -3,18 +3,23 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 /**
  * Party to be billed. (Leave blank for DHL Germany.)
  */
-export enum Type {
-    Sender = "SENDER",
-    Recipient = "RECIPIENT",
-    ThirdParty = "THIRD_PARTY",
-    ThirdPartyConsignee = "THIRD_PARTY_CONSIGNEE",
-    Collect = "COLLECT",
-}
+export const Type = {
+    Sender: "SENDER",
+    Recipient: "RECIPIENT",
+    ThirdParty: "THIRD_PARTY",
+    ThirdPartyConsignee: "THIRD_PARTY_CONSIGNEE",
+    Collect: "COLLECT",
+} as const;
+/**
+ * Party to be billed. (Leave blank for DHL Germany.)
+ */
+export type Type = ClosedEnum<typeof Type>;
 
 /**
  * Specify billing details (UPS, FedEx, and DHL Germany only).

@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import {
     CarrierAccountServiceLevel,
     CarrierAccountServiceLevel$,
@@ -25,19 +26,29 @@ export type ParametersT =
 /**
  * Authentication method used by this account.
  */
-export enum CarrierAccountWithExtraInfoType {
-    Default = "default",
-    Oauth = "oauth",
-}
+export const CarrierAccountWithExtraInfoType = {
+    Default: "default",
+    Oauth: "oauth",
+} as const;
+/**
+ * Authentication method used by this account.
+ */
+export type CarrierAccountWithExtraInfoType = ClosedEnum<typeof CarrierAccountWithExtraInfoType>;
 
 /**
  * Current authentication status. Possible values: 'disconnected' (authorization lost, reconnect needed), 'connected' (authorized and active), 'authorization_pending' (awaiting initial authorization flow).
  */
-export enum CarrierAccountWithExtraInfoStatus {
-    Disconnected = "disconnected",
-    Connected = "connected",
-    AuthorizationPending = "authorization_pending",
-}
+export const CarrierAccountWithExtraInfoStatus = {
+    Disconnected: "disconnected",
+    Connected: "connected",
+    AuthorizationPending: "authorization_pending",
+} as const;
+/**
+ * Current authentication status. Possible values: 'disconnected' (authorization lost, reconnect needed), 'connected' (authorized and active), 'authorization_pending' (awaiting initial authorization flow).
+ */
+export type CarrierAccountWithExtraInfoStatus = ClosedEnum<
+    typeof CarrierAccountWithExtraInfoStatus
+>;
 
 export type Authentication = {
     /**

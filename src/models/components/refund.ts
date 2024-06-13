@@ -3,17 +3,22 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 /**
  * Indicates the status of the Refund.
  */
-export enum RefundStatus {
-    Queued = "QUEUED",
-    Pending = "PENDING",
-    Success = "SUCCESS",
-    Error = "ERROR",
-}
+export const RefundStatus = {
+    Queued: "QUEUED",
+    Pending: "PENDING",
+    Success: "SUCCESS",
+    Error: "ERROR",
+} as const;
+/**
+ * Indicates the status of the Refund.
+ */
+export type RefundStatus = ClosedEnum<typeof RefundStatus>;
 
 export type Refund = {
     /**

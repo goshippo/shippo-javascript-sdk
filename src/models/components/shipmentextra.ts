@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import { Alcohol, Alcohol$ } from "./alcohol";
 import { Billing, Billing$ } from "./billing";
 import { Cod, Cod$ } from "./cod";
@@ -24,47 +25,63 @@ import * as z from "zod";
 /**
  * Specify an ancillary service endorsement to provide the USPS with instructions on how to handle undeliverable-as-addressed pieces (DHL eCommerce only).
  */
-export enum AncillaryEndorsement {
-    ForwardingServiceRequested = "FORWARDING_SERVICE_REQUESTED",
-    ReturnServiceRequested = "RETURN_SERVICE_REQUESTED",
-}
+export const AncillaryEndorsement = {
+    ForwardingServiceRequested: "FORWARDING_SERVICE_REQUESTED",
+    ReturnServiceRequested: "RETURN_SERVICE_REQUESTED",
+} as const;
+/**
+ * Specify an ancillary service endorsement to provide the USPS with instructions on how to handle undeliverable-as-addressed pieces (DHL eCommerce only).
+ */
+export type AncillaryEndorsement = ClosedEnum<typeof AncillaryEndorsement>;
 
 /**
  * Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
  */
-export enum DangerousGoodsCode {
-    One = "01",
-    Two = "02",
-    Three = "03",
-    Four = "04",
-    Five = "05",
-    Six = "06",
-    Seven = "07",
-    Eight = "08",
-    Nine = "09",
-}
+export const DangerousGoodsCode = {
+    One: "01",
+    Two: "02",
+    Three: "03",
+    Four: "04",
+    Five: "05",
+    Six: "06",
+    Seven: "07",
+    Eight: "08",
+    Nine: "09",
+} as const;
+/**
+ * Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
+ */
+export type DangerousGoodsCode = ClosedEnum<typeof DangerousGoodsCode>;
 
 /**
  * Required for DHL Germany Paket Sameday. Designates a desired timeframe for delivery. Format is `HHMMHHMM`
  */
-export enum PreferredDeliveryTimeframe {
-    TenMillionOneThousandTwoHundred = "10001200",
-    TwelveMillionOneThousandFourHundred = "12001400",
-    FourteenMillionOneThousandSixHundred = "14001600",
-    SixteenMillionOneThousandEightHundred = "16001800",
-    EighteenMillionTwoThousand = "18002000",
-    NineteenMillionTwoThousandOneHundred = "19002100",
-}
+export const PreferredDeliveryTimeframe = {
+    TenMillionOneThousandTwoHundred: "10001200",
+    TwelveMillionOneThousandFourHundred: "12001400",
+    FourteenMillionOneThousandSixHundred: "14001600",
+    SixteenMillionOneThousandEightHundred: "16001800",
+    EighteenMillionTwoThousand: "18002000",
+    NineteenMillionTwoThousandOneHundred: "19002100",
+} as const;
+/**
+ * Required for DHL Germany Paket Sameday. Designates a desired timeframe for delivery. Format is `HHMMHHMM`
+ */
+export type PreferredDeliveryTimeframe = ClosedEnum<typeof PreferredDeliveryTimeframe>;
 
 /**
  * Request additional return option for return shipments (UPS only).
  */
-export enum ReturnServiceType {
-    PrintAndMail = "PRINT_AND_MAIL",
-    Attempt1 = "ATTEMPT_1",
-    Attempt3 = "ATTEMPT_3",
-    ElectronicLabel = "ELECTRONIC_LABEL",
-}
+export const ReturnServiceType = {
+    PrintAndMail: "PRINT_AND_MAIL",
+    Attempt1: "ATTEMPT_1",
+    Attempt3: "ATTEMPT_3",
+    ElectronicLabel: "ELECTRONIC_LABEL",
+} as const;
+/**
+ * Request additional return option for return shipments (UPS only).
+ */
+export type ReturnServiceType = ClosedEnum<typeof ReturnServiceType>;
 
 /**
  * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only)
@@ -72,13 +89,20 @@ export enum ReturnServiceType {
  * @remarks
  * or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
  */
-export enum SignatureConfirmation {
-    Standard = "STANDARD",
-    Adult = "ADULT",
-    Certified = "CERTIFIED",
-    Indirect = "INDIRECT",
-    CarrierConfirmation = "CARRIER_CONFIRMATION",
-}
+export const SignatureConfirmation = {
+    Standard: "STANDARD",
+    Adult: "ADULT",
+    Certified: "CERTIFIED",
+    Indirect: "INDIRECT",
+    CarrierConfirmation: "CARRIER_CONFIRMATION",
+} as const;
+/**
+ * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only)
+ *
+ * @remarks
+ * or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
+ */
+export type SignatureConfirmation = ClosedEnum<typeof SignatureConfirmation>;
 
 /**
  * An object holding optional extra services to be requested.

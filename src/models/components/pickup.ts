@@ -3,18 +3,23 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import { Location, Location$ } from "./location";
 import * as z from "zod";
 
 /**
  * Indicates the status of the pickup.
  */
-export enum PickupStatus {
-    Pending = "PENDING",
-    Confirmed = "CONFIRMED",
-    Error = "ERROR",
-    Cancelled = "CANCELLED",
-}
+export const PickupStatus = {
+    Pending: "PENDING",
+    Confirmed: "CONFIRMED",
+    Error: "ERROR",
+    Cancelled: "CANCELLED",
+} as const;
+/**
+ * Indicates the status of the pickup.
+ */
+export type PickupStatus = ClosedEnum<typeof PickupStatus>;
 
 export type Pickup = {
     /**

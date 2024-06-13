@@ -3,15 +3,17 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import { ResponseMessage, ResponseMessage$ } from "./responsemessage";
 import { ServiceLevelWithParent, ServiceLevelWithParent$ } from "./servicelevelwithparent";
 import * as z from "zod";
 
-export enum Attributes {
-    Bestvalue = "BESTVALUE",
-    Cheapest = "CHEAPEST",
-    Fastest = "FASTEST",
-}
+export const Attributes = {
+    Bestvalue: "BESTVALUE",
+    Cheapest: "CHEAPEST",
+    Fastest: "FASTEST",
+} as const;
+export type Attributes = ClosedEnum<typeof Attributes>;
 
 export type Rate = {
     /**

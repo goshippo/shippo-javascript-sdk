@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import {
     BatchShipmentPaginatedList,
     BatchShipmentPaginatedList$,
@@ -29,13 +30,23 @@ export type ObjectResults = {
  * Batches that are in the `PURCHASING` state are being purchased<br>
  * `PURCHASED` batches are finished purchasing.
  */
-export enum BatchStatus {
-    Validating = "VALIDATING",
-    Valid = "VALID",
-    Invalid = "INVALID",
-    Purchasing = "PURCHASING",
-    Purchased = "PURCHASED",
-}
+export const BatchStatus = {
+    Validating: "VALIDATING",
+    Valid: "VALID",
+    Invalid: "INVALID",
+    Purchasing: "PURCHASING",
+    Purchased: "PURCHASED",
+} as const;
+/**
+ * Batches that are `VALIDATING` are being created and validated<br>
+ *
+ * @remarks
+ * `VALID` batches can be purchased<br>
+ * `INVALID` batches cannot be purchased, `INVALID` BatchShipments must be removed<br>
+ * Batches that are in the `PURCHASING` state are being purchased<br>
+ * `PURCHASED` batches are finished purchasing.
+ */
+export type BatchStatus = ClosedEnum<typeof BatchStatus>;
 
 export type Batch = {
     /**

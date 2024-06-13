@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import { Address, Address$ } from "./address";
 import { LineItem, LineItem$ } from "./lineitem";
 import { OrderStatusEnum, OrderStatusEnum$ } from "./orderstatusenum";
@@ -15,22 +16,29 @@ import * as z from "zod";
  * @remarks
  * Orders created via the Shippo API or dashboard will have the value "Shippo".
  */
-export enum ShopApp {
-    Amazon = "Amazon",
-    Bigcommerce = "Bigcommerce",
-    CSVImport = "CSV_Import",
-    EBay = "eBay",
-    EPages = "ePages",
-    Etsy = "Etsy",
-    Godaddy = "Godaddy",
-    Magento = "Magento",
-    Shippo = "Shippo",
-    Shopify = "Shopify",
-    Spreecommerce = "Spreecommerce",
-    StripeRelay = "StripeRelay",
-    Weebly = "Weebly",
-    WooCommerce = "WooCommerce",
-}
+export const ShopApp = {
+    Amazon: "Amazon",
+    Bigcommerce: "Bigcommerce",
+    CSVImport: "CSV_Import",
+    EBay: "eBay",
+    EPages: "ePages",
+    Etsy: "Etsy",
+    Godaddy: "Godaddy",
+    Magento: "Magento",
+    Shippo: "Shippo",
+    Shopify: "Shopify",
+    Spreecommerce: "Spreecommerce",
+    StripeRelay: "StripeRelay",
+    Weebly: "Weebly",
+    WooCommerce: "WooCommerce",
+} as const;
+/**
+ * Platform the order was created on and, if applicable, imported from.
+ *
+ * @remarks
+ * Orders created via the Shippo API or dashboard will have the value "Shippo".
+ */
+export type ShopApp = ClosedEnum<typeof ShopApp>;
 
 export type Order = {
     /**
