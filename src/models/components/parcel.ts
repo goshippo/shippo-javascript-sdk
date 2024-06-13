@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import { DistanceUnitEnum, DistanceUnitEnum$ } from "./distanceunitenum";
 import { ParcelExtra, ParcelExtra$ } from "./parcelextra";
 import { ParcelTemplateEnumSet, ParcelTemplateEnumSet$ } from "./parceltemplateenumset";
@@ -12,9 +13,13 @@ import * as z from "zod";
 /**
  * A Parcel will only be valid when all required values have been sent and validated successfully.
  */
-export enum ObjectState {
-    Valid = "VALID",
-}
+export const ObjectState = {
+    Valid: "VALID",
+} as const;
+/**
+ * A Parcel will only be valid when all required values have been sent and validated successfully.
+ */
+export type ObjectState = ClosedEnum<typeof ObjectState>;
 
 export type Parcel = {
     /**

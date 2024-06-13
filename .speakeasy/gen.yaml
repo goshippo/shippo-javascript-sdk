@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 2.3.2
+  version: 2.3.3
   additionalDependencies:
     dependencies: {}
     devDependencies:
@@ -26,7 +26,7 @@ typescript:
     license: MIT
   author: Shippo
   clientServerStatusCodesAsErrors: true
-  enumFormat: enum
+  enumFormat: union
   flattenGlobalSecurity: true
   imports:
     option: openapi

@@ -3,16 +3,21 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 /**
  * Indicates the status of the manifest.
  */
-export enum ManifestStatus {
-    Queued = "QUEUED",
-    Success = "SUCCESS",
-    Error = "ERROR",
-}
+export const ManifestStatus = {
+    Queued: "QUEUED",
+    Success: "SUCCESS",
+    Error: "ERROR",
+} as const;
+/**
+ * Indicates the status of the manifest.
+ */
+export type ManifestStatus = ClosedEnum<typeof ManifestStatus>;
 
 export type Manifest = {
     /**

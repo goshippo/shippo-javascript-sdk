@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import {
     AddressCompleteCreateRequest,
     AddressCompleteCreateRequest$,
@@ -15,32 +16,43 @@ import * as z from "zod";
  * @remarks
  * supported for DHL Express.
  */
-export enum BuildingLocationType {
-    BackDoor = "Back Door",
-    RingBell = "Ring Bell",
-    SecurityDeck = "Security Deck",
-    ShippingDock = "Shipping Dock",
-    FrontDoor = "Front Door",
-    KnockOnDoor = "Knock on Door",
-    InAtMailbox = "In/At Mailbox",
-    MailRoom = "Mail Room",
-    Office = "Office",
-    Other = "Other",
-    Reception = "Reception",
-    SideDoor = "Side Door",
-}
+export const BuildingLocationType = {
+    BackDoor: "Back Door",
+    RingBell: "Ring Bell",
+    SecurityDeck: "Security Deck",
+    ShippingDock: "Shipping Dock",
+    FrontDoor: "Front Door",
+    KnockOnDoor: "Knock on Door",
+    InAtMailbox: "In/At Mailbox",
+    MailRoom: "Mail Room",
+    Office: "Office",
+    Other: "Other",
+    Reception: "Reception",
+    SideDoor: "Side Door",
+} as const;
+/**
+ * Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only
+ *
+ * @remarks
+ * supported for DHL Express.
+ */
+export type BuildingLocationType = ClosedEnum<typeof BuildingLocationType>;
 
 /**
  * The type of building where the pickup is located.
  */
-export enum BuildingType {
-    Apartment = "apartment",
-    Building = "building",
-    Department = "department",
-    Floor = "floor",
-    Room = "room",
-    Suite = "suite",
-}
+export const BuildingType = {
+    Apartment: "apartment",
+    Building: "building",
+    Department: "department",
+    Floor: "floor",
+    Room: "room",
+    Suite: "suite",
+} as const;
+/**
+ * The type of building where the pickup is located.
+ */
+export type BuildingType = ClosedEnum<typeof BuildingType>;
 
 /**
  * Location where the parcel(s) will be picked up.
