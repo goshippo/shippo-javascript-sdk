@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: ffb090c3bb6c323817bcc3a795f9cfdf
+  docChecksum: 43b97613270f92d7505e2d0e1529b817
   docVersion: "2018-02-08"
   speakeasyVersion: 1.307.0
   generationVersion: 2.342.0
-  releaseVersion: 2.3.1
-  configChecksum: 6cfda4c94082191055847b86ae50f088
+  releaseVersion: 2.3.2
+  configChecksum: df5d1862a8ace1f8536643c026addac7
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -103,6 +103,7 @@ generatedFiles:
   - src/models/components/upsreferencefields.ts
   - src/models/components/rmanumber.ts
   - src/models/components/ponumber.ts
+  - src/models/components/shipmentextralasershipattributesenum.ts
   - src/models/components/invoicenumber.ts
   - src/models/components/insurance.ts
   - src/models/components/dryice.ts
@@ -333,7 +334,6 @@ generatedFiles:
   - docs/models/components/customsdeclarationb13afilingoptionenum.md
   - docs/models/components/ancillaryendorsement.md
   - docs/models/components/dangerousgoodscode.md
-  - docs/models/components/lasershipattrs.md
   - docs/models/components/preferreddeliverytimeframe.md
   - docs/models/components/returnservicetype.md
   - docs/models/components/signatureconfirmation.md
@@ -341,6 +341,7 @@ generatedFiles:
   - docs/models/components/upsreferencefields.md
   - docs/models/components/rmanumber.md
   - docs/models/components/ponumber.md
+  - docs/models/components/shipmentextralasershipattributesenum.md
   - docs/models/components/invoicenumber.md
   - docs/models/components/provider.md
   - docs/models/components/insurance.md
