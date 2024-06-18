@@ -16,7 +16,7 @@ import * as z from "zod";
  * | Fastway_Australia_Satchel_A5 | Satchel A5 | 210.00 x 148.00 x 64.00 mm|
  *
  */
-export const ParcelTemplateAramexAustraliaEnum = {
+export const AramexAustraliaParcelTemplate = {
     FastwayAustraliaSatchelA2: "Fastway_Australia_Satchel_A2",
     FastwayAustraliaSatchelA3: "Fastway_Australia_Satchel_A3",
     FastwayAustraliaSatchelA4: "Fastway_Australia_Satchel_A4",
@@ -33,9 +33,7 @@ export const ParcelTemplateAramexAustraliaEnum = {
  * | Fastway_Australia_Satchel_A5 | Satchel A5 | 210.00 x 148.00 x 64.00 mm|
  *
  */
-export type ParcelTemplateAramexAustraliaEnum = ClosedEnum<
-    typeof ParcelTemplateAramexAustraliaEnum
->;
+export type AramexAustraliaParcelTemplate = ClosedEnum<typeof AramexAustraliaParcelTemplate>;
 
 /**
  * |Token | Name | Dimensions|
@@ -48,7 +46,7 @@ export type ParcelTemplateAramexAustraliaEnum = ClosedEnum<
  * | couriersplease_5kg_satchel | 5kg Satchel | 43.70 x 59.70 x 0.10 cm|
  *
  */
-export const ParcelTemplateCouriersPleaseEnum = {
+export const CouriersPleaseParcelTemplate = {
     Couriersplease500gSatchel: "couriersplease_500g_satchel",
     Couriersplease1kgSatchel: "couriersplease_1kg_satchel",
     Couriersplease3kgSatchel: "couriersplease_3kg_satchel",
@@ -65,7 +63,7 @@ export const ParcelTemplateCouriersPleaseEnum = {
  * | couriersplease_5kg_satchel | 5kg Satchel | 43.70 x 59.70 x 0.10 cm|
  *
  */
-export type ParcelTemplateCouriersPleaseEnum = ClosedEnum<typeof ParcelTemplateCouriersPleaseEnum>;
+export type CouriersPleaseParcelTemplate = ClosedEnum<typeof CouriersPleaseParcelTemplate>;
 
 /**
  * |Token | Name | Dimensions|
@@ -75,7 +73,7 @@ export type ParcelTemplateCouriersPleaseEnum = ClosedEnum<typeof ParcelTemplateC
  * | DPD_UK_Express_Pak| DPD UK Express Pak | 530.00 x 400.00 x 100.00 mm|
  *
  */
-export const ParcelTemplateDPDUKEnum = {
+export const DPDUKParcelTemplate = {
     DPDUKExpressPak: "DPD_UK_Express_Pak",
 } as const;
 /**
@@ -86,7 +84,7 @@ export const ParcelTemplateDPDUKEnum = {
  * | DPD_UK_Express_Pak| DPD UK Express Pak | 530.00 x 400.00 x 100.00 mm|
  *
  */
-export type ParcelTemplateDPDUKEnum = ClosedEnum<typeof ParcelTemplateDPDUKEnum>;
+export type DPDUKParcelTemplate = ClosedEnum<typeof DPDUKParcelTemplate>;
 
 /**
  * |Token | Name | Dimensions|
@@ -97,7 +95,7 @@ export type ParcelTemplateDPDUKEnum = ClosedEnum<typeof ParcelTemplateDPDUKEnum>
  * | DHLeC_SM_Flats | Flats | 27.00 x 17.00 x 17.00 in|
  *
  */
-export const ParcelTemplateDHLeCommerceEnum = {
+export const DHLECommerceParcelTemplate = {
     DHLeCIrregular: "DHLeC_Irregular",
     DHLeCSMFlats: "DHLeC_SM_Flats",
 } as const;
@@ -110,7 +108,7 @@ export const ParcelTemplateDHLeCommerceEnum = {
  * | DHLeC_SM_Flats | Flats | 27.00 x 17.00 x 17.00 in|
  *
  */
-export type ParcelTemplateDHLeCommerceEnum = ClosedEnum<typeof ParcelTemplateDHLeCommerceEnum>;
+export type DHLECommerceParcelTemplate = ClosedEnum<typeof DHLECommerceParcelTemplate>;
 
 /**
  * |Token | Name | Dimensions|
@@ -139,7 +137,7 @@ export type ParcelTemplateDHLeCommerceEnum = ClosedEnum<typeof ParcelTemplateDHL
  * | USPS_SoftPack | Soft Pack Padded Envelope |  Length and width defined in the Parcel|
  *
  */
-export const ParcelTemplateUSPSEnum = {
+export const USPSParcelTemplate = {
     USPSFlatRateCardboardEnvelope: "USPS_FlatRateCardboardEnvelope",
     USPSFlatRateEnvelope: "USPS_FlatRateEnvelope",
     USPSFlatRateGiftCardEnvelope: "USPS_FlatRateGiftCardEnvelope",
@@ -188,7 +186,7 @@ export const ParcelTemplateUSPSEnum = {
  * | USPS_SoftPack | Soft Pack Padded Envelope |  Length and width defined in the Parcel|
  *
  */
-export type ParcelTemplateUSPSEnum = ClosedEnum<typeof ParcelTemplateUSPSEnum>;
+export type USPSParcelTemplate = ClosedEnum<typeof USPSParcelTemplate>;
 
 /**
  * |Token | Name | Dimensions|
@@ -222,7 +220,7 @@ export type ParcelTemplateUSPSEnum = ClosedEnum<typeof ParcelTemplateUSPSEnum>;
  * | UPS_Pallet | Pallet | 120.00 x 80.00 x 200.00 cm|
  *
  */
-export const ParcelTemplateUPSEnum = {
+export const UPSParcelTemplate = {
     UPSBox10kg: "UPS_Box_10kg",
     UPSBox25kg: "UPS_Box_25kg",
     UPSExpressBox: "UPS_Express_Box",
@@ -281,7 +279,7 @@ export const ParcelTemplateUPSEnum = {
  * | UPS_Pallet | Pallet | 120.00 x 80.00 x 200.00 cm|
  *
  */
-export type ParcelTemplateUPSEnum = ClosedEnum<typeof ParcelTemplateUPSEnum>;
+export type UPSParcelTemplate = ClosedEnum<typeof UPSParcelTemplate>;
 
 /**
  * |Token | Name | Dimensions|
@@ -306,7 +304,7 @@ export type ParcelTemplateUPSEnum = ClosedEnum<typeof ParcelTemplateUPSEnum>;
  * | FedEx_XL_Pak | FedEx® Extra Large Pak | 17.50 x 20.75 x 2.00 in|
  *
  */
-export const ParcelTemplateFedExEnum = {
+export const FedExParcelTemplate = {
     FedExBox10kg: "FedEx_Box_10kg",
     FedExBox25kg: "FedEx_Box_25kg",
     FedExBoxExtraLarge1: "FedEx_Box_Extra_Large_1",
@@ -347,84 +345,84 @@ export const ParcelTemplateFedExEnum = {
  * | FedEx_XL_Pak | FedEx® Extra Large Pak | 17.50 x 20.75 x 2.00 in|
  *
  */
-export type ParcelTemplateFedExEnum = ClosedEnum<typeof ParcelTemplateFedExEnum>;
+export type FedExParcelTemplate = ClosedEnum<typeof FedExParcelTemplate>;
 
 /**
  * If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
  */
 export type ParcelTemplateEnumSet =
-    | ParcelTemplateFedExEnum
-    | ParcelTemplateUPSEnum
-    | ParcelTemplateUSPSEnum
-    | ParcelTemplateDHLeCommerceEnum
-    | ParcelTemplateDPDUKEnum
-    | ParcelTemplateCouriersPleaseEnum
-    | ParcelTemplateAramexAustraliaEnum;
+    | FedExParcelTemplate
+    | UPSParcelTemplate
+    | USPSParcelTemplate
+    | DHLECommerceParcelTemplate
+    | DPDUKParcelTemplate
+    | CouriersPleaseParcelTemplate
+    | AramexAustraliaParcelTemplate;
 
 /** @internal */
-export namespace ParcelTemplateAramexAustraliaEnum$ {
-    export const inboundSchema = z.nativeEnum(ParcelTemplateAramexAustraliaEnum);
+export namespace AramexAustraliaParcelTemplate$ {
+    export const inboundSchema = z.nativeEnum(AramexAustraliaParcelTemplate);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ParcelTemplateCouriersPleaseEnum$ {
-    export const inboundSchema = z.nativeEnum(ParcelTemplateCouriersPleaseEnum);
+export namespace CouriersPleaseParcelTemplate$ {
+    export const inboundSchema = z.nativeEnum(CouriersPleaseParcelTemplate);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ParcelTemplateDPDUKEnum$ {
-    export const inboundSchema = z.nativeEnum(ParcelTemplateDPDUKEnum);
+export namespace DPDUKParcelTemplate$ {
+    export const inboundSchema = z.nativeEnum(DPDUKParcelTemplate);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ParcelTemplateDHLeCommerceEnum$ {
-    export const inboundSchema = z.nativeEnum(ParcelTemplateDHLeCommerceEnum);
+export namespace DHLECommerceParcelTemplate$ {
+    export const inboundSchema = z.nativeEnum(DHLECommerceParcelTemplate);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ParcelTemplateUSPSEnum$ {
-    export const inboundSchema = z.nativeEnum(ParcelTemplateUSPSEnum);
+export namespace USPSParcelTemplate$ {
+    export const inboundSchema = z.nativeEnum(USPSParcelTemplate);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ParcelTemplateUPSEnum$ {
-    export const inboundSchema = z.nativeEnum(ParcelTemplateUPSEnum);
+export namespace UPSParcelTemplate$ {
+    export const inboundSchema = z.nativeEnum(UPSParcelTemplate);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace ParcelTemplateFedExEnum$ {
-    export const inboundSchema = z.nativeEnum(ParcelTemplateFedExEnum);
+export namespace FedExParcelTemplate$ {
+    export const inboundSchema = z.nativeEnum(FedExParcelTemplate);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
 export namespace ParcelTemplateEnumSet$ {
     export const inboundSchema: z.ZodType<ParcelTemplateEnumSet, z.ZodTypeDef, unknown> = z.union([
-        ParcelTemplateFedExEnum$.inboundSchema,
-        ParcelTemplateUPSEnum$.inboundSchema,
-        ParcelTemplateUSPSEnum$.inboundSchema,
-        ParcelTemplateDHLeCommerceEnum$.inboundSchema,
-        ParcelTemplateDPDUKEnum$.inboundSchema,
-        ParcelTemplateCouriersPleaseEnum$.inboundSchema,
-        ParcelTemplateAramexAustraliaEnum$.inboundSchema,
+        FedExParcelTemplate$.inboundSchema,
+        UPSParcelTemplate$.inboundSchema,
+        USPSParcelTemplate$.inboundSchema,
+        DHLECommerceParcelTemplate$.inboundSchema,
+        DPDUKParcelTemplate$.inboundSchema,
+        CouriersPleaseParcelTemplate$.inboundSchema,
+        AramexAustraliaParcelTemplate$.inboundSchema,
     ]);
 
     export type Outbound = string | string | string | string | string | string | string;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelTemplateEnumSet> = z.union(
         [
-            ParcelTemplateFedExEnum$.outboundSchema,
-            ParcelTemplateUPSEnum$.outboundSchema,
-            ParcelTemplateUSPSEnum$.outboundSchema,
-            ParcelTemplateDHLeCommerceEnum$.outboundSchema,
-            ParcelTemplateDPDUKEnum$.outboundSchema,
-            ParcelTemplateCouriersPleaseEnum$.outboundSchema,
-            ParcelTemplateAramexAustraliaEnum$.outboundSchema,
+            FedExParcelTemplate$.outboundSchema,
+            UPSParcelTemplate$.outboundSchema,
+            USPSParcelTemplate$.outboundSchema,
+            DHLECommerceParcelTemplate$.outboundSchema,
+            DPDUKParcelTemplate$.outboundSchema,
+            CouriersPleaseParcelTemplate$.outboundSchema,
+            AramexAustraliaParcelTemplate$.outboundSchema,
         ]
     );
 }

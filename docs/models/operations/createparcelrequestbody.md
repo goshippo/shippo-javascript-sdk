@@ -1,0 +1,4 @@
+# CreateParcelRequestBody
+
+Parcel details.
+

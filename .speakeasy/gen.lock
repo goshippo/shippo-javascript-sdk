@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 83260d88128c46673f69c31c772447dc
+  docChecksum: d44598ac81f6de4d20bfb52bc4540918
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.307.1
-  generationVersion: 2.342.2
-  releaseVersion: 2.3.4
-  configChecksum: 0ad1fc2b154a6e105871572bf785ce51
+  speakeasyVersion: 1.308.2
+  generationVersion: 2.342.6
+  releaseVersion: 2.3.5
+  configChecksum: e91876df61fb96caa05b3caeebeff9c5
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -88,9 +88,13 @@ generatedFiles:
   - src/models/components/batchshipmentcreaterequest.ts
   - src/models/components/shipmentcreaterequest.ts
   - src/models/components/parcelcreaterequest.ts
-  - src/models/components/parceltemplateenumset.ts
-  - src/models/components/weightunitenum.ts
   - src/models/components/distanceunitenum.ts
+  - src/models/components/weightunitenum.ts
+  - src/models/components/parcelextra.ts
+  - src/models/components/parcelinsurance.ts
+  - src/models/components/cod.ts
+  - src/models/components/parcelcreatefromtemplaterequest.ts
+  - src/models/components/parceltemplateenumset.ts
   - src/models/components/customsdeclarationcreaterequest.ts
   - src/models/components/customsdeclarationnondeliveryoptionenum.ts
   - src/models/components/customsitemcreaterequest.ts
@@ -98,6 +102,8 @@ generatedFiles:
   - src/models/components/customsdeclarationeelpfcenum.ts
   - src/models/components/customsdeclarationcontentstypeenum.ts
   - src/models/components/addressimporter.ts
+  - src/models/components/customsexporteridentification.ts
+  - src/models/components/customstaxidentification.ts
   - src/models/components/customsdeclarationb13afilingoptionenum.ts
   - src/models/components/shipmentextra.ts
   - src/models/components/upsreferencefields.ts
@@ -112,7 +118,6 @@ generatedFiles:
   - src/models/components/dangerousgoodslithiumbatteries.ts
   - src/models/components/dangerousgoodsbiologicalmaterial.ts
   - src/models/components/customerreference.ts
-  - src/models/components/cod.ts
   - src/models/components/billing.ts
   - src/models/components/alcohol.ts
   - src/models/components/carrieraccountpaginatedlist.ts
@@ -146,16 +151,12 @@ generatedFiles:
   - src/models/components/customsdeclaration.ts
   - src/models/components/objectstateenum.ts
   - src/models/components/customsinvoicedcharges.ts
-  - src/models/components/customsexporteridentification.ts
-  - src/models/components/customstaxidentification.ts
   - src/models/components/customsitempaginatedlist.ts
   - src/models/components/customsitem.ts
   - src/models/components/liveratepaginatedlist.ts
   - src/models/components/liverate.ts
   - src/models/components/liveratecreaterequest.ts
   - src/models/components/parcel.ts
-  - src/models/components/parcelextra.ts
-  - src/models/components/parcelinsurance.ts
   - src/models/components/lineitem.ts
   - src/models/components/addresscompletecreaterequest.ts
   - src/models/components/defaultparceltemplate.ts
@@ -172,7 +173,6 @@ generatedFiles:
   - src/models/components/lineitembase.ts
   - src/models/components/carrierparceltemplatelist.ts
   - src/models/components/parcelpaginatedlist.ts
-  - src/models/components/parcelrequest.ts
   - src/models/components/pickup.ts
   - src/models/components/location.ts
   - src/models/components/pickupbase.ts
@@ -245,6 +245,7 @@ generatedFiles:
   - src/models/operations/listcarrierparceltemplates.ts
   - src/models/operations/getcarrierparceltemplate.ts
   - src/models/operations/listparcels.ts
+  - src/models/operations/createparcel.ts
   - src/models/operations/getparcel.ts
   - src/models/operations/getrate.ts
   - src/models/operations/listshipmentrates.ts
@@ -278,7 +279,6 @@ generatedFiles:
   - src/models/operations/updatedefaultparceltemplate.ts
   - src/models/operations/createmanifest.ts
   - src/models/operations/createorder.ts
-  - src/models/operations/createparcel.ts
   - src/models/operations/createpickup.ts
   - src/models/operations/createrefund.ts
   - src/models/operations/createservicegroup.ts
@@ -314,16 +314,22 @@ generatedFiles:
   - docs/models/components/parcels.md
   - docs/models/components/shipmentcreaterequest.md
   - docs/models/components/parcelcreaterequest.md
-  - docs/models/components/parceltemplatearamexaustraliaenum.md
-  - docs/models/components/parceltemplatecourierspleaseenum.md
-  - docs/models/components/parceltemplatedpdukenum.md
-  - docs/models/components/parceltemplatedhlecommerceenum.md
-  - docs/models/components/parceltemplateuspsenum.md
-  - docs/models/components/parceltemplateupsenum.md
-  - docs/models/components/parceltemplatefedexenum.md
-  - docs/models/components/parceltemplateenumset.md
-  - docs/models/components/weightunitenum.md
   - docs/models/components/distanceunitenum.md
+  - docs/models/components/weightunitenum.md
+  - docs/models/components/parcelextra.md
+  - docs/models/components/parcelinsuranceprovider.md
+  - docs/models/components/parcelinsurance.md
+  - docs/models/components/paymentmethod.md
+  - docs/models/components/cod.md
+  - docs/models/components/parcelcreatefromtemplaterequest.md
+  - docs/models/components/aramexaustraliaparceltemplate.md
+  - docs/models/components/courierspleaseparceltemplate.md
+  - docs/models/components/dpdukparceltemplate.md
+  - docs/models/components/dhlecommerceparceltemplate.md
+  - docs/models/components/uspsparceltemplate.md
+  - docs/models/components/upsparceltemplate.md
+  - docs/models/components/fedexparceltemplate.md
+  - docs/models/components/parceltemplateenumset.md
   - docs/models/components/customsdeclarationcreaterequest.md
   - docs/models/components/customsdeclarationnondeliveryoptionenum.md
   - docs/models/components/customsitemcreaterequest.md
@@ -331,6 +337,9 @@ generatedFiles:
   - docs/models/components/customsdeclarationeelpfcenum.md
   - docs/models/components/customsdeclarationcontentstypeenum.md
   - docs/models/components/addressimporter.md
+  - docs/models/components/customsexporteridentification.md
+  - docs/models/components/customstaxidentificationtype.md
+  - docs/models/components/customstaxidentification.md
   - docs/models/components/customsdeclarationb13afilingoptionenum.md
   - docs/models/components/ancillaryendorsement.md
   - docs/models/components/dangerousgoodscode.md
@@ -351,8 +360,6 @@ generatedFiles:
   - docs/models/components/dangerousgoodslithiumbatteries.md
   - docs/models/components/dangerousgoodsbiologicalmaterial.md
   - docs/models/components/customerreference.md
-  - docs/models/components/paymentmethod.md
-  - docs/models/components/cod.md
   - docs/models/components/type.md
   - docs/models/components/billing.md
   - docs/models/components/recipienttype.md
@@ -404,13 +411,9 @@ generatedFiles:
   - docs/models/components/carrieraccountuspscreaterequest.md
   - docs/models/components/carrieraccountregistrationstatus.md
   - docs/models/components/customsdeclarationpaginatedlist.md
-  - docs/models/components/customsdeclarationaddressimporter.md
   - docs/models/components/customsdeclaration.md
   - docs/models/components/objectstateenum.md
   - docs/models/components/customsinvoicedcharges.md
-  - docs/models/components/customsexporteridentification.md
-  - docs/models/components/customstaxidentificationtype.md
-  - docs/models/components/customstaxidentification.md
   - docs/models/components/customsitempaginatedlist.md
   - docs/models/components/customsitem.md
   - docs/models/components/liveratepaginatedlist.md
@@ -421,9 +424,6 @@ generatedFiles:
   - docs/models/components/liveratecreaterequest.md
   - docs/models/components/objectstate.md
   - docs/models/components/parcel.md
-  - docs/models/components/parcelextra.md
-  - docs/models/components/parcelinsuranceprovider.md
-  - docs/models/components/parcelinsurance.md
   - docs/models/components/lineitem.md
   - docs/models/components/addresscompletecreaterequest.md
   - docs/models/components/defaultparceltemplate.md
@@ -443,7 +443,6 @@ generatedFiles:
   - docs/models/components/lineitembase.md
   - docs/models/components/carrierparceltemplatelist.md
   - docs/models/components/parcelpaginatedlist.md
-  - docs/models/components/parcelrequest.md
   - docs/models/components/pickupstatus.md
   - docs/models/components/pickup.md
   - docs/models/components/buildinglocationtype.md
@@ -504,6 +503,7 @@ generatedFiles:
   - docs/models/components/serviceleveludsenum.md
   - docs/models/components/servicelevelevriukenum.md
   - docs/models/components/servicelevellasershipenum.md
+  - docs/models/components/serviceleveljitsuenum.md
   - docs/models/components/servicelevelontracenum.md
   - docs/models/components/servicelevelsendleenum.md
   - docs/models/components/servicelevelroyalmailenum.md
@@ -531,7 +531,6 @@ generatedFiles:
   - docs/models/components/servicelevelcanadapostenum.md
   - docs/models/components/servicelevelbettertrucksenum.md
   - docs/models/components/servicelevelapgenum.md
-  - docs/models/components/servicelevelaxlehireenum.md
   - docs/models/components/servicelevelaustraliapostenum.md
   - docs/models/components/servicelevelasendiaenum.md
   - docs/models/components/servicelevelapcpostalenum.md
@@ -595,6 +594,8 @@ generatedFiles:
   - docs/models/operations/getcarrierparceltemplaterequest.md
   - docs/models/operations/listparcelsglobals.md
   - docs/models/operations/listparcelsrequest.md
+  - docs/models/operations/createparcelglobals.md
+  - docs/models/operations/createparcelrequestbody.md
   - docs/models/operations/getparcelglobals.md
   - docs/models/operations/getparcelrequest.md
   - docs/models/operations/getrateglobals.md
@@ -649,7 +650,6 @@ generatedFiles:
   - docs/models/operations/updatedefaultparceltemplateglobals.md
   - docs/models/operations/createmanifestglobals.md
   - docs/models/operations/createorderglobals.md
-  - docs/models/operations/createparcelglobals.md
   - docs/models/operations/createpickupglobals.md
   - docs/models/operations/createrefundglobals.md
   - docs/models/operations/createservicegroupglobals.md

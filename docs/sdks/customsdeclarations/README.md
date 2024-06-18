@@ -70,6 +70,7 @@ import {
   CustomsDeclarationEelPfcEnum,
   CustomsDeclarationIncotermEnum,
   CustomsDeclarationNonDeliveryOptionEnum,
+  CustomsTaxIdentificationType,
   WeightUnitEnum,
 } from "shippo/models/components";
 
@@ -84,6 +85,13 @@ async function run() {
     certify: true,
     certifySigner: "Shawn Ippotle",
     contentsExplanation: "T-Shirt purchase",
+    exporterIdentification: {
+      eoriNumber: "PL123456790ABCDE",
+      taxId: {
+        number: "123456789",
+        type: CustomsTaxIdentificationType.Ein,
+      },
+    },
     invoice: "#123123",
     metadata: "Order ID #123123",
     addressImporter: {
@@ -112,6 +120,7 @@ async function run() {
         originCountry: "<value>",
         quantity: 20,
         skuCode: "HM-123",
+        hsCode: "0901.21",
         valueAmount: "200",
         valueCurrency: "USD",
       },

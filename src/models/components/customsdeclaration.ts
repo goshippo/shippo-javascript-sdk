@@ -11,11 +11,6 @@ import { CustomsInvoicedCharges, CustomsInvoicedCharges$ } from "./customsinvoic
 import { ObjectStateEnum, ObjectStateEnum$ } from "./objectstateenum";
 import * as z from "zod";
 
-/**
- * Object ID of the Importer address.
- */
-export type CustomsDeclarationAddressImporter = {};
-
 export type CustomsDeclaration = {
     /**
      * **required if eel_pfc is `AES_ITN`**<br>
@@ -69,6 +64,10 @@ export type CustomsDeclaration = {
      */
     disclaimer?: string | undefined;
     /**
+     * Additional exporter identification that may be required to ship in certain countries
+     */
+    exporterIdentification?: CustomsExporterIdentification | undefined;
+    /**
      * Exporter reference of an export shipment.
      */
     exporterReference?: string | undefined;
@@ -79,7 +78,7 @@ export type CustomsDeclaration = {
     /**
      * Indicates whether the shipment's destination VAT has been collected. May be required for some destinations.
      */
-    isVatCollected?: any | undefined;
+    isVatCollected?: boolean | undefined;
     /**
      * Invoice reference of the shipment.
      */
@@ -102,7 +101,7 @@ export type CustomsDeclaration = {
     /**
      * Object ID of the Importer address.
      */
-    addressImporter?: CustomsDeclarationAddressImporter | undefined;
+    addressImporter?: string | undefined;
     /**
      * Type of goods of the shipment.
      *
@@ -118,10 +117,6 @@ export type CustomsDeclaration = {
      * Allowed values available <a href="#tag/Customs-Declaration-EELPFC">here</a>
      */
     eelPfc?: string | undefined;
-    /**
-     * Additional exporter identification that may be required to ship in certain countries
-     */
-    exporterIdentification?: CustomsExporterIdentification | undefined;
     /**
      * The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only.
      *
@@ -173,23 +168,6 @@ export type CustomsDeclaration = {
 };
 
 /** @internal */
-export namespace CustomsDeclarationAddressImporter$ {
-    export const inboundSchema: z.ZodType<
-        CustomsDeclarationAddressImporter,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        CustomsDeclarationAddressImporter
-    > = z.object({});
-}
-
-/** @internal */
 export namespace CustomsDeclaration$ {
     export const inboundSchema: z.ZodType<CustomsDeclaration, z.ZodTypeDef, unknown> = z
         .object({
@@ -202,19 +180,17 @@ export namespace CustomsDeclaration$ {
             commercial_invoice: z.boolean().optional(),
             contents_explanation: z.string().optional(),
             disclaimer: z.string().optional(),
+            exporter_identification: CustomsExporterIdentification$.inboundSchema.optional(),
             exporter_reference: z.string().optional(),
             importer_reference: z.string().optional(),
-            is_vat_collected: z.any().optional(),
+            is_vat_collected: z.boolean().optional(),
             invoice: z.string().optional(),
             license: z.string().optional(),
             metadata: z.string().optional(),
             notes: z.string().optional(),
-            address_importer: z
-                .lazy(() => CustomsDeclarationAddressImporter$.inboundSchema)
-                .optional(),
+            address_importer: z.string().optional(),
             contents_type: z.string(),
             eel_pfc: z.string().optional(),
-            exporter_identification: CustomsExporterIdentification$.inboundSchema.optional(),
             incoterm: z.string().optional(),
             invoiced_charges: CustomsInvoicedCharges$.inboundSchema.optional(),
             items: z.array(z.string()),
@@ -242,13 +218,13 @@ export namespace CustomsDeclaration$ {
                 certify_signer: "certifySigner",
                 commercial_invoice: "commercialInvoice",
                 contents_explanation: "contentsExplanation",
+                exporter_identification: "exporterIdentification",
                 exporter_reference: "exporterReference",
                 importer_reference: "importerReference",
                 is_vat_collected: "isVatCollected",
                 address_importer: "addressImporter",
                 contents_type: "contentsType",
                 eel_pfc: "eelPfc",
-                exporter_identification: "exporterIdentification",
                 invoiced_charges: "invoicedCharges",
                 non_delivery_option: "nonDeliveryOption",
                 object_created: "objectCreated",
@@ -269,17 +245,17 @@ export namespace CustomsDeclaration$ {
         commercial_invoice?: boolean | undefined;
         contents_explanation?: string | undefined;
         disclaimer?: string | undefined;
+        exporter_identification?: CustomsExporterIdentification$.Outbound | undefined;
         exporter_reference?: string | undefined;
         importer_reference?: string | undefined;
-        is_vat_collected?: any | undefined;
+        is_vat_collected?: boolean | undefined;
         invoice?: string | undefined;
         license?: string | undefined;
         metadata?: string | undefined;
         notes?: string | undefined;
-        address_importer?: CustomsDeclarationAddressImporter$.Outbound | undefined;
+        address_importer?: string | undefined;
         contents_type: string;
         eel_pfc?: string | undefined;
-        exporter_identification?: CustomsExporterIdentification$.Outbound | undefined;
         incoterm?: string | undefined;
         invoiced_charges?: CustomsInvoicedCharges$.Outbound | undefined;
         items: Array<string>;
@@ -303,19 +279,17 @@ export namespace CustomsDeclaration$ {
             commercialInvoice: z.boolean().optional(),
             contentsExplanation: z.string().optional(),
             disclaimer: z.string().optional(),
+            exporterIdentification: CustomsExporterIdentification$.outboundSchema.optional(),
             exporterReference: z.string().optional(),
             importerReference: z.string().optional(),
-            isVatCollected: z.any().optional(),
+            isVatCollected: z.boolean().optional(),
             invoice: z.string().optional(),
             license: z.string().optional(),
             metadata: z.string().optional(),
             notes: z.string().optional(),
-            addressImporter: z
-                .lazy(() => CustomsDeclarationAddressImporter$.outboundSchema)
-                .optional(),
+            addressImporter: z.string().optional(),
             contentsType: z.string(),
             eelPfc: z.string().optional(),
-            exporterIdentification: CustomsExporterIdentification$.outboundSchema.optional(),
             incoterm: z.string().optional(),
             invoicedCharges: CustomsInvoicedCharges$.outboundSchema.optional(),
             items: z.array(z.string()),
@@ -341,13 +315,13 @@ export namespace CustomsDeclaration$ {
                 certifySigner: "certify_signer",
                 commercialInvoice: "commercial_invoice",
                 contentsExplanation: "contents_explanation",
+                exporterIdentification: "exporter_identification",
                 exporterReference: "exporter_reference",
                 importerReference: "importer_reference",
                 isVatCollected: "is_vat_collected",
                 addressImporter: "address_importer",
                 contentsType: "contents_type",
                 eelPfc: "eel_pfc",
-                exporterIdentification: "exporter_identification",
                 invoicedCharges: "invoiced_charges",
                 nonDeliveryOption: "non_delivery_option",
                 objectCreated: "object_created",

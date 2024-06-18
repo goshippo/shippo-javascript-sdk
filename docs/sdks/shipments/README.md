@@ -84,7 +84,7 @@ Creates a new shipment object.
 
 ```typescript
 import { Shippo } from "shippo";
-import { DistanceUnitEnum, PaymentMethod, WeightUnitEnum } from "shippo/models/components";
+import { ParcelInsuranceProvider, PaymentMethod, USPSParcelTemplate, WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -236,13 +236,23 @@ async function run() {
     ],
     parcels: [
         {
-          distanceUnit: DistanceUnitEnum.In,
-          height: "1",
-          length: "1",
+          extra: {
+            cod: {
+              amount: "5.5",
+              currency: "USD",
+              paymentMethod: PaymentMethod.Cash,
+            },
+            insurance: {
+              amount: "5.5",
+              content: "Laptop",
+              currency: "USD",
+              provider: ParcelInsuranceProvider.Ups,
+            },
+          },
+          metadata: "Customer ID 123456",
           massUnit: WeightUnitEnum.Lb,
           weight: "1",
-          width: "1",
-          metadata: "Customer ID 123456",
+        template: USPSParcelTemplate.USPSFlatRateGiftCardEnvelope,
         },
     ],
   });

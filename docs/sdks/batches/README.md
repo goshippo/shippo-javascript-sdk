@@ -30,7 +30,13 @@ Creates a new batch object for purchasing shipping labels for many shipments at 
 
 ```typescript
 import { Shippo } from "shippo";
-import { DistanceUnitEnum, LabelFileTypeEnum, PaymentMethod, WeightUnitEnum } from "shippo/models/components";
+import {
+  LabelFileTypeEnum,
+  ParcelInsuranceProvider,
+  PaymentMethod,
+  USPSParcelTemplate,
+  WeightUnitEnum,
+} from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -192,13 +198,23 @@ async function run() {
           ],
           parcels: [
               {
-                distanceUnit: DistanceUnitEnum.In,
-                height: "1",
-                length: "1",
+                extra: {
+                  cod: {
+                    amount: "5.5",
+                    currency: "USD",
+                    paymentMethod: PaymentMethod.Cash,
+                  },
+                  insurance: {
+                    amount: "5.5",
+                    content: "Laptop",
+                    currency: "USD",
+                    provider: ParcelInsuranceProvider.Ups,
+                  },
+                },
+                metadata: "Customer ID 123456",
                 massUnit: WeightUnitEnum.Lb,
                 weight: "1",
-                width: "1",
-                metadata: "Customer ID 123456",
+              template: USPSParcelTemplate.USPSFlatRateGiftCardEnvelope,
               },
           ],
         },
@@ -284,7 +300,7 @@ Adds batch shipments to an existing batch.
 
 ```typescript
 import { Shippo } from "shippo";
-import { DistanceUnitEnum, PaymentMethod, WeightUnitEnum } from "shippo/models/components";
+import { DistanceUnitEnum, ParcelInsuranceProvider, PaymentMethod, WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -426,13 +442,26 @@ async function run() {
         ],
         parcels: [
             {
+              extra: {
+                cod: {
+                  amount: "5.5",
+                  currency: "USD",
+                  paymentMethod: PaymentMethod.Cash,
+                },
+                insurance: {
+                  amount: "5.5",
+                  content: "Laptop",
+                  currency: "USD",
+                  provider: ParcelInsuranceProvider.Ups,
+                },
+              },
+              metadata: "Customer ID 123456",
+              massUnit: WeightUnitEnum.Lb,
+              weight: "1",
               distanceUnit: DistanceUnitEnum.In,
               height: "1",
               length: "1",
-              massUnit: WeightUnitEnum.Lb,
-              weight: "1",
               width: "1",
-              metadata: "Customer ID 123456",
             },
         ],
       },
