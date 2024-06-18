@@ -130,6 +130,30 @@ export type ServiceLevelLasershipEnum = ClosedEnum<typeof ServiceLevelLasershipE
  *
  * @remarks
  * |:---|:---|
+ * | axlehire_same_day | Same Day|
+ * | axlehire_next_day | Next Day|
+ *
+ */
+export const ServiceLevelJitsuEnum = {
+    AxlehireSameDay: "axlehire_same_day",
+    AxlehireNextDay: "axlehire_next_day",
+} as const;
+/**
+ * |Token | Service name|
+ *
+ * @remarks
+ * |:---|:---|
+ * | axlehire_same_day | Same Day|
+ * | axlehire_next_day | Next Day|
+ *
+ */
+export type ServiceLevelJitsuEnum = ClosedEnum<typeof ServiceLevelJitsuEnum>;
+
+/**
+ * |Token | Service name|
+ *
+ * @remarks
+ * |:---|:---|
  * | ontrac_ground | Ground|
  * | ontrac_sunrise_gold | Sunrise Gold|
  * | ontrac_sunrise | Sunrise|
@@ -1266,30 +1290,6 @@ export type ServiceLevelAPGEnum = ClosedEnum<typeof ServiceLevelAPGEnum>;
  *
  * @remarks
  * |:---|:---|
- * | axlehire_same_day | Same Day|
- * | axlehire_next_day | Next Day|
- *
- */
-export const ServiceLevelAxleHireEnum = {
-    AxlehireSameDay: "axlehire_same_day",
-    AxlehireNextDay: "axlehire_next_day",
-} as const;
-/**
- * |Token | Service name|
- *
- * @remarks
- * |:---|:---|
- * | axlehire_same_day | Same Day|
- * | axlehire_next_day | Next Day|
- *
- */
-export type ServiceLevelAxleHireEnum = ClosedEnum<typeof ServiceLevelAxleHireEnum>;
-
-/**
- * |Token | Service name|
- *
- * @remarks
- * |:---|:---|
  * | australia_post_express_post | Express Post|
  * | australia_post_parcel_post | Parcel Post|
  * | australia_post_pack_and_track_international | Pack and Track International|
@@ -1675,7 +1675,6 @@ export type ServiceLevelEnumSet =
     | ServiceLevelAPCPostalEnum
     | ServiceLevelAsendiaEnum
     | ServiceLevelAustraliaPostEnum
-    | ServiceLevelAxleHireEnum
     | ServiceLevelAPGEnum
     | ServiceLevelBetterTrucksEnum
     | ServiceLevelCanadaPostEnum
@@ -1703,6 +1702,7 @@ export type ServiceLevelEnumSet =
     | ServiceLevelRoyalMailEnum
     | ServiceLevelSendleEnum
     | ServiceLevelOnTracEnum
+    | ServiceLevelJitsuEnum
     | ServiceLevelLasershipEnum
     | ServiceLevelEvriUKEnum
     | ServiceLevelUDSEnum
@@ -1736,6 +1736,12 @@ export namespace ServiceLevelEvriUKEnum$ {
 /** @internal */
 export namespace ServiceLevelLasershipEnum$ {
     export const inboundSchema = z.nativeEnum(ServiceLevelLasershipEnum);
+    export const outboundSchema = inboundSchema;
+}
+
+/** @internal */
+export namespace ServiceLevelJitsuEnum$ {
+    export const inboundSchema = z.nativeEnum(ServiceLevelJitsuEnum);
     export const outboundSchema = inboundSchema;
 }
 
@@ -1902,12 +1908,6 @@ export namespace ServiceLevelAPGEnum$ {
 }
 
 /** @internal */
-export namespace ServiceLevelAxleHireEnum$ {
-    export const inboundSchema = z.nativeEnum(ServiceLevelAxleHireEnum);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
 export namespace ServiceLevelAustraliaPostEnum$ {
     export const inboundSchema = z.nativeEnum(ServiceLevelAustraliaPostEnum);
     export const outboundSchema = inboundSchema;
@@ -1959,7 +1959,6 @@ export namespace ServiceLevelEnumSet$ {
         ServiceLevelAPCPostalEnum$.inboundSchema,
         ServiceLevelAsendiaEnum$.inboundSchema,
         ServiceLevelAustraliaPostEnum$.inboundSchema,
-        ServiceLevelAxleHireEnum$.inboundSchema,
         ServiceLevelAPGEnum$.inboundSchema,
         ServiceLevelBetterTrucksEnum$.inboundSchema,
         ServiceLevelCanadaPostEnum$.inboundSchema,
@@ -1987,6 +1986,7 @@ export namespace ServiceLevelEnumSet$ {
         ServiceLevelRoyalMailEnum$.inboundSchema,
         ServiceLevelSendleEnum$.inboundSchema,
         ServiceLevelOnTracEnum$.inboundSchema,
+        ServiceLevelJitsuEnum$.inboundSchema,
         ServiceLevelLasershipEnum$.inboundSchema,
         ServiceLevelEvriUKEnum$.inboundSchema,
         ServiceLevelUDSEnum$.inboundSchema,
@@ -2043,7 +2043,6 @@ export namespace ServiceLevelEnumSet$ {
         ServiceLevelAPCPostalEnum$.outboundSchema,
         ServiceLevelAsendiaEnum$.outboundSchema,
         ServiceLevelAustraliaPostEnum$.outboundSchema,
-        ServiceLevelAxleHireEnum$.outboundSchema,
         ServiceLevelAPGEnum$.outboundSchema,
         ServiceLevelBetterTrucksEnum$.outboundSchema,
         ServiceLevelCanadaPostEnum$.outboundSchema,
@@ -2071,6 +2070,7 @@ export namespace ServiceLevelEnumSet$ {
         ServiceLevelRoyalMailEnum$.outboundSchema,
         ServiceLevelSendleEnum$.outboundSchema,
         ServiceLevelOnTracEnum$.outboundSchema,
+        ServiceLevelJitsuEnum$.outboundSchema,
         ServiceLevelLasershipEnum$.outboundSchema,
         ServiceLevelEvriUKEnum$.outboundSchema,
         ServiceLevelUDSEnum$.outboundSchema,

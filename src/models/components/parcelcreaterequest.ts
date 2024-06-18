@@ -4,97 +4,91 @@
 
 import { remap as remap$ } from "../../lib/primitives";
 import { DistanceUnitEnum, DistanceUnitEnum$ } from "./distanceunitenum";
-import { ParcelTemplateEnumSet, ParcelTemplateEnumSet$ } from "./parceltemplateenumset";
+import { ParcelExtra, ParcelExtra$ } from "./parcelextra";
 import { WeightUnitEnum, WeightUnitEnum$ } from "./weightunitenum";
 import * as z from "zod";
 
 export type ParcelCreateRequest = {
     /**
-     * The measure unit used for length, width and height.
-     */
-    distanceUnit: DistanceUnitEnum;
-    /**
-     * **Required if template is not specified**<br>
+     * An object holding optional extra services to be requested for each parcel in a multi-piece shipment.
      *
      * @remarks
-     * Height of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+     * See the <a href="#section/Parcel-Extras">Parcel Extra table below</a> for all available services.
      */
-    height: string;
-    /**
-     * **Required if template is not specified**<br>
-     *
-     * @remarks
-     * Length of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-     */
-    length: string;
+    extra?: ParcelExtra | undefined;
+    metadata?: string | undefined;
     /**
      * The unit used for weight.
      */
     massUnit: WeightUnitEnum;
     /**
-     * If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
-     */
-    template?: ParcelTemplateEnumSet | undefined;
-    /**
      * Weight of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
      */
     weight: string;
     /**
-     * **Required if template is not specified**<br>
-     *
-     * @remarks
+     * The measure unit used for length, width and height.
+     */
+    distanceUnit: DistanceUnitEnum;
+    /**
+     * Height of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+     */
+    height: string;
+    /**
+     * Length of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+     */
+    length: string;
+    /**
      * Width of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
      */
     width: string;
-    metadata?: string | undefined;
 };
 
 /** @internal */
 export namespace ParcelCreateRequest$ {
     export const inboundSchema: z.ZodType<ParcelCreateRequest, z.ZodTypeDef, unknown> = z
         .object({
+            extra: ParcelExtra$.inboundSchema.optional(),
+            metadata: z.string().optional(),
+            mass_unit: WeightUnitEnum$.inboundSchema,
+            weight: z.string(),
             distance_unit: DistanceUnitEnum$.inboundSchema,
             height: z.string(),
             length: z.string(),
-            mass_unit: WeightUnitEnum$.inboundSchema,
-            template: ParcelTemplateEnumSet$.inboundSchema.optional(),
-            weight: z.string(),
             width: z.string(),
-            metadata: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                distance_unit: "distanceUnit",
                 mass_unit: "massUnit",
+                distance_unit: "distanceUnit",
             });
         });
 
     export type Outbound = {
+        extra?: ParcelExtra$.Outbound | undefined;
+        metadata?: string | undefined;
+        mass_unit: string;
+        weight: string;
         distance_unit: string;
         height: string;
         length: string;
-        mass_unit: string;
-        template?: ParcelTemplateEnumSet$.Outbound | undefined;
-        weight: string;
         width: string;
-        metadata?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ParcelCreateRequest> = z
         .object({
+            extra: ParcelExtra$.outboundSchema.optional(),
+            metadata: z.string().optional(),
+            massUnit: WeightUnitEnum$.outboundSchema,
+            weight: z.string(),
             distanceUnit: DistanceUnitEnum$.outboundSchema,
             height: z.string(),
             length: z.string(),
-            massUnit: WeightUnitEnum$.outboundSchema,
-            template: ParcelTemplateEnumSet$.outboundSchema.optional(),
-            weight: z.string(),
             width: z.string(),
-            metadata: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
-                distanceUnit: "distance_unit",
                 massUnit: "mass_unit",
+                distanceUnit: "distance_unit",
             });
         });
 }

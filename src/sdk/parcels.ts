@@ -129,7 +129,7 @@ export class Parcels extends ClientSDK {
      * Creates a new parcel object.
      */
     async create(
-        request: components.ParcelRequest,
+        request: operations.CreateParcelRequestBody,
         options?: RequestOptions
     ): Promise<components.Parcel> {
         const input$ = request;
@@ -140,7 +140,7 @@ export class Parcels extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.ParcelRequest$.outboundSchema.parse(value$),
+            (value$) => operations.CreateParcelRequestBody$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });

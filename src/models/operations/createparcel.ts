@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import * as components from "../components";
 import * as z from "zod";
 
 export type CreateParcelGlobals = {
@@ -11,6 +12,13 @@ export type CreateParcelGlobals = {
      */
     shippoApiVersion?: string | undefined;
 };
+
+/**
+ * Parcel details.
+ */
+export type CreateParcelRequestBody =
+    | components.ParcelCreateFromTemplateRequest
+    | components.ParcelCreateRequest;
 
 /** @internal */
 export namespace CreateParcelGlobals$ {
@@ -37,4 +45,23 @@ export namespace CreateParcelGlobals$ {
                 shippoApiVersion: "SHIPPO-API-VERSION",
             });
         });
+}
+
+/** @internal */
+export namespace CreateParcelRequestBody$ {
+    export const inboundSchema: z.ZodType<CreateParcelRequestBody, z.ZodTypeDef, unknown> = z.union(
+        [
+            components.ParcelCreateFromTemplateRequest$.inboundSchema,
+            components.ParcelCreateRequest$.inboundSchema,
+        ]
+    );
+
+    export type Outbound =
+        | components.ParcelCreateFromTemplateRequest$.Outbound
+        | components.ParcelCreateRequest$.Outbound;
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateParcelRequestBody> =
+        z.union([
+            components.ParcelCreateFromTemplateRequest$.outboundSchema,
+            components.ParcelCreateRequest$.outboundSchema,
+        ]);
 }

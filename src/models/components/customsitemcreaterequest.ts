@@ -46,6 +46,10 @@ export type CustomsItemCreateRequest = {
      */
     skuCode?: string | undefined;
     /**
+     * HS code of the item, which is required by some carriers.
+     */
+    hsCode?: string | undefined;
+    /**
      * The tariff number of the item.
      */
     tariffNumber?: string | undefined;
@@ -74,6 +78,7 @@ export namespace CustomsItemCreateRequest$ {
             origin_country: z.string(),
             quantity: z.number().int(),
             sku_code: z.string().optional(),
+            hs_code: z.string().optional(),
             tariff_number: z.string().optional(),
             value_amount: z.string(),
             value_currency: z.string(),
@@ -85,6 +90,7 @@ export namespace CustomsItemCreateRequest$ {
                 net_weight: "netWeight",
                 origin_country: "originCountry",
                 sku_code: "skuCode",
+                hs_code: "hsCode",
                 tariff_number: "tariffNumber",
                 value_amount: "valueAmount",
                 value_currency: "valueCurrency",
@@ -100,6 +106,7 @@ export namespace CustomsItemCreateRequest$ {
         origin_country: string;
         quantity: number;
         sku_code?: string | undefined;
+        hs_code?: string | undefined;
         tariff_number?: string | undefined;
         value_amount: string;
         value_currency: string;
@@ -115,6 +122,7 @@ export namespace CustomsItemCreateRequest$ {
             originCountry: z.string(),
             quantity: z.number().int(),
             skuCode: z.string().optional(),
+            hsCode: z.string().optional(),
             tariffNumber: z.string().optional(),
             valueAmount: z.string(),
             valueCurrency: z.string(),
@@ -126,6 +134,7 @@ export namespace CustomsItemCreateRequest$ {
                 netWeight: "net_weight",
                 originCountry: "origin_country",
                 skuCode: "sku_code",
+                hsCode: "hs_code",
                 tariffNumber: "tariff_number",
                 valueAmount: "value_amount",
                 valueCurrency: "value_currency",

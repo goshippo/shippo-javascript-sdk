@@ -79,6 +79,7 @@ async function run() {
     originCountry: "<value>",
     quantity: 20,
     skuCode: "HM-123",
+    hsCode: "0901.21",
     valueAmount: "200",
     valueCurrency: "USD",
   });

@@ -24,6 +24,10 @@ import {
     CustomsDeclarationNonDeliveryOptionEnum,
     CustomsDeclarationNonDeliveryOptionEnum$,
 } from "./customsdeclarationnondeliveryoptionenum";
+import {
+    CustomsExporterIdentification,
+    CustomsExporterIdentification$,
+} from "./customsexporteridentification";
 import { CustomsItemCreateRequest, CustomsItemCreateRequest$ } from "./customsitemcreaterequest";
 import * as z from "zod";
 
@@ -73,6 +77,10 @@ export type CustomsDeclarationCreateRequest = {
      */
     disclaimer?: string | undefined;
     /**
+     * Additional exporter identification that may be required to ship in certain countries
+     */
+    exporterIdentification?: CustomsExporterIdentification | undefined;
+    /**
      * Exporter reference of an export shipment.
      */
     exporterReference?: string | undefined;
@@ -83,7 +91,7 @@ export type CustomsDeclarationCreateRequest = {
     /**
      * Indicates whether the shipment's destination VAT has been collected. May be required for some destinations.
      */
-    isVatCollected?: any | undefined;
+    isVatCollected?: boolean | undefined;
     /**
      * Invoice reference of the shipment.
      */
@@ -130,9 +138,10 @@ export namespace CustomsDeclarationCreateRequest$ {
                 commercial_invoice: z.boolean().optional(),
                 contents_explanation: z.string().optional(),
                 disclaimer: z.string().optional(),
+                exporter_identification: CustomsExporterIdentification$.inboundSchema.optional(),
                 exporter_reference: z.string().optional(),
                 importer_reference: z.string().optional(),
-                is_vat_collected: z.any().optional(),
+                is_vat_collected: z.boolean().optional(),
                 invoice: z.string().optional(),
                 license: z.string().optional(),
                 metadata: z.string().optional(),
@@ -153,6 +162,7 @@ export namespace CustomsDeclarationCreateRequest$ {
                     certify_signer: "certifySigner",
                     commercial_invoice: "commercialInvoice",
                     contents_explanation: "contentsExplanation",
+                    exporter_identification: "exporterIdentification",
                     exporter_reference: "exporterReference",
                     importer_reference: "importerReference",
                     is_vat_collected: "isVatCollected",
@@ -173,9 +183,10 @@ export namespace CustomsDeclarationCreateRequest$ {
         commercial_invoice?: boolean | undefined;
         contents_explanation?: string | undefined;
         disclaimer?: string | undefined;
+        exporter_identification?: CustomsExporterIdentification$.Outbound | undefined;
         exporter_reference?: string | undefined;
         importer_reference?: string | undefined;
-        is_vat_collected?: any | undefined;
+        is_vat_collected?: boolean | undefined;
         invoice?: string | undefined;
         license?: string | undefined;
         metadata?: string | undefined;
@@ -204,9 +215,10 @@ export namespace CustomsDeclarationCreateRequest$ {
             commercialInvoice: z.boolean().optional(),
             contentsExplanation: z.string().optional(),
             disclaimer: z.string().optional(),
+            exporterIdentification: CustomsExporterIdentification$.outboundSchema.optional(),
             exporterReference: z.string().optional(),
             importerReference: z.string().optional(),
-            isVatCollected: z.any().optional(),
+            isVatCollected: z.boolean().optional(),
             invoice: z.string().optional(),
             license: z.string().optional(),
             metadata: z.string().optional(),
@@ -227,6 +239,7 @@ export namespace CustomsDeclarationCreateRequest$ {
                 certifySigner: "certify_signer",
                 commercialInvoice: "commercial_invoice",
                 contentsExplanation: "contents_explanation",
+                exporterIdentification: "exporter_identification",
                 exporterReference: "exporter_reference",
                 importerReference: "importer_reference",
                 isVatCollected: "is_vat_collected",

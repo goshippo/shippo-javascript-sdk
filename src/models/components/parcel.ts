@@ -23,38 +23,37 @@ export type ObjectState = ClosedEnum<typeof ObjectState>;
 
 export type Parcel = {
     /**
-     * The measure unit used for length, width and height.
-     */
-    distanceUnit: DistanceUnitEnum;
-    /**
      * An object holding optional extra services to be requested for each parcel in a multi-piece shipment.
      *
      * @remarks
      * See the <a href="#section/Parcel-Extras">Parcel Extra table below</a> for all available services.
      */
     extra?: ParcelExtra | undefined;
-    /**
-     * **Required if template is not specified**<br>
-     *
-     * @remarks
-     * Height of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-     */
-    height: string;
-    /**
-     * **Required if template is not specified**<br>
-     *
-     * @remarks
-     * Length of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-     */
-    length: string;
+    metadata?: string | undefined;
     /**
      * The unit used for weight.
      */
     massUnit: WeightUnitEnum;
     /**
-     * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
+     * Weight of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
      */
-    metadata?: string | undefined;
+    weight: string;
+    /**
+     * The measure unit used for length, width and height.
+     */
+    distanceUnit: DistanceUnitEnum;
+    /**
+     * Height of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+     */
+    height: string;
+    /**
+     * Length of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+     */
+    length: string;
+    /**
+     * Width of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+     */
+    width: string;
     /**
      * Date and time of Parcel creation.
      */
@@ -83,17 +82,6 @@ export type Parcel = {
      * Indicates whether the object has been created in test mode.
      */
     test?: boolean | undefined;
-    /**
-     * Weight of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-     */
-    weight: string;
-    /**
-     * **Required if template is not specified**<br>
-     *
-     * @remarks
-     * Width of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-     */
-    width: string;
 };
 
 /** @internal */
@@ -106,12 +94,14 @@ export namespace ObjectState$ {
 export namespace Parcel$ {
     export const inboundSchema: z.ZodType<Parcel, z.ZodTypeDef, unknown> = z
         .object({
-            distance_unit: DistanceUnitEnum$.inboundSchema,
             extra: ParcelExtra$.inboundSchema.optional(),
+            metadata: z.string().optional(),
+            mass_unit: WeightUnitEnum$.inboundSchema,
+            weight: z.string(),
+            distance_unit: DistanceUnitEnum$.inboundSchema,
             height: z.string(),
             length: z.string(),
-            mass_unit: WeightUnitEnum$.inboundSchema,
-            metadata: z.string().optional(),
+            width: z.string(),
             object_created: z
                 .string()
                 .datetime({ offset: true })
@@ -127,13 +117,11 @@ export namespace Parcel$ {
                 .optional(),
             template: ParcelTemplateEnumSet$.inboundSchema.optional(),
             test: z.boolean().optional(),
-            weight: z.string(),
-            width: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                distance_unit: "distanceUnit",
                 mass_unit: "massUnit",
+                distance_unit: "distanceUnit",
                 object_created: "objectCreated",
                 object_id: "objectId",
                 object_owner: "objectOwner",
@@ -143,12 +131,14 @@ export namespace Parcel$ {
         });
 
     export type Outbound = {
-        distance_unit: string;
         extra?: ParcelExtra$.Outbound | undefined;
+        metadata?: string | undefined;
+        mass_unit: string;
+        weight: string;
+        distance_unit: string;
         height: string;
         length: string;
-        mass_unit: string;
-        metadata?: string | undefined;
+        width: string;
         object_created?: string | undefined;
         object_id?: string | undefined;
         object_owner?: string | undefined;
@@ -156,18 +146,18 @@ export namespace Parcel$ {
         object_updated?: string | undefined;
         template?: ParcelTemplateEnumSet$.Outbound | undefined;
         test?: boolean | undefined;
-        weight: string;
-        width: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Parcel> = z
         .object({
-            distanceUnit: DistanceUnitEnum$.outboundSchema,
             extra: ParcelExtra$.outboundSchema.optional(),
+            metadata: z.string().optional(),
+            massUnit: WeightUnitEnum$.outboundSchema,
+            weight: z.string(),
+            distanceUnit: DistanceUnitEnum$.outboundSchema,
             height: z.string(),
             length: z.string(),
-            massUnit: WeightUnitEnum$.outboundSchema,
-            metadata: z.string().optional(),
+            width: z.string(),
             objectCreated: z
                 .date()
                 .transform((v) => v.toISOString())
@@ -181,13 +171,11 @@ export namespace Parcel$ {
                 .optional(),
             template: ParcelTemplateEnumSet$.outboundSchema.optional(),
             test: z.boolean().optional(),
-            weight: z.string(),
-            width: z.string(),
         })
         .transform((v) => {
             return remap$(v, {
-                distanceUnit: "distance_unit",
                 massUnit: "mass_unit",
+                distanceUnit: "distance_unit",
                 objectCreated: "object_created",
                 objectId: "object_id",
                 objectOwner: "object_owner",

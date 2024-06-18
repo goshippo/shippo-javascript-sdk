@@ -76,26 +76,27 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.parcels.create({
-    distanceUnit: DistanceUnitEnum.In,
-    extra: {
-      cod: {
-        amount: "5.5",
-        currency: "USD",
-        paymentMethod: PaymentMethod.Cash,
+      extra: {
+        cod: {
+          amount: "5.5",
+          currency: "USD",
+          paymentMethod: PaymentMethod.Cash,
+        },
+        insurance: {
+          amount: "5.5",
+          content: "Laptop",
+          currency: "USD",
+          provider: ParcelInsuranceProvider.Ups,
+        },
       },
-      insurance: {
-        amount: "5.5",
-        content: "Laptop",
-        currency: "USD",
-        provider: ParcelInsuranceProvider.Ups,
-      },
-    },
-    height: "1",
-    length: "1",
-    massUnit: WeightUnitEnum.Lb,
-    weight: "1",
-    width: "1",
-  });
+      metadata: "Customer ID 123456",
+      massUnit: WeightUnitEnum.Lb,
+      weight: "1",
+      distanceUnit: DistanceUnitEnum.In,
+      height: "1",
+      length: "1",
+      width: "1",
+    });
 
   // Handle the result
   console.log(result)
@@ -108,7 +109,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.ParcelRequest](../../models/components/parcelrequest.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CreateParcelRequestBody](../../models/operations/createparcelrequestbody.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
