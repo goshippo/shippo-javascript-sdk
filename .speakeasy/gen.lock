@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: d44598ac81f6de4d20bfb52bc4540918
+  docChecksum: 41c0262ad846794c25bcac117519320e
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.308.2
-  generationVersion: 2.342.6
-  releaseVersion: 2.3.5
-  configChecksum: e91876df61fb96caa05b3caeebeff9c5
+  speakeasyVersion: 1.309.1
+  generationVersion: 2.347.4
+  releaseVersion: 2.4.0
+  configChecksum: 124daba595189691df545b067ad60f1f
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.14
+    core: 3.10.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -50,7 +50,7 @@ generatedFiles:
   - src/sdk/shippoaccounts.ts
   - src/sdk/webhooks.ts
   - src/sdk/sdk.ts
-  - .eslintrc.js
+  - .eslintrc.cjs
   - .npmignore
   - RUNTIMES.md
   - jsr.json
@@ -108,6 +108,8 @@ generatedFiles:
   - src/models/components/shipmentextra.ts
   - src/models/components/upsreferencefields.ts
   - src/models/components/rmanumber.ts
+  - src/models/components/shipmentextrareturnservicetypeupsenum.ts
+  - src/models/components/shipmentextrareturnservicetypelasershipenum.ts
   - src/models/components/ponumber.ts
   - src/models/components/shipmentextralasershipattributesenum.ts
   - src/models/components/invoicenumber.ts
@@ -349,6 +351,8 @@ generatedFiles:
   - docs/models/components/shipmentextra.md
   - docs/models/components/upsreferencefields.md
   - docs/models/components/rmanumber.md
+  - docs/models/components/shipmentextrareturnservicetypeupsenum.md
+  - docs/models/components/shipmentextrareturnservicetypelasershipenum.md
   - docs/models/components/ponumber.md
   - docs/models/components/shipmentextralasershipattributesenum.md
   - docs/models/components/invoicenumber.md

@@ -1,13 +1,19 @@
 # ReturnServiceType
 
-Request additional return option for return shipments (UPS only).
+Request additional return option for return shipments (UPS and Lasership only).
 
 
-## Values
+## Supported Types
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `PrintAndMail`    | PRINT_AND_MAIL    |
-| `Attempt1`        | ATTEMPT_1         |
-| `Attempt3`        | ATTEMPT_3         |
-| `ElectronicLabel` | ELECTRONIC_LABEL  |
+### `components.ShipmentExtraReturnServiceTypeUPSEnum`
+
+```typescript
+const value: components.ShipmentExtraReturnServiceTypeUPSEnum = /* values here */
+```
+
+### `components.ShipmentExtraReturnServiceTypeLasershipEnum`
+
+```typescript
+const value: components.ShipmentExtraReturnServiceTypeLasershipEnum = /* values here */
+```
+

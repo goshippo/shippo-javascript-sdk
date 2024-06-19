@@ -5,7 +5,7 @@
 import {
     CarrierAccountWithExtraInfo,
     CarrierAccountWithExtraInfo$,
-} from "./carrieraccountwithextrainfo";
+} from "./carrieraccountwithextrainfo.js";
 import * as z from "zod";
 
 export type CarrierAccountPaginatedList = {

@@ -5,7 +5,7 @@
 import {
     CarrierAccountCanadaPostCreateParameters,
     CarrierAccountCanadaPostCreateParameters$,
-} from "./carrieraccountcanadapostcreateparameters";
+} from "./carrieraccountcanadapostcreateparameters.js";
 import * as z from "zod";
 
 export type CarrierAccountCanadaPostCreateRequest = {

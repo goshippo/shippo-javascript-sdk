@@ -5,7 +5,7 @@
 import {
     CarrierAccountUPSCreateRequestParameters,
     CarrierAccountUPSCreateRequestParameters$,
-} from "./carrieraccountupscreaterequestparameters";
+} from "./carrieraccountupscreaterequestparameters.js";
 import * as z from "zod";
 
 export type CarrierAccountUPSCreateRequest = {

@@ -5,7 +5,7 @@
 import {
     CarrierAccountDHLExpressCreateRequestParameters,
     CarrierAccountDHLExpressCreateRequestParameters$,
-} from "./carrieraccountdhlexpresscreaterequestparameters";
+} from "./carrieraccountdhlexpresscreaterequestparameters.js";
 import * as z from "zod";
 
 export type CarrierAccountDHLExpressCreateRequest = {
