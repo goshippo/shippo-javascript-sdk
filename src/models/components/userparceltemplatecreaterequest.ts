@@ -5,11 +5,11 @@
 import {
     UserParcelTemplateWithCarrierTemplateCreateRequest,
     UserParcelTemplateWithCarrierTemplateCreateRequest$,
-} from "./userparceltemplatewithcarriertemplatecreaterequest";
+} from "./userparceltemplatewithcarriertemplatecreaterequest.js";
 import {
     UserParcelTemplateWithoutCarrierTemplateCreateRequest,
     UserParcelTemplateWithoutCarrierTemplateCreateRequest$,
-} from "./userparceltemplatewithoutcarriertemplatecreaterequest";
+} from "./userparceltemplatewithoutcarriertemplatecreaterequest.js";
 import * as z from "zod";
 
 export type UserParcelTemplateCreateRequest =

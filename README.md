@@ -21,10 +21,25 @@ api_key_header="shippo_test_595d9cb0c0e14497bf07e75ecfec6c6d"
 npm add shippo
 ```
 
+### PNPM
+
+```bash
+pnpm add shippo
+```
+
+### Bun
+
+```bash
+bun add shippo
+```
+
 ### Yarn
 
 ```bash
-yarn add shippo
+yarn add shippo zod
+
+# Note that Yarn does not install peer dependencies automatically. You will need
+# to install zod as shown above.
 ```
 <!-- End SDK Installation [installation] -->
 
