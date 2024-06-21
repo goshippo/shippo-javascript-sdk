@@ -74,7 +74,6 @@ and depth, as well as their units."
 
 ```typescript
 import { Shippo } from "shippo";
-import { WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -84,7 +83,7 @@ const shippo = new Shippo({
 async function run() {
   const result = await shippo.userParcelTemplates.create({
       weight: "12",
-      weightUnit: WeightUnitEnum.Lb,
+      weightUnit: "lb",
     });
 
   // Handle the result
@@ -204,7 +203,6 @@ Updates an existing user parcel template.
 
 ```typescript
 import { Shippo } from "shippo";
-import { DistanceUnitEnum, WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -213,12 +211,12 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.userParcelTemplates.update("<value>", {
-    distanceUnit: DistanceUnitEnum.In,
+    distanceUnit: "in",
     height: "6",
     length: "10",
     name: "My Custom Template",
     weight: "12",
-    weightUnit: WeightUnitEnum.Lb,
+    weightUnit: "lb",
     width: "8",
   });
 

@@ -20,7 +20,6 @@ Returns a list of all transaction objects.
 
 ```typescript
 import { Shippo } from "shippo";
-import { TrackingStatusEnum, TransactionStatusEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -29,8 +28,8 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.transactions.list({
-    objectStatus: TransactionStatusEnum.Success,
-    trackingStatus: TrackingStatusEnum.Delivered,
+    objectStatus: "SUCCESS",
+    trackingStatus: "DELIVERED",
   });
 
   // Handle the result
@@ -66,7 +65,6 @@ Creates a new transaction object and purchases the shipping label using a rate o
 
 ```typescript
 import { Shippo } from "shippo";
-import { LabelFileTypeEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -76,7 +74,7 @@ const shippo = new Shippo({
 async function run() {
   const result = await shippo.transactions.create({
       async: false,
-      labelFileType: LabelFileTypeEnum.PDF4x6,
+      labelFileType: "PDF_4x6",
       metadata: "Order ID #12345",
       rate: "ec9f0d3adc9441449c85d315f0997fd5",
     });

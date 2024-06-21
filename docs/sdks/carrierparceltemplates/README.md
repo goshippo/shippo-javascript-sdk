@@ -20,7 +20,6 @@ List all carrier parcel template objects. <br> Use the following query string pa
 
 ```typescript
 import { Shippo } from "shippo";
-import { Include } from "shippo/models/operations";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -28,7 +27,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.carrierParcelTemplates.list(Include.Enabled, "fedex");
+  const result = await shippo.carrierParcelTemplates.list("enabled", "fedex");
 
   // Handle the result
   console.log(result)

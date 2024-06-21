@@ -64,15 +64,6 @@ Creates a new customs declaration object
 
 ```typescript
 import { Shippo } from "shippo";
-import {
-  CustomsDeclarationB13AFilingOptionEnum,
-  CustomsDeclarationContentsTypeEnum,
-  CustomsDeclarationEelPfcEnum,
-  CustomsDeclarationIncotermEnum,
-  CustomsDeclarationNonDeliveryOptionEnum,
-  CustomsTaxIdentificationType,
-  WeightUnitEnum,
-} from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -81,7 +72,7 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.customsDeclarations.create({
-    b13aFilingOption: CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
+    b13aFilingOption: "FILED_ELECTRONICALLY",
     certify: true,
     certifySigner: "Shawn Ippotle",
     contentsExplanation: "T-Shirt purchase",
@@ -89,7 +80,7 @@ async function run() {
       eoriNumber: "PL123456790ABCDE",
       taxId: {
         number: "123456789",
-        type: CustomsTaxIdentificationType.Ein,
+        type: "EIN",
       },
     },
     invoice: "#123123",
@@ -108,13 +99,13 @@ async function run() {
       email: "shippotle@shippo.com",
       isResidential: true,
     },
-    contentsType: CustomsDeclarationContentsTypeEnum.Merchandise,
-    eelPfc: CustomsDeclarationEelPfcEnum.NOEEI3037A,
-    incoterm: CustomsDeclarationIncotermEnum.Ddp,
+    contentsType: "MERCHANDISE",
+    eelPfc: "NOEEI_30_37_a",
+    incoterm: "DDP",
     items: [
       {
         description: "T-Shirt",
-        massUnit: WeightUnitEnum.Lb,
+        massUnit: "lb",
         metadata: "Order ID \"123454\"",
         netWeight: "5",
         originCountry: "<value>",
@@ -125,7 +116,7 @@ async function run() {
         valueCurrency: "USD",
       },
     ],
-    nonDeliveryOption: CustomsDeclarationNonDeliveryOptionEnum.Return,
+    nonDeliveryOption: "RETURN",
     test: true,
   });
 

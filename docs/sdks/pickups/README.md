@@ -19,7 +19,6 @@ Creates a pickup object. This request is for a carrier to come to a specified lo
 
 ```typescript
 import { Shippo } from "shippo";
-import { BuildingLocationType, BuildingType } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -46,8 +45,8 @@ async function run() {
         metadata: "Customer ID 123456",
         validate: true,
       },
-      buildingLocationType: BuildingLocationType.FrontDoor,
-      buildingType: BuildingType.Apartment,
+      buildingLocationType: "Front Door",
+      buildingType: "apartment",
       instructions: "Behind screen door",
     },
     requestedEndTime: new Date("2023-06-18T07:14:55.676Z"),

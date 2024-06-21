@@ -63,7 +63,6 @@ Creates a new service group.
 
 ```typescript
 import { Shippo } from "shippo";
-import { ServiceGroupTypeEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -79,7 +78,7 @@ async function run() {
     freeShippingThresholdMin: "5",
     name: "USPS Shipping",
     rateAdjustment: 15,
-    type: ServiceGroupTypeEnum.FlatRate,
+    type: "FLAT_RATE",
     serviceLevels: [
       {
         accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
@@ -121,7 +120,6 @@ Updates an existing service group object. <br>The object_id cannot be updated as
 
 ```typescript
 import { Shippo } from "shippo";
-import { ServiceGroupTypeEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -137,7 +135,7 @@ async function run() {
     freeShippingThresholdMin: "5",
     name: "USPS Shipping",
     rateAdjustment: 15,
-    type: ServiceGroupTypeEnum.FlatRate,
+    type: "FLAT_RATE",
     objectId: "80feb1633d4a43c898f005850",
     isActive: true,
     serviceLevels: [

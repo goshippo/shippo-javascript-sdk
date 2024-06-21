@@ -332,7 +332,6 @@ Returns the registration status for the given account for the given carrier
 
 ```typescript
 import { Shippo } from "shippo";
-import { Carrier } from "shippo/models/operations";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -340,7 +339,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.carrierAccounts.getRegistrationStatus(Carrier.Usps);
+  const result = await shippo.carrierAccounts.getRegistrationStatus("usps");
 
   // Handle the result
   console.log(result)
