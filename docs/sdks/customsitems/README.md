@@ -63,7 +63,6 @@ Creates a new customs item object.
 
 ```typescript
 import { Shippo } from "shippo";
-import { WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -73,7 +72,7 @@ const shippo = new Shippo({
 async function run() {
   const result = await shippo.customsItems.create({
     description: "T-Shirt",
-    massUnit: WeightUnitEnum.Lb,
+    massUnit: "lb",
     metadata: "Order ID \"123454\"",
     netWeight: "5",
     originCountry: "<value>",

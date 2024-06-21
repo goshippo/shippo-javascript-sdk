@@ -31,7 +31,6 @@ template or a fully formed user parcel template object as the parcel value.
 
 ```typescript
 import { Shippo } from "shippo";
-import { WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -54,7 +53,7 @@ async function run() {
         totalPrice: "12.1",
         variantTitle: "June Edition",
         weight: "0.4",
-        weightUnit: WeightUnitEnum.Lb,
+        weightUnit: "lb",
         objectId: "abf7d5675d744b6ea9fdb6f796b28f28",
       },
     ],

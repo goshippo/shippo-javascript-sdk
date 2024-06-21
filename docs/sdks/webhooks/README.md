@@ -22,7 +22,6 @@ Creates a new webhook to send notifications to a URL when a specific event occur
 
 ```typescript
 import { Shippo } from "shippo";
-import { WebhookEventTypeEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -31,7 +30,7 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.webhooks.createWebhook({
-    event: WebhookEventTypeEnum.TrackUpdated,
+    event: "track_updated",
     url: "https://wobbly-marmalade.org",
   });
 
@@ -151,7 +150,6 @@ Updates an existing webhook using the webhook object ID.
 
 ```typescript
 import { Shippo } from "shippo";
-import { WebhookEventTypeEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -160,7 +158,7 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.webhooks.updateWebhook("<value>", {
-    event: WebhookEventTypeEnum.TrackUpdated,
+    event: "track_updated",
     url: "https://small-cock.info",
   });
 

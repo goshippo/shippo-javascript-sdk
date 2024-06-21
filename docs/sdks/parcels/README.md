@@ -67,7 +67,6 @@ Creates a new parcel object.
 
 ```typescript
 import { Shippo } from "shippo";
-import { DistanceUnitEnum, ParcelInsuranceProvider, PaymentMethod, WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -80,19 +79,19 @@ async function run() {
         cod: {
           amount: "5.5",
           currency: "USD",
-          paymentMethod: PaymentMethod.Cash,
+          paymentMethod: "CASH",
         },
         insurance: {
           amount: "5.5",
           content: "Laptop",
           currency: "USD",
-          provider: ParcelInsuranceProvider.Ups,
+          provider: "UPS",
         },
       },
       metadata: "Customer ID 123456",
-      massUnit: WeightUnitEnum.Lb,
+      massUnit: "lb",
       weight: "1",
-      distanceUnit: DistanceUnitEnum.In,
+      distanceUnit: "in",
       height: "1",
       length: "1",
       width: "1",

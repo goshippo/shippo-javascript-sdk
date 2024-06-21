@@ -74,7 +74,6 @@ Creates a new order object.
 
 ```typescript
 import { Shippo } from "shippo";
-import { OrderStatusEnum, WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -86,7 +85,7 @@ async function run() {
     currency: "USD",
     notes: "This customer is a VIP",
     orderNumber: "#1068",
-    orderStatus: OrderStatusEnum.Paid,
+    orderStatus: "PAID",
     placedAt: "2016-09-23T01:28:12Z",
     shippingCost: "12.83",
     shippingCostCurrency: "USD",
@@ -95,7 +94,7 @@ async function run() {
     totalPrice: "24.93",
     totalTax: "0.0",
     weight: "0.4",
-    weightUnit: WeightUnitEnum.Lb,
+    weightUnit: "lb",
     fromAddress: {
       name: "Shwan Ippotle",
       company: "Shippo",
@@ -140,7 +139,7 @@ async function run() {
         totalPrice: "12.1",
         variantTitle: "June Edition",
         weight: "0.4",
-        weightUnit: WeightUnitEnum.Lb,
+        weightUnit: "lb",
       },
     ],
   });

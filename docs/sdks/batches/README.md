@@ -30,13 +30,6 @@ Creates a new batch object for purchasing shipping labels for many shipments at 
 
 ```typescript
 import { Shippo } from "shippo";
-import {
-  LabelFileTypeEnum,
-  ParcelInsuranceProvider,
-  PaymentMethod,
-  USPSParcelTemplate,
-  WeightUnitEnum,
-} from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -47,7 +40,7 @@ async function run() {
   const result = await shippo.batches.create({
     defaultCarrierAccount: "078870331023437cb917f5187429b093",
     defaultServicelevelToken: "usps_priority",
-    labelFiletype: LabelFileTypeEnum.PDF4x6,
+    labelFiletype: "PDF_4x6",
     metadata: "BATCH #1",
     batchShipments: [
       {
@@ -74,7 +67,7 @@ async function run() {
             cod: {
               amount: "5.5",
               currency: "USD",
-              paymentMethod: PaymentMethod.Cash,
+              paymentMethod: "CASH",
             },
             codNumber: {
               prefix: "ABC",
@@ -202,19 +195,19 @@ async function run() {
                   cod: {
                     amount: "5.5",
                     currency: "USD",
-                    paymentMethod: PaymentMethod.Cash,
+                    paymentMethod: "CASH",
                   },
                   insurance: {
                     amount: "5.5",
                     content: "Laptop",
                     currency: "USD",
-                    provider: ParcelInsuranceProvider.Ups,
+                    provider: "UPS",
                   },
                 },
                 metadata: "Customer ID 123456",
-                massUnit: WeightUnitEnum.Lb,
+                massUnit: "lb",
                 weight: "1",
-              template: USPSParcelTemplate.USPSFlatRateGiftCardEnvelope,
+              template: "USPS_FlatRateGiftCardEnvelope",
               },
           ],
         },
@@ -300,7 +293,6 @@ Adds batch shipments to an existing batch.
 
 ```typescript
 import { Shippo } from "shippo";
-import { DistanceUnitEnum, ParcelInsuranceProvider, PaymentMethod, WeightUnitEnum } from "shippo/models/components";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -333,7 +325,7 @@ async function run() {
           cod: {
             amount: "5.5",
             currency: "USD",
-            paymentMethod: PaymentMethod.Cash,
+            paymentMethod: "CASH",
           },
           codNumber: {
             prefix: "ABC",
@@ -446,19 +438,19 @@ async function run() {
                 cod: {
                   amount: "5.5",
                   currency: "USD",
-                  paymentMethod: PaymentMethod.Cash,
+                  paymentMethod: "CASH",
                 },
                 insurance: {
                   amount: "5.5",
                   content: "Laptop",
                   currency: "USD",
-                  provider: ParcelInsuranceProvider.Ups,
+                  provider: "UPS",
                 },
               },
               metadata: "Customer ID 123456",
-              massUnit: WeightUnitEnum.Lb,
+              massUnit: "lb",
               weight: "1",
-              distanceUnit: DistanceUnitEnum.In,
+              distanceUnit: "in",
               height: "1",
               length: "1",
               width: "1",
