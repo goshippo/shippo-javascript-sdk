@@ -461,10 +461,10 @@ export class CarrierAccounts extends ClientSDK {
                 hdrs: true,
             })
             .json(400, errors.InitiateOauth2SigninResponseBody$, { err: true })
-            .json(401, errors.InitiateOauth2SigninCarrierAccountsResponseBody$, { err: true })
-            .json(404, errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody$, {
+            .json(401, errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody$, {
                 err: true,
             })
+            .json(404, errors.InitiateOauth2SigninCarrierAccountsResponseBody$, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

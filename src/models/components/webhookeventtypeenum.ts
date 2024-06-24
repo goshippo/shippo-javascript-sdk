@@ -5,6 +5,9 @@
 import { ClosedEnum } from "../../types/enums.js";
 import * as z from "zod";
 
+/**
+ * Type of event that triggered the webhook.
+ */
 export const WebhookEventTypeEnum = {
     TransactionCreated: "transaction_created",
     TransactionUpdated: "transaction_updated",
@@ -12,6 +15,9 @@ export const WebhookEventTypeEnum = {
     BatchCreated: "batch_created",
     BatchPurchased: "batch_purchased",
 } as const;
+/**
+ * Type of event that triggered the webhook.
+ */
 export type WebhookEventTypeEnum = ClosedEnum<typeof WebhookEventTypeEnum>;
 
 /** @internal */

@@ -275,8 +275,8 @@ run();
 | Error Object                                                   | Status Code                                                    | Content Type                                                   |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | errors.InitiateOauth2SigninResponseBody                        | 400                                                            | application/json                                               |
-| errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401                                                            | application/json                                               |
-| errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404                                                            | application/json                                               |
+| errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 401                                                            | application/json                                               |
+| errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 404                                                            | application/json                                               |
 | errors.SDKError                                                | 4xx-5xx                                                        | */*                                                            |
 
 ## register
