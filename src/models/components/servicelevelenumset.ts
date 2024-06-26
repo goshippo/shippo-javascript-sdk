@@ -182,10 +182,12 @@ export type ServiceLevelOnTracEnum = ClosedEnum<typeof ServiceLevelOnTracEnum>;
  * @remarks
  * |:---|:---|
  * | sendle_parcel | Sendle Parcel|
+ * | sendle_standard_dropoff | Sendle Standard Dropoff|
  *
  */
 export const ServiceLevelSendleEnum = {
     SendleParcel: "sendle_parcel",
+    SendleStandardDropoff: "sendle_standard_dropoff",
 } as const;
 /**
  * |Token | Service name|
@@ -193,6 +195,7 @@ export const ServiceLevelSendleEnum = {
  * @remarks
  * |:---|:---|
  * | sendle_parcel | Sendle Parcel|
+ * | sendle_standard_dropoff | Sendle Standard Dropoff|
  *
  */
 export type ServiceLevelSendleEnum = ClosedEnum<typeof ServiceLevelSendleEnum>;
