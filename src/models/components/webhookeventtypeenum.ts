@@ -11,6 +11,7 @@ export const WebhookEventTypeEnum = {
     TrackUpdated: "track_updated",
     BatchCreated: "batch_created",
     BatchPurchased: "batch_purchased",
+    All: "all",
 } as const;
 export type WebhookEventTypeEnum = ClosedEnum<typeof WebhookEventTypeEnum>;
 

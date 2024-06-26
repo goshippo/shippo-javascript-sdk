@@ -30,7 +30,7 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.webhooks.createWebhook({
-    event: "track_updated",
+    event: "batch_created",
     url: "https://wobbly-marmalade.org",
   });
 
@@ -158,7 +158,7 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.webhooks.updateWebhook("<value>", {
-    event: "track_updated",
+    event: "batch_created",
     url: "https://small-cock.info",
   });
 
