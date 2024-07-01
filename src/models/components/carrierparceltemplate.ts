@@ -22,7 +22,7 @@ export type CarrierParcelTemplate = {
     /**
      * True if the carrier parcel template allows custom dimensions, such as USPS Softpack.
      */
-    isVariableDimensions?: string | undefined;
+    isVariableDimensions?: boolean | undefined;
     /**
      * The length of the package, in units specified by the distance_unit attribute
      */
@@ -48,7 +48,7 @@ export namespace CarrierParcelTemplate$ {
             carrier: z.string().optional(),
             distance_unit: DistanceUnitEnum$.inboundSchema.optional(),
             height: z.string().optional(),
-            is_variable_dimensions: z.string().optional(),
+            is_variable_dimensions: z.boolean().optional(),
             length: z.string().optional(),
             name: z.string().optional(),
             token: z.string().optional(),
@@ -65,7 +65,7 @@ export namespace CarrierParcelTemplate$ {
         carrier?: string | undefined;
         distance_unit?: string | undefined;
         height?: string | undefined;
-        is_variable_dimensions?: string | undefined;
+        is_variable_dimensions?: boolean | undefined;
         length?: string | undefined;
         name?: string | undefined;
         token?: string | undefined;
@@ -77,7 +77,7 @@ export namespace CarrierParcelTemplate$ {
             carrier: z.string().optional(),
             distanceUnit: DistanceUnitEnum$.outboundSchema.optional(),
             height: z.string().optional(),
-            isVariableDimensions: z.string().optional(),
+            isVariableDimensions: z.boolean().optional(),
             length: z.string().optional(),
             name: z.string().optional(),
             token: z.string().optional(),

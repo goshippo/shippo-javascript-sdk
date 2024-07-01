@@ -203,7 +203,12 @@ export type ShipmentExtra = {
      */
     fulfillmentCenter?: string | undefined;
     /**
-     * To add 3rd party insurance powered by <a href="https://docs.goshippo.com/docs/shipments/shippinginsurance/">XCover</a>, specify <br> `amount`, `content`, and `currency`. <br> Alternatively, you can choose carrier provided insurance by additionally specifying `provider` (UPS, FedEx and OnTrac only). <br><br> If you do not want to add insurance to you shipment, do not set these parameters.
+     * To add 3rd party insurance powered by <a href="https://docs.goshippo.com/docs/shipments/shippinginsurance/">XCover</a>,
+     *
+     * @remarks
+     * specify <br> `amount`, `content`, and `currency`. <br> Alternatively, you can choose carrier provided insurance
+     * by additionally specifying `provider` (UPS, FedEx and OnTrac only). <br><br> If you do not want to add insurance
+     * to your shipment, do not set these parameters.
      */
     insurance?: Insurance | undefined;
     /**

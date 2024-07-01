@@ -7,6 +7,9 @@ import { WebhookEventTypeEnum, WebhookEventTypeEnum$ } from "./webhookeventtypee
 import * as z from "zod";
 
 export type WebhookUpdateRequest = {
+    /**
+     * Type of event that triggered the webhook.
+     */
     event: WebhookEventTypeEnum;
     /**
      * URL webhook events are sent to.

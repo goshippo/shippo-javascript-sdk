@@ -66,14 +66,10 @@ export class Shipments extends ClientSDK {
      *     `https://api.goshippo.com/shipments/?object_created_gte=2017-01-01T00:00:30&object_created_lt=2017-04-01T00:00:30`
      */
     async list(
-        page?: number | undefined,
-        results?: number | undefined,
+        request: operations.ListShipmentsRequest,
         options?: RequestOptions
     ): Promise<components.ShipmentPaginatedList> {
-        const input$: operations.ListShipmentsRequest = {
-            page: page,
-            results: results,
-        };
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -88,6 +84,10 @@ export class Shipments extends ClientSDK {
         const path$ = this.templateURLComponent("/shipments")();
 
         const query$ = encodeFormQuery$({
+            object_created_gt: payload$.object_created_gt,
+            object_created_gte: payload$.object_created_gte,
+            object_created_lt: payload$.object_created_lt,
+            object_created_lte: payload$.object_created_lte,
             page: payload$.page,
             results: payload$.results,
         });

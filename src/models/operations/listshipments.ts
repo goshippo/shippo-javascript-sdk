@@ -21,6 +21,22 @@ export type ListShipmentsRequest = {
      * The number of results to return per page (max 100)
      */
     results?: number | undefined;
+    /**
+     * Object(s) created greater than a provided date and time.
+     */
+    objectCreatedGt?: Date | undefined;
+    /**
+     * Object(s) created greater than or equal to a provided date and time.
+     */
+    objectCreatedGte?: Date | undefined;
+    /**
+     * Object(s) created lesser than a provided date and time.
+     */
+    objectCreatedLt?: Date | undefined;
+    /**
+     * Object(s) created lesser than or equal to a provided date and time.
+     */
+    objectCreatedLte?: Date | undefined;
 };
 
 /** @internal */
@@ -52,20 +68,76 @@ export namespace ListShipmentsGlobals$ {
 
 /** @internal */
 export namespace ListShipmentsRequest$ {
-    export const inboundSchema: z.ZodType<ListShipmentsRequest, z.ZodTypeDef, unknown> = z.object({
-        page: z.number().int().default(1),
-        results: z.number().int().default(25),
-    });
+    export const inboundSchema: z.ZodType<ListShipmentsRequest, z.ZodTypeDef, unknown> = z
+        .object({
+            page: z.number().int().default(1),
+            results: z.number().int().default(25),
+            object_created_gt: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
+            object_created_gte: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
+            object_created_lt: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
+            object_created_lte: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
+        })
+        .transform((v) => {
+            return remap$(v, {
+                object_created_gt: "objectCreatedGt",
+                object_created_gte: "objectCreatedGte",
+                object_created_lt: "objectCreatedLt",
+                object_created_lte: "objectCreatedLte",
+            });
+        });
 
     export type Outbound = {
         page: number;
         results: number;
+        object_created_gt?: string | undefined;
+        object_created_gte?: string | undefined;
+        object_created_lt?: string | undefined;
+        object_created_lte?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListShipmentsRequest> = z.object(
-        {
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListShipmentsRequest> = z
+        .object({
             page: z.number().int().default(1),
             results: z.number().int().default(25),
-        }
-    );
+            objectCreatedGt: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
+            objectCreatedGte: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
+            objectCreatedLt: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
+            objectCreatedLte: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
+        })
+        .transform((v) => {
+            return remap$(v, {
+                objectCreatedGt: "object_created_gt",
+                objectCreatedGte: "object_created_gte",
+                objectCreatedLt: "object_created_lt",
+                objectCreatedLte: "object_created_lte",
+            });
+        });
 }
