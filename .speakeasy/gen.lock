@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: f8a55a9af3dcccda8c950270aef6ae0b
+  docChecksum: 7445f937979a0cde668af1a2056afb53
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.318.0
-  generationVersion: 2.352.0
-  releaseVersion: 2.4.2
-  configChecksum: 582c3c20f6fb951cd295348124dc8927
+  speakeasyVersion: 1.324.0
+  generationVersion: 2.356.0
+  releaseVersion: 2.5.0
+  configChecksum: ee8f945bd9a070d1a059c8aa2d38ad32
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -28,6 +28,7 @@ features:
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
     unions: 2.85.5
+    webhooks: 1.0.0
 generatedFiles:
   - src/sdk/addresses.ts
   - src/sdk/batches.ts
@@ -217,6 +218,9 @@ generatedFiles:
   - src/models/components/webhookeventtypeenum.ts
   - src/models/components/webhookpaginatedlist.ts
   - src/models/components/security.ts
+  - src/models/components/webhookpayloadbatch.ts
+  - src/models/components/webhookpayloadtrack.ts
+  - src/models/components/webhookpayloadtransaction.ts
   - src/models/components/addressvalidationresultsmessagecodeenum.ts
   - src/models/components/addressvalidationresultsmessagesourceenum.ts
   - src/models/components/servicelevel.ts
@@ -499,6 +503,9 @@ generatedFiles:
   - docs/models/components/webhookeventtypeenum.md
   - docs/models/components/webhookpaginatedlist.md
   - docs/models/components/security.md
+  - docs/models/components/webhookpayloadbatch.md
+  - docs/models/components/webhookpayloadtrack.md
+  - docs/models/components/webhookpayloadtransaction.md
   - docs/models/components/addressvalidationresultsmessagecodeenum.md
   - docs/models/components/addressvalidationresultsmessagesourceenum.md
   - docs/models/components/servicelevel.md

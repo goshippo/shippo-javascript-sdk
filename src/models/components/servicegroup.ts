@@ -31,7 +31,11 @@ export type ServiceGroup = {
      */
     freeShippingThresholdCurrency?: string | undefined;
     /**
-     * For service groups of type `FREE_SHIPPING`, this field must be required to configure the minimum cart total (total cost of items in the cart) for this service group to be returned for rates at checkout. Optional unless type is `FREE_SHIPPING`
+     * For service groups of type `FREE_SHIPPING`, this field must be required to configure the minimum
+     *
+     * @remarks
+     * cart total (total cost of items in the cart) for this service group to be returned for rates at
+     * checkout. Optional unless type is `FREE_SHIPPING`
      */
     freeShippingThresholdMin?: string | undefined;
     /**
@@ -43,7 +47,12 @@ export type ServiceGroup = {
      */
     rateAdjustment?: number | undefined;
     /**
-     * The type of the service group.<br> `LIVE_RATE` - Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.<br> `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.<br> `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
+     * The type of the service group.<br>
+     *
+     * @remarks
+     * `LIVE_RATE` - Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.<br>
+     * `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.<br>
+     * `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
      */
     type: ServiceGroupTypeEnum;
     /**

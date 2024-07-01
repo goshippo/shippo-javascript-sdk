@@ -45,7 +45,13 @@ export class CarrierParcelTemplates extends ClientSDK {
      * List all carrier parcel templates
      *
      * @remarks
-     * List all carrier parcel template objects. <br> Use the following query string params to filter the results as needed. <br> <ul> <li>`include=all` (the default). Includes templates from all carriers </li> <li>`include=user`. Includes templates only from carriers which the user has added (whether or not they're currently enabled) </li> <li>`include=enabled`. includes templates only for carriers which the user has added and enabled </li> <li>`carrier=*token*`. filter by specific carrier, e.g. fedex, usps </li> </ul>
+     * List all carrier parcel template objects. <br> Use the following query string params to filter the results as needed. <br>
+     * <ul>
+     * <li>`include=all` (the default). Includes templates from all carriers </li>
+     * <li>`include=user`. Includes templates only from carriers which the user has added (whether or not they're currently enabled) </li>
+     * <li>`include=enabled`. includes templates only for carriers which the user has added and enabled </li>
+     * <li>`carrier=*token*`. filter by specific carrier, e.g. fedex, usps </li>
+     * </ul>
      */
     async list(
         include?: operations.Include | undefined,

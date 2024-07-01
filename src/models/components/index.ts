@@ -146,5 +146,8 @@ export * from "./userparceltemplatewithoutcarriertemplatecreaterequest.js";
 export * from "./webhook.js";
 export * from "./webhookeventtypeenum.js";
 export * from "./webhookpaginatedlist.js";
+export * from "./webhookpayloadbatch.js";
+export * from "./webhookpayloadtrack.js";
+export * from "./webhookpayloadtransaction.js";
 export * from "./webhookupdaterequest.js";
 export * from "./weightunitenum.js";
