@@ -24,19 +24,19 @@ export type ListShipmentsRequest = {
     /**
      * Object(s) created greater than a provided date and time.
      */
-    objectCreatedGt?: Date | undefined;
+    objectCreatedGt?: string | undefined;
     /**
      * Object(s) created greater than or equal to a provided date and time.
      */
-    objectCreatedGte?: Date | undefined;
+    objectCreatedGte?: string | undefined;
     /**
      * Object(s) created lesser than a provided date and time.
      */
-    objectCreatedLt?: Date | undefined;
+    objectCreatedLt?: string | undefined;
     /**
      * Object(s) created lesser than or equal to a provided date and time.
      */
-    objectCreatedLte?: Date | undefined;
+    objectCreatedLte?: string | undefined;
 };
 
 /** @internal */
@@ -72,26 +72,10 @@ export namespace ListShipmentsRequest$ {
         .object({
             page: z.number().int().default(1),
             results: z.number().int().default(25),
-            object_created_gt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            object_created_gte: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            object_created_lt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            object_created_lte: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
+            object_created_gt: z.string().optional(),
+            object_created_gte: z.string().optional(),
+            object_created_lt: z.string().optional(),
+            object_created_lte: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
@@ -115,22 +99,10 @@ export namespace ListShipmentsRequest$ {
         .object({
             page: z.number().int().default(1),
             results: z.number().int().default(25),
-            objectCreatedGt: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            objectCreatedGte: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            objectCreatedLt: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            objectCreatedLte: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
+            objectCreatedGt: z.string().optional(),
+            objectCreatedGte: z.string().optional(),
+            objectCreatedLt: z.string().optional(),
+            objectCreatedLte: z.string().optional(),
         })
         .transform((v) => {
             return remap$(v, {
