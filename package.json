@@ -1,7 +1,7 @@
 {
   "name": "shippo",
-  "version": "2.5.0",
-  "author": "Shippo",  
+  "version": "2.6.0",
+  "author": "Shippo",
   "license": "MIT",
   "main": "./index.js",
   "sideEffects": false,

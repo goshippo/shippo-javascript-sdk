@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 2.5.0
+  version: 2.6.0
   additionalDependencies:
     dependencies: {}
     devDependencies:
@@ -39,6 +39,7 @@ typescript:
   inputModelSuffix: input
   maxMethodParams: 3
   methodArguments: require-security-and-request
+  moduleFormat: commonjs
   outputModelSuffix: output
   packageName: shippo
   responseFormat: flat
