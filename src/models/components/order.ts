@@ -3,42 +3,12 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Address, Address$ } from "./address.js";
 import { LineItem, LineItem$ } from "./lineitem.js";
+import { OrderShopAppEnum, OrderShopAppEnum$ } from "./ordershopappenum.js";
 import { OrderStatusEnum, OrderStatusEnum$ } from "./orderstatusenum.js";
 import { WeightUnitEnum, WeightUnitEnum$ } from "./weightunitenum.js";
 import * as z from "zod";
-
-/**
- * Platform the order was created on and, if applicable, imported from.
- *
- * @remarks
- * Orders created via the Shippo API or dashboard will have the value "Shippo".
- */
-export const ShopApp = {
-    Amazon: "Amazon",
-    Bigcommerce: "Bigcommerce",
-    CSVImport: "CSV_Import",
-    EBay: "eBay",
-    EPages: "ePages",
-    Etsy: "Etsy",
-    Godaddy: "Godaddy",
-    Magento: "Magento",
-    Shippo: "Shippo",
-    Shopify: "Shopify",
-    Spreecommerce: "Spreecommerce",
-    StripeRelay: "StripeRelay",
-    Weebly: "Weebly",
-    WooCommerce: "WooCommerce",
-} as const;
-/**
- * Platform the order was created on and, if applicable, imported from.
- *
- * @remarks
- * Orders created via the Shippo API or dashboard will have the value "Shippo".
- */
-export type ShopApp = ClosedEnum<typeof ShopApp>;
 
 export type Order = {
     /**
@@ -131,7 +101,7 @@ export type Order = {
      * @remarks
      * Orders created via the Shippo API or dashboard will have the value "Shippo".
      */
-    shopApp?: ShopApp | undefined;
+    shopApp?: OrderShopAppEnum | undefined;
     /**
      * Array of <a href="#tag/Transactions">transaction</a> objects representing all shipping labels purchased for this order.
      *
@@ -140,12 +110,6 @@ export type Order = {
      */
     transactions?: Array<string> | undefined;
 };
-
-/** @internal */
-export namespace ShopApp$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof ShopApp> = z.nativeEnum(ShopApp);
-    export const outboundSchema: z.ZodNativeEnum<typeof ShopApp> = inboundSchema;
-}
 
 /** @internal */
 export namespace Order$ {
@@ -169,7 +133,7 @@ export namespace Order$ {
             line_items: z.array(LineItem$.inboundSchema).optional(),
             object_id: z.string().optional(),
             object_owner: z.string().optional(),
-            shop_app: ShopApp$.inboundSchema.optional(),
+            shop_app: OrderShopAppEnum$.inboundSchema.optional(),
             transactions: z.array(z.string()).optional(),
         })
         .transform((v) => {
@@ -236,7 +200,7 @@ export namespace Order$ {
             lineItems: z.array(LineItem$.outboundSchema).optional(),
             objectId: z.string().optional(),
             objectOwner: z.string().optional(),
-            shopApp: ShopApp$.outboundSchema.optional(),
+            shopApp: OrderShopAppEnum$.outboundSchema.optional(),
             transactions: z.array(z.string()).optional(),
         })
         .transform((v) => {

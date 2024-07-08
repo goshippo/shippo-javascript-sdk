@@ -35,7 +35,9 @@ const shippo = new Shippo({
 async function run() {
   const result = await shippo.webhooks.createWebhook({
     event: "batch_created",
-    url: "https://wobbly-marmalade.org",
+    url: "https://example.com/shippo-webhook",
+    active: true,
+    isTest: false,
   });
 
   // Handle the result
@@ -163,7 +165,9 @@ const shippo = new Shippo({
 async function run() {
   const result = await shippo.webhooks.updateWebhook("<value>", {
     event: "batch_created",
-    url: "http://crooked-acknowledgment.biz",
+    url: "https://example.com/shippo-webhook",
+    active: true,
+    isTest: false,
   });
 
   // Handle the result

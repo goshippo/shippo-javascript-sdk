@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -48,21 +48,19 @@ export class UserParcelTemplates extends ClientSDK {
     async list(options?: RequestOptions): Promise<components.UserParcelTemplateList> {
         const input$: operations.ListUserParcelTemplatesRequest = {};
         void input$; // request input is unused
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const path$ = this.templateURLComponent("/user-parcel-templates")();
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -79,7 +77,6 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -92,7 +89,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.UserParcelTemplateList>()
             .json(200, components.UserParcelTemplateList$)
@@ -119,10 +116,6 @@ export class UserParcelTemplates extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.UserParcelTemplate> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -135,13 +128,15 @@ export class UserParcelTemplates extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -158,7 +153,6 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -172,7 +166,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.UserParcelTemplate>()
             .json(200, components.UserParcelTemplate$)
@@ -192,9 +186,6 @@ export class UserParcelTemplates extends ClientSDK {
         const input$: operations.DeleteUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
 
         const payload$ = schemas$.parse(
             input$,
@@ -216,13 +207,14 @@ export class UserParcelTemplates extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "*/*",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -239,7 +231,6 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -253,7 +244,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<void>()
             .void(204, z.void())
@@ -277,9 +268,6 @@ export class UserParcelTemplates extends ClientSDK {
         const input$: operations.GetUserParcelTemplateRequest = {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -301,13 +289,14 @@ export class UserParcelTemplates extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -324,7 +313,6 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -338,7 +326,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.UserParcelTemplate>()
             .json(200, components.UserParcelTemplate$)
@@ -363,10 +351,6 @@ export class UserParcelTemplates extends ClientSDK {
             userParcelTemplateObjectId: userParcelTemplateObjectId,
             userParcelTemplateUpdateRequest: userParcelTemplateUpdateRequest,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -390,13 +374,15 @@ export class UserParcelTemplates extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -413,7 +399,6 @@ export class UserParcelTemplates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -427,7 +412,7 @@ export class UserParcelTemplates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.UserParcelTemplate>()
             .json(200, components.UserParcelTemplate$)

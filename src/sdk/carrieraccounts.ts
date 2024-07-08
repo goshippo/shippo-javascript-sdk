@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeJSON as encodeJSON$,
@@ -58,9 +58,6 @@ export class CarrierAccounts extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.CarrierAccountPaginatedList> {
         const input$ = typeof request === "undefined" ? {} : request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -79,13 +76,14 @@ export class CarrierAccounts extends ClientSDK {
             service_levels: payload$.service_levels,
         });
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -102,7 +100,6 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -116,7 +113,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.CarrierAccountPaginatedList>()
             .json(200, components.CarrierAccountPaginatedList$)
@@ -137,10 +134,6 @@ export class CarrierAccounts extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.CarrierAccount> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -153,13 +146,15 @@ export class CarrierAccounts extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -176,7 +171,6 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -190,7 +184,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.CarrierAccount>()
             .json(201, components.CarrierAccount$)
@@ -213,9 +207,6 @@ export class CarrierAccounts extends ClientSDK {
         const input$: operations.GetCarrierAccountRequest = {
             carrierAccountId: carrierAccountId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -236,13 +227,14 @@ export class CarrierAccounts extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -259,7 +251,6 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -273,7 +264,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.CarrierAccount>()
             .json(200, components.CarrierAccount$)
@@ -298,10 +289,6 @@ export class CarrierAccounts extends ClientSDK {
             carrierAccountId: carrierAccountId,
             carrierAccountBase: carrierAccountBase,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -322,13 +309,15 @@ export class CarrierAccounts extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -345,7 +334,6 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -359,7 +347,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.CarrierAccount>()
             .json(200, components.CarrierAccount$)
@@ -386,9 +374,6 @@ export class CarrierAccounts extends ClientSDK {
             redirectUri: redirectUri,
             state: state,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -413,13 +398,14 @@ export class CarrierAccounts extends ClientSDK {
             state: payload$.state,
         });
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -436,7 +422,6 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -450,7 +435,10 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
@@ -482,10 +470,6 @@ export class CarrierAccounts extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.CarrierAccount> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -498,13 +482,15 @@ export class CarrierAccounts extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -521,7 +507,6 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -535,7 +520,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.CarrierAccount>()
             .json(201, components.CarrierAccount$)
@@ -558,9 +543,6 @@ export class CarrierAccounts extends ClientSDK {
         const input$: operations.GetCarrierRegistrationStatusRequest = {
             carrier: carrier,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -576,13 +558,14 @@ export class CarrierAccounts extends ClientSDK {
             carrier: payload$.carrier,
         });
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -599,7 +582,6 @@ export class CarrierAccounts extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -613,7 +595,7 @@ export class CarrierAccounts extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.CarrierAccountRegistrationStatus>()
             .json(200, components.CarrierAccountRegistrationStatus$)

@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeJSON as encodeJSON$,
@@ -49,17 +49,10 @@ export class Orders extends ClientSDK {
      * Returns a list of all order objects.
      */
     async list(
-        page?: number | undefined,
-        results?: number | undefined,
+        request: operations.ListOrdersRequest,
         options?: RequestOptions
     ): Promise<components.OrderPaginatedList> {
-        const input$: operations.ListOrdersRequest = {
-            page: page,
-            results: results,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
+        const input$ = typeof request === "undefined" ? {} : request;
 
         const payload$ = schemas$.parse(
             input$,
@@ -71,17 +64,22 @@ export class Orders extends ClientSDK {
         const path$ = this.templateURLComponent("/orders")();
 
         const query$ = encodeFormQuery$({
+            end_date: payload$.end_date,
+            "order_status[]": payload$["order_status[]"],
             page: payload$.page,
             results: payload$.results,
+            shop_app: payload$.shop_app,
+            start_date: payload$.start_date,
         });
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -98,7 +96,6 @@ export class Orders extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -112,7 +109,7 @@ export class Orders extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.OrderPaginatedList>()
             .json(200, components.OrderPaginatedList$)
@@ -133,10 +130,6 @@ export class Orders extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.Order> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -149,13 +142,15 @@ export class Orders extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -172,7 +167,6 @@ export class Orders extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -186,7 +180,7 @@ export class Orders extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.Order>()
             .json(201, components.Order$)
@@ -206,9 +200,6 @@ export class Orders extends ClientSDK {
         const input$: operations.GetOrderRequest = {
             orderId: orderId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -227,13 +218,14 @@ export class Orders extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -250,7 +242,6 @@ export class Orders extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -264,7 +255,7 @@ export class Orders extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.Order>()
             .json(200, components.Order$)

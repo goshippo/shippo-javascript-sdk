@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import {
     encodeFormQuery as encodeFormQuery$,
     encodeSimple as encodeSimple$,
@@ -51,9 +51,6 @@ export class Rates extends ClientSDK {
         const input$: operations.GetRateRequest = {
             rateId: rateId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -72,13 +69,14 @@ export class Rates extends ClientSDK {
 
         const query$ = "";
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -95,7 +93,6 @@ export class Rates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -109,7 +106,7 @@ export class Rates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.Rate>()
             .json(200, components.Rate$)
@@ -136,9 +133,6 @@ export class Rates extends ClientSDK {
             page: page,
             results: results,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -160,13 +154,14 @@ export class Rates extends ClientSDK {
             results: payload$.results,
         });
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -183,7 +178,6 @@ export class Rates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -197,7 +191,7 @@ export class Rates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.RatePaginatedList>()
             .json(200, components.RatePaginatedList$)
@@ -224,9 +218,6 @@ export class Rates extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.RatePaginatedList> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -255,13 +246,14 @@ export class Rates extends ClientSDK {
             results: payload$.results,
         });
 
-        headers$.set(
-            "SHIPPO-API-VERSION",
-            encodeSimple$("SHIPPO-API-VERSION", this.options$.shippoApiVersion, {
-                explode: false,
-                charEncoding: "none",
-            })
-        );
+        const headers$ = new Headers({
+            Accept: "application/json",
+            "SHIPPO-API-VERSION": encodeSimple$(
+                "SHIPPO-API-VERSION",
+                this.options$.shippoApiVersion,
+                { explode: false, charEncoding: "none" }
+            ),
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -278,7 +270,6 @@ export class Rates extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -292,7 +283,7 @@ export class Rates extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["400", "4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.RatePaginatedList>()
             .json(200, components.RatePaginatedList$)

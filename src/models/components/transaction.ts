@@ -91,6 +91,10 @@ export type Transaction = {
      */
     objectUpdated?: Date | undefined;
     /**
+     * Object ID of the Parcel object that is being shipped.
+     */
+    parcel?: string | undefined;
+    /**
      * A URL pointing directly to the QR code in PNG format.
      *
      * @remarks
@@ -207,6 +211,7 @@ export namespace Transaction$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
+            parcel: z.string().optional(),
             qr_code_url: z.string().optional(),
             rate: z.union([CoreRate$.inboundSchema, z.string()]).optional(),
             status: TransactionStatusEnum$.inboundSchema.optional(),
@@ -246,6 +251,7 @@ export namespace Transaction$ {
         object_owner?: string | undefined;
         object_state?: string | undefined;
         object_updated?: string | undefined;
+        parcel?: string | undefined;
         qr_code_url?: string | undefined;
         rate?: CoreRate$.Outbound | string | undefined;
         status?: string | undefined;
@@ -275,6 +281,7 @@ export namespace Transaction$ {
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
+            parcel: z.string().optional(),
             qrCodeUrl: z.string().optional(),
             rate: z.union([CoreRate$.outboundSchema, z.string()]).optional(),
             status: TransactionStatusEnum$.outboundSchema.optional(),
