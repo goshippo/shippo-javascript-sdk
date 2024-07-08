@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -50,10 +50,6 @@ export class Webhooks extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.Webhook> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -65,6 +61,11 @@ export class Webhooks extends ClientSDK {
         const path$ = this.templateURLComponent("/webhooks")();
 
         const query$ = "";
+
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -81,7 +82,6 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -95,7 +95,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.Webhook>()
             .json(201, components.Webhook$)
@@ -112,13 +112,13 @@ export class Webhooks extends ClientSDK {
      * Returns a list of all webhooks you have created.
      */
     async listWebhooks(options?: RequestOptions): Promise<components.WebhookPaginatedList> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
         const path$ = this.templateURLComponent("/webhooks")();
 
         const query$ = "";
+
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
 
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
@@ -135,7 +135,6 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -148,7 +147,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.WebhookPaginatedList>()
             .json(200, components.WebhookPaginatedList$)
@@ -168,9 +167,6 @@ export class Webhooks extends ClientSDK {
         const input$: operations.GetWebhookRequest = {
             webhookId: webhookId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -189,6 +185,10 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
             security$ = { apiKeyHeader: await this.options$.apiKeyHeader() };
@@ -204,7 +204,6 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -218,7 +217,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.Webhook>()
             .json(200, components.Webhook$)
@@ -243,10 +242,6 @@ export class Webhooks extends ClientSDK {
             webhookId: webhookId,
             webhookUpdateRequest: webhookUpdateRequest,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -265,6 +260,11 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
             security$ = { apiKeyHeader: await this.options$.apiKeyHeader() };
@@ -280,7 +280,6 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -294,7 +293,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
 
         const [result$] = await this.matcher<components.Webhook>()
             .json(200, components.Webhook$)
@@ -314,9 +313,6 @@ export class Webhooks extends ClientSDK {
         const input$: operations.DeleteWebhookRequest = {
             webhookId: webhookId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
 
         const payload$ = schemas$.parse(
             input$,
@@ -335,6 +331,10 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "*/*",
+        });
+
         let security$;
         if (typeof this.options$.apiKeyHeader === "function") {
             security$ = { apiKeyHeader: await this.options$.apiKeyHeader() };
@@ -350,7 +350,6 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -364,7 +363,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["4XX", "5XX"] });
 
         const [result$] = await this.matcher<void>()
             .void(204, z.void())

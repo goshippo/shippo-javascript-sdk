@@ -24,7 +24,7 @@ export const ShipmentStatus = {
     Error: "ERROR",
     Queued: "QUEUED",
     Success: "SUCCESS",
-    Status: "STATUS",
+    Waiting: "WAITING",
 } as const;
 /**
  * `Waiting` shipments have been successfully submitted but not yet been processed.

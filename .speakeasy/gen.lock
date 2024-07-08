@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 21e24cc6937caa9e711e620b7c454d02
+  docChecksum: 23a72be327507578ca959897c0ec25d9
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.326.0
-  generationVersion: 2.359.0
-  releaseVersion: 2.6.0
-  configChecksum: f9f3460580d552d54f32ebf43069ea2c
+  speakeasyVersion: 1.327.0
+  generationVersion: 2.359.6
+  releaseVersion: 2.6.1
+  configChecksum: 54cd46c14300d12f69e6e58c612c7b56
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.11.0
+    core: 3.11.3
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -171,6 +171,7 @@ generatedFiles:
   - src/models/components/manifestcreaterequest.ts
   - src/models/components/orderpaginatedlist.ts
   - src/models/components/order.ts
+  - src/models/components/ordershopappenum.ts
   - src/models/components/orderstatusenum.ts
   - src/models/components/ordercreaterequest.ts
   - src/models/components/lineitembase.ts
@@ -444,8 +445,8 @@ generatedFiles:
   - docs/models/components/manifestcreaterequestaddressfrom.md
   - docs/models/components/manifestcreaterequest.md
   - docs/models/components/orderpaginatedlist.md
-  - docs/models/components/shopapp.md
   - docs/models/components/order.md
+  - docs/models/components/ordershopappenum.md
   - docs/models/components/orderstatusenum.md
   - docs/models/components/ordercreaterequest.md
   - docs/models/components/lineitembase.md

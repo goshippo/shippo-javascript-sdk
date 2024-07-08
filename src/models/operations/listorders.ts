@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives.js";
+import * as components from "../components/index.js";
 import * as z from "zod";
 
 export type ListOrdersGlobals = {
@@ -21,6 +22,28 @@ export type ListOrdersRequest = {
      * The number of results to return per page (max 100)
      */
     results?: number | undefined;
+    /**
+     * Filter orders by order status
+     */
+    orderStatus?: Array<components.OrderStatusEnum> | undefined;
+    /**
+     * Filter orders by shop app
+     */
+    shopApp?: components.OrderShopAppEnum | undefined;
+    /**
+     * Filter orders created after the input date and time (ISO 8601 UTC format).  This is based on the
+     *
+     * @remarks
+     * `placed_at` field, meaning when the order has been placed, not when the order object was created.
+     */
+    startDate?: string | undefined;
+    /**
+     * Filter orders created before the input date and time (ISO 8601 UTC format).  This is based on the
+     *
+     * @remarks
+     * `placed_at` field, meaning when the order has been placed, not when the order object was created.
+     */
+    endDate?: string | undefined;
 };
 
 /** @internal */
@@ -52,18 +75,48 @@ export namespace ListOrdersGlobals$ {
 
 /** @internal */
 export namespace ListOrdersRequest$ {
-    export const inboundSchema: z.ZodType<ListOrdersRequest, z.ZodTypeDef, unknown> = z.object({
-        page: z.number().int().default(1),
-        results: z.number().int().default(25),
-    });
+    export const inboundSchema: z.ZodType<ListOrdersRequest, z.ZodTypeDef, unknown> = z
+        .object({
+            page: z.number().int().default(1),
+            results: z.number().int().default(25),
+            "order_status[]": z.array(components.OrderStatusEnum$.inboundSchema).optional(),
+            shop_app: components.OrderShopAppEnum$.inboundSchema.optional(),
+            start_date: z.string().optional(),
+            end_date: z.string().optional(),
+        })
+        .transform((v) => {
+            return remap$(v, {
+                "order_status[]": "orderStatus",
+                shop_app: "shopApp",
+                start_date: "startDate",
+                end_date: "endDate",
+            });
+        });
 
     export type Outbound = {
         page: number;
         results: number;
+        "order_status[]"?: Array<string> | undefined;
+        shop_app?: string | undefined;
+        start_date?: string | undefined;
+        end_date?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListOrdersRequest> = z.object({
-        page: z.number().int().default(1),
-        results: z.number().int().default(25),
-    });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListOrdersRequest> = z
+        .object({
+            page: z.number().int().default(1),
+            results: z.number().int().default(25),
+            orderStatus: z.array(components.OrderStatusEnum$.outboundSchema).optional(),
+            shopApp: components.OrderShopAppEnum$.outboundSchema.optional(),
+            startDate: z.string().optional(),
+            endDate: z.string().optional(),
+        })
+        .transform((v) => {
+            return remap$(v, {
+                orderStatus: "order_status[]",
+                shopApp: "shop_app",
+                startDate: "start_date",
+                endDate: "end_date",
+            });
+        });
 }

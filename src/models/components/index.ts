@@ -88,6 +88,7 @@ export * from "./objectstateenum.js";
 export * from "./order.js";
 export * from "./ordercreaterequest.js";
 export * from "./orderpaginatedlist.js";
+export * from "./ordershopappenum.js";
 export * from "./orderstatusenum.js";
 export * from "./parcel.js";
 export * from "./parcelcreatefromtemplaterequest.js";
