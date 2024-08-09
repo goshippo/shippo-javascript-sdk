@@ -64,7 +64,6 @@
 | ups | UPS|
 | usps | USPS|
 | veho | Veho |
-| x_delivery | X Delivery (now Maergo)|
 | yodel | Yodel|
 
 
@@ -135,5 +134,4 @@
 | `Ups`              | ups                |
 | `Usps`             | usps               |
 | `Veho`             | veho               |
-| `XDelivery`        | x_delivery         |
 | `Yodel`            | yodel              |

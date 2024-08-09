@@ -165,12 +165,6 @@ const value: components.ServiceLevelLSOEnum = /* values here */
 const value: components.ServiceLevelMondialRelayEnum = /* values here */
 ```
 
-### `components.ServiceLevelMaergoEnum`
-
-```typescript
-const value: components.ServiceLevelMaergoEnum = /* values here */
-```
-
 ### `components.ServiceLevelParcelforceEnum`
 
 ```typescript

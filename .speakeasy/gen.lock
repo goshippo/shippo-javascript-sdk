@@ -1,22 +1,24 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 23a72be327507578ca959897c0ec25d9
+  docChecksum: 918122d9eae3aebedbff4f23cd4af0b8
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.327.0
-  generationVersion: 2.359.6
-  releaseVersion: 2.6.1
-  configChecksum: 54cd46c14300d12f69e6e58c612c7b56
+  speakeasyVersion: 1.358.0
+  generationVersion: 2.390.6
+  releaseVersion: 2.7.0
+  configChecksum: 7d0b17641f66d384d0abdc2e823329aa
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.5
-    core: 3.11.3
+    constsAndDefaults: 0.1.6
+    core: 3.12.3
+    defaultEnabledRetries: 0.1.0
+    envVarSecurityUsage: 0.1.1
     flattening: 2.81.1
-    globalSecurity: 2.82.9
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -26,10 +28,81 @@ features:
     nameOverrides: 2.81.2
     nullables: 0.1.0
     responseFormat: 0.2.3
+    retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.5
+    unions: 2.85.6
     webhooks: 1.0.0
 generatedFiles:
+  - src/funcs/addressesList.ts
+  - src/funcs/addressesCreate.ts
+  - src/funcs/addressesGet.ts
+  - src/funcs/addressesValidate.ts
+  - src/funcs/batchesCreate.ts
+  - src/funcs/batchesGet.ts
+  - src/funcs/batchesAddShipments.ts
+  - src/funcs/batchesPurchase.ts
+  - src/funcs/batchesRemoveShipments.ts
+  - src/funcs/carrierAccountsList.ts
+  - src/funcs/carrierAccountsCreate.ts
+  - src/funcs/carrierAccountsGet.ts
+  - src/funcs/carrierAccountsUpdate.ts
+  - src/funcs/carrierAccountsInitiateOauth2Signin.ts
+  - src/funcs/carrierAccountsRegister.ts
+  - src/funcs/carrierAccountsGetRegistrationStatus.ts
+  - src/funcs/customsDeclarationsList.ts
+  - src/funcs/customsDeclarationsCreate.ts
+  - src/funcs/customsDeclarationsGet.ts
+  - src/funcs/customsItemsList.ts
+  - src/funcs/customsItemsCreate.ts
+  - src/funcs/customsItemsGet.ts
+  - src/funcs/ratesAtCheckoutCreate.ts
+  - src/funcs/ratesAtCheckoutGetDefaultParcelTemplate.ts
+  - src/funcs/ratesAtCheckoutUpdateDefaultParcelTemplate.ts
+  - src/funcs/ratesAtCheckoutDeleteDefaultParcelTemplate.ts
+  - src/funcs/manifestsList.ts
+  - src/funcs/manifestsCreate.ts
+  - src/funcs/manifestsGet.ts
+  - src/funcs/ordersList.ts
+  - src/funcs/ordersCreate.ts
+  - src/funcs/ordersGet.ts
+  - src/funcs/carrierParcelTemplatesList.ts
+  - src/funcs/carrierParcelTemplatesGet.ts
+  - src/funcs/parcelsList.ts
+  - src/funcs/parcelsCreate.ts
+  - src/funcs/parcelsGet.ts
+  - src/funcs/pickupsCreate.ts
+  - src/funcs/ratesGet.ts
+  - src/funcs/ratesListShipmentRates.ts
+  - src/funcs/ratesListShipmentRatesByCurrencyCode.ts
+  - src/funcs/refundsCreate.ts
+  - src/funcs/refundsList.ts
+  - src/funcs/refundsGet.ts
+  - src/funcs/serviceGroupsList.ts
+  - src/funcs/serviceGroupsCreate.ts
+  - src/funcs/serviceGroupsUpdate.ts
+  - src/funcs/serviceGroupsDelete.ts
+  - src/funcs/shipmentsList.ts
+  - src/funcs/shipmentsCreate.ts
+  - src/funcs/shipmentsGet.ts
+  - src/funcs/trackingStatusCreate.ts
+  - src/funcs/trackingStatusGet.ts
+  - src/funcs/transactionsList.ts
+  - src/funcs/transactionsCreate.ts
+  - src/funcs/transactionsGet.ts
+  - src/funcs/userParcelTemplatesList.ts
+  - src/funcs/userParcelTemplatesCreate.ts
+  - src/funcs/userParcelTemplatesDelete.ts
+  - src/funcs/userParcelTemplatesGet.ts
+  - src/funcs/userParcelTemplatesUpdate.ts
+  - src/funcs/shippoAccountsList.ts
+  - src/funcs/shippoAccountsCreate.ts
+  - src/funcs/shippoAccountsGet.ts
+  - src/funcs/shippoAccountsUpdate.ts
+  - src/funcs/webhooksCreateWebhook.ts
+  - src/funcs/webhooksListWebhooks.ts
+  - src/funcs/webhooksGetWebhook.ts
+  - src/funcs/webhooksUpdateWebhook.ts
+  - src/funcs/webhooksDeleteWebhook.ts
   - src/sdk/addresses.ts
   - src/sdk/batches.ts
   - src/sdk/carrieraccounts.ts
@@ -56,11 +129,14 @@ generatedFiles:
   - RUNTIMES.md
   - jsr.json
   - package.json
+  - src/core.ts
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -68,10 +144,12 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
+  - src/models/errors/httpclienterrors.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
   - src/types/enums.ts
+  - src/types/fp.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
@@ -96,9 +174,16 @@ generatedFiles:
   - src/models/components/cod.ts
   - src/models/components/parcelcreatefromtemplaterequest.ts
   - src/models/components/parceltemplateenumset.ts
+  - src/models/components/parceltemplatefedexenum.ts
+  - src/models/components/parceltemplateupsenum.ts
+  - src/models/components/parceltemplateuspsenum.ts
+  - src/models/components/parceltemplatedhlecommerceenum.ts
+  - src/models/components/parceltemplatedpdukenum.ts
+  - src/models/components/parceltemplatecourierspleaseenum.ts
+  - src/models/components/parceltemplatearamexaustraliaenum.ts
   - src/models/components/customsdeclarationcreaterequest.ts
   - src/models/components/customsdeclarationnondeliveryoptionenum.ts
-  - src/models/components/customsitemcreaterequest.ts
+  - src/models/components/customsitembase.ts
   - src/models/components/customsdeclarationincotermenum.ts
   - src/models/components/customsdeclarationeelpfcenum.ts
   - src/models/components/customsdeclarationcontentstypeenum.ts
@@ -182,6 +267,7 @@ generatedFiles:
   - src/models/components/pickupbase.ts
   - src/models/components/rate.ts
   - src/models/components/servicelevelwithparent.ts
+  - src/models/components/servicelevel.ts
   - src/models/components/responsemessage.ts
   - src/models/components/ratepaginatedlist.ts
   - src/models/components/refund.ts
@@ -224,8 +310,47 @@ generatedFiles:
   - src/models/components/webhookpayloadtransaction.ts
   - src/models/components/addressvalidationresultsmessagecodeenum.ts
   - src/models/components/addressvalidationresultsmessagesourceenum.ts
-  - src/models/components/servicelevel.ts
+  - src/models/components/webhookpayload.ts
   - src/models/components/servicelevelenumset.ts
+  - src/models/components/serviceleveluspsenum.ts
+  - src/models/components/servicelevelfedexenum.ts
+  - src/models/components/servicelevelupsenum.ts
+  - src/models/components/servicelevelairterraenum.ts
+  - src/models/components/servicelevelapcpostalenum.ts
+  - src/models/components/servicelevelasendiaenum.ts
+  - src/models/components/servicelevelaustraliapostenum.ts
+  - src/models/components/servicelevelapgenum.ts
+  - src/models/components/servicelevelbettertrucksenum.ts
+  - src/models/components/servicelevelcanadapostenum.ts
+  - src/models/components/servicelevelcdlenum.ts
+  - src/models/components/servicelevelchronopostenum.ts
+  - src/models/components/servicelevelcourierspleaseenum.ts
+  - src/models/components/servicelevelcorreosespanaenum.ts
+  - src/models/components/servicelevelcolissimoenum.ts
+  - src/models/components/servicelevelpurolatorenum.ts
+  - src/models/components/serviceleveldhlexpressenum.ts
+  - src/models/components/serviceleveldhlecommerceenum.ts
+  - src/models/components/serviceleveldhlgermanyenum.ts
+  - src/models/components/serviceleveldpddeenum.ts
+  - src/models/components/serviceleveldpdukenum.ts
+  - src/models/components/serviceleveldeutschepostenum.ts
+  - src/models/components/servicelevelaramexaustraliaenum.ts
+  - src/models/components/servicelevelglobegisticsenum.ts
+  - src/models/components/servicelevelglsusenum.ts
+  - src/models/components/servicelevellsoenum.ts
+  - src/models/components/servicelevelmondialrelayenum.ts
+  - src/models/components/servicelevelparcelforceenum.ts
+  - src/models/components/servicelevelpostitalianeenum.ts
+  - src/models/components/servicelevelepostglobalenum.ts
+  - src/models/components/servicelevelroyalmailenum.ts
+  - src/models/components/servicelevelsendleenum.ts
+  - src/models/components/servicelevelontracenum.ts
+  - src/models/components/serviceleveljitsuenum.ts
+  - src/models/components/servicelevellasershipenum.ts
+  - src/models/components/servicelevelevriukenum.ts
+  - src/models/components/serviceleveludsenum.ts
+  - src/models/components/servicelevelvehoenum.ts
+  - src/models/components/servicelevelswyftenum.ts
   - src/models/operations/listaddresses.ts
   - src/models/operations/getaddress.ts
   - src/models/operations/validateaddress.ts
@@ -329,17 +454,17 @@ generatedFiles:
   - docs/models/components/paymentmethod.md
   - docs/models/components/cod.md
   - docs/models/components/parcelcreatefromtemplaterequest.md
-  - docs/models/components/aramexaustraliaparceltemplate.md
-  - docs/models/components/courierspleaseparceltemplate.md
-  - docs/models/components/dpdukparceltemplate.md
-  - docs/models/components/dhlecommerceparceltemplate.md
-  - docs/models/components/uspsparceltemplate.md
-  - docs/models/components/upsparceltemplate.md
-  - docs/models/components/fedexparceltemplate.md
   - docs/models/components/parceltemplateenumset.md
+  - docs/models/components/parceltemplatefedexenum.md
+  - docs/models/components/parceltemplateupsenum.md
+  - docs/models/components/parceltemplateuspsenum.md
+  - docs/models/components/parceltemplatedhlecommerceenum.md
+  - docs/models/components/parceltemplatedpdukenum.md
+  - docs/models/components/parceltemplatecourierspleaseenum.md
+  - docs/models/components/parceltemplatearamexaustraliaenum.md
   - docs/models/components/customsdeclarationcreaterequest.md
   - docs/models/components/customsdeclarationnondeliveryoptionenum.md
-  - docs/models/components/customsitemcreaterequest.md
+  - docs/models/components/customsitembase.md
   - docs/models/components/customsdeclarationincotermenum.md
   - docs/models/components/customsdeclarationeelpfcenum.md
   - docs/models/components/customsdeclarationcontentstypeenum.md
@@ -460,8 +585,8 @@ generatedFiles:
   - docs/models/components/pickupbase.md
   - docs/models/components/attributes.md
   - docs/models/components/rate.md
-  - docs/models/components/parentservicelevel.md
   - docs/models/components/servicelevelwithparent.md
+  - docs/models/components/servicelevel.md
   - docs/models/components/responsemessage.md
   - docs/models/components/ratepaginatedlist.md
   - docs/models/components/refundstatus.md
@@ -509,48 +634,47 @@ generatedFiles:
   - docs/models/components/webhookpayloadtransaction.md
   - docs/models/components/addressvalidationresultsmessagecodeenum.md
   - docs/models/components/addressvalidationresultsmessagesourceenum.md
-  - docs/models/components/servicelevel.md
-  - docs/models/components/servicelevelswyftenum.md
-  - docs/models/components/servicelevelvehoenum.md
-  - docs/models/components/serviceleveludsenum.md
-  - docs/models/components/servicelevelevriukenum.md
-  - docs/models/components/servicelevellasershipenum.md
-  - docs/models/components/serviceleveljitsuenum.md
-  - docs/models/components/servicelevelontracenum.md
-  - docs/models/components/servicelevelsendleenum.md
-  - docs/models/components/servicelevelroyalmailenum.md
-  - docs/models/components/servicelevelepostglobalenum.md
-  - docs/models/components/servicelevelpostitalianeenum.md
-  - docs/models/components/servicelevelparcelforceenum.md
-  - docs/models/components/servicelevelmaergoenum.md
-  - docs/models/components/servicelevelmondialrelayenum.md
-  - docs/models/components/servicelevellsoenum.md
-  - docs/models/components/servicelevelglsusenum.md
-  - docs/models/components/servicelevelglobegisticsenum.md
-  - docs/models/components/servicelevelaramexaustraliaenum.md
-  - docs/models/components/serviceleveldeutschepostenum.md
-  - docs/models/components/serviceleveldpdukenum.md
-  - docs/models/components/serviceleveldpddeenum.md
-  - docs/models/components/serviceleveldhlgermanyenum.md
-  - docs/models/components/serviceleveldhlecommerceenum.md
-  - docs/models/components/serviceleveldhlexpressenum.md
-  - docs/models/components/servicelevelpurolatorenum.md
-  - docs/models/components/servicelevelcolissimoenum.md
-  - docs/models/components/servicelevelcorreosespanaenum.md
-  - docs/models/components/servicelevelcourierspleaseenum.md
-  - docs/models/components/servicelevelchronopostenum.md
-  - docs/models/components/servicelevelcdlenum.md
-  - docs/models/components/servicelevelcanadapostenum.md
-  - docs/models/components/servicelevelbettertrucksenum.md
-  - docs/models/components/servicelevelapgenum.md
-  - docs/models/components/servicelevelaustraliapostenum.md
-  - docs/models/components/servicelevelasendiaenum.md
-  - docs/models/components/servicelevelapcpostalenum.md
-  - docs/models/components/servicelevelairterraenum.md
-  - docs/models/components/servicelevelupsenum.md
-  - docs/models/components/servicelevelfedexenum.md
-  - docs/models/components/serviceleveluspsenum.md
+  - docs/models/components/webhookpayload.md
   - docs/models/components/servicelevelenumset.md
+  - docs/models/components/serviceleveluspsenum.md
+  - docs/models/components/servicelevelfedexenum.md
+  - docs/models/components/servicelevelupsenum.md
+  - docs/models/components/servicelevelairterraenum.md
+  - docs/models/components/servicelevelapcpostalenum.md
+  - docs/models/components/servicelevelasendiaenum.md
+  - docs/models/components/servicelevelaustraliapostenum.md
+  - docs/models/components/servicelevelapgenum.md
+  - docs/models/components/servicelevelbettertrucksenum.md
+  - docs/models/components/servicelevelcanadapostenum.md
+  - docs/models/components/servicelevelcdlenum.md
+  - docs/models/components/servicelevelchronopostenum.md
+  - docs/models/components/servicelevelcourierspleaseenum.md
+  - docs/models/components/servicelevelcorreosespanaenum.md
+  - docs/models/components/servicelevelcolissimoenum.md
+  - docs/models/components/servicelevelpurolatorenum.md
+  - docs/models/components/serviceleveldhlexpressenum.md
+  - docs/models/components/serviceleveldhlecommerceenum.md
+  - docs/models/components/serviceleveldhlgermanyenum.md
+  - docs/models/components/serviceleveldpddeenum.md
+  - docs/models/components/serviceleveldpdukenum.md
+  - docs/models/components/serviceleveldeutschepostenum.md
+  - docs/models/components/servicelevelaramexaustraliaenum.md
+  - docs/models/components/servicelevelglobegisticsenum.md
+  - docs/models/components/servicelevelglsusenum.md
+  - docs/models/components/servicelevellsoenum.md
+  - docs/models/components/servicelevelmondialrelayenum.md
+  - docs/models/components/servicelevelparcelforceenum.md
+  - docs/models/components/servicelevelpostitalianeenum.md
+  - docs/models/components/servicelevelepostglobalenum.md
+  - docs/models/components/servicelevelroyalmailenum.md
+  - docs/models/components/servicelevelsendleenum.md
+  - docs/models/components/servicelevelontracenum.md
+  - docs/models/components/serviceleveljitsuenum.md
+  - docs/models/components/servicelevellasershipenum.md
+  - docs/models/components/servicelevelevriukenum.md
+  - docs/models/components/serviceleveludsenum.md
+  - docs/models/components/servicelevelvehoenum.md
+  - docs/models/components/servicelevelswyftenum.md
   - docs/models/operations/listaddressesglobals.md
   - docs/models/operations/listaddressesrequest.md
   - docs/models/operations/getaddressglobals.md
@@ -674,6 +798,7 @@ generatedFiles:
   - docs/models/errors/initiateoauth2signincarrieraccountsresponsebody.md
   - docs/models/errors/initiateoauth2signinresponsebody.md
   - docs/sdks/shippo/README.md
+  - docs/lib/utils/retryconfig.md
   - docs/sdks/addresses/README.md
   - docs/sdks/batches/README.md
   - docs/sdks/carrieraccounts/README.md
@@ -699,3 +824,4 @@ generatedFiles:
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/hooks/index.ts
+  - CONTRIBUTING.md
