@@ -1,5 +1,15 @@
 # ServiceGroupAccountAndServiceLevel
 
+## Example Usage
+
+```typescript
+import { ServiceGroupAccountAndServiceLevel } from "shippo/models/components";
+
+let value: ServiceGroupAccountAndServiceLevel = {
+  accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
+  serviceLevelToken: "ups_next_day_air_saver",
+};
+```
 
 ## Fields
 

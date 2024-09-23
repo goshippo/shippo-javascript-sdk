@@ -1,5 +1,17 @@
 # ShippoAccountUpdateRequest
 
+## Example Usage
+
+```typescript
+import { ShippoAccountUpdateRequest } from "shippo/models/components";
+
+let value: ShippoAccountUpdateRequest = {
+  email: "hippo@shippo.com",
+  firstName: "Shippo",
+  lastName: "Meister",
+  companyName: "Acme",
+};
+```
 
 ## Fields
 

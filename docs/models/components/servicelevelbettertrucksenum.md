@@ -6,10 +6,16 @@
 | better_trucks_next_day | Next Day|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelBetterTrucksEnum } from "shippo/models/components";
+
+let value: ServiceLevelBetterTrucksEnum = "better_trucks_next_day";
+```
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `BetterTrucksSameDay`  | better_trucks_same_day |
-| `BetterTrucksNextDay`  | better_trucks_next_day |
+```typescript
+"better_trucks_same_day" | "better_trucks_next_day"
+```

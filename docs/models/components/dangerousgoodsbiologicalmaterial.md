@@ -2,6 +2,13 @@
 
 Container for specifying the presence of biological material.
 
+## Example Usage
+
+```typescript
+import { DangerousGoodsBiologicalMaterial } from "shippo/models/components";
+
+let value: DangerousGoodsBiologicalMaterial = {};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # CreateLiveRateGlobals
 
+## Example Usage
+
+```typescript
+import { CreateLiveRateGlobals } from "shippo/models/operations";
+
+let value: CreateLiveRateGlobals = {};
+```
 
 ## Fields
 

@@ -2,6 +2,17 @@
 
 Specify collection on delivery details (UPS only).
 
+## Example Usage
+
+```typescript
+import { Cod } from "shippo/models/components";
+
+let value: Cod = {
+  amount: "5.5",
+  currency: "USD",
+  paymentMethod: "CASH",
+};
+```
 
 ## Fields
 

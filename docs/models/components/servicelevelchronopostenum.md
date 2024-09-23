@@ -10,14 +10,16 @@
 | chronopost_express | Chrono Express International|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelChronopostEnum } from "shippo/models/components";
+
+let value: ServiceLevelChronopostEnum = "chronopost_18";
+```
 
 ## Values
 
-| Name                 | Value                |
-| -------------------- | -------------------- |
-| `Chronopost13`       | chronopost_13        |
-| `Chronopost10`       | chronopost_10        |
-| `Chronopost18`       | chronopost_18        |
-| `ChronopostRelaisFr` | chronopost_relais_fr |
-| `ChronopostClassic`  | chronopost_classic   |
-| `ChronopostExpress`  | chronopost_express   |
+```typescript
+"chronopost_13" | "chronopost_10" | "chronopost_18" | "chronopost_relais_fr" | "chronopost_classic" | "chronopost_express"
+```

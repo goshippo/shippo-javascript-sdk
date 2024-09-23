@@ -2,6 +2,17 @@
 
 Contains details regarding the service level for the carrier account.
 
+## Example Usage
+
+```typescript
+import { CarrierAccountServiceLevel } from "shippo/models/components";
+
+let value: CarrierAccountServiceLevel = {
+  name: "Priority Mail Express",
+  token: "usps_priority_express",
+  supportsReturnLabels: true,
+};
+```
 
 ## Fields
 

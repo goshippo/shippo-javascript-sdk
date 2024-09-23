@@ -1,5 +1,18 @@
 # InitiateOauth2SigninResponse
 
+## Example Usage
+
+```typescript
+import { InitiateOauth2SigninResponse } from "shippo/models/operations";
+
+let value: InitiateOauth2SigninResponse = {
+  headers: {
+    "key": [
+      "<value>",
+    ],
+  },
+};
+```
 
 ## Fields
 

@@ -14,18 +14,16 @@
 | deutsche_post_warenpost_international_l | Warenpost International L|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelDeutschePostEnum } from "shippo/models/components";
+
+let value: ServiceLevelDeutschePostEnum = "deutsche_post_postkarte";
+```
 
 ## Values
 
-| Name                                     | Value                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| `DeutschePostPostkarte`                  | deutsche_post_postkarte                  |
-| `DeutschePostStandardbrief`              | deutsche_post_standardbrief              |
-| `DeutschePostKompaktbrief`               | deutsche_post_kompaktbrief               |
-| `DeutschePostGrossbrief`                 | deutsche_post_grossbrief                 |
-| `DeutschePostMaxibrief`                  | deutsche_post_maxibrief                  |
-| `DeutschePostMaxibriefPlus`              | deutsche_post_maxibrief_plus             |
-| `DeutschePostWarenpostInternationalXs`   | deutsche_post_warenpost_international_xs |
-| `DeutschePostWarenpostInternationalS`    | deutsche_post_warenpost_international_s  |
-| `DeutschePostWarenpostInternationalM`    | deutsche_post_warenpost_international_m  |
-| `DeutschePostWarenpostInternationalL`    | deutsche_post_warenpost_international_l  |
+```typescript
+"deutsche_post_postkarte" | "deutsche_post_standardbrief" | "deutsche_post_kompaktbrief" | "deutsche_post_grossbrief" | "deutsche_post_maxibrief" | "deutsche_post_maxibrief_plus" | "deutsche_post_warenpost_international_xs" | "deutsche_post_warenpost_international_s" | "deutsche_post_warenpost_international_m" | "deutsche_post_warenpost_international_l"
+```

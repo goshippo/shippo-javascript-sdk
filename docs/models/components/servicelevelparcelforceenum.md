@@ -7,11 +7,16 @@
 | parcelforce_expressam | Express AM|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelParcelforceEnum } from "shippo/models/components";
+
+let value: ServiceLevelParcelforceEnum = "parcelforce_expressam";
+```
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `ParcelforceExpress48` | parcelforce_express48  |
-| `ParcelforceExpress24` | parcelforce_express24  |
-| `ParcelforceExpressam` | parcelforce_expressam  |
+```typescript
+"parcelforce_express48" | "parcelforce_express24" | "parcelforce_expressam"
+```

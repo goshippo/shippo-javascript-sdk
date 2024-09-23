@@ -14,18 +14,17 @@
 | australia_post_parcel_post_return | Parcel Post Return|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelAustraliaPostEnum } from "shippo/models/components";
+
+let value: ServiceLevelAustraliaPostEnum =
+  "australia_post_pack_and_track_international";
+```
 
 ## Values
 
-| Name                                         | Value                                        |
-| -------------------------------------------- | -------------------------------------------- |
-| `AustraliaPostExpressPost`                   | australia_post_express_post                  |
-| `AustraliaPostParcelPost`                    | australia_post_parcel_post                   |
-| `AustraliaPostPackAndTrackInternational`     | australia_post_pack_and_track_international  |
-| `AustraliaPostInternationalAirmail`          | australia_post_international_airmail         |
-| `AustraliaPostExpressPostInternational`      | australia_post_express_post_international    |
-| `AustraliaPostExpressCourierInternational`   | australia_post_express_courier_international |
-| `AustraliaPostInternationalExpress`          | australia_post_international_express         |
-| `AustraliaPostInternationalStandard`         | australia_post_international_standard        |
-| `AustraliaPostInternationalEconomy`          | australia_post_international_economy         |
-| `AustraliaPostParcelPostReturn`              | australia_post_parcel_post_return            |
+```typescript
+"australia_post_express_post" | "australia_post_parcel_post" | "australia_post_pack_and_track_international" | "australia_post_international_airmail" | "australia_post_express_post_international" | "australia_post_express_courier_international" | "australia_post_international_express" | "australia_post_international_standard" | "australia_post_international_economy" | "australia_post_parcel_post_return"
+```

@@ -1,5 +1,14 @@
 # GetAddressRequest
 
+## Example Usage
+
+```typescript
+import { GetAddressRequest } from "shippo/models/operations";
+
+let value: GetAddressRequest = {
+  addressId: "<value>",
+};
+```
 
 ## Fields
 

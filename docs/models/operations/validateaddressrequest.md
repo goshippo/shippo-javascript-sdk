@@ -1,5 +1,14 @@
 # ValidateAddressRequest
 
+## Example Usage
+
+```typescript
+import { ValidateAddressRequest } from "shippo/models/operations";
+
+let value: ValidateAddressRequest = {
+  addressId: "<value>",
+};
+```
 
 ## Fields
 

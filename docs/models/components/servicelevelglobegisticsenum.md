@@ -16,20 +16,17 @@
 | globegistics_ecom_international_surface_airlift | Globegistics eCom International Surface Air Lift|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelGlobegisticsEnum } from "shippo/models/components";
+
+let value: ServiceLevelGlobegisticsEnum =
+  "globegistics_ecom_priority_mail_express_international_ddp";
+```
 
 ## Values
 
-| Name                                                      | Value                                                     |
-| --------------------------------------------------------- | --------------------------------------------------------- |
-| `GlobegisticsPriorityMailExpressInternational`            | globegistics_priority_mail_express_international          |
-| `GlobegisticsPriorityMailInternational`                   | globegistics_priority_mail_international                  |
-| `GlobegisticsPriorityMailExpressInternationalPds`         | globegistics_priority_mail_express_international_pds      |
-| `GlobegisticsPriorityMailInternationalPds`                | globegistics_priority_mail_international_pds              |
-| `GlobegisticsEpacket`                                     | globegistics_epacket                                      |
-| `GlobegisticsEcomTrackedDdp`                              | globegistics_ecom_tracked_ddp                             |
-| `GlobegisticsEcomPacketDdp`                               | globegistics_ecom_packet_ddp                              |
-| `GlobegisticsEcomPriorityMailInternationalDdp`            | globegistics_ecom_priority_mail_international_ddp         |
-| `GlobegisticsEcomPriorityMailExpressInternationalDdp`     | globegistics_ecom_priority_mail_express_international_ddp |
-| `GlobegisticsEcomExtra`                                   | globegistics_ecom_extra                                   |
-| `GlobegisticsEcomInternationalPriorityAirmail`            | globegistics_ecom_international_priority_airmail          |
-| `GlobegisticsEcomInternationalSurfaceAirlift`             | globegistics_ecom_international_surface_airlift           |
+```typescript
+"globegistics_priority_mail_express_international" | "globegistics_priority_mail_international" | "globegistics_priority_mail_express_international_pds" | "globegistics_priority_mail_international_pds" | "globegistics_epacket" | "globegistics_ecom_tracked_ddp" | "globegistics_ecom_packet_ddp" | "globegistics_ecom_priority_mail_international_ddp" | "globegistics_ecom_priority_mail_express_international_ddp" | "globegistics_ecom_extra" | "globegistics_ecom_international_priority_airmail" | "globegistics_ecom_international_surface_airlift"
+```

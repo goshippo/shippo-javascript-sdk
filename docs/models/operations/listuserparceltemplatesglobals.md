@@ -1,5 +1,12 @@
 # ListUserParcelTemplatesGlobals
 
+## Example Usage
+
+```typescript
+import { ListUserParcelTemplatesGlobals } from "shippo/models/operations";
+
+let value: ListUserParcelTemplatesGlobals = {};
+```
 
 ## Fields
 

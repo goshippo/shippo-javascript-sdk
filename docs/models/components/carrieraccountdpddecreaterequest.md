@@ -1,5 +1,15 @@
 # CarrierAccountDpdDeCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountDpdDeCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountDpdDeCreateRequest = {
+  carrier: "dpd_de",
+  parameters: {},
+};
+```
 
 ## Fields
 

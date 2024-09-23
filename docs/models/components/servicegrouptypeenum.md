@@ -5,11 +5,16 @@ The type of the service group.<br>
 `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.<br> 
 `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
 
+## Example Usage
+
+```typescript
+import { ServiceGroupTypeEnum } from "shippo/models/components";
+
+let value: ServiceGroupTypeEnum = "FLAT_RATE";
+```
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `LiveRate`     | LIVE_RATE      |
-| `FlatRate`     | FLAT_RATE      |
-| `FreeShipping` | FREE_SHIPPING  |
+```typescript
+"LIVE_RATE" | "FLAT_RATE" | "FREE_SHIPPING"
+```

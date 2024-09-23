@@ -1,5 +1,17 @@
 # Webhook
 
+## Example Usage
+
+```typescript
+import { Webhook } from "shippo/models/components";
+
+let value: Webhook = {
+  event: "track_updated",
+  url: "https://example.com/shippo-webhook",
+  active: true,
+  isTest: false,
+};
+```
 
 ## Fields
 

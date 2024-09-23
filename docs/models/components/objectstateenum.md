@@ -2,10 +2,16 @@
 
 Indicates the validity of the enclosing object
 
+## Example Usage
+
+```typescript
+import { ObjectStateEnum } from "shippo/models/components";
+
+let value: ObjectStateEnum = "INVALID";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Valid`   | VALID     |
-| `Invalid` | INVALID   |
+```typescript
+"VALID" | "INVALID"
+```

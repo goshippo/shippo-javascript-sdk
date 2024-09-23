@@ -1,5 +1,14 @@
 # GetRefundRequest
 
+## Example Usage
+
+```typescript
+import { GetRefundRequest } from "shippo/models/operations";
+
+let value: GetRefundRequest = {
+  refundId: "<value>",
+};
+```
 
 ## Fields
 

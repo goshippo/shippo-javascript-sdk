@@ -10,14 +10,16 @@
 | lso_early_overnight | Early Overnight|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelLSOEnum } from "shippo/models/components";
+
+let value: ServiceLevelLSOEnum = "lso_2nd_day";
+```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `LsoGround`           | lso_ground            |
-| `LsoEconomyNextDay`   | lso_economy_next_day  |
-| `LsoSaturdayDelivery` | lso_saturday_delivery |
-| `Lso2ndDay`           | lso_2nd_day           |
-| `LsoPriorityNextDay`  | lso_priority_next_day |
-| `LsoEarlyOvernight`   | lso_early_overnight   |
+```typescript
+"lso_ground" | "lso_economy_next_day" | "lso_saturday_delivery" | "lso_2nd_day" | "lso_priority_next_day" | "lso_early_overnight"
+```

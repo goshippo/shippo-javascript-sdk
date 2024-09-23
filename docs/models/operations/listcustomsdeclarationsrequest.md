@@ -1,5 +1,12 @@
 # ListCustomsDeclarationsRequest
 
+## Example Usage
+
+```typescript
+import { ListCustomsDeclarationsRequest } from "shippo/models/operations";
+
+let value: ListCustomsDeclarationsRequest = {};
+```
 
 ## Fields
 

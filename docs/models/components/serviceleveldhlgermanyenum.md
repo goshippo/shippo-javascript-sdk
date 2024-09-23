@@ -10,14 +10,16 @@
 | dhl_germany_paket_sameday | DHL Germany Paket Sameday|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelDHLGermanyEnum } from "shippo/models/components";
+
+let value: ServiceLevelDHLGermanyEnum = "dhl_germany_paket_connect";
+```
 
 ## Values
 
-| Name                            | Value                           |
-| ------------------------------- | ------------------------------- |
-| `DhlGermanyEuropaket`           | dhl_germany_europaket           |
-| `DhlGermanyPaket`               | dhl_germany_paket               |
-| `DhlGermanyPaketConnect`        | dhl_germany_paket_connect       |
-| `DhlGermanyPaketInternational`  | dhl_germany_paket_international |
-| `DhlGermanyPaketPriority`       | dhl_germany_paket_priority      |
-| `DhlGermanyPaketSameday`        | dhl_germany_paket_sameday       |
+```typescript
+"dhl_germany_europaket" | "dhl_germany_paket" | "dhl_germany_paket_connect" | "dhl_germany_paket_international" | "dhl_germany_paket_priority" | "dhl_germany_paket_sameday"
+```

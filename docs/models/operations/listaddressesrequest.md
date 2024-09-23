@@ -1,5 +1,12 @@
 # ListAddressesRequest
 
+## Example Usage
+
+```typescript
+import { ListAddressesRequest } from "shippo/models/operations";
+
+let value: ListAddressesRequest = {};
+```
 
 ## Fields
 

@@ -1,5 +1,48 @@
 # Rate
 
+## Example Usage
+
+```typescript
+import { Rate } from "shippo/models/components";
+
+let value: Rate = {
+  amount: "5.5",
+  amountLocal: "5.5",
+  currency: "USD",
+  currencyLocal: "USD",
+  arrivesBy: "08:30:00",
+  attributes: [
+    "FASTEST",
+  ],
+  carrierAccount: "078870331023437cb917f5187429b093",
+  durationTerms: "Delivery in 1 to 3 business days",
+  estimatedDays: 2,
+  includedInsurancePrice: "1.05",
+  messages: [
+    {
+      source: "UPS",
+      code: "carrier_timeout",
+      text: "UPS API did not respond. Please try again in a few minutes.",
+    },
+  ],
+  objectCreated: new Date("2024-06-02T14:07:36.077Z"),
+  objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
+  objectOwner: "pp@gmail.com",
+  provider: "USPS",
+  providerImage75: "https://cdn2.goshippo.com/providers/75/USPS.png",
+  providerImage200: "https://cdn2.goshippo.com/providers/200/USPS.png",
+  servicelevel: {
+    name: "Priority Mail Express",
+    token: "usps_priority_express",
+    parentServicelevel: {
+      name: "Priority Mail Express",
+      token: "usps_priority_express",
+    },
+  },
+  shipment: "adcfdddf8ec64b84ad22772bce3ea37a",
+  zone: "1",
+};
+```
 
 ## Fields
 

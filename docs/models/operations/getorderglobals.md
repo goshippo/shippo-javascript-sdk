@@ -1,5 +1,12 @@
 # GetOrderGlobals
 
+## Example Usage
+
+```typescript
+import { GetOrderGlobals } from "shippo/models/operations";
+
+let value: GetOrderGlobals = {};
+```
 
 ## Fields
 

@@ -1,5 +1,13 @@
 # ShipmentCreateRequestCustomsDeclaration
 
+## Example Usage
+
+```typescript
+import { ShipmentCreateRequestCustomsDeclaration } from "shippo/models/components";
+
+let value: ShipmentCreateRequestCustomsDeclaration =
+  "adcfdddf8ec64b84ad22772bce3ea37a";
+```
 
 ## Supported Types
 

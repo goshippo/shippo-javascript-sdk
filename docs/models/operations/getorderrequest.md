@@ -1,5 +1,14 @@
 # GetOrderRequest
 
+## Example Usage
+
+```typescript
+import { GetOrderRequest } from "shippo/models/operations";
+
+let value: GetOrderRequest = {
+  orderId: "<value>",
+};
+```
 
 ## Fields
 

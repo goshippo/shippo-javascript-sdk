@@ -151,69 +151,530 @@ async function run() {
           },
           metadata: "Customer ID 123456",
           shipmentDate: "2021-03-22T12:00:00Z",
-        addressFrom:     {
+          addressFrom: "d799c2679e644279b59fe661ac8fa488",
+          addressReturn: {
+            name: "Shwan Ippotle",
+            company: "Shippo",
+            street1: "215 Clayton St.",
+            street3: "",
+            streetNo: "",
+            city: "San Francisco",
+            state: "CA",
+            zip: "94117",
+            country: "US",
+            phone: "+1 555 341 9393",
+            email: "shippotle@shippo.com",
+            isResidential: true,
+            metadata: "Customer ID 123456",
+            validate: true,
+          },
+          addressTo: {
+            name: "Shwan Ippotle",
+            company: "Shippo",
+            street1: "215 Clayton St.",
+            street3: "",
+            streetNo: "",
+            city: "San Francisco",
+            state: "CA",
+            zip: "94117",
+            country: "US",
+            phone: "+1 555 341 9393",
+            email: "shippotle@shippo.com",
+            isResidential: true,
+            metadata: "Customer ID 123456",
+            validate: true,
+          },
+          customsDeclaration: {
+            b13aFilingOption: "FILED_ELECTRONICALLY",
+            certify: true,
+            certifySigner: "Shawn Ippotle",
+            contentsExplanation: "T-Shirt purchase",
+            dutiesPayor: {
+              account: "2323434543",
+              type: "THIRD_PARTY",
+              address: {
+                name: "Patrick Kavanagh",
+                zip: "80331",
+                country: "DE",
+              },
+            },
+            exporterIdentification: {
+              eoriNumber: "PL123456790ABCDE",
+              taxId: {
+                number: "123456789",
+                type: "EIN",
+              },
+            },
+            invoice: "#123123",
+            metadata: "Order ID #123123",
+            addressImporter: {
               name: "Shwan Ippotle",
               company: "Shippo",
-              street1: "215 Clayton St.",
+              street1: "Blumenstraße",
               street3: "",
-              streetNo: "",
-              city: "San Francisco",
+              streetNo: "22",
+              city: "München",
               state: "CA",
-              zip: "94117",
-              country: "US",
-              phone: "+1 555 341 9393",
+              zip: "80331",
+              country: "DE",
+              phone: "80331",
               email: "shippotle@shippo.com",
               isResidential: true,
-              metadata: "Customer ID 123456",
-              validate: true,
             },
-        addressReturn:     {
-              name: "Shwan Ippotle",
-              company: "Shippo",
-              street1: "215 Clayton St.",
-              street3: "",
-              streetNo: "",
-              city: "San Francisco",
-              state: "CA",
-              zip: "94117",
-              country: "US",
-              phone: "+1 555 341 9393",
-              email: "shippotle@shippo.com",
-              isResidential: true,
-              metadata: "Customer ID 123456",
-              validate: true,
-            },
-        addressTo: "d799c2679e644279b59fe661ac8fa489",
-        customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
+            contentsType: "MERCHANDISE",
+            eelPfc: "NOEEI_30_37_a",
+            incoterm: "DDP",
+            items: [
+              {
+                description: "T-Shirt",
+                massUnit: "lb",
+                metadata: "Order ID \"123454\"",
+                netWeight: "5",
+                originCountry: "<value>",
+                quantity: 20,
+                skuCode: "HM-123",
+                hsCode: "0901.21",
+                valueAmount: "200",
+                valueCurrency: "USD",
+              },
+              {
+                description: "T-Shirt",
+                massUnit: "lb",
+                metadata: "Order ID \"123454\"",
+                netWeight: "5",
+                originCountry: "<value>",
+                quantity: 20,
+                skuCode: "HM-123",
+                hsCode: "0901.21",
+                valueAmount: "200",
+                valueCurrency: "USD",
+              },
+              {
+                description: "T-Shirt",
+                massUnit: "lb",
+                metadata: "Order ID \"123454\"",
+                netWeight: "5",
+                originCountry: "<value>",
+                quantity: 20,
+                skuCode: "HM-123",
+                hsCode: "0901.21",
+                valueAmount: "200",
+                valueCurrency: "USD",
+              },
+            ],
+            nonDeliveryOption: "RETURN",
+            test: true,
+          },
           carrierAccounts: [
             "065a4a8c10d24a34ab932163a1b87f52",
             "73f706f4bdb94b54a337563840ce52b0",
           ],
           parcels: [
-              {
-                extra: {
-                  cod: {
-                    amount: "5.5",
-                    currency: "USD",
-                    paymentMethod: "CASH",
-                  },
-                  insurance: {
-                    amount: "5.5",
-                    content: "Laptop",
-                    currency: "USD",
-                    provider: "UPS",
-                  },
+            {
+              extra: {
+                cod: {
+                  amount: "5.5",
+                  currency: "USD",
+                  paymentMethod: "CASH",
                 },
-                metadata: "Customer ID 123456",
-                massUnit: "lb",
-                weight: "1",
-              template: "USPS_FlatRateGiftCardEnvelope",
+                insurance: {
+                  amount: "5.5",
+                  content: "Laptop",
+                  currency: "USD",
+                  provider: "UPS",
+                },
               },
+              metadata: "Customer ID 123456",
+              massUnit: "lb",
+              weight: "1",
+              distanceUnit: "in",
+              height: "1",
+              length: "1",
+              width: "1",
+            },
+            {
+              extra: {
+                cod: {
+                  amount: "5.5",
+                  currency: "USD",
+                  paymentMethod: "CASH",
+                },
+                insurance: {
+                  amount: "5.5",
+                  content: "Laptop",
+                  currency: "USD",
+                  provider: "UPS",
+                },
+              },
+              metadata: "Customer ID 123456",
+              massUnit: "lb",
+              weight: "1",
+              distanceUnit: "in",
+              height: "1",
+              length: "1",
+              width: "1",
+            },
+            {
+              extra: {
+                cod: {
+                  amount: "5.5",
+                  currency: "USD",
+                  paymentMethod: "CASH",
+                },
+                insurance: {
+                  amount: "5.5",
+                  content: "Laptop",
+                  currency: "USD",
+                  provider: "UPS",
+                },
+              },
+              metadata: "Customer ID 123456",
+              massUnit: "lb",
+              weight: "1",
+              distanceUnit: "in",
+              height: "1",
+              length: "1",
+              width: "1",
+            },
           ],
         },
       },
     ],
   });
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { batchesCreate } from "shippo/funcs/batchesCreate.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await batchesCreate(shippo, {
+    defaultCarrierAccount: "078870331023437cb917f5187429b093",
+    defaultServicelevelToken: "usps_priority",
+    labelFiletype: "PDF_4x6",
+    metadata: "BATCH #1",
+    batchShipments: [
+      {
+        carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
+        metadata: "SHIPMENT #1",
+        servicelevelToken: "fedex_ground",
+        shipment: {
+          extra: {
+            accountsReceivableCustomerAccount: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            appropriationNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            billOfLadingNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            cod: {
+              amount: "5.5",
+              currency: "USD",
+              paymentMethod: "CASH",
+            },
+            codNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            customerReference: {
+              refSort: 1,
+            },
+            dealerOrderNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            deptNumber: {
+              refSort: 3,
+            },
+            fdaProductCode: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            insurance: {
+              amount: "5.5",
+              currency: "USD",
+            },
+            invoiceNumber: {
+              refSort: 2,
+            },
+            manifestNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            modelNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            partNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            poNumber: {
+              refSort: 2,
+            },
+            productionCode: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            purchaseRequestNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            rmaNumber: {
+              refSort: 1,
+            },
+            salespersonNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            serialNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            storeNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+            transactionReferenceNumber: {
+              prefix: "ABC",
+              value: "value",
+              refSort: 1,
+            },
+          },
+          metadata: "Customer ID 123456",
+          shipmentDate: "2021-03-22T12:00:00Z",
+          addressFrom: "d799c2679e644279b59fe661ac8fa488",
+          addressReturn: {
+            name: "Shwan Ippotle",
+            company: "Shippo",
+            street1: "215 Clayton St.",
+            street3: "",
+            streetNo: "",
+            city: "San Francisco",
+            state: "CA",
+            zip: "94117",
+            country: "US",
+            phone: "+1 555 341 9393",
+            email: "shippotle@shippo.com",
+            isResidential: true,
+            metadata: "Customer ID 123456",
+            validate: true,
+          },
+          addressTo: {
+            name: "Shwan Ippotle",
+            company: "Shippo",
+            street1: "215 Clayton St.",
+            street3: "",
+            streetNo: "",
+            city: "San Francisco",
+            state: "CA",
+            zip: "94117",
+            country: "US",
+            phone: "+1 555 341 9393",
+            email: "shippotle@shippo.com",
+            isResidential: true,
+            metadata: "Customer ID 123456",
+            validate: true,
+          },
+          customsDeclaration: {
+            b13aFilingOption: "FILED_ELECTRONICALLY",
+            certify: true,
+            certifySigner: "Shawn Ippotle",
+            contentsExplanation: "T-Shirt purchase",
+            dutiesPayor: {
+              account: "2323434543",
+              type: "THIRD_PARTY",
+              address: {
+                name: "Patrick Kavanagh",
+                zip: "80331",
+                country: "DE",
+              },
+            },
+            exporterIdentification: {
+              eoriNumber: "PL123456790ABCDE",
+              taxId: {
+                number: "123456789",
+                type: "EIN",
+              },
+            },
+            invoice: "#123123",
+            metadata: "Order ID #123123",
+            addressImporter: {
+              name: "Shwan Ippotle",
+              company: "Shippo",
+              street1: "Blumenstraße",
+              street3: "",
+              streetNo: "22",
+              city: "München",
+              state: "CA",
+              zip: "80331",
+              country: "DE",
+              phone: "80331",
+              email: "shippotle@shippo.com",
+              isResidential: true,
+            },
+            contentsType: "MERCHANDISE",
+            eelPfc: "NOEEI_30_37_a",
+            incoterm: "DDP",
+            items: [
+              {
+                description: "T-Shirt",
+                massUnit: "lb",
+                metadata: "Order ID \"123454\"",
+                netWeight: "5",
+                originCountry: "<value>",
+                quantity: 20,
+                skuCode: "HM-123",
+                hsCode: "0901.21",
+                valueAmount: "200",
+                valueCurrency: "USD",
+              },
+              {
+                description: "T-Shirt",
+                massUnit: "lb",
+                metadata: "Order ID \"123454\"",
+                netWeight: "5",
+                originCountry: "<value>",
+                quantity: 20,
+                skuCode: "HM-123",
+                hsCode: "0901.21",
+                valueAmount: "200",
+                valueCurrency: "USD",
+              },
+              {
+                description: "T-Shirt",
+                massUnit: "lb",
+                metadata: "Order ID \"123454\"",
+                netWeight: "5",
+                originCountry: "<value>",
+                quantity: 20,
+                skuCode: "HM-123",
+                hsCode: "0901.21",
+                valueAmount: "200",
+                valueCurrency: "USD",
+              },
+            ],
+            nonDeliveryOption: "RETURN",
+            test: true,
+          },
+          carrierAccounts: [
+            "065a4a8c10d24a34ab932163a1b87f52",
+            "73f706f4bdb94b54a337563840ce52b0",
+          ],
+          parcels: [
+            {
+              extra: {
+                cod: {
+                  amount: "5.5",
+                  currency: "USD",
+                  paymentMethod: "CASH",
+                },
+                insurance: {
+                  amount: "5.5",
+                  content: "Laptop",
+                  currency: "USD",
+                  provider: "UPS",
+                },
+              },
+              metadata: "Customer ID 123456",
+              massUnit: "lb",
+              weight: "1",
+              distanceUnit: "in",
+              height: "1",
+              length: "1",
+              width: "1",
+            },
+            {
+              extra: {
+                cod: {
+                  amount: "5.5",
+                  currency: "USD",
+                  paymentMethod: "CASH",
+                },
+                insurance: {
+                  amount: "5.5",
+                  content: "Laptop",
+                  currency: "USD",
+                  provider: "UPS",
+                },
+              },
+              metadata: "Customer ID 123456",
+              massUnit: "lb",
+              weight: "1",
+              distanceUnit: "in",
+              height: "1",
+              length: "1",
+              width: "1",
+            },
+            {
+              extra: {
+                cod: {
+                  amount: "5.5",
+                  currency: "USD",
+                  paymentMethod: "CASH",
+                },
+                insurance: {
+                  amount: "5.5",
+                  content: "Laptop",
+                  currency: "USD",
+                  provider: "UPS",
+                },
+              },
+              metadata: "Customer ID 123456",
+              massUnit: "lb",
+              weight: "1",
+              distanceUnit: "in",
+              height: "1",
+              length: "1",
+              width: "1",
+            },
+          ],
+        },
+      },
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -229,16 +690,18 @@ run();
 | `request`                                                                                                                                                                      | [components.BatchCreateRequest](../../models/components/batchcreaterequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[components.Batch](../../models/components/batch.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get
 
@@ -259,6 +722,37 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.batches.get("<value>");
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { batchesGet } from "shippo/funcs/batchesGet.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await batchesGet(shippo, "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -274,16 +768,18 @@ run();
 | `batchId`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the batch                                                                                                                                                         |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[components.Batch](../../models/components/batch.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## addShipments
 
@@ -409,56 +905,1227 @@ async function run() {
         },
         metadata: "Customer ID 123456",
         shipmentDate: "2021-03-22T12:00:00Z",
-      addressFrom: "d799c2679e644279b59fe661ac8fa488",
-      addressReturn: "d799c2679e644279b59fe661ac8fa488",
-      addressTo:     {
-            name: "Shwan Ippotle",
-            company: "Shippo",
-            street1: "215 Clayton St.",
-            street3: "",
-            streetNo: "",
-            city: "San Francisco",
-            state: "CA",
-            zip: "94117",
-            country: "US",
-            phone: "+1 555 341 9393",
-            email: "shippotle@shippo.com",
-            isResidential: true,
-            metadata: "Customer ID 123456",
-            validate: true,
-          },
-      customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
+        addressFrom: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressReturn: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressTo: "d799c2679e644279b59fe661ac8fa489",
+        customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
         carrierAccounts: [
           "065a4a8c10d24a34ab932163a1b87f52",
           "73f706f4bdb94b54a337563840ce52b0",
         ],
         parcels: [
-            {
-              extra: {
-                cod: {
-                  amount: "5.5",
-                  currency: "USD",
-                  paymentMethod: "CASH",
-                },
-                insurance: {
-                  amount: "5.5",
-                  content: "Laptop",
-                  currency: "USD",
-                  provider: "UPS",
-                },
+          "<value>",
+          "<value>",
+          {
+            extra: {
+              cod: {
+                amount: "5.5",
+                currency: "USD",
+                paymentMethod: "CASH",
               },
-              metadata: "Customer ID 123456",
-              massUnit: "lb",
-              weight: "1",
-              distanceUnit: "in",
-              height: "1",
-              length: "1",
-              width: "1",
+              insurance: {
+                amount: "5.5",
+                content: "Laptop",
+                currency: "USD",
+                provider: "UPS",
+              },
             },
+            metadata: "Customer ID 123456",
+            massUnit: "lb",
+            weight: "1",
+            template: "USPS_SmallFlatRateEnvelope",
+          },
+        ],
+      },
+    },
+    {
+      carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
+      metadata: "SHIPMENT #1",
+      servicelevelToken: "fedex_ground",
+      shipment: {
+        extra: {
+          accountsReceivableCustomerAccount: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          appropriationNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          billOfLadingNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          cod: {
+            amount: "5.5",
+            currency: "USD",
+            paymentMethod: "CASH",
+          },
+          codNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          customerReference: {
+            refSort: 1,
+          },
+          dealerOrderNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          deptNumber: {
+            refSort: 3,
+          },
+          fdaProductCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          insurance: {
+            amount: "5.5",
+            currency: "USD",
+          },
+          invoiceNumber: {
+            refSort: 2,
+          },
+          manifestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          modelNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          partNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          poNumber: {
+            refSort: 2,
+          },
+          productionCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          purchaseRequestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          rmaNumber: {
+            refSort: 1,
+          },
+          salespersonNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          serialNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          storeNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          transactionReferenceNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+        },
+        metadata: "Customer ID 123456",
+        shipmentDate: "2021-03-22T12:00:00Z",
+        addressFrom: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressReturn: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressTo: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        customsDeclaration: {
+          b13aFilingOption: "FILED_ELECTRONICALLY",
+          certify: true,
+          certifySigner: "Shawn Ippotle",
+          contentsExplanation: "T-Shirt purchase",
+          dutiesPayor: {
+            account: "2323434543",
+            type: "THIRD_PARTY",
+            address: {
+              name: "Patrick Kavanagh",
+              zip: "80331",
+              country: "DE",
+            },
+          },
+          exporterIdentification: {
+            eoriNumber: "PL123456790ABCDE",
+            taxId: {
+              number: "123456789",
+              type: "EIN",
+            },
+          },
+          invoice: "#123123",
+          metadata: "Order ID #123123",
+          addressImporter: {
+            name: "Shwan Ippotle",
+            company: "Shippo",
+            street1: "Blumenstraße",
+            street3: "",
+            streetNo: "22",
+            city: "München",
+            state: "CA",
+            zip: "80331",
+            country: "DE",
+            phone: "80331",
+            email: "shippotle@shippo.com",
+            isResidential: true,
+          },
+          contentsType: "MERCHANDISE",
+          eelPfc: "NOEEI_30_37_a",
+          incoterm: "DDP",
+          items: [
+            {
+              description: "T-Shirt",
+              massUnit: "lb",
+              metadata: "Order ID \"123454\"",
+              netWeight: "5",
+              originCountry: "<value>",
+              quantity: 20,
+              skuCode: "HM-123",
+              hsCode: "0901.21",
+              valueAmount: "200",
+              valueCurrency: "USD",
+            },
+          ],
+          nonDeliveryOption: "RETURN",
+          test: true,
+        },
+        carrierAccounts: [
+          "065a4a8c10d24a34ab932163a1b87f52",
+          "73f706f4bdb94b54a337563840ce52b0",
+        ],
+        parcels: [
+          {
+            extra: {
+              cod: {
+                amount: "5.5",
+                currency: "USD",
+                paymentMethod: "CASH",
+              },
+              insurance: {
+                amount: "5.5",
+                content: "Laptop",
+                currency: "USD",
+                provider: "UPS",
+              },
+            },
+            metadata: "Customer ID 123456",
+            massUnit: "lb",
+            weight: "1",
+            template: "couriersplease_1kg_satchel",
+          },
+          {
+            extra: {
+              cod: {
+                amount: "5.5",
+                currency: "USD",
+                paymentMethod: "CASH",
+              },
+              insurance: {
+                amount: "5.5",
+                content: "Laptop",
+                currency: "USD",
+                provider: "UPS",
+              },
+            },
+            metadata: "Customer ID 123456",
+            massUnit: "lb",
+            weight: "1",
+            template: "DHLeC_SM_Flats",
+          },
+        ],
+      },
+    },
+    {
+      carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
+      metadata: "SHIPMENT #1",
+      servicelevelToken: "fedex_ground",
+      shipment: {
+        extra: {
+          accountsReceivableCustomerAccount: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          appropriationNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          billOfLadingNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          cod: {
+            amount: "5.5",
+            currency: "USD",
+            paymentMethod: "CASH",
+          },
+          codNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          customerReference: {
+            refSort: 1,
+          },
+          dealerOrderNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          deptNumber: {
+            refSort: 3,
+          },
+          fdaProductCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          insurance: {
+            amount: "5.5",
+            currency: "USD",
+          },
+          invoiceNumber: {
+            refSort: 2,
+          },
+          manifestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          modelNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          partNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          poNumber: {
+            refSort: 2,
+          },
+          productionCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          purchaseRequestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          rmaNumber: {
+            refSort: 1,
+          },
+          salespersonNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          serialNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          storeNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          transactionReferenceNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+        },
+        metadata: "Customer ID 123456",
+        shipmentDate: "2021-03-22T12:00:00Z",
+        addressFrom: "d799c2679e644279b59fe661ac8fa488",
+        addressReturn: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressTo: "d799c2679e644279b59fe661ac8fa489",
+        customsDeclaration: {
+          b13aFilingOption: "FILED_ELECTRONICALLY",
+          certify: true,
+          certifySigner: "Shawn Ippotle",
+          contentsExplanation: "T-Shirt purchase",
+          dutiesPayor: {
+            account: "2323434543",
+            type: "THIRD_PARTY",
+            address: {
+              name: "Patrick Kavanagh",
+              zip: "80331",
+              country: "DE",
+            },
+          },
+          exporterIdentification: {
+            eoriNumber: "PL123456790ABCDE",
+            taxId: {
+              number: "123456789",
+              type: "EIN",
+            },
+          },
+          invoice: "#123123",
+          metadata: "Order ID #123123",
+          addressImporter: {
+            name: "Shwan Ippotle",
+            company: "Shippo",
+            street1: "Blumenstraße",
+            street3: "",
+            streetNo: "22",
+            city: "München",
+            state: "CA",
+            zip: "80331",
+            country: "DE",
+            phone: "80331",
+            email: "shippotle@shippo.com",
+            isResidential: true,
+          },
+          contentsType: "MERCHANDISE",
+          eelPfc: "NOEEI_30_37_a",
+          incoterm: "DDP",
+          items: [
+            {
+              description: "T-Shirt",
+              massUnit: "lb",
+              metadata: "Order ID \"123454\"",
+              netWeight: "5",
+              originCountry: "<value>",
+              quantity: 20,
+              skuCode: "HM-123",
+              hsCode: "0901.21",
+              valueAmount: "200",
+              valueCurrency: "USD",
+            },
+            {
+              description: "T-Shirt",
+              massUnit: "lb",
+              metadata: "Order ID \"123454\"",
+              netWeight: "5",
+              originCountry: "<value>",
+              quantity: 20,
+              skuCode: "HM-123",
+              hsCode: "0901.21",
+              valueAmount: "200",
+              valueCurrency: "USD",
+            },
+            {
+              description: "T-Shirt",
+              massUnit: "lb",
+              metadata: "Order ID \"123454\"",
+              netWeight: "5",
+              originCountry: "<value>",
+              quantity: 20,
+              skuCode: "HM-123",
+              hsCode: "0901.21",
+              valueAmount: "200",
+              valueCurrency: "USD",
+            },
+          ],
+          nonDeliveryOption: "RETURN",
+          test: true,
+        },
+        carrierAccounts: [
+          "065a4a8c10d24a34ab932163a1b87f52",
+          "73f706f4bdb94b54a337563840ce52b0",
+        ],
+        parcels: [
+          "<value>",
+          "<value>",
+          "<value>",
         ],
       },
     },
   ]);
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { batchesAddShipments } from "shippo/funcs/batchesAddShipments.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await batchesAddShipments(shippo, "<value>", [
+    {
+      carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
+      metadata: "SHIPMENT #1",
+      servicelevelToken: "fedex_ground",
+      shipment: {
+        extra: {
+          accountsReceivableCustomerAccount: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          appropriationNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          billOfLadingNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          cod: {
+            amount: "5.5",
+            currency: "USD",
+            paymentMethod: "CASH",
+          },
+          codNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          customerReference: {
+            refSort: 1,
+          },
+          dealerOrderNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          deptNumber: {
+            refSort: 3,
+          },
+          fdaProductCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          insurance: {
+            amount: "5.5",
+            currency: "USD",
+          },
+          invoiceNumber: {
+            refSort: 2,
+          },
+          manifestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          modelNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          partNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          poNumber: {
+            refSort: 2,
+          },
+          productionCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          purchaseRequestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          rmaNumber: {
+            refSort: 1,
+          },
+          salespersonNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          serialNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          storeNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          transactionReferenceNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+        },
+        metadata: "Customer ID 123456",
+        shipmentDate: "2021-03-22T12:00:00Z",
+        addressFrom: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressReturn: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressTo: "d799c2679e644279b59fe661ac8fa489",
+        customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
+        carrierAccounts: [
+          "065a4a8c10d24a34ab932163a1b87f52",
+          "73f706f4bdb94b54a337563840ce52b0",
+        ],
+        parcels: [
+          "<value>",
+          "<value>",
+          {
+            extra: {
+              cod: {
+                amount: "5.5",
+                currency: "USD",
+                paymentMethod: "CASH",
+              },
+              insurance: {
+                amount: "5.5",
+                content: "Laptop",
+                currency: "USD",
+                provider: "UPS",
+              },
+            },
+            metadata: "Customer ID 123456",
+            massUnit: "lb",
+            weight: "1",
+            template: "USPS_SmallFlatRateEnvelope",
+          },
+        ],
+      },
+    },
+    {
+      carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
+      metadata: "SHIPMENT #1",
+      servicelevelToken: "fedex_ground",
+      shipment: {
+        extra: {
+          accountsReceivableCustomerAccount: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          appropriationNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          billOfLadingNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          cod: {
+            amount: "5.5",
+            currency: "USD",
+            paymentMethod: "CASH",
+          },
+          codNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          customerReference: {
+            refSort: 1,
+          },
+          dealerOrderNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          deptNumber: {
+            refSort: 3,
+          },
+          fdaProductCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          insurance: {
+            amount: "5.5",
+            currency: "USD",
+          },
+          invoiceNumber: {
+            refSort: 2,
+          },
+          manifestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          modelNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          partNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          poNumber: {
+            refSort: 2,
+          },
+          productionCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          purchaseRequestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          rmaNumber: {
+            refSort: 1,
+          },
+          salespersonNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          serialNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          storeNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          transactionReferenceNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+        },
+        metadata: "Customer ID 123456",
+        shipmentDate: "2021-03-22T12:00:00Z",
+        addressFrom: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressReturn: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressTo: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        customsDeclaration: {
+          b13aFilingOption: "FILED_ELECTRONICALLY",
+          certify: true,
+          certifySigner: "Shawn Ippotle",
+          contentsExplanation: "T-Shirt purchase",
+          dutiesPayor: {
+            account: "2323434543",
+            type: "THIRD_PARTY",
+            address: {
+              name: "Patrick Kavanagh",
+              zip: "80331",
+              country: "DE",
+            },
+          },
+          exporterIdentification: {
+            eoriNumber: "PL123456790ABCDE",
+            taxId: {
+              number: "123456789",
+              type: "EIN",
+            },
+          },
+          invoice: "#123123",
+          metadata: "Order ID #123123",
+          addressImporter: {
+            name: "Shwan Ippotle",
+            company: "Shippo",
+            street1: "Blumenstraße",
+            street3: "",
+            streetNo: "22",
+            city: "München",
+            state: "CA",
+            zip: "80331",
+            country: "DE",
+            phone: "80331",
+            email: "shippotle@shippo.com",
+            isResidential: true,
+          },
+          contentsType: "MERCHANDISE",
+          eelPfc: "NOEEI_30_37_a",
+          incoterm: "DDP",
+          items: [
+            {
+              description: "T-Shirt",
+              massUnit: "lb",
+              metadata: "Order ID \"123454\"",
+              netWeight: "5",
+              originCountry: "<value>",
+              quantity: 20,
+              skuCode: "HM-123",
+              hsCode: "0901.21",
+              valueAmount: "200",
+              valueCurrency: "USD",
+            },
+          ],
+          nonDeliveryOption: "RETURN",
+          test: true,
+        },
+        carrierAccounts: [
+          "065a4a8c10d24a34ab932163a1b87f52",
+          "73f706f4bdb94b54a337563840ce52b0",
+        ],
+        parcels: [
+          {
+            extra: {
+              cod: {
+                amount: "5.5",
+                currency: "USD",
+                paymentMethod: "CASH",
+              },
+              insurance: {
+                amount: "5.5",
+                content: "Laptop",
+                currency: "USD",
+                provider: "UPS",
+              },
+            },
+            metadata: "Customer ID 123456",
+            massUnit: "lb",
+            weight: "1",
+            template: "couriersplease_1kg_satchel",
+          },
+          {
+            extra: {
+              cod: {
+                amount: "5.5",
+                currency: "USD",
+                paymentMethod: "CASH",
+              },
+              insurance: {
+                amount: "5.5",
+                content: "Laptop",
+                currency: "USD",
+                provider: "UPS",
+              },
+            },
+            metadata: "Customer ID 123456",
+            massUnit: "lb",
+            weight: "1",
+            template: "DHLeC_SM_Flats",
+          },
+        ],
+      },
+    },
+    {
+      carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
+      metadata: "SHIPMENT #1",
+      servicelevelToken: "fedex_ground",
+      shipment: {
+        extra: {
+          accountsReceivableCustomerAccount: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          appropriationNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          billOfLadingNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          cod: {
+            amount: "5.5",
+            currency: "USD",
+            paymentMethod: "CASH",
+          },
+          codNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          customerReference: {
+            refSort: 1,
+          },
+          dealerOrderNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          deptNumber: {
+            refSort: 3,
+          },
+          fdaProductCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          insurance: {
+            amount: "5.5",
+            currency: "USD",
+          },
+          invoiceNumber: {
+            refSort: 2,
+          },
+          manifestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          modelNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          partNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          poNumber: {
+            refSort: 2,
+          },
+          productionCode: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          purchaseRequestNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          rmaNumber: {
+            refSort: 1,
+          },
+          salespersonNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          serialNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          storeNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+          transactionReferenceNumber: {
+            prefix: "ABC",
+            value: "value",
+            refSort: 1,
+          },
+        },
+        metadata: "Customer ID 123456",
+        shipmentDate: "2021-03-22T12:00:00Z",
+        addressFrom: "d799c2679e644279b59fe661ac8fa488",
+        addressReturn: {
+          name: "Shwan Ippotle",
+          company: "Shippo",
+          street1: "215 Clayton St.",
+          street3: "",
+          streetNo: "",
+          city: "San Francisco",
+          state: "CA",
+          zip: "94117",
+          country: "US",
+          phone: "+1 555 341 9393",
+          email: "shippotle@shippo.com",
+          isResidential: true,
+          metadata: "Customer ID 123456",
+          validate: true,
+        },
+        addressTo: "d799c2679e644279b59fe661ac8fa489",
+        customsDeclaration: {
+          b13aFilingOption: "FILED_ELECTRONICALLY",
+          certify: true,
+          certifySigner: "Shawn Ippotle",
+          contentsExplanation: "T-Shirt purchase",
+          dutiesPayor: {
+            account: "2323434543",
+            type: "THIRD_PARTY",
+            address: {
+              name: "Patrick Kavanagh",
+              zip: "80331",
+              country: "DE",
+            },
+          },
+          exporterIdentification: {
+            eoriNumber: "PL123456790ABCDE",
+            taxId: {
+              number: "123456789",
+              type: "EIN",
+            },
+          },
+          invoice: "#123123",
+          metadata: "Order ID #123123",
+          addressImporter: {
+            name: "Shwan Ippotle",
+            company: "Shippo",
+            street1: "Blumenstraße",
+            street3: "",
+            streetNo: "22",
+            city: "München",
+            state: "CA",
+            zip: "80331",
+            country: "DE",
+            phone: "80331",
+            email: "shippotle@shippo.com",
+            isResidential: true,
+          },
+          contentsType: "MERCHANDISE",
+          eelPfc: "NOEEI_30_37_a",
+          incoterm: "DDP",
+          items: [
+            {
+              description: "T-Shirt",
+              massUnit: "lb",
+              metadata: "Order ID \"123454\"",
+              netWeight: "5",
+              originCountry: "<value>",
+              quantity: 20,
+              skuCode: "HM-123",
+              hsCode: "0901.21",
+              valueAmount: "200",
+              valueCurrency: "USD",
+            },
+            {
+              description: "T-Shirt",
+              massUnit: "lb",
+              metadata: "Order ID \"123454\"",
+              netWeight: "5",
+              originCountry: "<value>",
+              quantity: 20,
+              skuCode: "HM-123",
+              hsCode: "0901.21",
+              valueAmount: "200",
+              valueCurrency: "USD",
+            },
+            {
+              description: "T-Shirt",
+              massUnit: "lb",
+              metadata: "Order ID \"123454\"",
+              netWeight: "5",
+              originCountry: "<value>",
+              quantity: 20,
+              skuCode: "HM-123",
+              hsCode: "0901.21",
+              valueAmount: "200",
+              valueCurrency: "USD",
+            },
+          ],
+          nonDeliveryOption: "RETURN",
+          test: true,
+        },
+        carrierAccounts: [
+          "065a4a8c10d24a34ab932163a1b87f52",
+          "73f706f4bdb94b54a337563840ce52b0",
+        ],
+        parcels: [
+          "<value>",
+          "<value>",
+          "<value>",
+        ],
+      },
+    },
+  ]);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -475,16 +2142,18 @@ run();
 | `requestBody`                                                                                                                                                                  | [components.BatchShipmentCreateRequest](../../models/components/batchshipmentcreaterequest.md)[]                                                                               | :heavy_check_mark:                                                                                                                                                             | Array of shipments to add to the batch                                                                                                                                         |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[components.Batch](../../models/components/batch.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## purchase
 
@@ -505,6 +2174,37 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.batches.purchase("<value>");
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { batchesPurchase } from "shippo/funcs/batchesPurchase.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await batchesPurchase(shippo, "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -520,16 +2220,18 @@ run();
 | `batchId`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Object ID of the batch                                                                                                                                                         |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[components.Batch](../../models/components/batch.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## removeShipments
 
@@ -548,7 +2250,44 @@ const shippo = new Shippo({
 async function run() {
   const result = await shippo.batches.removeShipments("<value>", [
     "<value>",
+    "<value>",
+    "<value>",
   ]);
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { batchesRemoveShipments } from "shippo/funcs/batchesRemoveShipments.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await batchesRemoveShipments(shippo, "<value>", [
+    "<value>",
+    "<value>",
+    "<value>",
+  ]);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -565,11 +2304,12 @@ run();
 | `requestBody`                                                                                                                                                                  | *string*[]                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                             | Array of shipments object ids to remove from the batch                                                                                                                         |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[components.Batch](../../models/components/batch.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

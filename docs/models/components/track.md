@@ -1,5 +1,82 @@
 # Track
 
+## Example Usage
+
+```typescript
+import { Track } from "shippo/models/components";
+
+let value: Track = {
+  addressFrom: {
+    city: "Las Vegas",
+    country: "US",
+    state: "NV",
+    zip: "89101",
+  },
+  addressTo: {
+    city: "Las Vegas",
+    country: "US",
+    state: "NV",
+    zip: "89101",
+  },
+  carrier: "usps",
+  messages: [
+    "<value>",
+  ],
+  metadata: "Order 000123",
+  originalEta: new Date("2021-07-23T00:00:00Z"),
+  servicelevel: {
+    name: "Priority Mail Express",
+    token: "usps_priority_express",
+    parentServicelevel: {
+      name: "Priority Mail Express",
+      token: "usps_priority_express",
+    },
+  },
+  trackingHistory: [
+    {
+      location: {
+        city: "Las Vegas",
+        country: "US",
+        state: "NV",
+        zip: "89101",
+      },
+      objectCreated: new Date("2024-07-18T10:00:30.471Z"),
+      objectId: "<value>",
+      objectUpdated: new Date("2024-06-03T19:43:04.405Z"),
+      status: "DELIVERED",
+      substatus: {
+        code: "information_received",
+        text: "Information about the package received.",
+        actionRequired: false,
+      },
+      statusDate: new Date("2016-07-23T00:00:00Z"),
+      statusDetails:
+        "Your shipment has been delivered at the destination mailbox.",
+    },
+  ],
+  trackingNumber: "9205590164917312751089",
+  trackingStatus: {
+    location: {
+      city: "Las Vegas",
+      country: "US",
+      state: "NV",
+      zip: "89101",
+    },
+    objectCreated: new Date("2023-09-16T17:37:32.983Z"),
+    objectId: "<value>",
+    objectUpdated: new Date("2023-03-23T06:32:58.021Z"),
+    status: "DELIVERED",
+    substatus: {
+      code: "information_received",
+      text: "Information about the package received.",
+      actionRequired: false,
+    },
+    statusDate: new Date("2016-07-23T00:00:00Z"),
+    statusDetails:
+      "Your shipment has been delivered at the destination mailbox.",
+  },
+};
+```
 
 ## Fields
 

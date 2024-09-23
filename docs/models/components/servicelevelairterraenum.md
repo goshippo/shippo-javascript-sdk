@@ -6,10 +6,16 @@
 | airterra_postal | FastPost|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelAirterraEnum } from "shippo/models/components";
+
+let value: ServiceLevelAirterraEnum = "airterra_postal";
+```
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `AirterraGround` | airterra_ground  |
-| `AirterraPostal` | airterra_postal  |
+```typescript
+"airterra_ground" | "airterra_postal"
+```

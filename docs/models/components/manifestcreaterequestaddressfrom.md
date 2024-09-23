@@ -1,5 +1,12 @@
 # ManifestCreateRequestAddressFrom
 
+## Example Usage
+
+```typescript
+import { ManifestCreateRequestAddressFrom } from "shippo/models/components";
+
+let value: ManifestCreateRequestAddressFrom = "<value>";
+```
 
 ## Supported Types
 

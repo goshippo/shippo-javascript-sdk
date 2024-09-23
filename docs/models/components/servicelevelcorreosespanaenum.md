@@ -6,10 +6,16 @@
 | correos_premium_home | Paquete Premium|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelCorreosEspanaEnum } from "shippo/models/components";
+
+let value: ServiceLevelCorreosEspanaEnum = "correos_standard_home";
+```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `CorreosStandardHome` | correos_standard_home |
-| `CorreosPremiumHome`  | correos_premium_home  |
+```typescript
+"correos_standard_home" | "correos_premium_home"
+```

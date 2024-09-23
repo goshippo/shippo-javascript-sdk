@@ -1,5 +1,16 @@
 # TracksRequest
 
+## Example Usage
+
+```typescript
+import { TracksRequest } from "shippo/models/components";
+
+let value: TracksRequest = {
+  carrier: "usps",
+  metadata: "Order 000123",
+  trackingNumber: "9205590164917312751089",
+};
+```
 
 ## Fields
 

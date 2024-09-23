@@ -1,5 +1,16 @@
 # CarrierAccountRegistrationStatus
 
+## Example Usage
+
+```typescript
+import { CarrierAccountRegistrationStatus } from "shippo/models/components";
+
+let value: CarrierAccountRegistrationStatus = {
+  carrierAccount: "99dc410d295b4a168993cc38809cb123",
+  objectOwner: "tom@gmail.com",
+  status: "PENDING_TERMS",
+};
+```
 
 ## Fields
 

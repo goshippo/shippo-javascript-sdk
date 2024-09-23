@@ -1,5 +1,12 @@
 # UpdateShippoAccountGlobals
 
+## Example Usage
+
+```typescript
+import { UpdateShippoAccountGlobals } from "shippo/models/operations";
+
+let value: UpdateShippoAccountGlobals = {};
+```
 
 ## Fields
 

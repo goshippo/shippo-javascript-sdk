@@ -1,5 +1,14 @@
 # GetWebhookRequest
 
+## Example Usage
+
+```typescript
+import { GetWebhookRequest } from "shippo/models/operations";
+
+let value: GetWebhookRequest = {
+  webhookId: "<value>",
+};
+```
 
 ## Fields
 

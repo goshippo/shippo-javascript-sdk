@@ -5,9 +5,16 @@
 | cdl_next_day | Next Day|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelCDLEnum } from "shippo/models/components";
+
+let value: ServiceLevelCDLEnum = "cdl_next_day";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `CdlNextDay` | cdl_next_day |
+```typescript
+"cdl_next_day"
+```

@@ -2,6 +2,15 @@
 
 Specify the department number field on the label (FedEx and UPS only).
 
+## Example Usage
+
+```typescript
+import { DepartmentNumber } from "shippo/models/components";
+
+let value: DepartmentNumber = {
+  refSort: 3,
+};
+```
 
 ## Fields
 

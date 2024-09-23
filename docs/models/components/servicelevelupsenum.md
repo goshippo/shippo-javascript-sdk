@@ -29,33 +29,16 @@
 | ups_access_point_economy | Access Point™ Economy|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelUPSEnum } from "shippo/models/components";
+
+let value: ServiceLevelUPSEnum = "ups_mail_innovations_standard_flat";
+```
 
 ## Values
 
-| Name                               | Value                              |
-| ---------------------------------- | ---------------------------------- |
-| `UpsStandard`                      | ups_standard                       |
-| `UpsGround`                        | ups_ground                         |
-| `UpsSaver`                         | ups_saver                          |
-| `Ups3DaySelect`                    | ups_3_day_select                   |
-| `UpsSecondDayAir`                  | ups_second_day_air                 |
-| `UpsSecondDayAirAm`                | ups_second_day_air_am              |
-| `UpsNextDayAir`                    | ups_next_day_air                   |
-| `UpsNextDayAirSaver`               | ups_next_day_air_saver             |
-| `UpsNextDayAirEarlyAm`             | ups_next_day_air_early_am          |
-| `UpsMailInnovationsBpmFlat`        | ups_mail_innovations_bpm_flat      |
-| `UpsMailInnovationsBpmParcel`      | ups_mail_innovations_bpm_parcel    |
-| `UpsMailInnovationsIrregular`      | ups_mail_innovations_irregular     |
-| `UpsMailInnovationsMediaMail`      | ups_mail_innovations_media_mail    |
-| `UpsMailInnovationsParcel`         | ups_mail_innovations_parcel        |
-| `UpsMailInnovationsStandardFlat`   | ups_mail_innovations_standard_flat |
-| `UpsSurepost`                      | ups_surepost                       |
-| `UpsSurepostBoundPrintedMatter`    | ups_surepost_bound_printed_matter  |
-| `UpsSurepostLightweight`           | ups_surepost_lightweight           |
-| `UpsSurepostMedia`                 | ups_surepost_media                 |
-| `UpsExpress`                       | ups_express                        |
-| `UpsExpress1200`                   | ups_express_1200                   |
-| `UpsExpressPlus`                   | ups_express_plus                   |
-| `UpsExpedited`                     | ups_expedited                      |
-| `UpsExpressEarly`                  | ups_express_early                  |
-| `UpsAccessPointEconomy`            | ups_access_point_economy           |
+```typescript
+"ups_standard" | "ups_ground" | "ups_saver" | "ups_3_day_select" | "ups_second_day_air" | "ups_second_day_air_am" | "ups_next_day_air" | "ups_next_day_air_saver" | "ups_next_day_air_early_am" | "ups_mail_innovations_bpm_flat" | "ups_mail_innovations_bpm_parcel" | "ups_mail_innovations_irregular" | "ups_mail_innovations_media_mail" | "ups_mail_innovations_parcel" | "ups_mail_innovations_standard_flat" | "ups_surepost" | "ups_surepost_bound_printed_matter" | "ups_surepost_lightweight" | "ups_surepost_media" | "ups_express" | "ups_express_1200" | "ups_express_plus" | "ups_expedited" | "ups_express_early" | "ups_access_point_economy"
+```

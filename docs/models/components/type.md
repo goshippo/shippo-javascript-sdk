@@ -2,13 +2,16 @@
 
 Party to be billed. (Leave blank for DHL Germany.)
 
+## Example Usage
+
+```typescript
+import { Type } from "shippo/models/components";
+
+let value: Type = "THIRD_PARTY_CONSIGNEE";
+```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `Sender`              | SENDER                |
-| `Recipient`           | RECIPIENT             |
-| `ThirdParty`          | THIRD_PARTY           |
-| `ThirdPartyConsignee` | THIRD_PARTY_CONSIGNEE |
-| `Collect`             | COLLECT               |
+```typescript
+"SENDER" | "RECIPIENT" | "THIRD_PARTY" | "THIRD_PARTY_CONSIGNEE" | "COLLECT"
+```

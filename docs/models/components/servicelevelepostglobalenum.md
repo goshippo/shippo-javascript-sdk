@@ -17,21 +17,16 @@
 | rr_donnelley_emi | Express Mail International|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelePostGlobalEnum } from "shippo/models/components";
+
+let value: ServiceLevelePostGlobalEnum = "rr_donnelley_emi";
+```
 
 ## Values
 
-| Name                                               | Value                                              |
-| -------------------------------------------------- | -------------------------------------------------- |
-| `RrDonnelleyDomesticEconomyParcel`                 | rr_donnelley_domestic_economy_parcel               |
-| `RrDonnelleyDomesticPriorityParcel`                | rr_donnelley_domestic_priority_parcel              |
-| `RrDonnelleyDomesticParcelBpm`                     | rr_donnelley_domestic_parcel_bpm                   |
-| `RrDonnelleyPriorityDomesticPriorityParcelBpm`     | rr_donnelley_priority_domestic_priority_parcel_bpm |
-| `RrDonnelleyPriorityParcelDelcon`                  | rr_donnelley_priority_parcel_delcon                |
-| `RrDonnelleyPriorityParcelNondelcon`               | rr_donnelley_priority_parcel_nondelcon             |
-| `RrDonnelleyEconomyParcel`                         | rr_donnelley_economy_parcel                        |
-| `RrDonnelleyIpa`                                   | rr_donnelley_ipa                                   |
-| `RrDonnelleyCourier`                               | rr_donnelley_courier                               |
-| `RrDonnelleyIsal`                                  | rr_donnelley_isal                                  |
-| `RrDonnelleyEpacket`                               | rr_donnelley_epacket                               |
-| `RrDonnelleyPmi`                                   | rr_donnelley_pmi                                   |
-| `RrDonnelleyEmi`                                   | rr_donnelley_emi                                   |
+```typescript
+"rr_donnelley_domestic_economy_parcel" | "rr_donnelley_domestic_priority_parcel" | "rr_donnelley_domestic_parcel_bpm" | "rr_donnelley_priority_domestic_priority_parcel_bpm" | "rr_donnelley_priority_parcel_delcon" | "rr_donnelley_priority_parcel_nondelcon" | "rr_donnelley_economy_parcel" | "rr_donnelley_ipa" | "rr_donnelley_courier" | "rr_donnelley_isal" | "rr_donnelley_epacket" | "rr_donnelley_pmi" | "rr_donnelley_emi"
+```

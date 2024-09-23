@@ -1,5 +1,12 @@
 # CreateTrackGlobals
 
+## Example Usage
+
+```typescript
+import { CreateTrackGlobals } from "shippo/models/operations";
+
+let value: CreateTrackGlobals = {};
+```
 
 ## Fields
 

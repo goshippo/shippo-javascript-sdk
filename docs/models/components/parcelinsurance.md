@@ -2,6 +2,18 @@
 
 To add insurace to your parcel, specify `amount`, `content` and `currency`. <br><br>If you do not want to add insurance to you parcel, do not set these parameters.
 
+## Example Usage
+
+```typescript
+import { ParcelInsurance } from "shippo/models/components";
+
+let value: ParcelInsurance = {
+  amount: "5.5",
+  content: "Laptop",
+  currency: "USD",
+  provider: "UPS",
+};
+```
 
 ## Fields
 

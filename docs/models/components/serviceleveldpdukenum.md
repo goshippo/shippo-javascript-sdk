@@ -21,25 +21,16 @@
 | dpd_uk_pickup_returns | Pickup Returns|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelDPDUKEnum } from "shippo/models/components";
+
+let value: ServiceLevelDPDUKEnum = "dpd_uk_saturday";
+```
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `DpdUkShipToShop`          | dpd_uk_ship_to_shop        |
-| `DpdUk1030`                | dpd_uk_1030                |
-| `DpdUk1200`                | dpd_uk_1200                |
-| `DpdUkSaturday`            | dpd_uk_saturday            |
-| `DpdUkSaturday1030`        | dpd_uk_saturday_1030       |
-| `DpdUkSaturday1200`        | dpd_uk_saturday_1200       |
-| `DpdUkSunday`              | dpd_uk_sunday              |
-| `DpdUkSunday1030`          | dpd_uk_sunday_1030         |
-| `DpdUkSunday1200`          | dpd_uk_sunday_1200         |
-| `DpdUkNextDay`             | dpd_uk_next_day            |
-| `DpdUkTwoDay`              | dpd_uk_two_day             |
-| `DpdUkClassic`             | dpd_uk_classic             |
-| `DpdUkAirClassic`          | dpd_uk_air_classic         |
-| `DpdUkAirExpress`          | dpd_uk_air_express         |
-| `DpdUkDirect`              | dpd_uk_direct              |
-| `DpdUkDirectTrackedMail`   | dpd_uk_direct_tracked_mail |
-| `DpdUkPickupReturns`       | dpd_uk_pickup_returns      |
+```typescript
+"dpd_uk_ship_to_shop" | "dpd_uk_1030" | "dpd_uk_1200" | "dpd_uk_saturday" | "dpd_uk_saturday_1030" | "dpd_uk_saturday_1200" | "dpd_uk_sunday" | "dpd_uk_sunday_1030" | "dpd_uk_sunday_1200" | "dpd_uk_next_day" | "dpd_uk_two_day" | "dpd_uk_classic" | "dpd_uk_air_classic" | "dpd_uk_air_express" | "dpd_uk_direct" | "dpd_uk_direct_tracked_mail" | "dpd_uk_pickup_returns"
+```

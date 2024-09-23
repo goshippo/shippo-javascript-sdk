@@ -1,5 +1,14 @@
 # CarrierAccountDHLExpressCreateRequestParameters
 
+## Example Usage
+
+```typescript
+import { CarrierAccountDHLExpressCreateRequestParameters } from "shippo/models/components";
+
+let value: CarrierAccountDHLExpressCreateRequestParameters = {
+  userAcceptedTermsAndConditions: false,
+};
+```
 
 ## Fields
 

@@ -7,11 +7,16 @@
 | colissimo_return_mainland_france | Retour France|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelColissimoEnum } from "shippo/models/components";
+
+let value: ServiceLevelColissimoEnum = "colissimo_home";
+```
 
 ## Values
 
-| Name                             | Value                            |
-| -------------------------------- | -------------------------------- |
-| `ColissimoHome`                  | colissimo_home                   |
-| `ColissimoPickUpPoint`           | colissimo_pick_up_point          |
-| `ColissimoReturnMainlandFrance`  | colissimo_return_mainland_france |
+```typescript
+"colissimo_home" | "colissimo_pick_up_point" | "colissimo_return_mainland_france"
+```

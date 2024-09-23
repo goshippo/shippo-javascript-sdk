@@ -1,5 +1,12 @@
 # GetAddressGlobals
 
+## Example Usage
+
+```typescript
+import { GetAddressGlobals } from "shippo/models/operations";
+
+let value: GetAddressGlobals = {};
+```
 
 ## Fields
 

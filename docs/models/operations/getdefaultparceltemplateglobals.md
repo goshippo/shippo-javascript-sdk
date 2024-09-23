@@ -1,5 +1,12 @@
 # GetDefaultParcelTemplateGlobals
 
+## Example Usage
+
+```typescript
+import { GetDefaultParcelTemplateGlobals } from "shippo/models/operations";
+
+let value: GetDefaultParcelTemplateGlobals = {};
+```
 
 ## Fields
 

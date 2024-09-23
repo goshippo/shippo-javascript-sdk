@@ -1,67 +1,15 @@
 # AddressValidationResultsMessageCodeEnum
 
+## Example Usage
+
+```typescript
+import { AddressValidationResultsMessageCodeEnum } from "shippo/models/components";
+
+let value: AddressValidationResultsMessageCodeEnum = "Multiple Responses";
+```
 
 ## Values
 
-| Name                             | Value                            |
-| -------------------------------- | -------------------------------- |
-| `VerificationError`              | verification_error               |
-| `UnknownStreetLower`             | unknown_street                   |
-| `ComponentMismatchError`         | component_mismatch_error         |
-| `MultipleMatch`                  | multiple_match                   |
-| `SubPremiseNumberInvalid`        | sub_premise_number_invalid       |
-| `SubPremiseNumberMissing`        | sub_premise_number_missing       |
-| `PremiseNumberInvalid`           | premise_number_invalid           |
-| `PremiseNumberMissing`           | premise_number_missing           |
-| `BoxNumberInvalid`               | box_number_invalid               |
-| `BoxNumberMissing`               | box_number_missing               |
-| `PmbNumberMissing`               | pmb_number_missing               |
-| `PostalCodeChange`               | postal_code_change               |
-| `AdministrativeAreaChange`       | administrative_area_change       |
-| `LocalityChange`                 | locality_change                  |
-| `DependentLocalityChange`        | dependent_locality_change        |
-| `StreetNameChange`               | street_name_change               |
-| `StreetTypeChange`               | street_type_change               |
-| `StreetDirectionalChange`        | street_directional_change        |
-| `SubPremiseTypeChange`           | sub_premise_type_change          |
-| `SubPremiseNumberChange`         | sub_premise_number_change        |
-| `DoubleDependentLocalityChange`  | double_dependent_locality_change |
-| `SubadministrativeAreaChange`    | subadministrative_area_change    |
-| `SubnationalAreaChange`          | subnational_area_change          |
-| `PoBoxChange`                    | po_box_change                    |
-| `PremiseTypeChange`              | premise_type_change              |
-| `HouseNumberChange`              | house_number_change              |
-| `OrganizationChange`             | organization_change              |
-| `ExtraneousInformation`          | extraneous_information           |
-| `UspsDoorInaccessible`           | usps_door_inaccessible           |
-| `AdministrativeAreaPartial`      | administrative_area_partial      |
-| `CityPartial`                    | city_partial                     |
-| `StreetPartial`                  | street_partial                   |
-| `BuildingPartial`                | building_partial                 |
-| `SubpremisePartial`              | subpremise_partial               |
-| `AdministrativeAreaFull`         | administrative_area_full         |
-| `CityFull`                       | city_full                        |
-| `ThoroughfareFull`               | thoroughfare_full                |
-| `PremisesFull`                   | premises_full                    |
-| `SubpremiseFull`                 | subpremise_full                  |
-| `GeocodedStreet`                 | geocoded_street                  |
-| `GeocodedNeighborhood`           | geocoded_neighborhood            |
-| `GeocodedCommunity`              | geocoded_community               |
-| `GeocodedState`                  | geocoded_state                   |
-| `GeocodedRooftop`                | geocoded_rooftop                 |
-| `GeocodedInterpolatedRooftop`    | geocoded_interpolated_rooftop    |
-| `InvalidPostalCode`              | invalid_postal_code              |
-| `PostalCodeNotFound`             | postal_code_not_found            |
-| `EmptyRequest`                   | empty_request                    |
-| `ServiceError`                   | service_error                    |
-| `StreetDetailMissing`            | street_detail_missing            |
-| `InvalidCityStateZip`            | Invalid City/State/Zip           |
-| `DefaultMatch`                   | Default Match                    |
-| `UnknownStreetMixed`             | Unknown Street                   |
-| `AddressNotFound`                | Address Not Found                |
-| `NonDeliverableZip4`             | Non-Deliverable ZIP4             |
-| `MultipleResponses`              | Multiple Responses               |
-| `InvalidDualAddress`             | Invalid Dual Address             |
-| `InvalidState`                   | Invalid State                    |
-| `InvalidCity`                    | Invalid City                     |
-| `AmbiguousAddress`               | Ambiguous Address                |
+```typescript
+"verification_error" | "unknown_street" | "component_mismatch_error" | "multiple_match" | "sub_premise_number_invalid" | "sub_premise_number_missing" | "premise_number_invalid" | "premise_number_missing" | "box_number_invalid" | "box_number_missing" | "pmb_number_missing" | "postal_code_change" | "administrative_area_change" | "locality_change" | "dependent_locality_change" | "street_name_change" | "street_type_change" | "street_directional_change" | "sub_premise_type_change" | "sub_premise_number_change" | "double_dependent_locality_change" | "subadministrative_area_change" | "subnational_area_change" | "po_box_change" | "premise_type_change" | "house_number_change" | "organization_change" | "extraneous_information" | "usps_door_inaccessible" | "administrative_area_partial" | "city_partial" | "street_partial" | "building_partial" | "subpremise_partial" | "administrative_area_full" | "city_full" | "thoroughfare_full" | "premises_full" | "subpremise_full" | "geocoded_street" | "geocoded_neighborhood" | "geocoded_community" | "geocoded_state" | "geocoded_rooftop" | "geocoded_interpolated_rooftop" | "invalid_postal_code" | "postal_code_not_found" | "empty_request" | "service_error" | "street_detail_missing" | "Invalid City/State/Zip" | "Default Match" | "Unknown Street" | "Address Not Found" | "Non-Deliverable ZIP4" | "Multiple Responses" | "Invalid Dual Address" | "Invalid State" | "Invalid City" | "Ambiguous Address"
+```

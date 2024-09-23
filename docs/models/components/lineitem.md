@@ -1,5 +1,25 @@
 # LineItem
 
+## Example Usage
+
+```typescript
+import { LineItem } from "shippo/models/components";
+
+let value: LineItem = {
+  currency: "USD",
+  manufactureCountry: "US",
+  maxDeliveryTime: new Date("2016-07-23T00:00:00Z"),
+  maxShipTime: new Date("2016-07-23T00:00:00Z"),
+  quantity: 20,
+  sku: "HM-123",
+  title: "Hippo Magazines",
+  totalPrice: "12.1",
+  variantTitle: "June Edition",
+  weight: "0.4",
+  weightUnit: "lb",
+  objectId: "abf7d5675d744b6ea9fdb6f796b28f28",
+};
+```
 
 ## Fields
 

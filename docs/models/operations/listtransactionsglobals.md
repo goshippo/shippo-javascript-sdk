@@ -1,5 +1,12 @@
 # ListTransactionsGlobals
 
+## Example Usage
+
+```typescript
+import { ListTransactionsGlobals } from "shippo/models/operations";
+
+let value: ListTransactionsGlobals = {};
+```
 
 ## Fields
 

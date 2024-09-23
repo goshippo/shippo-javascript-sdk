@@ -7,11 +7,16 @@
 | ontrac_sunrise | Sunrise|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelOnTracEnum } from "shippo/models/components";
+
+let value: ServiceLevelOnTracEnum = "ontrac_ground";
+```
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `OntracGround`      | ontrac_ground       |
-| `OntracSunriseGold` | ontrac_sunrise_gold |
-| `OntracSunrise`     | ontrac_sunrise      |
+```typescript
+"ontrac_ground" | "ontrac_sunrise_gold" | "ontrac_sunrise"
+```

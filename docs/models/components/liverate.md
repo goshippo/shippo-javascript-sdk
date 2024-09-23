@@ -1,5 +1,19 @@
 # LiveRate
 
+## Example Usage
+
+```typescript
+import { LiveRate } from "shippo/models/components";
+
+let value: LiveRate = {
+  amount: "5.5",
+  amountLocal: "5.5",
+  currency: "USD",
+  currencyLocal: "USD",
+  estimatedDays: 2,
+  title: "Shipping Option 1",
+};
+```
 
 ## Fields
 

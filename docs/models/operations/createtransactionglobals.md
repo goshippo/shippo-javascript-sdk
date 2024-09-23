@@ -1,5 +1,12 @@
 # CreateTransactionGlobals
 
+## Example Usage
+
+```typescript
+import { CreateTransactionGlobals } from "shippo/models/operations";
+
+let value: CreateTransactionGlobals = {};
+```
 
 ## Fields
 

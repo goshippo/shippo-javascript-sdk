@@ -1,5 +1,12 @@
 # GetParcelGlobals
 
+## Example Usage
+
+```typescript
+import { GetParcelGlobals } from "shippo/models/operations";
+
+let value: GetParcelGlobals = {};
+```
 
 ## Fields
 

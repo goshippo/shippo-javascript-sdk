@@ -1,5 +1,18 @@
 # ShippoAccount
 
+## Example Usage
+
+```typescript
+import { ShippoAccount } from "shippo/models/components";
+
+let value: ShippoAccount = {
+  email: "hippo@shippo.com",
+  firstName: "Shippo",
+  lastName: "Meister",
+  companyName: "Acme",
+  objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
+};
+```
 
 ## Fields
 

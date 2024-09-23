@@ -1,5 +1,14 @@
 # ListShipmentRatesRequest
 
+## Example Usage
+
+```typescript
+import { ListShipmentRatesRequest } from "shippo/models/operations";
+
+let value: ListShipmentRatesRequest = {
+  shipmentId: "<value>",
+};
+```
 
 ## Fields
 

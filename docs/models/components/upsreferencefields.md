@@ -1,5 +1,16 @@
 # UPSReferenceFields
 
+## Example Usage
+
+```typescript
+import { UPSReferenceFields } from "shippo/models/components";
+
+let value: UPSReferenceFields = {
+  prefix: "ABC",
+  value: "value",
+  refSort: 1,
+};
+```
 
 ## Fields
 

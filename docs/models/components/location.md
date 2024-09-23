@@ -2,6 +2,33 @@
 
 Location where the parcel(s) will be picked up.
 
+## Example Usage
+
+```typescript
+import { Location } from "shippo/models/components";
+
+let value: Location = {
+  address: {
+    name: "Shwan Ippotle",
+    company: "Shippo",
+    street1: "215 Clayton St.",
+    street3: "",
+    streetNo: "",
+    city: "San Francisco",
+    state: "CA",
+    zip: "94117",
+    country: "US",
+    phone: "+1 555 341 9393",
+    email: "shippotle@shippo.com",
+    isResidential: true,
+    metadata: "Customer ID 123456",
+    validate: true,
+  },
+  buildingLocationType: "Front Door",
+  buildingType: "apartment",
+  instructions: "Behind screen door",
+};
+```
 
 ## Fields
 

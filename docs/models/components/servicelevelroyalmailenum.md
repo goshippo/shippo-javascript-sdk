@@ -24,28 +24,17 @@
 | royal_mail_48_flat_rate | Royal Mail 48 Parcel Flat Rate
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelRoyalMailEnum } from "shippo/models/components";
+
+let value: ServiceLevelRoyalMailEnum =
+  "royal_mail_special_delivery_guaranteed_1pm";
+```
 
 ## Values
 
-| Name                                                | Value                                               |
-| --------------------------------------------------- | --------------------------------------------------- |
-| `RoyalMailTrackedLetterBoxable24NoSignature`        | royal_mail_tracked_letter_boxable_24_no_signature   |
-| `RoyalMailTrackedLetterBoxable48NoSignature`        | royal_mail_tracked_letter_boxable_48_no_signature   |
-| `RoyalMailTracked24Returns`                         | royal_mail_tracked_24_returns                       |
-| `RoyalMailTracked48Returns`                         | royal_mail_tracked_48_returns                       |
-| `RoyalMailSpecialDeliveryGuaranteed1pm`             | royal_mail_special_delivery_guaranteed_1pm          |
-| `RoyalMailSpecialDeliveryGuaranteed9am`             | royal_mail_special_delivery_guaranteed_9am          |
-| `RoyalMail24`                                       | royal_mail_24                                       |
-| `RoyalMail48`                                       | royal_mail_48                                       |
-| `RoyalMailSignedForFirstClass`                      | royal_mail_signed_for_first_class                   |
-| `RoyalMailSignedForSecondClass`                     | royal_mail_signed_for_second_class                  |
-| `RoyalMailStandardFirstClass`                       | royal_mail_standard_first_class                     |
-| `RoyalMailStandardSecondClass`                      | royal_mail_standard_second_class                    |
-| `RoyalMailTracked24NoSignature`                     | royal_mail_tracked_24_no_signature                  |
-| `RoyalMailTracked48NoSignature`                     | royal_mail_tracked_48_no_signature                  |
-| `RoyalMailIntlBusMailLrgLtrZoneSortPri`             | royal_mail_intl_bus_mail_lrg_ltr_zone_sort_pri      |
-| `RoyalMailIntlBusParcelsTrackedZoneSort`            | royal_mail_intl_bus_parcels_tracked_zone_sort       |
-| `RoyalMailIntlBusParcelsTrackedCountryPriced`       | royal_mail_intl_bus_parcels_tracked_country_priced  |
-| `RoyalMailIntlBusParcelsTrackedSignedZoneSrt`       | royal_mail_intl_bus_parcels_tracked_signed_zone_srt |
-| `RoyalMail24FlatRate`                               | royal_mail_24_flat_rate                             |
-| `RoyalMail48FlatRate`                               | royal_mail_48_flat_rate                             |
+```typescript
+"royal_mail_tracked_letter_boxable_24_no_signature" | "royal_mail_tracked_letter_boxable_48_no_signature" | "royal_mail_tracked_24_returns" | "royal_mail_tracked_48_returns" | "royal_mail_special_delivery_guaranteed_1pm" | "royal_mail_special_delivery_guaranteed_9am" | "royal_mail_24" | "royal_mail_48" | "royal_mail_signed_for_first_class" | "royal_mail_signed_for_second_class" | "royal_mail_standard_first_class" | "royal_mail_standard_second_class" | "royal_mail_tracked_24_no_signature" | "royal_mail_tracked_48_no_signature" | "royal_mail_intl_bus_mail_lrg_ltr_zone_sort_pri" | "royal_mail_intl_bus_parcels_tracked_zone_sort" | "royal_mail_intl_bus_parcels_tracked_country_priced" | "royal_mail_intl_bus_parcels_tracked_signed_zone_srt" | "royal_mail_24_flat_rate" | "royal_mail_48_flat_rate"
+```

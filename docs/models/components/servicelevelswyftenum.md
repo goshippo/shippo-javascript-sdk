@@ -6,10 +6,16 @@
 | next_day | Next Day|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelSwyftEnum } from "shippo/models/components";
+
+let value: ServiceLevelSwyftEnum = "same_day";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `SameDay` | same_day  |
-| `NextDay` | next_day  |
+```typescript
+"same_day" | "next_day"
+```

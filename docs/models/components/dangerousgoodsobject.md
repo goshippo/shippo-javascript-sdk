@@ -4,6 +4,13 @@ Container for specifying the presence of dangerous materials. This is specific t
 are provided, only certain USPS service levels will be eligible. For more information, see our
 <a href="https://docs.goshippo.com/docs/shipments/hazmat/">guide on hazardous or dangerous materials shipping</a>.
 
+## Example Usage
+
+```typescript
+import { DangerousGoodsObject } from "shippo/models/components";
+
+let value: DangerousGoodsObject = {};
+```
 
 ## Fields
 

@@ -28,33 +28,16 @@
 | fedex_standard_overnight_extra_hours | Standard Overnight® EH |
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelFedExEnum } from "shippo/models/components";
+
+let value: ServiceLevelFedExEnum = "fedex_europe_first_international_priority";
+```
 
 ## Values
 
-| Name                                      | Value                                     |
-| ----------------------------------------- | ----------------------------------------- |
-| `FedexGround`                             | fedex_ground                              |
-| `FedexHomeDelivery`                       | fedex_home_delivery                       |
-| `FedexSmartPost`                          | fedex_smart_post                          |
-| `FedexGroundEconomy`                      | fedex_ground_economy                      |
-| `Fedex2Day`                               | fedex_2_day                               |
-| `Fedex2DayAm`                             | fedex_2_day_am                            |
-| `FedexExpressSaver`                       | fedex_express_saver                       |
-| `FedexStandardOvernight`                  | fedex_standard_overnight                  |
-| `FedexPriorityOvernight`                  | fedex_priority_overnight                  |
-| `FedexFirstOvernight`                     | fedex_first_overnight                     |
-| `FedexInternationalEconomy`               | fedex_international_economy               |
-| `FedexInternationalPriority`              | fedex_international_priority              |
-| `FedexInternationalFirst`                 | fedex_international_first                 |
-| `FedexEuropeFirstInternationalPriority`   | fedex_europe_first_international_priority |
-| `FedexInternationalConnectPlus`           | fedex_international_connect_plus          |
-| `FedexFirst`                              | fedex_first                               |
-| `FedexPriority`                           | fedex_priority                            |
-| `FedexPriorityExpress`                    | fedex_priority_express                    |
-| `FedexEconomySelect`                      | fedex_economy_select                      |
-| `FedexRegionalEconomy`                    | fedex_regional_economy                    |
-| `FedexFirstOvernightExtraHours`           | fedex_first_overnight_extra_hours         |
-| `FedexInternationalPriorityExpress`       | fedex_international_priority_express      |
-| `FedexNextDayMidMorning`                  | fedex_next_day_mid_morning                |
-| `FedexPriorityOvernightExtraHours`        | fedex_priority_overnight_extra_hours      |
-| `FedexStandardOvernightExtraHours`        | fedex_standard_overnight_extra_hours      |
+```typescript
+"fedex_ground" | "fedex_home_delivery" | "fedex_smart_post" | "fedex_ground_economy" | "fedex_2_day" | "fedex_2_day_am" | "fedex_express_saver" | "fedex_standard_overnight" | "fedex_priority_overnight" | "fedex_first_overnight" | "fedex_international_economy" | "fedex_international_priority" | "fedex_international_first" | "fedex_europe_first_international_priority" | "fedex_international_connect_plus" | "fedex_first" | "fedex_priority" | "fedex_priority_express" | "fedex_economy_select" | "fedex_regional_economy" | "fedex_first_overnight_extra_hours" | "fedex_international_priority_express" | "fedex_next_day_mid_morning" | "fedex_priority_overnight_extra_hours" | "fedex_standard_overnight_extra_hours"
+```

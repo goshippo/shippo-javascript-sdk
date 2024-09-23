@@ -11,15 +11,16 @@
 | usps_ground_advantage | Ground Advantage |
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelUSPSEnum } from "shippo/models/components";
+
+let value: ServiceLevelUSPSEnum = "usps_priority_mail_express_international";
+```
 
 ## Values
 
-| Name                                           | Value                                          |
-| ---------------------------------------------- | ---------------------------------------------- |
-| `UspsPriority`                                 | usps_priority                                  |
-| `UspsPriorityExpress`                          | usps_priority_express                          |
-| `UspsMediaMail`                                | usps_media_mail                                |
-| `UspsPriorityMailInternational`                | usps_priority_mail_international               |
-| `UspsPriorityMailExpressInternational`         | usps_priority_mail_express_international       |
-| `UspsFirstClassPackageInternationalService`    | usps_first_class_package_international_service |
-| `UspsGroundAdvantage`                          | usps_ground_advantage                          |
+```typescript
+"usps_priority" | "usps_priority_express" | "usps_media_mail" | "usps_priority_mail_international" | "usps_priority_mail_express_international" | "usps_first_class_package_international_service" | "usps_ground_advantage"
+```

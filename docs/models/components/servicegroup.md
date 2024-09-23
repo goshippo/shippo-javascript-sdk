@@ -1,5 +1,33 @@
 # ServiceGroup
 
+## Example Usage
+
+```typescript
+import { ServiceGroup } from "shippo/models/components";
+
+let value: ServiceGroup = {
+  description: "USPS shipping options",
+  flatRate: "5",
+  flatRateCurrency: "USD",
+  freeShippingThresholdCurrency: "USD",
+  freeShippingThresholdMin: "5",
+  name: "USPS Shipping",
+  rateAdjustment: 15,
+  type: "FLAT_RATE",
+  objectId: "80feb1633d4a43c898f005850",
+  isActive: true,
+  serviceLevels: [
+    {
+      name: "Priority Mail Express",
+      token: "usps_priority_express",
+      parentServicelevel: {
+        name: "Priority Mail Express",
+        token: "usps_priority_express",
+      },
+    },
+  ],
+};
+```
 
 ## Fields
 

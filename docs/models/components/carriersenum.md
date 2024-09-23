@@ -47,7 +47,6 @@
 | ontrac | OnTrac|
 | orangeds | OrangeDS|
 | parcelforce | Parcelforce|
-| parcel | Parcel|
 | passport | Passport|
 | pcf | PCF|
 | poste_italiane | Poste Italiane |
@@ -64,76 +63,18 @@
 | ups | UPS|
 | usps | USPS|
 | veho | Veho |
-| x_delivery | X Delivery (now Maergo)|
-| yodel | Yodel|
 
 
+## Example Usage
+
+```typescript
+import { CarriersEnum } from "shippo/models/components";
+
+let value: CarriersEnum = "rr_donnelley";
+```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `Airterra`         | airterra           |
-| `ApcPostal`        | apc_postal         |
-| `Apg`              | apg                |
-| `Aramex`           | aramex             |
-| `AsendiaUs`        | asendia_us         |
-| `AustraliaPost`    | australia_post     |
-| `Axlehire`         | axlehire           |
-| `BetterTrucks`     | better_trucks      |
-| `Borderguru`       | borderguru         |
-| `Boxberry`         | boxberry           |
-| `Bring`            | bring              |
-| `CanadaPost`       | canada_post        |
-| `Cdl`              | cdl                |
-| `Chronopost`       | chronopost         |
-| `CollectPlus`      | collect_plus       |
-| `CorreiosBr`       | correios_br        |
-| `CorreosEspana`    | correos_espana     |
-| `Couriersplease`   | couriersplease     |
-| `Colissimo`        | colissimo          |
-| `DeutschePost`     | deutsche_post      |
-| `DhlBenelux`       | dhl_benelux        |
-| `DhlEcommerce`     | dhl_ecommerce      |
-| `DhlExpress`       | dhl_express        |
-| `DhlGermanyC2c`    | dhl_germany_c2c    |
-| `DhlGermany`       | dhl_germany        |
-| `DpdDe`            | dpd_de             |
-| `DpdUk`            | dpd_uk             |
-| `Estafeta`         | estafeta           |
-| `FastwayAustralia` | fastway_australia  |
-| `Fedex`            | fedex              |
-| `Globegistics`     | globegistics       |
-| `GlsUs`            | gls_us             |
-| `Gophr`            | gophr              |
-| `Gso`              | gso                |
-| `HermesGermanyB2c` | hermes_germany_b2c |
-| `HermesUk`         | hermes_uk          |
-| `HongkongPost`     | hongkong_post      |
-| `Lasership`        | lasership          |
-| `Lso`              | lso                |
-| `MondialRelay`     | mondial_relay      |
-| `NewZealandPost`   | new_zealand_post   |
-| `NipponExpress`    | nippon_express     |
-| `Ontrac`           | ontrac             |
-| `Orangeds`         | orangeds           |
-| `Parcelforce`      | parcelforce        |
-| `Parcel`           | parcel             |
-| `Passport`         | passport           |
-| `Pcf`              | pcf                |
-| `PosteItaliane`    | poste_italiane     |
-| `Posti`            | posti              |
-| `Purolator`        | purolator          |
-| `RoyalMail`        | royal_mail         |
-| `RrDonnelley`      | rr_donnelley       |
-| `RussianPost`      | russian_post       |
-| `Sendle`           | sendle             |
-| `Skypostal`        | skypostal          |
-| `Stuart`           | stuart             |
-| `Swyft`            | swyft              |
-| `Uds`              | uds                |
-| `Ups`              | ups                |
-| `Usps`             | usps               |
-| `Veho`             | veho               |
-| `XDelivery`        | x_delivery         |
-| `Yodel`            | yodel              |
+```typescript
+"airterra" | "apc_postal" | "apg" | "aramex" | "asendia_us" | "australia_post" | "axlehire" | "better_trucks" | "borderguru" | "boxberry" | "bring" | "canada_post" | "cdl" | "chronopost" | "collect_plus" | "correios_br" | "correos_espana" | "couriersplease" | "colissimo" | "deutsche_post" | "dhl_benelux" | "dhl_ecommerce" | "dhl_express" | "dhl_germany_c2c" | "dhl_germany" | "dpd_de" | "dpd_uk" | "estafeta" | "fastway_australia" | "fedex" | "globegistics" | "gls_us" | "gophr" | "gso" | "hermes_germany_b2c" | "hermes_uk" | "hongkong_post" | "lasership" | "lso" | "mondial_relay" | "new_zealand_post" | "nippon_express" | "ontrac" | "orangeds" | "parcelforce" | "passport" | "pcf" | "poste_italiane" | "posti" | "purolator" | "royal_mail" | "rr_donnelley" | "russian_post" | "sendle" | "skypostal" | "stuart" | "swyft" | "uds" | "ups" | "usps" | "veho"
+```

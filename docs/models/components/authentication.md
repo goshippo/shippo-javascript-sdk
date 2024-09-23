@@ -1,5 +1,12 @@
 # Authentication
 
+## Example Usage
+
+```typescript
+import { Authentication } from "shippo/models/components";
+
+let value: Authentication = {};
+```
 
 ## Fields
 

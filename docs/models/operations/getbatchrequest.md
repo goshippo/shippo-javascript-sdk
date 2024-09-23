@@ -1,5 +1,14 @@
 # GetBatchRequest
 
+## Example Usage
+
+```typescript
+import { GetBatchRequest } from "shippo/models/operations";
+
+let value: GetBatchRequest = {
+  batchId: "<value>",
+};
+```
 
 ## Fields
 

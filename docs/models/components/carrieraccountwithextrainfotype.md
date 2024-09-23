@@ -2,10 +2,16 @@
 
 Authentication method used by this account.
 
+## Example Usage
+
+```typescript
+import { CarrierAccountWithExtraInfoType } from "shippo/models/components";
+
+let value: CarrierAccountWithExtraInfoType = "default";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Default` | default   |
-| `Oauth`   | oauth     |
+```typescript
+"default" | "oauth"
+```

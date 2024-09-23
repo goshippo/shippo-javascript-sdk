@@ -1,5 +1,15 @@
 # ListTransactionsRequest
 
+## Example Usage
+
+```typescript
+import { ListTransactionsRequest } from "shippo/models/operations";
+
+let value: ListTransactionsRequest = {
+  objectStatus: "SUCCESS",
+  trackingStatus: "DELIVERED",
+};
+```
 
 ## Fields
 

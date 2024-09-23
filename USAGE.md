@@ -3,15 +3,15 @@
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
-    const result = await shippo.addresses.list(1, 5);
+  const result = await shippo.addresses.list();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

@@ -2,6 +2,31 @@
 
 The latest tracking information of this shipment.
 
+## Example Usage
+
+```typescript
+import { TrackingStatus } from "shippo/models/components";
+
+let value: TrackingStatus = {
+  location: {
+    city: "Las Vegas",
+    country: "US",
+    state: "NV",
+    zip: "89101",
+  },
+  objectCreated: new Date("2022-03-17T19:22:07.134Z"),
+  objectId: "<value>",
+  objectUpdated: new Date("2024-02-04T09:09:59.216Z"),
+  status: "DELIVERED",
+  substatus: {
+    code: "information_received",
+    text: "Information about the package received.",
+    actionRequired: false,
+  },
+  statusDate: new Date("2016-07-23T00:00:00Z"),
+  statusDetails: "Your shipment has been delivered at the destination mailbox.",
+};
+```
 
 ## Fields
 

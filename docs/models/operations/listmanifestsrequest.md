@@ -1,5 +1,12 @@
 # ListManifestsRequest
 
+## Example Usage
+
+```typescript
+import { ListManifestsRequest } from "shippo/models/operations";
+
+let value: ListManifestsRequest = {};
+```
 
 ## Fields
 

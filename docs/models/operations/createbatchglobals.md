@@ -1,5 +1,12 @@
 # CreateBatchGlobals
 
+## Example Usage
+
+```typescript
+import { CreateBatchGlobals } from "shippo/models/operations";
+
+let value: CreateBatchGlobals = {};
+```
 
 ## Fields
 

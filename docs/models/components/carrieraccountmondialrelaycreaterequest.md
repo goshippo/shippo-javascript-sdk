@@ -1,5 +1,15 @@
 # CarrierAccountMondialRelayCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountMondialRelayCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountMondialRelayCreateRequest = {
+  carrier: "mondialrelay",
+  parameters: {},
+};
+```
 
 ## Fields
 

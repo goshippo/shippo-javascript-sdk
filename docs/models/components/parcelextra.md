@@ -3,6 +3,25 @@
 An object holding optional extra services to be requested for each parcel in a multi-piece shipment. 
 See the <a href="#section/Parcel-Extras">Parcel Extra table below</a> for all available services.
 
+## Example Usage
+
+```typescript
+import { ParcelExtra } from "shippo/models/components";
+
+let value: ParcelExtra = {
+  cod: {
+    amount: "5.5",
+    currency: "USD",
+    paymentMethod: "CASH",
+  },
+  insurance: {
+    amount: "5.5",
+    content: "Laptop",
+    currency: "USD",
+    provider: "UPS",
+  },
+};
+```
 
 ## Fields
 

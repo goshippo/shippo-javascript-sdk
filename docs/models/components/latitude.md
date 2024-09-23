@@ -1,5 +1,12 @@
 # Latitude
 
+## Example Usage
+
+```typescript
+import { Latitude } from "shippo/models/components";
+
+let value: Latitude = "<value>";
+```
 
 ## Supported Types
 

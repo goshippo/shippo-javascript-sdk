@@ -2,6 +2,13 @@
 
 Specify that the package contains Dry Ice (FedEx, Veho, and UPS only).
 
+## Example Usage
+
+```typescript
+import { DryIce } from "shippo/models/components";
+
+let value: DryIce = {};
+```
 
 ## Fields
 

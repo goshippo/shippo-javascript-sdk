@@ -1,5 +1,12 @@
 # PurchaseBatchGlobals
 
+## Example Usage
+
+```typescript
+import { PurchaseBatchGlobals } from "shippo/models/operations";
+
+let value: PurchaseBatchGlobals = {};
+```
 
 ## Fields
 

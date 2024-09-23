@@ -36,6 +36,37 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.trackingStatus.create("usps", "9205590164917312751089", "Order 000123");
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { trackingStatusCreate } from "shippo/funcs/trackingStatusCreate.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await trackingStatusCreate(shippo, "usps", "9205590164917312751089", "Order 000123");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -53,16 +84,18 @@ run();
 | `metadata`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | A string of up to 100 characters that can be filled with any additional information you want to attach to the object.                                                          | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
 **Promise\<[components.Track](../../models/components/track.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get
 
@@ -80,6 +113,37 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.trackingStatus.get("<value>", "<value>");
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { trackingStatusGet } from "shippo/funcs/trackingStatusGet.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await trackingStatusGet(shippo, "<value>", "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -96,11 +160,12 @@ run();
 | `carrier`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Name of the carrier                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[components.Track](../../models/components/track.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

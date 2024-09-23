@@ -3,6 +3,16 @@
 Tax identification that may be required to ship in certain countries. Typically used to assess duties on 
 goods that are crossing a border.
 
+## Example Usage
+
+```typescript
+import { CustomsTaxIdentification } from "shippo/models/components";
+
+let value: CustomsTaxIdentification = {
+  number: "123456789",
+  type: "EIN",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # CreateShippoAccountGlobals
 
+## Example Usage
+
+```typescript
+import { CreateShippoAccountGlobals } from "shippo/models/operations";
+
+let value: CreateShippoAccountGlobals = {};
+```
 
 ## Fields
 

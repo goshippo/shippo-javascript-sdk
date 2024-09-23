@@ -2,6 +2,13 @@
 
 Content of the webhook posted to the external URL
 
+## Example Usage
+
+```typescript
+import { WebhookPayloadBatch } from "shippo/models/components";
+
+let value: WebhookPayloadBatch = {};
+```
 
 ## Fields
 

@@ -5,12 +5,16 @@
 Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field<br> 
 `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
 
+## Example Usage
+
+```typescript
+import { Status } from "shippo/models/components";
+
+let value: Status = "INVALID";
+```
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `Invalid`           | INVALID             |
-| `Valid`             | VALID               |
-| `Incomplete`        | INCOMPLETE          |
-| `TransactionFailed` | TRANSACTION_FAILED  |
+```typescript
+"INVALID" | "VALID" | "INCOMPLETE" | "TRANSACTION_FAILED"
+```

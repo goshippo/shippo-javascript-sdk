@@ -2,6 +2,19 @@
 
 Additional exporter identification that may be required to ship in certain countries
 
+## Example Usage
+
+```typescript
+import { CustomsExporterIdentification } from "shippo/models/components";
+
+let value: CustomsExporterIdentification = {
+  eoriNumber: "PL123456790ABCDE",
+  taxId: {
+    number: "123456789",
+    type: "EIN",
+  },
+};
+```
 
 ## Fields
 

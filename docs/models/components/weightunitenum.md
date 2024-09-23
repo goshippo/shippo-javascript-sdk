@@ -2,12 +2,16 @@
 
 The unit used for weight.
 
+## Example Usage
+
+```typescript
+import { WeightUnitEnum } from "shippo/models/components";
+
+let value: WeightUnitEnum = "lb";
+```
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `G`   | g     |
-| `Kg`  | kg    |
-| `Lb`  | lb    |
-| `Oz`  | oz    |
+```typescript
+"g" | "kg" | "lb" | "oz"
+```

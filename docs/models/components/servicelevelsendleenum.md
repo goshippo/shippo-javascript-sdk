@@ -6,10 +6,16 @@
 | sendle_standard_dropoff | Sendle Standard Dropoff|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelSendleEnum } from "shippo/models/components";
+
+let value: ServiceLevelSendleEnum = "sendle_standard_dropoff";
+```
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `SendleParcel`          | sendle_parcel           |
-| `SendleStandardDropoff` | sendle_standard_dropoff |
+```typescript
+"sendle_parcel" | "sendle_standard_dropoff"
+```

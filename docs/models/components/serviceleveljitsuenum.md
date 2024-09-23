@@ -6,10 +6,16 @@
 | axlehire_next_day | Next Day|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelJitsuEnum } from "shippo/models/components";
+
+let value: ServiceLevelJitsuEnum = "axlehire_same_day";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `AxlehireSameDay` | axlehire_same_day |
-| `AxlehireNextDay` | axlehire_next_day |
+```typescript
+"axlehire_same_day" | "axlehire_next_day"
+```

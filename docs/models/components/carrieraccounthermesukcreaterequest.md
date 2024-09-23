@@ -1,5 +1,15 @@
 # CarrierAccountHermesUKCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountHermesUKCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountHermesUKCreateRequest = {
+  carrier: "hermes_uk",
+  parameters: {},
+};
+```
 
 ## Fields
 

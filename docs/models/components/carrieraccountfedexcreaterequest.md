@@ -1,5 +1,15 @@
 # CarrierAccountFedExCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountFedExCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountFedExCreateRequest = {
+  carrier: "fedex",
+  parameters: {},
+};
+```
 
 ## Fields
 

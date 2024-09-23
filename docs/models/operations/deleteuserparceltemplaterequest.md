@@ -1,5 +1,14 @@
 # DeleteUserParcelTemplateRequest
 
+## Example Usage
+
+```typescript
+import { DeleteUserParcelTemplateRequest } from "shippo/models/operations";
+
+let value: DeleteUserParcelTemplateRequest = {
+  userParcelTemplateObjectId: "<value>",
+};
+```
 
 ## Fields
 

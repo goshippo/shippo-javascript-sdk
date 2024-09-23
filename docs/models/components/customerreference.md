@@ -2,6 +2,15 @@
 
 Specify the reference field on the label (FedEx and UPS only).
 
+## Example Usage
+
+```typescript
+import { CustomerReference } from "shippo/models/components";
+
+let value: CustomerReference = {
+  refSort: 1,
+};
+```
 
 ## Fields
 

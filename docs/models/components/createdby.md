@@ -5,6 +5,17 @@ A value will be returned only for Transactions that can be associated with a spe
 user purchases a label via the Shippo Web application; but not for Transactions purchased e.g. via the API using a ShippoToken,
 which is associated with the account but not any specific user.
 
+## Example Usage
+
+```typescript
+import { CreatedBy } from "shippo/models/components";
+
+let value: CreatedBy = {
+  firstName: "Shwan",
+  lastName: "Ippotle",
+  username: "shippotle@shippo.com",
+};
+```
 
 ## Fields
 

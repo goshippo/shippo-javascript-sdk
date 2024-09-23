@@ -1,8 +1,15 @@
 # ShipmentExtraReturnServiceTypeLasershipEnum
 
+## Example Usage
+
+```typescript
+import { ShipmentExtraReturnServiceTypeLasershipEnum } from "shippo/models/components";
+
+let value: ShipmentExtraReturnServiceTypeLasershipEnum = "NO_RETURN";
+```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `NoReturn` | NO_RETURN  |
+```typescript
+"NO_RETURN"
+```

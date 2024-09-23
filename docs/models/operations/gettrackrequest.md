@@ -1,5 +1,15 @@
 # GetTrackRequest
 
+## Example Usage
+
+```typescript
+import { GetTrackRequest } from "shippo/models/operations";
+
+let value: GetTrackRequest = {
+  trackingNumber: "<value>",
+  carrier: "<value>",
+};
+```
 
 ## Fields
 

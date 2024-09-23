@@ -1,5 +1,14 @@
 # GetRateRequest
 
+## Example Usage
+
+```typescript
+import { GetRateRequest } from "shippo/models/operations";
+
+let value: GetRateRequest = {
+  rateId: "<value>",
+};
+```
 
 ## Fields
 

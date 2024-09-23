@@ -1,5 +1,12 @@
 # GetCustomsDeclarationGlobals
 
+## Example Usage
+
+```typescript
+import { GetCustomsDeclarationGlobals } from "shippo/models/operations";
+
+let value: GetCustomsDeclarationGlobals = {};
+```
 
 ## Fields
 

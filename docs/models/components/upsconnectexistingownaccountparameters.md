@@ -4,6 +4,36 @@ An array of additional parameters for the account, such as e.g. password or toke
 Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for the parameters per carrier.<br> 
 To protect account information, this field will be masked in any API response.
 
+## Example Usage
+
+```typescript
+import { UPSConnectExistingOwnAccountParameters } from "shippo/models/components";
+
+let value: UPSConnectExistingOwnAccountParameters = {
+  accountNumber: "94567e",
+  aiaCountryIso2: "US",
+  billingAddressCity: "San Francisco",
+  billingAddressCountryIso2: "US",
+  billingAddressState: "CA",
+  billingAddressStreet1: "731 Market St",
+  billingAddressStreet2: "STE 200",
+  billingAddressZip: "94103",
+  collecCountryIso2: "US",
+  collecZip: "94103",
+  company: "Shippo",
+  currencyCode: "USD",
+  email: "hippo@shippo.com",
+  fullName: "Shippo Meister",
+  hasInvoice: false,
+  invoiceControlid: "1234",
+  invoiceDate: "20210529",
+  invoiceNumber: "1112234",
+  invoiceValue: "11.23",
+  phone: "1112223333",
+  title: "Manager",
+  upsAgreements: false,
+};
+```
 
 ## Fields
 

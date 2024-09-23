@@ -1,5 +1,15 @@
 # CarrierAccountCorreosCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountCorreosCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountCorreosCreateRequest = {
+  carrier: "correos",
+  parameters: {},
+};
+```
 
 ## Fields
 

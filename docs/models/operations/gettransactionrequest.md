@@ -1,5 +1,14 @@
 # GetTransactionRequest
 
+## Example Usage
+
+```typescript
+import { GetTransactionRequest } from "shippo/models/operations";
+
+let value: GetTransactionRequest = {
+  transactionId: "<value>",
+};
+```
 
 ## Fields
 

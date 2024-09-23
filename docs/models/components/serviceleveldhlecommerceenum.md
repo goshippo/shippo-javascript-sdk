@@ -32,36 +32,17 @@
 | dhl_ecommerce_globalmail_packet_standard | GlobalMail Business Standard|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelDHLeCommerceEnum } from "shippo/models/components";
+
+let value: ServiceLevelDHLeCommerceEnum =
+  "dhl_ecommerce_parcel_international_standard";
+```
 
 ## Values
 
-| Name                                         | Value                                        |
-| -------------------------------------------- | -------------------------------------------- |
-| `DhlEcommerceMarketingParcelExpedited`       | dhl_ecommerce_marketing_parcel_expedited     |
-| `DhlEcommerceGlobalmailBusinessIpa`          | dhl_ecommerce_globalmail_business_ipa        |
-| `DhlEcommerceParcelInternationalDirect`      | dhl_ecommerce_parcel_international_direct    |
-| `DhlEcommerceParcelsExpeditedMax`            | dhl_ecommerce_parcels_expedited_max          |
-| `DhlEcommerceBpmGround`                      | dhl_ecommerce_bpm_ground                     |
-| `DhlEcommercePriorityExpedited`              | dhl_ecommerce_priority_expedited             |
-| `DhlEcommerceGlobalmailPacketIpa`            | dhl_ecommerce_globalmail_packet_ipa          |
-| `DhlEcommerceGlobalmailPacketIsal`           | dhl_ecommerce_globalmail_packet_isal         |
-| `DhlEcommerceEasyReturnPlus`                 | dhl_ecommerce_easy_return_plus               |
-| `DhlEcommerceMarketingParcelGround`          | dhl_ecommerce_marketing_parcel_ground        |
-| `DhlEcommerceFirstClassParcelExpedited`      | dhl_ecommerce_first_class_parcel_expedited   |
-| `DhlEcommerceGlobalmailBusinessPriority`     | dhl_ecommerce_globalmail_business_priority   |
-| `DhlEcommerceParcelsExpedited`               | dhl_ecommerce_parcels_expedited              |
-| `DhlEcommerceGlobalmailBusinessIsal`         | dhl_ecommerce_globalmail_business_isal       |
-| `DhlEcommerceParcelPlusExpeditedMax`         | dhl_ecommerce_parcel_plus_expedited_max      |
-| `DhlEcommerceGlobalmailPacketPlus`           | dhl_ecommerce_globalmail_packet_plus         |
-| `DhlEcommerceParcelsGround`                  | dhl_ecommerce_parcels_ground                 |
-| `DhlEcommerceExpedited`                      | dhl_ecommerce_expedited                      |
-| `DhlEcommerceParcelPlusGround`               | dhl_ecommerce_parcel_plus_ground             |
-| `DhlEcommerceParcelInternationalStandard`    | dhl_ecommerce_parcel_international_standard  |
-| `DhlEcommerceBpmExpedited`                   | dhl_ecommerce_bpm_expedited                  |
-| `DhlEcommerceParcelInternationalExpedited`   | dhl_ecommerce_parcel_international_expedited |
-| `DhlEcommerceGlobalmailPacketPriority`       | dhl_ecommerce_globalmail_packet_priority     |
-| `DhlEcommerceEasyReturnLight`                | dhl_ecommerce_easy_return_light              |
-| `DhlEcommerceParcelPlusExpedited`            | dhl_ecommerce_parcel_plus_expedited          |
-| `DhlEcommerceGlobalmailBusinessStandard`     | dhl_ecommerce_globalmail_business_standard   |
-| `DhlEcommerceGround`                         | dhl_ecommerce_ground                         |
-| `DhlEcommerceGlobalmailPacketStandard`       | dhl_ecommerce_globalmail_packet_standard     |
+```typescript
+"dhl_ecommerce_marketing_parcel_expedited" | "dhl_ecommerce_globalmail_business_ipa" | "dhl_ecommerce_parcel_international_direct" | "dhl_ecommerce_parcels_expedited_max" | "dhl_ecommerce_bpm_ground" | "dhl_ecommerce_priority_expedited" | "dhl_ecommerce_globalmail_packet_ipa" | "dhl_ecommerce_globalmail_packet_isal" | "dhl_ecommerce_easy_return_plus" | "dhl_ecommerce_marketing_parcel_ground" | "dhl_ecommerce_first_class_parcel_expedited" | "dhl_ecommerce_globalmail_business_priority" | "dhl_ecommerce_parcels_expedited" | "dhl_ecommerce_globalmail_business_isal" | "dhl_ecommerce_parcel_plus_expedited_max" | "dhl_ecommerce_globalmail_packet_plus" | "dhl_ecommerce_parcels_ground" | "dhl_ecommerce_expedited" | "dhl_ecommerce_parcel_plus_ground" | "dhl_ecommerce_parcel_international_standard" | "dhl_ecommerce_bpm_expedited" | "dhl_ecommerce_parcel_international_expedited" | "dhl_ecommerce_globalmail_packet_priority" | "dhl_ecommerce_easy_return_light" | "dhl_ecommerce_parcel_plus_expedited" | "dhl_ecommerce_globalmail_business_standard" | "dhl_ecommerce_ground" | "dhl_ecommerce_globalmail_packet_standard"
+```

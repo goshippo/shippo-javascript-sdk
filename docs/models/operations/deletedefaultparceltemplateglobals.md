@@ -1,5 +1,12 @@
 # DeleteDefaultParcelTemplateGlobals
 
+## Example Usage
+
+```typescript
+import { DeleteDefaultParcelTemplateGlobals } from "shippo/models/operations";
+
+let value: DeleteDefaultParcelTemplateGlobals = {};
+```
 
 ## Fields
 

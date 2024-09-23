@@ -1,5 +1,14 @@
 # PurchaseBatchRequest
 
+## Example Usage
+
+```typescript
+import { PurchaseBatchRequest } from "shippo/models/operations";
+
+let value: PurchaseBatchRequest = {
+  batchId: "<value>",
+};
+```
 
 ## Fields
 

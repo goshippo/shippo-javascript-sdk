@@ -2,6 +2,13 @@
 
 Invalid ShippoToken or unsupported carrier account provided by the user
 
+## Example Usage
+
+```typescript
+import { InitiateOauth2SigninCarrierAccountsResponseBody } from "shippo/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

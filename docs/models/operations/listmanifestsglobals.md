@@ -1,5 +1,12 @@
 # ListManifestsGlobals
 
+## Example Usage
+
+```typescript
+import { ListManifestsGlobals } from "shippo/models/operations";
+
+let value: ListManifestsGlobals = {};
+```
 
 ## Fields
 

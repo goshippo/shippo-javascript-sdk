@@ -2,6 +2,13 @@
 
 Container for specifying the presence of lithium batteries.
 
+## Example Usage
+
+```typescript
+import { DangerousGoodsLithiumBatteries } from "shippo/models/components";
+
+let value: DangerousGoodsLithiumBatteries = {};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # GetCarrierParcelTemplateRequest
 
+## Example Usage
+
+```typescript
+import { GetCarrierParcelTemplateRequest } from "shippo/models/operations";
+
+let value: GetCarrierParcelTemplateRequest = {
+  carrierParcelTemplateToken: "<value>",
+};
+```
 
 ## Fields
 

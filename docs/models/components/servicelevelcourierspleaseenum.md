@@ -15,19 +15,17 @@
 | couriersplease_satchel_sign_required | Satchel - Signature Required|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelCouriersPleaseEnum } from "shippo/models/components";
+
+let value: ServiceLevelCouriersPleaseEnum =
+  "couriersplease_gold_domestic_auth_to_leave";
+```
 
 ## Values
 
-| Name                                           | Value                                          |
-| ---------------------------------------------- | ---------------------------------------------- |
-| `CourierspleaseDomesticPriorityAuthToLeave`    | couriersplease_domestic_priority_auth_to_leave |
-| `CourierspleaseDomesticPrioritySignRequired`   | couriersplease_domestic_priority_sign_required |
-| `CourierspleaseGoldDomesticAuthToLeave`        | couriersplease_gold_domestic_auth_to_leave     |
-| `CourierspleaseGoldDomesticSignRequired`       | couriersplease_gold_domestic_sign_required     |
-| `CourierspleaseOffPeakAuthToLeave`             | couriersplease_off_peak_auth_to_leave          |
-| `CourierspleaseOffPeakSignRequired`            | couriersplease_off_peak_sign_required          |
-| `CourierspleaseParcelAuthToLeave`              | couriersplease_parcel_auth_to_leave            |
-| `CourierspleaseParcelSignRequired`             | couriersplease_parcel_sign_required            |
-| `CourierspleaseRoadExpress`                    | couriersplease_road_express                    |
-| `CourierspleaseSatchelAuthToLeave`             | couriersplease_satchel_auth_to_leave           |
-| `CourierspleaseSatchelSignRequired`            | couriersplease_satchel_sign_required           |
+```typescript
+"couriersplease_domestic_priority_auth_to_leave" | "couriersplease_domestic_priority_sign_required" | "couriersplease_gold_domestic_auth_to_leave" | "couriersplease_gold_domestic_sign_required" | "couriersplease_off_peak_auth_to_leave" | "couriersplease_off_peak_sign_required" | "couriersplease_parcel_auth_to_leave" | "couriersplease_parcel_sign_required" | "couriersplease_road_express" | "couriersplease_satchel_auth_to_leave" | "couriersplease_satchel_sign_required"
+```

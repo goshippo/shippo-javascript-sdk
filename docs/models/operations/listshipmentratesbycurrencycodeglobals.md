@@ -1,5 +1,12 @@
 # ListShipmentRatesByCurrencyCodeGlobals
 
+## Example Usage
+
+```typescript
+import { ListShipmentRatesByCurrencyCodeGlobals } from "shippo/models/operations";
+
+let value: ListShipmentRatesByCurrencyCodeGlobals = {};
+```
 
 ## Fields
 

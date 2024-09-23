@@ -1,5 +1,40 @@
 # PickupBase
 
+## Example Usage
+
+```typescript
+import { PickupBase } from "shippo/models/components";
+
+let value: PickupBase = {
+  carrierAccount: "adcfdddf8ec64b84ad22772bce3ea37a",
+  location: {
+    address: {
+      name: "Shwan Ippotle",
+      company: "Shippo",
+      street1: "215 Clayton St.",
+      street3: "",
+      streetNo: "",
+      city: "San Francisco",
+      state: "CA",
+      zip: "94117",
+      country: "US",
+      phone: "+1 555 341 9393",
+      email: "shippotle@shippo.com",
+      isResidential: true,
+      metadata: "Customer ID 123456",
+      validate: true,
+    },
+    buildingLocationType: "Front Door",
+    buildingType: "apartment",
+    instructions: "Behind screen door",
+  },
+  requestedEndTime: new Date("2024-09-09T14:45:41.967Z"),
+  requestedStartTime: new Date("2023-02-07T20:20:50.747Z"),
+  transactions: [
+    "adcfdddf8ec64b84ad22772bce3ea37a",
+  ],
+};
+```
 
 ## Fields
 
