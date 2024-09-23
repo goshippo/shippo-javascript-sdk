@@ -1,5 +1,12 @@
 # GetCarrierAccountGlobals
 
+## Example Usage
+
+```typescript
+import { GetCarrierAccountGlobals } from "shippo/models/operations";
+
+let value: GetCarrierAccountGlobals = {};
+```
 
 ## Fields
 

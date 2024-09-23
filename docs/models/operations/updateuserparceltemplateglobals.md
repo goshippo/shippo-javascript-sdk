@@ -1,5 +1,12 @@
 # UpdateUserParcelTemplateGlobals
 
+## Example Usage
+
+```typescript
+import { UpdateUserParcelTemplateGlobals } from "shippo/models/operations";
+
+let value: UpdateUserParcelTemplateGlobals = {};
+```
 
 ## Fields
 

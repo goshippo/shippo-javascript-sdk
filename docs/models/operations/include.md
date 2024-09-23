@@ -2,11 +2,16 @@
 
 filter by user or enabled
 
+## Example Usage
+
+```typescript
+import { Include } from "shippo/models/operations";
+
+let value: Include = "all";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `All`     | all       |
-| `User`    | user      |
-| `Enabled` | enabled   |
+```typescript
+"all" | "user" | "enabled"
+```

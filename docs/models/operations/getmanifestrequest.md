@@ -1,5 +1,14 @@
 # GetManifestRequest
 
+## Example Usage
+
+```typescript
+import { GetManifestRequest } from "shippo/models/operations";
+
+let value: GetManifestRequest = {
+  manifestId: "<value>",
+};
+```
 
 ## Fields
 

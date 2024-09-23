@@ -15,19 +15,16 @@
 | canada_post_small_packet_international_air | Small Package International Air|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelCanadaPostEnum } from "shippo/models/components";
+
+let value: ServiceLevelCanadaPostEnum = "canada_post_small_packet_usa_air";
+```
 
 ## Values
 
-| Name                                       | Value                                      |
-| ------------------------------------------ | ------------------------------------------ |
-| `CanadaPostRegularParcel`                  | canada_post_regular_parcel                 |
-| `CanadaPostExpeditedParcel`                | canada_post_expedited_parcel               |
-| `CanadaPostPriority`                       | canada_post_priority                       |
-| `CanadaPostXpresspost`                     | canada_post_xpresspost                     |
-| `CanadaPostXpresspostInternational`        | canada_post_xpresspost_international       |
-| `CanadaPostXpresspostUsa`                  | canada_post_xpresspost_usa                 |
-| `CanadaPostExpeditedParcelUsa`             | canada_post_expedited_parcel_usa           |
-| `CanadaPostTrackedPacketUsa`               | canada_post_tracked_packet_usa             |
-| `CanadaPostSmallPacketUsaAir`              | canada_post_small_packet_usa_air           |
-| `CanadaPostTrackedPacketInternational`     | canada_post_tracked_packet_international   |
-| `CanadaPostSmallPacketInternationalAir`    | canada_post_small_packet_international_air |
+```typescript
+"canada_post_regular_parcel" | "canada_post_expedited_parcel" | "canada_post_priority" | "canada_post_xpresspost" | "canada_post_xpresspost_international" | "canada_post_xpresspost_usa" | "canada_post_expedited_parcel_usa" | "canada_post_tracked_packet_usa" | "canada_post_small_packet_usa_air" | "canada_post_tracked_packet_international" | "canada_post_small_packet_international_air"
+```

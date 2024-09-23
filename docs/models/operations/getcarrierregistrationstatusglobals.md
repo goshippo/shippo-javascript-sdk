@@ -1,5 +1,12 @@
 # GetCarrierRegistrationStatusGlobals
 
+## Example Usage
+
+```typescript
+import { GetCarrierRegistrationStatusGlobals } from "shippo/models/operations";
+
+let value: GetCarrierRegistrationStatusGlobals = {};
+```
 
 ## Fields
 

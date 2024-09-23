@@ -22,26 +22,16 @@
 | purolator_express_international1200 | Express International 12pm|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelPurolatorEnum } from "shippo/models/components";
+
+let value: ServiceLevelPurolatorEnum = "purolator_express9_am";
+```
 
 ## Values
 
-| Name                                   | Value                                  |
-| -------------------------------------- | -------------------------------------- |
-| `PurolatorGround`                      | purolator_ground                       |
-| `PurolatorGround9Am`                   | purolator_ground9_am                   |
-| `PurolatorGround1030Am`                | purolator_ground1030_am                |
-| `PurolatorGroundDistribution`          | purolator_ground_distribution          |
-| `PurolatorGroundEvening`               | purolator_ground_evening               |
-| `PurolatorGroundUs`                    | purolator_ground_us                    |
-| `PurolatorExpress`                     | purolator_express                      |
-| `PurolatorExpress9Am`                  | purolator_express9_am                  |
-| `PurolatorExpress1030Am`               | purolator_express1030_am               |
-| `PurolatorExpressEvening`              | purolator_express_evening              |
-| `PurolatorExpressUs`                   | purolator_express_us                   |
-| `PurolatorExpressUs9Am`                | purolator_express_us9_am               |
-| `PurolatorExpressUs1030Am`             | purolator_express_us1030_am            |
-| `PurolatorExpressUs1200`               | purolator_express_us1200               |
-| `PurolatorExpressInternational`        | purolator_express_international        |
-| `PurolatorExpressInternational9Am`     | purolator_express_international9_am    |
-| `PurolatorExpressInternational1030Am`  | purolator_express_international1030_am |
-| `PurolatorExpressInternational1200`    | purolator_express_international1200    |
+```typescript
+"purolator_ground" | "purolator_ground9_am" | "purolator_ground1030_am" | "purolator_ground_distribution" | "purolator_ground_evening" | "purolator_ground_us" | "purolator_express" | "purolator_express9_am" | "purolator_express1030_am" | "purolator_express_evening" | "purolator_express_us" | "purolator_express_us9_am" | "purolator_express_us1030_am" | "purolator_express_us1200" | "purolator_express_international" | "purolator_express_international9_am" | "purolator_express_international1030_am" | "purolator_express_international1200"
+```

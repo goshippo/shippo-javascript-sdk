@@ -1,5 +1,15 @@
 # ListShipmentRatesByCurrencyCodeRequest
 
+## Example Usage
+
+```typescript
+import { ListShipmentRatesByCurrencyCodeRequest } from "shippo/models/operations";
+
+let value: ListShipmentRatesByCurrencyCodeRequest = {
+  shipmentId: "<value>",
+  currencyCode: "USD",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # ListCarrierAccountsRequest
 
+## Example Usage
+
+```typescript
+import { ListCarrierAccountsRequest } from "shippo/models/operations";
+
+let value: ListCarrierAccountsRequest = {};
+```
 
 ## Fields
 

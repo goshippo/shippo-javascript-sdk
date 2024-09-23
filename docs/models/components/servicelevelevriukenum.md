@@ -9,13 +9,16 @@
 | hermes_uk_postable_nextday | Postable Next Day|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelEvriUKEnum } from "shippo/models/components";
+
+let value: ServiceLevelEvriUKEnum = "hermes_uk_postable";
+```
 
 ## Values
 
-| Name                                 | Value                                |
-| ------------------------------------ | ------------------------------------ |
-| `HermesUkCourierService`             | hermes_uk_courier_service            |
-| `HermesUkParcelshopDropoff`          | hermes_uk_parcelshop_dropoff         |
-| `HermesUkParcelshopDropoffNextday`   | hermes_uk_parcelshop_dropoff_nextday |
-| `HermesUkPostable`                   | hermes_uk_postable                   |
-| `HermesUkPostableNextday`            | hermes_uk_postable_nextday           |
+```typescript
+"hermes_uk_courier_service" | "hermes_uk_parcelshop_dropoff" | "hermes_uk_parcelshop_dropoff_nextday" | "hermes_uk_postable" | "hermes_uk_postable_nextday"
+```

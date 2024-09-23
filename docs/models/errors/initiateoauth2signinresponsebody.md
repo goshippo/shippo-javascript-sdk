@@ -2,6 +2,13 @@
 
 Invalid parameters provided by the user
 
+## Example Usage
+
+```typescript
+import { InitiateOauth2SigninResponseBody } from "shippo/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

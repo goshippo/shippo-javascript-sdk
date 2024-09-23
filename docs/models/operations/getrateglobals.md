@@ -1,5 +1,12 @@
 # GetRateGlobals
 
+## Example Usage
+
+```typescript
+import { GetRateGlobals } from "shippo/models/operations";
+
+let value: GetRateGlobals = {};
+```
 
 ## Fields
 

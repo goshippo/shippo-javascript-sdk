@@ -1,5 +1,21 @@
 # UpdateCarrierAccountRequest
 
+## Example Usage
+
+```typescript
+import { UpdateCarrierAccountRequest } from "shippo/models/operations";
+
+let value: UpdateCarrierAccountRequest = {
+  carrierAccountId: "<value>",
+  carrierAccountBase: {
+    accountId: "****",
+    carrier: "usps",
+    parameters: {
+      "key": "<value>",
+    },
+  },
+};
+```
 
 ## Fields
 

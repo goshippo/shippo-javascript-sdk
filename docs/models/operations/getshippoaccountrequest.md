@@ -1,5 +1,14 @@
 # GetShippoAccountRequest
 
+## Example Usage
+
+```typescript
+import { GetShippoAccountRequest } from "shippo/models/operations";
+
+let value: GetShippoAccountRequest = {
+  shippoAccountId: "<value>",
+};
+```
 
 ## Fields
 

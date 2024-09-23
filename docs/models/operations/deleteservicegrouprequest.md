@@ -1,5 +1,14 @@
 # DeleteServiceGroupRequest
 
+## Example Usage
+
+```typescript
+import { DeleteServiceGroupRequest } from "shippo/models/operations";
+
+let value: DeleteServiceGroupRequest = {
+  serviceGroupId: "<value>",
+};
+```
 
 ## Fields
 

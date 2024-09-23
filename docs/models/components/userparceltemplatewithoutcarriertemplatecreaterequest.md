@@ -1,5 +1,20 @@
 # UserParcelTemplateWithoutCarrierTemplateCreateRequest
 
+## Example Usage
+
+```typescript
+import { UserParcelTemplateWithoutCarrierTemplateCreateRequest } from "shippo/models/components";
+
+let value: UserParcelTemplateWithoutCarrierTemplateCreateRequest = {
+  distanceUnit: "in",
+  height: "6",
+  length: "10",
+  name: "My Custom Template",
+  weight: "12",
+  weightUnit: "lb",
+  width: "8",
+};
+```
 
 ## Fields
 

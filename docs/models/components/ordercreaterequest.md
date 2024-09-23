@@ -1,5 +1,73 @@
 # OrderCreateRequest
 
+## Example Usage
+
+```typescript
+import { OrderCreateRequest } from "shippo/models/components";
+
+let value: OrderCreateRequest = {
+  currency: "USD",
+  notes: "This customer is a VIP",
+  orderNumber: "#1068",
+  orderStatus: "PAID",
+  placedAt: "2016-09-23T01:28:12Z",
+  shippingCost: "12.83",
+  shippingCostCurrency: "USD",
+  shippingMethod: "USPS First Class Package",
+  subtotalPrice: "12.1",
+  totalPrice: "24.93",
+  totalTax: "0.0",
+  weight: "0.4",
+  weightUnit: "lb",
+  fromAddress: {
+    name: "Shwan Ippotle",
+    company: "Shippo",
+    street1: "215 Clayton St.",
+    street3: "",
+    streetNo: "",
+    city: "San Francisco",
+    state: "CA",
+    zip: "94117",
+    country: "US",
+    phone: "+1 555 341 9393",
+    email: "shippotle@shippo.com",
+    isResidential: true,
+    metadata: "Customer ID 123456",
+    validate: true,
+  },
+  toAddress: {
+    name: "Shwan Ippotle",
+    company: "Shippo",
+    street1: "215 Clayton St.",
+    street3: "",
+    streetNo: "",
+    city: "San Francisco",
+    state: "CA",
+    zip: "94117",
+    country: "US",
+    phone: "+1 555 341 9393",
+    email: "shippotle@shippo.com",
+    isResidential: true,
+    metadata: "Customer ID 123456",
+    validate: true,
+  },
+  lineItems: [
+    {
+      currency: "USD",
+      manufactureCountry: "US",
+      maxDeliveryTime: new Date("2016-07-23T00:00:00Z"),
+      maxShipTime: new Date("2016-07-23T00:00:00Z"),
+      quantity: 20,
+      sku: "HM-123",
+      title: "Hippo Magazines",
+      totalPrice: "12.1",
+      variantTitle: "June Edition",
+      weight: "0.4",
+      weightUnit: "lb",
+    },
+  ],
+};
+```
 
 ## Fields
 

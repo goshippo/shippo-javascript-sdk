@@ -2,48 +2,55 @@
 
 If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
 
+## Example Usage
+
+```typescript
+import { ParcelTemplateEnumSet } from "shippo/models/components";
+
+let value: ParcelTemplateEnumSet = "UPS_Pad_Pak";
+```
 
 ## Supported Types
 
-### `components.FedExParcelTemplate`
+### `components.ParcelTemplateFedExEnum`
 
 ```typescript
-const value: components.FedExParcelTemplate = /* values here */
+const value: components.ParcelTemplateFedExEnum = /* values here */
 ```
 
-### `components.UPSParcelTemplate`
+### `components.ParcelTemplateUPSEnum`
 
 ```typescript
-const value: components.UPSParcelTemplate = /* values here */
+const value: components.ParcelTemplateUPSEnum = /* values here */
 ```
 
-### `components.USPSParcelTemplate`
+### `components.ParcelTemplateUSPSEnum`
 
 ```typescript
-const value: components.USPSParcelTemplate = /* values here */
+const value: components.ParcelTemplateUSPSEnum = /* values here */
 ```
 
-### `components.DHLECommerceParcelTemplate`
+### `components.ParcelTemplateDHLeCommerceEnum`
 
 ```typescript
-const value: components.DHLECommerceParcelTemplate = /* values here */
+const value: components.ParcelTemplateDHLeCommerceEnum = /* values here */
 ```
 
-### `components.DPDUKParcelTemplate`
+### `components.ParcelTemplateDPDUKEnum`
 
 ```typescript
-const value: components.DPDUKParcelTemplate = /* values here */
+const value: components.ParcelTemplateDPDUKEnum = /* values here */
 ```
 
-### `components.CouriersPleaseParcelTemplate`
+### `components.ParcelTemplateCouriersPleaseEnum`
 
 ```typescript
-const value: components.CouriersPleaseParcelTemplate = /* values here */
+const value: components.ParcelTemplateCouriersPleaseEnum = /* values here */
 ```
 
-### `components.AramexAustraliaParcelTemplate`
+### `components.ParcelTemplateAramexAustraliaEnum`
 
 ```typescript
-const value: components.AramexAustraliaParcelTemplate = /* values here */
+const value: components.ParcelTemplateAramexAustraliaEnum = /* values here */
 ```
 

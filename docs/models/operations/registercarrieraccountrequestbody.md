@@ -2,6 +2,16 @@
 
 Examples.
 
+## Example Usage
+
+```typescript
+import { RegisterCarrierAccountRequestBody } from "shippo/models/operations";
+
+let value: RegisterCarrierAccountRequestBody = {
+  carrier: "correos",
+  parameters: {},
+};
+```
 
 ## Supported Types
 
@@ -87,5 +97,11 @@ const value: components.CarrierAccountUPSCreateRequest = /* values here */
 
 ```typescript
 const value: components.CarrierAccountUSPSCreateRequest = /* values here */
+```
+
+### `components.CarrierAccountSendleCreateRequest`
+
+```typescript
+const value: components.CarrierAccountSendleCreateRequest = /* values here */
 ```
 

@@ -2,12 +2,16 @@
 
 Indicates the status of the pickup.
 
+## Example Usage
+
+```typescript
+import { PickupStatus } from "shippo/models/components";
+
+let value: PickupStatus = "CONFIRMED";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Pending`   | PENDING     |
-| `Confirmed` | CONFIRMED   |
-| `Error`     | ERROR       |
-| `Cancelled` | CANCELLED   |
+```typescript
+"PENDING" | "CONFIRMED" | "ERROR" | "CANCELLED"
+```

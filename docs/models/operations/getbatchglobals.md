@@ -1,5 +1,12 @@
 # GetBatchGlobals
 
+## Example Usage
+
+```typescript
+import { GetBatchGlobals } from "shippo/models/operations";
+
+let value: GetBatchGlobals = {};
+```
 
 ## Fields
 

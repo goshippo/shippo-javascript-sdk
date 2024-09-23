@@ -1,5 +1,18 @@
 # AddressValidationResultsMessage
 
+## Example Usage
+
+```typescript
+import { AddressValidationResultsMessage } from "shippo/models/components";
+
+let value: AddressValidationResultsMessage = {
+  code: "Unknown Street",
+  source: "Shippo Address Validator",
+  text:
+    "City, State and ZIP Code are valid, but street address is not a match.",
+  type: "address_warning",
+};
+```
 
 ## Fields
 

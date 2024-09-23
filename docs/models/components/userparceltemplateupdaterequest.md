@@ -1,5 +1,20 @@
 # UserParcelTemplateUpdateRequest
 
+## Example Usage
+
+```typescript
+import { UserParcelTemplateUpdateRequest } from "shippo/models/components";
+
+let value: UserParcelTemplateUpdateRequest = {
+  distanceUnit: "in",
+  height: "6",
+  length: "10",
+  name: "My Custom Template",
+  weight: "12",
+  weightUnit: "lb",
+  width: "8",
+};
+```
 
 ## Fields
 

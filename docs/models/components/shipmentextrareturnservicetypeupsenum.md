@@ -1,11 +1,15 @@
 # ShipmentExtraReturnServiceTypeUPSEnum
 
+## Example Usage
+
+```typescript
+import { ShipmentExtraReturnServiceTypeUPSEnum } from "shippo/models/components";
+
+let value: ShipmentExtraReturnServiceTypeUPSEnum = "ATTEMPT_3";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `PrintAndMail`    | PRINT_AND_MAIL    |
-| `Attempt1`        | ATTEMPT_1         |
-| `Attempt3`        | ATTEMPT_3         |
-| `ElectronicLabel` | ELECTRONIC_LABEL  |
+```typescript
+"PRINT_AND_MAIL" | "ATTEMPT_1" | "ATTEMPT_3" | "ELECTRONIC_LABEL"
+```

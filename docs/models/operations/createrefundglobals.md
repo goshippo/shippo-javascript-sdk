@@ -1,5 +1,12 @@
 # CreateRefundGlobals
 
+## Example Usage
+
+```typescript
+import { CreateRefundGlobals } from "shippo/models/operations";
+
+let value: CreateRefundGlobals = {};
+```
 
 ## Fields
 

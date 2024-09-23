@@ -2,6 +2,13 @@
 
 Indicates that a shipment contains Alcohol (Fedex and UPS only).
 
+## Example Usage
+
+```typescript
+import { Alcohol } from "shippo/models/components";
+
+let value: Alcohol = {};
+```
 
 ## Fields
 

@@ -2,14 +2,16 @@
 
 The type of building where the pickup is located.
 
+## Example Usage
+
+```typescript
+import { BuildingType } from "shippo/models/components";
+
+let value: BuildingType = "apartment";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Apartment`  | apartment    |
-| `Building`   | building     |
-| `Department` | department   |
-| `Floor`      | floor        |
-| `Room`       | room         |
-| `Suite`      | suite        |
+```typescript
+"apartment" | "building" | "department" | "floor" | "room" | "suite"
+```

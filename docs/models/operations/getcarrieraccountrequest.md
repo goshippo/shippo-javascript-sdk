@@ -1,5 +1,14 @@
 # GetCarrierAccountRequest
 
+## Example Usage
+
+```typescript
+import { GetCarrierAccountRequest } from "shippo/models/operations";
+
+let value: GetCarrierAccountRequest = {
+  carrierAccountId: "<value>",
+};
+```
 
 ## Fields
 

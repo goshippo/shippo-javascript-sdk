@@ -1,5 +1,12 @@
 # Parcels
 
+## Example Usage
+
+```typescript
+import { Parcels } from "shippo/models/components";
+
+let value: Parcels = "<value>";
+```
 
 ## Supported Types
 

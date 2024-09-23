@@ -2,6 +2,15 @@
 
 Specify the PO number field on the label (FedEx and UPS only).
 
+## Example Usage
+
+```typescript
+import { PoNumber } from "shippo/models/components";
+
+let value: PoNumber = {
+  refSort: 2,
+};
+```
 
 ## Fields
 

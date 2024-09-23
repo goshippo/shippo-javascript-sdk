@@ -1,5 +1,15 @@
 # CarrierAccountPosteItalianeCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountPosteItalianeCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountPosteItalianeCreateRequest = {
+  carrier: "poste_italiane",
+  parameters: {},
+};
+```
 
 ## Fields
 

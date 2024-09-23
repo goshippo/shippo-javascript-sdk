@@ -3,15 +3,16 @@
 Type of goods of the shipment.  
 Allowed values available <a href="#tag/Customs-Declaration-Contents-Type">here</a>
 
+## Example Usage
+
+```typescript
+import { CustomsDeclarationContentsTypeEnum } from "shippo/models/components";
+
+let value: CustomsDeclarationContentsTypeEnum = "MERCHANDISE";
+```
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `Documents`            | DOCUMENTS              |
-| `Gift`                 | GIFT                   |
-| `Sample`               | SAMPLE                 |
-| `Merchandise`          | MERCHANDISE            |
-| `HumanitarianDonation` | HUMANITARIAN_DONATION  |
-| `ReturnMerchandise`    | RETURN_MERCHANDISE     |
-| `Other`                | OTHER                  |
+```typescript
+"DOCUMENTS" | "GIFT" | "SAMPLE" | "MERCHANDISE" | "HUMANITARIAN_DONATION" | "RETURN_MERCHANDISE" | "OTHER"
+```

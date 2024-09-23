@@ -1,5 +1,12 @@
 # Longitude
 
+## Example Usage
+
+```typescript
+import { Longitude } from "shippo/models/components";
+
+let value: Longitude = "<value>";
+```
 
 ## Supported Types
 

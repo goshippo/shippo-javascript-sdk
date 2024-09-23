@@ -1,16 +1,15 @@
 # ShipmentExtraLasershipAttributesEnum
 
+## Example Usage
+
+```typescript
+import { ShipmentExtraLasershipAttributesEnum } from "shippo/models/components";
+
+let value: ShipmentExtraLasershipAttributesEnum = "Hazmat";
+```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `TwoPersonDelivery`   | TwoPersonDelivery     |
-| `Explosive`           | Explosive             |
-| `Alcohol`             | Alcohol               |
-| `Hazmat`              | Hazmat                |
-| `ControlledSubstance` | ControlledSubstance   |
-| `Refrigerated`        | Refrigerated          |
-| `DryIce`              | DryIce                |
-| `Perishable`          | Perishable            |
-| `NoRTS`               | NoRTS                 |
+```typescript
+"TwoPersonDelivery" | "Explosive" | "Alcohol" | "Hazmat" | "ControlledSubstance" | "Refrigerated" | "DryIce" | "Perishable" | "NoRTS"
+```

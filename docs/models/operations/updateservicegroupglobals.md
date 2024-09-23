@@ -1,5 +1,12 @@
 # UpdateServiceGroupGlobals
 
+## Example Usage
+
+```typescript
+import { UpdateServiceGroupGlobals } from "shippo/models/operations";
+
+let value: UpdateServiceGroupGlobals = {};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # CarrierAccountParameters
 
+## Example Usage
+
+```typescript
+import { CarrierAccountParameters } from "shippo/models/components";
+
+let value: CarrierAccountParameters = {
+  "key": "<value>",
+};
+```
 
 ## Supported Types
 

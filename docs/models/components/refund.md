@@ -1,5 +1,17 @@
 # Refund
 
+## Example Usage
+
+```typescript
+import { Refund } from "shippo/models/components";
+
+let value: Refund = {
+  objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
+  objectOwner: "shippotle@shippo.com",
+  status: "SUCCESS",
+  transaction: "915d94940ea54c3a80cbfa328722f5a1",
+};
+```
 
 ## Fields
 

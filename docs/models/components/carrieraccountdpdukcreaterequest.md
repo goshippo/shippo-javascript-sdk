@@ -1,5 +1,15 @@
 # CarrierAccountDPDUKCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountDPDUKCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountDPDUKCreateRequest = {
+  carrier: "dpd_uk",
+  parameters: {},
+};
+```
 
 ## Fields
 

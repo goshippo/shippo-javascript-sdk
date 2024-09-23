@@ -1,5 +1,12 @@
 # CreateServiceGroupGlobals
 
+## Example Usage
+
+```typescript
+import { CreateServiceGroupGlobals } from "shippo/models/operations";
+
+let value: CreateServiceGroupGlobals = {};
+```
 
 ## Fields
 

@@ -2,14 +2,16 @@
 
 Type of event that triggered the webhook.
 
+## Example Usage
+
+```typescript
+import { WebhookEventTypeEnum } from "shippo/models/components";
+
+let value: WebhookEventTypeEnum = "transaction_created";
+```
 
 ## Values
 
-| Name                 | Value                |
-| -------------------- | -------------------- |
-| `TransactionCreated` | transaction_created  |
-| `TransactionUpdated` | transaction_updated  |
-| `TrackUpdated`       | track_updated        |
-| `BatchCreated`       | batch_created        |
-| `BatchPurchased`     | batch_purchased      |
-| `All`                | all                  |
+```typescript
+"transaction_created" | "transaction_updated" | "track_updated" | "batch_created" | "batch_purchased" | "all"
+```

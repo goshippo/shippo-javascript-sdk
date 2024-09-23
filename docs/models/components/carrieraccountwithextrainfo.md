@@ -1,5 +1,30 @@
 # CarrierAccountWithExtraInfo
 
+## Example Usage
+
+```typescript
+import { CarrierAccountWithExtraInfo } from "shippo/models/components";
+
+let value: CarrierAccountWithExtraInfo = {
+  accountId: "****",
+  carrier: "usps",
+  parameters: {
+    "key": "<value>",
+  },
+  carrierName: "USPS",
+  isShippoAccount: false,
+  objectId: "6aa34d5f6865448fbb1ee93636e98999",
+  objectOwner: "bob+22@gmail.com",
+  serviceLevels: [
+    {
+      name: "Priority Mail Express",
+      token: "usps_priority_express",
+      supportsReturnLabels: true,
+    },
+  ],
+  test: false,
+};
+```
 
 ## Fields
 

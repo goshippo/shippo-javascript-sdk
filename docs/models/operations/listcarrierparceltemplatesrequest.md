@@ -1,5 +1,14 @@
 # ListCarrierParcelTemplatesRequest
 
+## Example Usage
+
+```typescript
+import { ListCarrierParcelTemplatesRequest } from "shippo/models/operations";
+
+let value: ListCarrierParcelTemplatesRequest = {
+  carrier: "fedex",
+};
+```
 
 ## Fields
 

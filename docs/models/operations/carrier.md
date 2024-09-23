@@ -2,11 +2,16 @@
 
 filter by specific carrier
 
+## Example Usage
+
+```typescript
+import { Carrier } from "shippo/models/operations";
+
+let value: Carrier = "canada_post";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Ups`        | ups          |
-| `Usps`       | usps         |
-| `CanadaPost` | canada_post  |
+```typescript
+"ups" | "usps" | "canada_post"
+```

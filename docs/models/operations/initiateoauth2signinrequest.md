@@ -1,5 +1,15 @@
 # InitiateOauth2SigninRequest
 
+## Example Usage
+
+```typescript
+import { InitiateOauth2SigninRequest } from "shippo/models/operations";
+
+let value: InitiateOauth2SigninRequest = {
+  carrierAccountObjectId: "<value>",
+  redirectUri: "https://dependent-valentine.net",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,15 @@
 # UserParcelTemplateWithCarrierTemplateCreateRequest
 
+## Example Usage
+
+```typescript
+import { UserParcelTemplateWithCarrierTemplateCreateRequest } from "shippo/models/components";
+
+let value: UserParcelTemplateWithCarrierTemplateCreateRequest = {
+  weight: "12",
+  weightUnit: "lb",
+};
+```
 
 ## Fields
 

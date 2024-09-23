@@ -2,11 +2,16 @@
 
 To have insurance cover provided by a carrier directly instead of Shippo's provider (XCover), set provider to `FEDEX`, `UPS`, or `ONTRAC`.
 
+## Example Usage
+
+```typescript
+import { ParcelInsuranceProvider } from "shippo/models/components";
+
+let value: ParcelInsuranceProvider = "UPS";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Fedex`  | FEDEX    |
-| `Ups`    | UPS      |
-| `Ontrac` | ONTRAC   |
+```typescript
+"FEDEX" | "UPS" | "ONTRAC"
+```

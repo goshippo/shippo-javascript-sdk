@@ -9,13 +9,16 @@
 | fastway_australia_box_large | Box Large|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelAramexAustraliaEnum } from "shippo/models/components";
+
+let value: ServiceLevelAramexAustraliaEnum = "fastway_australia_parcel";
+```
 
 ## Values
 
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `FastwayAustraliaParcel`     | fastway_australia_parcel     |
-| `FastwayAustraliaSatchel`    | fastway_australia_satchel    |
-| `FastwayAustraliaBoxSmall`   | fastway_australia_box_small  |
-| `FastwayAustraliaBoxMedium`  | fastway_australia_box_medium |
-| `FastwayAustraliaBoxLarge`   | fastway_australia_box_large  |
+```typescript
+"fastway_australia_parcel" | "fastway_australia_satchel" | "fastway_australia_box_small" | "fastway_australia_box_medium" | "fastway_australia_box_large"
+```

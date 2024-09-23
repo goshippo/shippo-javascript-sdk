@@ -1,5 +1,12 @@
 # CreateManifestGlobals
 
+## Example Usage
+
+```typescript
+import { CreateManifestGlobals } from "shippo/models/operations";
+
+let value: CreateManifestGlobals = {};
+```
 
 ## Fields
 

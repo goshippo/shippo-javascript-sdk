@@ -1,5 +1,18 @@
 # CarrierAccountCanadaPostCreateParameters
 
+## Example Usage
+
+```typescript
+import { CarrierAccountCanadaPostCreateParameters } from "shippo/models/components";
+
+let value: CarrierAccountCanadaPostCreateParameters = {
+  canadaPostTerms: false,
+  company: "Shippo",
+  email: "hippo@shippo.com",
+  fullName: "Shippo Meister",
+  phone: "1112223333",
+};
+```
 
 ## Fields
 

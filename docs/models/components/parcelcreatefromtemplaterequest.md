@@ -1,5 +1,30 @@
 # ParcelCreateFromTemplateRequest
 
+## Example Usage
+
+```typescript
+import { ParcelCreateFromTemplateRequest } from "shippo/models/components";
+
+let value: ParcelCreateFromTemplateRequest = {
+  extra: {
+    cod: {
+      amount: "5.5",
+      currency: "USD",
+      paymentMethod: "CASH",
+    },
+    insurance: {
+      amount: "5.5",
+      content: "Laptop",
+      currency: "USD",
+      provider: "UPS",
+    },
+  },
+  metadata: "Customer ID 123456",
+  massUnit: "lb",
+  weight: "1",
+  template: "FedEx_Envelope",
+};
+```
 
 ## Fields
 

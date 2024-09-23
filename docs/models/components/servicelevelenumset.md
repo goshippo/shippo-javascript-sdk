@@ -1,5 +1,12 @@
 # ServiceLevelEnumSet
 
+## Example Usage
+
+```typescript
+import { ServiceLevelEnumSet } from "shippo/models/components";
+
+let value: ServiceLevelEnumSet = "uds_next_day";
+```
 
 ## Supported Types
 
@@ -163,12 +170,6 @@ const value: components.ServiceLevelLSOEnum = /* values here */
 
 ```typescript
 const value: components.ServiceLevelMondialRelayEnum = /* values here */
-```
-
-### `components.ServiceLevelMaergoEnum`
-
-```typescript
-const value: components.ServiceLevelMaergoEnum = /* values here */
 ```
 
 ### `components.ServiceLevelParcelforceEnum`

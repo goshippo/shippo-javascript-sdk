@@ -2,6 +2,13 @@
 
 Specify billing details (UPS, FedEx, and DHL Germany only).
 
+## Example Usage
+
+```typescript
+import { Billing } from "shippo/models/components";
+
+let value: Billing = {};
+```
 
 ## Fields
 

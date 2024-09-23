@@ -2,6 +2,13 @@
 
 Holds internal state relevant to users.
 
+## Example Usage
+
+```typescript
+import { ObjectInfo } from "shippo/models/components";
+
+let value: ObjectInfo = {};
+```
 
 ## Fields
 

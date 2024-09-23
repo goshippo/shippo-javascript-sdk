@@ -2,6 +2,17 @@
 
 A finer-grained classification of the tracking event.
 
+## Example Usage
+
+```typescript
+import { TrackingStatusSubstatus } from "shippo/models/components";
+
+let value: TrackingStatusSubstatus = {
+  code: "information_received",
+  text: "Information about the package received.",
+  actionRequired: false,
+};
+```
 
 ## Fields
 

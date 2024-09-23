@@ -1,5 +1,15 @@
 # CarrierAccountDeutschePostCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountDeutschePostCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountDeutschePostCreateRequest = {
+  carrier: "deutsche_post",
+  parameters: {},
+};
+```
 
 ## Fields
 

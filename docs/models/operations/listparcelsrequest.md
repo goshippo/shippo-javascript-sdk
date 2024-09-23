@@ -1,5 +1,12 @@
 # ListParcelsRequest
 
+## Example Usage
+
+```typescript
+import { ListParcelsRequest } from "shippo/models/operations";
+
+let value: ListParcelsRequest = {};
+```
 
 ## Fields
 

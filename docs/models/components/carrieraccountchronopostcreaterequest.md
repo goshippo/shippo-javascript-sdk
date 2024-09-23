@@ -1,5 +1,15 @@
 # CarrierAccountChronopostCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountChronopostCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountChronopostCreateRequest = {
+  carrier: "chronopost",
+  parameters: {},
+};
+```
 
 ## Fields
 

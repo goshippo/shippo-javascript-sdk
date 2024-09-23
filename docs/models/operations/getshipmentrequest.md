@@ -1,5 +1,14 @@
 # GetShipmentRequest
 
+## Example Usage
+
+```typescript
+import { GetShipmentRequest } from "shippo/models/operations";
+
+let value: GetShipmentRequest = {
+  shipmentId: "<value>",
+};
+```
 
 ## Fields
 

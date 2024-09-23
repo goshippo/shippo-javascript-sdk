@@ -1,5 +1,15 @@
 # RefundRequestBody
 
+## Example Usage
+
+```typescript
+import { RefundRequestBody } from "shippo/models/components";
+
+let value: RefundRequestBody = {
+  async: false,
+  transaction: "915d94940ea54c3a80cbfa328722f5a1",
+};
+```
 
 ## Fields
 

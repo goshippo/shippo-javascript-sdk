@@ -1,5 +1,17 @@
 # TransactionCreateRequest
 
+## Example Usage
+
+```typescript
+import { TransactionCreateRequest } from "shippo/models/components";
+
+let value: TransactionCreateRequest = {
+  async: false,
+  labelFileType: "PDF_4x6",
+  metadata: "Order ID #12345",
+  rate: "ec9f0d3adc9441449c85d315f0997fd5",
+};
+```
 
 ## Fields
 

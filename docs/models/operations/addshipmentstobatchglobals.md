@@ -1,5 +1,12 @@
 # AddShipmentsToBatchGlobals
 
+## Example Usage
+
+```typescript
+import { AddShipmentsToBatchGlobals } from "shippo/models/operations";
+
+let value: AddShipmentsToBatchGlobals = {};
+```
 
 ## Fields
 

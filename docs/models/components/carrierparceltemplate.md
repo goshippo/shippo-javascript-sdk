@@ -1,5 +1,21 @@
 # CarrierParcelTemplate
 
+## Example Usage
+
+```typescript
+import { CarrierParcelTemplate } from "shippo/models/components";
+
+let value: CarrierParcelTemplate = {
+  carrier: "FedEx",
+  distanceUnit: "in",
+  height: "1.5",
+  isVariableDimensions: false,
+  length: "12.375",
+  name: "FedEx® Small Box (S1)",
+  token: "FedEx_Box_Small_1",
+  width: "10.875",
+};
+```
 
 ## Fields
 

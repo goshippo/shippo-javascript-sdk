@@ -1,5 +1,15 @@
 # UserParcelTemplateCreateRequest
 
+## Example Usage
+
+```typescript
+import { UserParcelTemplateCreateRequest } from "shippo/models/components";
+
+let value: UserParcelTemplateCreateRequest = {
+  weight: "12",
+  weightUnit: "lb",
+};
+```
 
 ## Supported Types
 

@@ -10,14 +10,16 @@
 | gls_us_sds | Saturday Delivery|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelGLSUSEnum } from "shippo/models/components";
+
+let value: ServiceLevelGLSUSEnum = "gls_us_ess";
+```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `GlsUsCps` | gls_us_cps |
-| `GlsUsEps` | gls_us_eps |
-| `GlsUsEss` | gls_us_ess |
-| `GlsUsNps` | gls_us_nps |
-| `GlsUsPds` | gls_us_pds |
-| `GlsUsSds` | gls_us_sds |
+```typescript
+"gls_us_cps" | "gls_us_eps" | "gls_us_ess" | "gls_us_nps" | "gls_us_pds" | "gls_us_sds"
+```

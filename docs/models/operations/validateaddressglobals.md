@@ -1,5 +1,12 @@
 # ValidateAddressGlobals
 
+## Example Usage
+
+```typescript
+import { ValidateAddressGlobals } from "shippo/models/operations";
+
+let value: ValidateAddressGlobals = {};
+```
 
 ## Fields
 

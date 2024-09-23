@@ -1,5 +1,29 @@
 # ServiceGroupUpdateRequest
 
+## Example Usage
+
+```typescript
+import { ServiceGroupUpdateRequest } from "shippo/models/components";
+
+let value: ServiceGroupUpdateRequest = {
+  description: "USPS shipping options",
+  flatRate: "5",
+  flatRateCurrency: "USD",
+  freeShippingThresholdCurrency: "USD",
+  freeShippingThresholdMin: "5",
+  name: "USPS Shipping",
+  rateAdjustment: 15,
+  type: "FLAT_RATE",
+  objectId: "80feb1633d4a43c898f005850",
+  isActive: true,
+  serviceLevels: [
+    {
+      accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
+      serviceLevelToken: "ups_next_day_air_saver",
+    },
+  ],
+};
+```
 
 ## Fields
 

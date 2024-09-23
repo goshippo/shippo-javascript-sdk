@@ -1,5 +1,27 @@
 # ConnectExistingOwnAccountRequest
 
+## Example Usage
+
+```typescript
+import { ConnectExistingOwnAccountRequest } from "shippo/models/components";
+
+let value: ConnectExistingOwnAccountRequest = {
+  accountId: "321123",
+  carrier: "fedex",
+  metadata: "FEDEX Account",
+  parameters: {
+    firstName: "Aurelia",
+    lastName: "Ward",
+    phoneNumber: "(717) 415-0806 x279",
+    fromAddressSt: "<value>",
+    fromAddressCity: "<value>",
+    fromAddressState: "<value>",
+    fromAddressZip: "<value>",
+    fromAddressCountryIso2: "<value>",
+  },
+  test: false,
+};
+```
 
 ## Fields
 

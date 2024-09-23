@@ -2,6 +2,13 @@
 
 Invalid carrier account provided by the user
 
+## Example Usage
+
+```typescript
+import { InitiateOauth2SigninCarrierAccountsResponseResponseBody } from "shippo/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

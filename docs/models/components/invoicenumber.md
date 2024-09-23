@@ -2,6 +2,15 @@
 
 Specify the invoice number field on the label (FedEx and UPS only).
 
+## Example Usage
+
+```typescript
+import { InvoiceNumber } from "shippo/models/components";
+
+let value: InvoiceNumber = {
+  refSort: 2,
+};
+```
 
 ## Fields
 

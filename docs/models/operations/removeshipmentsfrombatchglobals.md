@@ -1,5 +1,12 @@
 # RemoveShipmentsFromBatchGlobals
 
+## Example Usage
+
+```typescript
+import { RemoveShipmentsFromBatchGlobals } from "shippo/models/operations";
+
+let value: RemoveShipmentsFromBatchGlobals = {};
+```
 
 ## Fields
 

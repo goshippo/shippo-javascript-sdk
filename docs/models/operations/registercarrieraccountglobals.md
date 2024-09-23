@@ -1,5 +1,12 @@
 # RegisterCarrierAccountGlobals
 
+## Example Usage
+
+```typescript
+import { RegisterCarrierAccountGlobals } from "shippo/models/operations";
+
+let value: RegisterCarrierAccountGlobals = {};
+```
 
 ## Fields
 

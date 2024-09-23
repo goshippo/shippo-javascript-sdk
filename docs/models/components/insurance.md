@@ -5,6 +5,16 @@ specify <br> `amount`, `content`, and `currency`. <br> Alternatively, you can ch
 by additionally specifying `provider` (UPS, FedEx and OnTrac only). <br><br> If you do not want to add insurance 
 to your shipment, do not set these parameters.
 
+## Example Usage
+
+```typescript
+import { Insurance } from "shippo/models/components";
+
+let value: Insurance = {
+  amount: "5.5",
+  currency: "USD",
+};
+```
 
 ## Fields
 

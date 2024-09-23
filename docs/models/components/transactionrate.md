@@ -5,6 +5,13 @@ If you purchase a label by calling the transaction endpoint without a rate (inst
 this field will be a simplified Rate object in the Transaction model returned from the POST request.
 </br>Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
 
+## Example Usage
+
+```typescript
+import { TransactionRate } from "shippo/models/components";
+
+let value: TransactionRate = "ec9f0d3adc9441449c85d315f0997fd5";
+```
 
 ## Supported Types
 

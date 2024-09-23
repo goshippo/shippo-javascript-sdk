@@ -2,6 +2,26 @@
 
 Object that represents the address of the importer
 
+## Example Usage
+
+```typescript
+import { AddressImporter } from "shippo/models/components";
+
+let value: AddressImporter = {
+  name: "Shwan Ippotle",
+  company: "Shippo",
+  street1: "Blumenstraße",
+  street3: "",
+  streetNo: "22",
+  city: "München",
+  state: "CA",
+  zip: "80331",
+  country: "DE",
+  phone: "80331",
+  email: "shippotle@shippo.com",
+  isResidential: true,
+};
+```
 
 ## Fields
 

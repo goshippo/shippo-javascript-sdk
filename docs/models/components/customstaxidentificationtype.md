@@ -6,12 +6,16 @@ Type of tax identification.
 * `IOSS` - Import One-Stop Shop
 * `ARN` - Australian Taxation Office Reference Number
 
+## Example Usage
+
+```typescript
+import { CustomsTaxIdentificationType } from "shippo/models/components";
+
+let value: CustomsTaxIdentificationType = "EIN";
+```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Ein`  | EIN    |
-| `Vat`  | VAT    |
-| `Ioss` | IOSS   |
-| `Arn`  | ARN    |
+```typescript
+"EIN" | "VAT" | "IOSS" | "ARN"
+```

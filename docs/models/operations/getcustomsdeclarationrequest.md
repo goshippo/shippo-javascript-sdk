@@ -1,5 +1,14 @@
 # GetCustomsDeclarationRequest
 
+## Example Usage
+
+```typescript
+import { GetCustomsDeclarationRequest } from "shippo/models/operations";
+
+let value: GetCustomsDeclarationRequest = {
+  customsDeclarationId: "<value>",
+};
+```
 
 ## Fields
 

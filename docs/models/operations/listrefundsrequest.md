@@ -1,5 +1,12 @@
 # ListRefundsRequest
 
+## Example Usage
+
+```typescript
+import { ListRefundsRequest } from "shippo/models/operations";
+
+let value: ListRefundsRequest = {};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # CarrierAccountColissimoCreateRequestParameters
 
+## Example Usage
+
+```typescript
+import { CarrierAccountColissimoCreateRequestParameters } from "shippo/models/components";
+
+let value: CarrierAccountColissimoCreateRequestParameters = {};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # CreatePickupGlobals
 
+## Example Usage
+
+```typescript
+import { CreatePickupGlobals } from "shippo/models/operations";
+
+let value: CreatePickupGlobals = {};
+```
 
 ## Fields
 

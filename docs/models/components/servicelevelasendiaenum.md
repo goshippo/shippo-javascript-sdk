@@ -12,16 +12,16 @@
 | asendia_us_other | Asendia USA Other Services (custom)|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelAsendiaEnum } from "shippo/models/components";
+
+let value: ServiceLevelAsendiaEnum = "asendia_us_international_surface_airlift";
+```
 
 ## Values
 
-| Name                                           | Value                                          |
-| ---------------------------------------------- | ---------------------------------------------- |
-| `AsendiaUsPriorityTracked`                     | asendia_us_priority_tracked                    |
-| `AsendiaUsInternationalExpress`                | asendia_us_international_express               |
-| `AsendiaUsInternationalPriorityAirmail`        | asendia_us_international_priority_airmail      |
-| `AsendiaUsInternationalSurfaceAirlift`         | asendia_us_international_surface_airlift       |
-| `AsendiaUsPriorityMailInternational`           | asendia_us_priority_mail_international         |
-| `AsendiaUsPriorityMailExpressInternational`    | asendia_us_priority_mail_express_international |
-| `AsendiaUsEpacket`                             | asendia_us_epacket                             |
-| `AsendiaUsOther`                               | asendia_us_other                               |
+```typescript
+"asendia_us_priority_tracked" | "asendia_us_international_express" | "asendia_us_international_priority_airmail" | "asendia_us_international_surface_airlift" | "asendia_us_priority_mail_international" | "asendia_us_priority_mail_express_international" | "asendia_us_epacket" | "asendia_us_other"
+```

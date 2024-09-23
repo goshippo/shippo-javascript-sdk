@@ -1,5 +1,15 @@
 # CarrierAccountUSPSCreateRequest
 
+## Example Usage
+
+```typescript
+import { CarrierAccountUSPSCreateRequest } from "shippo/models/components";
+
+let value: CarrierAccountUSPSCreateRequest = {
+  carrier: "usps",
+  parameters: {},
+};
+```
 
 ## Fields
 

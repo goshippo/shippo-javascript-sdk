@@ -1,5 +1,12 @@
 # ListShipmentsRequest
 
+## Example Usage
+
+```typescript
+import { ListShipmentsRequest } from "shippo/models/operations";
+
+let value: ListShipmentsRequest = {};
+```
 
 ## Fields
 

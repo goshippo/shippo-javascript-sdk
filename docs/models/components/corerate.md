@@ -1,5 +1,22 @@
 # CoreRate
 
+## Example Usage
+
+```typescript
+import { CoreRate } from "shippo/models/components";
+
+let value: CoreRate = {
+  amount: "5.5",
+  amountLocal: "5.5",
+  currency: "USD",
+  currencyLocal: "USD",
+  objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
+  provider: "USPS",
+  carrierAccount: "078870331023437cb917f5187429b093",
+  servicelevelName: "Priority Mail",
+  servicelevelToken: "fedex_ground",
+};
+```
 
 ## Fields
 

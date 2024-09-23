@@ -13,17 +13,17 @@
 | apc_postal_parcelconnect_epmei | parcelConnect ePMEI|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelAPCPostalEnum } from "shippo/models/components";
+
+let value: ServiceLevelAPCPostalEnum =
+  "apc_postal_parcelconnect_priority_delcon";
+```
 
 ## Values
 
-| Name                                     | Value                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| `ApcPostalParcelconnectExpedited`        | apc_postal_parcelconnect_expedited       |
-| `ApcPostalParcelconnectPriority`         | apc_postal_parcelconnect_priority        |
-| `ApcPostalParcelconnectPriorityDelcon`   | apc_postal_parcelconnect_priority_delcon |
-| `ApcPostalParcelconnectPriorityPqw`      | apc_postal_parcelconnect_priority_pqw    |
-| `ApcPostalParcelconnectBookService`      | apc_postal_parcelconnect_book_service    |
-| `ApcPostalParcelconnectStandard`         | apc_postal_parcelconnect_standard        |
-| `ApcPostalParcelconnectEpmi`             | apc_postal_parcelconnect_epmi            |
-| `ApcPostalParcelconnectEpacket`          | apc_postal_parcelconnect_epacket         |
-| `ApcPostalParcelconnectEpmei`            | apc_postal_parcelconnect_epmei           |
+```typescript
+"apc_postal_parcelconnect_expedited" | "apc_postal_parcelconnect_priority" | "apc_postal_parcelconnect_priority_delcon" | "apc_postal_parcelconnect_priority_pqw" | "apc_postal_parcelconnect_book_service" | "apc_postal_parcelconnect_standard" | "apc_postal_parcelconnect_epmi" | "apc_postal_parcelconnect_epacket" | "apc_postal_parcelconnect_epmei"
+```

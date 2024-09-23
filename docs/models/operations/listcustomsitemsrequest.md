@@ -1,5 +1,12 @@
 # ListCustomsItemsRequest
 
+## Example Usage
+
+```typescript
+import { ListCustomsItemsRequest } from "shippo/models/operations";
+
+let value: ListCustomsItemsRequest = {};
+```
 
 ## Fields
 

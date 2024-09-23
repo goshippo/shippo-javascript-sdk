@@ -26,30 +26,16 @@
 | dhl_express_express_easy_nondoc | Express Easy NonDoc|
 
 
+## Example Usage
+
+```typescript
+import { ServiceLevelDHLExpressEnum } from "shippo/models/components";
+
+let value: ServiceLevelDHLExpressEnum = "dhl_express_break_bulk_express_doc";
+```
 
 ## Values
 
-| Name                               | Value                              |
-| ---------------------------------- | ---------------------------------- |
-| `DhlExpressDomesticExpressDoc`     | dhl_express_domestic_express_doc   |
-| `DhlExpressEconomySelectDoc`       | dhl_express_economy_select_doc     |
-| `DhlExpressWorldwideNondoc`        | dhl_express_worldwide_nondoc       |
-| `DhlExpressWorldwideDoc`           | dhl_express_worldwide_doc          |
-| `DhlExpressWorldwide`              | dhl_express_worldwide              |
-| `DhlExpressWorldwideEuDoc`         | dhl_express_worldwide_eu_doc       |
-| `DhlExpressBreakBulkExpressDoc`    | dhl_express_break_bulk_express_doc |
-| `DhlExpressExpress900Nondoc`       | dhl_express_express_9_00_nondoc    |
-| `DhlExpressEconomySelectNondoc`    | dhl_express_economy_select_nondoc  |
-| `DhlExpressBreakBulkEconomyDoc`    | dhl_express_break_bulk_economy_doc |
-| `DhlExpressExpress900Doc`          | dhl_express_express_9_00_doc       |
-| `DhlExpressExpress1030Doc`         | dhl_express_express_10_30_doc      |
-| `DhlExpressExpress1030Nondoc`      | dhl_express_express_10_30_nondoc   |
-| `DhlExpressExpress1200Doc`         | dhl_express_express_12_00_doc      |
-| `DhlExpressEuropackNondoc`         | dhl_express_europack_nondoc        |
-| `DhlExpressExpressEnvelopeDoc`     | dhl_express_express_envelope_doc   |
-| `DhlExpressExpress1200Nondoc`      | dhl_express_express_12_00_nondoc   |
-| `DhlExpressExpress12Doc`           | dhl_express_express_12_doc         |
-| `DhlExpressWorldwideB2cDoc`        | dhl_express_worldwide_b2c_doc      |
-| `DhlExpressWorldwideB2cNondoc`     | dhl_express_worldwide_b2c_nondoc   |
-| `DhlExpressMedicalExpress`         | dhl_express_medical_express        |
-| `DhlExpressExpressEasyNondoc`      | dhl_express_express_easy_nondoc    |
+```typescript
+"dhl_express_domestic_express_doc" | "dhl_express_economy_select_doc" | "dhl_express_worldwide_nondoc" | "dhl_express_worldwide_doc" | "dhl_express_worldwide" | "dhl_express_worldwide_eu_doc" | "dhl_express_break_bulk_express_doc" | "dhl_express_express_9_00_nondoc" | "dhl_express_economy_select_nondoc" | "dhl_express_break_bulk_economy_doc" | "dhl_express_express_9_00_doc" | "dhl_express_express_10_30_doc" | "dhl_express_express_10_30_nondoc" | "dhl_express_express_12_00_doc" | "dhl_express_europack_nondoc" | "dhl_express_express_envelope_doc" | "dhl_express_express_12_00_nondoc" | "dhl_express_express_12_doc" | "dhl_express_worldwide_b2c_doc" | "dhl_express_worldwide_b2c_nondoc" | "dhl_express_medical_express" | "dhl_express_express_easy_nondoc"
+```

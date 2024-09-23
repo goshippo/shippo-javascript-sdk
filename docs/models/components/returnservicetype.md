@@ -2,6 +2,13 @@
 
 Request additional return option for return shipments (UPS and Lasership only).
 
+## Example Usage
+
+```typescript
+import { ReturnServiceType } from "shippo/models/components";
+
+let value: ReturnServiceType = "NO_RETURN";
+```
 
 ## Supported Types
 

@@ -2,6 +2,15 @@
 
 Specify the RMA number field on the label (FedEx and UPS only).
 
+## Example Usage
+
+```typescript
+import { RmaNumber } from "shippo/models/components";
+
+let value: RmaNumber = {
+  refSort: 1,
+};
+```
 
 ## Fields
 

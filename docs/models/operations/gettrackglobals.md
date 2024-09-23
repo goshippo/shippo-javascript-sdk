@@ -1,5 +1,12 @@
 # GetTrackGlobals
 
+## Example Usage
+
+```typescript
+import { GetTrackGlobals } from "shippo/models/operations";
+
+let value: GetTrackGlobals = {};
+```
 
 ## Fields
 

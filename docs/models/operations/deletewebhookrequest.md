@@ -1,5 +1,14 @@
 # DeleteWebhookRequest
 
+## Example Usage
+
+```typescript
+import { DeleteWebhookRequest } from "shippo/models/operations";
+
+let value: DeleteWebhookRequest = {
+  webhookId: "<value>",
+};
+```
 
 ## Fields
 

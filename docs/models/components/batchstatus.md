@@ -6,13 +6,16 @@ Batches that are `VALIDATING` are being created and validated<br>
 Batches that are in the `PURCHASING` state are being purchased<br>
 `PURCHASED` batches are finished purchasing.
 
+## Example Usage
+
+```typescript
+import { BatchStatus } from "shippo/models/components";
+
+let value: BatchStatus = "VALID";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Validating` | VALIDATING   |
-| `Valid`      | VALID        |
-| `Invalid`    | INVALID      |
-| `Purchasing` | PURCHASING   |
-| `Purchased`  | PURCHASED    |
+```typescript
+"VALIDATING" | "VALID" | "INVALID" | "PURCHASING" | "PURCHASED"
+```

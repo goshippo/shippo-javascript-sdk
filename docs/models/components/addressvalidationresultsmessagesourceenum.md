@@ -1,9 +1,15 @@
 # AddressValidationResultsMessageSourceEnum
 
+## Example Usage
+
+```typescript
+import { AddressValidationResultsMessageSourceEnum } from "shippo/models/components";
+
+let value: AddressValidationResultsMessageSourceEnum = "UPS";
+```
 
 ## Values
 
-| Name                     | Value                    |
-| ------------------------ | ------------------------ |
-| `ShippoAddressValidator` | Shippo Address Validator |
-| `Ups`                    | UPS                      |
+```typescript
+"Shippo Address Validator" | "UPS"
+```

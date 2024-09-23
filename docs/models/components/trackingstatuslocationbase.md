@@ -1,5 +1,17 @@
 # TrackingStatusLocationBase
 
+## Example Usage
+
+```typescript
+import { TrackingStatusLocationBase } from "shippo/models/components";
+
+let value: TrackingStatusLocationBase = {
+  city: "Las Vegas",
+  country: "US",
+  state: "NV",
+  zip: "89101",
+};
+```
 
 ## Fields
 

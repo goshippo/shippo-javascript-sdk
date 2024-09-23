@@ -1,5 +1,12 @@
 # DeleteServiceGroupGlobals
 
+## Example Usage
+
+```typescript
+import { DeleteServiceGroupGlobals } from "shippo/models/operations";
+
+let value: DeleteServiceGroupGlobals = {};
+```
 
 ## Fields
 

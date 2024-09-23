@@ -33,7 +33,38 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.carrierParcelTemplates.list("enabled", "fedex");
+  const result = await shippo.carrierParcelTemplates.list("fedex");
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { carrierParcelTemplatesList } from "shippo/funcs/carrierParcelTemplatesList.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await carrierParcelTemplatesList(shippo, "fedex");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -50,16 +81,18 @@ run();
 | `carrier`                                                                                                                                                                      | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | filter by specific carrier                                                                                                                                                     | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
 **Promise\<[components.CarrierParcelTemplateList](../../models/components/carrierparceltemplatelist.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get
 
@@ -77,6 +110,37 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.carrierParcelTemplates.get("<value>");
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { ShippoCore } from "shippo/core.js";
+import { carrierParcelTemplatesGet } from "shippo/funcs/carrierParcelTemplatesGet.js";
+
+// Use `ShippoCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const shippo = new ShippoCore({
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
+  shippoApiVersion: "2018-02-08",
+});
+
+async function run() {
+  const res = await carrierParcelTemplatesGet(shippo, "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -92,11 +156,12 @@ run();
 | `carrierParcelTemplateToken`                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique string representation of the carrier parcel template                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
 **Promise\<[components.CarrierParcelTemplate](../../models/components/carrierparceltemplate.md)\>**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

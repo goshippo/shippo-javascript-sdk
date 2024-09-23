@@ -3,20 +3,16 @@
 Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only 
 supported for DHL Express.
 
+## Example Usage
+
+```typescript
+import { BuildingLocationType } from "shippo/models/components";
+
+let value: BuildingLocationType = "Front Door";
+```
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `BackDoor`     | Back Door      |
-| `RingBell`     | Ring Bell      |
-| `SecurityDeck` | Security Deck  |
-| `ShippingDock` | Shipping Dock  |
-| `FrontDoor`    | Front Door     |
-| `KnockOnDoor`  | Knock on Door  |
-| `InAtMailbox`  | In/At Mailbox  |
-| `MailRoom`     | Mail Room      |
-| `Office`       | Office         |
-| `Other`        | Other          |
-| `Reception`    | Reception      |
-| `SideDoor`     | Side Door      |
+```typescript
+"Back Door" | "Ring Bell" | "Security Deck" | "Shipping Dock" | "Front Door" | "Knock on Door" | "In/At Mailbox" | "Mail Room" | "Office" | "Other" | "Reception" | "Side Door"
+```

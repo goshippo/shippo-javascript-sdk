@@ -1,5 +1,27 @@
 # Manifest
 
+## Example Usage
+
+```typescript
+import { Manifest } from "shippo/models/components";
+
+let value: Manifest = {
+  carrierAccount: "adcfdddf8ec64b84ad22772bce3ea37a",
+  shipmentDate: "2014-05-16T23:59:59Z",
+  transactions: [
+    "adcfdddf8ec64b84ad22772bce3ea37a",
+  ],
+  addressFrom: "d799c2679e644279b59fe661ac8fa488",
+  documents: [
+    "https://shippo-delivery.s3.amazonaws.com/0fadebf6f60c4aca95fa01bcc59c79ae.pdf?Signature=tlQU3RECwdHUQJQadwqg5bAzGFQ%3D&Expires=1402803835&AWSAccessKeyId=AKIAJTHP3LLFMYAWALIA",
+  ],
+  objectCreated: new Date("2023-09-17T16:21:25.240Z"),
+  objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
+  objectOwner: "shippotle@shippo.com",
+  objectUpdated: new Date("2023-10-10T14:19:01.603Z"),
+  status: "SUCCESS",
+};
+```
 
 ## Fields
 

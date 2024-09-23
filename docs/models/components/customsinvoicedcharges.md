@@ -2,6 +2,15 @@
 
 Additional invoiced charges to be shown on the Customs Declaration Commercial Invoice.
 
+## Example Usage
+
+```typescript
+import { CustomsInvoicedCharges } from "shippo/models/components";
+
+let value: CustomsInvoicedCharges = {
+  currency: "<value>",
+};
+```
 
 ## Fields
 

@@ -2,15 +2,16 @@
 
 Indicates the status of the Transaction.
 
+## Example Usage
+
+```typescript
+import { TransactionStatusEnum } from "shippo/models/components";
+
+let value: TransactionStatusEnum = "SUCCESS";
+```
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `Waiting`        | WAITING          |
-| `Queued`         | QUEUED           |
-| `Success`        | SUCCESS          |
-| `Error`          | ERROR            |
-| `Refunded`       | REFUNDED         |
-| `Refundpending`  | REFUNDPENDING    |
-| `Refundrejected` | REFUNDREJECTED   |
+```typescript
+"WAITING" | "QUEUED" | "SUCCESS" | "ERROR" | "REFUNDED" | "REFUNDPENDING" | "REFUNDREJECTED"
+```

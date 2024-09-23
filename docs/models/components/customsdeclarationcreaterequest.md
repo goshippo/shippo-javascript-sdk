@@ -1,5 +1,68 @@
 # CustomsDeclarationCreateRequest
 
+## Example Usage
+
+```typescript
+import { CustomsDeclarationCreateRequest } from "shippo/models/components";
+
+let value: CustomsDeclarationCreateRequest = {
+  b13aFilingOption: "FILED_ELECTRONICALLY",
+  certify: true,
+  certifySigner: "Shawn Ippotle",
+  contentsExplanation: "T-Shirt purchase",
+  dutiesPayor: {
+    account: "2323434543",
+    type: "THIRD_PARTY",
+    address: {
+      name: "Patrick Kavanagh",
+      zip: "80331",
+      country: "DE",
+    },
+  },
+  exporterIdentification: {
+    eoriNumber: "PL123456790ABCDE",
+    taxId: {
+      number: "123456789",
+      type: "EIN",
+    },
+  },
+  invoice: "#123123",
+  metadata: "Order ID #123123",
+  addressImporter: {
+    name: "Shwan Ippotle",
+    company: "Shippo",
+    street1: "Blumenstraße",
+    street3: "",
+    streetNo: "22",
+    city: "München",
+    state: "CA",
+    zip: "80331",
+    country: "DE",
+    phone: "80331",
+    email: "shippotle@shippo.com",
+    isResidential: true,
+  },
+  contentsType: "MERCHANDISE",
+  eelPfc: "NOEEI_30_37_a",
+  incoterm: "DDP",
+  items: [
+    {
+      description: "T-Shirt",
+      massUnit: "lb",
+      metadata: "Order ID \"123454\"",
+      netWeight: "5",
+      originCountry: "<value>",
+      quantity: 20,
+      skuCode: "HM-123",
+      hsCode: "0901.21",
+      valueAmount: "200",
+      valueCurrency: "USD",
+    },
+  ],
+  nonDeliveryOption: "RETURN",
+  test: true,
+};
+```
 
 ## Fields
 
@@ -14,6 +77,7 @@
 | `commercialInvoice`                                                                                                                                                                                                                                                                                                           | *boolean*                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                            | N/A                                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                                                               |
 | `contentsExplanation`                                                                                                                                                                                                                                                                                                         | *string*                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                            | **required if contents_type is `OTHER`**<br><br/>Explanation of the type of goods of the shipment.                                                                                                                                                                                                                            | T-Shirt purchase                                                                                                                                                                                                                                                                                                              |
 | `disclaimer`                                                                                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                            | Disclaimer for the shipment and customs information that have been provided.                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                               |
+| `dutiesPayor`                                                                                                                                                                                                                                                                                                                 | [components.DutiesPayor](../../models/components/dutiespayor.md)                                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                            | Specifies who will pay the duties for the shipment. Only accepted for FedEx shipments.                                                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                                               |
 | `exporterIdentification`                                                                                                                                                                                                                                                                                                      | [components.CustomsExporterIdentification](../../models/components/customsexporteridentification.md)                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                            | Additional exporter identification that may be required to ship in certain countries                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                                                               |
 | `exporterReference`                                                                                                                                                                                                                                                                                                           | *string*                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                            | Exporter reference of an export shipment.                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                               |
 | `importerReference`                                                                                                                                                                                                                                                                                                           | *string*                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                            | Importer reference of an import shipment.                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                               |
