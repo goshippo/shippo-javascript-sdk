@@ -502,7 +502,7 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.carrierAccounts.register({
-    carrier: "correos",
+    carrier: "ups",
     parameters: {
       billingAddressCity: "San Francisco",
       billingAddressCountryIso2: "US",
@@ -521,7 +521,7 @@ async function run() {
       pickupAddressStreet1: "731 Market St",
       pickupAddressStreet2: "STE 200",
       pickupAddressZip: "94103",
-      upsAgreements: false,
+      upsAgreements: true,
     },
   });
   
@@ -549,7 +549,7 @@ const shippo = new ShippoCore({
 
 async function run() {
   const res = await carrierAccountsRegister(shippo, {
-    carrier: "correos",
+    carrier: "ups",
     parameters: {
       billingAddressCity: "San Francisco",
       billingAddressCountryIso2: "US",
@@ -568,7 +568,7 @@ async function run() {
       pickupAddressStreet1: "731 Market St",
       pickupAddressStreet2: "STE 200",
       pickupAddressZip: "94103",
-      upsAgreements: false,
+      upsAgreements: true,
     },
   });
 
