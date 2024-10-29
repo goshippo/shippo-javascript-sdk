@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {describe, it} from 'mocha';
-import {CarriersEnum, DistanceUnitEnum, WeightUnitEnum} from '../models/components';
+import {CarriersEnum, DistanceUnitEnum, WeightUnitEnum} from '../src/models/components';
 import {shippoSdk, getCarrierAccount} from "./helpers";
 
 describe('TestInstalabel', function() {

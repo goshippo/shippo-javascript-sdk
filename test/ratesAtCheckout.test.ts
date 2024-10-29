@@ -6,7 +6,7 @@ import {
     ServiceLevelUPSEnum,
     DistanceUnitEnum,
     WeightUnitEnum,
-} from '../models/components';
+} from '../src/models/components';
 import {expect} from "chai";
 import {getCarrierAccount, shippoSdk} from "./helpers";
 

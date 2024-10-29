@@ -1,5 +1,5 @@
-import {CarrierAccountWithExtraInfo, CarriersEnum} from "../models/components";
-import {Shippo} from "../sdk";
+import {CarrierAccountWithExtraInfo, CarriersEnum} from "../src/models/components";
+import {Shippo} from "../src/sdk";
 
 export const shippoSdk = new Shippo({
     apiKeyHeader: process.env.SHIPPO_TOKEN

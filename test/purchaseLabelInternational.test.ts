@@ -6,7 +6,7 @@ import {
     CustomsDeclarationNonDeliveryOptionEnum,
     DistanceUnitEnum,
     WeightUnitEnum
-} from '../models/components';
+} from '../src/models/components';
 import {shippoSdk} from "./helpers";
 
 

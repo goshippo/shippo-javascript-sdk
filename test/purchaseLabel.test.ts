@@ -1,6 +1,6 @@
 import {describe, it} from 'mocha';
 import {expect} from "chai";
-import {CarriersEnum, DistanceUnitEnum, WeightUnitEnum} from '../models/components';
+import {CarriersEnum, DistanceUnitEnum, WeightUnitEnum} from '../src/models/components';
 import {getCarrierAccounts, shippoSdk} from "./helpers";
 
 
