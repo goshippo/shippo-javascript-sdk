@@ -15,7 +15,7 @@ export class ShippoAccounts extends ClientSDK {
    * List all Shippo Accounts
    *
    * @remarks
-   * Returns a list of Shippo Accounts objects
+   * Returns a list of Shippo Managed Accounts objects.
    */
   async list(
     page?: number | undefined,
@@ -34,7 +34,7 @@ export class ShippoAccounts extends ClientSDK {
    * Create a Shippo Account
    *
    * @remarks
-   * Creates a Shippo Account object
+   * Creates a new <a href="https://docs.goshippo.com/docs/platformaccounts/platform_using_accounts/">Shippo Managed Account</a>.
    */
   async create(
     request: components.ShippoAccountUpdateRequest,
@@ -51,7 +51,7 @@ export class ShippoAccounts extends ClientSDK {
    * Retrieve a Shippo Account
    *
    * @remarks
-   * Returns a Shippo Account using an object ID
+   * Returns a Shippo Managed Account using an object ID.
    */
   async get(
     shippoAccountId: string,
@@ -68,7 +68,7 @@ export class ShippoAccounts extends ClientSDK {
    * Update a Shippo Account
    *
    * @remarks
-   * Updates a Shippo Account object
+   * Updates a Shippo Managed Account using an object ID.
    */
   async update(
     shippoAccountId: string,

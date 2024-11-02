@@ -8,7 +8,7 @@ import { ClosedEnum } from "../../types/enums.js";
 
 export type GetCarrierRegistrationStatusGlobals = {
   /**
-   * String used to pick a non-default API version to use
+   * Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.
    */
   shippoApiVersion?: string | undefined;
 };

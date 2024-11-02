@@ -26,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Update a Shippo Account
  *
  * @remarks
- * Updates a Shippo Account object
+ * Updates a Shippo Managed Account using an object ID.
  */
 export async function shippoAccountsUpdate(
   client: ShippoCore,

@@ -25,7 +25,7 @@ import { Result } from "../types/fp.js";
  * Create a Shippo Account
  *
  * @remarks
- * Creates a Shippo Account object
+ * Creates a new <a href="https://docs.goshippo.com/docs/platformaccounts/platform_using_accounts/">Shippo Managed Account</a>.
  */
 export async function shippoAccountsCreate(
   client: ShippoCore,
