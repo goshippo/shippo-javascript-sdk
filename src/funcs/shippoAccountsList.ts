@@ -26,7 +26,7 @@ import { Result } from "../types/fp.js";
  * List all Shippo Accounts
  *
  * @remarks
- * Returns a list of Shippo Accounts objects
+ * Returns a list of Shippo Managed Accounts objects.
  */
 export async function shippoAccountsList(
   client: ShippoCore,

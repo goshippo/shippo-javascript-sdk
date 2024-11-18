@@ -5,16 +5,16 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import {
+  ServiceGroupAccountAndServiceLevel,
+  ServiceGroupAccountAndServiceLevel$inboundSchema,
+  ServiceGroupAccountAndServiceLevel$Outbound,
+  ServiceGroupAccountAndServiceLevel$outboundSchema,
+} from "./servicegroupaccountandservicelevel.js";
+import {
   ServiceGroupTypeEnum,
   ServiceGroupTypeEnum$inboundSchema,
   ServiceGroupTypeEnum$outboundSchema,
 } from "./servicegrouptypeenum.js";
-import {
-  ServiceLevelWithParent,
-  ServiceLevelWithParent$inboundSchema,
-  ServiceLevelWithParent$Outbound,
-  ServiceLevelWithParent$outboundSchema,
-} from "./servicelevelwithparent.js";
 
 export type ServiceGroup = {
   /**
@@ -72,7 +72,7 @@ export type ServiceGroup = {
    * True if the service group is enabled, false otherwise.
    */
   isActive?: boolean | undefined;
-  serviceLevels: Array<ServiceLevelWithParent>;
+  serviceLevels: Array<ServiceGroupAccountAndServiceLevel>;
 };
 
 /** @internal */
@@ -91,7 +91,7 @@ export const ServiceGroup$inboundSchema: z.ZodType<
   type: ServiceGroupTypeEnum$inboundSchema,
   object_id: z.string(),
   is_active: z.boolean().optional(),
-  service_levels: z.array(ServiceLevelWithParent$inboundSchema),
+  service_levels: z.array(ServiceGroupAccountAndServiceLevel$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
     "flat_rate": "flatRate",
@@ -117,7 +117,7 @@ export type ServiceGroup$Outbound = {
   type: string;
   object_id: string;
   is_active?: boolean | undefined;
-  service_levels: Array<ServiceLevelWithParent$Outbound>;
+  service_levels: Array<ServiceGroupAccountAndServiceLevel$Outbound>;
 };
 
 /** @internal */
@@ -136,7 +136,7 @@ export const ServiceGroup$outboundSchema: z.ZodType<
   type: ServiceGroupTypeEnum$outboundSchema,
   objectId: z.string(),
   isActive: z.boolean().optional(),
-  serviceLevels: z.array(ServiceLevelWithParent$outboundSchema),
+  serviceLevels: z.array(ServiceGroupAccountAndServiceLevel$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     flatRate: "flat_rate",

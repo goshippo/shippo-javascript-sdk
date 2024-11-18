@@ -26,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Retrieve a Shippo Account
  *
  * @remarks
- * Returns a Shippo Account using an object ID
+ * Returns a Shippo Managed Account using an object ID.
  */
 export async function shippoAccountsGet(
   client: ShippoCore,

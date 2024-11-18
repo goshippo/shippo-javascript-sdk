@@ -113,6 +113,7 @@ async function run() {
     labelFileType: "PDF_4x6",
     metadata: "Order ID #12345",
     rate: "ec9f0d3adc9441449c85d315f0997fd5",
+    order: "adcfdddf8ec64b84ad22772bce3ea37a",
   });
   
   // Handle the result
@@ -143,6 +144,7 @@ async function run() {
     labelFileType: "PDF_4x6",
     metadata: "Order ID #12345",
     rate: "ec9f0d3adc9441449c85d315f0997fd5",
+    order: "adcfdddf8ec64b84ad22772bce3ea37a",
   });
 
   if (!res.ok) {
