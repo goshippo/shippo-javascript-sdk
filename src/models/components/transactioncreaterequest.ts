@@ -21,6 +21,7 @@ export type TransactionCreateRequest = {
   labelFileType?: LabelFileTypeEnum | undefined;
   metadata?: string | undefined;
   rate: string;
+  order?: string | undefined;
 };
 
 /** @internal */
@@ -33,6 +34,7 @@ export const TransactionCreateRequest$inboundSchema: z.ZodType<
   label_file_type: LabelFileTypeEnum$inboundSchema.optional(),
   metadata: z.string().optional(),
   rate: z.string(),
+  order: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "label_file_type": "labelFileType",
@@ -45,6 +47,7 @@ export type TransactionCreateRequest$Outbound = {
   label_file_type?: string | undefined;
   metadata?: string | undefined;
   rate: string;
+  order?: string | undefined;
 };
 
 /** @internal */
@@ -57,6 +60,7 @@ export const TransactionCreateRequest$outboundSchema: z.ZodType<
   labelFileType: LabelFileTypeEnum$outboundSchema.optional(),
   metadata: z.string().optional(),
   rate: z.string(),
+  order: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     labelFileType: "label_file_type",

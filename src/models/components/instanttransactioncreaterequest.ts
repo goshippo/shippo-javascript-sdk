@@ -32,6 +32,7 @@ export type InstantTransactionCreateRequest = {
   metadata?: string | undefined;
   servicelevelToken: string;
   shipment: ShipmentCreateRequest;
+  order?: string | undefined;
 };
 
 /** @internal */
@@ -67,6 +68,7 @@ export const InstantTransactionCreateRequest$inboundSchema: z.ZodType<
   metadata: z.string().optional(),
   servicelevel_token: z.string(),
   shipment: ShipmentCreateRequest$inboundSchema,
+  order: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "carrier_account": "carrierAccount",
@@ -83,6 +85,7 @@ export type InstantTransactionCreateRequest$Outbound = {
   metadata?: string | undefined;
   servicelevel_token: string;
   shipment: ShipmentCreateRequest$Outbound;
+  order?: string | undefined;
 };
 
 /** @internal */
@@ -97,6 +100,7 @@ export const InstantTransactionCreateRequest$outboundSchema: z.ZodType<
   metadata: z.string().optional(),
   servicelevelToken: z.string(),
   shipment: ShipmentCreateRequest$outboundSchema,
+  order: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     carrierAccount: "carrier_account",

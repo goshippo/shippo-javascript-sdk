@@ -2,8 +2,8 @@ speakeasyVersion: 1.401.2
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:097cfbf7ac9aa82850a70d3a3f6b6d2064ceebf06ad477577b59cd74083a861a
-        sourceBlobDigest: sha256:d20d1d724adbc75bf8db343aa4c16e626daaadbb57e55e4d1b486ea2277b1bb5
+        sourceRevisionDigest: sha256:cee6468382dc776b98a5e3781bae0e16549785fea91beddd71eba715c01bf797
+        sourceBlobDigest: sha256:481f6638b89baad7d8f2c108f74fc028b9999cc9708a00e72688330c720262e7
         tags:
             - latest
             - main
@@ -11,8 +11,10 @@ targets:
     first-target:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:097cfbf7ac9aa82850a70d3a3f6b6d2064ceebf06ad477577b59cd74083a861a
-        sourceBlobDigest: sha256:d20d1d724adbc75bf8db343aa4c16e626daaadbb57e55e4d1b486ea2277b1bb5
+        sourceRevisionDigest: sha256:cee6468382dc776b98a5e3781bae0e16549785fea91beddd71eba715c01bf797
+        sourceBlobDigest: sha256:481f6638b89baad7d8f2c108f74fc028b9999cc9708a00e72688330c720262e7
+        codeSamplesNamespace: openapi-code-samples
+        codeSamplesRevisionDigest: sha256:6ff8e5aa52c68832681ef40cda89b11535f6a263a349c1eef401c0f44b74e513
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -29,3 +31,7 @@ workflow:
             publish:
                 npm:
                     token: $npm_token
+            codeSamples:
+                output: ""
+                registry:
+                    location: registry.speakeasyapi.dev/shippo/shippo/openapi-code-samples

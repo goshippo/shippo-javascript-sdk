@@ -21,6 +21,9 @@ import { ClosedEnum } from "../../types/enums.js";
  * | canada_post_small_packet_usa_air | Small Packet USA Air|
  * | canada_post_tracked_packet_international | Tracked Packet International|
  * | canada_post_small_packet_international_air | Small Package International Air|
+ * | canada_post_small_packet_international_surface  | Small Packet International Surface
+ * | canada_post_international_parcel_surface  | International Parcel Surface
+ * | canada_post_international_parcel_air  | International Parcel Air
  */
 export const ServiceLevelCanadaPostEnum = {
   CanadaPostRegularParcel: "canada_post_regular_parcel",
@@ -36,6 +39,11 @@ export const ServiceLevelCanadaPostEnum = {
     "canada_post_tracked_packet_international",
   CanadaPostSmallPacketInternationalAir:
     "canada_post_small_packet_international_air",
+  CanadaPostSmallPacketInternationalSurface:
+    "canada_post_small_packet_international_surface",
+  CanadaPostInternationalParcelSurface:
+    "canada_post_international_parcel_surface",
+  CanadaPostInternationalParcelAir: "canada_post_international_parcel_air",
 } as const;
 /**
  * |Token | Service name|
@@ -53,6 +61,9 @@ export const ServiceLevelCanadaPostEnum = {
  * | canada_post_small_packet_usa_air | Small Packet USA Air|
  * | canada_post_tracked_packet_international | Tracked Packet International|
  * | canada_post_small_packet_international_air | Small Package International Air|
+ * | canada_post_small_packet_international_surface  | Small Packet International Surface
+ * | canada_post_international_parcel_surface  | International Parcel Surface
+ * | canada_post_international_parcel_air  | International Parcel Air
  */
 export type ServiceLevelCanadaPostEnum = ClosedEnum<
   typeof ServiceLevelCanadaPostEnum

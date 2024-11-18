@@ -198,6 +198,7 @@ let value: InstantTransactionCreateRequest = {
       "<value>",
     ],
   },
+  order: "adcfdddf8ec64b84ad22772bce3ea37a",
 };
 ```
 
@@ -211,3 +212,4 @@ let value: InstantTransactionCreateRequest = {
 | `metadata`                                                                           | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  | Order ID #12345                                                                      |
 | `servicelevelToken`                                                                  | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  | usps_priority                                                                        |
 | `shipment`                                                                           | [components.ShipmentCreateRequest](../../models/components/shipmentcreaterequest.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |                                                                                      |
+| `order`                                                                              | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  | adcfdddf8ec64b84ad22772bce3ea37a                                                     |
