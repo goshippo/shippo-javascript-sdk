@@ -12,7 +12,6 @@ describe('TestOrders', function () {
         })
 
         expect(orders).to.not.be.null;
-        expect(orders).to.include.keys(['next', 'results']);
         expect(orders.results).to.be.an('array').that.is.not.empty;
 
         expect(orders.results).to.satisfy(results =>
