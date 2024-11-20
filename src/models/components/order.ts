@@ -32,6 +32,8 @@ import {
   WeightUnitEnum$outboundSchema,
 } from "./weightunitenum.js";
 
+export type Transactions = {};
+
 export type Order = {
   /**
    * **Required if total_price is provided**<br>
@@ -130,8 +132,38 @@ export type Order = {
    * @remarks
    * All objects are returned expanded with a limited number of fields by default.
    */
-  transactions?: Array<string> | undefined;
+  transactions?: Array<Transactions> | undefined;
 };
+
+/** @internal */
+export const Transactions$inboundSchema: z.ZodType<
+  Transactions,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+
+/** @internal */
+export type Transactions$Outbound = {};
+
+/** @internal */
+export const Transactions$outboundSchema: z.ZodType<
+  Transactions$Outbound,
+  z.ZodTypeDef,
+  Transactions
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Transactions$ {
+  /** @deprecated use `Transactions$inboundSchema` instead. */
+  export const inboundSchema = Transactions$inboundSchema;
+  /** @deprecated use `Transactions$outboundSchema` instead. */
+  export const outboundSchema = Transactions$outboundSchema;
+  /** @deprecated use `Transactions$Outbound` instead. */
+  export type Outbound = Transactions$Outbound;
+}
 
 /** @internal */
 export const Order$inboundSchema: z.ZodType<Order, z.ZodTypeDef, unknown> = z
@@ -155,7 +187,7 @@ export const Order$inboundSchema: z.ZodType<Order, z.ZodTypeDef, unknown> = z
     object_id: z.string().optional(),
     object_owner: z.string().optional(),
     shop_app: OrderShopAppEnum$inboundSchema.optional(),
-    transactions: z.array(z.string()).optional(),
+    transactions: z.array(z.lazy(() => Transactions$inboundSchema)).optional(),
   }).transform((v) => {
     return remap$(v, {
       "order_number": "orderNumber",
@@ -198,7 +230,7 @@ export type Order$Outbound = {
   object_id?: string | undefined;
   object_owner?: string | undefined;
   shop_app?: string | undefined;
-  transactions?: Array<string> | undefined;
+  transactions?: Array<Transactions$Outbound> | undefined;
 };
 
 /** @internal */
@@ -226,7 +258,7 @@ export const Order$outboundSchema: z.ZodType<
   objectId: z.string().optional(),
   objectOwner: z.string().optional(),
   shopApp: OrderShopAppEnum$outboundSchema.optional(),
-  transactions: z.array(z.string()).optional(),
+  transactions: z.array(z.lazy(() => Transactions$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     orderNumber: "order_number",
