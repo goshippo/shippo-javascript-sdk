@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: d17362762d19f1f23211a71e568bf249
+  docChecksum: bf61704a99aaaf3476d24bb0d505a88c
   docVersion: "2018-02-08"
   speakeasyVersion: 1.401.2
   generationVersion: 2.421.3
-  releaseVersion: 2.9.0
-  configChecksum: 7cb0a08231e81fb1627156dac475b54f
+  releaseVersion: 2.11.0
+  configChecksum: 700e3c20211ba9b58b7724e314af63a9
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -283,6 +283,7 @@ generatedFiles:
   - docs/models/components/transactioncreaterequest.md
   - docs/models/components/transactionpaginatedlist.md
   - docs/models/components/transactionrate.md
+  - docs/models/components/transactions.md
   - docs/models/components/transactionstatusenum.md
   - docs/models/components/type.md
   - docs/models/components/upsconnectexistingownaccountparameters.md
