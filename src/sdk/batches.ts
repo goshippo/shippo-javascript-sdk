@@ -40,11 +40,15 @@ export class Batches extends ClientSDK {
    */
   async get(
     batchId: string,
+    page?: number | undefined,
+    results?: number | undefined,
     options?: RequestOptions,
   ): Promise<components.Batch> {
     return unwrapAsync(batchesGet(
       this,
       batchId,
+      page,
+      results,
       options,
     ));
   }

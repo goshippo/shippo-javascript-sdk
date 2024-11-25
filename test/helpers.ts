@@ -15,6 +15,10 @@ export async function getCarrierAccounts(carrier: CarriersEnum) : Promise<Array<
     }
 }
 
+export async function getDefaultCarrierAccountObjectId(): Promise<string> {
+    const carrierAccount = await getCarrierAccount(CarriersEnum.Usps);
+    return carrierAccount.objectId;
+}
 
 export async function getCarrierAccount(carrier: CarriersEnum) : Promise<CarrierAccountWithExtraInfo> {
     const carrierAccounts = await getCarrierAccounts(carrier)

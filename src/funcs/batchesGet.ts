@@ -3,7 +3,7 @@
  */
 
 import { ShippoCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -34,6 +34,8 @@ import { Result } from "../types/fp.js";
 export async function batchesGet(
   client: ShippoCore,
   batchId: string,
+  page?: number | undefined,
+  results?: number | undefined,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -49,6 +51,8 @@ export async function batchesGet(
 > {
   const input: operations.GetBatchRequest = {
     batchId: batchId,
+    page: page,
+    results: results,
   };
 
   const parsed = safeParse(
@@ -70,6 +74,11 @@ export async function batchesGet(
   };
 
   const path = pathToFunc("/batches/{BatchId}")(pathParams);
+
+  const query = encodeFormQuery({
+    "page": payload.page,
+    "results": payload.results,
+  });
 
   const headers = new Headers({
     Accept: "application/json",
@@ -94,6 +103,7 @@ export async function batchesGet(
     method: "GET",
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);

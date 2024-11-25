@@ -17,6 +17,14 @@ export type GetBatchRequest = {
    * Object ID of the batch
    */
   batchId: string;
+  /**
+   * The page number you want to select
+   */
+  page?: number | undefined;
+  /**
+   * The number of results to return per page (max 100, default 5)
+   */
+  results?: number | undefined;
 };
 
 /** @internal */
@@ -70,6 +78,8 @@ export const GetBatchRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   BatchId: z.string(),
+  page: z.number().int().default(1),
+  results: z.number().int().default(5),
 }).transform((v) => {
   return remap$(v, {
     "BatchId": "batchId",
@@ -79,6 +89,8 @@ export const GetBatchRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetBatchRequest$Outbound = {
   BatchId: string;
+  page: number;
+  results: number;
 };
 
 /** @internal */
@@ -88,6 +100,8 @@ export const GetBatchRequest$outboundSchema: z.ZodType<
   GetBatchRequest
 > = z.object({
   batchId: z.string(),
+  page: z.number().int().default(1),
+  results: z.number().int().default(5),
 }).transform((v) => {
   return remap$(v, {
     batchId: "BatchId",
