@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: bf61704a99aaaf3476d24bb0d505a88c
+  docChecksum: bda7f4add5fb510fe4737e3adbe45aea
   docVersion: "2018-02-08"
   speakeasyVersion: 1.401.2
   generationVersion: 2.421.3
-  releaseVersion: 2.11.0
-  configChecksum: 700e3c20211ba9b58b7724e314af63a9
+  releaseVersion: 2.13.0
+  configChecksum: d4256e5ea6287869f60153cb7c8c4927
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
@@ -896,6 +896,7 @@ examples:
       parameters:
         path:
           BatchId: "<value>"
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:
