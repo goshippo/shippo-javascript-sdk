@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 2.13.0
+  version: 2.14.1
   additionalDependencies:
     dependencies: {}
     devDependencies:
@@ -27,6 +27,7 @@ typescript:
   author: Shippo
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
+  enableReactQuery: false
   enumFormat: union
   flattenGlobalSecurity: true
   flatteningOrder: body-first
