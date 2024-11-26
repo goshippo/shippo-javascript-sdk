@@ -14,6 +14,10 @@ export type ListShipmentsGlobals = {
 
 export type ListShipmentsRequest = {
   /**
+   * The page token for paginated results
+   */
+  pageToken?: string | undefined;
+  /**
    * The page number you want to select
    */
   page?: number | undefined;
@@ -89,6 +93,7 @@ export const ListShipmentsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  page_token: z.string().optional(),
   page: z.number().int().default(1),
   results: z.number().int().default(25),
   object_created_gt: z.string().optional(),
@@ -97,6 +102,7 @@ export const ListShipmentsRequest$inboundSchema: z.ZodType<
   object_created_lte: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
+    "page_token": "pageToken",
     "object_created_gt": "objectCreatedGt",
     "object_created_gte": "objectCreatedGte",
     "object_created_lt": "objectCreatedLt",
@@ -106,6 +112,7 @@ export const ListShipmentsRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListShipmentsRequest$Outbound = {
+  page_token?: string | undefined;
   page: number;
   results: number;
   object_created_gt?: string | undefined;
@@ -120,6 +127,7 @@ export const ListShipmentsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListShipmentsRequest
 > = z.object({
+  pageToken: z.string().optional(),
   page: z.number().int().default(1),
   results: z.number().int().default(25),
   objectCreatedGt: z.string().optional(),
@@ -128,6 +136,7 @@ export const ListShipmentsRequest$outboundSchema: z.ZodType<
   objectCreatedLte: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
+    pageToken: "page_token",
     objectCreatedGt: "object_created_gt",
     objectCreatedGte: "object_created_gte",
     objectCreatedLt: "object_created_lt",

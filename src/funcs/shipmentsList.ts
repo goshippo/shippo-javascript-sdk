@@ -82,6 +82,7 @@ export async function shipmentsList(
     "object_created_lt": payload.object_created_lt,
     "object_created_lte": payload.object_created_lte,
     "page": payload.page,
+    "page_token": payload.page_token,
     "results": payload.results,
   });
 
