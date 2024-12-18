@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -165,6 +168,20 @@ export namespace Transactions$ {
   export type Outbound = Transactions$Outbound;
 }
 
+export function transactionsToJSON(transactions: Transactions): string {
+  return JSON.stringify(Transactions$outboundSchema.parse(transactions));
+}
+
+export function transactionsFromJSON(
+  jsonString: string,
+): SafeParseResult<Transactions, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Transactions$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Transactions' from JSON`,
+  );
+}
+
 /** @internal */
 export const Order$inboundSchema: z.ZodType<Order, z.ZodTypeDef, unknown> = z
   .object({
@@ -291,4 +308,18 @@ export namespace Order$ {
   export const outboundSchema = Order$outboundSchema;
   /** @deprecated use `Order$Outbound` instead. */
   export type Outbound = Order$Outbound;
+}
+
+export function orderToJSON(order: Order): string {
+  return JSON.stringify(Order$outboundSchema.parse(order));
+}
+
+export function orderFromJSON(
+  jsonString: string,
+): SafeParseResult<Order, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Order$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Order' from JSON`,
+  );
 }

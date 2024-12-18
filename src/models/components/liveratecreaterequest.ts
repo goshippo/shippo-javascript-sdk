@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AddressCompleteCreateRequest,
   AddressCompleteCreateRequest$inboundSchema,
@@ -109,6 +112,26 @@ export namespace LiveRateCreateRequestAddressFrom$ {
   export type Outbound = LiveRateCreateRequestAddressFrom$Outbound;
 }
 
+export function liveRateCreateRequestAddressFromToJSON(
+  liveRateCreateRequestAddressFrom: LiveRateCreateRequestAddressFrom,
+): string {
+  return JSON.stringify(
+    LiveRateCreateRequestAddressFrom$outboundSchema.parse(
+      liveRateCreateRequestAddressFrom,
+    ),
+  );
+}
+
+export function liveRateCreateRequestAddressFromFromJSON(
+  jsonString: string,
+): SafeParseResult<LiveRateCreateRequestAddressFrom, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LiveRateCreateRequestAddressFrom$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LiveRateCreateRequestAddressFrom' from JSON`,
+  );
+}
+
 /** @internal */
 export const LiveRateCreateRequestAddressTo$inboundSchema: z.ZodType<
   LiveRateCreateRequestAddressTo,
@@ -141,6 +164,26 @@ export namespace LiveRateCreateRequestAddressTo$ {
   export type Outbound = LiveRateCreateRequestAddressTo$Outbound;
 }
 
+export function liveRateCreateRequestAddressToToJSON(
+  liveRateCreateRequestAddressTo: LiveRateCreateRequestAddressTo,
+): string {
+  return JSON.stringify(
+    LiveRateCreateRequestAddressTo$outboundSchema.parse(
+      liveRateCreateRequestAddressTo,
+    ),
+  );
+}
+
+export function liveRateCreateRequestAddressToFromJSON(
+  jsonString: string,
+): SafeParseResult<LiveRateCreateRequestAddressTo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LiveRateCreateRequestAddressTo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LiveRateCreateRequestAddressTo' from JSON`,
+  );
+}
+
 /** @internal */
 export const LiveRateCreateRequestParcel$inboundSchema: z.ZodType<
   LiveRateCreateRequestParcel,
@@ -169,6 +212,26 @@ export namespace LiveRateCreateRequestParcel$ {
   export const outboundSchema = LiveRateCreateRequestParcel$outboundSchema;
   /** @deprecated use `LiveRateCreateRequestParcel$Outbound` instead. */
   export type Outbound = LiveRateCreateRequestParcel$Outbound;
+}
+
+export function liveRateCreateRequestParcelToJSON(
+  liveRateCreateRequestParcel: LiveRateCreateRequestParcel,
+): string {
+  return JSON.stringify(
+    LiveRateCreateRequestParcel$outboundSchema.parse(
+      liveRateCreateRequestParcel,
+    ),
+  );
+}
+
+export function liveRateCreateRequestParcelFromJSON(
+  jsonString: string,
+): SafeParseResult<LiveRateCreateRequestParcel, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LiveRateCreateRequestParcel$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LiveRateCreateRequestParcel' from JSON`,
+  );
 }
 
 /** @internal */
@@ -232,4 +295,22 @@ export namespace LiveRateCreateRequest$ {
   export const outboundSchema = LiveRateCreateRequest$outboundSchema;
   /** @deprecated use `LiveRateCreateRequest$Outbound` instead. */
   export type Outbound = LiveRateCreateRequest$Outbound;
+}
+
+export function liveRateCreateRequestToJSON(
+  liveRateCreateRequest: LiveRateCreateRequest,
+): string {
+  return JSON.stringify(
+    LiveRateCreateRequest$outboundSchema.parse(liveRateCreateRequest),
+  );
+}
+
+export function liveRateCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<LiveRateCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LiveRateCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LiveRateCreateRequest' from JSON`,
+  );
 }

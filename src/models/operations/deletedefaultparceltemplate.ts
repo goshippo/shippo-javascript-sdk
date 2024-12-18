@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteDefaultParcelTemplateGlobals = {
   /**
@@ -59,6 +62,27 @@ export namespace DeleteDefaultParcelTemplateGlobals$ {
   export type Outbound = DeleteDefaultParcelTemplateGlobals$Outbound;
 }
 
+export function deleteDefaultParcelTemplateGlobalsToJSON(
+  deleteDefaultParcelTemplateGlobals: DeleteDefaultParcelTemplateGlobals,
+): string {
+  return JSON.stringify(
+    DeleteDefaultParcelTemplateGlobals$outboundSchema.parse(
+      deleteDefaultParcelTemplateGlobals,
+    ),
+  );
+}
+
+export function deleteDefaultParcelTemplateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteDefaultParcelTemplateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DeleteDefaultParcelTemplateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteDefaultParcelTemplateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteDefaultParcelTemplateRequest$inboundSchema: z.ZodType<
   DeleteDefaultParcelTemplateRequest,
@@ -88,4 +112,25 @@ export namespace DeleteDefaultParcelTemplateRequest$ {
     DeleteDefaultParcelTemplateRequest$outboundSchema;
   /** @deprecated use `DeleteDefaultParcelTemplateRequest$Outbound` instead. */
   export type Outbound = DeleteDefaultParcelTemplateRequest$Outbound;
+}
+
+export function deleteDefaultParcelTemplateRequestToJSON(
+  deleteDefaultParcelTemplateRequest: DeleteDefaultParcelTemplateRequest,
+): string {
+  return JSON.stringify(
+    DeleteDefaultParcelTemplateRequest$outboundSchema.parse(
+      deleteDefaultParcelTemplateRequest,
+    ),
+  );
+}
+
+export function deleteDefaultParcelTemplateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteDefaultParcelTemplateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DeleteDefaultParcelTemplateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteDefaultParcelTemplateRequest' from JSON`,
+  );
 }

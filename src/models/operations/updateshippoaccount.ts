@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateShippoAccountGlobals = {
   /**
@@ -67,6 +70,24 @@ export namespace UpdateShippoAccountGlobals$ {
   export type Outbound = UpdateShippoAccountGlobals$Outbound;
 }
 
+export function updateShippoAccountGlobalsToJSON(
+  updateShippoAccountGlobals: UpdateShippoAccountGlobals,
+): string {
+  return JSON.stringify(
+    UpdateShippoAccountGlobals$outboundSchema.parse(updateShippoAccountGlobals),
+  );
+}
+
+export function updateShippoAccountGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateShippoAccountGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateShippoAccountGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateShippoAccountGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateShippoAccountRequest$inboundSchema: z.ZodType<
   UpdateShippoAccountRequest,
@@ -118,4 +139,22 @@ export namespace UpdateShippoAccountRequest$ {
   export const outboundSchema = UpdateShippoAccountRequest$outboundSchema;
   /** @deprecated use `UpdateShippoAccountRequest$Outbound` instead. */
   export type Outbound = UpdateShippoAccountRequest$Outbound;
+}
+
+export function updateShippoAccountRequestToJSON(
+  updateShippoAccountRequest: UpdateShippoAccountRequest,
+): string {
+  return JSON.stringify(
+    UpdateShippoAccountRequest$outboundSchema.parse(updateShippoAccountRequest),
+  );
+}
+
+export function updateShippoAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateShippoAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateShippoAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateShippoAccountRequest' from JSON`,
+  );
 }

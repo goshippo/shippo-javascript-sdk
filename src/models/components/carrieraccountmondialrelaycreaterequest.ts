@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountMondialRelayCreateRequestParameters = {};
 
@@ -44,6 +47,33 @@ export namespace CarrierAccountMondialRelayCreateRequestParameters$ {
   /** @deprecated use `CarrierAccountMondialRelayCreateRequestParameters$Outbound` instead. */
   export type Outbound =
     CarrierAccountMondialRelayCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountMondialRelayCreateRequestParametersToJSON(
+  carrierAccountMondialRelayCreateRequestParameters:
+    CarrierAccountMondialRelayCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountMondialRelayCreateRequestParameters$outboundSchema.parse(
+      carrierAccountMondialRelayCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountMondialRelayCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountMondialRelayCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountMondialRelayCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountMondialRelayCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -89,4 +119,31 @@ export namespace CarrierAccountMondialRelayCreateRequest$ {
     CarrierAccountMondialRelayCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountMondialRelayCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountMondialRelayCreateRequest$Outbound;
+}
+
+export function carrierAccountMondialRelayCreateRequestToJSON(
+  carrierAccountMondialRelayCreateRequest:
+    CarrierAccountMondialRelayCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountMondialRelayCreateRequest$outboundSchema.parse(
+      carrierAccountMondialRelayCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountMondialRelayCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountMondialRelayCreateRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountMondialRelayCreateRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountMondialRelayCreateRequest' from JSON`,
+  );
 }

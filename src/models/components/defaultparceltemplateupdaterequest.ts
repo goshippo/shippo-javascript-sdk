@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DefaultParcelTemplateUpdateRequest = {
   objectId?: string | undefined;
@@ -52,4 +55,25 @@ export namespace DefaultParcelTemplateUpdateRequest$ {
     DefaultParcelTemplateUpdateRequest$outboundSchema;
   /** @deprecated use `DefaultParcelTemplateUpdateRequest$Outbound` instead. */
   export type Outbound = DefaultParcelTemplateUpdateRequest$Outbound;
+}
+
+export function defaultParcelTemplateUpdateRequestToJSON(
+  defaultParcelTemplateUpdateRequest: DefaultParcelTemplateUpdateRequest,
+): string {
+  return JSON.stringify(
+    DefaultParcelTemplateUpdateRequest$outboundSchema.parse(
+      defaultParcelTemplateUpdateRequest,
+    ),
+  );
+}
+
+export function defaultParcelTemplateUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DefaultParcelTemplateUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      DefaultParcelTemplateUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DefaultParcelTemplateUpdateRequest' from JSON`,
+  );
 }

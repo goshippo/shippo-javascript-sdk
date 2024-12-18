@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddShipmentsToBatchGlobals = {
   /**
@@ -68,6 +71,24 @@ export namespace AddShipmentsToBatchGlobals$ {
   export type Outbound = AddShipmentsToBatchGlobals$Outbound;
 }
 
+export function addShipmentsToBatchGlobalsToJSON(
+  addShipmentsToBatchGlobals: AddShipmentsToBatchGlobals,
+): string {
+  return JSON.stringify(
+    AddShipmentsToBatchGlobals$outboundSchema.parse(addShipmentsToBatchGlobals),
+  );
+}
+
+export function addShipmentsToBatchGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<AddShipmentsToBatchGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddShipmentsToBatchGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddShipmentsToBatchGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const AddShipmentsToBatchRequest$inboundSchema: z.ZodType<
   AddShipmentsToBatchRequest,
@@ -115,4 +136,22 @@ export namespace AddShipmentsToBatchRequest$ {
   export const outboundSchema = AddShipmentsToBatchRequest$outboundSchema;
   /** @deprecated use `AddShipmentsToBatchRequest$Outbound` instead. */
   export type Outbound = AddShipmentsToBatchRequest$Outbound;
+}
+
+export function addShipmentsToBatchRequestToJSON(
+  addShipmentsToBatchRequest: AddShipmentsToBatchRequest,
+): string {
+  return JSON.stringify(
+    AddShipmentsToBatchRequest$outboundSchema.parse(addShipmentsToBatchRequest),
+  );
+}
+
+export function addShipmentsToBatchRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AddShipmentsToBatchRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddShipmentsToBatchRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddShipmentsToBatchRequest' from JSON`,
+  );
 }

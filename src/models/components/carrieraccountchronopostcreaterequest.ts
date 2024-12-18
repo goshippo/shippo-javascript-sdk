@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountChronopostCreateRequestParameters = {};
 
@@ -44,6 +47,33 @@ export namespace CarrierAccountChronopostCreateRequestParameters$ {
   /** @deprecated use `CarrierAccountChronopostCreateRequestParameters$Outbound` instead. */
   export type Outbound =
     CarrierAccountChronopostCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountChronopostCreateRequestParametersToJSON(
+  carrierAccountChronopostCreateRequestParameters:
+    CarrierAccountChronopostCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountChronopostCreateRequestParameters$outboundSchema.parse(
+      carrierAccountChronopostCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountChronopostCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountChronopostCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountChronopostCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountChronopostCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -89,4 +119,25 @@ export namespace CarrierAccountChronopostCreateRequest$ {
     CarrierAccountChronopostCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountChronopostCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountChronopostCreateRequest$Outbound;
+}
+
+export function carrierAccountChronopostCreateRequestToJSON(
+  carrierAccountChronopostCreateRequest: CarrierAccountChronopostCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountChronopostCreateRequest$outboundSchema.parse(
+      carrierAccountChronopostCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountChronopostCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountChronopostCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountChronopostCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountChronopostCreateRequest' from JSON`,
+  );
 }

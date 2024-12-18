@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetBatchGlobals = {
   /**
@@ -71,6 +74,22 @@ export namespace GetBatchGlobals$ {
   export type Outbound = GetBatchGlobals$Outbound;
 }
 
+export function getBatchGlobalsToJSON(
+  getBatchGlobals: GetBatchGlobals,
+): string {
+  return JSON.stringify(GetBatchGlobals$outboundSchema.parse(getBatchGlobals));
+}
+
+export function getBatchGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBatchGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBatchGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBatchGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetBatchRequest$inboundSchema: z.ZodType<
   GetBatchRequest,
@@ -119,4 +138,20 @@ export namespace GetBatchRequest$ {
   export const outboundSchema = GetBatchRequest$outboundSchema;
   /** @deprecated use `GetBatchRequest$Outbound` instead. */
   export type Outbound = GetBatchRequest$Outbound;
+}
+
+export function getBatchRequestToJSON(
+  getBatchRequest: GetBatchRequest,
+): string {
+  return JSON.stringify(GetBatchRequest$outboundSchema.parse(getBatchRequest));
+}
+
+export function getBatchRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBatchRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBatchRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBatchRequest' from JSON`,
+  );
 }

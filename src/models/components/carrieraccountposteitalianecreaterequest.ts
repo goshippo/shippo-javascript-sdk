@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountPosteItalianeCreateRequestParameters = {};
 
@@ -44,6 +47,33 @@ export namespace CarrierAccountPosteItalianeCreateRequestParameters$ {
   /** @deprecated use `CarrierAccountPosteItalianeCreateRequestParameters$Outbound` instead. */
   export type Outbound =
     CarrierAccountPosteItalianeCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountPosteItalianeCreateRequestParametersToJSON(
+  carrierAccountPosteItalianeCreateRequestParameters:
+    CarrierAccountPosteItalianeCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountPosteItalianeCreateRequestParameters$outboundSchema.parse(
+      carrierAccountPosteItalianeCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountPosteItalianeCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountPosteItalianeCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountPosteItalianeCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountPosteItalianeCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -89,4 +119,31 @@ export namespace CarrierAccountPosteItalianeCreateRequest$ {
     CarrierAccountPosteItalianeCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountPosteItalianeCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountPosteItalianeCreateRequest$Outbound;
+}
+
+export function carrierAccountPosteItalianeCreateRequestToJSON(
+  carrierAccountPosteItalianeCreateRequest:
+    CarrierAccountPosteItalianeCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountPosteItalianeCreateRequest$outboundSchema.parse(
+      carrierAccountPosteItalianeCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountPosteItalianeCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountPosteItalianeCreateRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountPosteItalianeCreateRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountPosteItalianeCreateRequest' from JSON`,
+  );
 }

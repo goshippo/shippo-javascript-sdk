@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountDeutschePostCreateRequestParameters = {};
 
@@ -44,6 +47,33 @@ export namespace CarrierAccountDeutschePostCreateRequestParameters$ {
   /** @deprecated use `CarrierAccountDeutschePostCreateRequestParameters$Outbound` instead. */
   export type Outbound =
     CarrierAccountDeutschePostCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountDeutschePostCreateRequestParametersToJSON(
+  carrierAccountDeutschePostCreateRequestParameters:
+    CarrierAccountDeutschePostCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountDeutschePostCreateRequestParameters$outboundSchema.parse(
+      carrierAccountDeutschePostCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountDeutschePostCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountDeutschePostCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountDeutschePostCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountDeutschePostCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -89,4 +119,31 @@ export namespace CarrierAccountDeutschePostCreateRequest$ {
     CarrierAccountDeutschePostCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountDeutschePostCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountDeutschePostCreateRequest$Outbound;
+}
+
+export function carrierAccountDeutschePostCreateRequestToJSON(
+  carrierAccountDeutschePostCreateRequest:
+    CarrierAccountDeutschePostCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountDeutschePostCreateRequest$outboundSchema.parse(
+      carrierAccountDeutschePostCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountDeutschePostCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountDeutschePostCreateRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountDeutschePostCreateRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountDeutschePostCreateRequest' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * `INVALID` batch shipments cannot be purchased and will have to be removed, fixed, and added to the batch again.<br>
@@ -163,4 +166,18 @@ export namespace BatchShipment$ {
   export const outboundSchema = BatchShipment$outboundSchema;
   /** @deprecated use `BatchShipment$Outbound` instead. */
   export type Outbound = BatchShipment$Outbound;
+}
+
+export function batchShipmentToJSON(batchShipment: BatchShipment): string {
+  return JSON.stringify(BatchShipment$outboundSchema.parse(batchShipment));
+}
+
+export function batchShipmentFromJSON(
+  jsonString: string,
+): SafeParseResult<BatchShipment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BatchShipment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BatchShipment' from JSON`,
+  );
 }

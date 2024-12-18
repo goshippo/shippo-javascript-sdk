@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCarrierAccountsGlobals = {
   /**
@@ -80,6 +83,24 @@ export namespace ListCarrierAccountsGlobals$ {
   export type Outbound = ListCarrierAccountsGlobals$Outbound;
 }
 
+export function listCarrierAccountsGlobalsToJSON(
+  listCarrierAccountsGlobals: ListCarrierAccountsGlobals,
+): string {
+  return JSON.stringify(
+    ListCarrierAccountsGlobals$outboundSchema.parse(listCarrierAccountsGlobals),
+  );
+}
+
+export function listCarrierAccountsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCarrierAccountsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCarrierAccountsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCarrierAccountsGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListCarrierAccountsRequest$inboundSchema: z.ZodType<
   ListCarrierAccountsRequest,
@@ -136,4 +157,22 @@ export namespace ListCarrierAccountsRequest$ {
   export const outboundSchema = ListCarrierAccountsRequest$outboundSchema;
   /** @deprecated use `ListCarrierAccountsRequest$Outbound` instead. */
   export type Outbound = ListCarrierAccountsRequest$Outbound;
+}
+
+export function listCarrierAccountsRequestToJSON(
+  listCarrierAccountsRequest: ListCarrierAccountsRequest,
+): string {
+  return JSON.stringify(
+    ListCarrierAccountsRequest$outboundSchema.parse(listCarrierAccountsRequest),
+  );
+}
+
+export function listCarrierAccountsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCarrierAccountsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCarrierAccountsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCarrierAccountsRequest' from JSON`,
+  );
 }

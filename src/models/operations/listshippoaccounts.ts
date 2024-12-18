@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListShippoAccountsGlobals = {
   /**
@@ -67,6 +70,24 @@ export namespace ListShippoAccountsGlobals$ {
   export type Outbound = ListShippoAccountsGlobals$Outbound;
 }
 
+export function listShippoAccountsGlobalsToJSON(
+  listShippoAccountsGlobals: ListShippoAccountsGlobals,
+): string {
+  return JSON.stringify(
+    ListShippoAccountsGlobals$outboundSchema.parse(listShippoAccountsGlobals),
+  );
+}
+
+export function listShippoAccountsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListShippoAccountsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListShippoAccountsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListShippoAccountsGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListShippoAccountsRequest$inboundSchema: z.ZodType<
   ListShippoAccountsRequest,
@@ -104,4 +125,22 @@ export namespace ListShippoAccountsRequest$ {
   export const outboundSchema = ListShippoAccountsRequest$outboundSchema;
   /** @deprecated use `ListShippoAccountsRequest$Outbound` instead. */
   export type Outbound = ListShippoAccountsRequest$Outbound;
+}
+
+export function listShippoAccountsRequestToJSON(
+  listShippoAccountsRequest: ListShippoAccountsRequest,
+): string {
+  return JSON.stringify(
+    ListShippoAccountsRequest$outboundSchema.parse(listShippoAccountsRequest),
+  );
+}
+
+export function listShippoAccountsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListShippoAccountsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListShippoAccountsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListShippoAccountsRequest' from JSON`,
+  );
 }

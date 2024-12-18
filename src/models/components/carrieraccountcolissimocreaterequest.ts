@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountColissimoCreateRequestParameters = {};
 
@@ -44,6 +47,33 @@ export namespace CarrierAccountColissimoCreateRequestParameters$ {
   /** @deprecated use `CarrierAccountColissimoCreateRequestParameters$Outbound` instead. */
   export type Outbound =
     CarrierAccountColissimoCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountColissimoCreateRequestParametersToJSON(
+  carrierAccountColissimoCreateRequestParameters:
+    CarrierAccountColissimoCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountColissimoCreateRequestParameters$outboundSchema.parse(
+      carrierAccountColissimoCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountColissimoCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountColissimoCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountColissimoCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountColissimoCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -89,4 +119,25 @@ export namespace CarrierAccountColissimoCreateRequest$ {
     CarrierAccountColissimoCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountColissimoCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountColissimoCreateRequest$Outbound;
+}
+
+export function carrierAccountColissimoCreateRequestToJSON(
+  carrierAccountColissimoCreateRequest: CarrierAccountColissimoCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountColissimoCreateRequest$outboundSchema.parse(
+      carrierAccountColissimoCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountColissimoCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountColissimoCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountColissimoCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountColissimoCreateRequest' from JSON`,
+  );
 }

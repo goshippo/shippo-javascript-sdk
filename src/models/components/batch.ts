@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BatchShipmentPaginatedList,
   BatchShipmentPaginatedList$inboundSchema,
@@ -179,6 +182,20 @@ export namespace ObjectResults$ {
   export type Outbound = ObjectResults$Outbound;
 }
 
+export function objectResultsToJSON(objectResults: ObjectResults): string {
+  return JSON.stringify(ObjectResults$outboundSchema.parse(objectResults));
+}
+
+export function objectResultsFromJSON(
+  jsonString: string,
+): SafeParseResult<ObjectResults, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ObjectResults$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ObjectResults' from JSON`,
+  );
+}
+
 /** @internal */
 export const BatchStatus$inboundSchema: z.ZodNativeEnum<typeof BatchStatus> = z
   .nativeEnum(BatchStatus);
@@ -291,4 +308,18 @@ export namespace Batch$ {
   export const outboundSchema = Batch$outboundSchema;
   /** @deprecated use `Batch$Outbound` instead. */
   export type Outbound = Batch$Outbound;
+}
+
+export function batchToJSON(batch: Batch): string {
+  return JSON.stringify(Batch$outboundSchema.parse(batch));
+}
+
+export function batchFromJSON(
+  jsonString: string,
+): SafeParseResult<Batch, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Batch$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Batch' from JSON`,
+  );
 }

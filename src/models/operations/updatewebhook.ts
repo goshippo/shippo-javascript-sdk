@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateWebhookRequest = {
   /**
@@ -59,4 +62,22 @@ export namespace UpdateWebhookRequest$ {
   export const outboundSchema = UpdateWebhookRequest$outboundSchema;
   /** @deprecated use `UpdateWebhookRequest$Outbound` instead. */
   export type Outbound = UpdateWebhookRequest$Outbound;
+}
+
+export function updateWebhookRequestToJSON(
+  updateWebhookRequest: UpdateWebhookRequest,
+): string {
+  return JSON.stringify(
+    UpdateWebhookRequest$outboundSchema.parse(updateWebhookRequest),
+  );
+}
+
+export function updateWebhookRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateWebhookRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateWebhookRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateWebhookRequest' from JSON`,
+  );
 }

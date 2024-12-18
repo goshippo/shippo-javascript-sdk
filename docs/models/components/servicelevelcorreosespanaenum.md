@@ -11,7 +11,7 @@
 ```typescript
 import { ServiceLevelCorreosEspanaEnum } from "shippo/models/components";
 
-let value: ServiceLevelCorreosEspanaEnum = "correos_standard_home";
+let value: ServiceLevelCorreosEspanaEnum = "correos_premium_home";
 ```
 
 ## Values

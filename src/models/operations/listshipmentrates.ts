@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListShipmentRatesGlobals = {
   /**
@@ -71,6 +74,24 @@ export namespace ListShipmentRatesGlobals$ {
   export type Outbound = ListShipmentRatesGlobals$Outbound;
 }
 
+export function listShipmentRatesGlobalsToJSON(
+  listShipmentRatesGlobals: ListShipmentRatesGlobals,
+): string {
+  return JSON.stringify(
+    ListShipmentRatesGlobals$outboundSchema.parse(listShipmentRatesGlobals),
+  );
+}
+
+export function listShipmentRatesGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListShipmentRatesGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListShipmentRatesGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListShipmentRatesGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListShipmentRatesRequest$inboundSchema: z.ZodType<
   ListShipmentRatesRequest,
@@ -119,4 +140,22 @@ export namespace ListShipmentRatesRequest$ {
   export const outboundSchema = ListShipmentRatesRequest$outboundSchema;
   /** @deprecated use `ListShipmentRatesRequest$Outbound` instead. */
   export type Outbound = ListShipmentRatesRequest$Outbound;
+}
+
+export function listShipmentRatesRequestToJSON(
+  listShipmentRatesRequest: ListShipmentRatesRequest,
+): string {
+  return JSON.stringify(
+    ListShipmentRatesRequest$outboundSchema.parse(listShipmentRatesRequest),
+  );
+}
+
+export function listShipmentRatesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListShipmentRatesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListShipmentRatesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListShipmentRatesRequest' from JSON`,
+  );
 }

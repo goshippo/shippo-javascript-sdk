@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AddressValidationResults,
   AddressValidationResults$inboundSchema,
@@ -191,6 +194,20 @@ export namespace Latitude$ {
   export type Outbound = Latitude$Outbound;
 }
 
+export function latitudeToJSON(latitude: Latitude): string {
+  return JSON.stringify(Latitude$outboundSchema.parse(latitude));
+}
+
+export function latitudeFromJSON(
+  jsonString: string,
+): SafeParseResult<Latitude, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Latitude$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Latitude' from JSON`,
+  );
+}
+
 /** @internal */
 export const Longitude$inboundSchema: z.ZodType<
   Longitude,
@@ -219,6 +236,20 @@ export namespace Longitude$ {
   export const outboundSchema = Longitude$outboundSchema;
   /** @deprecated use `Longitude$Outbound` instead. */
   export type Outbound = Longitude$Outbound;
+}
+
+export function longitudeToJSON(longitude: Longitude): string {
+  return JSON.stringify(Longitude$outboundSchema.parse(longitude));
+}
+
+export function longitudeFromJSON(
+  jsonString: string,
+): SafeParseResult<Longitude, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Longitude$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Longitude' from JSON`,
+  );
 }
 
 /** @internal */
@@ -344,4 +375,18 @@ export namespace Address$ {
   export const outboundSchema = Address$outboundSchema;
   /** @deprecated use `Address$Outbound` instead. */
   export type Outbound = Address$Outbound;
+}
+
+export function addressToJSON(address: Address): string {
+  return JSON.stringify(Address$outboundSchema.parse(address));
+}
+
+export function addressFromJSON(
+  jsonString: string,
+): SafeParseResult<Address, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Address$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Address' from JSON`,
+  );
 }

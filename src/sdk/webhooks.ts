@@ -68,14 +68,14 @@ export class Webhooks extends ClientSDK {
    * Updates an existing webhook using the webhook object ID.
    */
   async updateWebhook(
-    webhookId: string,
     webhookUpdateRequest: components.WebhookUpdateRequest,
+    webhookId: string,
     options?: RequestOptions,
   ): Promise<components.Webhook> {
     return unwrapAsync(webhooksUpdateWebhook(
       this,
-      webhookId,
       webhookUpdateRequest,
+      webhookId,
       options,
     ));
   }

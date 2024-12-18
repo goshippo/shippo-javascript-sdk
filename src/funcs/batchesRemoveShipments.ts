@@ -30,8 +30,8 @@ import { Result } from "../types/fp.js";
  */
 export async function batchesRemoveShipments(
   client: ShippoCore,
-  batchId: string,
   requestBody: Array<string>,
+  batchId: string,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,8 +46,8 @@ export async function batchesRemoveShipments(
   >
 > {
   const input: operations.RemoveShipmentsFromBatchRequest = {
-    batchId: batchId,
     requestBody: requestBody,
+    batchId: batchId,
   };
 
   const parsed = safeParse(
@@ -83,16 +83,25 @@ export async function batchesRemoveShipments(
 
   const secConfig = await extractSecurity(client._options.apiKeyHeader);
   const securityInput = secConfig == null ? {} : { apiKeyHeader: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "RemoveShipmentsFromBatch",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.apiKeyHeader,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -106,9 +115,8 @@ export async function batchesRemoveShipments(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;

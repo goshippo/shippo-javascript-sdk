@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomsDeclaration,
   CustomsDeclaration$inboundSchema,
@@ -56,4 +59,24 @@ export namespace CustomsDeclarationPaginatedList$ {
   export const outboundSchema = CustomsDeclarationPaginatedList$outboundSchema;
   /** @deprecated use `CustomsDeclarationPaginatedList$Outbound` instead. */
   export type Outbound = CustomsDeclarationPaginatedList$Outbound;
+}
+
+export function customsDeclarationPaginatedListToJSON(
+  customsDeclarationPaginatedList: CustomsDeclarationPaginatedList,
+): string {
+  return JSON.stringify(
+    CustomsDeclarationPaginatedList$outboundSchema.parse(
+      customsDeclarationPaginatedList,
+    ),
+  );
+}
+
+export function customsDeclarationPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsDeclarationPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsDeclarationPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsDeclarationPaginatedList' from JSON`,
+  );
 }

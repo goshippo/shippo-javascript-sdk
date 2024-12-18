@@ -39,9 +39,9 @@ async function run() {
     active: true,
     isTest: false,
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -77,7 +77,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -98,10 +98,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## listWebhooks
 
@@ -119,9 +118,9 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.webhooks.listWebhooks();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -152,7 +151,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -172,10 +171,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## getWebhook
 
@@ -193,9 +191,9 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.webhooks.getWebhook("<value>");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -226,7 +224,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -247,10 +245,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## updateWebhook
 
@@ -267,15 +264,15 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.webhooks.updateWebhook("<value>", {
+  const result = await shippo.webhooks.updateWebhook({
     event: "batch_created",
     url: "https://example.com/shippo-webhook",
     active: true,
     isTest: false,
-  });
-  
+  }, "<value>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -297,12 +294,12 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await webhooksUpdateWebhook(shippo, "<value>", {
+  const res = await webhooksUpdateWebhook(shippo, {
     event: "batch_created",
     url: "https://example.com/shippo-webhook",
     active: true,
     isTest: false,
-  });
+  }, "<value>");
 
   if (!res.ok) {
     throw res.error;
@@ -311,7 +308,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -333,10 +330,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## deleteWebhook
 
@@ -354,6 +350,8 @@ const shippo = new Shippo({
 
 async function run() {
   await shippo.webhooks.deleteWebhook("<value>");
+
+
 }
 
 run();
@@ -404,6 +402,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

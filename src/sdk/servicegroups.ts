@@ -8,6 +8,7 @@ import { serviceGroupsList } from "../funcs/serviceGroupsList.js";
 import { serviceGroupsUpdate } from "../funcs/serviceGroupsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ServiceGroups extends ClientSDK {
@@ -18,10 +19,12 @@ export class ServiceGroups extends ClientSDK {
    * Returns a list of service group objects.
    */
   async list(
+    request: operations.ListServiceGroupsRequest,
     options?: RequestOptions,
   ): Promise<Array<components.ServiceGroup>> {
     return unwrapAsync(serviceGroupsList(
       this,
+      request,
       options,
     ));
   }

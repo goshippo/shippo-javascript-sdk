@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Refund,
   Refund$inboundSchema,
@@ -56,4 +59,22 @@ export namespace RefundPaginatedList$ {
   export const outboundSchema = RefundPaginatedList$outboundSchema;
   /** @deprecated use `RefundPaginatedList$Outbound` instead. */
   export type Outbound = RefundPaginatedList$Outbound;
+}
+
+export function refundPaginatedListToJSON(
+  refundPaginatedList: RefundPaginatedList,
+): string {
+  return JSON.stringify(
+    RefundPaginatedList$outboundSchema.parse(refundPaginatedList),
+  );
+}
+
+export function refundPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<RefundPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RefundPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RefundPaginatedList' from JSON`,
+  );
 }

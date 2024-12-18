@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ShipmentCreateRequest,
   ShipmentCreateRequest$inboundSchema,
@@ -120,4 +123,24 @@ export namespace InstantTransactionCreateRequest$ {
   export const outboundSchema = InstantTransactionCreateRequest$outboundSchema;
   /** @deprecated use `InstantTransactionCreateRequest$Outbound` instead. */
   export type Outbound = InstantTransactionCreateRequest$Outbound;
+}
+
+export function instantTransactionCreateRequestToJSON(
+  instantTransactionCreateRequest: InstantTransactionCreateRequest,
+): string {
+  return JSON.stringify(
+    InstantTransactionCreateRequest$outboundSchema.parse(
+      instantTransactionCreateRequest,
+    ),
+  );
+}
+
+export function instantTransactionCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<InstantTransactionCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InstantTransactionCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InstantTransactionCreateRequest' from JSON`,
+  );
 }

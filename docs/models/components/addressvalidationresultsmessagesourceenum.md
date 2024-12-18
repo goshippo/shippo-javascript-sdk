@@ -5,7 +5,8 @@
 ```typescript
 import { AddressValidationResultsMessageSourceEnum } from "shippo/models/components";
 
-let value: AddressValidationResultsMessageSourceEnum = "UPS";
+let value: AddressValidationResultsMessageSourceEnum =
+  "Shippo Address Validator";
 ```
 
 ## Values

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Transaction,
   Transaction$inboundSchema,
@@ -56,4 +59,22 @@ export namespace TransactionPaginatedList$ {
   export const outboundSchema = TransactionPaginatedList$outboundSchema;
   /** @deprecated use `TransactionPaginatedList$Outbound` instead. */
   export type Outbound = TransactionPaginatedList$Outbound;
+}
+
+export function transactionPaginatedListToJSON(
+  transactionPaginatedList: TransactionPaginatedList,
+): string {
+  return JSON.stringify(
+    TransactionPaginatedList$outboundSchema.parse(transactionPaginatedList),
+  );
+}
+
+export function transactionPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<TransactionPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransactionPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionPaginatedList' from JSON`,
+  );
 }

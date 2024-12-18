@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListRefundsGlobals = {
   /**
@@ -58,6 +61,24 @@ export namespace ListRefundsGlobals$ {
   export type Outbound = ListRefundsGlobals$Outbound;
 }
 
+export function listRefundsGlobalsToJSON(
+  listRefundsGlobals: ListRefundsGlobals,
+): string {
+  return JSON.stringify(
+    ListRefundsGlobals$outboundSchema.parse(listRefundsGlobals),
+  );
+}
+
+export function listRefundsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListRefundsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListRefundsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListRefundsGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListRefundsRequest$inboundSchema: z.ZodType<
   ListRefundsRequest,
@@ -86,4 +107,22 @@ export namespace ListRefundsRequest$ {
   export const outboundSchema = ListRefundsRequest$outboundSchema;
   /** @deprecated use `ListRefundsRequest$Outbound` instead. */
   export type Outbound = ListRefundsRequest$Outbound;
+}
+
+export function listRefundsRequestToJSON(
+  listRefundsRequest: ListRefundsRequest,
+): string {
+  return JSON.stringify(
+    ListRefundsRequest$outboundSchema.parse(listRefundsRequest),
+  );
+}
+
+export function listRefundsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListRefundsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListRefundsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListRefundsRequest' from JSON`,
+  );
 }

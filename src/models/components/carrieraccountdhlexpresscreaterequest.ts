@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierAccountDHLExpressCreateRequestParameters,
   CarrierAccountDHLExpressCreateRequestParameters$inboundSchema,
@@ -54,4 +57,25 @@ export namespace CarrierAccountDHLExpressCreateRequest$ {
     CarrierAccountDHLExpressCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountDHLExpressCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountDHLExpressCreateRequest$Outbound;
+}
+
+export function carrierAccountDHLExpressCreateRequestToJSON(
+  carrierAccountDHLExpressCreateRequest: CarrierAccountDHLExpressCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountDHLExpressCreateRequest$outboundSchema.parse(
+      carrierAccountDHLExpressCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountDHLExpressCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountDHLExpressCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountDHLExpressCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountDHLExpressCreateRequest' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ServiceLevel,
   ServiceLevel$inboundSchema,
@@ -100,4 +103,22 @@ export namespace ServiceLevelWithParent$ {
   export const outboundSchema = ServiceLevelWithParent$outboundSchema;
   /** @deprecated use `ServiceLevelWithParent$Outbound` instead. */
   export type Outbound = ServiceLevelWithParent$Outbound;
+}
+
+export function serviceLevelWithParentToJSON(
+  serviceLevelWithParent: ServiceLevelWithParent,
+): string {
+  return JSON.stringify(
+    ServiceLevelWithParent$outboundSchema.parse(serviceLevelWithParent),
+  );
+}
+
+export function serviceLevelWithParentFromJSON(
+  jsonString: string,
+): SafeParseResult<ServiceLevelWithParent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ServiceLevelWithParent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ServiceLevelWithParent' from JSON`,
+  );
 }

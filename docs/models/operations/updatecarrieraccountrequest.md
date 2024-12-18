@@ -6,12 +6,19 @@
 import { UpdateCarrierAccountRequest } from "shippo/models/operations";
 
 let value: UpdateCarrierAccountRequest = {
-  carrierAccountId: "<value>",
+  carrierAccountId: "<id>",
   carrierAccountBase: {
     accountId: "****",
     carrier: "usps",
     parameters: {
-      "key": "<value>",
+      firstName: "Brielle",
+      lastName: "Dickens",
+      phoneNumber: "308-999-7304 x2107",
+      fromAddressSt: "<value>",
+      fromAddressCity: "<value>",
+      fromAddressState: "<value>",
+      fromAddressZip: "<value>",
+      fromAddressCountryIso2: "<value>",
     },
   },
 };

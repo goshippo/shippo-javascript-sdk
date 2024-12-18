@@ -6,7 +6,7 @@
 import { DeleteServiceGroupRequest } from "shippo/models/operations";
 
 let value: DeleteServiceGroupRequest = {
-  serviceGroupId: "<value>",
+  serviceGroupId: "<id>",
 };
 ```
 

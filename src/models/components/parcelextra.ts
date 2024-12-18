@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Cod,
   Cod$inboundSchema,
@@ -97,4 +100,18 @@ export namespace ParcelExtra$ {
   export const outboundSchema = ParcelExtra$outboundSchema;
   /** @deprecated use `ParcelExtra$Outbound` instead. */
   export type Outbound = ParcelExtra$Outbound;
+}
+
+export function parcelExtraToJSON(parcelExtra: ParcelExtra): string {
+  return JSON.stringify(ParcelExtra$outboundSchema.parse(parcelExtra));
+}
+
+export function parcelExtraFromJSON(
+  jsonString: string,
+): SafeParseResult<ParcelExtra, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ParcelExtra$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParcelExtra' from JSON`,
+  );
 }

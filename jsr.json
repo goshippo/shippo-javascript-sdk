@@ -2,7 +2,7 @@
 
 {
   "name": "shippo",
-  "version": "2.14.1",
+  "version": "2.15.0",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    

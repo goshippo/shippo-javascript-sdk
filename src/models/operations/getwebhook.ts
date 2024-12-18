@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetWebhookRequest = {
   /**
@@ -45,4 +48,22 @@ export namespace GetWebhookRequest$ {
   export const outboundSchema = GetWebhookRequest$outboundSchema;
   /** @deprecated use `GetWebhookRequest$Outbound` instead. */
   export type Outbound = GetWebhookRequest$Outbound;
+}
+
+export function getWebhookRequestToJSON(
+  getWebhookRequest: GetWebhookRequest,
+): string {
+  return JSON.stringify(
+    GetWebhookRequest$outboundSchema.parse(getWebhookRequest),
+  );
+}
+
+export function getWebhookRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWebhookRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWebhookRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWebhookRequest' from JSON`,
+  );
 }

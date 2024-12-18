@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierAccountUPSCreateRequestParameters,
   CarrierAccountUPSCreateRequestParameters$inboundSchema,
@@ -53,4 +56,24 @@ export namespace CarrierAccountUPSCreateRequest$ {
   export const outboundSchema = CarrierAccountUPSCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountUPSCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountUPSCreateRequest$Outbound;
+}
+
+export function carrierAccountUPSCreateRequestToJSON(
+  carrierAccountUPSCreateRequest: CarrierAccountUPSCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountUPSCreateRequest$outboundSchema.parse(
+      carrierAccountUPSCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountUPSCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountUPSCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountUPSCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountUPSCreateRequest' from JSON`,
+  );
 }

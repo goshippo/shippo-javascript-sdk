@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Secured funds include money orders, certified cheques and others (see
@@ -112,4 +115,18 @@ export namespace Cod$ {
   export const outboundSchema = Cod$outboundSchema;
   /** @deprecated use `Cod$Outbound` instead. */
   export type Outbound = Cod$Outbound;
+}
+
+export function codToJSON(cod: Cod): string {
+  return JSON.stringify(Cod$outboundSchema.parse(cod));
+}
+
+export function codFromJSON(
+  jsonString: string,
+): SafeParseResult<Cod, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Cod$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Cod' from JSON`,
+  );
 }

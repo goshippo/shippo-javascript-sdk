@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountDPDUKCreateRequestParameters = {};
 
@@ -40,6 +43,33 @@ export namespace CarrierAccountDPDUKCreateRequestParameters$ {
     CarrierAccountDPDUKCreateRequestParameters$outboundSchema;
   /** @deprecated use `CarrierAccountDPDUKCreateRequestParameters$Outbound` instead. */
   export type Outbound = CarrierAccountDPDUKCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountDPDUKCreateRequestParametersToJSON(
+  carrierAccountDPDUKCreateRequestParameters:
+    CarrierAccountDPDUKCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountDPDUKCreateRequestParameters$outboundSchema.parse(
+      carrierAccountDPDUKCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountDPDUKCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountDPDUKCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountDPDUKCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountDPDUKCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -83,4 +113,24 @@ export namespace CarrierAccountDPDUKCreateRequest$ {
   export const outboundSchema = CarrierAccountDPDUKCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountDPDUKCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountDPDUKCreateRequest$Outbound;
+}
+
+export function carrierAccountDPDUKCreateRequestToJSON(
+  carrierAccountDPDUKCreateRequest: CarrierAccountDPDUKCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountDPDUKCreateRequest$outboundSchema.parse(
+      carrierAccountDPDUKCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountDPDUKCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountDPDUKCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountDPDUKCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountDPDUKCreateRequest' from JSON`,
+  );
 }

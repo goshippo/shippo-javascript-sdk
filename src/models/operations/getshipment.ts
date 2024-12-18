@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetShipmentGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace GetShipmentGlobals$ {
   export type Outbound = GetShipmentGlobals$Outbound;
 }
 
+export function getShipmentGlobalsToJSON(
+  getShipmentGlobals: GetShipmentGlobals,
+): string {
+  return JSON.stringify(
+    GetShipmentGlobals$outboundSchema.parse(getShipmentGlobals),
+  );
+}
+
+export function getShipmentGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetShipmentGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetShipmentGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetShipmentGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetShipmentRequest$inboundSchema: z.ZodType<
   GetShipmentRequest,
@@ -105,4 +126,22 @@ export namespace GetShipmentRequest$ {
   export const outboundSchema = GetShipmentRequest$outboundSchema;
   /** @deprecated use `GetShipmentRequest$Outbound` instead. */
   export type Outbound = GetShipmentRequest$Outbound;
+}
+
+export function getShipmentRequestToJSON(
+  getShipmentRequest: GetShipmentRequest,
+): string {
+  return JSON.stringify(
+    GetShipmentRequest$outboundSchema.parse(getShipmentRequest),
+  );
+}
+
+export function getShipmentRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetShipmentRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetShipmentRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetShipmentRequest' from JSON`,
+  );
 }

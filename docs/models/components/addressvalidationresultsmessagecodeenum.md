@@ -5,7 +5,7 @@
 ```typescript
 import { AddressValidationResultsMessageCodeEnum } from "shippo/models/components";
 
-let value: AddressValidationResultsMessageCodeEnum = "Multiple Responses";
+let value: AddressValidationResultsMessageCodeEnum = "geocoded_street";
 ```
 
 ## Values

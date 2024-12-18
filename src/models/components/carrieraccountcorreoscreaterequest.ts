@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountCorreosCreateRequestParameters = {};
 
@@ -43,6 +46,33 @@ export namespace CarrierAccountCorreosCreateRequestParameters$ {
     CarrierAccountCorreosCreateRequestParameters$outboundSchema;
   /** @deprecated use `CarrierAccountCorreosCreateRequestParameters$Outbound` instead. */
   export type Outbound = CarrierAccountCorreosCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountCorreosCreateRequestParametersToJSON(
+  carrierAccountCorreosCreateRequestParameters:
+    CarrierAccountCorreosCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountCorreosCreateRequestParameters$outboundSchema.parse(
+      carrierAccountCorreosCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountCorreosCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountCorreosCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountCorreosCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountCorreosCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -87,4 +117,25 @@ export namespace CarrierAccountCorreosCreateRequest$ {
     CarrierAccountCorreosCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountCorreosCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountCorreosCreateRequest$Outbound;
+}
+
+export function carrierAccountCorreosCreateRequestToJSON(
+  carrierAccountCorreosCreateRequest: CarrierAccountCorreosCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountCorreosCreateRequest$outboundSchema.parse(
+      carrierAccountCorreosCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountCorreosCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountCorreosCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountCorreosCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountCorreosCreateRequest' from JSON`,
+  );
 }

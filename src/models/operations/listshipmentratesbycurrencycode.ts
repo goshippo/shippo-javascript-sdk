@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListShipmentRatesByCurrencyCodeGlobals = {
   /**
@@ -77,6 +80,28 @@ export namespace ListShipmentRatesByCurrencyCodeGlobals$ {
   export type Outbound = ListShipmentRatesByCurrencyCodeGlobals$Outbound;
 }
 
+export function listShipmentRatesByCurrencyCodeGlobalsToJSON(
+  listShipmentRatesByCurrencyCodeGlobals:
+    ListShipmentRatesByCurrencyCodeGlobals,
+): string {
+  return JSON.stringify(
+    ListShipmentRatesByCurrencyCodeGlobals$outboundSchema.parse(
+      listShipmentRatesByCurrencyCodeGlobals,
+    ),
+  );
+}
+
+export function listShipmentRatesByCurrencyCodeGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListShipmentRatesByCurrencyCodeGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListShipmentRatesByCurrencyCodeGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListShipmentRatesByCurrencyCodeGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListShipmentRatesByCurrencyCodeRequest$inboundSchema: z.ZodType<
   ListShipmentRatesByCurrencyCodeRequest,
@@ -132,4 +157,26 @@ export namespace ListShipmentRatesByCurrencyCodeRequest$ {
     ListShipmentRatesByCurrencyCodeRequest$outboundSchema;
   /** @deprecated use `ListShipmentRatesByCurrencyCodeRequest$Outbound` instead. */
   export type Outbound = ListShipmentRatesByCurrencyCodeRequest$Outbound;
+}
+
+export function listShipmentRatesByCurrencyCodeRequestToJSON(
+  listShipmentRatesByCurrencyCodeRequest:
+    ListShipmentRatesByCurrencyCodeRequest,
+): string {
+  return JSON.stringify(
+    ListShipmentRatesByCurrencyCodeRequest$outboundSchema.parse(
+      listShipmentRatesByCurrencyCodeRequest,
+    ),
+  );
+}
+
+export function listShipmentRatesByCurrencyCodeRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListShipmentRatesByCurrencyCodeRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListShipmentRatesByCurrencyCodeRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListShipmentRatesByCurrencyCodeRequest' from JSON`,
+  );
 }

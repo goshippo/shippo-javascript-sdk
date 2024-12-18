@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ObjectStateEnum,
   ObjectStateEnum$inboundSchema,
@@ -222,4 +225,18 @@ export namespace CustomsItem$ {
   export const outboundSchema = CustomsItem$outboundSchema;
   /** @deprecated use `CustomsItem$Outbound` instead. */
   export type Outbound = CustomsItem$Outbound;
+}
+
+export function customsItemToJSON(customsItem: CustomsItem): string {
+  return JSON.stringify(CustomsItem$outboundSchema.parse(customsItem));
+}
+
+export function customsItemFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsItem' from JSON`,
+  );
 }

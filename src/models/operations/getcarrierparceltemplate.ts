@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetCarrierParcelTemplateGlobals = {
   /**
@@ -63,6 +66,26 @@ export namespace GetCarrierParcelTemplateGlobals$ {
   export type Outbound = GetCarrierParcelTemplateGlobals$Outbound;
 }
 
+export function getCarrierParcelTemplateGlobalsToJSON(
+  getCarrierParcelTemplateGlobals: GetCarrierParcelTemplateGlobals,
+): string {
+  return JSON.stringify(
+    GetCarrierParcelTemplateGlobals$outboundSchema.parse(
+      getCarrierParcelTemplateGlobals,
+    ),
+  );
+}
+
+export function getCarrierParcelTemplateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCarrierParcelTemplateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCarrierParcelTemplateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCarrierParcelTemplateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetCarrierParcelTemplateRequest$inboundSchema: z.ZodType<
   GetCarrierParcelTemplateRequest,
@@ -105,4 +128,24 @@ export namespace GetCarrierParcelTemplateRequest$ {
   export const outboundSchema = GetCarrierParcelTemplateRequest$outboundSchema;
   /** @deprecated use `GetCarrierParcelTemplateRequest$Outbound` instead. */
   export type Outbound = GetCarrierParcelTemplateRequest$Outbound;
+}
+
+export function getCarrierParcelTemplateRequestToJSON(
+  getCarrierParcelTemplateRequest: GetCarrierParcelTemplateRequest,
+): string {
+  return JSON.stringify(
+    GetCarrierParcelTemplateRequest$outboundSchema.parse(
+      getCarrierParcelTemplateRequest,
+    ),
+  );
+}
+
+export function getCarrierParcelTemplateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCarrierParcelTemplateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCarrierParcelTemplateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCarrierParcelTemplateRequest' from JSON`,
+  );
 }

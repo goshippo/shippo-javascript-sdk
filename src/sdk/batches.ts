@@ -60,14 +60,14 @@ export class Batches extends ClientSDK {
    * Adds batch shipments to an existing batch.
    */
   async addShipments(
-    batchId: string,
     requestBody: Array<components.BatchShipmentCreateRequest>,
+    batchId: string,
     options?: RequestOptions,
   ): Promise<components.Batch> {
     return unwrapAsync(batchesAddShipments(
       this,
-      batchId,
       requestBody,
+      batchId,
       options,
     ));
   }
@@ -99,14 +99,14 @@ export class Batches extends ClientSDK {
    * Removes shipments from an existing batch shipment.
    */
   async removeShipments(
-    batchId: string,
     requestBody: Array<string>,
+    batchId: string,
     options?: RequestOptions,
   ): Promise<components.Batch> {
     return unwrapAsync(batchesRemoveShipments(
       this,
-      batchId,
       requestBody,
+      batchId,
       options,
     ));
   }

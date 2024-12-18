@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierAccountWithExtraInfo,
   CarrierAccountWithExtraInfo$inboundSchema,
@@ -56,4 +59,24 @@ export namespace CarrierAccountPaginatedList$ {
   export const outboundSchema = CarrierAccountPaginatedList$outboundSchema;
   /** @deprecated use `CarrierAccountPaginatedList$Outbound` instead. */
   export type Outbound = CarrierAccountPaginatedList$Outbound;
+}
+
+export function carrierAccountPaginatedListToJSON(
+  carrierAccountPaginatedList: CarrierAccountPaginatedList,
+): string {
+  return JSON.stringify(
+    CarrierAccountPaginatedList$outboundSchema.parse(
+      carrierAccountPaginatedList,
+    ),
+  );
+}
+
+export function carrierAccountPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountPaginatedList' from JSON`,
+  );
 }

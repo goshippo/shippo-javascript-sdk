@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ValidateAddressGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace ValidateAddressGlobals$ {
   export type Outbound = ValidateAddressGlobals$Outbound;
 }
 
+export function validateAddressGlobalsToJSON(
+  validateAddressGlobals: ValidateAddressGlobals,
+): string {
+  return JSON.stringify(
+    ValidateAddressGlobals$outboundSchema.parse(validateAddressGlobals),
+  );
+}
+
+export function validateAddressGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ValidateAddressGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ValidateAddressGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ValidateAddressGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ValidateAddressRequest$inboundSchema: z.ZodType<
   ValidateAddressRequest,
@@ -105,4 +126,22 @@ export namespace ValidateAddressRequest$ {
   export const outboundSchema = ValidateAddressRequest$outboundSchema;
   /** @deprecated use `ValidateAddressRequest$Outbound` instead. */
   export type Outbound = ValidateAddressRequest$Outbound;
+}
+
+export function validateAddressRequestToJSON(
+  validateAddressRequest: ValidateAddressRequest,
+): string {
+  return JSON.stringify(
+    ValidateAddressRequest$outboundSchema.parse(validateAddressRequest),
+  );
+}
+
+export function validateAddressRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ValidateAddressRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ValidateAddressRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ValidateAddressRequest' from JSON`,
+  );
 }

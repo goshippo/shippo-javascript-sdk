@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountUSPSCreateRequestParameters = {};
 
@@ -42,6 +45,33 @@ export namespace CarrierAccountUSPSCreateRequestParameters$ {
     CarrierAccountUSPSCreateRequestParameters$outboundSchema;
   /** @deprecated use `CarrierAccountUSPSCreateRequestParameters$Outbound` instead. */
   export type Outbound = CarrierAccountUSPSCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountUSPSCreateRequestParametersToJSON(
+  carrierAccountUSPSCreateRequestParameters:
+    CarrierAccountUSPSCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountUSPSCreateRequestParameters$outboundSchema.parse(
+      carrierAccountUSPSCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountUSPSCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountUSPSCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountUSPSCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountUSPSCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -85,4 +115,24 @@ export namespace CarrierAccountUSPSCreateRequest$ {
   export const outboundSchema = CarrierAccountUSPSCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountUSPSCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountUSPSCreateRequest$Outbound;
+}
+
+export function carrierAccountUSPSCreateRequestToJSON(
+  carrierAccountUSPSCreateRequest: CarrierAccountUSPSCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountUSPSCreateRequest$outboundSchema.parse(
+      carrierAccountUSPSCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountUSPSCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountUSPSCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountUSPSCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountUSPSCreateRequest' from JSON`,
+  );
 }

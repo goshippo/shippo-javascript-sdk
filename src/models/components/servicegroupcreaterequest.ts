@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ServiceGroupAccountAndServiceLevel,
   ServiceGroupAccountAndServiceLevel$inboundSchema,
@@ -143,4 +146,22 @@ export namespace ServiceGroupCreateRequest$ {
   export const outboundSchema = ServiceGroupCreateRequest$outboundSchema;
   /** @deprecated use `ServiceGroupCreateRequest$Outbound` instead. */
   export type Outbound = ServiceGroupCreateRequest$Outbound;
+}
+
+export function serviceGroupCreateRequestToJSON(
+  serviceGroupCreateRequest: ServiceGroupCreateRequest,
+): string {
+  return JSON.stringify(
+    ServiceGroupCreateRequest$outboundSchema.parse(serviceGroupCreateRequest),
+  );
+}
+
+export function serviceGroupCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ServiceGroupCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ServiceGroupCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ServiceGroupCreateRequest' from JSON`,
+  );
 }

@@ -6,7 +6,7 @@
 import { GetManifestRequest } from "shippo/models/operations";
 
 let value: GetManifestRequest = {
-  manifestId: "<value>",
+  manifestId: "<id>",
 };
 ```
 

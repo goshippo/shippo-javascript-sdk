@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountCanadaPostCreateParameters = {
   /**
@@ -77,4 +80,31 @@ export namespace CarrierAccountCanadaPostCreateParameters$ {
     CarrierAccountCanadaPostCreateParameters$outboundSchema;
   /** @deprecated use `CarrierAccountCanadaPostCreateParameters$Outbound` instead. */
   export type Outbound = CarrierAccountCanadaPostCreateParameters$Outbound;
+}
+
+export function carrierAccountCanadaPostCreateParametersToJSON(
+  carrierAccountCanadaPostCreateParameters:
+    CarrierAccountCanadaPostCreateParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountCanadaPostCreateParameters$outboundSchema.parse(
+      carrierAccountCanadaPostCreateParameters,
+    ),
+  );
+}
+
+export function carrierAccountCanadaPostCreateParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountCanadaPostCreateParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountCanadaPostCreateParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountCanadaPostCreateParameters' from JSON`,
+  );
 }

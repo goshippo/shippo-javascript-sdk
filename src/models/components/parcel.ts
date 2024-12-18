@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DistanceUnitEnum,
   DistanceUnitEnum$inboundSchema,
@@ -218,4 +221,18 @@ export namespace Parcel$ {
   export const outboundSchema = Parcel$outboundSchema;
   /** @deprecated use `Parcel$Outbound` instead. */
   export type Outbound = Parcel$Outbound;
+}
+
+export function parcelToJSON(parcel: Parcel): string {
+  return JSON.stringify(Parcel$outboundSchema.parse(parcel));
+}
+
+export function parcelFromJSON(
+  jsonString: string,
+): SafeParseResult<Parcel, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Parcel$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Parcel' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateTransactionGlobals = {
   /**
@@ -64,6 +67,24 @@ export namespace CreateTransactionGlobals$ {
   export type Outbound = CreateTransactionGlobals$Outbound;
 }
 
+export function createTransactionGlobalsToJSON(
+  createTransactionGlobals: CreateTransactionGlobals,
+): string {
+  return JSON.stringify(
+    CreateTransactionGlobals$outboundSchema.parse(createTransactionGlobals),
+  );
+}
+
+export function createTransactionGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransactionGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransactionGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransactionGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateTransactionRequestBody$inboundSchema: z.ZodType<
   CreateTransactionRequestBody,
@@ -100,4 +121,24 @@ export namespace CreateTransactionRequestBody$ {
   export const outboundSchema = CreateTransactionRequestBody$outboundSchema;
   /** @deprecated use `CreateTransactionRequestBody$Outbound` instead. */
   export type Outbound = CreateTransactionRequestBody$Outbound;
+}
+
+export function createTransactionRequestBodyToJSON(
+  createTransactionRequestBody: CreateTransactionRequestBody,
+): string {
+  return JSON.stringify(
+    CreateTransactionRequestBody$outboundSchema.parse(
+      createTransactionRequestBody,
+    ),
+  );
+}
+
+export function createTransactionRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransactionRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransactionRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransactionRequestBody' from JSON`,
+  );
 }

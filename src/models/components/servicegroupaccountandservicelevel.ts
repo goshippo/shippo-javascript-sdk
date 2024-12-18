@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ServiceGroupAccountAndServiceLevel = {
   /**
@@ -67,4 +70,25 @@ export namespace ServiceGroupAccountAndServiceLevel$ {
     ServiceGroupAccountAndServiceLevel$outboundSchema;
   /** @deprecated use `ServiceGroupAccountAndServiceLevel$Outbound` instead. */
   export type Outbound = ServiceGroupAccountAndServiceLevel$Outbound;
+}
+
+export function serviceGroupAccountAndServiceLevelToJSON(
+  serviceGroupAccountAndServiceLevel: ServiceGroupAccountAndServiceLevel,
+): string {
+  return JSON.stringify(
+    ServiceGroupAccountAndServiceLevel$outboundSchema.parse(
+      serviceGroupAccountAndServiceLevel,
+    ),
+  );
+}
+
+export function serviceGroupAccountAndServiceLevelFromJSON(
+  jsonString: string,
+): SafeParseResult<ServiceGroupAccountAndServiceLevel, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ServiceGroupAccountAndServiceLevel$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ServiceGroupAccountAndServiceLevel' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WeightUnitEnum,
   WeightUnitEnum$inboundSchema,
@@ -167,4 +170,18 @@ export namespace LineItem$ {
   export const outboundSchema = LineItem$outboundSchema;
   /** @deprecated use `LineItem$Outbound` instead. */
   export type Outbound = LineItem$Outbound;
+}
+
+export function lineItemToJSON(lineItem: LineItem): string {
+  return JSON.stringify(LineItem$outboundSchema.parse(lineItem));
+}
+
+export function lineItemFromJSON(
+  jsonString: string,
+): SafeParseResult<LineItem, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LineItem$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LineItem' from JSON`,
+  );
 }

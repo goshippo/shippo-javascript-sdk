@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ShippoAccountUpdateRequest = {
   email: string;
@@ -67,4 +70,22 @@ export namespace ShippoAccountUpdateRequest$ {
   export const outboundSchema = ShippoAccountUpdateRequest$outboundSchema;
   /** @deprecated use `ShippoAccountUpdateRequest$Outbound` instead. */
   export type Outbound = ShippoAccountUpdateRequest$Outbound;
+}
+
+export function shippoAccountUpdateRequestToJSON(
+  shippoAccountUpdateRequest: ShippoAccountUpdateRequest,
+): string {
+  return JSON.stringify(
+    ShippoAccountUpdateRequest$outboundSchema.parse(shippoAccountUpdateRequest),
+  );
+}
+
+export function shippoAccountUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ShippoAccountUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ShippoAccountUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ShippoAccountUpdateRequest' from JSON`,
+  );
 }

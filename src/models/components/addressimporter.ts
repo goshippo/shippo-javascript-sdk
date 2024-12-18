@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Object that represents the address of the importer
@@ -161,4 +164,20 @@ export namespace AddressImporter$ {
   export const outboundSchema = AddressImporter$outboundSchema;
   /** @deprecated use `AddressImporter$Outbound` instead. */
   export type Outbound = AddressImporter$Outbound;
+}
+
+export function addressImporterToJSON(
+  addressImporter: AddressImporter,
+): string {
+  return JSON.stringify(AddressImporter$outboundSchema.parse(addressImporter));
+}
+
+export function addressImporterFromJSON(
+  jsonString: string,
+): SafeParseResult<AddressImporter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddressImporter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddressImporter' from JSON`,
+  );
 }

@@ -15,5 +15,5 @@ targets:
                 token: $npm_token
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/shippo/shippo/openapi-code-samples
+                location: registry.speakeasyapi.dev/shippo/shippo/openapi-typescript-code-samples
             blocking: false

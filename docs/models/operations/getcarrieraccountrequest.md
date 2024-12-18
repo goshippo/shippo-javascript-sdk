@@ -6,7 +6,7 @@
 import { GetCarrierAccountRequest } from "shippo/models/operations";
 
 let value: GetCarrierAccountRequest = {
-  carrierAccountId: "<value>",
+  carrierAccountId: "<id>",
 };
 ```
 

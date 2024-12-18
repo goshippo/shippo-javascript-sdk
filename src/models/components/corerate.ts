@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CoreRate = {
   /**
@@ -134,4 +137,18 @@ export namespace CoreRate$ {
   export const outboundSchema = CoreRate$outboundSchema;
   /** @deprecated use `CoreRate$Outbound` instead. */
   export type Outbound = CoreRate$Outbound;
+}
+
+export function coreRateToJSON(coreRate: CoreRate): string {
+  return JSON.stringify(CoreRate$outboundSchema.parse(coreRate));
+}
+
+export function coreRateFromJSON(
+  jsonString: string,
+): SafeParseResult<CoreRate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CoreRate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CoreRate' from JSON`,
+  );
 }

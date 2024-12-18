@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomsTaxIdentification,
   CustomsTaxIdentification$inboundSchema,
@@ -79,4 +82,24 @@ export namespace CustomsExporterIdentification$ {
   export const outboundSchema = CustomsExporterIdentification$outboundSchema;
   /** @deprecated use `CustomsExporterIdentification$Outbound` instead. */
   export type Outbound = CustomsExporterIdentification$Outbound;
+}
+
+export function customsExporterIdentificationToJSON(
+  customsExporterIdentification: CustomsExporterIdentification,
+): string {
+  return JSON.stringify(
+    CustomsExporterIdentification$outboundSchema.parse(
+      customsExporterIdentification,
+    ),
+  );
+}
+
+export function customsExporterIdentificationFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsExporterIdentification, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsExporterIdentification$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsExporterIdentification' from JSON`,
+  );
 }

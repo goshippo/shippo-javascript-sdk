@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Manifest,
   Manifest$inboundSchema,
@@ -56,4 +59,22 @@ export namespace ManifestPaginatedList$ {
   export const outboundSchema = ManifestPaginatedList$outboundSchema;
   /** @deprecated use `ManifestPaginatedList$Outbound` instead. */
   export type Outbound = ManifestPaginatedList$Outbound;
+}
+
+export function manifestPaginatedListToJSON(
+  manifestPaginatedList: ManifestPaginatedList,
+): string {
+  return JSON.stringify(
+    ManifestPaginatedList$outboundSchema.parse(manifestPaginatedList),
+  );
+}
+
+export function manifestPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<ManifestPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ManifestPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ManifestPaginatedList' from JSON`,
+  );
 }
