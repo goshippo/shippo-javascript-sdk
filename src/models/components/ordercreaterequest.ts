@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AddressCreateRequest,
   AddressCreateRequest$inboundSchema,
@@ -217,4 +220,22 @@ export namespace OrderCreateRequest$ {
   export const outboundSchema = OrderCreateRequest$outboundSchema;
   /** @deprecated use `OrderCreateRequest$Outbound` instead. */
   export type Outbound = OrderCreateRequest$Outbound;
+}
+
+export function orderCreateRequestToJSON(
+  orderCreateRequest: OrderCreateRequest,
+): string {
+  return JSON.stringify(
+    OrderCreateRequest$outboundSchema.parse(orderCreateRequest),
+  );
+}
+
+export function orderCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<OrderCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrderCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrderCreateRequest' from JSON`,
+  );
 }

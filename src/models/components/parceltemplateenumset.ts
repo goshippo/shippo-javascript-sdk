@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ParcelTemplateAramexAustraliaEnum,
   ParcelTemplateAramexAustraliaEnum$inboundSchema,
@@ -102,4 +105,22 @@ export namespace ParcelTemplateEnumSet$ {
   export const outboundSchema = ParcelTemplateEnumSet$outboundSchema;
   /** @deprecated use `ParcelTemplateEnumSet$Outbound` instead. */
   export type Outbound = ParcelTemplateEnumSet$Outbound;
+}
+
+export function parcelTemplateEnumSetToJSON(
+  parcelTemplateEnumSet: ParcelTemplateEnumSet,
+): string {
+  return JSON.stringify(
+    ParcelTemplateEnumSet$outboundSchema.parse(parcelTemplateEnumSet),
+  );
+}
+
+export function parcelTemplateEnumSetFromJSON(
+  jsonString: string,
+): SafeParseResult<ParcelTemplateEnumSet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ParcelTemplateEnumSet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParcelTemplateEnumSet' from JSON`,
+  );
 }

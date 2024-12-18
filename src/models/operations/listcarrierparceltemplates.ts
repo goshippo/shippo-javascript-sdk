@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCarrierParcelTemplatesGlobals = {
   /**
@@ -82,6 +85,26 @@ export namespace ListCarrierParcelTemplatesGlobals$ {
   export type Outbound = ListCarrierParcelTemplatesGlobals$Outbound;
 }
 
+export function listCarrierParcelTemplatesGlobalsToJSON(
+  listCarrierParcelTemplatesGlobals: ListCarrierParcelTemplatesGlobals,
+): string {
+  return JSON.stringify(
+    ListCarrierParcelTemplatesGlobals$outboundSchema.parse(
+      listCarrierParcelTemplatesGlobals,
+    ),
+  );
+}
+
+export function listCarrierParcelTemplatesGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCarrierParcelTemplatesGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCarrierParcelTemplatesGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCarrierParcelTemplatesGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const Include$inboundSchema: z.ZodNativeEnum<typeof Include> = z
   .nativeEnum(Include);
@@ -139,4 +162,24 @@ export namespace ListCarrierParcelTemplatesRequest$ {
     ListCarrierParcelTemplatesRequest$outboundSchema;
   /** @deprecated use `ListCarrierParcelTemplatesRequest$Outbound` instead. */
   export type Outbound = ListCarrierParcelTemplatesRequest$Outbound;
+}
+
+export function listCarrierParcelTemplatesRequestToJSON(
+  listCarrierParcelTemplatesRequest: ListCarrierParcelTemplatesRequest,
+): string {
+  return JSON.stringify(
+    ListCarrierParcelTemplatesRequest$outboundSchema.parse(
+      listCarrierParcelTemplatesRequest,
+    ),
+  );
+}
+
+export function listCarrierParcelTemplatesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCarrierParcelTemplatesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCarrierParcelTemplatesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCarrierParcelTemplatesRequest' from JSON`,
+  );
 }

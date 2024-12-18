@@ -7,7 +7,7 @@ Specify an ancillary service endorsement to provide the USPS with instructions o
 ```typescript
 import { AncillaryEndorsement } from "shippo/models/components";
 
-let value: AncillaryEndorsement = "FORWARDING_SERVICE_REQUESTED";
+let value: AncillaryEndorsement = "RETURN_SERVICE_REQUESTED";
 ```
 
 ## Values

@@ -6,7 +6,7 @@
 import { UpdateShippoAccountRequest } from "shippo/models/operations";
 
 let value: UpdateShippoAccountRequest = {
-  shippoAccountId: "<value>",
+  shippoAccountId: "<id>",
   shippoAccountUpdateRequest: {
     email: "hippo@shippo.com",
     firstName: "Shippo",

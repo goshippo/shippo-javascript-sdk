@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Specify the reference field on the label (FedEx and UPS only).
@@ -78,4 +81,22 @@ export namespace CustomerReference$ {
   export const outboundSchema = CustomerReference$outboundSchema;
   /** @deprecated use `CustomerReference$Outbound` instead. */
   export type Outbound = CustomerReference$Outbound;
+}
+
+export function customerReferenceToJSON(
+  customerReference: CustomerReference,
+): string {
+  return JSON.stringify(
+    CustomerReference$outboundSchema.parse(customerReference),
+  );
+}
+
+export function customerReferenceFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomerReference, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomerReference$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomerReference' from JSON`,
+  );
 }

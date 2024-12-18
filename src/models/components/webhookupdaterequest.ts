@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WebhookEventTypeEnum,
   WebhookEventTypeEnum$inboundSchema,
@@ -80,4 +83,22 @@ export namespace WebhookUpdateRequest$ {
   export const outboundSchema = WebhookUpdateRequest$outboundSchema;
   /** @deprecated use `WebhookUpdateRequest$Outbound` instead. */
   export type Outbound = WebhookUpdateRequest$Outbound;
+}
+
+export function webhookUpdateRequestToJSON(
+  webhookUpdateRequest: WebhookUpdateRequest,
+): string {
+  return JSON.stringify(
+    WebhookUpdateRequest$outboundSchema.parse(webhookUpdateRequest),
+  );
+}
+
+export function webhookUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookUpdateRequest' from JSON`,
+  );
 }

@@ -16,16 +16,12 @@ export class TrackingStatus extends ClientSDK {
    * Registers a webhook that will send HTTP notifications to you when the status of your tracked package changes. For more details on creating a webhook, see our guides on <a href="https://docs.goshippo.com/docs/tracking/webhooks/">Webhooks</a> and <a href="https://docs.goshippo.com/docs/tracking/tracking/">Tracking</a>.
    */
   async create(
-    carrier: string,
-    trackingNumber: string,
-    metadata?: string | undefined,
+    request: components.TracksRequest,
     options?: RequestOptions,
   ): Promise<components.Track> {
     return unwrapAsync(trackingStatusCreate(
       this,
-      carrier,
-      trackingNumber,
-      metadata,
+      request,
       options,
     ));
   }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierAccountCanadaPostCreateParameters,
   CarrierAccountCanadaPostCreateParameters$inboundSchema,
@@ -54,4 +57,25 @@ export namespace CarrierAccountCanadaPostCreateRequest$ {
     CarrierAccountCanadaPostCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountCanadaPostCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountCanadaPostCreateRequest$Outbound;
+}
+
+export function carrierAccountCanadaPostCreateRequestToJSON(
+  carrierAccountCanadaPostCreateRequest: CarrierAccountCanadaPostCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountCanadaPostCreateRequest$outboundSchema.parse(
+      carrierAccountCanadaPostCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountCanadaPostCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountCanadaPostCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountCanadaPostCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountCanadaPostCreateRequest' from JSON`,
+  );
 }

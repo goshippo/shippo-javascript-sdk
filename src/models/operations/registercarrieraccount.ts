@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RegisterCarrierAccountGlobals = {
   /**
@@ -75,6 +78,26 @@ export namespace RegisterCarrierAccountGlobals$ {
   export const outboundSchema = RegisterCarrierAccountGlobals$outboundSchema;
   /** @deprecated use `RegisterCarrierAccountGlobals$Outbound` instead. */
   export type Outbound = RegisterCarrierAccountGlobals$Outbound;
+}
+
+export function registerCarrierAccountGlobalsToJSON(
+  registerCarrierAccountGlobals: RegisterCarrierAccountGlobals,
+): string {
+  return JSON.stringify(
+    RegisterCarrierAccountGlobals$outboundSchema.parse(
+      registerCarrierAccountGlobals,
+    ),
+  );
+}
+
+export function registerCarrierAccountGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<RegisterCarrierAccountGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RegisterCarrierAccountGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RegisterCarrierAccountGlobals' from JSON`,
+  );
 }
 
 /** @internal */
@@ -153,4 +176,24 @@ export namespace RegisterCarrierAccountRequestBody$ {
     RegisterCarrierAccountRequestBody$outboundSchema;
   /** @deprecated use `RegisterCarrierAccountRequestBody$Outbound` instead. */
   export type Outbound = RegisterCarrierAccountRequestBody$Outbound;
+}
+
+export function registerCarrierAccountRequestBodyToJSON(
+  registerCarrierAccountRequestBody: RegisterCarrierAccountRequestBody,
+): string {
+  return JSON.stringify(
+    RegisterCarrierAccountRequestBody$outboundSchema.parse(
+      registerCarrierAccountRequestBody,
+    ),
+  );
+}
+
+export function registerCarrierAccountRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<RegisterCarrierAccountRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RegisterCarrierAccountRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RegisterCarrierAccountRequestBody' from JSON`,
+  );
 }

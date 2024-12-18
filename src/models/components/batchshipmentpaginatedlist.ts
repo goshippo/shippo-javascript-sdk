@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BatchShipment,
   BatchShipment$inboundSchema,
@@ -62,4 +65,22 @@ export namespace BatchShipmentPaginatedList$ {
   export const outboundSchema = BatchShipmentPaginatedList$outboundSchema;
   /** @deprecated use `BatchShipmentPaginatedList$Outbound` instead. */
   export type Outbound = BatchShipmentPaginatedList$Outbound;
+}
+
+export function batchShipmentPaginatedListToJSON(
+  batchShipmentPaginatedList: BatchShipmentPaginatedList,
+): string {
+  return JSON.stringify(
+    BatchShipmentPaginatedList$outboundSchema.parse(batchShipmentPaginatedList),
+  );
+}
+
+export function batchShipmentPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<BatchShipmentPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BatchShipmentPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BatchShipmentPaginatedList' from JSON`,
+  );
 }

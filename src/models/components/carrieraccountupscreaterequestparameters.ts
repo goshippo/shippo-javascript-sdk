@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountUPSCreateRequestParameters = {
   billingAddressCity: string;
@@ -180,4 +183,31 @@ export namespace CarrierAccountUPSCreateRequestParameters$ {
     CarrierAccountUPSCreateRequestParameters$outboundSchema;
   /** @deprecated use `CarrierAccountUPSCreateRequestParameters$Outbound` instead. */
   export type Outbound = CarrierAccountUPSCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountUPSCreateRequestParametersToJSON(
+  carrierAccountUPSCreateRequestParameters:
+    CarrierAccountUPSCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountUPSCreateRequestParameters$outboundSchema.parse(
+      carrierAccountUPSCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountUPSCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountUPSCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountUPSCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountUPSCreateRequestParameters' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AddressCreateRequest,
   AddressCreateRequest$inboundSchema,
@@ -114,6 +117,20 @@ export namespace AddressFrom$ {
   export type Outbound = AddressFrom$Outbound;
 }
 
+export function addressFromToJSON(addressFrom: AddressFrom): string {
+  return JSON.stringify(AddressFrom$outboundSchema.parse(addressFrom));
+}
+
+export function addressFromFromJSON(
+  jsonString: string,
+): SafeParseResult<AddressFrom, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddressFrom$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddressFrom' from JSON`,
+  );
+}
+
 /** @internal */
 export const AddressReturn$inboundSchema: z.ZodType<
   AddressReturn,
@@ -144,6 +161,20 @@ export namespace AddressReturn$ {
   export type Outbound = AddressReturn$Outbound;
 }
 
+export function addressReturnToJSON(addressReturn: AddressReturn): string {
+  return JSON.stringify(AddressReturn$outboundSchema.parse(addressReturn));
+}
+
+export function addressReturnFromJSON(
+  jsonString: string,
+): SafeParseResult<AddressReturn, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddressReturn$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddressReturn' from JSON`,
+  );
+}
+
 /** @internal */
 export const AddressTo$inboundSchema: z.ZodType<
   AddressTo,
@@ -172,6 +203,20 @@ export namespace AddressTo$ {
   export const outboundSchema = AddressTo$outboundSchema;
   /** @deprecated use `AddressTo$Outbound` instead. */
   export type Outbound = AddressTo$Outbound;
+}
+
+export function addressToToJSON(addressTo: AddressTo): string {
+  return JSON.stringify(AddressTo$outboundSchema.parse(addressTo));
+}
+
+export function addressToFromJSON(
+  jsonString: string,
+): SafeParseResult<AddressTo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddressTo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddressTo' from JSON`,
+  );
 }
 
 /** @internal */
@@ -206,6 +251,33 @@ export namespace ShipmentCreateRequestCustomsDeclaration$ {
     ShipmentCreateRequestCustomsDeclaration$outboundSchema;
   /** @deprecated use `ShipmentCreateRequestCustomsDeclaration$Outbound` instead. */
   export type Outbound = ShipmentCreateRequestCustomsDeclaration$Outbound;
+}
+
+export function shipmentCreateRequestCustomsDeclarationToJSON(
+  shipmentCreateRequestCustomsDeclaration:
+    ShipmentCreateRequestCustomsDeclaration,
+): string {
+  return JSON.stringify(
+    ShipmentCreateRequestCustomsDeclaration$outboundSchema.parse(
+      shipmentCreateRequestCustomsDeclaration,
+    ),
+  );
+}
+
+export function shipmentCreateRequestCustomsDeclarationFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ShipmentCreateRequestCustomsDeclaration,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ShipmentCreateRequestCustomsDeclaration$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ShipmentCreateRequestCustomsDeclaration' from JSON`,
+  );
 }
 
 /** @internal */
@@ -244,6 +316,20 @@ export namespace Parcels$ {
   export const outboundSchema = Parcels$outboundSchema;
   /** @deprecated use `Parcels$Outbound` instead. */
   export type Outbound = Parcels$Outbound;
+}
+
+export function parcelsToJSON(parcels: Parcels): string {
+  return JSON.stringify(Parcels$outboundSchema.parse(parcels));
+}
+
+export function parcelsFromJSON(
+  jsonString: string,
+): SafeParseResult<Parcels, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Parcels$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Parcels' from JSON`,
+  );
 }
 
 /** @internal */
@@ -352,4 +438,22 @@ export namespace ShipmentCreateRequest$ {
   export const outboundSchema = ShipmentCreateRequest$outboundSchema;
   /** @deprecated use `ShipmentCreateRequest$Outbound` instead. */
   export type Outbound = ShipmentCreateRequest$Outbound;
+}
+
+export function shipmentCreateRequestToJSON(
+  shipmentCreateRequest: ShipmentCreateRequest,
+): string {
+  return JSON.stringify(
+    ShipmentCreateRequest$outboundSchema.parse(shipmentCreateRequest),
+  );
+}
+
+export function shipmentCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ShipmentCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ShipmentCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ShipmentCreateRequest' from JSON`,
+  );
 }

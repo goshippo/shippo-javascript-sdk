@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DistanceUnitEnum,
   DistanceUnitEnum$inboundSchema,
@@ -110,4 +113,22 @@ export namespace CarrierParcelTemplate$ {
   export const outboundSchema = CarrierParcelTemplate$outboundSchema;
   /** @deprecated use `CarrierParcelTemplate$Outbound` instead. */
   export type Outbound = CarrierParcelTemplate$Outbound;
+}
+
+export function carrierParcelTemplateToJSON(
+  carrierParcelTemplate: CarrierParcelTemplate,
+): string {
+  return JSON.stringify(
+    CarrierParcelTemplate$outboundSchema.parse(carrierParcelTemplate),
+  );
+}
+
+export function carrierParcelTemplateFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierParcelTemplate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierParcelTemplate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierParcelTemplate' from JSON`,
+  );
 }

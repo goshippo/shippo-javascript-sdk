@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Rate,
   Rate$inboundSchema,
@@ -56,4 +59,22 @@ export namespace RatePaginatedList$ {
   export const outboundSchema = RatePaginatedList$outboundSchema;
   /** @deprecated use `RatePaginatedList$Outbound` instead. */
   export type Outbound = RatePaginatedList$Outbound;
+}
+
+export function ratePaginatedListToJSON(
+  ratePaginatedList: RatePaginatedList,
+): string {
+  return JSON.stringify(
+    RatePaginatedList$outboundSchema.parse(ratePaginatedList),
+  );
+}
+
+export function ratePaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<RatePaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RatePaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RatePaginatedList' from JSON`,
+  );
 }

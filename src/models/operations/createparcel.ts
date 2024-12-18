@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateParcelGlobals = {
   /**
@@ -64,6 +67,24 @@ export namespace CreateParcelGlobals$ {
   export type Outbound = CreateParcelGlobals$Outbound;
 }
 
+export function createParcelGlobalsToJSON(
+  createParcelGlobals: CreateParcelGlobals,
+): string {
+  return JSON.stringify(
+    CreateParcelGlobals$outboundSchema.parse(createParcelGlobals),
+  );
+}
+
+export function createParcelGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateParcelGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateParcelGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateParcelGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateParcelRequestBody$inboundSchema: z.ZodType<
   CreateParcelRequestBody,
@@ -100,4 +121,22 @@ export namespace CreateParcelRequestBody$ {
   export const outboundSchema = CreateParcelRequestBody$outboundSchema;
   /** @deprecated use `CreateParcelRequestBody$Outbound` instead. */
   export type Outbound = CreateParcelRequestBody$Outbound;
+}
+
+export function createParcelRequestBodyToJSON(
+  createParcelRequestBody: CreateParcelRequestBody,
+): string {
+  return JSON.stringify(
+    CreateParcelRequestBody$outboundSchema.parse(createParcelRequestBody),
+  );
+}
+
+export function createParcelRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateParcelRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateParcelRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateParcelRequestBody' from JSON`,
+  );
 }

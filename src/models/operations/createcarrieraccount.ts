@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateCarrierAccountGlobals = {
   /**
@@ -54,4 +57,24 @@ export namespace CreateCarrierAccountGlobals$ {
   export const outboundSchema = CreateCarrierAccountGlobals$outboundSchema;
   /** @deprecated use `CreateCarrierAccountGlobals$Outbound` instead. */
   export type Outbound = CreateCarrierAccountGlobals$Outbound;
+}
+
+export function createCarrierAccountGlobalsToJSON(
+  createCarrierAccountGlobals: CreateCarrierAccountGlobals,
+): string {
+  return JSON.stringify(
+    CreateCarrierAccountGlobals$outboundSchema.parse(
+      createCarrierAccountGlobals,
+    ),
+  );
+}
+
+export function createCarrierAccountGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateCarrierAccountGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateCarrierAccountGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateCarrierAccountGlobals' from JSON`,
+  );
 }

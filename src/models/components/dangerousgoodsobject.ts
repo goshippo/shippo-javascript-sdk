@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DangerousGoodsBiologicalMaterial,
   DangerousGoodsBiologicalMaterial$inboundSchema,
@@ -91,4 +94,22 @@ export namespace DangerousGoodsObject$ {
   export const outboundSchema = DangerousGoodsObject$outboundSchema;
   /** @deprecated use `DangerousGoodsObject$Outbound` instead. */
   export type Outbound = DangerousGoodsObject$Outbound;
+}
+
+export function dangerousGoodsObjectToJSON(
+  dangerousGoodsObject: DangerousGoodsObject,
+): string {
+  return JSON.stringify(
+    DangerousGoodsObject$outboundSchema.parse(dangerousGoodsObject),
+  );
+}
+
+export function dangerousGoodsObjectFromJSON(
+  jsonString: string,
+): SafeParseResult<DangerousGoodsObject, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DangerousGoodsObject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DangerousGoodsObject' from JSON`,
+  );
 }

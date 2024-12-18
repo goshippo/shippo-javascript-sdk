@@ -6,7 +6,7 @@
 import { ListShipmentRatesRequest } from "shippo/models/operations";
 
 let value: ListShipmentRatesRequest = {
-  shipmentId: "<value>",
+  shipmentId: "<id>",
 };
 ```
 

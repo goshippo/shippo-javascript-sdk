@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TrackingStatusLocationBase = {
   city?: string | undefined;
@@ -54,4 +57,22 @@ export namespace TrackingStatusLocationBase$ {
   export const outboundSchema = TrackingStatusLocationBase$outboundSchema;
   /** @deprecated use `TrackingStatusLocationBase$Outbound` instead. */
   export type Outbound = TrackingStatusLocationBase$Outbound;
+}
+
+export function trackingStatusLocationBaseToJSON(
+  trackingStatusLocationBase: TrackingStatusLocationBase,
+): string {
+  return JSON.stringify(
+    TrackingStatusLocationBase$outboundSchema.parse(trackingStatusLocationBase),
+  );
+}
+
+export function trackingStatusLocationBaseFromJSON(
+  jsonString: string,
+): SafeParseResult<TrackingStatusLocationBase, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TrackingStatusLocationBase$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TrackingStatusLocationBase' from JSON`,
+  );
 }

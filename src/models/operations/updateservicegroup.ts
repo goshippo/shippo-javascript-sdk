@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateServiceGroupGlobals = {
   /**
@@ -54,4 +57,22 @@ export namespace UpdateServiceGroupGlobals$ {
   export const outboundSchema = UpdateServiceGroupGlobals$outboundSchema;
   /** @deprecated use `UpdateServiceGroupGlobals$Outbound` instead. */
   export type Outbound = UpdateServiceGroupGlobals$Outbound;
+}
+
+export function updateServiceGroupGlobalsToJSON(
+  updateServiceGroupGlobals: UpdateServiceGroupGlobals,
+): string {
+  return JSON.stringify(
+    UpdateServiceGroupGlobals$outboundSchema.parse(updateServiceGroupGlobals),
+  );
+}
+
+export function updateServiceGroupGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateServiceGroupGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateServiceGroupGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateServiceGroupGlobals' from JSON`,
+  );
 }

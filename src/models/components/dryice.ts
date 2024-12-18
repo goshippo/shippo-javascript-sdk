@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Specify that the package contains Dry Ice (FedEx, Veho, and UPS only).
@@ -61,4 +64,18 @@ export namespace DryIce$ {
   export const outboundSchema = DryIce$outboundSchema;
   /** @deprecated use `DryIce$Outbound` instead. */
   export type Outbound = DryIce$Outbound;
+}
+
+export function dryIceToJSON(dryIce: DryIce): string {
+  return JSON.stringify(DryIce$outboundSchema.parse(dryIce));
+}
+
+export function dryIceFromJSON(
+  jsonString: string,
+): SafeParseResult<DryIce, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DryIce$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DryIce' from JSON`,
+  );
 }

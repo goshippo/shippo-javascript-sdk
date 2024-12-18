@@ -8,7 +8,7 @@ or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
 ```typescript
 import { SignatureConfirmation } from "shippo/models/components";
 
-let value: SignatureConfirmation = "CARRIER_CONFIRMATION";
+let value: SignatureConfirmation = "INDIRECT";
 ```
 
 ## Values

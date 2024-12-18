@@ -7,7 +7,7 @@ filter by specific carrier
 ```typescript
 import { Carrier } from "shippo/models/operations";
 
-let value: Carrier = "canada_post";
+let value: Carrier = "ups";
 ```
 
 ## Values

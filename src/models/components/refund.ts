@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Indicates the status of the Refund.
@@ -137,4 +140,18 @@ export namespace Refund$ {
   export const outboundSchema = Refund$outboundSchema;
   /** @deprecated use `Refund$Outbound` instead. */
   export type Outbound = Refund$Outbound;
+}
+
+export function refundToJSON(refund: Refund): string {
+  return JSON.stringify(Refund$outboundSchema.parse(refund));
+}
+
+export function refundFromJSON(
+  jsonString: string,
+): SafeParseResult<Refund, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Refund$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Refund' from JSON`,
+  );
 }

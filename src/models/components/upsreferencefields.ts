@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UPSReferenceFields = {
   /**
@@ -68,4 +71,22 @@ export namespace UPSReferenceFields$ {
   export const outboundSchema = UPSReferenceFields$outboundSchema;
   /** @deprecated use `UPSReferenceFields$Outbound` instead. */
   export type Outbound = UPSReferenceFields$Outbound;
+}
+
+export function upsReferenceFieldsToJSON(
+  upsReferenceFields: UPSReferenceFields,
+): string {
+  return JSON.stringify(
+    UPSReferenceFields$outboundSchema.parse(upsReferenceFields),
+  );
+}
+
+export function upsReferenceFieldsFromJSON(
+  jsonString: string,
+): SafeParseResult<UPSReferenceFields, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UPSReferenceFields$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UPSReferenceFields' from JSON`,
+  );
 }

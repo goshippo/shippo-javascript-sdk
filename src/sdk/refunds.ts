@@ -7,6 +7,7 @@ import { refundsGet } from "../funcs/refundsGet.js";
 import { refundsList } from "../funcs/refundsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Refunds extends ClientSDK {
@@ -17,14 +18,12 @@ export class Refunds extends ClientSDK {
    * Creates a new refund object.
    */
   async create(
-    transaction: string,
-    async?: boolean | undefined,
+    request: components.RefundRequestBody,
     options?: RequestOptions,
   ): Promise<components.Refund> {
     return unwrapAsync(refundsCreate(
       this,
-      transaction,
-      async,
+      request,
       options,
     ));
   }
@@ -36,10 +35,12 @@ export class Refunds extends ClientSDK {
    * Returns a list all refund objects.
    */
   async list(
+    request: operations.ListRefundsRequest,
     options?: RequestOptions,
   ): Promise<components.RefundPaginatedList> {
     return unwrapAsync(refundsList(
       this,
+      request,
       options,
     ));
   }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddressValidationResultsMessage = {
   /**
@@ -60,4 +63,24 @@ export namespace AddressValidationResultsMessage$ {
   export const outboundSchema = AddressValidationResultsMessage$outboundSchema;
   /** @deprecated use `AddressValidationResultsMessage$Outbound` instead. */
   export type Outbound = AddressValidationResultsMessage$Outbound;
+}
+
+export function addressValidationResultsMessageToJSON(
+  addressValidationResultsMessage: AddressValidationResultsMessage,
+): string {
+  return JSON.stringify(
+    AddressValidationResultsMessage$outboundSchema.parse(
+      addressValidationResultsMessage,
+    ),
+  );
+}
+
+export function addressValidationResultsMessageFromJSON(
+  jsonString: string,
+): SafeParseResult<AddressValidationResultsMessage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddressValidationResultsMessage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddressValidationResultsMessage' from JSON`,
+  );
 }

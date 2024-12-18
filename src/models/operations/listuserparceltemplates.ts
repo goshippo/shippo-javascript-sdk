@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListUserParcelTemplatesGlobals = {
   /**
@@ -58,6 +61,26 @@ export namespace ListUserParcelTemplatesGlobals$ {
   export type Outbound = ListUserParcelTemplatesGlobals$Outbound;
 }
 
+export function listUserParcelTemplatesGlobalsToJSON(
+  listUserParcelTemplatesGlobals: ListUserParcelTemplatesGlobals,
+): string {
+  return JSON.stringify(
+    ListUserParcelTemplatesGlobals$outboundSchema.parse(
+      listUserParcelTemplatesGlobals,
+    ),
+  );
+}
+
+export function listUserParcelTemplatesGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListUserParcelTemplatesGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListUserParcelTemplatesGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListUserParcelTemplatesGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListUserParcelTemplatesRequest$inboundSchema: z.ZodType<
   ListUserParcelTemplatesRequest,
@@ -86,4 +109,24 @@ export namespace ListUserParcelTemplatesRequest$ {
   export const outboundSchema = ListUserParcelTemplatesRequest$outboundSchema;
   /** @deprecated use `ListUserParcelTemplatesRequest$Outbound` instead. */
   export type Outbound = ListUserParcelTemplatesRequest$Outbound;
+}
+
+export function listUserParcelTemplatesRequestToJSON(
+  listUserParcelTemplatesRequest: ListUserParcelTemplatesRequest,
+): string {
+  return JSON.stringify(
+    ListUserParcelTemplatesRequest$outboundSchema.parse(
+      listUserParcelTemplatesRequest,
+    ),
+  );
+}
+
+export function listUserParcelTemplatesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListUserParcelTemplatesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListUserParcelTemplatesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListUserParcelTemplatesRequest' from JSON`,
+  );
 }

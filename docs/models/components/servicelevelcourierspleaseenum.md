@@ -21,7 +21,7 @@
 import { ServiceLevelCouriersPleaseEnum } from "shippo/models/components";
 
 let value: ServiceLevelCouriersPleaseEnum =
-  "couriersplease_gold_domestic_auth_to_leave";
+  "couriersplease_satchel_sign_required";
 ```
 
 ## Values

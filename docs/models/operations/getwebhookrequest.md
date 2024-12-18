@@ -6,7 +6,7 @@
 import { GetWebhookRequest } from "shippo/models/operations";
 
 let value: GetWebhookRequest = {
-  webhookId: "<value>",
+  webhookId: "<id>",
 };
 ```
 

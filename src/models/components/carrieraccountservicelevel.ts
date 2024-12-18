@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Contains details regarding the service level for the carrier account.
@@ -79,4 +82,22 @@ export namespace CarrierAccountServiceLevel$ {
   export const outboundSchema = CarrierAccountServiceLevel$outboundSchema;
   /** @deprecated use `CarrierAccountServiceLevel$Outbound` instead. */
   export type Outbound = CarrierAccountServiceLevel$Outbound;
+}
+
+export function carrierAccountServiceLevelToJSON(
+  carrierAccountServiceLevel: CarrierAccountServiceLevel,
+): string {
+  return JSON.stringify(
+    CarrierAccountServiceLevel$outboundSchema.parse(carrierAccountServiceLevel),
+  );
+}
+
+export function carrierAccountServiceLevelFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountServiceLevel, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountServiceLevel$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountServiceLevel' from JSON`,
+  );
 }

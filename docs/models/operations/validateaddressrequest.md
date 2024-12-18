@@ -6,7 +6,7 @@
 import { ValidateAddressRequest } from "shippo/models/operations";
 
 let value: ValidateAddressRequest = {
-  addressId: "<value>",
+  addressId: "<id>",
 };
 ```
 

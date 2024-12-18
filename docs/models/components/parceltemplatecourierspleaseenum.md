@@ -13,7 +13,7 @@
 ```typescript
 import { ParcelTemplateCouriersPleaseEnum } from "shippo/models/components";
 
-let value: ParcelTemplateCouriersPleaseEnum = "couriersplease_1kg_satchel";
+let value: ParcelTemplateCouriersPleaseEnum = "couriersplease_3kg_satchel";
 ```
 
 ## Values

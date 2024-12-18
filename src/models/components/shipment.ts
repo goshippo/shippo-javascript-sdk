@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -288,4 +291,18 @@ export namespace Shipment$ {
   export const outboundSchema = Shipment$outboundSchema;
   /** @deprecated use `Shipment$Outbound` instead. */
   export type Outbound = Shipment$Outbound;
+}
+
+export function shipmentToJSON(shipment: Shipment): string {
+  return JSON.stringify(Shipment$outboundSchema.parse(shipment));
+}
+
+export function shipmentFromJSON(
+  jsonString: string,
+): SafeParseResult<Shipment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Shipment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Shipment' from JSON`,
+  );
 }

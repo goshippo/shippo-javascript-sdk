@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DistanceUnitEnum,
   DistanceUnitEnum$inboundSchema,
@@ -121,4 +124,22 @@ export namespace ParcelCreateRequest$ {
   export const outboundSchema = ParcelCreateRequest$outboundSchema;
   /** @deprecated use `ParcelCreateRequest$Outbound` instead. */
   export type Outbound = ParcelCreateRequest$Outbound;
+}
+
+export function parcelCreateRequestToJSON(
+  parcelCreateRequest: ParcelCreateRequest,
+): string {
+  return JSON.stringify(
+    ParcelCreateRequest$outboundSchema.parse(parcelCreateRequest),
+  );
+}
+
+export function parcelCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ParcelCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ParcelCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParcelCreateRequest' from JSON`,
+  );
 }

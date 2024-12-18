@@ -6,7 +6,7 @@
 import { UpdateUserParcelTemplateRequest } from "shippo/models/operations";
 
 let value: UpdateUserParcelTemplateRequest = {
-  userParcelTemplateObjectId: "<value>",
+  userParcelTemplateObjectId: "<id>",
   userParcelTemplateUpdateRequest: {
     distanceUnit: "in",
     height: "6",

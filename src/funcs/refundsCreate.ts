@@ -29,8 +29,7 @@ import { Result } from "../types/fp.js";
  */
 export async function refundsCreate(
   client: ShippoCore,
-  transaction: string,
-  async?: boolean | undefined,
+  request: components.RefundRequestBody,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -44,13 +43,8 @@ export async function refundsCreate(
     | ConnectionError
   >
 > {
-  const input: components.RefundRequestBody = {
-    async: async,
-    transaction: transaction,
-  };
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => components.RefundRequestBody$outboundSchema.parse(value),
     "Input validation failed",
   );
@@ -74,16 +68,25 @@ export async function refundsCreate(
 
   const secConfig = await extractSecurity(client._options.apiKeyHeader);
   const securityInput = secConfig == null ? {} : { apiKeyHeader: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "CreateRefund",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.apiKeyHeader,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
@@ -97,9 +100,8 @@ export async function refundsCreate(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;

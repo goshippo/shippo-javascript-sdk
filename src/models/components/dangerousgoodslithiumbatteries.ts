@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Container for specifying the presence of lithium batteries.
@@ -48,4 +51,24 @@ export namespace DangerousGoodsLithiumBatteries$ {
   export const outboundSchema = DangerousGoodsLithiumBatteries$outboundSchema;
   /** @deprecated use `DangerousGoodsLithiumBatteries$Outbound` instead. */
   export type Outbound = DangerousGoodsLithiumBatteries$Outbound;
+}
+
+export function dangerousGoodsLithiumBatteriesToJSON(
+  dangerousGoodsLithiumBatteries: DangerousGoodsLithiumBatteries,
+): string {
+  return JSON.stringify(
+    DangerousGoodsLithiumBatteries$outboundSchema.parse(
+      dangerousGoodsLithiumBatteries,
+    ),
+  );
+}
+
+export function dangerousGoodsLithiumBatteriesFromJSON(
+  jsonString: string,
+): SafeParseResult<DangerousGoodsLithiumBatteries, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DangerousGoodsLithiumBatteries$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DangerousGoodsLithiumBatteries' from JSON`,
+  );
 }

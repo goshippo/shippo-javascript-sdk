@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Address,
   Address$inboundSchema,
@@ -56,4 +59,22 @@ export namespace AddressPaginatedList$ {
   export const outboundSchema = AddressPaginatedList$outboundSchema;
   /** @deprecated use `AddressPaginatedList$Outbound` instead. */
   export type Outbound = AddressPaginatedList$Outbound;
+}
+
+export function addressPaginatedListToJSON(
+  addressPaginatedList: AddressPaginatedList,
+): string {
+  return JSON.stringify(
+    AddressPaginatedList$outboundSchema.parse(addressPaginatedList),
+  );
+}
+
+export function addressPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<AddressPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddressPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddressPaginatedList' from JSON`,
+  );
 }

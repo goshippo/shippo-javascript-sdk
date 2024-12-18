@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ServiceLevelWithParent,
   ServiceLevelWithParent$inboundSchema,
@@ -159,4 +162,18 @@ export namespace Track$ {
   export const outboundSchema = Track$outboundSchema;
   /** @deprecated use `Track$Outbound` instead. */
   export type Outbound = Track$Outbound;
+}
+
+export function trackToJSON(track: Track): string {
+  return JSON.stringify(Track$outboundSchema.parse(track));
+}
+
+export function trackFromJSON(
+  jsonString: string,
+): SafeParseResult<Track, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Track$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Track' from JSON`,
+  );
 }

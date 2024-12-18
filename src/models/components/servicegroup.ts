@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ServiceGroupAccountAndServiceLevel,
   ServiceGroupAccountAndServiceLevel$inboundSchema,
@@ -161,4 +164,18 @@ export namespace ServiceGroup$ {
   export const outboundSchema = ServiceGroup$outboundSchema;
   /** @deprecated use `ServiceGroup$Outbound` instead. */
   export type Outbound = ServiceGroup$Outbound;
+}
+
+export function serviceGroupToJSON(serviceGroup: ServiceGroup): string {
+  return JSON.stringify(ServiceGroup$outboundSchema.parse(serviceGroup));
+}
+
+export function serviceGroupFromJSON(
+  jsonString: string,
+): SafeParseResult<ServiceGroup, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ServiceGroup$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ServiceGroup' from JSON`,
+  );
 }

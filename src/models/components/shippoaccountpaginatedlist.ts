@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ShippoAccount,
   ShippoAccount$inboundSchema,
@@ -56,4 +59,22 @@ export namespace ShippoAccountPaginatedList$ {
   export const outboundSchema = ShippoAccountPaginatedList$outboundSchema;
   /** @deprecated use `ShippoAccountPaginatedList$Outbound` instead. */
   export type Outbound = ShippoAccountPaginatedList$Outbound;
+}
+
+export function shippoAccountPaginatedListToJSON(
+  shippoAccountPaginatedList: ShippoAccountPaginatedList,
+): string {
+  return JSON.stringify(
+    ShippoAccountPaginatedList$outboundSchema.parse(shippoAccountPaginatedList),
+  );
+}
+
+export function shippoAccountPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<ShippoAccountPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ShippoAccountPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ShippoAccountPaginatedList' from JSON`,
+  );
 }

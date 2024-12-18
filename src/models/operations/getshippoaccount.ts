@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetShippoAccountGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace GetShippoAccountGlobals$ {
   export type Outbound = GetShippoAccountGlobals$Outbound;
 }
 
+export function getShippoAccountGlobalsToJSON(
+  getShippoAccountGlobals: GetShippoAccountGlobals,
+): string {
+  return JSON.stringify(
+    GetShippoAccountGlobals$outboundSchema.parse(getShippoAccountGlobals),
+  );
+}
+
+export function getShippoAccountGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetShippoAccountGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetShippoAccountGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetShippoAccountGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetShippoAccountRequest$inboundSchema: z.ZodType<
   GetShippoAccountRequest,
@@ -105,4 +126,22 @@ export namespace GetShippoAccountRequest$ {
   export const outboundSchema = GetShippoAccountRequest$outboundSchema;
   /** @deprecated use `GetShippoAccountRequest$Outbound` instead. */
   export type Outbound = GetShippoAccountRequest$Outbound;
+}
+
+export function getShippoAccountRequestToJSON(
+  getShippoAccountRequest: GetShippoAccountRequest,
+): string {
+  return JSON.stringify(
+    GetShippoAccountRequest$outboundSchema.parse(getShippoAccountRequest),
+  );
+}
+
+export function getShippoAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetShippoAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetShippoAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetShippoAccountRequest' from JSON`,
+  );
 }

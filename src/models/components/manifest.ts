@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Indicates the status of the manifest.
@@ -184,4 +187,18 @@ export namespace Manifest$ {
   export const outboundSchema = Manifest$outboundSchema;
   /** @deprecated use `Manifest$Outbound` instead. */
   export type Outbound = Manifest$Outbound;
+}
+
+export function manifestToJSON(manifest: Manifest): string {
+  return JSON.stringify(Manifest$outboundSchema.parse(manifest));
+}
+
+export function manifestFromJSON(
+  jsonString: string,
+): SafeParseResult<Manifest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Manifest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Manifest' from JSON`,
+  );
 }

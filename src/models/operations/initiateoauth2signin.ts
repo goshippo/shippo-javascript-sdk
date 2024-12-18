@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type InitiateOauth2SigninGlobals = {
   /**
@@ -75,6 +78,26 @@ export namespace InitiateOauth2SigninGlobals$ {
   export type Outbound = InitiateOauth2SigninGlobals$Outbound;
 }
 
+export function initiateOauth2SigninGlobalsToJSON(
+  initiateOauth2SigninGlobals: InitiateOauth2SigninGlobals,
+): string {
+  return JSON.stringify(
+    InitiateOauth2SigninGlobals$outboundSchema.parse(
+      initiateOauth2SigninGlobals,
+    ),
+  );
+}
+
+export function initiateOauth2SigninGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<InitiateOauth2SigninGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InitiateOauth2SigninGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InitiateOauth2SigninGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const InitiateOauth2SigninRequest$inboundSchema: z.ZodType<
   InitiateOauth2SigninRequest,
@@ -127,6 +150,26 @@ export namespace InitiateOauth2SigninRequest$ {
   export type Outbound = InitiateOauth2SigninRequest$Outbound;
 }
 
+export function initiateOauth2SigninRequestToJSON(
+  initiateOauth2SigninRequest: InitiateOauth2SigninRequest,
+): string {
+  return JSON.stringify(
+    InitiateOauth2SigninRequest$outboundSchema.parse(
+      initiateOauth2SigninRequest,
+    ),
+  );
+}
+
+export function initiateOauth2SigninRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<InitiateOauth2SigninRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InitiateOauth2SigninRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InitiateOauth2SigninRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const InitiateOauth2SigninResponse$inboundSchema: z.ZodType<
   InitiateOauth2SigninResponse,
@@ -169,4 +212,24 @@ export namespace InitiateOauth2SigninResponse$ {
   export const outboundSchema = InitiateOauth2SigninResponse$outboundSchema;
   /** @deprecated use `InitiateOauth2SigninResponse$Outbound` instead. */
   export type Outbound = InitiateOauth2SigninResponse$Outbound;
+}
+
+export function initiateOauth2SigninResponseToJSON(
+  initiateOauth2SigninResponse: InitiateOauth2SigninResponse,
+): string {
+  return JSON.stringify(
+    InitiateOauth2SigninResponse$outboundSchema.parse(
+      initiateOauth2SigninResponse,
+    ),
+  );
+}
+
+export function initiateOauth2SigninResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<InitiateOauth2SigninResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InitiateOauth2SigninResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InitiateOauth2SigninResponse' from JSON`,
+  );
 }

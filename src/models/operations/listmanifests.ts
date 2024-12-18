@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListManifestsGlobals = {
   /**
@@ -67,6 +70,24 @@ export namespace ListManifestsGlobals$ {
   export type Outbound = ListManifestsGlobals$Outbound;
 }
 
+export function listManifestsGlobalsToJSON(
+  listManifestsGlobals: ListManifestsGlobals,
+): string {
+  return JSON.stringify(
+    ListManifestsGlobals$outboundSchema.parse(listManifestsGlobals),
+  );
+}
+
+export function listManifestsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListManifestsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListManifestsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListManifestsGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListManifestsRequest$inboundSchema: z.ZodType<
   ListManifestsRequest,
@@ -104,4 +125,22 @@ export namespace ListManifestsRequest$ {
   export const outboundSchema = ListManifestsRequest$outboundSchema;
   /** @deprecated use `ListManifestsRequest$Outbound` instead. */
   export type Outbound = ListManifestsRequest$Outbound;
+}
+
+export function listManifestsRequestToJSON(
+  listManifestsRequest: ListManifestsRequest,
+): string {
+  return JSON.stringify(
+    ListManifestsRequest$outboundSchema.parse(listManifestsRequest),
+  );
+}
+
+export function listManifestsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListManifestsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListManifestsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListManifestsRequest' from JSON`,
+  );
 }

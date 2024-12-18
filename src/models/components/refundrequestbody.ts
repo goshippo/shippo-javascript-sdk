@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RefundRequestBody = {
   async?: boolean | undefined;
@@ -46,4 +49,22 @@ export namespace RefundRequestBody$ {
   export const outboundSchema = RefundRequestBody$outboundSchema;
   /** @deprecated use `RefundRequestBody$Outbound` instead. */
   export type Outbound = RefundRequestBody$Outbound;
+}
+
+export function refundRequestBodyToJSON(
+  refundRequestBody: RefundRequestBody,
+): string {
+  return JSON.stringify(
+    RefundRequestBody$outboundSchema.parse(refundRequestBody),
+  );
+}
+
+export function refundRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<RefundRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RefundRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RefundRequestBody' from JSON`,
+  );
 }

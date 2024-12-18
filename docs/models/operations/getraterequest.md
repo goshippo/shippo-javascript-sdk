@@ -6,7 +6,7 @@
 import { GetRateRequest } from "shippo/models/operations";
 
 let value: GetRateRequest = {
-  rateId: "<value>",
+  rateId: "<id>",
 };
 ```
 

@@ -7,7 +7,7 @@ To have insurance cover provided by a carrier directly instead of Shippo's provi
 ```typescript
 import { Provider } from "shippo/models/components";
 
-let value: Provider = "UPS";
+let value: Provider = "FEDEX";
 ```
 
 ## Values

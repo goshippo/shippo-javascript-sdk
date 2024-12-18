@@ -1,24 +1,17 @@
 # Longitude
 
-## Example Usage
-
-```typescript
-import { Longitude } from "shippo/models/components";
-
-let value: Longitude = "<value>";
-```
 
 ## Supported Types
 
 ### `number`
 
 ```typescript
-const value: number = /* values here */
+const value: number = 871.29;
 ```
 
 ### `string`
 
 ```typescript
-const value: string = /* values here */
+const value: string = "<value>";
 ```
 

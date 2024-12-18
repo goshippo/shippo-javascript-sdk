@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Specify the department number field on the label (FedEx and UPS only).
@@ -75,4 +78,22 @@ export namespace DepartmentNumber$ {
   export const outboundSchema = DepartmentNumber$outboundSchema;
   /** @deprecated use `DepartmentNumber$Outbound` instead. */
   export type Outbound = DepartmentNumber$Outbound;
+}
+
+export function departmentNumberToJSON(
+  departmentNumber: DepartmentNumber,
+): string {
+  return JSON.stringify(
+    DepartmentNumber$outboundSchema.parse(departmentNumber),
+  );
+}
+
+export function departmentNumberFromJSON(
+  jsonString: string,
+): SafeParseResult<DepartmentNumber, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DepartmentNumber$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DepartmentNumber' from JSON`,
+  );
 }

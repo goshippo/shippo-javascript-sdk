@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountSendleCreateRequestParameters = {};
 
@@ -43,6 +46,33 @@ export namespace CarrierAccountSendleCreateRequestParameters$ {
     CarrierAccountSendleCreateRequestParameters$outboundSchema;
   /** @deprecated use `CarrierAccountSendleCreateRequestParameters$Outbound` instead. */
   export type Outbound = CarrierAccountSendleCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountSendleCreateRequestParametersToJSON(
+  carrierAccountSendleCreateRequestParameters:
+    CarrierAccountSendleCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountSendleCreateRequestParameters$outboundSchema.parse(
+      carrierAccountSendleCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountSendleCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountSendleCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountSendleCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountSendleCreateRequestParameters' from JSON`,
+  );
 }
 
 /** @internal */
@@ -87,4 +117,24 @@ export namespace CarrierAccountSendleCreateRequest$ {
     CarrierAccountSendleCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountSendleCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountSendleCreateRequest$Outbound;
+}
+
+export function carrierAccountSendleCreateRequestToJSON(
+  carrierAccountSendleCreateRequest: CarrierAccountSendleCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountSendleCreateRequest$outboundSchema.parse(
+      carrierAccountSendleCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountSendleCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountSendleCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountSendleCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountSendleCreateRequest' from JSON`,
+  );
 }

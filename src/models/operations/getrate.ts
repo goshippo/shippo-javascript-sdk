@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetRateGlobals = {
   /**
@@ -63,6 +66,20 @@ export namespace GetRateGlobals$ {
   export type Outbound = GetRateGlobals$Outbound;
 }
 
+export function getRateGlobalsToJSON(getRateGlobals: GetRateGlobals): string {
+  return JSON.stringify(GetRateGlobals$outboundSchema.parse(getRateGlobals));
+}
+
+export function getRateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRateRequest$inboundSchema: z.ZodType<
   GetRateRequest,
@@ -105,4 +122,18 @@ export namespace GetRateRequest$ {
   export const outboundSchema = GetRateRequest$outboundSchema;
   /** @deprecated use `GetRateRequest$Outbound` instead. */
   export type Outbound = GetRateRequest$Outbound;
+}
+
+export function getRateRequestToJSON(getRateRequest: GetRateRequest): string {
+  return JSON.stringify(GetRateRequest$outboundSchema.parse(getRateRequest));
+}
+
+export function getRateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRateRequest' from JSON`,
+  );
 }

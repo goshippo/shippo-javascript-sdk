@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetCarrierRegistrationStatusGlobals = {
   /**
@@ -79,6 +82,27 @@ export namespace GetCarrierRegistrationStatusGlobals$ {
   export type Outbound = GetCarrierRegistrationStatusGlobals$Outbound;
 }
 
+export function getCarrierRegistrationStatusGlobalsToJSON(
+  getCarrierRegistrationStatusGlobals: GetCarrierRegistrationStatusGlobals,
+): string {
+  return JSON.stringify(
+    GetCarrierRegistrationStatusGlobals$outboundSchema.parse(
+      getCarrierRegistrationStatusGlobals,
+    ),
+  );
+}
+
+export function getCarrierRegistrationStatusGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCarrierRegistrationStatusGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetCarrierRegistrationStatusGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCarrierRegistrationStatusGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const Carrier$inboundSchema: z.ZodNativeEnum<typeof Carrier> = z
   .nativeEnum(Carrier);
@@ -134,4 +158,25 @@ export namespace GetCarrierRegistrationStatusRequest$ {
     GetCarrierRegistrationStatusRequest$outboundSchema;
   /** @deprecated use `GetCarrierRegistrationStatusRequest$Outbound` instead. */
   export type Outbound = GetCarrierRegistrationStatusRequest$Outbound;
+}
+
+export function getCarrierRegistrationStatusRequestToJSON(
+  getCarrierRegistrationStatusRequest: GetCarrierRegistrationStatusRequest,
+): string {
+  return JSON.stringify(
+    GetCarrierRegistrationStatusRequest$outboundSchema.parse(
+      getCarrierRegistrationStatusRequest,
+    ),
+  );
+}
+
+export function getCarrierRegistrationStatusRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCarrierRegistrationStatusRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetCarrierRegistrationStatusRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCarrierRegistrationStatusRequest' from JSON`,
+  );
 }

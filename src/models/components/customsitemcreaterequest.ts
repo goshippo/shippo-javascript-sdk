@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WeightUnitEnum,
   WeightUnitEnum$inboundSchema,
@@ -161,4 +164,22 @@ export namespace CustomsItemCreateRequest$ {
   export const outboundSchema = CustomsItemCreateRequest$outboundSchema;
   /** @deprecated use `CustomsItemCreateRequest$Outbound` instead. */
   export type Outbound = CustomsItemCreateRequest$Outbound;
+}
+
+export function customsItemCreateRequestToJSON(
+  customsItemCreateRequest: CustomsItemCreateRequest,
+): string {
+  return JSON.stringify(
+    CustomsItemCreateRequest$outboundSchema.parse(customsItemCreateRequest),
+  );
+}
+
+export function customsItemCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsItemCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsItemCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsItemCreateRequest' from JSON`,
+  );
 }

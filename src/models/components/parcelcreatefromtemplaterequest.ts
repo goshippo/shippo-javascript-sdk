@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ParcelExtra,
   ParcelExtra$inboundSchema,
@@ -99,4 +102,24 @@ export namespace ParcelCreateFromTemplateRequest$ {
   export const outboundSchema = ParcelCreateFromTemplateRequest$outboundSchema;
   /** @deprecated use `ParcelCreateFromTemplateRequest$Outbound` instead. */
   export type Outbound = ParcelCreateFromTemplateRequest$Outbound;
+}
+
+export function parcelCreateFromTemplateRequestToJSON(
+  parcelCreateFromTemplateRequest: ParcelCreateFromTemplateRequest,
+): string {
+  return JSON.stringify(
+    ParcelCreateFromTemplateRequest$outboundSchema.parse(
+      parcelCreateFromTemplateRequest,
+    ),
+  );
+}
+
+export function parcelCreateFromTemplateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ParcelCreateFromTemplateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ParcelCreateFromTemplateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParcelCreateFromTemplateRequest' from JSON`,
+  );
 }
