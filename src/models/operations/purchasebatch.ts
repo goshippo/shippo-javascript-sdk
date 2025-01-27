@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PurchaseBatchGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace PurchaseBatchGlobals$ {
   export type Outbound = PurchaseBatchGlobals$Outbound;
 }
 
+export function purchaseBatchGlobalsToJSON(
+  purchaseBatchGlobals: PurchaseBatchGlobals,
+): string {
+  return JSON.stringify(
+    PurchaseBatchGlobals$outboundSchema.parse(purchaseBatchGlobals),
+  );
+}
+
+export function purchaseBatchGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<PurchaseBatchGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PurchaseBatchGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PurchaseBatchGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const PurchaseBatchRequest$inboundSchema: z.ZodType<
   PurchaseBatchRequest,
@@ -105,4 +126,22 @@ export namespace PurchaseBatchRequest$ {
   export const outboundSchema = PurchaseBatchRequest$outboundSchema;
   /** @deprecated use `PurchaseBatchRequest$Outbound` instead. */
   export type Outbound = PurchaseBatchRequest$Outbound;
+}
+
+export function purchaseBatchRequestToJSON(
+  purchaseBatchRequest: PurchaseBatchRequest,
+): string {
+  return JSON.stringify(
+    PurchaseBatchRequest$outboundSchema.parse(purchaseBatchRequest),
+  );
+}
+
+export function purchaseBatchRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PurchaseBatchRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PurchaseBatchRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PurchaseBatchRequest' from JSON`,
+  );
 }

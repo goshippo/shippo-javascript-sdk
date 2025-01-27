@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetCarrierAccountGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace GetCarrierAccountGlobals$ {
   export type Outbound = GetCarrierAccountGlobals$Outbound;
 }
 
+export function getCarrierAccountGlobalsToJSON(
+  getCarrierAccountGlobals: GetCarrierAccountGlobals,
+): string {
+  return JSON.stringify(
+    GetCarrierAccountGlobals$outboundSchema.parse(getCarrierAccountGlobals),
+  );
+}
+
+export function getCarrierAccountGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCarrierAccountGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCarrierAccountGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCarrierAccountGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetCarrierAccountRequest$inboundSchema: z.ZodType<
   GetCarrierAccountRequest,
@@ -105,4 +126,22 @@ export namespace GetCarrierAccountRequest$ {
   export const outboundSchema = GetCarrierAccountRequest$outboundSchema;
   /** @deprecated use `GetCarrierAccountRequest$Outbound` instead. */
   export type Outbound = GetCarrierAccountRequest$Outbound;
+}
+
+export function getCarrierAccountRequestToJSON(
+  getCarrierAccountRequest: GetCarrierAccountRequest,
+): string {
+  return JSON.stringify(
+    GetCarrierAccountRequest$outboundSchema.parse(getCarrierAccountRequest),
+  );
+}
+
+export function getCarrierAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCarrierAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCarrierAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCarrierAccountRequest' from JSON`,
+  );
 }

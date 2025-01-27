@@ -20,18 +20,22 @@ Shippo external API.: Use this API to integrate with the Shippo service
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [<img src="https://docs.goshippo.com/images/Logo.png" width="30" alt="Shippo logo"> Shippo JavaScript SDK](#img-srchttpsdocsgoshippocomimageslogopng-width30-altshippo-logo-shippo-javascript-sdk)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Standalone functions](#standalone-functions)
+  * [Retries](#retries)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Debugging](#debugging)
+  * [Documentation](#documentation)
+  * [Available Resources and Operations](#available-resources-and-operations)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
+  * [About Shippo](#about-shippo)
 
-* [SDK Installation](#sdk-installation)
-* [Requirements](#requirements)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Standalone functions](#standalone-functions)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Debugging](#debugging)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -117,77 +121,76 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [addressesCreate](docs/sdks/addresses/README.md#create)
-- [addressesGet](docs/sdks/addresses/README.md#get)
-- [addressesList](docs/sdks/addresses/README.md#list)
-- [addressesValidate](docs/sdks/addresses/README.md#validate)
-- [batchesAddShipments](docs/sdks/batches/README.md#addshipments)
-- [batchesCreate](docs/sdks/batches/README.md#create)
-- [batchesGet](docs/sdks/batches/README.md#get)
-- [batchesPurchase](docs/sdks/batches/README.md#purchase)
-- [batchesRemoveShipments](docs/sdks/batches/README.md#removeshipments)
-- [carrierAccountsCreate](docs/sdks/carrieraccounts/README.md#create)
-- [carrierAccountsGetRegistrationStatus](docs/sdks/carrieraccounts/README.md#getregistrationstatus)
-- [carrierAccountsGet](docs/sdks/carrieraccounts/README.md#get)
-- [carrierAccountsInitiateOauth2Signin](docs/sdks/carrieraccounts/README.md#initiateoauth2signin)
-- [carrierAccountsList](docs/sdks/carrieraccounts/README.md#list)
-- [carrierAccountsRegister](docs/sdks/carrieraccounts/README.md#register)
-- [carrierAccountsUpdate](docs/sdks/carrieraccounts/README.md#update)
-- [carrierParcelTemplatesGet](docs/sdks/carrierparceltemplates/README.md#get)
-- [carrierParcelTemplatesList](docs/sdks/carrierparceltemplates/README.md#list)
-- [customsDeclarationsCreate](docs/sdks/customsdeclarations/README.md#create)
-- [customsDeclarationsGet](docs/sdks/customsdeclarations/README.md#get)
-- [customsDeclarationsList](docs/sdks/customsdeclarations/README.md#list)
-- [customsItemsCreate](docs/sdks/customsitems/README.md#create)
-- [customsItemsGet](docs/sdks/customsitems/README.md#get)
-- [customsItemsList](docs/sdks/customsitems/README.md#list)
-- [manifestsCreate](docs/sdks/manifests/README.md#create)
-- [manifestsGet](docs/sdks/manifests/README.md#get)
-- [manifestsList](docs/sdks/manifests/README.md#list)
-- [ordersCreate](docs/sdks/orders/README.md#create)
-- [ordersGet](docs/sdks/orders/README.md#get)
-- [ordersList](docs/sdks/orders/README.md#list)
-- [parcelsCreate](docs/sdks/parcels/README.md#create)
-- [parcelsGet](docs/sdks/parcels/README.md#get)
-- [parcelsList](docs/sdks/parcels/README.md#list)
-- [pickupsCreate](docs/sdks/pickups/README.md#create)
-- [ratesAtCheckoutCreate](docs/sdks/ratesatcheckout/README.md#create)
-- [ratesAtCheckoutDeleteDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#deletedefaultparceltemplate)
-- [ratesAtCheckoutGetDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#getdefaultparceltemplate)
-- [ratesAtCheckoutUpdateDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#updatedefaultparceltemplate)
-- [ratesGet](docs/sdks/rates/README.md#get)
-- [ratesListShipmentRatesByCurrencyCode](docs/sdks/rates/README.md#listshipmentratesbycurrencycode)
-- [ratesListShipmentRates](docs/sdks/rates/README.md#listshipmentrates)
-- [refundsCreate](docs/sdks/refunds/README.md#create)
-- [refundsGet](docs/sdks/refunds/README.md#get)
-- [refundsList](docs/sdks/refunds/README.md#list)
-- [serviceGroupsCreate](docs/sdks/servicegroups/README.md#create)
-- [serviceGroupsDelete](docs/sdks/servicegroups/README.md#delete)
-- [serviceGroupsList](docs/sdks/servicegroups/README.md#list)
-- [serviceGroupsUpdate](docs/sdks/servicegroups/README.md#update)
-- [shipmentsCreate](docs/sdks/shipments/README.md#create)
-- [shipmentsGet](docs/sdks/shipments/README.md#get)
-- [shipmentsList](docs/sdks/shipments/README.md#list)
-- [shippoAccountsCreate](docs/sdks/shippoaccounts/README.md#create)
-- [shippoAccountsGet](docs/sdks/shippoaccounts/README.md#get)
-- [shippoAccountsList](docs/sdks/shippoaccounts/README.md#list)
-- [shippoAccountsUpdate](docs/sdks/shippoaccounts/README.md#update)
-- [trackingStatusCreate](docs/sdks/trackingstatus/README.md#create)
-- [trackingStatusGet](docs/sdks/trackingstatus/README.md#get)
-- [transactionsCreate](docs/sdks/transactions/README.md#create)
-- [transactionsGet](docs/sdks/transactions/README.md#get)
-- [transactionsList](docs/sdks/transactions/README.md#list)
-- [userParcelTemplatesCreate](docs/sdks/userparceltemplates/README.md#create)
-- [userParcelTemplatesDelete](docs/sdks/userparceltemplates/README.md#delete)
-- [userParcelTemplatesGet](docs/sdks/userparceltemplates/README.md#get)
-- [userParcelTemplatesList](docs/sdks/userparceltemplates/README.md#list)
-- [userParcelTemplatesUpdate](docs/sdks/userparceltemplates/README.md#update)
-- [webhooksCreateWebhook](docs/sdks/webhooks/README.md#createwebhook)
-- [webhooksDeleteWebhook](docs/sdks/webhooks/README.md#deletewebhook)
-- [webhooksGetWebhook](docs/sdks/webhooks/README.md#getwebhook)
-- [webhooksListWebhooks](docs/sdks/webhooks/README.md#listwebhooks)
-- [webhooksUpdateWebhook](docs/sdks/webhooks/README.md#updatewebhook)
-
+- [`addressesCreate`](docs/sdks/addresses/README.md#create) - Create a new address
+- [`addressesGet`](docs/sdks/addresses/README.md#get) - Retrieve an address
+- [`addressesList`](docs/sdks/addresses/README.md#list) - List all addresses
+- [`addressesValidate`](docs/sdks/addresses/README.md#validate) - Validate an address
+- [`batchesAddShipments`](docs/sdks/batches/README.md#addshipments) - Add shipments to a batch
+- [`batchesCreate`](docs/sdks/batches/README.md#create) - Create a batch
+- [`batchesGet`](docs/sdks/batches/README.md#get) - Retrieve a batch
+- [`batchesPurchase`](docs/sdks/batches/README.md#purchase) - Purchase a batch
+- [`batchesRemoveShipments`](docs/sdks/batches/README.md#removeshipments) - Remove shipments from a batch
+- [`carrierAccountsCreate`](docs/sdks/carrieraccounts/README.md#create) - Create a new carrier account
+- [`carrierAccountsGet`](docs/sdks/carrieraccounts/README.md#get) - Retrieve a carrier account
+- [`carrierAccountsGetRegistrationStatus`](docs/sdks/carrieraccounts/README.md#getregistrationstatus) - Get Carrier Registration status
+- [`carrierAccountsInitiateOauth2Signin`](docs/sdks/carrieraccounts/README.md#initiateoauth2signin) - Connect an existing carrier account using OAuth 2.0
+- [`carrierAccountsList`](docs/sdks/carrieraccounts/README.md#list) - List all carrier accounts
+- [`carrierAccountsRegister`](docs/sdks/carrieraccounts/README.md#register) - Add a Shippo carrier account
+- [`carrierAccountsUpdate`](docs/sdks/carrieraccounts/README.md#update) - Update a carrier account
+- [`carrierParcelTemplatesGet`](docs/sdks/carrierparceltemplates/README.md#get) - Retrieve a carrier parcel templates
+- [`carrierParcelTemplatesList`](docs/sdks/carrierparceltemplates/README.md#list) - List all carrier parcel templates
+- [`customsDeclarationsCreate`](docs/sdks/customsdeclarations/README.md#create) - Create a new customs declaration
+- [`customsDeclarationsGet`](docs/sdks/customsdeclarations/README.md#get) - Retrieve a customs declaration
+- [`customsDeclarationsList`](docs/sdks/customsdeclarations/README.md#list) - List all customs declarations
+- [`customsItemsCreate`](docs/sdks/customsitems/README.md#create) - Create a new customs item
+- [`customsItemsGet`](docs/sdks/customsitems/README.md#get) - Retrieve a customs item
+- [`customsItemsList`](docs/sdks/customsitems/README.md#list) - List all customs items
+- [`manifestsCreate`](docs/sdks/manifests/README.md#create) - Create a new manifest
+- [`manifestsGet`](docs/sdks/manifests/README.md#get) - Retrieve a manifest
+- [`manifestsList`](docs/sdks/manifests/README.md#list) - List all manifests
+- [`ordersCreate`](docs/sdks/orders/README.md#create) - Create a new order
+- [`ordersGet`](docs/sdks/orders/README.md#get) - Retrieve an order
+- [`ordersList`](docs/sdks/orders/README.md#list) - List all orders
+- [`parcelsCreate`](docs/sdks/parcels/README.md#create) - Create a new parcel
+- [`parcelsGet`](docs/sdks/parcels/README.md#get) - Retrieve an existing parcel
+- [`parcelsList`](docs/sdks/parcels/README.md#list) - List all parcels
+- [`pickupsCreate`](docs/sdks/pickups/README.md#create) - Create a pickup
+- [`ratesAtCheckoutCreate`](docs/sdks/ratesatcheckout/README.md#create) - Generate a live rates request
+- [`ratesAtCheckoutDeleteDefaultParcelTemplate`](docs/sdks/ratesatcheckout/README.md#deletedefaultparceltemplate) - Clear current default parcel template
+- [`ratesAtCheckoutGetDefaultParcelTemplate`](docs/sdks/ratesatcheckout/README.md#getdefaultparceltemplate) - Show current default parcel template
+- [`ratesAtCheckoutUpdateDefaultParcelTemplate`](docs/sdks/ratesatcheckout/README.md#updatedefaultparceltemplate) - Update default parcel template
+- [`ratesGet`](docs/sdks/rates/README.md#get) - Retrieve a rate
+- [`ratesListShipmentRates`](docs/sdks/rates/README.md#listshipmentrates) - Retrieve shipment rates
+- [`ratesListShipmentRatesByCurrencyCode`](docs/sdks/rates/README.md#listshipmentratesbycurrencycode) - Retrieve shipment rates in currency
+- [`refundsCreate`](docs/sdks/refunds/README.md#create) - Create a refund
+- [`refundsGet`](docs/sdks/refunds/README.md#get) - Retrieve a refund
+- [`refundsList`](docs/sdks/refunds/README.md#list) - List all refunds
+- [`serviceGroupsCreate`](docs/sdks/servicegroups/README.md#create) - Create a new service group
+- [`serviceGroupsDelete`](docs/sdks/servicegroups/README.md#delete) - Delete a service group
+- [`serviceGroupsList`](docs/sdks/servicegroups/README.md#list) - List all service groups
+- [`serviceGroupsUpdate`](docs/sdks/servicegroups/README.md#update) - Update an existing service group
+- [`shipmentsCreate`](docs/sdks/shipments/README.md#create) - Create a new shipment
+- [`shipmentsGet`](docs/sdks/shipments/README.md#get) - Retrieve a shipment
+- [`shipmentsList`](docs/sdks/shipments/README.md#list) - List all shipments
+- [`shippoAccountsCreate`](docs/sdks/shippoaccounts/README.md#create) - Create a Shippo Account
+- [`shippoAccountsGet`](docs/sdks/shippoaccounts/README.md#get) - Retrieve a Shippo Account
+- [`shippoAccountsList`](docs/sdks/shippoaccounts/README.md#list) - List all Shippo Accounts
+- [`shippoAccountsUpdate`](docs/sdks/shippoaccounts/README.md#update) - Update a Shippo Account
+- [`trackingStatusCreate`](docs/sdks/trackingstatus/README.md#create) - Register a tracking webhook
+- [`trackingStatusGet`](docs/sdks/trackingstatus/README.md#get) - Get a tracking status
+- [`transactionsCreate`](docs/sdks/transactions/README.md#create) - Create a shipping label
+- [`transactionsGet`](docs/sdks/transactions/README.md#get) - Retrieve a shipping label
+- [`transactionsList`](docs/sdks/transactions/README.md#list) - List all shipping labels
+- [`userParcelTemplatesCreate`](docs/sdks/userparceltemplates/README.md#create) - Create a new user parcel template
+- [`userParcelTemplatesDelete`](docs/sdks/userparceltemplates/README.md#delete) - Delete a user parcel template
+- [`userParcelTemplatesGet`](docs/sdks/userparceltemplates/README.md#get) - Retrieves a user parcel template
+- [`userParcelTemplatesList`](docs/sdks/userparceltemplates/README.md#list) - List all user parcel templates
+- [`userParcelTemplatesUpdate`](docs/sdks/userparceltemplates/README.md#update) - Update an existing user parcel template
+- [`webhooksCreateWebhook`](docs/sdks/webhooks/README.md#createwebhook) - Create a new webhook
+- [`webhooksDeleteWebhook`](docs/sdks/webhooks/README.md#deletewebhook) - Delete a specific webhook
+- [`webhooksGetWebhook`](docs/sdks/webhooks/README.md#getwebhook) - Retrieve a specific webhook
+- [`webhooksListWebhooks`](docs/sdks/webhooks/README.md#listwebhooks) - List all webhooks
+- [`webhooksUpdateWebhook`](docs/sdks/webhooks/README.md#updatewebhook) - Update an existing webhook
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -207,7 +210,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.addresses.list({
+  const result = await shippo.addresses.list(1, 5, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -248,7 +251,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.addresses.list();
+  const result = await shippo.addresses.list(1, 5);
 
   // Handle the result
   console.log(result);

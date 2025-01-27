@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   FedExConnectExistingOwnAccountParameters,
   FedExConnectExistingOwnAccountParameters$inboundSchema,
@@ -93,6 +96,26 @@ export namespace CarrierAccountBaseParameters$ {
   export type Outbound = CarrierAccountBaseParameters$Outbound;
 }
 
+export function carrierAccountBaseParametersToJSON(
+  carrierAccountBaseParameters: CarrierAccountBaseParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountBaseParameters$outboundSchema.parse(
+      carrierAccountBaseParameters,
+    ),
+  );
+}
+
+export function carrierAccountBaseParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountBaseParameters, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountBaseParameters$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountBaseParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountBase$inboundSchema: z.ZodType<
   CarrierAccountBase,
@@ -156,4 +179,22 @@ export namespace CarrierAccountBase$ {
   export const outboundSchema = CarrierAccountBase$outboundSchema;
   /** @deprecated use `CarrierAccountBase$Outbound` instead. */
   export type Outbound = CarrierAccountBase$Outbound;
+}
+
+export function carrierAccountBaseToJSON(
+  carrierAccountBase: CarrierAccountBase,
+): string {
+  return JSON.stringify(
+    CarrierAccountBase$outboundSchema.parse(carrierAccountBase),
+  );
+}
+
+export function carrierAccountBaseFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountBase, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountBase$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountBase' from JSON`,
+  );
 }

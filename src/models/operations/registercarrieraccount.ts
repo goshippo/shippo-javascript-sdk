@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RegisterCarrierAccountGlobals = {
   /**
@@ -14,24 +17,36 @@ export type RegisterCarrierAccountGlobals = {
 };
 
 /**
- * Examples.
+ * The body of the request.
  */
 export type RegisterCarrierAccountRequestBody =
-  | components.CarrierAccountCanadaPostCreateRequest
-  | components.CarrierAccountChronopostCreateRequest
-  | components.CarrierAccountColissimoCreateRequest
-  | components.CarrierAccountCorreosCreateRequest
-  | components.CarrierAccountDeutschePostCreateRequest
-  | components.CarrierAccountDHLExpressCreateRequest
-  | components.CarrierAccountDpdDeCreateRequest
-  | components.CarrierAccountDPDUKCreateRequest
-  | components.CarrierAccountFedExCreateRequest
-  | components.CarrierAccountHermesUKCreateRequest
-  | components.CarrierAccountMondialRelayCreateRequest
-  | components.CarrierAccountPosteItalianeCreateRequest
-  | components.CarrierAccountUPSCreateRequest
-  | components.CarrierAccountUSPSCreateRequest
-  | components.CarrierAccountSendleCreateRequest;
+  | (components.CarrierAccountCanadaPostCreateRequest & {
+    carrier: "canada_post";
+  })
+  | (components.CarrierAccountChronopostCreateRequest & {
+    carrier: "chronopost";
+  })
+  | (components.CarrierAccountColissimoCreateRequest & { carrier: "colissimo" })
+  | (components.CarrierAccountCorreosCreateRequest & { carrier: "correos" })
+  | (components.CarrierAccountDeutschePostCreateRequest & {
+    carrier: "deutsche_post";
+  })
+  | (components.CarrierAccountDHLExpressCreateRequest & {
+    carrier: "dhl_express";
+  })
+  | (components.CarrierAccountDpdDeCreateRequest & { carrier: "dpd_de" })
+  | (components.CarrierAccountDPDUKCreateRequest & { carrier: "dpd_uk" })
+  | (components.CarrierAccountFedExCreateRequest & { carrier: "fedex" })
+  | (components.CarrierAccountHermesUKCreateRequest & { carrier: "hermes_uk" })
+  | (components.CarrierAccountMondialRelayCreateRequest & {
+    carrier: "mondial_relay";
+  })
+  | (components.CarrierAccountPosteItalianeCreateRequest & {
+    carrier: "poste_italiane";
+  })
+  | (components.CarrierAccountUPSCreateRequest & { carrier: "ups" })
+  | (components.CarrierAccountUSPSCreateRequest & { carrier: "usps" })
+  | (components.CarrierAccountSendleCreateRequest & { carrier: "sendle" });
 
 /** @internal */
 export const RegisterCarrierAccountGlobals$inboundSchema: z.ZodType<
@@ -77,46 +92,152 @@ export namespace RegisterCarrierAccountGlobals$ {
   export type Outbound = RegisterCarrierAccountGlobals$Outbound;
 }
 
+export function registerCarrierAccountGlobalsToJSON(
+  registerCarrierAccountGlobals: RegisterCarrierAccountGlobals,
+): string {
+  return JSON.stringify(
+    RegisterCarrierAccountGlobals$outboundSchema.parse(
+      registerCarrierAccountGlobals,
+    ),
+  );
+}
+
+export function registerCarrierAccountGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<RegisterCarrierAccountGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RegisterCarrierAccountGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RegisterCarrierAccountGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const RegisterCarrierAccountRequestBody$inboundSchema: z.ZodType<
   RegisterCarrierAccountRequestBody,
   z.ZodTypeDef,
   unknown
 > = z.union([
-  components.CarrierAccountCanadaPostCreateRequest$inboundSchema,
-  components.CarrierAccountChronopostCreateRequest$inboundSchema,
-  components.CarrierAccountColissimoCreateRequest$inboundSchema,
-  components.CarrierAccountCorreosCreateRequest$inboundSchema,
-  components.CarrierAccountDeutschePostCreateRequest$inboundSchema,
-  components.CarrierAccountDHLExpressCreateRequest$inboundSchema,
-  components.CarrierAccountDpdDeCreateRequest$inboundSchema,
-  components.CarrierAccountDPDUKCreateRequest$inboundSchema,
-  components.CarrierAccountFedExCreateRequest$inboundSchema,
-  components.CarrierAccountHermesUKCreateRequest$inboundSchema,
-  components.CarrierAccountMondialRelayCreateRequest$inboundSchema,
-  components.CarrierAccountPosteItalianeCreateRequest$inboundSchema,
-  components.CarrierAccountUPSCreateRequest$inboundSchema,
-  components.CarrierAccountUSPSCreateRequest$inboundSchema,
-  components.CarrierAccountSendleCreateRequest$inboundSchema,
+  components.CarrierAccountCanadaPostCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("canada_post") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountChronopostCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("chronopost") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountColissimoCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("colissimo") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountCorreosCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("correos") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountDeutschePostCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("deutsche_post") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountDHLExpressCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("dhl_express") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountDpdDeCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("dpd_de") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountDPDUKCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("dpd_uk") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountFedExCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("fedex") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountHermesUKCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("hermes_uk") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountMondialRelayCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("mondial_relay") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountPosteItalianeCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("poste_italiane") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountUPSCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("ups") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountUSPSCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("usps") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountSendleCreateRequest$inboundSchema.and(
+    z.object({ carrier: z.literal("sendle") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
 ]);
 
 /** @internal */
 export type RegisterCarrierAccountRequestBody$Outbound =
-  | components.CarrierAccountCanadaPostCreateRequest$Outbound
-  | components.CarrierAccountChronopostCreateRequest$Outbound
-  | components.CarrierAccountColissimoCreateRequest$Outbound
-  | components.CarrierAccountCorreosCreateRequest$Outbound
-  | components.CarrierAccountDeutschePostCreateRequest$Outbound
-  | components.CarrierAccountDHLExpressCreateRequest$Outbound
-  | components.CarrierAccountDpdDeCreateRequest$Outbound
-  | components.CarrierAccountDPDUKCreateRequest$Outbound
-  | components.CarrierAccountFedExCreateRequest$Outbound
-  | components.CarrierAccountHermesUKCreateRequest$Outbound
-  | components.CarrierAccountMondialRelayCreateRequest$Outbound
-  | components.CarrierAccountPosteItalianeCreateRequest$Outbound
-  | components.CarrierAccountUPSCreateRequest$Outbound
-  | components.CarrierAccountUSPSCreateRequest$Outbound
-  | components.CarrierAccountSendleCreateRequest$Outbound;
+  | (components.CarrierAccountCanadaPostCreateRequest$Outbound & {
+    carrier: "canada_post";
+  })
+  | (components.CarrierAccountChronopostCreateRequest$Outbound & {
+    carrier: "chronopost";
+  })
+  | (components.CarrierAccountColissimoCreateRequest$Outbound & {
+    carrier: "colissimo";
+  })
+  | (components.CarrierAccountCorreosCreateRequest$Outbound & {
+    carrier: "correos";
+  })
+  | (components.CarrierAccountDeutschePostCreateRequest$Outbound & {
+    carrier: "deutsche_post";
+  })
+  | (components.CarrierAccountDHLExpressCreateRequest$Outbound & {
+    carrier: "dhl_express";
+  })
+  | (components.CarrierAccountDpdDeCreateRequest$Outbound & {
+    carrier: "dpd_de";
+  })
+  | (components.CarrierAccountDPDUKCreateRequest$Outbound & {
+    carrier: "dpd_uk";
+  })
+  | (components.CarrierAccountFedExCreateRequest$Outbound & {
+    carrier: "fedex";
+  })
+  | (components.CarrierAccountHermesUKCreateRequest$Outbound & {
+    carrier: "hermes_uk";
+  })
+  | (components.CarrierAccountMondialRelayCreateRequest$Outbound & {
+    carrier: "mondial_relay";
+  })
+  | (components.CarrierAccountPosteItalianeCreateRequest$Outbound & {
+    carrier: "poste_italiane";
+  })
+  | (components.CarrierAccountUPSCreateRequest$Outbound & { carrier: "ups" })
+  | (components.CarrierAccountUSPSCreateRequest$Outbound & { carrier: "usps" })
+  | (components.CarrierAccountSendleCreateRequest$Outbound & {
+    carrier: "sendle";
+  });
 
 /** @internal */
 export const RegisterCarrierAccountRequestBody$outboundSchema: z.ZodType<
@@ -124,21 +245,81 @@ export const RegisterCarrierAccountRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RegisterCarrierAccountRequestBody
 > = z.union([
-  components.CarrierAccountCanadaPostCreateRequest$outboundSchema,
-  components.CarrierAccountChronopostCreateRequest$outboundSchema,
-  components.CarrierAccountColissimoCreateRequest$outboundSchema,
-  components.CarrierAccountCorreosCreateRequest$outboundSchema,
-  components.CarrierAccountDeutschePostCreateRequest$outboundSchema,
-  components.CarrierAccountDHLExpressCreateRequest$outboundSchema,
-  components.CarrierAccountDpdDeCreateRequest$outboundSchema,
-  components.CarrierAccountDPDUKCreateRequest$outboundSchema,
-  components.CarrierAccountFedExCreateRequest$outboundSchema,
-  components.CarrierAccountHermesUKCreateRequest$outboundSchema,
-  components.CarrierAccountMondialRelayCreateRequest$outboundSchema,
-  components.CarrierAccountPosteItalianeCreateRequest$outboundSchema,
-  components.CarrierAccountUPSCreateRequest$outboundSchema,
-  components.CarrierAccountUSPSCreateRequest$outboundSchema,
-  components.CarrierAccountSendleCreateRequest$outboundSchema,
+  components.CarrierAccountCanadaPostCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("canada_post") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountChronopostCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("chronopost") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountColissimoCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("colissimo") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountCorreosCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("correos") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountDeutschePostCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("deutsche_post") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountDHLExpressCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("dhl_express") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountDpdDeCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("dpd_de") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountDPDUKCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("dpd_uk") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountFedExCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("fedex") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountHermesUKCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("hermes_uk") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountMondialRelayCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("mondial_relay") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountPosteItalianeCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("poste_italiane") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountUPSCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("ups") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountUSPSCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("usps") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
+  components.CarrierAccountSendleCreateRequest$outboundSchema.and(
+    z.object({ carrier: z.literal("sendle") }).transform((v) => ({
+      carrier: v.carrier,
+    })),
+  ),
 ]);
 
 /**
@@ -153,4 +334,24 @@ export namespace RegisterCarrierAccountRequestBody$ {
     RegisterCarrierAccountRequestBody$outboundSchema;
   /** @deprecated use `RegisterCarrierAccountRequestBody$Outbound` instead. */
   export type Outbound = RegisterCarrierAccountRequestBody$Outbound;
+}
+
+export function registerCarrierAccountRequestBodyToJSON(
+  registerCarrierAccountRequestBody: RegisterCarrierAccountRequestBody,
+): string {
+  return JSON.stringify(
+    RegisterCarrierAccountRequestBody$outboundSchema.parse(
+      registerCarrierAccountRequestBody,
+    ),
+  );
+}
+
+export function registerCarrierAccountRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<RegisterCarrierAccountRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RegisterCarrierAccountRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RegisterCarrierAccountRequestBody' from JSON`,
+  );
 }

@@ -341,9 +341,9 @@ async function run() {
       },
     ],
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -677,7 +677,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -698,10 +698,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -721,10 +720,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.batches.get("<value>");
-  
+  const result = await shippo.batches.get("<id>", 1, 5);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -746,7 +745,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await batchesGet(shippo, "<value>");
+  const res = await batchesGet(shippo, "<id>", 1, 5);
 
   if (!res.ok) {
     throw res.error;
@@ -755,7 +754,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -778,10 +777,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## addShipments
 
@@ -798,7 +796,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.batches.addShipments("<value>", [
+  const result = await shippo.batches.addShipments([
     {
       carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
       metadata: "SHIPMENT #1",
@@ -1167,18 +1165,7 @@ async function run() {
           eelPfc: "NOEEI_30_37_a",
           incoterm: "DDP",
           items: [
-            {
-              description: "T-Shirt",
-              massUnit: "lb",
-              metadata: "Order ID \"123454\"",
-              netWeight: "5",
-              originCountry: "<value>",
-              quantity: 20,
-              skuCode: "HM-123",
-              hsCode: "0901.21",
-              valueAmount: "200",
-              valueCurrency: "USD",
-            },
+
           ],
           nonDeliveryOption: "RETURN",
           test: true,
@@ -1205,7 +1192,7 @@ async function run() {
             metadata: "Customer ID 123456",
             massUnit: "lb",
             weight: "1",
-            template: "couriersplease_1kg_satchel",
+            template: "DPD_UK_Express_Pak",
           },
           {
             extra: {
@@ -1224,7 +1211,7 @@ async function run() {
             metadata: "Customer ID 123456",
             massUnit: "lb",
             weight: "1",
-            template: "DHLeC_SM_Flats",
+            template: "DHLeC_Irregular",
           },
         ],
       },
@@ -1338,7 +1325,8 @@ async function run() {
         metadata: "Customer ID 123456",
         shipmentDate: "2021-03-22T12:00:00Z",
         addressFrom: "d799c2679e644279b59fe661ac8fa488",
-        addressReturn: {
+        addressReturn: "d799c2679e644279b59fe661ac8fa488",
+        addressTo: {
           name: "Shwan Ippotle",
           company: "Shippo",
           street1: "215 Clayton St.",
@@ -1354,103 +1342,20 @@ async function run() {
           metadata: "Customer ID 123456",
           validate: true,
         },
-        addressTo: "d799c2679e644279b59fe661ac8fa489",
-        customsDeclaration: {
-          b13aFilingOption: "FILED_ELECTRONICALLY",
-          certify: true,
-          certifySigner: "Shawn Ippotle",
-          contentsExplanation: "T-Shirt purchase",
-          dutiesPayor: {
-            account: "2323434543",
-            type: "THIRD_PARTY",
-            address: {
-              name: "Patrick Kavanagh",
-              zip: "80331",
-              country: "DE",
-            },
-          },
-          exporterIdentification: {
-            eoriNumber: "PL123456790ABCDE",
-            taxId: {
-              number: "123456789",
-              type: "EIN",
-            },
-          },
-          invoice: "#123123",
-          metadata: "Order ID #123123",
-          addressImporter: {
-            name: "Shwan Ippotle",
-            company: "Shippo",
-            street1: "Blumenstraße",
-            street3: "",
-            streetNo: "22",
-            city: "München",
-            state: "CA",
-            zip: "80331",
-            country: "DE",
-            phone: "80331",
-            email: "shippotle@shippo.com",
-            isResidential: true,
-          },
-          contentsType: "MERCHANDISE",
-          eelPfc: "NOEEI_30_37_a",
-          incoterm: "DDP",
-          items: [
-            {
-              description: "T-Shirt",
-              massUnit: "lb",
-              metadata: "Order ID \"123454\"",
-              netWeight: "5",
-              originCountry: "<value>",
-              quantity: 20,
-              skuCode: "HM-123",
-              hsCode: "0901.21",
-              valueAmount: "200",
-              valueCurrency: "USD",
-            },
-            {
-              description: "T-Shirt",
-              massUnit: "lb",
-              metadata: "Order ID \"123454\"",
-              netWeight: "5",
-              originCountry: "<value>",
-              quantity: 20,
-              skuCode: "HM-123",
-              hsCode: "0901.21",
-              valueAmount: "200",
-              valueCurrency: "USD",
-            },
-            {
-              description: "T-Shirt",
-              massUnit: "lb",
-              metadata: "Order ID \"123454\"",
-              netWeight: "5",
-              originCountry: "<value>",
-              quantity: 20,
-              skuCode: "HM-123",
-              hsCode: "0901.21",
-              valueAmount: "200",
-              valueCurrency: "USD",
-            },
-          ],
-          nonDeliveryOption: "RETURN",
-          test: true,
-        },
+        customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
         carrierAccounts: [
           "065a4a8c10d24a34ab932163a1b87f52",
           "73f706f4bdb94b54a337563840ce52b0",
         ],
         parcels: [
-          "<value>",
-          "<value>",
-          "<value>",
+
         ],
       },
     },
-  ]);
-  
+  ], "<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1472,7 +1377,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await batchesAddShipments(shippo, "<value>", [
+  const res = await batchesAddShipments(shippo, [
     {
       carrierAccount: "a4391cd4ab974f478f55dc08b5c8e3b3",
       metadata: "SHIPMENT #1",
@@ -1841,18 +1746,7 @@ async function run() {
           eelPfc: "NOEEI_30_37_a",
           incoterm: "DDP",
           items: [
-            {
-              description: "T-Shirt",
-              massUnit: "lb",
-              metadata: "Order ID \"123454\"",
-              netWeight: "5",
-              originCountry: "<value>",
-              quantity: 20,
-              skuCode: "HM-123",
-              hsCode: "0901.21",
-              valueAmount: "200",
-              valueCurrency: "USD",
-            },
+  
           ],
           nonDeliveryOption: "RETURN",
           test: true,
@@ -1879,7 +1773,7 @@ async function run() {
             metadata: "Customer ID 123456",
             massUnit: "lb",
             weight: "1",
-            template: "couriersplease_1kg_satchel",
+            template: "DPD_UK_Express_Pak",
           },
           {
             extra: {
@@ -1898,7 +1792,7 @@ async function run() {
             metadata: "Customer ID 123456",
             massUnit: "lb",
             weight: "1",
-            template: "DHLeC_SM_Flats",
+            template: "DHLeC_Irregular",
           },
         ],
       },
@@ -2012,7 +1906,8 @@ async function run() {
         metadata: "Customer ID 123456",
         shipmentDate: "2021-03-22T12:00:00Z",
         addressFrom: "d799c2679e644279b59fe661ac8fa488",
-        addressReturn: {
+        addressReturn: "d799c2679e644279b59fe661ac8fa488",
+        addressTo: {
           name: "Shwan Ippotle",
           company: "Shippo",
           street1: "215 Clayton St.",
@@ -2028,100 +1923,17 @@ async function run() {
           metadata: "Customer ID 123456",
           validate: true,
         },
-        addressTo: "d799c2679e644279b59fe661ac8fa489",
-        customsDeclaration: {
-          b13aFilingOption: "FILED_ELECTRONICALLY",
-          certify: true,
-          certifySigner: "Shawn Ippotle",
-          contentsExplanation: "T-Shirt purchase",
-          dutiesPayor: {
-            account: "2323434543",
-            type: "THIRD_PARTY",
-            address: {
-              name: "Patrick Kavanagh",
-              zip: "80331",
-              country: "DE",
-            },
-          },
-          exporterIdentification: {
-            eoriNumber: "PL123456790ABCDE",
-            taxId: {
-              number: "123456789",
-              type: "EIN",
-            },
-          },
-          invoice: "#123123",
-          metadata: "Order ID #123123",
-          addressImporter: {
-            name: "Shwan Ippotle",
-            company: "Shippo",
-            street1: "Blumenstraße",
-            street3: "",
-            streetNo: "22",
-            city: "München",
-            state: "CA",
-            zip: "80331",
-            country: "DE",
-            phone: "80331",
-            email: "shippotle@shippo.com",
-            isResidential: true,
-          },
-          contentsType: "MERCHANDISE",
-          eelPfc: "NOEEI_30_37_a",
-          incoterm: "DDP",
-          items: [
-            {
-              description: "T-Shirt",
-              massUnit: "lb",
-              metadata: "Order ID \"123454\"",
-              netWeight: "5",
-              originCountry: "<value>",
-              quantity: 20,
-              skuCode: "HM-123",
-              hsCode: "0901.21",
-              valueAmount: "200",
-              valueCurrency: "USD",
-            },
-            {
-              description: "T-Shirt",
-              massUnit: "lb",
-              metadata: "Order ID \"123454\"",
-              netWeight: "5",
-              originCountry: "<value>",
-              quantity: 20,
-              skuCode: "HM-123",
-              hsCode: "0901.21",
-              valueAmount: "200",
-              valueCurrency: "USD",
-            },
-            {
-              description: "T-Shirt",
-              massUnit: "lb",
-              metadata: "Order ID \"123454\"",
-              netWeight: "5",
-              originCountry: "<value>",
-              quantity: 20,
-              skuCode: "HM-123",
-              hsCode: "0901.21",
-              valueAmount: "200",
-              valueCurrency: "USD",
-            },
-          ],
-          nonDeliveryOption: "RETURN",
-          test: true,
-        },
+        customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
         carrierAccounts: [
           "065a4a8c10d24a34ab932163a1b87f52",
           "73f706f4bdb94b54a337563840ce52b0",
         ],
         parcels: [
-          "<value>",
-          "<value>",
-          "<value>",
+  
         ],
       },
     },
-  ]);
+  ], "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -2130,7 +1942,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -2152,10 +1964,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## purchase
 
@@ -2175,10 +1986,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.batches.purchase("<value>");
-  
+  const result = await shippo.batches.purchase("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -2200,7 +2011,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await batchesPurchase(shippo, "<value>");
+  const res = await batchesPurchase(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -2209,7 +2020,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -2230,10 +2041,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## removeShipments
 
@@ -2250,14 +2060,14 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.batches.removeShipments("<value>", [
+  const result = await shippo.batches.removeShipments([
     "<value>",
     "<value>",
     "<value>",
-  ]);
-  
+  ], "<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -2279,11 +2089,11 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await batchesRemoveShipments(shippo, "<value>", [
+  const res = await batchesRemoveShipments(shippo, [
     "<value>",
     "<value>",
     "<value>",
-  ]);
+  ], "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -2292,7 +2102,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -2314,6 +2124,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

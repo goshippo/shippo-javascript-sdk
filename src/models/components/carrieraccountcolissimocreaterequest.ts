@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountColissimoCreateRequestParameters = {};
 
 export type CarrierAccountColissimoCreateRequest = {
-  carrier: string;
+  carrier?: "colissimo" | undefined;
   parameters: CarrierAccountColissimoCreateRequestParameters;
 };
 
@@ -46,13 +49,40 @@ export namespace CarrierAccountColissimoCreateRequestParameters$ {
     CarrierAccountColissimoCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountColissimoCreateRequestParametersToJSON(
+  carrierAccountColissimoCreateRequestParameters:
+    CarrierAccountColissimoCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountColissimoCreateRequestParameters$outboundSchema.parse(
+      carrierAccountColissimoCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountColissimoCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountColissimoCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountColissimoCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountColissimoCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountColissimoCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountColissimoCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("colissimo").optional(),
   parameters: z.lazy(() =>
     CarrierAccountColissimoCreateRequestParameters$inboundSchema
   ),
@@ -60,7 +90,7 @@ export const CarrierAccountColissimoCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountColissimoCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "colissimo";
   parameters: CarrierAccountColissimoCreateRequestParameters$Outbound;
 };
 
@@ -70,7 +100,7 @@ export const CarrierAccountColissimoCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountColissimoCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("colissimo").default("colissimo" as const),
   parameters: z.lazy(() =>
     CarrierAccountColissimoCreateRequestParameters$outboundSchema
   ),
@@ -89,4 +119,25 @@ export namespace CarrierAccountColissimoCreateRequest$ {
     CarrierAccountColissimoCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountColissimoCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountColissimoCreateRequest$Outbound;
+}
+
+export function carrierAccountColissimoCreateRequestToJSON(
+  carrierAccountColissimoCreateRequest: CarrierAccountColissimoCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountColissimoCreateRequest$outboundSchema.parse(
+      carrierAccountColissimoCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountColissimoCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountColissimoCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountColissimoCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountColissimoCreateRequest' from JSON`,
+  );
 }

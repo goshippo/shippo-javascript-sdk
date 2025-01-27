@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Container for specifying the presence of biological material.
@@ -48,4 +51,24 @@ export namespace DangerousGoodsBiologicalMaterial$ {
   export const outboundSchema = DangerousGoodsBiologicalMaterial$outboundSchema;
   /** @deprecated use `DangerousGoodsBiologicalMaterial$Outbound` instead. */
   export type Outbound = DangerousGoodsBiologicalMaterial$Outbound;
+}
+
+export function dangerousGoodsBiologicalMaterialToJSON(
+  dangerousGoodsBiologicalMaterial: DangerousGoodsBiologicalMaterial,
+): string {
+  return JSON.stringify(
+    DangerousGoodsBiologicalMaterial$outboundSchema.parse(
+      dangerousGoodsBiologicalMaterial,
+    ),
+  );
+}
+
+export function dangerousGoodsBiologicalMaterialFromJSON(
+  jsonString: string,
+): SafeParseResult<DangerousGoodsBiologicalMaterial, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DangerousGoodsBiologicalMaterial$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DangerousGoodsBiologicalMaterial' from JSON`,
+  );
 }

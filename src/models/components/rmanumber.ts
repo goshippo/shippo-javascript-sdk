@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Specify the RMA number field on the label (FedEx and UPS only).
@@ -75,4 +78,18 @@ export namespace RmaNumber$ {
   export const outboundSchema = RmaNumber$outboundSchema;
   /** @deprecated use `RmaNumber$Outbound` instead. */
   export type Outbound = RmaNumber$Outbound;
+}
+
+export function rmaNumberToJSON(rmaNumber: RmaNumber): string {
+  return JSON.stringify(RmaNumber$outboundSchema.parse(rmaNumber));
+}
+
+export function rmaNumberFromJSON(
+  jsonString: string,
+): SafeParseResult<RmaNumber, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RmaNumber$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RmaNumber' from JSON`,
+  );
 }

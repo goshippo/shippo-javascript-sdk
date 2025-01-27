@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateCustomsDeclarationGlobals = {
   /**
@@ -54,4 +57,24 @@ export namespace CreateCustomsDeclarationGlobals$ {
   export const outboundSchema = CreateCustomsDeclarationGlobals$outboundSchema;
   /** @deprecated use `CreateCustomsDeclarationGlobals$Outbound` instead. */
   export type Outbound = CreateCustomsDeclarationGlobals$Outbound;
+}
+
+export function createCustomsDeclarationGlobalsToJSON(
+  createCustomsDeclarationGlobals: CreateCustomsDeclarationGlobals,
+): string {
+  return JSON.stringify(
+    CreateCustomsDeclarationGlobals$outboundSchema.parse(
+      createCustomsDeclarationGlobals,
+    ),
+  );
+}
+
+export function createCustomsDeclarationGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateCustomsDeclarationGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateCustomsDeclarationGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateCustomsDeclarationGlobals' from JSON`,
+  );
 }

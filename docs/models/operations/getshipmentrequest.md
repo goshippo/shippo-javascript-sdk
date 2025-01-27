@@ -6,7 +6,7 @@
 import { GetShipmentRequest } from "shippo/models/operations";
 
 let value: GetShipmentRequest = {
-  shipmentId: "<value>",
+  shipmentId: "<id>",
 };
 ```
 

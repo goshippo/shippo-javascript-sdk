@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateOrderGlobals = {
   /**
@@ -54,4 +57,22 @@ export namespace CreateOrderGlobals$ {
   export const outboundSchema = CreateOrderGlobals$outboundSchema;
   /** @deprecated use `CreateOrderGlobals$Outbound` instead. */
   export type Outbound = CreateOrderGlobals$Outbound;
+}
+
+export function createOrderGlobalsToJSON(
+  createOrderGlobals: CreateOrderGlobals,
+): string {
+  return JSON.stringify(
+    CreateOrderGlobals$outboundSchema.parse(createOrderGlobals),
+  );
+}
+
+export function createOrderGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateOrderGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateOrderGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateOrderGlobals' from JSON`,
+  );
 }

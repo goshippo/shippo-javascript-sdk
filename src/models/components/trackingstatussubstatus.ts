@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * A finer-grained classification of the tracking event.
@@ -71,4 +74,22 @@ export namespace TrackingStatusSubstatus$ {
   export const outboundSchema = TrackingStatusSubstatus$outboundSchema;
   /** @deprecated use `TrackingStatusSubstatus$Outbound` instead. */
   export type Outbound = TrackingStatusSubstatus$Outbound;
+}
+
+export function trackingStatusSubstatusToJSON(
+  trackingStatusSubstatus: TrackingStatusSubstatus,
+): string {
+  return JSON.stringify(
+    TrackingStatusSubstatus$outboundSchema.parse(trackingStatusSubstatus),
+  );
+}
+
+export function trackingStatusSubstatusFromJSON(
+  jsonString: string,
+): SafeParseResult<TrackingStatusSubstatus, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TrackingStatusSubstatus$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TrackingStatusSubstatus' from JSON`,
+  );
 }

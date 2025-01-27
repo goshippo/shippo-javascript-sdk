@@ -30,7 +30,7 @@
 import { ServiceLevelRoyalMailEnum } from "shippo/models/components";
 
 let value: ServiceLevelRoyalMailEnum =
-  "royal_mail_special_delivery_guaranteed_1pm";
+  "royal_mail_special_delivery_guaranteed_9am";
 ```
 
 ## Values

@@ -33,7 +33,7 @@
 ```typescript
 import { ServiceLevelFedExEnum } from "shippo/models/components";
 
-let value: ServiceLevelFedExEnum = "fedex_europe_first_international_priority";
+let value: ServiceLevelFedExEnum = "fedex_international_economy";
 ```
 
 ## Values

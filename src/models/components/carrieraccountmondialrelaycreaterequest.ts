@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountMondialRelayCreateRequestParameters = {};
 
 export type CarrierAccountMondialRelayCreateRequest = {
-  carrier: string;
+  carrier?: "mondial_relay" | undefined;
   parameters: CarrierAccountMondialRelayCreateRequestParameters;
 };
 
@@ -46,13 +49,40 @@ export namespace CarrierAccountMondialRelayCreateRequestParameters$ {
     CarrierAccountMondialRelayCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountMondialRelayCreateRequestParametersToJSON(
+  carrierAccountMondialRelayCreateRequestParameters:
+    CarrierAccountMondialRelayCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountMondialRelayCreateRequestParameters$outboundSchema.parse(
+      carrierAccountMondialRelayCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountMondialRelayCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountMondialRelayCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountMondialRelayCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountMondialRelayCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountMondialRelayCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountMondialRelayCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("mondial_relay").optional(),
   parameters: z.lazy(() =>
     CarrierAccountMondialRelayCreateRequestParameters$inboundSchema
   ),
@@ -60,7 +90,7 @@ export const CarrierAccountMondialRelayCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountMondialRelayCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "mondial_relay";
   parameters: CarrierAccountMondialRelayCreateRequestParameters$Outbound;
 };
 
@@ -70,7 +100,7 @@ export const CarrierAccountMondialRelayCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountMondialRelayCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("mondial_relay").default("mondial_relay" as const),
   parameters: z.lazy(() =>
     CarrierAccountMondialRelayCreateRequestParameters$outboundSchema
   ),
@@ -89,4 +119,31 @@ export namespace CarrierAccountMondialRelayCreateRequest$ {
     CarrierAccountMondialRelayCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountMondialRelayCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountMondialRelayCreateRequest$Outbound;
+}
+
+export function carrierAccountMondialRelayCreateRequestToJSON(
+  carrierAccountMondialRelayCreateRequest:
+    CarrierAccountMondialRelayCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountMondialRelayCreateRequest$outboundSchema.parse(
+      carrierAccountMondialRelayCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountMondialRelayCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountMondialRelayCreateRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountMondialRelayCreateRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountMondialRelayCreateRequest' from JSON`,
+  );
 }

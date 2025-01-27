@@ -23,8 +23,7 @@
 ```typescript
 import { ServiceLevelCanadaPostEnum } from "shippo/models/components";
 
-let value: ServiceLevelCanadaPostEnum =
-  "canada_post_small_packet_international_air";
+let value: ServiceLevelCanadaPostEnum = "canada_post_expedited_parcel";
 ```
 
 ## Values

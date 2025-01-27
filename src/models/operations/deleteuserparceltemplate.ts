@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteUserParcelTemplateGlobals = {
   /**
@@ -63,6 +66,26 @@ export namespace DeleteUserParcelTemplateGlobals$ {
   export type Outbound = DeleteUserParcelTemplateGlobals$Outbound;
 }
 
+export function deleteUserParcelTemplateGlobalsToJSON(
+  deleteUserParcelTemplateGlobals: DeleteUserParcelTemplateGlobals,
+): string {
+  return JSON.stringify(
+    DeleteUserParcelTemplateGlobals$outboundSchema.parse(
+      deleteUserParcelTemplateGlobals,
+    ),
+  );
+}
+
+export function deleteUserParcelTemplateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteUserParcelTemplateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteUserParcelTemplateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteUserParcelTemplateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteUserParcelTemplateRequest$inboundSchema: z.ZodType<
   DeleteUserParcelTemplateRequest,
@@ -105,4 +128,24 @@ export namespace DeleteUserParcelTemplateRequest$ {
   export const outboundSchema = DeleteUserParcelTemplateRequest$outboundSchema;
   /** @deprecated use `DeleteUserParcelTemplateRequest$Outbound` instead. */
   export type Outbound = DeleteUserParcelTemplateRequest$Outbound;
+}
+
+export function deleteUserParcelTemplateRequestToJSON(
+  deleteUserParcelTemplateRequest: DeleteUserParcelTemplateRequest,
+): string {
+  return JSON.stringify(
+    DeleteUserParcelTemplateRequest$outboundSchema.parse(
+      deleteUserParcelTemplateRequest,
+    ),
+  );
+}
+
+export function deleteUserParcelTemplateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteUserParcelTemplateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteUserParcelTemplateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteUserParcelTemplateRequest' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateAddressGlobals = {
   /**
@@ -54,4 +57,22 @@ export namespace CreateAddressGlobals$ {
   export const outboundSchema = CreateAddressGlobals$outboundSchema;
   /** @deprecated use `CreateAddressGlobals$Outbound` instead. */
   export type Outbound = CreateAddressGlobals$Outbound;
+}
+
+export function createAddressGlobalsToJSON(
+  createAddressGlobals: CreateAddressGlobals,
+): string {
+  return JSON.stringify(
+    CreateAddressGlobals$outboundSchema.parse(createAddressGlobals),
+  );
+}
+
+export function createAddressGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateAddressGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateAddressGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateAddressGlobals' from JSON`,
+  );
 }

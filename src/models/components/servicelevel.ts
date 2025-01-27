@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Used for some Service Levels to link to the more "generic" version of this Service Level - for example,
@@ -93,4 +96,18 @@ export namespace ServiceLevel$ {
   export const outboundSchema = ServiceLevel$outboundSchema;
   /** @deprecated use `ServiceLevel$Outbound` instead. */
   export type Outbound = ServiceLevel$Outbound;
+}
+
+export function serviceLevelToJSON(serviceLevel: ServiceLevel): string {
+  return JSON.stringify(ServiceLevel$outboundSchema.parse(serviceLevel));
+}
+
+export function serviceLevelFromJSON(
+  jsonString: string,
+): SafeParseResult<ServiceLevel, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ServiceLevel$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ServiceLevel' from JSON`,
+  );
 }

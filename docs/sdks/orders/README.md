@@ -39,14 +39,16 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.orders.list({
+    page: 1,
+    results: 25,
     orderStatus: [
       "PAID",
     ],
     shopApp: "Shippo",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -69,6 +71,8 @@ const shippo = new ShippoCore({
 
 async function run() {
   const res = await ordersList(shippo, {
+    page: 1,
+    results: 25,
     orderStatus: [
       "PAID",
     ],
@@ -82,7 +86,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -103,10 +107,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create
 
@@ -183,11 +186,24 @@ async function run() {
         weight: "0.4",
         weightUnit: "lb",
       },
+      {
+        currency: "USD",
+        manufactureCountry: "US",
+        maxDeliveryTime: new Date("2016-07-23T00:00:00Z"),
+        maxShipTime: new Date("2016-07-23T00:00:00Z"),
+        quantity: 20,
+        sku: "HM-123",
+        title: "Hippo Magazines",
+        totalPrice: "12.1",
+        variantTitle: "June Edition",
+        weight: "0.4",
+        weightUnit: "lb",
+      },
     ],
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -269,6 +285,19 @@ async function run() {
         weight: "0.4",
         weightUnit: "lb",
       },
+      {
+        currency: "USD",
+        manufactureCountry: "US",
+        maxDeliveryTime: new Date("2016-07-23T00:00:00Z"),
+        maxShipTime: new Date("2016-07-23T00:00:00Z"),
+        quantity: 20,
+        sku: "HM-123",
+        title: "Hippo Magazines",
+        totalPrice: "12.1",
+        variantTitle: "June Edition",
+        weight: "0.4",
+        weightUnit: "lb",
+      },
     ],
   });
 
@@ -279,7 +308,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -300,10 +329,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -320,10 +348,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.orders.get("<value>");
-  
+  const result = await shippo.orders.get("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -345,7 +373,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await ordersGet(shippo, "<value>");
+  const res = await ordersGet(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -354,7 +382,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -375,6 +403,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

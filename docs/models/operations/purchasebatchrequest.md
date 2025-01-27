@@ -6,7 +6,7 @@
 import { PurchaseBatchRequest } from "shippo/models/operations";
 
 let value: PurchaseBatchRequest = {
-  batchId: "<value>",
+  batchId: "<id>",
 };
 ```
 

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Transaction,
   Transaction$inboundSchema,
@@ -70,4 +73,22 @@ export namespace WebhookPayloadTransaction$ {
   export const outboundSchema = WebhookPayloadTransaction$outboundSchema;
   /** @deprecated use `WebhookPayloadTransaction$Outbound` instead. */
   export type Outbound = WebhookPayloadTransaction$Outbound;
+}
+
+export function webhookPayloadTransactionToJSON(
+  webhookPayloadTransaction: WebhookPayloadTransaction,
+): string {
+  return JSON.stringify(
+    WebhookPayloadTransaction$outboundSchema.parse(webhookPayloadTransaction),
+  );
+}
+
+export function webhookPayloadTransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookPayloadTransaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookPayloadTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookPayloadTransaction' from JSON`,
+  );
 }

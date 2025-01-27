@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountPosteItalianeCreateRequestParameters = {};
 
 export type CarrierAccountPosteItalianeCreateRequest = {
-  carrier: string;
+  carrier?: "poste_italiane" | undefined;
   parameters: CarrierAccountPosteItalianeCreateRequestParameters;
 };
 
@@ -46,13 +49,40 @@ export namespace CarrierAccountPosteItalianeCreateRequestParameters$ {
     CarrierAccountPosteItalianeCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountPosteItalianeCreateRequestParametersToJSON(
+  carrierAccountPosteItalianeCreateRequestParameters:
+    CarrierAccountPosteItalianeCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountPosteItalianeCreateRequestParameters$outboundSchema.parse(
+      carrierAccountPosteItalianeCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountPosteItalianeCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountPosteItalianeCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountPosteItalianeCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountPosteItalianeCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountPosteItalianeCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountPosteItalianeCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("poste_italiane").optional(),
   parameters: z.lazy(() =>
     CarrierAccountPosteItalianeCreateRequestParameters$inboundSchema
   ),
@@ -60,7 +90,7 @@ export const CarrierAccountPosteItalianeCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountPosteItalianeCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "poste_italiane";
   parameters: CarrierAccountPosteItalianeCreateRequestParameters$Outbound;
 };
 
@@ -70,7 +100,7 @@ export const CarrierAccountPosteItalianeCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountPosteItalianeCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("poste_italiane").default("poste_italiane" as const),
   parameters: z.lazy(() =>
     CarrierAccountPosteItalianeCreateRequestParameters$outboundSchema
   ),
@@ -89,4 +119,31 @@ export namespace CarrierAccountPosteItalianeCreateRequest$ {
     CarrierAccountPosteItalianeCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountPosteItalianeCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountPosteItalianeCreateRequest$Outbound;
+}
+
+export function carrierAccountPosteItalianeCreateRequestToJSON(
+  carrierAccountPosteItalianeCreateRequest:
+    CarrierAccountPosteItalianeCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountPosteItalianeCreateRequest$outboundSchema.parse(
+      carrierAccountPosteItalianeCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountPosteItalianeCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountPosteItalianeCreateRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountPosteItalianeCreateRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountPosteItalianeCreateRequest' from JSON`,
+  );
 }

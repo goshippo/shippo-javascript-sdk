@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierParcelTemplate,
   CarrierParcelTemplate$inboundSchema,
@@ -48,4 +51,22 @@ export namespace CarrierParcelTemplateList$ {
   export const outboundSchema = CarrierParcelTemplateList$outboundSchema;
   /** @deprecated use `CarrierParcelTemplateList$Outbound` instead. */
   export type Outbound = CarrierParcelTemplateList$Outbound;
+}
+
+export function carrierParcelTemplateListToJSON(
+  carrierParcelTemplateList: CarrierParcelTemplateList,
+): string {
+  return JSON.stringify(
+    CarrierParcelTemplateList$outboundSchema.parse(carrierParcelTemplateList),
+  );
+}
+
+export function carrierParcelTemplateListFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierParcelTemplateList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierParcelTemplateList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierParcelTemplateList' from JSON`,
+  );
 }

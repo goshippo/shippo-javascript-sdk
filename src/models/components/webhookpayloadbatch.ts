@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WebhookEventTypeEnum,
   WebhookEventTypeEnum$inboundSchema,
@@ -67,4 +70,22 @@ export namespace WebhookPayloadBatch$ {
   export const outboundSchema = WebhookPayloadBatch$outboundSchema;
   /** @deprecated use `WebhookPayloadBatch$Outbound` instead. */
   export type Outbound = WebhookPayloadBatch$Outbound;
+}
+
+export function webhookPayloadBatchToJSON(
+  webhookPayloadBatch: WebhookPayloadBatch,
+): string {
+  return JSON.stringify(
+    WebhookPayloadBatch$outboundSchema.parse(webhookPayloadBatch),
+  );
+}
+
+export function webhookPayloadBatchFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookPayloadBatch, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookPayloadBatch$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookPayloadBatch' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateRefundGlobals = {
   /**
@@ -54,4 +57,22 @@ export namespace CreateRefundGlobals$ {
   export const outboundSchema = CreateRefundGlobals$outboundSchema;
   /** @deprecated use `CreateRefundGlobals$Outbound` instead. */
   export type Outbound = CreateRefundGlobals$Outbound;
+}
+
+export function createRefundGlobalsToJSON(
+  createRefundGlobals: CreateRefundGlobals,
+): string {
+  return JSON.stringify(
+    CreateRefundGlobals$outboundSchema.parse(createRefundGlobals),
+  );
+}
+
+export function createRefundGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateRefundGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateRefundGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateRefundGlobals' from JSON`,
+  );
 }

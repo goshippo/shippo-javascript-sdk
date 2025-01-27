@@ -6,6 +6,7 @@ import * as z from "zod";
 import { ShippoCore } from "../core.js";
 import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -29,6 +30,7 @@ import { Result } from "../types/fp.js";
  */
 export async function ratesAtCheckoutDeleteDefaultParcelTemplate(
   client: ShippoCore,
+  _request: operations.DeleteDefaultParcelTemplateRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -42,32 +44,38 @@ export async function ratesAtCheckoutDeleteDefaultParcelTemplate(
     | ConnectionError
   >
 > {
-  const input: operations.DeleteDefaultParcelTemplateRequest = {};
-  void input; // request input is unused
-
   const path = pathToFunc("/live-rates/settings/parcel-template")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "*/*",
     "SHIPPO-API-VERSION": encodeSimple(
       "SHIPPO-API-VERSION",
       client._options.shippoApiVersion,
       { explode: false, charEncoding: "none" },
     ),
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.apiKeyHeader);
   const securityInput = secConfig == null ? {} : { apiKeyHeader: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "DeleteDefaultParcelTemplate",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.apiKeyHeader,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "DELETE",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
@@ -80,9 +88,8 @@ export async function ratesAtCheckoutDeleteDefaultParcelTemplate(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
@@ -100,7 +107,8 @@ export async function ratesAtCheckoutDeleteDefaultParcelTemplate(
     | ConnectionError
   >(
     M.nil(204, z.void()),
-    M.fail([400, "4XX", "5XX"]),
+    M.fail([400, "4XX"]),
+    M.fail("5XX"),
   )(response);
   if (!result.ok) {
     return result;

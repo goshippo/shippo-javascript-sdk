@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountChronopostCreateRequestParameters = {};
 
 export type CarrierAccountChronopostCreateRequest = {
-  carrier: string;
+  carrier?: "chronopost" | undefined;
   parameters: CarrierAccountChronopostCreateRequestParameters;
 };
 
@@ -46,13 +49,40 @@ export namespace CarrierAccountChronopostCreateRequestParameters$ {
     CarrierAccountChronopostCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountChronopostCreateRequestParametersToJSON(
+  carrierAccountChronopostCreateRequestParameters:
+    CarrierAccountChronopostCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountChronopostCreateRequestParameters$outboundSchema.parse(
+      carrierAccountChronopostCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountChronopostCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountChronopostCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountChronopostCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountChronopostCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountChronopostCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountChronopostCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("chronopost").optional(),
   parameters: z.lazy(() =>
     CarrierAccountChronopostCreateRequestParameters$inboundSchema
   ),
@@ -60,7 +90,7 @@ export const CarrierAccountChronopostCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountChronopostCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "chronopost";
   parameters: CarrierAccountChronopostCreateRequestParameters$Outbound;
 };
 
@@ -70,7 +100,7 @@ export const CarrierAccountChronopostCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountChronopostCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("chronopost").default("chronopost" as const),
   parameters: z.lazy(() =>
     CarrierAccountChronopostCreateRequestParameters$outboundSchema
   ),
@@ -89,4 +119,25 @@ export namespace CarrierAccountChronopostCreateRequest$ {
     CarrierAccountChronopostCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountChronopostCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountChronopostCreateRequest$Outbound;
+}
+
+export function carrierAccountChronopostCreateRequestToJSON(
+  carrierAccountChronopostCreateRequest: CarrierAccountChronopostCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountChronopostCreateRequest$outboundSchema.parse(
+      carrierAccountChronopostCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountChronopostCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountChronopostCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountChronopostCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountChronopostCreateRequest' from JSON`,
+  );
 }

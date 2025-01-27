@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AddressValidationResultsMessage,
   AddressValidationResultsMessage$inboundSchema,
@@ -67,4 +70,22 @@ export namespace AddressValidationResults$ {
   export const outboundSchema = AddressValidationResults$outboundSchema;
   /** @deprecated use `AddressValidationResults$Outbound` instead. */
   export type Outbound = AddressValidationResults$Outbound;
+}
+
+export function addressValidationResultsToJSON(
+  addressValidationResults: AddressValidationResults,
+): string {
+  return JSON.stringify(
+    AddressValidationResults$outboundSchema.parse(addressValidationResults),
+  );
+}
+
+export function addressValidationResultsFromJSON(
+  jsonString: string,
+): SafeParseResult<AddressValidationResults, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddressValidationResults$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddressValidationResults' from JSON`,
+  );
 }

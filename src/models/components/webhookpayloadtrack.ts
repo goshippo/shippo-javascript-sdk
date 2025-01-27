@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Track,
   Track$inboundSchema,
@@ -70,4 +73,22 @@ export namespace WebhookPayloadTrack$ {
   export const outboundSchema = WebhookPayloadTrack$outboundSchema;
   /** @deprecated use `WebhookPayloadTrack$Outbound` instead. */
   export type Outbound = WebhookPayloadTrack$Outbound;
+}
+
+export function webhookPayloadTrackToJSON(
+  webhookPayloadTrack: WebhookPayloadTrack,
+): string {
+  return JSON.stringify(
+    WebhookPayloadTrack$outboundSchema.parse(webhookPayloadTrack),
+  );
+}
+
+export function webhookPayloadTrackFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookPayloadTrack, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookPayloadTrack$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookPayloadTrack' from JSON`,
+  );
 }

@@ -31,7 +31,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await addressesList(shippo);
+  const res = await addressesList(shippo, 1, 5);
 
   switch (true) {
     case res.ok:
@@ -53,7 +53,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
