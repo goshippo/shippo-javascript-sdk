@@ -13,7 +13,7 @@ export class MockShippoSDK extends Shippo {
 }
 
 
-export const shippoSdk = new Shippo(apiKeyHeader: process.env.SHIPPO_TOKEN);
+export const shippoSdk = new Shippo({apiKeyHeader: process.env.SHIPPO_TOKEN});
 
 export async function getCarrierAccounts(carrier: CarriersEnum): Promise<Array<CarrierAccountWithExtraInfo>> {
     const carrierAccountsResponse = await shippoSdk.carrierAccounts.list({ carrier: carrier });
