@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierParcelTemplate,
   CarrierParcelTemplate$inboundSchema,
@@ -158,4 +161,22 @@ export namespace UserParcelTemplate$ {
   export const outboundSchema = UserParcelTemplate$outboundSchema;
   /** @deprecated use `UserParcelTemplate$Outbound` instead. */
   export type Outbound = UserParcelTemplate$Outbound;
+}
+
+export function userParcelTemplateToJSON(
+  userParcelTemplate: UserParcelTemplate,
+): string {
+  return JSON.stringify(
+    UserParcelTemplate$outboundSchema.parse(userParcelTemplate),
+  );
+}
+
+export function userParcelTemplateFromJSON(
+  jsonString: string,
+): SafeParseResult<UserParcelTemplate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UserParcelTemplate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UserParcelTemplate' from JSON`,
+  );
 }

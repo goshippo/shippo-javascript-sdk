@@ -48,10 +48,13 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.shipments.list({});
-  
+  const result = await shippo.shipments.list({
+    page: 1,
+    results: 25,
+  });
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -73,7 +76,10 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await shipmentsList(shippo, {});
+  const res = await shipmentsList(shippo, {
+    page: 1,
+    results: 25,
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -82,7 +88,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -103,10 +109,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create
 
@@ -301,18 +306,7 @@ async function run() {
       eelPfc: "NOEEI_30_37_a",
       incoterm: "DDP",
       items: [
-        {
-          description: "T-Shirt",
-          massUnit: "lb",
-          metadata: "Order ID \"123454\"",
-          netWeight: "5",
-          originCountry: "<value>",
-          quantity: 20,
-          skuCode: "HM-123",
-          hsCode: "0901.21",
-          valueAmount: "200",
-          valueCurrency: "USD",
-        },
+
       ],
       nonDeliveryOption: "RETURN",
       test: true,
@@ -369,9 +363,9 @@ async function run() {
       },
     ],
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -571,18 +565,7 @@ async function run() {
       eelPfc: "NOEEI_30_37_a",
       incoterm: "DDP",
       items: [
-        {
-          description: "T-Shirt",
-          massUnit: "lb",
-          metadata: "Order ID \"123454\"",
-          netWeight: "5",
-          originCountry: "<value>",
-          quantity: 20,
-          skuCode: "HM-123",
-          hsCode: "0901.21",
-          valueAmount: "200",
-          valueCurrency: "USD",
-        },
+  
       ],
       nonDeliveryOption: "RETURN",
       test: true,
@@ -647,7 +630,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -668,10 +651,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -688,10 +670,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.shipments.get("<value>");
-  
+  const result = await shippo.shipments.get("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -713,7 +695,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await shipmentsGet(shippo, "<value>");
+  const res = await shipmentsGet(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -722,7 +704,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -743,6 +725,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

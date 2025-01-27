@@ -7,7 +7,7 @@ Party to be billed. (Leave blank for DHL Germany.)
 ```typescript
 import { Type } from "shippo/models/components";
 
-let value: Type = "THIRD_PARTY_CONSIGNEE";
+let value: Type = "THIRD_PARTY";
 ```
 
 ## Values

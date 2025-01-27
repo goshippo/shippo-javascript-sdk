@@ -20,7 +20,7 @@
 import { ServiceLevelAustraliaPostEnum } from "shippo/models/components";
 
 let value: ServiceLevelAustraliaPostEnum =
-  "australia_post_pack_and_track_international";
+  "australia_post_international_economy";
 ```
 
 ## Values

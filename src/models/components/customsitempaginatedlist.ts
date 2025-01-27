@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomsItem,
   CustomsItem$inboundSchema,
@@ -56,4 +59,22 @@ export namespace CustomsItemPaginatedList$ {
   export const outboundSchema = CustomsItemPaginatedList$outboundSchema;
   /** @deprecated use `CustomsItemPaginatedList$Outbound` instead. */
   export type Outbound = CustomsItemPaginatedList$Outbound;
+}
+
+export function customsItemPaginatedListToJSON(
+  customsItemPaginatedList: CustomsItemPaginatedList,
+): string {
+  return JSON.stringify(
+    CustomsItemPaginatedList$outboundSchema.parse(customsItemPaginatedList),
+  );
+}
+
+export function customsItemPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsItemPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsItemPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsItemPaginatedList' from JSON`,
+  );
 }

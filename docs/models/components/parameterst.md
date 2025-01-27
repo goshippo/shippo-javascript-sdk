@@ -1,11 +1,35 @@
 # ParametersT
 
-## Example Usage
+
+## Supported Types
+
+### `{ [k: string]: any }`
 
 ```typescript
-import { ParametersT } from "shippo/models/components";
+const value: { [k: string]: any } = {
+  "key": "<value>",
+};
+```
 
-let value: ParametersT = {
+### `components.FedExConnectExistingOwnAccountParameters`
+
+```typescript
+const value: components.FedExConnectExistingOwnAccountParameters = {
+  firstName: "Bernie",
+  lastName: "Conn",
+  phoneNumber: "480.809.4967",
+  fromAddressSt: "<value>",
+  fromAddressCity: "<value>",
+  fromAddressState: "<value>",
+  fromAddressZip: "<value>",
+  fromAddressCountryIso2: "<value>",
+};
+```
+
+### `components.UPSConnectExistingOwnAccountParameters`
+
+```typescript
+const value: components.UPSConnectExistingOwnAccountParameters = {
   accountNumber: "94567e",
   aiaCountryIso2: "US",
   billingAddressCity: "San Francisco",
@@ -29,25 +53,5 @@ let value: ParametersT = {
   title: "Manager",
   upsAgreements: false,
 };
-```
-
-## Supported Types
-
-### `{ [k: string]: any }`
-
-```typescript
-const value: { [k: string]: any } = /* values here */
-```
-
-### `components.FedExConnectExistingOwnAccountParameters`
-
-```typescript
-const value: components.FedExConnectExistingOwnAccountParameters = /* values here */
-```
-
-### `components.UPSConnectExistingOwnAccountParameters`
-
-```typescript
-const value: components.UPSConnectExistingOwnAccountParameters = /* values here */
 ```
 

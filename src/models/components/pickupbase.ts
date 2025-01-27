@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Location,
   Location$inboundSchema,
@@ -115,4 +118,18 @@ export namespace PickupBase$ {
   export const outboundSchema = PickupBase$outboundSchema;
   /** @deprecated use `PickupBase$Outbound` instead. */
   export type Outbound = PickupBase$Outbound;
+}
+
+export function pickupBaseToJSON(pickupBase: PickupBase): string {
+  return JSON.stringify(PickupBase$outboundSchema.parse(pickupBase));
+}
+
+export function pickupBaseFromJSON(
+  jsonString: string,
+): SafeParseResult<PickupBase, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PickupBase$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PickupBase' from JSON`,
+  );
 }

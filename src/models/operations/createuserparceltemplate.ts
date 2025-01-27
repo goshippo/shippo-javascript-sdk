@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateUserParcelTemplateGlobals = {
   /**
@@ -54,4 +57,24 @@ export namespace CreateUserParcelTemplateGlobals$ {
   export const outboundSchema = CreateUserParcelTemplateGlobals$outboundSchema;
   /** @deprecated use `CreateUserParcelTemplateGlobals$Outbound` instead. */
   export type Outbound = CreateUserParcelTemplateGlobals$Outbound;
+}
+
+export function createUserParcelTemplateGlobalsToJSON(
+  createUserParcelTemplateGlobals: CreateUserParcelTemplateGlobals,
+): string {
+  return JSON.stringify(
+    CreateUserParcelTemplateGlobals$outboundSchema.parse(
+      createUserParcelTemplateGlobals,
+    ),
+  );
+}
+
+export function createUserParcelTemplateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateUserParcelTemplateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateUserParcelTemplateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateUserParcelTemplateGlobals' from JSON`,
+  );
 }

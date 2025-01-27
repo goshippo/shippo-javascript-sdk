@@ -11,7 +11,7 @@
 ```typescript
 import { ServiceLevelSwyftEnum } from "shippo/models/components";
 
-let value: ServiceLevelSwyftEnum = "same_day";
+let value: ServiceLevelSwyftEnum = "next_day";
 ```
 
 ## Values

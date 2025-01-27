@@ -2,12 +2,25 @@
 
 Examples.
 
-## Example Usage
+
+## Supported Types
+
+### `components.TransactionCreateRequest`
 
 ```typescript
-import { CreateTransactionRequestBody } from "shippo/models/operations";
+const value: components.TransactionCreateRequest = {
+  async: false,
+  labelFileType: "PDF_4x6",
+  metadata: "Order ID #12345",
+  rate: "ec9f0d3adc9441449c85d315f0997fd5",
+  order: "adcfdddf8ec64b84ad22772bce3ea37a",
+};
+```
 
-let value: CreateTransactionRequestBody = {
+### `components.InstantTransactionCreateRequest`
+
+```typescript
+const value: components.InstantTransactionCreateRequest = {
   async: false,
   carrierAccount: "b741b99f95e841639b54272834bc478c",
   labelFileType: "PDF",
@@ -117,22 +130,7 @@ let value: CreateTransactionRequestBody = {
     },
     metadata: "Customer ID 123456",
     shipmentDate: "2021-03-22T12:00:00Z",
-    addressFrom: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
+    addressFrom: "d799c2679e644279b59fe661ac8fa488",
     addressReturn: {
       name: "Shwan Ippotle",
       company: "Shippo",
@@ -244,25 +242,14 @@ let value: CreateTransactionRequestBody = {
         metadata: "Customer ID 123456",
         massUnit: "lb",
         weight: "1",
-        template: "UPS_MI_BPM_Parcel",
+        distanceUnit: "in",
+        height: "1",
+        length: "1",
+        width: "1",
       },
     ],
   },
   order: "adcfdddf8ec64b84ad22772bce3ea37a",
 };
-```
-
-## Supported Types
-
-### `components.TransactionCreateRequest`
-
-```typescript
-const value: components.TransactionCreateRequest = /* values here */
-```
-
-### `components.InstantTransactionCreateRequest`
-
-```typescript
-const value: components.InstantTransactionCreateRequest = /* values here */
 ```
 

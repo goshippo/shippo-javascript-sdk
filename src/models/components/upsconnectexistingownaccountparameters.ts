@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * An array of additional parameters for the account, such as e.g. password or token.
@@ -214,4 +217,26 @@ export namespace UPSConnectExistingOwnAccountParameters$ {
     UPSConnectExistingOwnAccountParameters$outboundSchema;
   /** @deprecated use `UPSConnectExistingOwnAccountParameters$Outbound` instead. */
   export type Outbound = UPSConnectExistingOwnAccountParameters$Outbound;
+}
+
+export function upsConnectExistingOwnAccountParametersToJSON(
+  upsConnectExistingOwnAccountParameters:
+    UPSConnectExistingOwnAccountParameters,
+): string {
+  return JSON.stringify(
+    UPSConnectExistingOwnAccountParameters$outboundSchema.parse(
+      upsConnectExistingOwnAccountParameters,
+    ),
+  );
+}
+
+export function upsConnectExistingOwnAccountParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<UPSConnectExistingOwnAccountParameters, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UPSConnectExistingOwnAccountParameters$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UPSConnectExistingOwnAccountParameters' from JSON`,
+  );
 }

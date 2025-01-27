@@ -49,15 +49,15 @@ async function run() {
       buildingType: "apartment",
       instructions: "Behind screen door",
     },
-    requestedEndTime: new Date("2023-06-18T07:14:55.338Z"),
-    requestedStartTime: new Date("2023-12-01T17:06:07.804Z"),
+    requestedEndTime: new Date("2024-06-17T07:14:55.338Z"),
+    requestedStartTime: new Date("2024-11-30T17:06:07.804Z"),
     transactions: [
       "adcfdddf8ec64b84ad22772bce3ea37a",
     ],
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -102,8 +102,8 @@ async function run() {
       buildingType: "apartment",
       instructions: "Behind screen door",
     },
-    requestedEndTime: new Date("2023-06-18T07:14:55.338Z"),
-    requestedStartTime: new Date("2023-12-01T17:06:07.804Z"),
+    requestedEndTime: new Date("2024-06-17T07:14:55.338Z"),
+    requestedStartTime: new Date("2024-11-30T17:06:07.804Z"),
     transactions: [
       "adcfdddf8ec64b84ad22772bce3ea37a",
     ],
@@ -116,7 +116,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -137,6 +137,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

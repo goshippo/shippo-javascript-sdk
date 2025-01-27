@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateDefaultParcelTemplateGlobals = {
   /**
@@ -55,4 +58,25 @@ export namespace UpdateDefaultParcelTemplateGlobals$ {
     UpdateDefaultParcelTemplateGlobals$outboundSchema;
   /** @deprecated use `UpdateDefaultParcelTemplateGlobals$Outbound` instead. */
   export type Outbound = UpdateDefaultParcelTemplateGlobals$Outbound;
+}
+
+export function updateDefaultParcelTemplateGlobalsToJSON(
+  updateDefaultParcelTemplateGlobals: UpdateDefaultParcelTemplateGlobals,
+): string {
+  return JSON.stringify(
+    UpdateDefaultParcelTemplateGlobals$outboundSchema.parse(
+      updateDefaultParcelTemplateGlobals,
+    ),
+  );
+}
+
+export function updateDefaultParcelTemplateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateDefaultParcelTemplateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UpdateDefaultParcelTemplateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateDefaultParcelTemplateGlobals' from JSON`,
+  );
 }

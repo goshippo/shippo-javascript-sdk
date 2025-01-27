@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountDPDUKCreateRequestParameters = {};
 
 export type CarrierAccountDPDUKCreateRequest = {
-  carrier: string;
+  carrier?: "dpd_uk" | undefined;
   parameters: CarrierAccountDPDUKCreateRequestParameters;
 };
 
@@ -42,13 +45,40 @@ export namespace CarrierAccountDPDUKCreateRequestParameters$ {
   export type Outbound = CarrierAccountDPDUKCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountDPDUKCreateRequestParametersToJSON(
+  carrierAccountDPDUKCreateRequestParameters:
+    CarrierAccountDPDUKCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountDPDUKCreateRequestParameters$outboundSchema.parse(
+      carrierAccountDPDUKCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountDPDUKCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountDPDUKCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountDPDUKCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountDPDUKCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountDPDUKCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountDPDUKCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("dpd_uk").optional(),
   parameters: z.lazy(() =>
     CarrierAccountDPDUKCreateRequestParameters$inboundSchema
   ),
@@ -56,7 +86,7 @@ export const CarrierAccountDPDUKCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountDPDUKCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "dpd_uk";
   parameters: CarrierAccountDPDUKCreateRequestParameters$Outbound;
 };
 
@@ -66,7 +96,7 @@ export const CarrierAccountDPDUKCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountDPDUKCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("dpd_uk").default("dpd_uk" as const),
   parameters: z.lazy(() =>
     CarrierAccountDPDUKCreateRequestParameters$outboundSchema
   ),
@@ -83,4 +113,24 @@ export namespace CarrierAccountDPDUKCreateRequest$ {
   export const outboundSchema = CarrierAccountDPDUKCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountDPDUKCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountDPDUKCreateRequest$Outbound;
+}
+
+export function carrierAccountDPDUKCreateRequestToJSON(
+  carrierAccountDPDUKCreateRequest: CarrierAccountDPDUKCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountDPDUKCreateRequest$outboundSchema.parse(
+      carrierAccountDPDUKCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountDPDUKCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountDPDUKCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountDPDUKCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountDPDUKCreateRequest' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Party to be billed. (Leave blank for DHL Germany.)
@@ -118,4 +121,18 @@ export namespace Billing$ {
   export const outboundSchema = Billing$outboundSchema;
   /** @deprecated use `Billing$Outbound` instead. */
   export type Outbound = Billing$Outbound;
+}
+
+export function billingToJSON(billing: Billing): string {
+  return JSON.stringify(Billing$outboundSchema.parse(billing));
+}
+
+export function billingFromJSON(
+  jsonString: string,
+): SafeParseResult<Billing, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Billing$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Billing' from JSON`,
+  );
 }

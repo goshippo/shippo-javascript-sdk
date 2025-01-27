@@ -16,7 +16,7 @@
 ```typescript
 import { ServiceLevelUSPSEnum } from "shippo/models/components";
 
-let value: ServiceLevelUSPSEnum = "usps_priority_mail_express_international";
+let value: ServiceLevelUSPSEnum = "usps_priority_express";
 ```
 
 ## Values

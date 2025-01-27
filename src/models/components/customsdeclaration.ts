@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CustomsExporterIdentification,
   CustomsExporterIdentification$inboundSchema,
@@ -289,6 +292,24 @@ export namespace CustomsDeclarationAddress$ {
   export type Outbound = CustomsDeclarationAddress$Outbound;
 }
 
+export function customsDeclarationAddressToJSON(
+  customsDeclarationAddress: CustomsDeclarationAddress,
+): string {
+  return JSON.stringify(
+    CustomsDeclarationAddress$outboundSchema.parse(customsDeclarationAddress),
+  );
+}
+
+export function customsDeclarationAddressFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsDeclarationAddress, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsDeclarationAddress$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsDeclarationAddress' from JSON`,
+  );
+}
+
 /** @internal */
 export const CustomsDeclarationDutiesPayor$inboundSchema: z.ZodType<
   CustomsDeclarationDutiesPayor,
@@ -329,6 +350,26 @@ export namespace CustomsDeclarationDutiesPayor$ {
   export const outboundSchema = CustomsDeclarationDutiesPayor$outboundSchema;
   /** @deprecated use `CustomsDeclarationDutiesPayor$Outbound` instead. */
   export type Outbound = CustomsDeclarationDutiesPayor$Outbound;
+}
+
+export function customsDeclarationDutiesPayorToJSON(
+  customsDeclarationDutiesPayor: CustomsDeclarationDutiesPayor,
+): string {
+  return JSON.stringify(
+    CustomsDeclarationDutiesPayor$outboundSchema.parse(
+      customsDeclarationDutiesPayor,
+    ),
+  );
+}
+
+export function customsDeclarationDutiesPayorFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsDeclarationDutiesPayor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsDeclarationDutiesPayor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsDeclarationDutiesPayor' from JSON`,
+  );
 }
 
 /** @internal */
@@ -511,4 +552,22 @@ export namespace CustomsDeclaration$ {
   export const outboundSchema = CustomsDeclaration$outboundSchema;
   /** @deprecated use `CustomsDeclaration$Outbound` instead. */
   export type Outbound = CustomsDeclaration$Outbound;
+}
+
+export function customsDeclarationToJSON(
+  customsDeclaration: CustomsDeclaration,
+): string {
+  return JSON.stringify(
+    CustomsDeclaration$outboundSchema.parse(customsDeclaration),
+  );
+}
+
+export function customsDeclarationFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsDeclaration, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsDeclaration$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsDeclaration' from JSON`,
+  );
 }

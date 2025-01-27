@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetParcelGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace GetParcelGlobals$ {
   export type Outbound = GetParcelGlobals$Outbound;
 }
 
+export function getParcelGlobalsToJSON(
+  getParcelGlobals: GetParcelGlobals,
+): string {
+  return JSON.stringify(
+    GetParcelGlobals$outboundSchema.parse(getParcelGlobals),
+  );
+}
+
+export function getParcelGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetParcelGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetParcelGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetParcelGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetParcelRequest$inboundSchema: z.ZodType<
   GetParcelRequest,
@@ -105,4 +126,22 @@ export namespace GetParcelRequest$ {
   export const outboundSchema = GetParcelRequest$outboundSchema;
   /** @deprecated use `GetParcelRequest$Outbound` instead. */
   export type Outbound = GetParcelRequest$Outbound;
+}
+
+export function getParcelRequestToJSON(
+  getParcelRequest: GetParcelRequest,
+): string {
+  return JSON.stringify(
+    GetParcelRequest$outboundSchema.parse(getParcelRequest),
+  );
+}
+
+export function getParcelRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetParcelRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetParcelRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetParcelRequest' from JSON`,
+  );
 }

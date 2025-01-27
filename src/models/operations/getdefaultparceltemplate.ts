@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetDefaultParcelTemplateGlobals = {
   /**
@@ -58,6 +61,26 @@ export namespace GetDefaultParcelTemplateGlobals$ {
   export type Outbound = GetDefaultParcelTemplateGlobals$Outbound;
 }
 
+export function getDefaultParcelTemplateGlobalsToJSON(
+  getDefaultParcelTemplateGlobals: GetDefaultParcelTemplateGlobals,
+): string {
+  return JSON.stringify(
+    GetDefaultParcelTemplateGlobals$outboundSchema.parse(
+      getDefaultParcelTemplateGlobals,
+    ),
+  );
+}
+
+export function getDefaultParcelTemplateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDefaultParcelTemplateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDefaultParcelTemplateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDefaultParcelTemplateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetDefaultParcelTemplateRequest$inboundSchema: z.ZodType<
   GetDefaultParcelTemplateRequest,
@@ -86,4 +109,24 @@ export namespace GetDefaultParcelTemplateRequest$ {
   export const outboundSchema = GetDefaultParcelTemplateRequest$outboundSchema;
   /** @deprecated use `GetDefaultParcelTemplateRequest$Outbound` instead. */
   export type Outbound = GetDefaultParcelTemplateRequest$Outbound;
+}
+
+export function getDefaultParcelTemplateRequestToJSON(
+  getDefaultParcelTemplateRequest: GetDefaultParcelTemplateRequest,
+): string {
+  return JSON.stringify(
+    GetDefaultParcelTemplateRequest$outboundSchema.parse(
+      getDefaultParcelTemplateRequest,
+    ),
+  );
+}
+
+export function getDefaultParcelTemplateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetDefaultParcelTemplateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetDefaultParcelTemplateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetDefaultParcelTemplateRequest' from JSON`,
+  );
 }

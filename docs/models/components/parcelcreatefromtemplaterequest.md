@@ -22,7 +22,7 @@ let value: ParcelCreateFromTemplateRequest = {
   metadata: "Customer ID 123456",
   massUnit: "lb",
   weight: "1",
-  template: "FedEx_Envelope",
+  template: "DPD_UK_Express_Pak",
 };
 ```
 

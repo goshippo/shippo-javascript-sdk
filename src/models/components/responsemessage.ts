@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Message returned with supporting information from a request. In some cases this can be an error message,
@@ -65,4 +68,20 @@ export namespace ResponseMessage$ {
   export const outboundSchema = ResponseMessage$outboundSchema;
   /** @deprecated use `ResponseMessage$Outbound` instead. */
   export type Outbound = ResponseMessage$Outbound;
+}
+
+export function responseMessageToJSON(
+  responseMessage: ResponseMessage,
+): string {
+  return JSON.stringify(ResponseMessage$outboundSchema.parse(responseMessage));
+}
+
+export function responseMessageFromJSON(
+  jsonString: string,
+): SafeParseResult<ResponseMessage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ResponseMessage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseMessage' from JSON`,
+  );
 }

@@ -6,9 +6,9 @@
 import { FedExConnectExistingOwnAccountParameters } from "shippo/models/components";
 
 let value: FedExConnectExistingOwnAccountParameters = {
-  firstName: "Franco",
-  lastName: "Kessler",
-  phoneNumber: "221.724.2116 x11380",
+  firstName: "Elena",
+  lastName: "Hamill",
+  phoneNumber: "1-265-450-5936 x172",
   fromAddressSt: "<value>",
   fromAddressCity: "<value>",
   fromAddressState: "<value>",

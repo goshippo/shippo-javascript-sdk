@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Type of tax identification.
@@ -114,4 +117,22 @@ export namespace CustomsTaxIdentification$ {
   export const outboundSchema = CustomsTaxIdentification$outboundSchema;
   /** @deprecated use `CustomsTaxIdentification$Outbound` instead. */
   export type Outbound = CustomsTaxIdentification$Outbound;
+}
+
+export function customsTaxIdentificationToJSON(
+  customsTaxIdentification: CustomsTaxIdentification,
+): string {
+  return JSON.stringify(
+    CustomsTaxIdentification$outboundSchema.parse(customsTaxIdentification),
+  );
+}
+
+export function customsTaxIdentificationFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsTaxIdentification, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsTaxIdentification$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsTaxIdentification' from JSON`,
+  );
 }

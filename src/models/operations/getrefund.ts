@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetRefundGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace GetRefundGlobals$ {
   export type Outbound = GetRefundGlobals$Outbound;
 }
 
+export function getRefundGlobalsToJSON(
+  getRefundGlobals: GetRefundGlobals,
+): string {
+  return JSON.stringify(
+    GetRefundGlobals$outboundSchema.parse(getRefundGlobals),
+  );
+}
+
+export function getRefundGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRefundGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRefundGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRefundGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetRefundRequest$inboundSchema: z.ZodType<
   GetRefundRequest,
@@ -105,4 +126,22 @@ export namespace GetRefundRequest$ {
   export const outboundSchema = GetRefundRequest$outboundSchema;
   /** @deprecated use `GetRefundRequest$Outbound` instead. */
   export type Outbound = GetRefundRequest$Outbound;
+}
+
+export function getRefundRequestToJSON(
+  getRefundRequest: GetRefundRequest,
+): string {
+  return JSON.stringify(
+    GetRefundRequest$outboundSchema.parse(getRefundRequest),
+  );
+}
+
+export function getRefundRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRefundRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRefundRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRefundRequest' from JSON`,
+  );
 }

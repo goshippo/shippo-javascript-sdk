@@ -9,6 +9,7 @@ import { userParcelTemplatesList } from "../funcs/userParcelTemplatesList.js";
 import { userParcelTemplatesUpdate } from "../funcs/userParcelTemplatesUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class UserParcelTemplates extends ClientSDK {
@@ -19,10 +20,12 @@ export class UserParcelTemplates extends ClientSDK {
    * Returns a list all of all user parcel template objects.
    */
   async list(
+    request: operations.ListUserParcelTemplatesRequest,
     options?: RequestOptions,
   ): Promise<components.UserParcelTemplateList> {
     return unwrapAsync(userParcelTemplatesList(
       this,
+      request,
       options,
     ));
   }

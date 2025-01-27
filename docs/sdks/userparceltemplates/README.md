@@ -34,10 +34,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.userParcelTemplates.list();
-  
+  const result = await shippo.userParcelTemplates.list({});
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -59,7 +59,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await userParcelTemplatesList(shippo);
+  const res = await userParcelTemplatesList(shippo, {});
 
   if (!res.ok) {
     throw res.error;
@@ -68,7 +68,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -88,10 +88,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create
 
@@ -118,9 +117,9 @@ async function run() {
     weight: "12",
     weightUnit: "lb",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -154,7 +153,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -175,10 +174,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## delete
 
@@ -195,7 +193,9 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  await shippo.userParcelTemplates.delete("<value>");
+  await shippo.userParcelTemplates.delete("<id>");
+
+
 }
 
 run();
@@ -217,7 +217,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await userParcelTemplatesDelete(shippo, "<value>");
+  const res = await userParcelTemplatesDelete(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -246,10 +246,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -267,10 +266,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.userParcelTemplates.get("<value>");
-  
+  const result = await shippo.userParcelTemplates.get("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -292,7 +291,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await userParcelTemplatesGet(shippo, "<value>");
+  const res = await userParcelTemplatesGet(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -301,7 +300,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -322,10 +321,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## update
 
@@ -342,7 +340,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.userParcelTemplates.update("<value>", {
+  const result = await shippo.userParcelTemplates.update("<id>", {
     distanceUnit: "in",
     height: "6",
     length: "10",
@@ -351,9 +349,9 @@ async function run() {
     weightUnit: "lb",
     width: "8",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -375,7 +373,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await userParcelTemplatesUpdate(shippo, "<value>", {
+  const res = await userParcelTemplatesUpdate(shippo, "<id>", {
     distanceUnit: "in",
     height: "6",
     length: "10",
@@ -392,7 +390,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -414,6 +412,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

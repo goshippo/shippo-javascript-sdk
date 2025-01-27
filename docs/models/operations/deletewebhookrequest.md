@@ -6,7 +6,7 @@
 import { DeleteWebhookRequest } from "shippo/models/operations";
 
 let value: DeleteWebhookRequest = {
-  webhookId: "<value>",
+  webhookId: "<id>",
 };
 ```
 

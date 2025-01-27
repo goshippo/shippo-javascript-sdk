@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ResponseMessage,
   ResponseMessage$inboundSchema,
@@ -268,4 +271,18 @@ export namespace Rate$ {
   export const outboundSchema = Rate$outboundSchema;
   /** @deprecated use `Rate$Outbound` instead. */
   export type Outbound = Rate$Outbound;
+}
+
+export function rateToJSON(rate: Rate): string {
+  return JSON.stringify(Rate$outboundSchema.parse(rate));
+}
+
+export function rateFromJSON(
+  jsonString: string,
+): SafeParseResult<Rate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Rate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Rate' from JSON`,
+  );
 }

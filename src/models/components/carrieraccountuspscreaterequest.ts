@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountUSPSCreateRequestParameters = {};
 
 export type CarrierAccountUSPSCreateRequest = {
-  carrier: string;
+  carrier?: "usps" | undefined;
   parameters: CarrierAccountUSPSCreateRequestParameters;
 };
 
@@ -44,13 +47,40 @@ export namespace CarrierAccountUSPSCreateRequestParameters$ {
   export type Outbound = CarrierAccountUSPSCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountUSPSCreateRequestParametersToJSON(
+  carrierAccountUSPSCreateRequestParameters:
+    CarrierAccountUSPSCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountUSPSCreateRequestParameters$outboundSchema.parse(
+      carrierAccountUSPSCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountUSPSCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountUSPSCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountUSPSCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountUSPSCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountUSPSCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountUSPSCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("usps").optional(),
   parameters: z.lazy(() =>
     CarrierAccountUSPSCreateRequestParameters$inboundSchema
   ),
@@ -58,7 +88,7 @@ export const CarrierAccountUSPSCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountUSPSCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "usps";
   parameters: CarrierAccountUSPSCreateRequestParameters$Outbound;
 };
 
@@ -68,7 +98,7 @@ export const CarrierAccountUSPSCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountUSPSCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("usps").default("usps" as const),
   parameters: z.lazy(() =>
     CarrierAccountUSPSCreateRequestParameters$outboundSchema
   ),
@@ -85,4 +115,24 @@ export namespace CarrierAccountUSPSCreateRequest$ {
   export const outboundSchema = CarrierAccountUSPSCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountUSPSCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountUSPSCreateRequest$Outbound;
+}
+
+export function carrierAccountUSPSCreateRequestToJSON(
+  carrierAccountUSPSCreateRequest: CarrierAccountUSPSCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountUSPSCreateRequest$outboundSchema.parse(
+      carrierAccountUSPSCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountUSPSCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountUSPSCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountUSPSCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountUSPSCreateRequest' from JSON`,
+  );
 }

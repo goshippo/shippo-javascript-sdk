@@ -6,7 +6,7 @@
 import { RemoveShipmentsFromBatchRequest } from "shippo/models/operations";
 
 let value: RemoveShipmentsFromBatchRequest = {
-  batchId: "<value>",
+  batchId: "<id>",
   requestBody: [
     "<value>",
   ],

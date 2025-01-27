@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   LabelFileTypeEnum,
   LabelFileTypeEnum$inboundSchema,
@@ -78,4 +81,22 @@ export namespace TransactionCreateRequest$ {
   export const outboundSchema = TransactionCreateRequest$outboundSchema;
   /** @deprecated use `TransactionCreateRequest$Outbound` instead. */
   export type Outbound = TransactionCreateRequest$Outbound;
+}
+
+export function transactionCreateRequestToJSON(
+  transactionCreateRequest: TransactionCreateRequest,
+): string {
+  return JSON.stringify(
+    TransactionCreateRequest$outboundSchema.parse(transactionCreateRequest),
+  );
+}
+
+export function transactionCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TransactionCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransactionCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionCreateRequest' from JSON`,
+  );
 }

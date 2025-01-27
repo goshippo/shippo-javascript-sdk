@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   UserParcelTemplate,
   UserParcelTemplate$inboundSchema,
@@ -48,4 +51,22 @@ export namespace DefaultParcelTemplate$ {
   export const outboundSchema = DefaultParcelTemplate$outboundSchema;
   /** @deprecated use `DefaultParcelTemplate$Outbound` instead. */
   export type Outbound = DefaultParcelTemplate$Outbound;
+}
+
+export function defaultParcelTemplateToJSON(
+  defaultParcelTemplate: DefaultParcelTemplate,
+): string {
+  return JSON.stringify(
+    DefaultParcelTemplate$outboundSchema.parse(defaultParcelTemplate),
+  );
+}
+
+export function defaultParcelTemplateFromJSON(
+  jsonString: string,
+): SafeParseResult<DefaultParcelTemplate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DefaultParcelTemplate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DefaultParcelTemplate' from JSON`,
+  );
 }

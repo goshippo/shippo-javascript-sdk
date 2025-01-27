@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WeightUnitEnum,
   WeightUnitEnum$inboundSchema,
@@ -78,4 +81,31 @@ export namespace UserParcelTemplateWithCarrierTemplateCreateRequest$ {
   /** @deprecated use `UserParcelTemplateWithCarrierTemplateCreateRequest$Outbound` instead. */
   export type Outbound =
     UserParcelTemplateWithCarrierTemplateCreateRequest$Outbound;
+}
+
+export function userParcelTemplateWithCarrierTemplateCreateRequestToJSON(
+  userParcelTemplateWithCarrierTemplateCreateRequest:
+    UserParcelTemplateWithCarrierTemplateCreateRequest,
+): string {
+  return JSON.stringify(
+    UserParcelTemplateWithCarrierTemplateCreateRequest$outboundSchema.parse(
+      userParcelTemplateWithCarrierTemplateCreateRequest,
+    ),
+  );
+}
+
+export function userParcelTemplateWithCarrierTemplateCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  UserParcelTemplateWithCarrierTemplateCreateRequest,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UserParcelTemplateWithCarrierTemplateCreateRequest$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UserParcelTemplateWithCarrierTemplateCreateRequest' from JSON`,
+  );
 }

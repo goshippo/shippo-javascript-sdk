@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteServiceGroupGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace DeleteServiceGroupGlobals$ {
   export type Outbound = DeleteServiceGroupGlobals$Outbound;
 }
 
+export function deleteServiceGroupGlobalsToJSON(
+  deleteServiceGroupGlobals: DeleteServiceGroupGlobals,
+): string {
+  return JSON.stringify(
+    DeleteServiceGroupGlobals$outboundSchema.parse(deleteServiceGroupGlobals),
+  );
+}
+
+export function deleteServiceGroupGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteServiceGroupGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteServiceGroupGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteServiceGroupGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteServiceGroupRequest$inboundSchema: z.ZodType<
   DeleteServiceGroupRequest,
@@ -105,4 +126,22 @@ export namespace DeleteServiceGroupRequest$ {
   export const outboundSchema = DeleteServiceGroupRequest$outboundSchema;
   /** @deprecated use `DeleteServiceGroupRequest$Outbound` instead. */
   export type Outbound = DeleteServiceGroupRequest$Outbound;
+}
+
+export function deleteServiceGroupRequestToJSON(
+  deleteServiceGroupRequest: DeleteServiceGroupRequest,
+): string {
+  return JSON.stringify(
+    DeleteServiceGroupRequest$outboundSchema.parse(deleteServiceGroupRequest),
+  );
+}
+
+export function deleteServiceGroupRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteServiceGroupRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteServiceGroupRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteServiceGroupRequest' from JSON`,
+  );
 }

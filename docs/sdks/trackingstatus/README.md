@@ -35,10 +35,14 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.trackingStatus.create("usps", "9205590164917312751089", "Order 000123");
-  
+  const result = await shippo.trackingStatus.create({
+    carrier: "usps",
+    metadata: "Order 000123",
+    trackingNumber: "9205590164917312751089",
+  });
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -60,7 +64,11 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await trackingStatusCreate(shippo, "usps", "9205590164917312751089", "Order 000123");
+  const res = await trackingStatusCreate(shippo, {
+    carrier: "usps",
+    metadata: "Order 000123",
+    trackingNumber: "9205590164917312751089",
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -69,7 +77,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -92,10 +100,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -113,9 +120,9 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.trackingStatus.get("<value>", "<value>");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -146,7 +153,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -168,6 +175,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

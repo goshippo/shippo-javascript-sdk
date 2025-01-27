@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreatePickupGlobals = {
   /**
@@ -54,4 +57,22 @@ export namespace CreatePickupGlobals$ {
   export const outboundSchema = CreatePickupGlobals$outboundSchema;
   /** @deprecated use `CreatePickupGlobals$Outbound` instead. */
   export type Outbound = CreatePickupGlobals$Outbound;
+}
+
+export function createPickupGlobalsToJSON(
+  createPickupGlobals: CreatePickupGlobals,
+): string {
+  return JSON.stringify(
+    CreatePickupGlobals$outboundSchema.parse(createPickupGlobals),
+  );
+}
+
+export function createPickupGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePickupGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePickupGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePickupGlobals' from JSON`,
+  );
 }

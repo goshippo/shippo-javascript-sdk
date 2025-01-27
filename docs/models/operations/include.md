@@ -7,7 +7,7 @@ filter by user or enabled
 ```typescript
 import { Include } from "shippo/models/operations";
 
-let value: Include = "all";
+let value: Include = "enabled";
 ```
 
 ## Values

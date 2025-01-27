@@ -27,10 +27,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.rates.get("<value>");
-  
+  const result = await shippo.rates.get("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -52,7 +52,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await ratesGet(shippo, "<value>");
+  const res = await ratesGet(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -61,7 +61,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -82,10 +82,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## listShipmentRates
 
@@ -102,10 +101,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.rates.listShipmentRates("<value>");
-  
+  const result = await shippo.rates.listShipmentRates("<id>", 1, 25);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -127,7 +126,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await ratesListShipmentRates(shippo, "<value>");
+  const res = await ratesListShipmentRates(shippo, "<id>", 1, 25);
 
   if (!res.ok) {
     throw res.error;
@@ -136,7 +135,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -159,10 +158,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## listShipmentRatesByCurrencyCode
 
@@ -186,12 +184,14 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.rates.listShipmentRatesByCurrencyCode({
-    shipmentId: "<value>",
+    shipmentId: "<id>",
     currencyCode: "USD",
+    page: 1,
+    results: 25,
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -214,8 +214,10 @@ const shippo = new ShippoCore({
 
 async function run() {
   const res = await ratesListShipmentRatesByCurrencyCode(shippo, {
-    shipmentId: "<value>",
+    shipmentId: "<id>",
     currencyCode: "USD",
+    page: 1,
+    results: 25,
   });
 
   if (!res.ok) {
@@ -225,7 +227,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -246,6 +248,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
