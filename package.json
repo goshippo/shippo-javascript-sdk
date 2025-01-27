@@ -32,7 +32,5 @@
     "zod": "^3.23.4"
   },
   "dependencies": {
-    "braces": "3.0.3",
-    "fill-range": "7.1.1"
   }
 }
