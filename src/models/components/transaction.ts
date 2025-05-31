@@ -119,6 +119,12 @@ export type Transaction = {
    * Date and time of last Transaction update.
    */
   objectUpdated?: Date | undefined;
+
+  /**
+   * Order ID of for the Transaction
+   */
+  orderId?: string | undefined;
+
   /**
    * Object ID of the Parcel object that is being shipped.
    */
@@ -301,6 +307,7 @@ export const Transaction$inboundSchema: z.ZodType<
   object_updated: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
+  order: z.string().optional(),
   parcel: z.string().optional(),
   qr_code_url: z.string().optional(),
   rate: z.union([CoreRate$inboundSchema, z.string()]).optional(),
@@ -320,6 +327,7 @@ export const Transaction$inboundSchema: z.ZodType<
     "object_owner": "objectOwner",
     "object_state": "objectState",
     "object_updated": "objectUpdated",
+    "order": "orderId",
     "qr_code_url": "qrCodeUrl",
     "tracking_number": "trackingNumber",
     "tracking_status": "trackingStatus",
@@ -341,6 +349,7 @@ export type Transaction$Outbound = {
   object_owner?: string | undefined;
   object_state?: string | undefined;
   object_updated?: string | undefined;
+  order?: string | undefined;
   parcel?: string | undefined;
   qr_code_url?: string | undefined;
   rate?: CoreRate$Outbound | string | undefined;
@@ -369,6 +378,7 @@ export const Transaction$outboundSchema: z.ZodType<
   objectOwner: z.string().optional(),
   objectState: ObjectStateEnum$outboundSchema.optional(),
   objectUpdated: z.date().transform(v => v.toISOString()).optional(),
+  orderId: z.string().optional(),
   parcel: z.string().optional(),
   qrCodeUrl: z.string().optional(),
   rate: z.union([CoreRate$outboundSchema, z.string()]).optional(),
@@ -388,6 +398,7 @@ export const Transaction$outboundSchema: z.ZodType<
     objectOwner: "object_owner",
     objectState: "object_state",
     objectUpdated: "object_updated",
+    orderId: "order",
     qrCodeUrl: "qr_code_url",
     trackingNumber: "tracking_number",
     trackingStatus: "tracking_status",
