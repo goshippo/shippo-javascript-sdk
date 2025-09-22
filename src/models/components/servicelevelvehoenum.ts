@@ -10,17 +10,20 @@ import { ClosedEnum } from "../../types/enums.js";
  *
  * @remarks
  * |:---|:---|
- * | veho_next_day | Veho Next Day |
+ * | veho_ground_plus | Veho Ground Plus |
+ * | veho_premium_economy | Veho Premium Economy
  */
 export const ServiceLevelVehoEnum = {
-  VehoNextDay: "veho_next_day",
+  VehoGroundPlus: "veho_ground_plus",
+  VehoPremiumEconomy: "veho_premium_economy",
 } as const;
 /**
  * |Token | Service name|
  *
  * @remarks
  * |:---|:---|
- * | veho_next_day | Veho Next Day |
+ * | veho_ground_plus | Veho Ground Plus |
+ * | veho_premium_economy | Veho Premium Economy
  */
 export type ServiceLevelVehoEnum = ClosedEnum<typeof ServiceLevelVehoEnum>;
 

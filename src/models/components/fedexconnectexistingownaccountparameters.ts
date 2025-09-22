@@ -8,6 +8,17 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * In the case of masked fields, they should be handled carefully.
+ *
+ * @remarks
+ *
+ * Fields also must consider:
+ * - Not providing a *fields* in parameters will not result in a change to any configured value
+ * - Providing a value in a *masked field* with ****** (exactly 6 asterisks) will not change the configured value
+ * - Providing *field* with null will clear the configured value
+ * - Providing *field* with any other value will change the configured value and may affect the behavior of the account.
+ */
 export type FedExConnectExistingOwnAccountParameters = {
   /**
    * First name of the account holder

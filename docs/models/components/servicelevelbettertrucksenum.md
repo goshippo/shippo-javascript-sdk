@@ -11,7 +11,7 @@
 ```typescript
 import { ServiceLevelBetterTrucksEnum } from "shippo/models/components";
 
-let value: ServiceLevelBetterTrucksEnum = "better_trucks_next_day";
+let value: ServiceLevelBetterTrucksEnum = "better_trucks_same_day";
 ```
 
 ## Values

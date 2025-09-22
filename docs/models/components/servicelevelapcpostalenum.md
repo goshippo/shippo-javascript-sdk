@@ -18,8 +18,7 @@
 ```typescript
 import { ServiceLevelAPCPostalEnum } from "shippo/models/components";
 
-let value: ServiceLevelAPCPostalEnum =
-  "apc_postal_parcelconnect_priority_delcon";
+let value: ServiceLevelAPCPostalEnum = "apc_postal_parcelconnect_standard";
 ```
 
 ## Values
