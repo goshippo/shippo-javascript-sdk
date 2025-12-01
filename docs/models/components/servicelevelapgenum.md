@@ -13,7 +13,7 @@
 ```typescript
 import { ServiceLevelAPGEnum } from "shippo/models/components";
 
-let value: ServiceLevelAPGEnum = "epacket";
+let value: ServiceLevelAPGEnum = "eparcel_premium";
 ```
 
 ## Values

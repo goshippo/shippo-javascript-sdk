@@ -15,7 +15,7 @@
 ```typescript
 import { ServiceLevelGLSUSEnum } from "shippo/models/components";
 
-let value: ServiceLevelGLSUSEnum = "gls_us_cps";
+let value: ServiceLevelGLSUSEnum = "gls_us_nps";
 ```
 
 ## Values

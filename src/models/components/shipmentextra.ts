@@ -354,6 +354,20 @@ export type ShipmentExtra = {
   signatureConfirmation?: SignatureConfirmation | undefined;
   storeNumber?: UPSReferenceFields | undefined;
   transactionReferenceNumber?: UPSReferenceFields | undefined;
+  /**
+   * UPS only. Request USMCA (United States-Mexico-Canada Agreement) preferential tariff treatment.
+   *
+   * @remarks
+   * When enabled, it includes the USMCA eligibility declaration in customs documentation.
+   *
+   * Supported routes and value limits:
+   * - USA/Canada → Mexico: ≤ $1,000 USD
+   * - Canada/Mexico → USA: ≤ $2,500 USD
+   * - USA/Mexico → Canada: ≤ $3,300 CAD
+   *
+   * Only for declaration-only shipments, full USMCA - FormType 04 (Certificate of Origin) is not supported.
+   */
+  usmcaEligible?: boolean | undefined;
 };
 
 /** @internal */
@@ -556,6 +570,7 @@ export const ShipmentExtra$inboundSchema: z.ZodType<
   signature_confirmation: SignatureConfirmation$inboundSchema.optional(),
   store_number: UPSReferenceFields$inboundSchema.optional(),
   transaction_reference_number: UPSReferenceFields$inboundSchema.optional(),
+  usmca_eligible: z.boolean().optional(),
 }).transform((v) => {
   return remap$(v, {
     "accounts_receivable_customer_account": "accountsReceivableCustomerAccount",
@@ -604,6 +619,7 @@ export const ShipmentExtra$inboundSchema: z.ZodType<
     "signature_confirmation": "signatureConfirmation",
     "store_number": "storeNumber",
     "transaction_reference_number": "transactionReferenceNumber",
+    "usmca_eligible": "usmcaEligible",
   });
 });
 
@@ -661,6 +677,7 @@ export type ShipmentExtra$Outbound = {
   signature_confirmation?: string | undefined;
   store_number?: UPSReferenceFields$Outbound | undefined;
   transaction_reference_number?: UPSReferenceFields$Outbound | undefined;
+  usmca_eligible?: boolean | undefined;
 };
 
 /** @internal */
@@ -725,6 +742,7 @@ export const ShipmentExtra$outboundSchema: z.ZodType<
   signatureConfirmation: SignatureConfirmation$outboundSchema.optional(),
   storeNumber: UPSReferenceFields$outboundSchema.optional(),
   transactionReferenceNumber: UPSReferenceFields$outboundSchema.optional(),
+  usmcaEligible: z.boolean().optional(),
 }).transform((v) => {
   return remap$(v, {
     accountsReceivableCustomerAccount: "accounts_receivable_customer_account",
@@ -773,6 +791,7 @@ export const ShipmentExtra$outboundSchema: z.ZodType<
     signatureConfirmation: "signature_confirmation",
     storeNumber: "store_number",
     transactionReferenceNumber: "transaction_reference_number",
+    usmcaEligible: "usmca_eligible",
   });
 });
 

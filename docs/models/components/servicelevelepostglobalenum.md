@@ -22,7 +22,8 @@
 ```typescript
 import { ServiceLevelePostGlobalEnum } from "shippo/models/components";
 
-let value: ServiceLevelePostGlobalEnum = "rr_donnelley_emi";
+let value: ServiceLevelePostGlobalEnum =
+  "rr_donnelley_priority_domestic_priority_parcel_bpm";
 ```
 
 ## Values

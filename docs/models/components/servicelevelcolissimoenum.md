@@ -12,7 +12,7 @@
 ```typescript
 import { ServiceLevelColissimoEnum } from "shippo/models/components";
 
-let value: ServiceLevelColissimoEnum = "colissimo_pick_up_point";
+let value: ServiceLevelColissimoEnum = "colissimo_home";
 ```
 
 ## Values

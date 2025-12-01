@@ -237,7 +237,7 @@ const value: components.ServiceLevelUDSEnum = "uds_next_day";
 ### `components.ServiceLevelVehoEnum`
 
 ```typescript
-const value: components.ServiceLevelVehoEnum = "veho_next_day";
+const value: components.ServiceLevelVehoEnum = "veho_ground_plus";
 ```
 
 ### `components.ServiceLevelSwyftEnum`

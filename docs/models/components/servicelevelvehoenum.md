@@ -2,7 +2,8 @@
 
 |Token | Service name|
 |:---|:---|
-| veho_next_day | Veho Next Day |
+| veho_ground_plus | Veho Ground Plus |
+| veho_premium_economy | Veho Premium Economy
 
 
 ## Example Usage
@@ -10,11 +11,11 @@
 ```typescript
 import { ServiceLevelVehoEnum } from "shippo/models/components";
 
-let value: ServiceLevelVehoEnum = "veho_next_day";
+let value: ServiceLevelVehoEnum = "veho_premium_economy";
 ```
 
 ## Values
 
 ```typescript
-"veho_next_day"
+"veho_ground_plus" | "veho_premium_economy"
 ```
