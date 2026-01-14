@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * To have insurance cover provided by a carrier directly instead of Shippo's provider (XCover), set `provider` to `FEDEX`, `UPS`, or `ONTRAC`.
@@ -110,4 +113,18 @@ export namespace Insurance$ {
   export const outboundSchema = Insurance$outboundSchema;
   /** @deprecated use `Insurance$Outbound` instead. */
   export type Outbound = Insurance$Outbound;
+}
+
+export function insuranceToJSON(insurance: Insurance): string {
+  return JSON.stringify(Insurance$outboundSchema.parse(insurance));
+}
+
+export function insuranceFromJSON(
+  jsonString: string,
+): SafeParseResult<Insurance, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Insurance$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Insurance' from JSON`,
+  );
 }

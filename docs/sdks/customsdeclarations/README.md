@@ -28,10 +28,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.customsDeclarations.list();
-  
+  const result = await shippo.customsDeclarations.list(1, 5);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -53,7 +53,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await customsDeclarationsList(shippo);
+  const res = await customsDeclarationsList(shippo, 1, 5);
 
   if (!res.ok) {
     throw res.error;
@@ -62,7 +62,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -84,10 +84,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create
 
@@ -161,9 +160,9 @@ async function run() {
     nonDeliveryOption: "RETURN",
     test: true,
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -250,7 +249,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -271,10 +270,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -291,10 +289,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.customsDeclarations.get("<value>");
-  
+  const result = await shippo.customsDeclarations.get("<id>", 1);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -316,7 +314,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await customsDeclarationsGet(shippo, "<value>");
+  const res = await customsDeclarationsGet(shippo, "<id>", 1);
 
   if (!res.ok) {
     throw res.error;
@@ -325,7 +323,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -347,6 +345,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

@@ -25,7 +25,7 @@
 ```typescript
 import { ParcelTemplateFedExEnum } from "shippo/models/components";
 
-let value: ParcelTemplateFedExEnum = "FedEx_Box_Small_1";
+let value: ParcelTemplateFedExEnum = "FedEx_Envelope";
 ```
 
 ## Values

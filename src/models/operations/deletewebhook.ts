@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteWebhookRequest = {
   /**
@@ -45,4 +48,22 @@ export namespace DeleteWebhookRequest$ {
   export const outboundSchema = DeleteWebhookRequest$outboundSchema;
   /** @deprecated use `DeleteWebhookRequest$Outbound` instead. */
   export type Outbound = DeleteWebhookRequest$Outbound;
+}
+
+export function deleteWebhookRequestToJSON(
+  deleteWebhookRequest: DeleteWebhookRequest,
+): string {
+  return JSON.stringify(
+    DeleteWebhookRequest$outboundSchema.parse(deleteWebhookRequest),
+  );
+}
+
+export function deleteWebhookRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteWebhookRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteWebhookRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteWebhookRequest' from JSON`,
+  );
 }

@@ -5,7 +5,7 @@
 ```typescript
 import { ShipmentExtraLasershipAttributesEnum } from "shippo/models/components";
 
-let value: ShipmentExtraLasershipAttributesEnum = "Hazmat";
+let value: ShipmentExtraLasershipAttributesEnum = "Refrigerated";
 ```
 
 ## Values

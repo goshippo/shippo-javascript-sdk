@@ -27,10 +27,13 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.refunds.create("915d94940ea54c3a80cbfa328722f5a1", false);
-  
+  const result = await shippo.refunds.create({
+    async: false,
+    transaction: "915d94940ea54c3a80cbfa328722f5a1",
+  });
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -52,7 +55,10 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await refundsCreate(shippo, "915d94940ea54c3a80cbfa328722f5a1", false);
+  const res = await refundsCreate(shippo, {
+    async: false,
+    transaction: "915d94940ea54c3a80cbfa328722f5a1",
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -61,7 +67,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -83,10 +89,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## list
 
@@ -103,10 +108,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.refunds.list();
-  
+  const result = await shippo.refunds.list({});
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -128,7 +133,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await refundsList(shippo);
+  const res = await refundsList(shippo, {});
 
   if (!res.ok) {
     throw res.error;
@@ -137,7 +142,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -157,10 +162,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -177,10 +181,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.refunds.get("<value>");
-  
+  const result = await shippo.refunds.get("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -202,7 +206,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await refundsGet(shippo, "<value>");
+  const res = await refundsGet(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -211,7 +215,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -232,6 +236,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

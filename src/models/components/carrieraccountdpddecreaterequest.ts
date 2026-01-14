@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountDpdDeCreateRequestParameters = {};
 
 export type CarrierAccountDpdDeCreateRequest = {
-  carrier: string;
+  carrier?: "dpd_de" | undefined;
   parameters: CarrierAccountDpdDeCreateRequestParameters;
 };
 
@@ -42,13 +45,40 @@ export namespace CarrierAccountDpdDeCreateRequestParameters$ {
   export type Outbound = CarrierAccountDpdDeCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountDpdDeCreateRequestParametersToJSON(
+  carrierAccountDpdDeCreateRequestParameters:
+    CarrierAccountDpdDeCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountDpdDeCreateRequestParameters$outboundSchema.parse(
+      carrierAccountDpdDeCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountDpdDeCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountDpdDeCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountDpdDeCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountDpdDeCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountDpdDeCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountDpdDeCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("dpd_de").optional(),
   parameters: z.lazy(() =>
     CarrierAccountDpdDeCreateRequestParameters$inboundSchema
   ),
@@ -56,7 +86,7 @@ export const CarrierAccountDpdDeCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountDpdDeCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "dpd_de";
   parameters: CarrierAccountDpdDeCreateRequestParameters$Outbound;
 };
 
@@ -66,7 +96,7 @@ export const CarrierAccountDpdDeCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountDpdDeCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("dpd_de").default("dpd_de" as const),
   parameters: z.lazy(() =>
     CarrierAccountDpdDeCreateRequestParameters$outboundSchema
   ),
@@ -83,4 +113,24 @@ export namespace CarrierAccountDpdDeCreateRequest$ {
   export const outboundSchema = CarrierAccountDpdDeCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountDpdDeCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountDpdDeCreateRequest$Outbound;
+}
+
+export function carrierAccountDpdDeCreateRequestToJSON(
+  carrierAccountDpdDeCreateRequest: CarrierAccountDpdDeCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountDpdDeCreateRequest$outboundSchema.parse(
+      carrierAccountDpdDeCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountDpdDeCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountDpdDeCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountDpdDeCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountDpdDeCreateRequest' from JSON`,
+  );
 }

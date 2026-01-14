@@ -11,7 +11,7 @@
 ```typescript
 import { ServiceLevelSendleEnum } from "shippo/models/components";
 
-let value: ServiceLevelSendleEnum = "sendle_standard_dropoff";
+let value: ServiceLevelSendleEnum = "sendle_parcel";
 ```
 
 ## Values

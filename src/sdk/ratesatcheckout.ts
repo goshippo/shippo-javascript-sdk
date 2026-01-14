@@ -8,6 +8,7 @@ import { ratesAtCheckoutGetDefaultParcelTemplate } from "../funcs/ratesAtCheckou
 import { ratesAtCheckoutUpdateDefaultParcelTemplate } from "../funcs/ratesAtCheckoutUpdateDefaultParcelTemplate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class RatesAtCheckout extends ClientSDK {
@@ -38,10 +39,12 @@ export class RatesAtCheckout extends ClientSDK {
    * Retrieve and display the currently configured default parcel template for live rates.
    */
   async getDefaultParcelTemplate(
+    request: operations.GetDefaultParcelTemplateRequest,
     options?: RequestOptions,
   ): Promise<components.DefaultParcelTemplate> {
     return unwrapAsync(ratesAtCheckoutGetDefaultParcelTemplate(
       this,
+      request,
       options,
     ));
   }
@@ -53,12 +56,12 @@ export class RatesAtCheckout extends ClientSDK {
    * Update the currently configured default parcel template for live rates. The object_id in the request payload should identify the user parcel template to be the new default.
    */
   async updateDefaultParcelTemplate(
-    objectId?: string | undefined,
+    request?: components.DefaultParcelTemplateUpdateRequest | undefined,
     options?: RequestOptions,
   ): Promise<components.DefaultParcelTemplate> {
     return unwrapAsync(ratesAtCheckoutUpdateDefaultParcelTemplate(
       this,
-      objectId,
+      request,
       options,
     ));
   }
@@ -70,10 +73,12 @@ export class RatesAtCheckout extends ClientSDK {
    * Clears the currently configured default parcel template for live rates.
    */
   async deleteDefaultParcelTemplate(
+    request: operations.DeleteDefaultParcelTemplateRequest,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(ratesAtCheckoutDeleteDefaultParcelTemplate(
       this,
+      request,
       options,
     ));
   }

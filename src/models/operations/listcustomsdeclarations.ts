@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomsDeclarationsGlobals = {
   /**
@@ -67,6 +70,26 @@ export namespace ListCustomsDeclarationsGlobals$ {
   export type Outbound = ListCustomsDeclarationsGlobals$Outbound;
 }
 
+export function listCustomsDeclarationsGlobalsToJSON(
+  listCustomsDeclarationsGlobals: ListCustomsDeclarationsGlobals,
+): string {
+  return JSON.stringify(
+    ListCustomsDeclarationsGlobals$outboundSchema.parse(
+      listCustomsDeclarationsGlobals,
+    ),
+  );
+}
+
+export function listCustomsDeclarationsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCustomsDeclarationsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCustomsDeclarationsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCustomsDeclarationsGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListCustomsDeclarationsRequest$inboundSchema: z.ZodType<
   ListCustomsDeclarationsRequest,
@@ -104,4 +127,24 @@ export namespace ListCustomsDeclarationsRequest$ {
   export const outboundSchema = ListCustomsDeclarationsRequest$outboundSchema;
   /** @deprecated use `ListCustomsDeclarationsRequest$Outbound` instead. */
   export type Outbound = ListCustomsDeclarationsRequest$Outbound;
+}
+
+export function listCustomsDeclarationsRequestToJSON(
+  listCustomsDeclarationsRequest: ListCustomsDeclarationsRequest,
+): string {
+  return JSON.stringify(
+    ListCustomsDeclarationsRequest$outboundSchema.parse(
+      listCustomsDeclarationsRequest,
+    ),
+  );
+}
+
+export function listCustomsDeclarationsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCustomsDeclarationsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCustomsDeclarationsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCustomsDeclarationsRequest' from JSON`,
+  );
 }

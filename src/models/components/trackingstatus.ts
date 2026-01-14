@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TrackingStatusEnum,
   TrackingStatusEnum$inboundSchema,
@@ -127,4 +130,18 @@ export namespace TrackingStatus$ {
   export const outboundSchema = TrackingStatus$outboundSchema;
   /** @deprecated use `TrackingStatus$Outbound` instead. */
   export type Outbound = TrackingStatus$Outbound;
+}
+
+export function trackingStatusToJSON(trackingStatus: TrackingStatus): string {
+  return JSON.stringify(TrackingStatus$outboundSchema.parse(trackingStatus));
+}
+
+export function trackingStatusFromJSON(
+  jsonString: string,
+): SafeParseResult<TrackingStatus, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TrackingStatus$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TrackingStatus' from JSON`,
+  );
 }

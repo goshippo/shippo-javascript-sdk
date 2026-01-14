@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateCarrierAccountGlobals = {
   /**
@@ -68,6 +71,26 @@ export namespace UpdateCarrierAccountGlobals$ {
   export type Outbound = UpdateCarrierAccountGlobals$Outbound;
 }
 
+export function updateCarrierAccountGlobalsToJSON(
+  updateCarrierAccountGlobals: UpdateCarrierAccountGlobals,
+): string {
+  return JSON.stringify(
+    UpdateCarrierAccountGlobals$outboundSchema.parse(
+      updateCarrierAccountGlobals,
+    ),
+  );
+}
+
+export function updateCarrierAccountGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateCarrierAccountGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateCarrierAccountGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateCarrierAccountGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateCarrierAccountRequest$inboundSchema: z.ZodType<
   UpdateCarrierAccountRequest,
@@ -115,4 +138,24 @@ export namespace UpdateCarrierAccountRequest$ {
   export const outboundSchema = UpdateCarrierAccountRequest$outboundSchema;
   /** @deprecated use `UpdateCarrierAccountRequest$Outbound` instead. */
   export type Outbound = UpdateCarrierAccountRequest$Outbound;
+}
+
+export function updateCarrierAccountRequestToJSON(
+  updateCarrierAccountRequest: UpdateCarrierAccountRequest,
+): string {
+  return JSON.stringify(
+    UpdateCarrierAccountRequest$outboundSchema.parse(
+      updateCarrierAccountRequest,
+    ),
+  );
+}
+
+export function updateCarrierAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateCarrierAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateCarrierAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateCarrierAccountRequest' from JSON`,
+  );
 }

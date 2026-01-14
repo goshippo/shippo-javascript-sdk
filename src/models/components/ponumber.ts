@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Specify the PO number field on the label (FedEx and UPS only).
@@ -78,4 +81,18 @@ export namespace PoNumber$ {
   export const outboundSchema = PoNumber$outboundSchema;
   /** @deprecated use `PoNumber$Outbound` instead. */
   export type Outbound = PoNumber$Outbound;
+}
+
+export function poNumberToJSON(poNumber: PoNumber): string {
+  return JSON.stringify(PoNumber$outboundSchema.parse(poNumber));
+}
+
+export function poNumberFromJSON(
+  jsonString: string,
+): SafeParseResult<PoNumber, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PoNumber$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PoNumber' from JSON`,
+  );
 }

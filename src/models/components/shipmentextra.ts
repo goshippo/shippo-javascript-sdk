@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Alcohol,
   Alcohol$inboundSchema,
@@ -452,6 +455,24 @@ export namespace ReturnServiceType$ {
   export type Outbound = ReturnServiceType$Outbound;
 }
 
+export function returnServiceTypeToJSON(
+  returnServiceType: ReturnServiceType,
+): string {
+  return JSON.stringify(
+    ReturnServiceType$outboundSchema.parse(returnServiceType),
+  );
+}
+
+export function returnServiceTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<ReturnServiceType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReturnServiceType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReturnServiceType' from JSON`,
+  );
+}
+
 /** @internal */
 export const SignatureConfirmation$inboundSchema: z.ZodNativeEnum<
   typeof SignatureConfirmation
@@ -766,4 +787,18 @@ export namespace ShipmentExtra$ {
   export const outboundSchema = ShipmentExtra$outboundSchema;
   /** @deprecated use `ShipmentExtra$Outbound` instead. */
   export type Outbound = ShipmentExtra$Outbound;
+}
+
+export function shipmentExtraToJSON(shipmentExtra: ShipmentExtra): string {
+  return JSON.stringify(ShipmentExtra$outboundSchema.parse(shipmentExtra));
+}
+
+export function shipmentExtraFromJSON(
+  jsonString: string,
+): SafeParseResult<ShipmentExtra, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ShipmentExtra$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ShipmentExtra' from JSON`,
+  );
 }

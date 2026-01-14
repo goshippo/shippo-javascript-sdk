@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Webhook,
   Webhook$inboundSchema,
@@ -60,4 +63,22 @@ export namespace WebhookPaginatedList$ {
   export const outboundSchema = WebhookPaginatedList$outboundSchema;
   /** @deprecated use `WebhookPaginatedList$Outbound` instead. */
   export type Outbound = WebhookPaginatedList$Outbound;
+}
+
+export function webhookPaginatedListToJSON(
+  webhookPaginatedList: WebhookPaginatedList,
+): string {
+  return JSON.stringify(
+    WebhookPaginatedList$outboundSchema.parse(webhookPaginatedList),
+  );
+}
+
+export function webhookPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<WebhookPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WebhookPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WebhookPaginatedList' from JSON`,
+  );
 }

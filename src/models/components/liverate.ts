@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LiveRate = {
   /**
@@ -99,4 +102,18 @@ export namespace LiveRate$ {
   export const outboundSchema = LiveRate$outboundSchema;
   /** @deprecated use `LiveRate$Outbound` instead. */
   export type Outbound = LiveRate$Outbound;
+}
+
+export function liveRateToJSON(liveRate: LiveRate): string {
+  return JSON.stringify(LiveRate$outboundSchema.parse(liveRate));
+}
+
+export function liveRateFromJSON(
+  jsonString: string,
+): SafeParseResult<LiveRate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LiveRate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LiveRate' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountDHLExpressCreateRequestParameters = {
   /**
@@ -59,4 +62,31 @@ export namespace CarrierAccountDHLExpressCreateRequestParameters$ {
   /** @deprecated use `CarrierAccountDHLExpressCreateRequestParameters$Outbound` instead. */
   export type Outbound =
     CarrierAccountDHLExpressCreateRequestParameters$Outbound;
+}
+
+export function carrierAccountDHLExpressCreateRequestParametersToJSON(
+  carrierAccountDHLExpressCreateRequestParameters:
+    CarrierAccountDHLExpressCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountDHLExpressCreateRequestParameters$outboundSchema.parse(
+      carrierAccountDHLExpressCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountDHLExpressCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountDHLExpressCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountDHLExpressCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountDHLExpressCreateRequestParameters' from JSON`,
+  );
 }

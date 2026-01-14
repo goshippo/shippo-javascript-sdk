@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FedExConnectExistingOwnAccountParameters = {
   /**
@@ -119,4 +122,31 @@ export namespace FedExConnectExistingOwnAccountParameters$ {
     FedExConnectExistingOwnAccountParameters$outboundSchema;
   /** @deprecated use `FedExConnectExistingOwnAccountParameters$Outbound` instead. */
   export type Outbound = FedExConnectExistingOwnAccountParameters$Outbound;
+}
+
+export function fedExConnectExistingOwnAccountParametersToJSON(
+  fedExConnectExistingOwnAccountParameters:
+    FedExConnectExistingOwnAccountParameters,
+): string {
+  return JSON.stringify(
+    FedExConnectExistingOwnAccountParameters$outboundSchema.parse(
+      fedExConnectExistingOwnAccountParameters,
+    ),
+  );
+}
+
+export function fedExConnectExistingOwnAccountParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  FedExConnectExistingOwnAccountParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      FedExConnectExistingOwnAccountParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'FedExConnectExistingOwnAccountParameters' from JSON`,
+  );
 }

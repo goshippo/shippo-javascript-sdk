@@ -36,10 +36,13 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.carrierAccounts.list({});
-  
+  const result = await shippo.carrierAccounts.list({
+    page: 1,
+    results: 5,
+  });
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -61,7 +64,10 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await carrierAccountsList(shippo, {});
+  const res = await carrierAccountsList(shippo, {
+    page: 1,
+    results: 5,
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -70,7 +76,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -91,10 +97,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create
 
@@ -116,20 +121,20 @@ async function run() {
     carrier: "fedex",
     metadata: "FEDEX Account",
     parameters: {
-      firstName: "Loyal",
-      lastName: "Collier",
-      phoneNumber: "(890) 307-8579",
-      fromAddressSt: "<value>",
-      fromAddressCity: "<value>",
-      fromAddressState: "<value>",
-      fromAddressZip: "<value>",
-      fromAddressCountryIso2: "<value>",
+      "first_name": "Loyal",
+      "last_name": "Collier",
+      "phone_number": "(890) 307-8579",
+      "from_address_st": "<value>",
+      "from_address_city": "<value>",
+      "from_address_state": "<value>",
+      "from_address_zip": "<value>",
+      "from_address_country_iso2": "<value>",
     },
     test: false,
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -156,14 +161,14 @@ async function run() {
     carrier: "fedex",
     metadata: "FEDEX Account",
     parameters: {
-      firstName: "Loyal",
-      lastName: "Collier",
-      phoneNumber: "(890) 307-8579",
-      fromAddressSt: "<value>",
-      fromAddressCity: "<value>",
-      fromAddressState: "<value>",
-      fromAddressZip: "<value>",
-      fromAddressCountryIso2: "<value>",
+      "first_name": "Loyal",
+      "last_name": "Collier",
+      "phone_number": "(890) 307-8579",
+      "from_address_st": "<value>",
+      "from_address_city": "<value>",
+      "from_address_state": "<value>",
+      "from_address_zip": "<value>",
+      "from_address_country_iso2": "<value>",
     },
     test: false,
   });
@@ -175,7 +180,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -196,10 +201,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -216,10 +220,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.carrierAccounts.get("<value>");
-  
+  const result = await shippo.carrierAccounts.get("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -241,7 +245,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await carrierAccountsGet(shippo, "<value>");
+  const res = await carrierAccountsGet(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -250,7 +254,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -271,10 +275,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## update
 
@@ -291,37 +294,37 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.carrierAccounts.update("<value>", {
+  const result = await shippo.carrierAccounts.update("<id>", {
     accountId: "****",
     carrier: "usps",
     parameters: {
-      accountNumber: "94567e",
-      aiaCountryIso2: "US",
-      billingAddressCity: "San Francisco",
-      billingAddressCountryIso2: "US",
-      billingAddressState: "CA",
-      billingAddressStreet1: "731 Market St",
-      billingAddressStreet2: "STE 200",
-      billingAddressZip: "94103",
-      collecCountryIso2: "US",
-      collecZip: "94103",
-      company: "Shippo",
-      currencyCode: "USD",
-      email: "hippo@shippo.com",
-      fullName: "Shippo Meister",
-      hasInvoice: false,
-      invoiceControlid: "1234",
-      invoiceDate: "20210529",
-      invoiceNumber: "1112234",
-      invoiceValue: "11.23",
-      phone: "1112223333",
-      title: "Manager",
-      upsAgreements: true,
+      "account_number": "94567e",
+      "aia_country_iso2": "US",
+      "billing_address_city": "San Francisco",
+      "billing_address_country_iso2": "US",
+      "billing_address_state": "CA",
+      "billing_address_street1": "731 Market St",
+      "billing_address_street2": "STE 200",
+      "billing_address_zip": "94103",
+      "collec_country_iso2": "US",
+      "collec_zip": "94103",
+      "company": "Shippo",
+      "currency_code": "USD",
+      "email": "hippo@shippo.com",
+      "full_name": "Shippo Meister",
+      "has_invoice": false,
+      "invoice_controlid": "1234",
+      "invoice_date": "20210529",
+      "invoice_number": "1112234",
+      "invoice_value": "11.23",
+      "phone": "1112223333",
+      "title": "Manager",
+      "ups_agreements": true,
     },
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -343,32 +346,32 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await carrierAccountsUpdate(shippo, "<value>", {
+  const res = await carrierAccountsUpdate(shippo, "<id>", {
     accountId: "****",
     carrier: "usps",
     parameters: {
-      accountNumber: "94567e",
-      aiaCountryIso2: "US",
-      billingAddressCity: "San Francisco",
-      billingAddressCountryIso2: "US",
-      billingAddressState: "CA",
-      billingAddressStreet1: "731 Market St",
-      billingAddressStreet2: "STE 200",
-      billingAddressZip: "94103",
-      collecCountryIso2: "US",
-      collecZip: "94103",
-      company: "Shippo",
-      currencyCode: "USD",
-      email: "hippo@shippo.com",
-      fullName: "Shippo Meister",
-      hasInvoice: false,
-      invoiceControlid: "1234",
-      invoiceDate: "20210529",
-      invoiceNumber: "1112234",
-      invoiceValue: "11.23",
-      phone: "1112223333",
-      title: "Manager",
-      upsAgreements: true,
+      "account_number": "94567e",
+      "aia_country_iso2": "US",
+      "billing_address_city": "San Francisco",
+      "billing_address_country_iso2": "US",
+      "billing_address_state": "CA",
+      "billing_address_street1": "731 Market St",
+      "billing_address_street2": "STE 200",
+      "billing_address_zip": "94103",
+      "collec_country_iso2": "US",
+      "collec_zip": "94103",
+      "company": "Shippo",
+      "currency_code": "USD",
+      "email": "hippo@shippo.com",
+      "full_name": "Shippo Meister",
+      "has_invoice": false,
+      "invoice_controlid": "1234",
+      "invoice_date": "20210529",
+      "invoice_number": "1112234",
+      "invoice_value": "11.23",
+      "phone": "1112223333",
+      "title": "Manager",
+      "ups_agreements": true,
     },
   });
 
@@ -379,7 +382,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -401,10 +404,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## initiateOauth2Signin
 
@@ -421,10 +423,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.carrierAccounts.initiateOauth2Signin("<value>", "https://enlightened-mortise.com/");
-  
+  const result = await shippo.carrierAccounts.initiateOauth2Signin("<id>", "https://enlightened-mortise.com/");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -446,7 +448,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await carrierAccountsInitiateOauth2Signin(shippo, "<value>", "https://enlightened-mortise.com/");
+  const res = await carrierAccountsInitiateOauth2Signin(shippo, "<id>", "https://enlightened-mortise.com/");
 
   if (!res.ok) {
     throw res.error;
@@ -455,7 +457,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -478,13 +480,12 @@ run();
 
 ### Errors
 
-| Error Object                                                   | Status Code                                                    | Content Type                                                   |
+| Error Type                                                     | Status Code                                                    | Content Type                                                   |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | errors.InitiateOauth2SigninResponseBody                        | 400                                                            | application/json                                               |
 | errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401                                                            | application/json                                               |
 | errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404                                                            | application/json                                               |
-| errors.SDKError                                                | 4xx-5xx                                                        | */*                                                            |
-
+| errors.SDKError                                                | 4XX, 5XX                                                       | \*/\*                                                          |
 
 ## register
 
@@ -502,31 +503,11 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.carrierAccounts.register({
-    carrier: "ups",
-    parameters: {
-      billingAddressCity: "San Francisco",
-      billingAddressCountryIso2: "US",
-      billingAddressState: "CA",
-      billingAddressStreet1: "731 Market St",
-      billingAddressStreet2: "STE 200",
-      billingAddressZip: "94103",
-      company: "Shippo",
-      email: "hippo@shippo.com",
-      fullName: "Shippo Meister",
-      phone: "1112223333",
-      pickupAddressCity: "San Francisco",
-      pickupAddressCountryIso2: "US",
-      pickupAddressSameAsBillingAddress: false,
-      pickupAddressState: "CA",
-      pickupAddressStreet1: "731 Market St",
-      pickupAddressStreet2: "STE 200",
-      pickupAddressZip: "94103",
-      upsAgreements: true,
-    },
+    parameters: {},
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -549,27 +530,7 @@ const shippo = new ShippoCore({
 
 async function run() {
   const res = await carrierAccountsRegister(shippo, {
-    carrier: "ups",
-    parameters: {
-      billingAddressCity: "San Francisco",
-      billingAddressCountryIso2: "US",
-      billingAddressState: "CA",
-      billingAddressStreet1: "731 Market St",
-      billingAddressStreet2: "STE 200",
-      billingAddressZip: "94103",
-      company: "Shippo",
-      email: "hippo@shippo.com",
-      fullName: "Shippo Meister",
-      phone: "1112223333",
-      pickupAddressCity: "San Francisco",
-      pickupAddressCountryIso2: "US",
-      pickupAddressSameAsBillingAddress: false,
-      pickupAddressState: "CA",
-      pickupAddressStreet1: "731 Market St",
-      pickupAddressStreet2: "STE 200",
-      pickupAddressZip: "94103",
-      upsAgreements: true,
-    },
+    parameters: {},
   });
 
   if (!res.ok) {
@@ -579,7 +540,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -600,10 +561,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## getRegistrationStatus
 
@@ -621,9 +581,9 @@ const shippo = new Shippo({
 
 async function run() {
   const result = await shippo.carrierAccounts.getRegistrationStatus("usps");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -654,7 +614,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -675,6 +635,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

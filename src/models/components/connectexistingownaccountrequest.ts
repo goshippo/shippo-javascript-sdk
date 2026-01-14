@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   FedExConnectExistingOwnAccountParameters,
   FedExConnectExistingOwnAccountParameters$inboundSchema,
@@ -76,6 +79,33 @@ export namespace ConnectExistingOwnAccountRequestParameters$ {
   export type Outbound = ConnectExistingOwnAccountRequestParameters$Outbound;
 }
 
+export function connectExistingOwnAccountRequestParametersToJSON(
+  connectExistingOwnAccountRequestParameters:
+    ConnectExistingOwnAccountRequestParameters,
+): string {
+  return JSON.stringify(
+    ConnectExistingOwnAccountRequestParameters$outboundSchema.parse(
+      connectExistingOwnAccountRequestParameters,
+    ),
+  );
+}
+
+export function connectExistingOwnAccountRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  ConnectExistingOwnAccountRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ConnectExistingOwnAccountRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'ConnectExistingOwnAccountRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectExistingOwnAccountRequest$inboundSchema: z.ZodType<
   ConnectExistingOwnAccountRequest,
@@ -144,4 +174,24 @@ export namespace ConnectExistingOwnAccountRequest$ {
   export const outboundSchema = ConnectExistingOwnAccountRequest$outboundSchema;
   /** @deprecated use `ConnectExistingOwnAccountRequest$Outbound` instead. */
   export type Outbound = ConnectExistingOwnAccountRequest$Outbound;
+}
+
+export function connectExistingOwnAccountRequestToJSON(
+  connectExistingOwnAccountRequest: ConnectExistingOwnAccountRequest,
+): string {
+  return JSON.stringify(
+    ConnectExistingOwnAccountRequest$outboundSchema.parse(
+      connectExistingOwnAccountRequest,
+    ),
+  );
+}
+
+export function connectExistingOwnAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectExistingOwnAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectExistingOwnAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectExistingOwnAccountRequest' from JSON`,
+  );
 }

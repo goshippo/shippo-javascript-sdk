@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateBatchGlobals = {
   /**
@@ -54,4 +57,22 @@ export namespace CreateBatchGlobals$ {
   export const outboundSchema = CreateBatchGlobals$outboundSchema;
   /** @deprecated use `CreateBatchGlobals$Outbound` instead. */
   export type Outbound = CreateBatchGlobals$Outbound;
+}
+
+export function createBatchGlobalsToJSON(
+  createBatchGlobals: CreateBatchGlobals,
+): string {
+  return JSON.stringify(
+    CreateBatchGlobals$outboundSchema.parse(createBatchGlobals),
+  );
+}
+
+export function createBatchGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateBatchGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateBatchGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateBatchGlobals' from JSON`,
+  );
 }

@@ -26,7 +26,7 @@ let value: Batch = {
     ],
   },
   labelUrl: [
-    "<value>",
+    "https://talkative-sauerkraut.org/",
   ],
   objectCreated: "2016-01-04T00:15:44.394Z",
   objectId: "5ef63c54f5bf45d3b1f8fb37dcb1c5f4",

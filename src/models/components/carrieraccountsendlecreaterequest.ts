@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountSendleCreateRequestParameters = {};
 
 export type CarrierAccountSendleCreateRequest = {
-  carrier: string;
+  carrier?: "sendle" | undefined;
   parameters: CarrierAccountSendleCreateRequestParameters;
 };
 
@@ -45,13 +48,40 @@ export namespace CarrierAccountSendleCreateRequestParameters$ {
   export type Outbound = CarrierAccountSendleCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountSendleCreateRequestParametersToJSON(
+  carrierAccountSendleCreateRequestParameters:
+    CarrierAccountSendleCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountSendleCreateRequestParameters$outboundSchema.parse(
+      carrierAccountSendleCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountSendleCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountSendleCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountSendleCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountSendleCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountSendleCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountSendleCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("sendle").optional(),
   parameters: z.lazy(() =>
     CarrierAccountSendleCreateRequestParameters$inboundSchema
   ),
@@ -59,7 +89,7 @@ export const CarrierAccountSendleCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountSendleCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "sendle";
   parameters: CarrierAccountSendleCreateRequestParameters$Outbound;
 };
 
@@ -69,7 +99,7 @@ export const CarrierAccountSendleCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountSendleCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("sendle").default("sendle" as const),
   parameters: z.lazy(() =>
     CarrierAccountSendleCreateRequestParameters$outboundSchema
   ),
@@ -87,4 +117,24 @@ export namespace CarrierAccountSendleCreateRequest$ {
     CarrierAccountSendleCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountSendleCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountSendleCreateRequest$Outbound;
+}
+
+export function carrierAccountSendleCreateRequestToJSON(
+  carrierAccountSendleCreateRequest: CarrierAccountSendleCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountSendleCreateRequest$outboundSchema.parse(
+      carrierAccountSendleCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountSendleCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountSendleCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountSendleCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountSendleCreateRequest' from JSON`,
+  );
 }

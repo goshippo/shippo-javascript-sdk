@@ -3,11 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountHermesUKCreateRequestParameters = {};
 
 export type CarrierAccountHermesUKCreateRequest = {
-  carrier: string;
+  carrier?: "hermes_uk" | undefined;
   parameters: CarrierAccountHermesUKCreateRequestParameters;
 };
 
@@ -45,13 +48,40 @@ export namespace CarrierAccountHermesUKCreateRequestParameters$ {
   export type Outbound = CarrierAccountHermesUKCreateRequestParameters$Outbound;
 }
 
+export function carrierAccountHermesUKCreateRequestParametersToJSON(
+  carrierAccountHermesUKCreateRequestParameters:
+    CarrierAccountHermesUKCreateRequestParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountHermesUKCreateRequestParameters$outboundSchema.parse(
+      carrierAccountHermesUKCreateRequestParameters,
+    ),
+  );
+}
+
+export function carrierAccountHermesUKCreateRequestParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  CarrierAccountHermesUKCreateRequestParameters,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountHermesUKCreateRequestParameters$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'CarrierAccountHermesUKCreateRequestParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountHermesUKCreateRequest$inboundSchema: z.ZodType<
   CarrierAccountHermesUKCreateRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("hermes_uk").optional(),
   parameters: z.lazy(() =>
     CarrierAccountHermesUKCreateRequestParameters$inboundSchema
   ),
@@ -59,7 +89,7 @@ export const CarrierAccountHermesUKCreateRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CarrierAccountHermesUKCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "hermes_uk";
   parameters: CarrierAccountHermesUKCreateRequestParameters$Outbound;
 };
 
@@ -69,7 +99,7 @@ export const CarrierAccountHermesUKCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountHermesUKCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("hermes_uk").default("hermes_uk" as const),
   parameters: z.lazy(() =>
     CarrierAccountHermesUKCreateRequestParameters$outboundSchema
   ),
@@ -88,4 +118,25 @@ export namespace CarrierAccountHermesUKCreateRequest$ {
     CarrierAccountHermesUKCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountHermesUKCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountHermesUKCreateRequest$Outbound;
+}
+
+export function carrierAccountHermesUKCreateRequestToJSON(
+  carrierAccountHermesUKCreateRequest: CarrierAccountHermesUKCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountHermesUKCreateRequest$outboundSchema.parse(
+      carrierAccountHermesUKCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountHermesUKCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountHermesUKCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountHermesUKCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountHermesUKCreateRequest' from JSON`,
+  );
 }

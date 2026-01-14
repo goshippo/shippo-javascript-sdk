@@ -29,10 +29,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.serviceGroups.list();
-  
+  const result = await shippo.serviceGroups.list({});
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -54,7 +54,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await serviceGroupsList(shippo);
+  const res = await serviceGroupsList(shippo, {});
 
   if (!res.ok) {
     throw res.error;
@@ -63,7 +63,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -83,10 +83,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create
 
@@ -119,9 +118,9 @@ async function run() {
       },
     ],
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -167,7 +166,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -188,10 +187,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## update
 
@@ -234,9 +232,9 @@ async function run() {
       },
     ],
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -292,7 +290,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -313,10 +311,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## delete
 
@@ -333,7 +330,9 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  await shippo.serviceGroups.delete("<value>");
+  await shippo.serviceGroups.delete("<id>");
+
+
 }
 
 run();
@@ -355,7 +354,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await serviceGroupsDelete(shippo, "<value>");
+  const res = await serviceGroupsDelete(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -384,6 +383,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

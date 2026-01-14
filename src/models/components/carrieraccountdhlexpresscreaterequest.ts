@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierAccountDHLExpressCreateRequestParameters,
   CarrierAccountDHLExpressCreateRequestParameters$inboundSchema,
@@ -11,7 +14,7 @@ import {
 } from "./carrieraccountdhlexpresscreaterequestparameters.js";
 
 export type CarrierAccountDHLExpressCreateRequest = {
-  carrier: string;
+  carrier?: "dhl_express" | undefined;
   parameters: CarrierAccountDHLExpressCreateRequestParameters;
 };
 
@@ -21,13 +24,13 @@ export const CarrierAccountDHLExpressCreateRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("dhl_express").optional(),
   parameters: CarrierAccountDHLExpressCreateRequestParameters$inboundSchema,
 });
 
 /** @internal */
 export type CarrierAccountDHLExpressCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "dhl_express";
   parameters: CarrierAccountDHLExpressCreateRequestParameters$Outbound;
 };
 
@@ -37,7 +40,7 @@ export const CarrierAccountDHLExpressCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountDHLExpressCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("dhl_express").default("dhl_express" as const),
   parameters: CarrierAccountDHLExpressCreateRequestParameters$outboundSchema,
 });
 
@@ -54,4 +57,25 @@ export namespace CarrierAccountDHLExpressCreateRequest$ {
     CarrierAccountDHLExpressCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountDHLExpressCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountDHLExpressCreateRequest$Outbound;
+}
+
+export function carrierAccountDHLExpressCreateRequestToJSON(
+  carrierAccountDHLExpressCreateRequest: CarrierAccountDHLExpressCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountDHLExpressCreateRequest$outboundSchema.parse(
+      carrierAccountDHLExpressCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountDHLExpressCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountDHLExpressCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountDHLExpressCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountDHLExpressCreateRequest' from JSON`,
+  );
 }

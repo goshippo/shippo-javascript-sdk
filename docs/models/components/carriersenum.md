@@ -19,7 +19,6 @@
 | collect_plus | CollectPlus|
 | correios_br | CorreiosBR|
 | correos_espana | Correos España |
-| couriersplease | Couriers Please|
 | colissimo | Colissimo|
 | deutsche_post | Deutsche Post|
 | dhl_benelux | DHL Benelux|
@@ -45,7 +44,6 @@
 | new_zealand_post | New Zealand Post (also used for Pace and CourierPost)|
 | nippon_express | Nippon Express|
 | ontrac | OnTrac|
-| orangeds | OrangeDS|
 | parcelforce | Parcelforce|
 | passport | Passport|
 | pcf | PCF|
@@ -70,11 +68,11 @@
 ```typescript
 import { CarriersEnum } from "shippo/models/components";
 
-let value: CarriersEnum = "rr_donnelley";
+let value: CarriersEnum = "bring";
 ```
 
 ## Values
 
 ```typescript
-"airterra" | "apc_postal" | "apg" | "aramex" | "asendia_us" | "australia_post" | "axlehire" | "better_trucks" | "borderguru" | "boxberry" | "bring" | "canada_post" | "cdl" | "chronopost" | "collect_plus" | "correios_br" | "correos_espana" | "couriersplease" | "colissimo" | "deutsche_post" | "dhl_benelux" | "dhl_ecommerce" | "dhl_express" | "dhl_germany_c2c" | "dhl_germany" | "dpd_de" | "dpd_uk" | "estafeta" | "fastway_australia" | "fedex" | "globegistics" | "gls_us" | "gophr" | "gso" | "hermes_germany_b2c" | "hermes_uk" | "hongkong_post" | "lasership" | "lso" | "mondial_relay" | "new_zealand_post" | "nippon_express" | "ontrac" | "orangeds" | "parcelforce" | "passport" | "pcf" | "poste_italiane" | "posti" | "purolator" | "royal_mail" | "rr_donnelley" | "russian_post" | "sendle" | "skypostal" | "stuart" | "swyft" | "uds" | "ups" | "usps" | "veho"
+"airterra" | "apc_postal" | "apg" | "aramex" | "asendia_us" | "australia_post" | "axlehire" | "better_trucks" | "borderguru" | "boxberry" | "bring" | "canada_post" | "cdl" | "chronopost" | "collect_plus" | "correios_br" | "correos_espana" | "colissimo" | "deutsche_post" | "dhl_benelux" | "dhl_ecommerce" | "dhl_express" | "dhl_germany_c2c" | "dhl_germany" | "dpd_de" | "dpd_uk" | "estafeta" | "fastway_australia" | "fedex" | "globegistics" | "gls_us" | "gophr" | "gso" | "hermes_germany_b2c" | "hermes_uk" | "hongkong_post" | "lasership" | "lso" | "mondial_relay" | "new_zealand_post" | "nippon_express" | "ontrac" | "parcelforce" | "passport" | "pcf" | "poste_italiane" | "posti" | "purolator" | "royal_mail" | "rr_donnelley" | "russian_post" | "sendle" | "skypostal" | "stuart" | "swyft" | "uds" | "ups" | "usps" | "veho"
 ```

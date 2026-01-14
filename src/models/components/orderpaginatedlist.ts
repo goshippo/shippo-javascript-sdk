@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Order,
   Order$inboundSchema,
@@ -56,4 +59,22 @@ export namespace OrderPaginatedList$ {
   export const outboundSchema = OrderPaginatedList$outboundSchema;
   /** @deprecated use `OrderPaginatedList$Outbound` instead. */
   export type Outbound = OrderPaginatedList$Outbound;
+}
+
+export function orderPaginatedListToJSON(
+  orderPaginatedList: OrderPaginatedList,
+): string {
+  return JSON.stringify(
+    OrderPaginatedList$outboundSchema.parse(orderPaginatedList),
+  );
+}
+
+export function orderPaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<OrderPaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrderPaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrderPaginatedList' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TracksRequest = {
   /**
@@ -68,4 +71,18 @@ export namespace TracksRequest$ {
   export const outboundSchema = TracksRequest$outboundSchema;
   /** @deprecated use `TracksRequest$Outbound` instead. */
   export type Outbound = TracksRequest$Outbound;
+}
+
+export function tracksRequestToJSON(tracksRequest: TracksRequest): string {
+  return JSON.stringify(TracksRequest$outboundSchema.parse(tracksRequest));
+}
+
+export function tracksRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TracksRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TracksRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TracksRequest' from JSON`,
+  );
 }

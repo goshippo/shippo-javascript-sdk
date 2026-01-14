@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateManifestGlobals = {
   /**
@@ -54,4 +57,22 @@ export namespace CreateManifestGlobals$ {
   export const outboundSchema = CreateManifestGlobals$outboundSchema;
   /** @deprecated use `CreateManifestGlobals$Outbound` instead. */
   export type Outbound = CreateManifestGlobals$Outbound;
+}
+
+export function createManifestGlobalsToJSON(
+  createManifestGlobals: CreateManifestGlobals,
+): string {
+  return JSON.stringify(
+    CreateManifestGlobals$outboundSchema.parse(createManifestGlobals),
+  );
+}
+
+export function createManifestGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateManifestGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateManifestGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateManifestGlobals' from JSON`,
+  );
 }

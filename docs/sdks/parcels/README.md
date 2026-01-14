@@ -31,10 +31,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.parcels.list();
-  
+  const result = await shippo.parcels.list(1, 25);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -56,7 +56,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await parcelsList(shippo);
+  const res = await parcelsList(shippo, 1, 25);
 
   if (!res.ok) {
     throw res.error;
@@ -65,7 +65,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -87,10 +87,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create
 
@@ -129,9 +128,9 @@ async function run() {
     length: "1",
     width: "1",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -183,7 +182,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -204,10 +203,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -224,10 +222,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.parcels.get("<value>");
-  
+  const result = await shippo.parcels.get("<id>");
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -249,7 +247,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await parcelsGet(shippo, "<value>");
+  const res = await parcelsGet(shippo, "<id>");
 
   if (!res.ok) {
     throw res.error;
@@ -258,7 +256,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -279,6 +277,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

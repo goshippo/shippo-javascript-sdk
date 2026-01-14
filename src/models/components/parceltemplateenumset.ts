@@ -3,16 +3,14 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ParcelTemplateAramexAustraliaEnum,
   ParcelTemplateAramexAustraliaEnum$inboundSchema,
   ParcelTemplateAramexAustraliaEnum$outboundSchema,
 } from "./parceltemplatearamexaustraliaenum.js";
-import {
-  ParcelTemplateCouriersPleaseEnum,
-  ParcelTemplateCouriersPleaseEnum$inboundSchema,
-  ParcelTemplateCouriersPleaseEnum$outboundSchema,
-} from "./parceltemplatecourierspleaseenum.js";
 import {
   ParcelTemplateDHLeCommerceEnum,
   ParcelTemplateDHLeCommerceEnum$inboundSchema,
@@ -48,7 +46,6 @@ export type ParcelTemplateEnumSet =
   | ParcelTemplateUSPSEnum
   | ParcelTemplateDHLeCommerceEnum
   | ParcelTemplateDPDUKEnum
-  | ParcelTemplateCouriersPleaseEnum
   | ParcelTemplateAramexAustraliaEnum;
 
 /** @internal */
@@ -62,13 +59,11 @@ export const ParcelTemplateEnumSet$inboundSchema: z.ZodType<
   ParcelTemplateUSPSEnum$inboundSchema,
   ParcelTemplateDHLeCommerceEnum$inboundSchema,
   ParcelTemplateDPDUKEnum$inboundSchema,
-  ParcelTemplateCouriersPleaseEnum$inboundSchema,
   ParcelTemplateAramexAustraliaEnum$inboundSchema,
 ]);
 
 /** @internal */
 export type ParcelTemplateEnumSet$Outbound =
-  | string
   | string
   | string
   | string
@@ -87,7 +82,6 @@ export const ParcelTemplateEnumSet$outboundSchema: z.ZodType<
   ParcelTemplateUSPSEnum$outboundSchema,
   ParcelTemplateDHLeCommerceEnum$outboundSchema,
   ParcelTemplateDPDUKEnum$outboundSchema,
-  ParcelTemplateCouriersPleaseEnum$outboundSchema,
   ParcelTemplateAramexAustraliaEnum$outboundSchema,
 ]);
 
@@ -102,4 +96,22 @@ export namespace ParcelTemplateEnumSet$ {
   export const outboundSchema = ParcelTemplateEnumSet$outboundSchema;
   /** @deprecated use `ParcelTemplateEnumSet$Outbound` instead. */
   export type Outbound = ParcelTemplateEnumSet$Outbound;
+}
+
+export function parcelTemplateEnumSetToJSON(
+  parcelTemplateEnumSet: ParcelTemplateEnumSet,
+): string {
+  return JSON.stringify(
+    ParcelTemplateEnumSet$outboundSchema.parse(parcelTemplateEnumSet),
+  );
+}
+
+export function parcelTemplateEnumSetFromJSON(
+  jsonString: string,
+): SafeParseResult<ParcelTemplateEnumSet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ParcelTemplateEnumSet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParcelTemplateEnumSet' from JSON`,
+  );
 }

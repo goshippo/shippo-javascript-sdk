@@ -5,7 +5,7 @@
 ```typescript
 import { ShipmentExtraReturnServiceTypeUPSEnum } from "shippo/models/components";
 
-let value: ShipmentExtraReturnServiceTypeUPSEnum = "ATTEMPT_3";
+let value: ShipmentExtraReturnServiceTypeUPSEnum = "PRINT_AND_MAIL";
 ```
 
 ## Values

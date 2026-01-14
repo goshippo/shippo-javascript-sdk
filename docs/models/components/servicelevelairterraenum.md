@@ -11,7 +11,7 @@
 ```typescript
 import { ServiceLevelAirterraEnum } from "shippo/models/components";
 
-let value: ServiceLevelAirterraEnum = "airterra_postal";
+let value: ServiceLevelAirterraEnum = "airterra_ground";
 ```
 
 ## Values

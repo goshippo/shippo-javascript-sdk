@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierAccountCanadaPostCreateParameters,
   CarrierAccountCanadaPostCreateParameters$inboundSchema,
@@ -11,7 +14,7 @@ import {
 } from "./carrieraccountcanadapostcreateparameters.js";
 
 export type CarrierAccountCanadaPostCreateRequest = {
-  carrier: string;
+  carrier?: "canada_post" | undefined;
   parameters: CarrierAccountCanadaPostCreateParameters;
 };
 
@@ -21,13 +24,13 @@ export const CarrierAccountCanadaPostCreateRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("canada_post").optional(),
   parameters: CarrierAccountCanadaPostCreateParameters$inboundSchema,
 });
 
 /** @internal */
 export type CarrierAccountCanadaPostCreateRequest$Outbound = {
-  carrier: string;
+  carrier: "canada_post";
   parameters: CarrierAccountCanadaPostCreateParameters$Outbound;
 };
 
@@ -37,7 +40,7 @@ export const CarrierAccountCanadaPostCreateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CarrierAccountCanadaPostCreateRequest
 > = z.object({
-  carrier: z.string(),
+  carrier: z.literal("canada_post").default("canada_post" as const),
   parameters: CarrierAccountCanadaPostCreateParameters$outboundSchema,
 });
 
@@ -54,4 +57,25 @@ export namespace CarrierAccountCanadaPostCreateRequest$ {
     CarrierAccountCanadaPostCreateRequest$outboundSchema;
   /** @deprecated use `CarrierAccountCanadaPostCreateRequest$Outbound` instead. */
   export type Outbound = CarrierAccountCanadaPostCreateRequest$Outbound;
+}
+
+export function carrierAccountCanadaPostCreateRequestToJSON(
+  carrierAccountCanadaPostCreateRequest: CarrierAccountCanadaPostCreateRequest,
+): string {
+  return JSON.stringify(
+    CarrierAccountCanadaPostCreateRequest$outboundSchema.parse(
+      carrierAccountCanadaPostCreateRequest,
+    ),
+  );
+}
+
+export function carrierAccountCanadaPostCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountCanadaPostCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CarrierAccountCanadaPostCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountCanadaPostCreateRequest' from JSON`,
+  );
 }

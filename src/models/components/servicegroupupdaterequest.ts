@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ServiceGroupAccountAndServiceLevel,
   ServiceGroupAccountAndServiceLevel$inboundSchema,
@@ -161,4 +164,22 @@ export namespace ServiceGroupUpdateRequest$ {
   export const outboundSchema = ServiceGroupUpdateRequest$outboundSchema;
   /** @deprecated use `ServiceGroupUpdateRequest$Outbound` instead. */
   export type Outbound = ServiceGroupUpdateRequest$Outbound;
+}
+
+export function serviceGroupUpdateRequestToJSON(
+  serviceGroupUpdateRequest: ServiceGroupUpdateRequest,
+): string {
+  return JSON.stringify(
+    ServiceGroupUpdateRequest$outboundSchema.parse(serviceGroupUpdateRequest),
+  );
+}
+
+export function serviceGroupUpdateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ServiceGroupUpdateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ServiceGroupUpdateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ServiceGroupUpdateRequest' from JSON`,
+  );
 }

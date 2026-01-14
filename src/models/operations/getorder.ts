@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetOrderGlobals = {
   /**
@@ -63,6 +66,22 @@ export namespace GetOrderGlobals$ {
   export type Outbound = GetOrderGlobals$Outbound;
 }
 
+export function getOrderGlobalsToJSON(
+  getOrderGlobals: GetOrderGlobals,
+): string {
+  return JSON.stringify(GetOrderGlobals$outboundSchema.parse(getOrderGlobals));
+}
+
+export function getOrderGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOrderGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOrderGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOrderGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetOrderRequest$inboundSchema: z.ZodType<
   GetOrderRequest,
@@ -105,4 +124,20 @@ export namespace GetOrderRequest$ {
   export const outboundSchema = GetOrderRequest$outboundSchema;
   /** @deprecated use `GetOrderRequest$Outbound` instead. */
   export type Outbound = GetOrderRequest$Outbound;
+}
+
+export function getOrderRequestToJSON(
+  getOrderRequest: GetOrderRequest,
+): string {
+  return JSON.stringify(GetOrderRequest$outboundSchema.parse(getOrderRequest));
+}
+
+export function getOrderRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOrderRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOrderRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOrderRequest' from JSON`,
+  );
 }

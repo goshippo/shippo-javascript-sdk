@@ -11,7 +11,7 @@
 ```typescript
 import { ParcelTemplateDHLeCommerceEnum } from "shippo/models/components";
 
-let value: ParcelTemplateDHLeCommerceEnum = "DHLeC_SM_Flats";
+let value: ParcelTemplateDHLeCommerceEnum = "DHLeC_Irregular";
 ```
 
 ## Values

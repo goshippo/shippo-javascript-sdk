@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateUserParcelTemplateGlobals = {
   /**
@@ -67,6 +70,26 @@ export namespace UpdateUserParcelTemplateGlobals$ {
   export type Outbound = UpdateUserParcelTemplateGlobals$Outbound;
 }
 
+export function updateUserParcelTemplateGlobalsToJSON(
+  updateUserParcelTemplateGlobals: UpdateUserParcelTemplateGlobals,
+): string {
+  return JSON.stringify(
+    UpdateUserParcelTemplateGlobals$outboundSchema.parse(
+      updateUserParcelTemplateGlobals,
+    ),
+  );
+}
+
+export function updateUserParcelTemplateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateUserParcelTemplateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateUserParcelTemplateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateUserParcelTemplateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateUserParcelTemplateRequest$inboundSchema: z.ZodType<
   UpdateUserParcelTemplateRequest,
@@ -118,4 +141,24 @@ export namespace UpdateUserParcelTemplateRequest$ {
   export const outboundSchema = UpdateUserParcelTemplateRequest$outboundSchema;
   /** @deprecated use `UpdateUserParcelTemplateRequest$Outbound` instead. */
   export type Outbound = UpdateUserParcelTemplateRequest$Outbound;
+}
+
+export function updateUserParcelTemplateRequestToJSON(
+  updateUserParcelTemplateRequest: UpdateUserParcelTemplateRequest,
+): string {
+  return JSON.stringify(
+    UpdateUserParcelTemplateRequest$outboundSchema.parse(
+      updateUserParcelTemplateRequest,
+    ),
+  );
+}
+
+export function updateUserParcelTemplateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateUserParcelTemplateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateUserParcelTemplateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateUserParcelTemplateRequest' from JSON`,
+  );
 }

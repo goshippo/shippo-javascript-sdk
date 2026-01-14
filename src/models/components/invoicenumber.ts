@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Specify the invoice number field on the label (FedEx and UPS only).
@@ -78,4 +81,18 @@ export namespace InvoiceNumber$ {
   export const outboundSchema = InvoiceNumber$outboundSchema;
   /** @deprecated use `InvoiceNumber$Outbound` instead. */
   export type Outbound = InvoiceNumber$Outbound;
+}
+
+export function invoiceNumberToJSON(invoiceNumber: InvoiceNumber): string {
+  return JSON.stringify(InvoiceNumber$outboundSchema.parse(invoiceNumber));
+}
+
+export function invoiceNumberFromJSON(
+  jsonString: string,
+): SafeParseResult<InvoiceNumber, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvoiceNumber$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvoiceNumber' from JSON`,
+  );
 }

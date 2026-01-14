@@ -6,7 +6,7 @@
 import { GetTransactionRequest } from "shippo/models/operations";
 
 let value: GetTransactionRequest = {
-  transactionId: "<value>",
+  transactionId: "<id>",
 };
 ```
 
