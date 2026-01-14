@@ -42,11 +42,9 @@ export class ConvertNullToUndefinedAfterSuccessHook implements AfterSuccessHook 
 
     private deleteKeysWithNullValues(obj: any): any {
         Object.keys(obj).forEach((key) => {
-            if (
-                (obj[key] && typeof obj[key] === 'object') && 
-                this.deleteKeysWithNullValues(obj[key]) ||
-                (obj[key] === null)
-            ) {
+            if (obj[key] && typeof obj[key] === 'object') {
+                this.deleteKeysWithNullValues(obj[key]);
+            } else if (obj[key] === null) {
                 delete obj[key];
             }
         });
