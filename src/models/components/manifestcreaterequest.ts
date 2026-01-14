@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AddressCreateRequest,
   AddressCreateRequest$inboundSchema,
@@ -68,6 +71,26 @@ export namespace ManifestCreateRequestAddressFrom$ {
   export type Outbound = ManifestCreateRequestAddressFrom$Outbound;
 }
 
+export function manifestCreateRequestAddressFromToJSON(
+  manifestCreateRequestAddressFrom: ManifestCreateRequestAddressFrom,
+): string {
+  return JSON.stringify(
+    ManifestCreateRequestAddressFrom$outboundSchema.parse(
+      manifestCreateRequestAddressFrom,
+    ),
+  );
+}
+
+export function manifestCreateRequestAddressFromFromJSON(
+  jsonString: string,
+): SafeParseResult<ManifestCreateRequestAddressFrom, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ManifestCreateRequestAddressFrom$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ManifestCreateRequestAddressFrom' from JSON`,
+  );
+}
+
 /** @internal */
 export const ManifestCreateRequest$inboundSchema: z.ZodType<
   ManifestCreateRequest,
@@ -126,4 +149,22 @@ export namespace ManifestCreateRequest$ {
   export const outboundSchema = ManifestCreateRequest$outboundSchema;
   /** @deprecated use `ManifestCreateRequest$Outbound` instead. */
   export type Outbound = ManifestCreateRequest$Outbound;
+}
+
+export function manifestCreateRequestToJSON(
+  manifestCreateRequest: ManifestCreateRequest,
+): string {
+  return JSON.stringify(
+    ManifestCreateRequest$outboundSchema.parse(manifestCreateRequest),
+  );
+}
+
+export function manifestCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ManifestCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ManifestCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ManifestCreateRequest' from JSON`,
+  );
 }

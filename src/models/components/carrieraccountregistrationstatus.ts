@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CarrierAccountRegistrationStatus = {
   carrierAccount?: string | undefined;
@@ -77,4 +80,24 @@ export namespace CarrierAccountRegistrationStatus$ {
   export const outboundSchema = CarrierAccountRegistrationStatus$outboundSchema;
   /** @deprecated use `CarrierAccountRegistrationStatus$Outbound` instead. */
   export type Outbound = CarrierAccountRegistrationStatus$Outbound;
+}
+
+export function carrierAccountRegistrationStatusToJSON(
+  carrierAccountRegistrationStatus: CarrierAccountRegistrationStatus,
+): string {
+  return JSON.stringify(
+    CarrierAccountRegistrationStatus$outboundSchema.parse(
+      carrierAccountRegistrationStatus,
+    ),
+  );
+}
+
+export function carrierAccountRegistrationStatusFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountRegistrationStatus, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountRegistrationStatus$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountRegistrationStatus' from JSON`,
+  );
 }

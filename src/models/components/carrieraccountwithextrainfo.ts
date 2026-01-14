@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierAccountServiceLevel,
   CarrierAccountServiceLevel$inboundSchema,
@@ -170,6 +173,20 @@ export namespace ParametersT$ {
   export type Outbound = ParametersT$Outbound;
 }
 
+export function parametersToJSON(parametersT: ParametersT): string {
+  return JSON.stringify(ParametersT$outboundSchema.parse(parametersT));
+}
+
+export function parametersFromJSON(
+  jsonString: string,
+): SafeParseResult<ParametersT, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ParametersT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ParametersT' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccountWithExtraInfoType$inboundSchema: z.ZodNativeEnum<
   typeof CarrierAccountWithExtraInfoType
@@ -252,6 +269,20 @@ export namespace Authentication$ {
   export type Outbound = Authentication$Outbound;
 }
 
+export function authenticationToJSON(authentication: Authentication): string {
+  return JSON.stringify(Authentication$outboundSchema.parse(authentication));
+}
+
+export function authenticationFromJSON(
+  jsonString: string,
+): SafeParseResult<Authentication, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Authentication$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Authentication' from JSON`,
+  );
+}
+
 /** @internal */
 export const ObjectInfo$inboundSchema: z.ZodType<
   ObjectInfo,
@@ -286,6 +317,20 @@ export namespace ObjectInfo$ {
   export const outboundSchema = ObjectInfo$outboundSchema;
   /** @deprecated use `ObjectInfo$Outbound` instead. */
   export type Outbound = ObjectInfo$Outbound;
+}
+
+export function objectInfoToJSON(objectInfo: ObjectInfo): string {
+  return JSON.stringify(ObjectInfo$outboundSchema.parse(objectInfo));
+}
+
+export function objectInfoFromJSON(
+  jsonString: string,
+): SafeParseResult<ObjectInfo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ObjectInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ObjectInfo' from JSON`,
+  );
 }
 
 /** @internal */
@@ -387,4 +432,24 @@ export namespace CarrierAccountWithExtraInfo$ {
   export const outboundSchema = CarrierAccountWithExtraInfo$outboundSchema;
   /** @deprecated use `CarrierAccountWithExtraInfo$Outbound` instead. */
   export type Outbound = CarrierAccountWithExtraInfo$Outbound;
+}
+
+export function carrierAccountWithExtraInfoToJSON(
+  carrierAccountWithExtraInfo: CarrierAccountWithExtraInfo,
+): string {
+  return JSON.stringify(
+    CarrierAccountWithExtraInfo$outboundSchema.parse(
+      carrierAccountWithExtraInfo,
+    ),
+  );
+}
+
+export function carrierAccountWithExtraInfoFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountWithExtraInfo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountWithExtraInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountWithExtraInfo' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetCustomsItemGlobals = {
   /**
@@ -67,6 +70,24 @@ export namespace GetCustomsItemGlobals$ {
   export type Outbound = GetCustomsItemGlobals$Outbound;
 }
 
+export function getCustomsItemGlobalsToJSON(
+  getCustomsItemGlobals: GetCustomsItemGlobals,
+): string {
+  return JSON.stringify(
+    GetCustomsItemGlobals$outboundSchema.parse(getCustomsItemGlobals),
+  );
+}
+
+export function getCustomsItemGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomsItemGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomsItemGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomsItemGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetCustomsItemRequest$inboundSchema: z.ZodType<
   GetCustomsItemRequest,
@@ -112,4 +133,22 @@ export namespace GetCustomsItemRequest$ {
   export const outboundSchema = GetCustomsItemRequest$outboundSchema;
   /** @deprecated use `GetCustomsItemRequest$Outbound` instead. */
   export type Outbound = GetCustomsItemRequest$Outbound;
+}
+
+export function getCustomsItemRequestToJSON(
+  getCustomsItemRequest: GetCustomsItemRequest,
+): string {
+  return JSON.stringify(
+    GetCustomsItemRequest$outboundSchema.parse(getCustomsItemRequest),
+  );
+}
+
+export function getCustomsItemRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomsItemRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomsItemRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomsItemRequest' from JSON`,
+  );
 }

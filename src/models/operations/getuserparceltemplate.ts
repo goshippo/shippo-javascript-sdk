@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetUserParcelTemplateGlobals = {
   /**
@@ -63,6 +66,26 @@ export namespace GetUserParcelTemplateGlobals$ {
   export type Outbound = GetUserParcelTemplateGlobals$Outbound;
 }
 
+export function getUserParcelTemplateGlobalsToJSON(
+  getUserParcelTemplateGlobals: GetUserParcelTemplateGlobals,
+): string {
+  return JSON.stringify(
+    GetUserParcelTemplateGlobals$outboundSchema.parse(
+      getUserParcelTemplateGlobals,
+    ),
+  );
+}
+
+export function getUserParcelTemplateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUserParcelTemplateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUserParcelTemplateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUserParcelTemplateGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetUserParcelTemplateRequest$inboundSchema: z.ZodType<
   GetUserParcelTemplateRequest,
@@ -105,4 +128,24 @@ export namespace GetUserParcelTemplateRequest$ {
   export const outboundSchema = GetUserParcelTemplateRequest$outboundSchema;
   /** @deprecated use `GetUserParcelTemplateRequest$Outbound` instead. */
   export type Outbound = GetUserParcelTemplateRequest$Outbound;
+}
+
+export function getUserParcelTemplateRequestToJSON(
+  getUserParcelTemplateRequest: GetUserParcelTemplateRequest,
+): string {
+  return JSON.stringify(
+    GetUserParcelTemplateRequest$outboundSchema.parse(
+      getUserParcelTemplateRequest,
+    ),
+  );
+}
+
+export function getUserParcelTemplateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetUserParcelTemplateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetUserParcelTemplateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetUserParcelTemplateRequest' from JSON`,
+  );
 }

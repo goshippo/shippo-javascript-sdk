@@ -2,12 +2,13 @@
 
 Parcel details.
 
-## Example Usage
+
+## Supported Types
+
+### `components.ParcelCreateRequest`
 
 ```typescript
-import { CreateParcelRequestBody } from "shippo/models/operations";
-
-let value: CreateParcelRequestBody = {
+const value: components.ParcelCreateRequest = {
   extra: {
     cod: {
       amount: "5.5",
@@ -31,17 +32,27 @@ let value: CreateParcelRequestBody = {
 };
 ```
 
-## Supported Types
-
-### `components.ParcelCreateRequest`
-
-```typescript
-const value: components.ParcelCreateRequest = /* values here */
-```
-
 ### `components.ParcelCreateFromTemplateRequest`
 
 ```typescript
-const value: components.ParcelCreateFromTemplateRequest = /* values here */
+const value: components.ParcelCreateFromTemplateRequest = {
+  extra: {
+    cod: {
+      amount: "5.5",
+      currency: "USD",
+      paymentMethod: "CASH",
+    },
+    insurance: {
+      amount: "5.5",
+      content: "Laptop",
+      currency: "USD",
+      provider: "UPS",
+    },
+  },
+  metadata: "Customer ID 123456",
+  massUnit: "lb",
+  weight: "1",
+  template: "Fastway_Australia_Satchel_A5",
+};
 ```
 

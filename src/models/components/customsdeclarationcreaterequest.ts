@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AddressImporter,
   AddressImporter$inboundSchema,
@@ -257,6 +260,28 @@ export namespace CustomsDeclarationCreateRequestAddress$ {
   export type Outbound = CustomsDeclarationCreateRequestAddress$Outbound;
 }
 
+export function customsDeclarationCreateRequestAddressToJSON(
+  customsDeclarationCreateRequestAddress:
+    CustomsDeclarationCreateRequestAddress,
+): string {
+  return JSON.stringify(
+    CustomsDeclarationCreateRequestAddress$outboundSchema.parse(
+      customsDeclarationCreateRequestAddress,
+    ),
+  );
+}
+
+export function customsDeclarationCreateRequestAddressFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsDeclarationCreateRequestAddress, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      CustomsDeclarationCreateRequestAddress$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsDeclarationCreateRequestAddress' from JSON`,
+  );
+}
+
 /** @internal */
 export const DutiesPayor$inboundSchema: z.ZodType<
   DutiesPayor,
@@ -299,6 +324,20 @@ export namespace DutiesPayor$ {
   export const outboundSchema = DutiesPayor$outboundSchema;
   /** @deprecated use `DutiesPayor$Outbound` instead. */
   export type Outbound = DutiesPayor$Outbound;
+}
+
+export function dutiesPayorToJSON(dutiesPayor: DutiesPayor): string {
+  return JSON.stringify(DutiesPayor$outboundSchema.parse(dutiesPayor));
+}
+
+export function dutiesPayorFromJSON(
+  jsonString: string,
+): SafeParseResult<DutiesPayor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DutiesPayor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DutiesPayor' from JSON`,
+  );
 }
 
 /** @internal */
@@ -447,4 +486,24 @@ export namespace CustomsDeclarationCreateRequest$ {
   export const outboundSchema = CustomsDeclarationCreateRequest$outboundSchema;
   /** @deprecated use `CustomsDeclarationCreateRequest$Outbound` instead. */
   export type Outbound = CustomsDeclarationCreateRequest$Outbound;
+}
+
+export function customsDeclarationCreateRequestToJSON(
+  customsDeclarationCreateRequest: CustomsDeclarationCreateRequest,
+): string {
+  return JSON.stringify(
+    CustomsDeclarationCreateRequest$outboundSchema.parse(
+      customsDeclarationCreateRequest,
+    ),
+  );
+}
+
+export function customsDeclarationCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsDeclarationCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsDeclarationCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsDeclarationCreateRequest' from JSON`,
+  );
 }

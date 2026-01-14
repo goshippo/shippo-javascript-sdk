@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CoreRate,
   CoreRate$inboundSchema,
@@ -216,6 +219,20 @@ export namespace CreatedBy$ {
   export type Outbound = CreatedBy$Outbound;
 }
 
+export function createdByToJSON(createdBy: CreatedBy): string {
+  return JSON.stringify(CreatedBy$outboundSchema.parse(createdBy));
+}
+
+export function createdByFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatedBy, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatedBy$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatedBy' from JSON`,
+  );
+}
+
 /** @internal */
 export const TransactionRate$inboundSchema: z.ZodType<
   TransactionRate,
@@ -244,6 +261,22 @@ export namespace TransactionRate$ {
   export const outboundSchema = TransactionRate$outboundSchema;
   /** @deprecated use `TransactionRate$Outbound` instead. */
   export type Outbound = TransactionRate$Outbound;
+}
+
+export function transactionRateToJSON(
+  transactionRate: TransactionRate,
+): string {
+  return JSON.stringify(TransactionRate$outboundSchema.parse(transactionRate));
+}
+
+export function transactionRateFromJSON(
+  jsonString: string,
+): SafeParseResult<TransactionRate, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransactionRate$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionRate' from JSON`,
+  );
 }
 
 /** @internal */
@@ -373,4 +406,18 @@ export namespace Transaction$ {
   export const outboundSchema = Transaction$outboundSchema;
   /** @deprecated use `Transaction$Outbound` instead. */
   export type Outbound = Transaction$Outbound;
+}
+
+export function transactionToJSON(transaction: Transaction): string {
+  return JSON.stringify(Transaction$outboundSchema.parse(transaction));
+}
+
+export function transactionFromJSON(
+  jsonString: string,
+): SafeParseResult<Transaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Transaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Transaction' from JSON`,
+  );
 }

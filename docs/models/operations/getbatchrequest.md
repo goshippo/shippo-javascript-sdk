@@ -6,7 +6,7 @@
 import { GetBatchRequest } from "shippo/models/operations";
 
 let value: GetBatchRequest = {
-  batchId: "<value>",
+  batchId: "<id>",
 };
 ```
 

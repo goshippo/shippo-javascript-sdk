@@ -28,8 +28,8 @@ let value: Pickup = {
     buildingType: "apartment",
     instructions: "Behind screen door",
   },
-  requestedEndTime: new Date("2023-12-16T16:55:27.891Z"),
-  requestedStartTime: new Date("2023-04-18T20:01:49.892Z"),
+  requestedEndTime: new Date("2023-03-01T13:18:23.203Z"),
+  requestedStartTime: new Date("2023-08-08T04:42:30.927Z"),
   transactions: [
     "adcfdddf8ec64b84ad22772bce3ea37a",
   ],
@@ -39,9 +39,7 @@ let value: Pickup = {
   status: "CONFIRMED",
   confirmationCode: "WTC310058750",
   timezone: "US/Pacific",
-  messages: [
-    "<value>",
-  ],
+  messages: [],
 };
 ```
 

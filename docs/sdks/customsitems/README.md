@@ -27,10 +27,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.customsItems.list();
-  
+  const result = await shippo.customsItems.list(1, 25);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -52,7 +52,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await customsItemsList(shippo);
+  const res = await customsItemsList(shippo, 1, 25);
 
   if (!res.ok) {
     throw res.error;
@@ -61,7 +61,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -83,10 +83,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## create
 
@@ -115,9 +114,9 @@ async function run() {
     valueAmount: "200",
     valueCurrency: "USD",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -159,7 +158,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -180,10 +179,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get
 
@@ -200,10 +198,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.customsItems.get("<value>");
-  
+  const result = await shippo.customsItems.get("<id>", 1);
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -225,7 +223,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await customsItemsGet(shippo, "<value>");
+  const res = await customsItemsGet(shippo, "<id>", 1);
 
   if (!res.ok) {
     throw res.error;
@@ -234,7 +232,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -256,6 +254,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

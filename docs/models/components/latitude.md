@@ -1,24 +1,17 @@
 # Latitude
 
-## Example Usage
-
-```typescript
-import { Latitude } from "shippo/models/components";
-
-let value: Latitude = "<value>";
-```
 
 ## Supported Types
 
 ### `number`
 
 ```typescript
-const value: number = /* values here */
+const value: number = 710.36;
 ```
 
 ### `string`
 
 ```typescript
-const value: string = /* values here */
+const value: string = "<value>";
 ```
 

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ServiceLevelAirterraEnum,
   ServiceLevelAirterraEnum$inboundSchema,
@@ -63,11 +66,6 @@ import {
   ServiceLevelCorreosEspanaEnum$inboundSchema,
   ServiceLevelCorreosEspanaEnum$outboundSchema,
 } from "./servicelevelcorreosespanaenum.js";
-import {
-  ServiceLevelCouriersPleaseEnum,
-  ServiceLevelCouriersPleaseEnum$inboundSchema,
-  ServiceLevelCouriersPleaseEnum$outboundSchema,
-} from "./servicelevelcourierspleaseenum.js";
 import {
   ServiceLevelDeutschePostEnum,
   ServiceLevelDeutschePostEnum$inboundSchema,
@@ -212,7 +210,6 @@ export type ServiceLevelEnumSet =
   | ServiceLevelCanadaPostEnum
   | ServiceLevelCDLEnum
   | ServiceLevelChronopostEnum
-  | ServiceLevelCouriersPleaseEnum
   | ServiceLevelCorreosEspanaEnum
   | ServiceLevelColissimoEnum
   | ServiceLevelPurolatorEnum
@@ -258,7 +255,6 @@ export const ServiceLevelEnumSet$inboundSchema: z.ZodType<
   ServiceLevelCanadaPostEnum$inboundSchema,
   ServiceLevelCDLEnum$inboundSchema,
   ServiceLevelChronopostEnum$inboundSchema,
-  ServiceLevelCouriersPleaseEnum$inboundSchema,
   ServiceLevelCorreosEspanaEnum$inboundSchema,
   ServiceLevelColissimoEnum$inboundSchema,
   ServiceLevelPurolatorEnum$inboundSchema,
@@ -326,7 +322,6 @@ export type ServiceLevelEnumSet$Outbound =
   | string
   | string
   | string
-  | string
   | string;
 
 /** @internal */
@@ -347,7 +342,6 @@ export const ServiceLevelEnumSet$outboundSchema: z.ZodType<
   ServiceLevelCanadaPostEnum$outboundSchema,
   ServiceLevelCDLEnum$outboundSchema,
   ServiceLevelChronopostEnum$outboundSchema,
-  ServiceLevelCouriersPleaseEnum$outboundSchema,
   ServiceLevelCorreosEspanaEnum$outboundSchema,
   ServiceLevelColissimoEnum$outboundSchema,
   ServiceLevelPurolatorEnum$outboundSchema,
@@ -387,4 +381,22 @@ export namespace ServiceLevelEnumSet$ {
   export const outboundSchema = ServiceLevelEnumSet$outboundSchema;
   /** @deprecated use `ServiceLevelEnumSet$Outbound` instead. */
   export type Outbound = ServiceLevelEnumSet$Outbound;
+}
+
+export function serviceLevelEnumSetToJSON(
+  serviceLevelEnumSet: ServiceLevelEnumSet,
+): string {
+  return JSON.stringify(
+    ServiceLevelEnumSet$outboundSchema.parse(serviceLevelEnumSet),
+  );
+}
+
+export function serviceLevelEnumSetFromJSON(
+  jsonString: string,
+): SafeParseResult<ServiceLevelEnumSet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ServiceLevelEnumSet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ServiceLevelEnumSet' from JSON`,
+  );
 }

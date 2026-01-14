@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RemoveShipmentsFromBatchGlobals = {
   /**
@@ -67,6 +70,26 @@ export namespace RemoveShipmentsFromBatchGlobals$ {
   export type Outbound = RemoveShipmentsFromBatchGlobals$Outbound;
 }
 
+export function removeShipmentsFromBatchGlobalsToJSON(
+  removeShipmentsFromBatchGlobals: RemoveShipmentsFromBatchGlobals,
+): string {
+  return JSON.stringify(
+    RemoveShipmentsFromBatchGlobals$outboundSchema.parse(
+      removeShipmentsFromBatchGlobals,
+    ),
+  );
+}
+
+export function removeShipmentsFromBatchGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<RemoveShipmentsFromBatchGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RemoveShipmentsFromBatchGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RemoveShipmentsFromBatchGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const RemoveShipmentsFromBatchRequest$inboundSchema: z.ZodType<
   RemoveShipmentsFromBatchRequest,
@@ -114,4 +137,24 @@ export namespace RemoveShipmentsFromBatchRequest$ {
   export const outboundSchema = RemoveShipmentsFromBatchRequest$outboundSchema;
   /** @deprecated use `RemoveShipmentsFromBatchRequest$Outbound` instead. */
   export type Outbound = RemoveShipmentsFromBatchRequest$Outbound;
+}
+
+export function removeShipmentsFromBatchRequestToJSON(
+  removeShipmentsFromBatchRequest: RemoveShipmentsFromBatchRequest,
+): string {
+  return JSON.stringify(
+    RemoveShipmentsFromBatchRequest$outboundSchema.parse(
+      removeShipmentsFromBatchRequest,
+    ),
+  );
+}
+
+export function removeShipmentsFromBatchRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<RemoveShipmentsFromBatchRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RemoveShipmentsFromBatchRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RemoveShipmentsFromBatchRequest' from JSON`,
+  );
 }

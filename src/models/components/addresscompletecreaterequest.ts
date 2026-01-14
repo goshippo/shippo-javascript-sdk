@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Address represents the address as retrieved from the database
@@ -188,4 +191,24 @@ export namespace AddressCompleteCreateRequest$ {
   export const outboundSchema = AddressCompleteCreateRequest$outboundSchema;
   /** @deprecated use `AddressCompleteCreateRequest$Outbound` instead. */
   export type Outbound = AddressCompleteCreateRequest$Outbound;
+}
+
+export function addressCompleteCreateRequestToJSON(
+  addressCompleteCreateRequest: AddressCompleteCreateRequest,
+): string {
+  return JSON.stringify(
+    AddressCompleteCreateRequest$outboundSchema.parse(
+      addressCompleteCreateRequest,
+    ),
+  );
+}
+
+export function addressCompleteCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AddressCompleteCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddressCompleteCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddressCompleteCreateRequest' from JSON`,
+  );
 }

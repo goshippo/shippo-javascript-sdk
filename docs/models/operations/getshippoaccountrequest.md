@@ -6,7 +6,7 @@
 import { GetShippoAccountRequest } from "shippo/models/operations";
 
 let value: GetShippoAccountRequest = {
-  shippoAccountId: "<value>",
+  shippoAccountId: "<id>",
 };
 ```
 

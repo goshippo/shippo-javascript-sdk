@@ -6,7 +6,7 @@
 import { GetUserParcelTemplateRequest } from "shippo/models/operations";
 
 let value: GetUserParcelTemplateRequest = {
-  userParcelTemplateObjectId: "<value>",
+  userParcelTemplateObjectId: "<id>",
 };
 ```
 

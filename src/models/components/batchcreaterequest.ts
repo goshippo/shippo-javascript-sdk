@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BatchShipmentCreateRequest,
   BatchShipmentCreateRequest$inboundSchema,
@@ -110,4 +113,22 @@ export namespace BatchCreateRequest$ {
   export const outboundSchema = BatchCreateRequest$outboundSchema;
   /** @deprecated use `BatchCreateRequest$Outbound` instead. */
   export type Outbound = BatchCreateRequest$Outbound;
+}
+
+export function batchCreateRequestToJSON(
+  batchCreateRequest: BatchCreateRequest,
+): string {
+  return JSON.stringify(
+    BatchCreateRequest$outboundSchema.parse(batchCreateRequest),
+  );
+}
+
+export function batchCreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<BatchCreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BatchCreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BatchCreateRequest' from JSON`,
+  );
 }

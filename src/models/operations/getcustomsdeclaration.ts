@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetCustomsDeclarationGlobals = {
   /**
@@ -67,6 +70,26 @@ export namespace GetCustomsDeclarationGlobals$ {
   export type Outbound = GetCustomsDeclarationGlobals$Outbound;
 }
 
+export function getCustomsDeclarationGlobalsToJSON(
+  getCustomsDeclarationGlobals: GetCustomsDeclarationGlobals,
+): string {
+  return JSON.stringify(
+    GetCustomsDeclarationGlobals$outboundSchema.parse(
+      getCustomsDeclarationGlobals,
+    ),
+  );
+}
+
+export function getCustomsDeclarationGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomsDeclarationGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomsDeclarationGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomsDeclarationGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetCustomsDeclarationRequest$inboundSchema: z.ZodType<
   GetCustomsDeclarationRequest,
@@ -112,4 +135,24 @@ export namespace GetCustomsDeclarationRequest$ {
   export const outboundSchema = GetCustomsDeclarationRequest$outboundSchema;
   /** @deprecated use `GetCustomsDeclarationRequest$Outbound` instead. */
   export type Outbound = GetCustomsDeclarationRequest$Outbound;
+}
+
+export function getCustomsDeclarationRequestToJSON(
+  getCustomsDeclarationRequest: GetCustomsDeclarationRequest,
+): string {
+  return JSON.stringify(
+    GetCustomsDeclarationRequest$outboundSchema.parse(
+      getCustomsDeclarationRequest,
+    ),
+  );
+}
+
+export function getCustomsDeclarationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomsDeclarationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomsDeclarationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomsDeclarationRequest' from JSON`,
+  );
 }

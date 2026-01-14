@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetAddressGlobals = {
   /**
@@ -63,6 +66,24 @@ export namespace GetAddressGlobals$ {
   export type Outbound = GetAddressGlobals$Outbound;
 }
 
+export function getAddressGlobalsToJSON(
+  getAddressGlobals: GetAddressGlobals,
+): string {
+  return JSON.stringify(
+    GetAddressGlobals$outboundSchema.parse(getAddressGlobals),
+  );
+}
+
+export function getAddressGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAddressGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAddressGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAddressGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAddressRequest$inboundSchema: z.ZodType<
   GetAddressRequest,
@@ -105,4 +126,22 @@ export namespace GetAddressRequest$ {
   export const outboundSchema = GetAddressRequest$outboundSchema;
   /** @deprecated use `GetAddressRequest$Outbound` instead. */
   export type Outbound = GetAddressRequest$Outbound;
+}
+
+export function getAddressRequestToJSON(
+  getAddressRequest: GetAddressRequest,
+): string {
+  return JSON.stringify(
+    GetAddressRequest$outboundSchema.parse(getAddressRequest),
+  );
+}
+
+export function getAddressRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAddressRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAddressRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAddressRequest' from JSON`,
+  );
 }

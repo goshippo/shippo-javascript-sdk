@@ -3,11 +3,17 @@
  */
 
 import { HTTPClient, RequestInput } from "../lib/http.js";
+import { RetryConfig } from "../lib/retries.js";
+import { SecurityState } from "../lib/security.js";
+import { WebhookRecipient } from "../types/webhooks.js";
 
 export type HookContext = {
   operationID: string;
   oAuth2Scopes?: string[];
+  webhookRecipient?: WebhookRecipient;
   securitySource?: any | (() => Promise<any>);
+  retryConfig: RetryConfig;
+  resolvedSecurity: SecurityState | null;
 };
 
 export type Awaitable<T> = T | Promise<T>;
@@ -96,3 +102,10 @@ export interface Hooks {
   /** Registers a hook to be used by the SDK for the after error event. */
   registerAfterErrorHook(hook: AfterErrorHook): void;
 }
+
+export type Hook =
+  | SDKInitHook
+  | BeforeCreateRequestHook
+  | BeforeRequestHook
+  | AfterSuccessHook
+  | AfterErrorHook;

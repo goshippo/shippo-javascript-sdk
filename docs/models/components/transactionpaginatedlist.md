@@ -30,17 +30,7 @@ let value: TransactionPaginatedList = {
       parcel: "e94c7fdfdc7b495dbb390a28d929d90a",
       qrCodeUrl:
         "https://shippo-delivery.s3.amazonaws.com/96_qr_code.pdf?Signature=PEdWrp0mFWAGwJp7FW3b%2FeA2eyY%3D&Expires=1385930652&AWSAccessKeyId=AKIAJTHP3LLFMYAWALIA",
-      rate: {
-        amount: "5.5",
-        amountLocal: "5.5",
-        currency: "USD",
-        currencyLocal: "USD",
-        objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
-        provider: "USPS",
-        carrierAccount: "078870331023437cb917f5187429b093",
-        servicelevelName: "Priority Mail",
-        servicelevelToken: "fedex_ground",
-      },
+      rate: "ec9f0d3adc9441449c85d315f0997fd5",
       status: "SUCCESS",
       trackingNumber: "9499907123456123456781",
       trackingStatus: "DELIVERED",

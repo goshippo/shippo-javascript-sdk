@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Additional invoiced charges to be shown on the Customs Declaration Commercial Invoice.
@@ -91,4 +94,22 @@ export namespace CustomsInvoicedCharges$ {
   export const outboundSchema = CustomsInvoicedCharges$outboundSchema;
   /** @deprecated use `CustomsInvoicedCharges$Outbound` instead. */
   export type Outbound = CustomsInvoicedCharges$Outbound;
+}
+
+export function customsInvoicedChargesToJSON(
+  customsInvoicedCharges: CustomsInvoicedCharges,
+): string {
+  return JSON.stringify(
+    CustomsInvoicedCharges$outboundSchema.parse(customsInvoicedCharges),
+  );
+}
+
+export function customsInvoicedChargesFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomsInvoicedCharges, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomsInvoicedCharges$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomsInvoicedCharges' from JSON`,
+  );
 }

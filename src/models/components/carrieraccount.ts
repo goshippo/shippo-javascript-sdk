@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CarrierAccountServiceLevel,
   CarrierAccountServiceLevel$inboundSchema,
@@ -118,6 +121,24 @@ export namespace CarrierAccountParameters$ {
   export type Outbound = CarrierAccountParameters$Outbound;
 }
 
+export function carrierAccountParametersToJSON(
+  carrierAccountParameters: CarrierAccountParameters,
+): string {
+  return JSON.stringify(
+    CarrierAccountParameters$outboundSchema.parse(carrierAccountParameters),
+  );
+}
+
+export function carrierAccountParametersFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccountParameters, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccountParameters$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccountParameters' from JSON`,
+  );
+}
+
 /** @internal */
 export const CarrierAccount$inboundSchema: z.ZodType<
   CarrierAccount,
@@ -212,4 +233,18 @@ export namespace CarrierAccount$ {
   export const outboundSchema = CarrierAccount$outboundSchema;
   /** @deprecated use `CarrierAccount$Outbound` instead. */
   export type Outbound = CarrierAccount$Outbound;
+}
+
+export function carrierAccountToJSON(carrierAccount: CarrierAccount): string {
+  return JSON.stringify(CarrierAccount$outboundSchema.parse(carrierAccount));
+}
+
+export function carrierAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<CarrierAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CarrierAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CarrierAccount' from JSON`,
+  );
 }

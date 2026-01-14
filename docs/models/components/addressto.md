@@ -1,11 +1,12 @@
 # AddressTo
 
-## Example Usage
+
+## Supported Types
+
+### `components.AddressCreateRequest`
 
 ```typescript
-import { AddressTo } from "shippo/models/components";
-
-let value: AddressTo = {
+const value: components.AddressCreateRequest = {
   name: "Shwan Ippotle",
   company: "Shippo",
   street1: "215 Clayton St.",
@@ -23,17 +24,9 @@ let value: AddressTo = {
 };
 ```
 
-## Supported Types
-
-### `components.AddressCreateRequest`
-
-```typescript
-const value: components.AddressCreateRequest = /* values here */
-```
-
 ### `string`
 
 ```typescript
-const value: string = /* values here */
+const value: string = "d799c2679e644279b59fe661ac8fa489";
 ```
 

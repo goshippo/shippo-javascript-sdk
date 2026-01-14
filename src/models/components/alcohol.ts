@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Mandatory for Fedex only. License type of the recipient of the Alcohol Package.
@@ -97,4 +100,18 @@ export namespace Alcohol$ {
   export const outboundSchema = Alcohol$outboundSchema;
   /** @deprecated use `Alcohol$Outbound` instead. */
   export type Outbound = Alcohol$Outbound;
+}
+
+export function alcoholToJSON(alcohol: Alcohol): string {
+  return JSON.stringify(Alcohol$outboundSchema.parse(alcohol));
+}
+
+export function alcoholFromJSON(
+  jsonString: string,
+): SafeParseResult<Alcohol, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Alcohol$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Alcohol' from JSON`,
+  );
 }

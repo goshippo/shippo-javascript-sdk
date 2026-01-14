@@ -1,3 +1,5 @@
+/react-query
+/.speakeasy/reports
 /funcs
 /core.*
 /__tests__

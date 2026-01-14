@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   LiveRate,
   LiveRate$inboundSchema,
@@ -60,4 +63,22 @@ export namespace LiveRatePaginatedList$ {
   export const outboundSchema = LiveRatePaginatedList$outboundSchema;
   /** @deprecated use `LiveRatePaginatedList$Outbound` instead. */
   export type Outbound = LiveRatePaginatedList$Outbound;
+}
+
+export function liveRatePaginatedListToJSON(
+  liveRatePaginatedList: LiveRatePaginatedList,
+): string {
+  return JSON.stringify(
+    LiveRatePaginatedList$outboundSchema.parse(liveRatePaginatedList),
+  );
+}
+
+export function liveRatePaginatedListFromJSON(
+  jsonString: string,
+): SafeParseResult<LiveRatePaginatedList, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LiveRatePaginatedList$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LiveRatePaginatedList' from JSON`,
+  );
 }

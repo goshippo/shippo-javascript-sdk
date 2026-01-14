@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetTrackGlobals = {
   /**
@@ -67,6 +70,22 @@ export namespace GetTrackGlobals$ {
   export type Outbound = GetTrackGlobals$Outbound;
 }
 
+export function getTrackGlobalsToJSON(
+  getTrackGlobals: GetTrackGlobals,
+): string {
+  return JSON.stringify(GetTrackGlobals$outboundSchema.parse(getTrackGlobals));
+}
+
+export function getTrackGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTrackGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTrackGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTrackGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTrackRequest$inboundSchema: z.ZodType<
   GetTrackRequest,
@@ -114,4 +133,20 @@ export namespace GetTrackRequest$ {
   export const outboundSchema = GetTrackRequest$outboundSchema;
   /** @deprecated use `GetTrackRequest$Outbound` instead. */
   export type Outbound = GetTrackRequest$Outbound;
+}
+
+export function getTrackRequestToJSON(
+  getTrackRequest: GetTrackRequest,
+): string {
+  return JSON.stringify(GetTrackRequest$outboundSchema.parse(getTrackRequest));
+}
+
+export function getTrackRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTrackRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTrackRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTrackRequest' from JSON`,
+  );
 }

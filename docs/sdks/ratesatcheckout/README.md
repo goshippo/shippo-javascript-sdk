@@ -74,9 +74,9 @@ async function run() {
     ],
     parcel: "5df144dca289442cv7a06",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -142,7 +142,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -163,10 +163,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## getDefaultParcelTemplate
 
@@ -183,10 +182,10 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.ratesAtCheckout.getDefaultParcelTemplate();
-  
+  const result = await shippo.ratesAtCheckout.getDefaultParcelTemplate({});
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -208,7 +207,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await ratesAtCheckoutGetDefaultParcelTemplate(shippo);
+  const res = await ratesAtCheckoutGetDefaultParcelTemplate(shippo, {});
 
   if (!res.ok) {
     throw res.error;
@@ -217,7 +216,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -237,10 +236,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## updateDefaultParcelTemplate
 
@@ -257,10 +255,12 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.ratesAtCheckout.updateDefaultParcelTemplate("b958d3690bb04bb8b2986724872750f5");
-  
+  const result = await shippo.ratesAtCheckout.updateDefaultParcelTemplate({
+    objectId: "b958d3690bb04bb8b2986724872750f5",
+  });
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -282,7 +282,9 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await ratesAtCheckoutUpdateDefaultParcelTemplate(shippo, "b958d3690bb04bb8b2986724872750f5");
+  const res = await ratesAtCheckoutUpdateDefaultParcelTemplate(shippo, {
+    objectId: "b958d3690bb04bb8b2986724872750f5",
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -291,7 +293,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -312,10 +314,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## deleteDefaultParcelTemplate
 
@@ -332,7 +333,9 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  await shippo.ratesAtCheckout.deleteDefaultParcelTemplate();
+  await shippo.ratesAtCheckout.deleteDefaultParcelTemplate({});
+
+
 }
 
 run();
@@ -354,7 +357,7 @@ const shippo = new ShippoCore({
 });
 
 async function run() {
-  const res = await ratesAtCheckoutDeleteDefaultParcelTemplate(shippo);
+  const res = await ratesAtCheckoutDeleteDefaultParcelTemplate(shippo, {});
 
   if (!res.ok) {
     throw res.error;
@@ -382,6 +385,6 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

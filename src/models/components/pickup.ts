@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Location,
   Location$inboundSchema,
@@ -256,4 +259,18 @@ export namespace Pickup$ {
   export const outboundSchema = Pickup$outboundSchema;
   /** @deprecated use `Pickup$Outbound` instead. */
   export type Outbound = Pickup$Outbound;
+}
+
+export function pickupToJSON(pickup: Pickup): string {
+  return JSON.stringify(Pickup$outboundSchema.parse(pickup));
+}
+
+export function pickupFromJSON(
+  jsonString: string,
+): SafeParseResult<Pickup, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Pickup$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Pickup' from JSON`,
+  );
 }

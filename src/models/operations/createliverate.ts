@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateLiveRateGlobals = {
   /**
@@ -54,4 +57,22 @@ export namespace CreateLiveRateGlobals$ {
   export const outboundSchema = CreateLiveRateGlobals$outboundSchema;
   /** @deprecated use `CreateLiveRateGlobals$Outbound` instead. */
   export type Outbound = CreateLiveRateGlobals$Outbound;
+}
+
+export function createLiveRateGlobalsToJSON(
+  createLiveRateGlobals: CreateLiveRateGlobals,
+): string {
+  return JSON.stringify(
+    CreateLiveRateGlobals$outboundSchema.parse(createLiveRateGlobals),
+  );
+}
+
+export function createLiveRateGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateLiveRateGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateLiveRateGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateLiveRateGlobals' from JSON`,
+  );
 }

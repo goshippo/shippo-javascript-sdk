@@ -22,7 +22,7 @@
 import { ServiceLevelGlobegisticsEnum } from "shippo/models/components";
 
 let value: ServiceLevelGlobegisticsEnum =
-  "globegistics_ecom_priority_mail_express_international_ddp";
+  "globegistics_ecom_international_priority_airmail";
 ```
 
 ## Values
