@@ -12,7 +12,7 @@
 ```typescript
 import { ServiceLevelOnTracEnum } from "shippo/models/components";
 
-let value: ServiceLevelOnTracEnum = "ontrac_ground";
+let value: ServiceLevelOnTracEnum = "ontrac_sunrise_gold";
 ```
 
 ## Values

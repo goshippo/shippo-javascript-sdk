@@ -8,7 +8,13 @@ import { InitiateOauth2SigninResponse } from "shippo/models/operations";
 let value: InitiateOauth2SigninResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
   },
 };

@@ -1,5 +1,4 @@
 # Parcels
-(*parcels*)
 
 ## Overview
 
@@ -22,18 +21,18 @@ Returns a list of all parcel objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListParcels" method="get" path="/parcels" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.parcels.list(1, 25);
+  const result = await shippo.parcels.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -51,21 +50,18 @@ import { parcelsList } from "shippo/funcs/parcelsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await parcelsList(shippo, 1, 25);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await parcelsList(shippo);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("parcelsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -97,12 +93,13 @@ Creates a new parcel object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateParcel" method="post" path="/parcels" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -129,7 +126,6 @@ async function run() {
     width: "1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -147,8 +143,8 @@ import { parcelsCreate } from "shippo/funcs/parcelsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -174,15 +170,12 @@ async function run() {
     length: "1",
     width: "1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("parcelsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -213,18 +206,18 @@ Returns parcel details using an existing parcel object ID (this will not return 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetParcel" method="get" path="/parcels/{ParcelId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.parcels.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -242,21 +235,18 @@ import { parcelsGet } from "shippo/funcs/parcelsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await parcelsGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("parcelsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

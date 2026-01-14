@@ -16,12 +16,7 @@ let value: ServiceGroupUpdateRequest = {
   type: "FLAT_RATE",
   objectId: "80feb1633d4a43c898f005850",
   isActive: true,
-  serviceLevels: [
-    {
-      accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
-      serviceLevelToken: "ups_next_day_air_saver",
-    },
-  ],
+  serviceLevels: [],
 };
 ```
 

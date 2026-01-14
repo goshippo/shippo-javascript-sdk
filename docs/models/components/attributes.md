@@ -5,7 +5,7 @@
 ```typescript
 import { Attributes } from "shippo/models/components";
 
-let value: Attributes = "BESTVALUE";
+let value: Attributes = "FASTEST";
 ```
 
 ## Values

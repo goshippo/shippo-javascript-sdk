@@ -6,6 +6,7 @@
 import { CarrierAccountCorreosCreateRequest } from "shippo/models/components";
 
 let value: CarrierAccountCorreosCreateRequest = {
+  carrier: "correos",
   parameters: {},
 };
 ```
@@ -14,5 +15,5 @@ let value: CarrierAccountCorreosCreateRequest = {
 
 | Field                                                                                                                              | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
 | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `carrier`                                                                                                                          | *string*                                                                                                                           | :heavy_check_mark:                                                                                                                 | N/A                                                                                                                                |
+| `carrier`                                                                                                                          | *"correos"*                                                                                                                        | :heavy_check_mark:                                                                                                                 | N/A                                                                                                                                |
 | `parameters`                                                                                                                       | [components.CarrierAccountCorreosCreateRequestParameters](../../models/components/carrieraccountcorreoscreaterequestparameters.md) | :heavy_check_mark:                                                                                                                 | N/A                                                                                                                                |

@@ -15,7 +15,7 @@
 ```typescript
 import { ServiceLevelDHLGermanyEnum } from "shippo/models/components";
 
-let value: ServiceLevelDHLGermanyEnum = "dhl_germany_paket_connect";
+let value: ServiceLevelDHLGermanyEnum = "dhl_germany_paket_sameday";
 ```
 
 ## Values

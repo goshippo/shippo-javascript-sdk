@@ -13,7 +13,7 @@
 ```typescript
 import { ParcelTemplateAramexAustraliaEnum } from "shippo/models/components";
 
-let value: ParcelTemplateAramexAustraliaEnum = "Fastway_Australia_Satchel_A3";
+let value: ParcelTemplateAramexAustraliaEnum = "Fastway_Australia_Satchel_A4";
 ```
 
 ## Values

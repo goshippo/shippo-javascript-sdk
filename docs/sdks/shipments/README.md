@@ -1,5 +1,4 @@
 # Shipments
-(*shipments*)
 
 ## Overview
 
@@ -39,21 +38,18 @@ Optional path parameters:<br>
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListShipments" method="get" path="/shipments" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.shipments.list({
-    page: 1,
-    results: 25,
-  });
+  const result = await shippo.shipments.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -71,24 +67,18 @@ import { shipmentsList } from "shippo/funcs/shipmentsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await shipmentsList(shippo, {
-    page: 1,
-    results: 25,
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await shipmentsList(shippo, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("shipmentsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -119,12 +109,13 @@ Creates a new shipment object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateShipment" method="post" path="/shipments" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -232,139 +223,19 @@ async function run() {
     },
     metadata: "Customer ID 123456",
     shipmentDate: "2021-03-22T12:00:00Z",
-    addressFrom: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
+    addressFrom: "d799c2679e644279b59fe661ac8fa488",
     addressReturn: "d799c2679e644279b59fe661ac8fa488",
-    addressTo: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
-    customsDeclaration: {
-      b13aFilingOption: "FILED_ELECTRONICALLY",
-      certify: true,
-      certifySigner: "Shawn Ippotle",
-      contentsExplanation: "T-Shirt purchase",
-      dutiesPayor: {
-        account: "2323434543",
-        type: "THIRD_PARTY",
-        address: {
-          name: "Patrick Kavanagh",
-          zip: "80331",
-          country: "DE",
-        },
-      },
-      exporterIdentification: {
-        eoriNumber: "PL123456790ABCDE",
-        taxId: {
-          number: "123456789",
-          type: "EIN",
-        },
-      },
-      invoice: "#123123",
-      metadata: "Order ID #123123",
-      addressImporter: {
-        name: "Shwan Ippotle",
-        company: "Shippo",
-        street1: "Blumenstraße",
-        street3: "",
-        streetNo: "22",
-        city: "München",
-        state: "CA",
-        zip: "80331",
-        country: "DE",
-        phone: "80331",
-        email: "shippotle@shippo.com",
-        isResidential: true,
-      },
-      contentsType: "MERCHANDISE",
-      eelPfc: "NOEEI_30_37_a",
-      incoterm: "DDP",
-      items: [
-
-      ],
-      nonDeliveryOption: "RETURN",
-      test: true,
-    },
+    addressTo: "d799c2679e644279b59fe661ac8fa489",
+    customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
     carrierAccounts: [
       "065a4a8c10d24a34ab932163a1b87f52",
       "73f706f4bdb94b54a337563840ce52b0",
     ],
     parcels: [
       "<value>",
-      {
-        extra: {
-          cod: {
-            amount: "5.5",
-            currency: "USD",
-            paymentMethod: "CASH",
-          },
-          insurance: {
-            amount: "5.5",
-            content: "Laptop",
-            currency: "USD",
-            provider: "UPS",
-          },
-        },
-        metadata: "Customer ID 123456",
-        massUnit: "lb",
-        weight: "1",
-        distanceUnit: "in",
-        height: "1",
-        length: "1",
-        width: "1",
-      },
-      {
-        extra: {
-          cod: {
-            amount: "5.5",
-            currency: "USD",
-            paymentMethod: "CASH",
-          },
-          insurance: {
-            amount: "5.5",
-            content: "Laptop",
-            currency: "USD",
-            provider: "UPS",
-          },
-        },
-        metadata: "Customer ID 123456",
-        massUnit: "lb",
-        weight: "1",
-        distanceUnit: "in",
-        height: "1",
-        length: "1",
-        width: "1",
-      },
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -382,8 +253,8 @@ import { shipmentsCreate } from "shippo/funcs/shipmentsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -491,146 +362,24 @@ async function run() {
     },
     metadata: "Customer ID 123456",
     shipmentDate: "2021-03-22T12:00:00Z",
-    addressFrom: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
+    addressFrom: "d799c2679e644279b59fe661ac8fa488",
     addressReturn: "d799c2679e644279b59fe661ac8fa488",
-    addressTo: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
-    customsDeclaration: {
-      b13aFilingOption: "FILED_ELECTRONICALLY",
-      certify: true,
-      certifySigner: "Shawn Ippotle",
-      contentsExplanation: "T-Shirt purchase",
-      dutiesPayor: {
-        account: "2323434543",
-        type: "THIRD_PARTY",
-        address: {
-          name: "Patrick Kavanagh",
-          zip: "80331",
-          country: "DE",
-        },
-      },
-      exporterIdentification: {
-        eoriNumber: "PL123456790ABCDE",
-        taxId: {
-          number: "123456789",
-          type: "EIN",
-        },
-      },
-      invoice: "#123123",
-      metadata: "Order ID #123123",
-      addressImporter: {
-        name: "Shwan Ippotle",
-        company: "Shippo",
-        street1: "Blumenstraße",
-        street3: "",
-        streetNo: "22",
-        city: "München",
-        state: "CA",
-        zip: "80331",
-        country: "DE",
-        phone: "80331",
-        email: "shippotle@shippo.com",
-        isResidential: true,
-      },
-      contentsType: "MERCHANDISE",
-      eelPfc: "NOEEI_30_37_a",
-      incoterm: "DDP",
-      items: [
-  
-      ],
-      nonDeliveryOption: "RETURN",
-      test: true,
-    },
+    addressTo: "d799c2679e644279b59fe661ac8fa489",
+    customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
     carrierAccounts: [
       "065a4a8c10d24a34ab932163a1b87f52",
       "73f706f4bdb94b54a337563840ce52b0",
     ],
     parcels: [
       "<value>",
-      {
-        extra: {
-          cod: {
-            amount: "5.5",
-            currency: "USD",
-            paymentMethod: "CASH",
-          },
-          insurance: {
-            amount: "5.5",
-            content: "Laptop",
-            currency: "USD",
-            provider: "UPS",
-          },
-        },
-        metadata: "Customer ID 123456",
-        massUnit: "lb",
-        weight: "1",
-        distanceUnit: "in",
-        height: "1",
-        length: "1",
-        width: "1",
-      },
-      {
-        extra: {
-          cod: {
-            amount: "5.5",
-            currency: "USD",
-            paymentMethod: "CASH",
-          },
-          insurance: {
-            amount: "5.5",
-            content: "Laptop",
-            currency: "USD",
-            provider: "UPS",
-          },
-        },
-        metadata: "Customer ID 123456",
-        massUnit: "lb",
-        weight: "1",
-        distanceUnit: "in",
-        height: "1",
-        length: "1",
-        width: "1",
-      },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("shipmentsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -661,18 +410,18 @@ Returns an existing shipment using an object ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetShipment" method="get" path="/shipments/{ShipmentId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.shipments.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -690,21 +439,18 @@ import { shipmentsGet } from "shippo/funcs/shipmentsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await shipmentsGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("shipmentsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

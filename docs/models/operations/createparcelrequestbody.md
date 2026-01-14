@@ -52,7 +52,7 @@ const value: components.ParcelCreateFromTemplateRequest = {
   metadata: "Customer ID 123456",
   massUnit: "lb",
   weight: "1",
-  template: "Fastway_Australia_Satchel_A5",
+  template: "DHLeC_SM_Flats",
 };
 ```
 

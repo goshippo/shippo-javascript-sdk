@@ -27,7 +27,7 @@
 ```typescript
 import { ServiceLevelPurolatorEnum } from "shippo/models/components";
 
-let value: ServiceLevelPurolatorEnum = "purolator_ground_distribution";
+let value: ServiceLevelPurolatorEnum = "purolator_express9_am";
 ```
 
 ## Values

@@ -6,6 +6,7 @@
 import { CarrierAccountHermesUKCreateRequest } from "shippo/models/components";
 
 let value: CarrierAccountHermesUKCreateRequest = {
+  carrier: "hermes_uk",
   parameters: {},
 };
 ```
@@ -14,5 +15,5 @@ let value: CarrierAccountHermesUKCreateRequest = {
 
 | Field                                                                                                                                | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `carrier`                                                                                                                            | *string*                                                                                                                             | :heavy_check_mark:                                                                                                                   | N/A                                                                                                                                  |
+| `carrier`                                                                                                                            | *"hermes_uk"*                                                                                                                        | :heavy_check_mark:                                                                                                                   | N/A                                                                                                                                  |
 | `parameters`                                                                                                                         | [components.CarrierAccountHermesUKCreateRequestParameters](../../models/components/carrieraccounthermesukcreaterequestparameters.md) | :heavy_check_mark:                                                                                                                   | N/A                                                                                                                                  |

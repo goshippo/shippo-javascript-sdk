@@ -7,15 +7,6 @@ import { UpdateUserParcelTemplateRequest } from "shippo/models/operations";
 
 let value: UpdateUserParcelTemplateRequest = {
   userParcelTemplateObjectId: "<id>",
-  userParcelTemplateUpdateRequest: {
-    distanceUnit: "in",
-    height: "6",
-    length: "10",
-    name: "My Custom Template",
-    weight: "12",
-    weightUnit: "lb",
-    width: "8",
-  },
 };
 ```
 

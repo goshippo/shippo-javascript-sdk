@@ -1,5 +1,4 @@
 # CarrierParcelTemplates
-(*carrierParcelTemplates*)
 
 ## Overview
 
@@ -24,18 +23,18 @@ List all carrier parcel template objects. <br> Use the following query string pa
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListCarrierParcelTemplates" method="get" path="/parcel-templates" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.carrierParcelTemplates.list("fedex");
+  const result = await shippo.carrierParcelTemplates.list(undefined, "fedex");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -53,21 +52,18 @@ import { carrierParcelTemplatesList } from "shippo/funcs/carrierParcelTemplatesL
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await carrierParcelTemplatesList(shippo, "fedex");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await carrierParcelTemplatesList(shippo, undefined, "fedex");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierParcelTemplatesList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -99,18 +95,18 @@ Fetches the parcel template information for a specific carrier parcel template, 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetCarrierParcelTemplate" method="get" path="/parcel-templates/{CarrierParcelTemplateToken}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.carrierParcelTemplates.get("<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -128,21 +124,18 @@ import { carrierParcelTemplatesGet } from "shippo/funcs/carrierParcelTemplatesGe
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await carrierParcelTemplatesGet(shippo, "<value>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierParcelTemplatesGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

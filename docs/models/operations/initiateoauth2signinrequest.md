@@ -7,7 +7,7 @@ import { InitiateOauth2SigninRequest } from "shippo/models/operations";
 
 let value: InitiateOauth2SigninRequest = {
   carrierAccountObjectId: "<id>",
-  redirectUri: "https://devoted-lashes.biz",
+  redirectUri: "https://pushy-godfather.name/",
 };
 ```
 

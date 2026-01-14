@@ -9,8 +9,9 @@ The body of the request.
 
 ```typescript
 const value: components.CarrierAccountCanadaPostCreateRequest = {
+  carrier: "canada_post",
   parameters: {
-    canadaPostTerms: false,
+    canadaPostTerms: true,
     company: "Shippo",
     email: "hippo@shippo.com",
     fullName: "Shippo Meister",
@@ -23,6 +24,7 @@ const value: components.CarrierAccountCanadaPostCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountChronopostCreateRequest = {
+  carrier: "chronopost",
   parameters: {},
 };
 ```
@@ -31,6 +33,7 @@ const value: components.CarrierAccountChronopostCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountColissimoCreateRequest = {
+  carrier: "colissimo",
   parameters: {},
 };
 ```
@@ -39,6 +42,7 @@ const value: components.CarrierAccountColissimoCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountCorreosCreateRequest = {
+  carrier: "correos",
   parameters: {},
 };
 ```
@@ -47,6 +51,7 @@ const value: components.CarrierAccountCorreosCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountDeutschePostCreateRequest = {
+  carrier: "deutsche_post",
   parameters: {},
 };
 ```
@@ -55,6 +60,7 @@ const value: components.CarrierAccountDeutschePostCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountDHLExpressCreateRequest = {
+  carrier: "dhl_express",
   parameters: {
     userAcceptedTermsAndConditions: false,
   },
@@ -65,6 +71,7 @@ const value: components.CarrierAccountDHLExpressCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountDpdDeCreateRequest = {
+  carrier: "dpd_de",
   parameters: {},
 };
 ```
@@ -73,6 +80,7 @@ const value: components.CarrierAccountDpdDeCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountDPDUKCreateRequest = {
+  carrier: "dpd_uk",
   parameters: {},
 };
 ```
@@ -81,6 +89,7 @@ const value: components.CarrierAccountDPDUKCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountFedExCreateRequest = {
+  carrier: "fedex",
   parameters: {},
 };
 ```
@@ -89,6 +98,7 @@ const value: components.CarrierAccountFedExCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountHermesUKCreateRequest = {
+  carrier: "hermes_uk",
   parameters: {},
 };
 ```
@@ -97,6 +107,7 @@ const value: components.CarrierAccountHermesUKCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountMondialRelayCreateRequest = {
+  carrier: "mondial_relay",
   parameters: {},
 };
 ```
@@ -105,6 +116,7 @@ const value: components.CarrierAccountMondialRelayCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountPosteItalianeCreateRequest = {
+  carrier: "poste_italiane",
   parameters: {},
 };
 ```
@@ -113,6 +125,7 @@ const value: components.CarrierAccountPosteItalianeCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountUPSCreateRequest = {
+  carrier: "ups",
   parameters: {
     billingAddressCity: "San Francisco",
     billingAddressCountryIso2: "US",
@@ -140,6 +153,7 @@ const value: components.CarrierAccountUPSCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountUSPSCreateRequest = {
+  carrier: "usps",
   parameters: {},
 };
 ```
@@ -148,6 +162,7 @@ const value: components.CarrierAccountUSPSCreateRequest = {
 
 ```typescript
 const value: components.CarrierAccountSendleCreateRequest = {
+  carrier: "sendle",
   parameters: {},
 };
 ```

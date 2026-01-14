@@ -38,7 +38,7 @@
 import { ServiceLevelDHLeCommerceEnum } from "shippo/models/components";
 
 let value: ServiceLevelDHLeCommerceEnum =
-  "dhl_ecommerce_globalmail_business_isal";
+  "dhl_ecommerce_marketing_parcel_ground";
 ```
 
 ## Values

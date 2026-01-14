@@ -3,22 +3,22 @@ id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
   docChecksum: 8c8466e9d6de1941988f39ef92f07e94
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.685.0
-  generationVersion: 2.794.1
-  releaseVersion: 2.17.1
-  configChecksum: 20687a6205373298b4a32bda25662caa
+  speakeasyVersion: 1.685.2
+  generationVersion: 2.795.6
+  releaseVersion: 2.17.2
+  configChecksum: 76ea83e68528b0c7dc08da01af3a6df2
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
 persistentEdits:
-  generation_id: f6b9c742-8a8e-49c3-925e-a078905e36b5
-  pristine_commit_hash: e11bd5db335d6bc16efe65065146650ef09551a2
-  pristine_tree_hash: a290f1df3c7ae04bf36de3f1c2cc3c260a7580c5
+  generation_id: adc501f3-1a11-43a8-bb59-5748d4f5c8e7
+  pristine_commit_hash: ee4fc0d74734f67c0a399c869dc804a22792132b
+  pristine_tree_hash: f1cf033c46be6a08369faa78702f30e512b073c7
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.20
+    core: 3.26.21
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -1692,12 +1692,12 @@ trackedFiles:
     pristine_git_object: 67c6c1dc1f226fac8fb2a52cb6b3b7b3127b6b5d
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:5fc7005c76a3533eb74f6a0ca9d470b0ae8dc52c
-    pristine_git_object: 1ddb12424b887afe76f461f4706ed11453b48d43
+    last_write_checksum: sha1:a6d503b7de86afd9513f4cfcec57da0be9f99fb7
+    pristine_git_object: 7466c30e78c19e3822d9c9522fbc631f43937f96
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:5860b343eee7d36d0a492659a1707012c0180861
-    pristine_git_object: 5be86728de1bed27ca4b886acaa54a02dd63149c
+    last_write_checksum: sha1:ef7af875d5d607f8885eae412d77b5f9c0c7528a
+    pristine_git_object: 2c5dd5a20a93bb551036e1e3cc4d29ce752e4e8a
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:f45d247bf2f5a1f6eb57917d08444f4ca4b662ff
@@ -2004,8 +2004,8 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:8501cd40886225c84506a4c9aa3494cccef0502d
-    pristine_git_object: 62092ac9c2867d12bb4525ac77b74f7b6fad5ee0
+    last_write_checksum: sha1:7dd6addc64a4e38f684ec424c4f4dcb0aaae3df9
+    pristine_git_object: 945f05f0c78172f7dd8d157214cbd4e7e9b0614d
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -4004,6 +4004,7 @@ examples:
           webhookId: "<id>"
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `shippo.batches.create()`: \n  *  `request.batchShipments.[].shipment.extra.usmcaEligible` **Added**\n* `shippo.batches.addShipments()`: \n  *  `requestbody.[].shipment.extra.usmcaEligible` **Added**\n* `shippo.carrierAccounts.list()`: \n  *  `request.carrier` **Changed**\n* `shippo.shipments.list()`:  `response.results.[].extra.usmcaEligible` **Added**\n* `shippo.shipments.create()`: \n  *  `request.extra.usmcaEligible` **Added**\n  *  `response.extra.usmcaEligible` **Added**\n* `shippo.shipments.get()`:  `response.extra.usmcaEligible` **Added**\n* `shippo.transactions.create()`: \n  *  `request.[instantTransactionCreateRequest].shipment.extra.usmcaEligible` **Added**\n"
 generatedFiles:
   - .eslintrc.cjs
   - .gitattributes

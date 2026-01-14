@@ -8,19 +8,19 @@ If template is passed, `length`, `width`, `height`, and `distance_unit` are not 
 ### `components.ParcelTemplateFedExEnum`
 
 ```typescript
-const value: components.ParcelTemplateFedExEnum = "FedEx_Box_Large_2";
+const value: components.ParcelTemplateFedExEnum = "FedEx_Box_10kg";
 ```
 
 ### `components.ParcelTemplateUPSEnum`
 
 ```typescript
-const value: components.ParcelTemplateUPSEnum = "UPS_Express_Tube";
+const value: components.ParcelTemplateUPSEnum = "UPS_MI_First_Class";
 ```
 
 ### `components.ParcelTemplateUSPSEnum`
 
 ```typescript
-const value: components.ParcelTemplateUSPSEnum = "USPS_RegionalRateBoxA1";
+const value: components.ParcelTemplateUSPSEnum = "USPS_FlatRateEnvelope";
 ```
 
 ### `components.ParcelTemplateDHLeCommerceEnum`
@@ -39,6 +39,6 @@ const value: components.ParcelTemplateDPDUKEnum = "DPD_UK_Express_Pak";
 
 ```typescript
 const value: components.ParcelTemplateAramexAustraliaEnum =
-  "Fastway_Australia_Satchel_A4";
+  "Fastway_Australia_Satchel_A5";
 ```
 

@@ -29,7 +29,7 @@
 ```typescript
 import { ParcelTemplateUSPSEnum } from "shippo/models/components";
 
-let value: ParcelTemplateUSPSEnum = "USPS_FlatRateGiftCardEnvelope";
+let value: ParcelTemplateUSPSEnum = "USPS_SmallFlatRateBox";
 ```
 
 ## Values

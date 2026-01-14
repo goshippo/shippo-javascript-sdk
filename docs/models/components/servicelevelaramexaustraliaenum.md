@@ -14,7 +14,7 @@
 ```typescript
 import { ServiceLevelAramexAustraliaEnum } from "shippo/models/components";
 
-let value: ServiceLevelAramexAustraliaEnum = "fastway_australia_box_medium";
+let value: ServiceLevelAramexAustraliaEnum = "fastway_australia_satchel";
 ```
 
 ## Values

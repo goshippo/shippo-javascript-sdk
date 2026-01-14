@@ -5,7 +5,9 @@
 ```typescript
 import { DeleteUserParcelTemplateGlobals } from "shippo/models/operations";
 
-let value: DeleteUserParcelTemplateGlobals = {};
+let value: DeleteUserParcelTemplateGlobals = {
+  shippoApiVersion: "2018-02-08",
+};
 ```
 
 ## Fields

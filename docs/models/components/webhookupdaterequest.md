@@ -6,7 +6,7 @@
 import { WebhookUpdateRequest } from "shippo/models/components";
 
 let value: WebhookUpdateRequest = {
-  event: "batch_purchased",
+  event: "track_updated",
   url: "https://example.com/shippo-webhook",
   active: true,
   isTest: false,

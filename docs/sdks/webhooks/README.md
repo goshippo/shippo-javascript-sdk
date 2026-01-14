@@ -1,5 +1,4 @@
 # Webhooks
-(*webhooks*)
 
 ## Overview
 
@@ -24,23 +23,22 @@ Creates a new webhook to send notifications to a URL when a specific event occur
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createWebhook" method="post" path="/webhooks" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const result = await shippo.webhooks.createWebhook({
-    event: "batch_created",
+    event: "transaction_updated",
     url: "https://example.com/shippo-webhook",
     active: true,
     isTest: false,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -59,25 +57,21 @@ import { webhooksCreateWebhook } from "shippo/funcs/webhooksCreateWebhook.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const res = await webhooksCreateWebhook(shippo, {
-    event: "batch_created",
+    event: "transaction_updated",
     url: "https://example.com/shippo-webhook",
     active: true,
     isTest: false,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksCreateWebhook failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -108,18 +102,17 @@ Returns a list of all webhooks you have created.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listWebhooks" method="get" path="/webhooks" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const result = await shippo.webhooks.listWebhooks();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -138,20 +131,16 @@ import { webhooksListWebhooks } from "shippo/funcs/webhooksListWebhooks.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const res = await webhooksListWebhooks(shippo);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksListWebhooks failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -181,18 +170,17 @@ Returns the details of a specific webhook using the webhook object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getWebhook" method="get" path="/webhooks/{webhookId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const result = await shippo.webhooks.getWebhook("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -211,20 +199,16 @@ import { webhooksGetWebhook } from "shippo/funcs/webhooksGetWebhook.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const res = await webhooksGetWebhook(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksGetWebhook failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -255,23 +239,22 @@ Updates an existing webhook using the webhook object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateWebhook" method="put" path="/webhooks/{webhookId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const result = await shippo.webhooks.updateWebhook({
-    event: "batch_created",
+    event: "all",
     url: "https://example.com/shippo-webhook",
     active: true,
     isTest: false,
   }, "<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -290,25 +273,21 @@ import { webhooksUpdateWebhook } from "shippo/funcs/webhooksUpdateWebhook.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const res = await webhooksUpdateWebhook(shippo, {
-    event: "batch_created",
+    event: "all",
     url: "https://example.com/shippo-webhook",
     active: true,
     isTest: false,
   }, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksUpdateWebhook failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -340,12 +319,12 @@ Deletes a specific webhook using the webhook object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteWebhook" method="delete" path="/webhooks/{webhookId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
@@ -369,19 +348,16 @@ import { webhooksDeleteWebhook } from "shippo/funcs/webhooksDeleteWebhook.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
-  shippoApiVersion: "2018-02-08",
 });
 
 async function run() {
   const res = await webhooksDeleteWebhook(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("webhooksDeleteWebhook failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
