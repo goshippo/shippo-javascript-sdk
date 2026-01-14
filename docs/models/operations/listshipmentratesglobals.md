@@ -5,7 +5,9 @@
 ```typescript
 import { ListShipmentRatesGlobals } from "shippo/models/operations";
 
-let value: ListShipmentRatesGlobals = {};
+let value: ListShipmentRatesGlobals = {
+  shippoApiVersion: "2018-02-08",
+};
 ```
 
 ## Fields

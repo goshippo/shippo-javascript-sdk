@@ -5,8 +5,7 @@
 ```typescript
 import { AddressValidationResultsMessageCodeEnum } from "shippo/models/components";
 
-let value: AddressValidationResultsMessageCodeEnum =
-  "administrative_area_partial";
+let value: AddressValidationResultsMessageCodeEnum = "po_box_change";
 ```
 
 ## Values

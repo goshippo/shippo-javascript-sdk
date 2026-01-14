@@ -6,6 +6,7 @@
 import { CarrierAccountDpdDeCreateRequest } from "shippo/models/components";
 
 let value: CarrierAccountDpdDeCreateRequest = {
+  carrier: "dpd_de",
   parameters: {},
 };
 ```
@@ -14,5 +15,5 @@ let value: CarrierAccountDpdDeCreateRequest = {
 
 | Field                                                                                                                          | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `carrier`                                                                                                                      | *string*                                                                                                                       | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |
+| `carrier`                                                                                                                      | *"dpd_de"*                                                                                                                     | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |
 | `parameters`                                                                                                                   | [components.CarrierAccountDpdDeCreateRequestParameters](../../models/components/carrieraccountdpddecreaterequestparameters.md) | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |

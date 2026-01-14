@@ -1,5 +1,4 @@
 # CustomsItems
-(*customsItems*)
 
 ## Overview
 
@@ -18,18 +17,18 @@ Returns a list all customs items objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListCustomsItems" method="get" path="/customs/items" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.customsItems.list(1, 25);
+  const result = await shippo.customsItems.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -47,21 +46,18 @@ import { customsItemsList } from "shippo/funcs/customsItemsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await customsItemsList(shippo, 1, 25);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await customsItemsList(shippo);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customsItemsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -93,12 +89,13 @@ Creates a new customs item object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateCustomsItem" method="post" path="/customs/items" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -115,7 +112,6 @@ async function run() {
     valueCurrency: "USD",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -133,8 +129,8 @@ import { customsItemsCreate } from "shippo/funcs/customsItemsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -150,15 +146,12 @@ async function run() {
     valueAmount: "200",
     valueCurrency: "USD",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customsItemsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -189,18 +182,18 @@ Returns an existing customs item using an object ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetCustomsItem" method="get" path="/customs/items/{CustomsItemId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.customsItems.get("<id>", 1);
+  const result = await shippo.customsItems.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -218,21 +211,18 @@ import { customsItemsGet } from "shippo/funcs/customsItemsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await customsItemsGet(shippo, "<id>", 1);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await customsItemsGet(shippo, "<id>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customsItemsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

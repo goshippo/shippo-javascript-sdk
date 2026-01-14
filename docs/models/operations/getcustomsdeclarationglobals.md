@@ -5,7 +5,9 @@
 ```typescript
 import { GetCustomsDeclarationGlobals } from "shippo/models/operations";
 
-let value: GetCustomsDeclarationGlobals = {};
+let value: GetCustomsDeclarationGlobals = {
+  shippoApiVersion: "2018-02-08",
+};
 ```
 
 ## Fields

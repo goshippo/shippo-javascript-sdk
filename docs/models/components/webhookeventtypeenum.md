@@ -7,7 +7,7 @@ Type of event that triggered the webhook.
 ```typescript
 import { WebhookEventTypeEnum } from "shippo/models/components";
 
-let value: WebhookEventTypeEnum = "batch_created";
+let value: WebhookEventTypeEnum = "track_updated";
 ```
 
 ## Values

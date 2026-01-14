@@ -22,9 +22,7 @@ let value: WebhookPayloadTrack = {
       zip: "89101",
     },
     carrier: "usps",
-    messages: [
-      "<value>",
-    ],
+    messages: [],
     metadata: "Order 000123",
     originalEta: new Date("2021-07-23T00:00:00Z"),
     servicelevel: {
@@ -35,28 +33,7 @@ let value: WebhookPayloadTrack = {
         token: "usps_priority_express",
       },
     },
-    trackingHistory: [
-      {
-        location: {
-          city: "Las Vegas",
-          country: "US",
-          state: "NV",
-          zip: "89101",
-        },
-        objectCreated: new Date("2025-02-22T20:20:27.935Z"),
-        objectId: "<id>",
-        objectUpdated: new Date("2024-10-22T15:05:16.239Z"),
-        status: "DELIVERED",
-        substatus: {
-          code: "information_received",
-          text: "Information about the package received.",
-          actionRequired: false,
-        },
-        statusDate: new Date("2016-07-23T00:00:00Z"),
-        statusDetails:
-          "Your shipment has been delivered at the destination mailbox.",
-      },
-    ],
+    trackingHistory: [],
     trackingNumber: "9205590164917312751089",
     trackingStatus: {
       location: {
@@ -65,14 +42,14 @@ let value: WebhookPayloadTrack = {
         state: "NV",
         zip: "89101",
       },
-      objectCreated: new Date("2024-08-20T04:36:26.084Z"),
+      objectCreated: new Date("2026-12-27T04:28:22.995Z"),
       objectId: "<id>",
-      objectUpdated: new Date("2024-04-09T07:48:57.030Z"),
+      objectUpdated: new Date("2024-10-08T23:37:11.797Z"),
       status: "DELIVERED",
       substatus: {
         code: "information_received",
         text: "Information about the package received.",
-        actionRequired: false,
+        actionRequired: true,
       },
       statusDate: new Date("2016-07-23T00:00:00Z"),
       statusDetails:

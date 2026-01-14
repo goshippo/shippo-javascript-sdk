@@ -6,7 +6,7 @@
 import { GetCarrierRegistrationStatusRequest } from "shippo/models/operations";
 
 let value: GetCarrierRegistrationStatusRequest = {
-  carrier: "canada_post",
+  carrier: "ups",
 };
 ```
 

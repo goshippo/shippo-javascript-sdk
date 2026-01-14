@@ -16,7 +16,7 @@ let value: RatePaginatedList = {
       currencyLocal: "USD",
       arrivesBy: "08:30:00",
       attributes: [
-        "FASTEST",
+        "CHEAPEST",
       ],
       carrierAccount: "078870331023437cb917f5187429b093",
       durationTerms: "Delivery in 1 to 3 business days",
@@ -29,7 +29,7 @@ let value: RatePaginatedList = {
           text: "UPS API did not respond. Please try again in a few minutes.",
         },
       ],
-      objectCreated: new Date("2023-02-04T21:29:28.328Z"),
+      objectCreated: new Date("2025-06-04T12:03:27.411Z"),
       objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
       objectOwner: "pp@gmail.com",
       provider: "USPS",

@@ -1,5 +1,4 @@
 # Orders
-(*orders*)
 
 ## Overview
 
@@ -29,25 +28,23 @@ Returns a list of all order objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListOrders" method="get" path="/orders" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.orders.list({
-    page: 1,
-    results: 25,
     orderStatus: [
       "PAID",
     ],
     shopApp: "Shippo",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -65,28 +62,23 @@ import { ordersList } from "shippo/funcs/ordersList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await ordersList(shippo, {
-    page: 1,
-    results: 25,
     orderStatus: [
       "PAID",
     ],
     shopApp: "Shippo",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ordersList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -117,12 +109,13 @@ Creates a new order object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateOrder" method="post" path="/orders" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -186,23 +179,9 @@ async function run() {
         weight: "0.4",
         weightUnit: "lb",
       },
-      {
-        currency: "USD",
-        manufactureCountry: "US",
-        maxDeliveryTime: new Date("2016-07-23T00:00:00Z"),
-        maxShipTime: new Date("2016-07-23T00:00:00Z"),
-        quantity: 20,
-        sku: "HM-123",
-        title: "Hippo Magazines",
-        totalPrice: "12.1",
-        variantTitle: "June Edition",
-        weight: "0.4",
-        weightUnit: "lb",
-      },
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -220,8 +199,8 @@ import { ordersCreate } from "shippo/funcs/ordersCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -285,30 +264,14 @@ async function run() {
         weight: "0.4",
         weightUnit: "lb",
       },
-      {
-        currency: "USD",
-        manufactureCountry: "US",
-        maxDeliveryTime: new Date("2016-07-23T00:00:00Z"),
-        maxShipTime: new Date("2016-07-23T00:00:00Z"),
-        quantity: 20,
-        sku: "HM-123",
-        title: "Hippo Magazines",
-        totalPrice: "12.1",
-        variantTitle: "June Edition",
-        weight: "0.4",
-        weightUnit: "lb",
-      },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ordersCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -339,18 +302,18 @@ Retrieves an existing order using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetOrder" method="get" path="/orders/{OrderId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.orders.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -368,21 +331,18 @@ import { ordersGet } from "shippo/funcs/ordersGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await ordersGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ordersGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

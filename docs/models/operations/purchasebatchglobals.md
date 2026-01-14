@@ -5,7 +5,9 @@
 ```typescript
 import { PurchaseBatchGlobals } from "shippo/models/operations";
 
-let value: PurchaseBatchGlobals = {};
+let value: PurchaseBatchGlobals = {
+  shippoApiVersion: "2018-02-08",
+};
 ```
 
 ## Fields

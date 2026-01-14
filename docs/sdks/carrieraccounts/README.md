@@ -1,5 +1,4 @@
 # CarrierAccounts
-(*carrierAccounts*)
 
 ## Overview
 
@@ -27,21 +26,18 @@ By default, if the query parameter is omitted, the `service_levels` property wil
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListCarrierAccounts" method="get" path="/carrier_accounts" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.carrierAccounts.list({
-    page: 1,
-    results: 5,
-  });
+  const result = await shippo.carrierAccounts.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -59,24 +55,18 @@ import { carrierAccountsList } from "shippo/funcs/carrierAccountsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await carrierAccountsList(shippo, {
-    page: 1,
-    results: 5,
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await carrierAccountsList(shippo, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierAccountsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -107,12 +97,13 @@ Creates a new carrier account or connects an existing carrier account to the Shi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateCarrierAccount" method="post" path="/carrier_accounts" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -121,9 +112,9 @@ async function run() {
     carrier: "fedex",
     metadata: "FEDEX Account",
     parameters: {
-      "first_name": "Loyal",
-      "last_name": "Collier",
-      "phone_number": "(890) 307-8579",
+      "first_name": "Abdullah",
+      "last_name": "Ward",
+      "phone_number": "915-577-4415 x207",
       "from_address_st": "<value>",
       "from_address_city": "<value>",
       "from_address_state": "<value>",
@@ -133,7 +124,6 @@ async function run() {
     test: false,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -151,8 +141,8 @@ import { carrierAccountsCreate } from "shippo/funcs/carrierAccountsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -161,9 +151,9 @@ async function run() {
     carrier: "fedex",
     metadata: "FEDEX Account",
     parameters: {
-      "first_name": "Loyal",
-      "last_name": "Collier",
-      "phone_number": "(890) 307-8579",
+      "first_name": "Abdullah",
+      "last_name": "Ward",
+      "phone_number": "915-577-4415 x207",
       "from_address_st": "<value>",
       "from_address_city": "<value>",
       "from_address_state": "<value>",
@@ -172,15 +162,12 @@ async function run() {
     },
     test: false,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierAccountsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -211,18 +198,18 @@ Returns an existing carrier account using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetCarrierAccount" method="get" path="/carrier_accounts/{CarrierAccountId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.carrierAccounts.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -240,21 +227,18 @@ import { carrierAccountsGet } from "shippo/funcs/carrierAccountsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await carrierAccountsGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierAccountsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -285,12 +269,13 @@ Updates an existing carrier account object. The account_id and carrier can't be 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateCarrierAccount" method="put" path="/carrier_accounts/{CarrierAccountId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -298,32 +283,17 @@ async function run() {
     accountId: "****",
     carrier: "usps",
     parameters: {
-      "account_number": "94567e",
-      "aia_country_iso2": "US",
-      "billing_address_city": "San Francisco",
-      "billing_address_country_iso2": "US",
-      "billing_address_state": "CA",
-      "billing_address_street1": "731 Market St",
-      "billing_address_street2": "STE 200",
-      "billing_address_zip": "94103",
-      "collec_country_iso2": "US",
-      "collec_zip": "94103",
-      "company": "Shippo",
-      "currency_code": "USD",
-      "email": "hippo@shippo.com",
-      "full_name": "Shippo Meister",
-      "has_invoice": false,
-      "invoice_controlid": "1234",
-      "invoice_date": "20210529",
-      "invoice_number": "1112234",
-      "invoice_value": "11.23",
-      "phone": "1112223333",
-      "title": "Manager",
-      "ups_agreements": true,
+      "first_name": "Eldora",
+      "last_name": "Weber",
+      "phone_number": "1-505-428-6798",
+      "from_address_st": "<value>",
+      "from_address_city": "<value>",
+      "from_address_state": "<value>",
+      "from_address_zip": "<value>",
+      "from_address_country_iso2": "<value>",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -341,8 +311,8 @@ import { carrierAccountsUpdate } from "shippo/funcs/carrierAccountsUpdate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -350,39 +320,22 @@ async function run() {
     accountId: "****",
     carrier: "usps",
     parameters: {
-      "account_number": "94567e",
-      "aia_country_iso2": "US",
-      "billing_address_city": "San Francisco",
-      "billing_address_country_iso2": "US",
-      "billing_address_state": "CA",
-      "billing_address_street1": "731 Market St",
-      "billing_address_street2": "STE 200",
-      "billing_address_zip": "94103",
-      "collec_country_iso2": "US",
-      "collec_zip": "94103",
-      "company": "Shippo",
-      "currency_code": "USD",
-      "email": "hippo@shippo.com",
-      "full_name": "Shippo Meister",
-      "has_invoice": false,
-      "invoice_controlid": "1234",
-      "invoice_date": "20210529",
-      "invoice_number": "1112234",
-      "invoice_value": "11.23",
-      "phone": "1112223333",
-      "title": "Manager",
-      "ups_agreements": true,
+      "first_name": "Eldora",
+      "last_name": "Weber",
+      "phone_number": "1-505-428-6798",
+      "from_address_st": "<value>",
+      "from_address_city": "<value>",
+      "from_address_state": "<value>",
+      "from_address_zip": "<value>",
+      "from_address_country_iso2": "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierAccountsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -414,18 +367,18 @@ Used by client applications to setup or reconnect an existing carrier account wi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="InitiateOauth2Signin" method="get" path="/carrier_accounts/{CarrierAccountObjectId}/signin/initiate" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.carrierAccounts.initiateOauth2Signin("<id>", "https://enlightened-mortise.com/");
+  const result = await shippo.carrierAccounts.initiateOauth2Signin("<id>", "https://ashamed-reporter.biz");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -443,21 +396,18 @@ import { carrierAccountsInitiateOauth2Signin } from "shippo/funcs/carrierAccount
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await carrierAccountsInitiateOauth2Signin(shippo, "<id>", "https://enlightened-mortise.com/");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await carrierAccountsInitiateOauth2Signin(shippo, "<id>", "https://ashamed-reporter.biz");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierAccountsInitiateOauth2Signin failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -493,20 +443,21 @@ Adds a Shippo carrier account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="RegisterCarrierAccount" method="post" path="/carrier_accounts/register/new" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.carrierAccounts.register({
+    carrier: "deutsche_post",
     parameters: {},
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -524,23 +475,21 @@ import { carrierAccountsRegister } from "shippo/funcs/carrierAccountsRegister.js
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await carrierAccountsRegister(shippo, {
+    carrier: "deutsche_post",
     parameters: {},
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierAccountsRegister failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -571,18 +520,18 @@ Returns the registration status for the given account for the given carrier
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetCarrierRegistrationStatus" method="get" path="/carrier_accounts/reg-status" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.carrierAccounts.getRegistrationStatus("usps");
+  const result = await shippo.carrierAccounts.getRegistrationStatus("ups");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -600,21 +549,18 @@ import { carrierAccountsGetRegistrationStatus } from "shippo/funcs/carrierAccoun
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await carrierAccountsGetRegistrationStatus(shippo, "usps");
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await carrierAccountsGetRegistrationStatus(shippo, "ups");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("carrierAccountsGetRegistrationStatus failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

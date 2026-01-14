@@ -5,7 +5,9 @@
 ```typescript
 import { InitiateOauth2SigninGlobals } from "shippo/models/operations";
 
-let value: InitiateOauth2SigninGlobals = {};
+let value: InitiateOauth2SigninGlobals = {
+  shippoApiVersion: "2018-02-08",
+};
 ```
 
 ## Fields

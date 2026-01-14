@@ -10,7 +10,7 @@ import { TrackingStatusSubstatus } from "shippo/models/components";
 let value: TrackingStatusSubstatus = {
   code: "information_received",
   text: "Information about the package received.",
-  actionRequired: false,
+  actionRequired: true,
 };
 ```
 

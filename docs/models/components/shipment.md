@@ -211,7 +211,8 @@ let value: Shipment = {
     test: false,
   },
   carrierAccounts: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
   ],
   customsDeclaration: {
     b13aFilingOption: "FILED_ELECTRONICALLY",
@@ -250,66 +251,41 @@ let value: Shipment = {
     objectUpdated: new Date("2014-07-17T01:01:08.306Z"),
     test: true,
   },
-  messages: [
-    {
-      source: "UPS",
-      code: "carrier_timeout",
-      text: "UPS API did not respond. Please try again in a few minutes.",
-    },
-  ],
-  objectCreated: new Date("2025-10-20T21:33:54.006Z"),
+  messages: [],
+  objectCreated: new Date("2026-06-11T01:28:59.572Z"),
   objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
   objectOwner: "pp@gmail.com",
-  objectUpdated: new Date("2024-11-03T21:45:37.821Z"),
+  objectUpdated: new Date("2026-05-27T00:35:46.559Z"),
   parcels: [
     {
+      extra: {
+        cod: {
+          amount: "5.5",
+          currency: "USD",
+          paymentMethod: "CASH",
+        },
+        insurance: {
+          amount: "5.5",
+          content: "Laptop",
+          currency: "USD",
+          provider: "UPS",
+        },
+      },
+      metadata: "Customer ID 123456",
       massUnit: "lb",
       weight: "1",
       distanceUnit: "in",
       height: "1",
       length: "1",
       width: "1",
-    },
-  ],
-  rates: [
-    {
-      amount: "5.5",
-      amountLocal: "5.5",
-      currency: "USD",
-      currencyLocal: "USD",
-      arrivesBy: "08:30:00",
-      attributes: [
-        "CHEAPEST",
-      ],
-      carrierAccount: "078870331023437cb917f5187429b093",
-      durationTerms: "Delivery in 1 to 3 business days",
-      estimatedDays: 2,
-      includedInsurancePrice: "1.05",
-      messages: [
-        {
-          source: "UPS",
-          code: "carrier_timeout",
-          text: "UPS API did not respond. Please try again in a few minutes.",
-        },
-      ],
-      objectCreated: new Date("2024-10-08T12:59:31.265Z"),
+      objectCreated: new Date("2014-07-09T02:19:13.174Z"),
       objectId: "adcfdddf8ec64b84ad22772bce3ea37a",
-      objectOwner: "pp@gmail.com",
-      provider: "USPS",
-      providerImage75: "https://cdn2.goshippo.com/providers/75/USPS.png",
-      providerImage200: "https://cdn2.goshippo.com/providers/200/USPS.png",
-      servicelevel: {
-        name: "Priority Mail Express",
-        token: "usps_priority_express",
-        parentServicelevel: {
-          name: "Priority Mail Express",
-          token: "usps_priority_express",
-        },
-      },
-      shipment: "adcfdddf8ec64b84ad22772bce3ea37a",
-      zone: "1",
+      objectOwner: "shippotle@shippo.com",
+      objectState: "VALID",
+      objectUpdated: new Date("2014-07-09T02:19:13.174Z"),
     },
   ],
+  rates: [],
   status: "QUEUED",
 };
 ```

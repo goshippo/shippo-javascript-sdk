@@ -8,6 +8,8 @@
 ```typescript
 const value: { [k: string]: any } = {
   "key": "<value>",
+  "key1": "<value>",
+  "key2": "<value>",
 };
 ```
 
@@ -15,9 +17,9 @@ const value: { [k: string]: any } = {
 
 ```typescript
 const value: components.FedExConnectExistingOwnAccountParameters = {
-  firstName: "Michael",
-  lastName: "Cormier-Stroman",
-  phoneNumber: "1-618-854-0647",
+  firstName: "Alexander",
+  lastName: "Bosco",
+  phoneNumber: "726.412.3737 x3334",
   fromAddressSt: "<value>",
   fromAddressCity: "<value>",
   fromAddressState: "<value>",
@@ -51,7 +53,7 @@ const value: components.UPSConnectExistingOwnAccountParameters = {
   invoiceValue: "11.23",
   phone: "1112223333",
   title: "Manager",
-  upsAgreements: false,
+  upsAgreements: true,
 };
 ```
 

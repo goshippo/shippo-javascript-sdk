@@ -7,7 +7,7 @@ Current authentication status. Possible values: 'disconnected' (authorization lo
 ```typescript
 import { CarrierAccountWithExtraInfoStatus } from "shippo/models/components";
 
-let value: CarrierAccountWithExtraInfoStatus = "disconnected";
+let value: CarrierAccountWithExtraInfoStatus = "authorization_pending";
 ```
 
 ## Values

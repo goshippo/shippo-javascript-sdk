@@ -45,20 +45,7 @@ let value: CustomsDeclarationCreateRequest = {
   contentsType: "MERCHANDISE",
   eelPfc: "NOEEI_30_37_a",
   incoterm: "DDP",
-  items: [
-    {
-      description: "T-Shirt",
-      massUnit: "lb",
-      metadata: "Order ID \"123454\"",
-      netWeight: "5",
-      originCountry: "<value>",
-      quantity: 20,
-      skuCode: "HM-123",
-      hsCode: "0901.21",
-      valueAmount: "200",
-      valueCurrency: "USD",
-    },
-  ],
+  items: [],
   nonDeliveryOption: "RETURN",
   test: true,
 };

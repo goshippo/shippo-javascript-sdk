@@ -7,7 +7,7 @@ Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlec
 ```typescript
 import { DangerousGoodsCode } from "shippo/models/components";
 
-let value: DangerousGoodsCode = "04";
+let value: DangerousGoodsCode = "05";
 ```
 
 ## Values

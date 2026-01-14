@@ -6,19 +6,19 @@
 ### `components.ServiceLevelUSPSEnum`
 
 ```typescript
-const value: components.ServiceLevelUSPSEnum = "usps_priority_express";
+const value: components.ServiceLevelUSPSEnum = "usps_media_mail";
 ```
 
 ### `components.ServiceLevelFedExEnum`
 
 ```typescript
-const value: components.ServiceLevelFedExEnum = "fedex_ground";
+const value: components.ServiceLevelFedExEnum = "fedex_2_day";
 ```
 
 ### `components.ServiceLevelUPSEnum`
 
 ```typescript
-const value: components.ServiceLevelUPSEnum = "ups_ground";
+const value: components.ServiceLevelUPSEnum = "ups_expedited";
 ```
 
 ### `components.ServiceLevelAirterraEnum`
@@ -31,27 +31,27 @@ const value: components.ServiceLevelAirterraEnum = "airterra_postal";
 
 ```typescript
 const value: components.ServiceLevelAPCPostalEnum =
-  "apc_postal_parcelconnect_book_service";
+  "apc_postal_parcelconnect_epmi";
 ```
 
 ### `components.ServiceLevelAsendiaEnum`
 
 ```typescript
 const value: components.ServiceLevelAsendiaEnum =
-  "asendia_us_priority_mail_international";
+  "asendia_us_international_priority_airmail";
 ```
 
 ### `components.ServiceLevelAustraliaPostEnum`
 
 ```typescript
 const value: components.ServiceLevelAustraliaPostEnum =
-  "australia_post_international_economy";
+  "australia_post_international_standard";
 ```
 
 ### `components.ServiceLevelAPGEnum`
 
 ```typescript
-const value: components.ServiceLevelAPGEnum = "apg_eparcel_expedited";
+const value: components.ServiceLevelAPGEnum = "epacket";
 ```
 
 ### `components.ServiceLevelBetterTrucksEnum`
@@ -63,8 +63,7 @@ const value: components.ServiceLevelBetterTrucksEnum = "better_trucks_same_day";
 ### `components.ServiceLevelCanadaPostEnum`
 
 ```typescript
-const value: components.ServiceLevelCanadaPostEnum =
-  "canada_post_tracked_packet_international";
+const value: components.ServiceLevelCanadaPostEnum = "canada_post_xpresspost";
 ```
 
 ### `components.ServiceLevelCDLEnum`
@@ -76,7 +75,7 @@ const value: components.ServiceLevelCDLEnum = "cdl_next_day";
 ### `components.ServiceLevelChronopostEnum`
 
 ```typescript
-const value: components.ServiceLevelChronopostEnum = "chronopost_10";
+const value: components.ServiceLevelChronopostEnum = "chronopost_relais_fr";
 ```
 
 ### `components.ServiceLevelCorreosEspanaEnum`
@@ -88,35 +87,34 @@ const value: components.ServiceLevelCorreosEspanaEnum = "correos_standard_home";
 ### `components.ServiceLevelColissimoEnum`
 
 ```typescript
-const value: components.ServiceLevelColissimoEnum =
-  "colissimo_return_mainland_france";
+const value: components.ServiceLevelColissimoEnum = "colissimo_home";
 ```
 
 ### `components.ServiceLevelPurolatorEnum`
 
 ```typescript
-const value: components.ServiceLevelPurolatorEnum = "purolator_ground_us";
+const value: components.ServiceLevelPurolatorEnum =
+  "purolator_express_international1200";
 ```
 
 ### `components.ServiceLevelDHLExpressEnum`
 
 ```typescript
 const value: components.ServiceLevelDHLExpressEnum =
-  "dhl_express_economy_select_nondoc";
+  "dhl_express_medical_express";
 ```
 
 ### `components.ServiceLevelDHLeCommerceEnum`
 
 ```typescript
 const value: components.ServiceLevelDHLeCommerceEnum =
-  "dhl_ecommerce_parcels_ground";
+  "dhl_ecommerce_globalmail_packet_isal";
 ```
 
 ### `components.ServiceLevelDHLGermanyEnum`
 
 ```typescript
-const value: components.ServiceLevelDHLGermanyEnum =
-  "dhl_germany_paket_priority";
+const value: components.ServiceLevelDHLGermanyEnum = "dhl_germany_europaket";
 ```
 
 ### `components.ServiceLevelDPDDEEnum`
@@ -128,14 +126,14 @@ const value: components.ServiceLevelDPDDEEnum = "dpd_de_classic";
 ### `components.ServiceLevelDPDUKEnum`
 
 ```typescript
-const value: components.ServiceLevelDPDUKEnum = "dpd_uk_two_day";
+const value: components.ServiceLevelDPDUKEnum = "dpd_uk_sunday_1030";
 ```
 
 ### `components.ServiceLevelDeutschePostEnum`
 
 ```typescript
 const value: components.ServiceLevelDeutschePostEnum =
-  "deutsche_post_warenpost_international_m";
+  "deutsche_post_kompaktbrief";
 ```
 
 ### `components.ServiceLevelAramexAustraliaEnum`
@@ -149,7 +147,7 @@ const value: components.ServiceLevelAramexAustraliaEnum =
 
 ```typescript
 const value: components.ServiceLevelGlobegisticsEnum =
-  "globegistics_ecom_extra";
+  "globegistics_ecom_international_priority_airmail";
 ```
 
 ### `components.ServiceLevelGLSUSEnum`
@@ -161,7 +159,7 @@ const value: components.ServiceLevelGLSUSEnum = "gls_us_eps";
 ### `components.ServiceLevelLSOEnum`
 
 ```typescript
-const value: components.ServiceLevelLSOEnum = "lso_early_overnight";
+const value: components.ServiceLevelLSOEnum = "lso_economy_next_day";
 ```
 
 ### `components.ServiceLevelMondialRelayEnum`
@@ -187,14 +185,21 @@ const value: components.ServiceLevelPostItalianeEnum =
 ### `components.ServiceLevelePostGlobalEnum`
 
 ```typescript
-const value: components.ServiceLevelePostGlobalEnum =
-  "rr_donnelley_domestic_parcel_bpm";
+const value: components.ServiceLevelePostGlobalEnum = "rr_donnelley_emi";
 ```
 
 ### `components.ServiceLevelRoyalMailEnum`
 
 ```typescript
-const value: components.ServiceLevelRoyalMailEnum = "royal_mail_24_flat_rate";
+const value: components.ServiceLevelRoyalMailEnum =
+  "royal_mail_tracked_24_returns";
+```
+
+### `components.ServiceLevelRoyalMailSFEnum`
+
+```typescript
+const value: components.ServiceLevelRoyalMailSFEnum =
+  "royal_mail_sf_tracked_24_for_post_office_drop";
 ```
 
 ### `components.ServiceLevelSendleEnum`
@@ -212,7 +217,7 @@ const value: components.ServiceLevelOnTracEnum = "ontrac_ground";
 ### `components.ServiceLevelJitsuEnum`
 
 ```typescript
-const value: components.ServiceLevelJitsuEnum = "axlehire_same_day";
+const value: components.ServiceLevelJitsuEnum = "axlehire_next_day";
 ```
 
 ### `components.ServiceLevelLasershipEnum`
@@ -224,8 +229,7 @@ const value: components.ServiceLevelLasershipEnum = "lasership_routed_delivery";
 ### `components.ServiceLevelEvriUKEnum`
 
 ```typescript
-const value: components.ServiceLevelEvriUKEnum =
-  "hermes_uk_parcelshop_dropoff_nextday";
+const value: components.ServiceLevelEvriUKEnum = "hermes_uk_courier_service";
 ```
 
 ### `components.ServiceLevelUDSEnum`
@@ -237,7 +241,7 @@ const value: components.ServiceLevelUDSEnum = "uds_next_day";
 ### `components.ServiceLevelVehoEnum`
 
 ```typescript
-const value: components.ServiceLevelVehoEnum = "veho_next_day";
+const value: components.ServiceLevelVehoEnum = "veho_premium_economy";
 ```
 
 ### `components.ServiceLevelSwyftEnum`

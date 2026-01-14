@@ -1,5 +1,4 @@
 # Addresses
-(*addresses*)
 
 ## Overview
 
@@ -19,18 +18,18 @@ Returns a list of all address objects that have been created in this account.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListAddresses" method="get" path="/addresses" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.addresses.list(1, 5);
+  const result = await shippo.addresses.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,21 +47,18 @@ import { addressesList } from "shippo/funcs/addressesList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await addressesList(shippo, 1, 5);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await addressesList(shippo);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("addressesList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -94,12 +90,13 @@ Creates a new address object. You can use address objects to create new shipment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateAddress" method="post" path="/addresses" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -120,7 +117,6 @@ async function run() {
     validate: true,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -138,8 +134,8 @@ import { addressesCreate } from "shippo/funcs/addressesCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -159,15 +155,12 @@ async function run() {
     metadata: "Customer ID 123456",
     validate: true,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("addressesCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -198,18 +191,18 @@ Returns an existing address using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetAddress" method="get" path="/addresses/{AddressId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.addresses.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -227,21 +220,18 @@ import { addressesGet } from "shippo/funcs/addressesGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await addressesGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("addressesGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -272,18 +262,18 @@ Validates an existing address using an object ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ValidateAddress" method="get" path="/addresses/{AddressId}/validate" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.addresses.validate("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -301,21 +291,18 @@ import { addressesValidate } from "shippo/funcs/addressesValidate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await addressesValidate(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("addressesValidate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
