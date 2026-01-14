@@ -7,7 +7,7 @@ Mandatory for Fedex only. License type of the recipient of the Alcohol Package.
 ```typescript
 import { RecipientType } from "shippo/models/components";
 
-let value: RecipientType = "licensee";
+let value: RecipientType = "consumer";
 ```
 
 ## Values

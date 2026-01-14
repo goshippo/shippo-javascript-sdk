@@ -1,5 +1,4 @@
 # UserParcelTemplates
-(*userParcelTemplates*)
 
 ## Overview
 
@@ -25,18 +24,18 @@ Returns a list all of all user parcel template objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListUserParcelTemplates" method="get" path="/user-parcel-templates" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.userParcelTemplates.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -54,21 +53,18 @@ import { userParcelTemplatesList } from "shippo/funcs/userParcelTemplatesList.js
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await userParcelTemplatesList(shippo, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userParcelTemplatesList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -104,21 +100,26 @@ and depth, as well as their units."
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateUserParcelTemplate" method="post" path="/user-parcel-templates" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.userParcelTemplates.create({
+    distanceUnit: "in",
+    height: "6",
+    length: "10",
+    name: "My Custom Template",
     weight: "12",
     weightUnit: "lb",
+    width: "8",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -136,24 +137,26 @@ import { userParcelTemplatesCreate } from "shippo/funcs/userParcelTemplatesCreat
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await userParcelTemplatesCreate(shippo, {
+    distanceUnit: "in",
+    height: "6",
+    length: "10",
+    name: "My Custom Template",
     weight: "12",
     weightUnit: "lb",
+    width: "8",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userParcelTemplatesCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -184,12 +187,13 @@ Deletes a user parcel template using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="DeleteUserParcelTemplate" method="delete" path="/user-parcel-templates/{UserParcelTemplateObjectId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -212,20 +216,18 @@ import { userParcelTemplatesDelete } from "shippo/funcs/userParcelTemplatesDelet
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await userParcelTemplatesDelete(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("userParcelTemplatesDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -257,18 +259,18 @@ template, identified by the object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetUserParcelTemplate" method="get" path="/user-parcel-templates/{UserParcelTemplateObjectId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.userParcelTemplates.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -286,21 +288,18 @@ import { userParcelTemplatesGet } from "shippo/funcs/userParcelTemplatesGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await userParcelTemplatesGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userParcelTemplatesGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -331,12 +330,13 @@ Updates an existing user parcel template.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateUserParcelTemplate" method="put" path="/user-parcel-templates/{UserParcelTemplateObjectId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -350,7 +350,6 @@ async function run() {
     width: "8",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -368,8 +367,8 @@ import { userParcelTemplatesUpdate } from "shippo/funcs/userParcelTemplatesUpdat
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -382,15 +381,12 @@ async function run() {
     weightUnit: "lb",
     width: "8",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("userParcelTemplatesUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -6,8 +6,9 @@
 import { CarrierAccountCanadaPostCreateRequest } from "shippo/models/components";
 
 let value: CarrierAccountCanadaPostCreateRequest = {
+  carrier: "canada_post",
   parameters: {
-    canadaPostTerms: false,
+    canadaPostTerms: true,
     company: "Shippo",
     email: "hippo@shippo.com",
     fullName: "Shippo Meister",
@@ -20,5 +21,5 @@ let value: CarrierAccountCanadaPostCreateRequest = {
 
 | Field                                                                                                                      | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `carrier`                                                                                                                  | *string*                                                                                                                   | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |
+| `carrier`                                                                                                                  | *"canada_post"*                                                                                                            | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |
 | `parameters`                                                                                                               | [components.CarrierAccountCanadaPostCreateParameters](../../models/components/carrieraccountcanadapostcreateparameters.md) | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |

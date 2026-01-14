@@ -5,7 +5,9 @@
 ```typescript
 import { CreateUserParcelTemplateGlobals } from "shippo/models/operations";
 
-let value: CreateUserParcelTemplateGlobals = {};
+let value: CreateUserParcelTemplateGlobals = {
+  shippoApiVersion: "2018-02-08",
+};
 ```
 
 ## Fields

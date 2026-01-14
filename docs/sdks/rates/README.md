@@ -1,5 +1,4 @@
 # Rates
-(*rates*)
 
 ## Overview
 
@@ -18,18 +17,18 @@ Returns an existing rate using a rate object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetRate" method="get" path="/rates/{RateId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.rates.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -47,21 +46,18 @@ import { ratesGet } from "shippo/funcs/ratesGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await ratesGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ratesGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -92,18 +88,18 @@ Returns a paginated list of rates associated with a shipment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListShipmentRates" method="get" path="/shipments/{ShipmentId}/rates" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.rates.listShipmentRates("<id>", 1, 25);
+  const result = await shippo.rates.listShipmentRates("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -121,21 +117,18 @@ import { ratesListShipmentRates } from "shippo/funcs/ratesListShipmentRates.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await ratesListShipmentRates(shippo, "<id>", 1, 25);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await ratesListShipmentRates(shippo, "<id>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ratesListShipmentRates failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -174,23 +167,20 @@ Note: re-requesting the rates with a different currency code will re-queue the s
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListShipmentRatesByCurrencyCode" method="get" path="/shipments/{ShipmentId}/rates/{CurrencyCode}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.rates.listShipmentRatesByCurrencyCode({
     shipmentId: "<id>",
-    currencyCode: "USD",
-    page: 1,
-    results: 25,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -208,26 +198,20 @@ import { ratesListShipmentRatesByCurrencyCode } from "shippo/funcs/ratesListShip
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await ratesListShipmentRatesByCurrencyCode(shippo, {
     shipmentId: "<id>",
-    currencyCode: "USD",
-    page: 1,
-    results: 25,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ratesListShipmentRatesByCurrencyCode failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

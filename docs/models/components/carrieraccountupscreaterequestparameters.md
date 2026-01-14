@@ -23,7 +23,7 @@ let value: CarrierAccountUPSCreateRequestParameters = {
   pickupAddressStreet1: "731 Market St",
   pickupAddressStreet2: "STE 200",
   pickupAddressZip: "94103",
-  upsAgreements: false,
+  upsAgreements: true,
 };
 ```
 

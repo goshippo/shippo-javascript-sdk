@@ -34,7 +34,7 @@
 ```typescript
 import { ParcelTemplateUPSEnum } from "shippo/models/components";
 
-let value: ParcelTemplateUPSEnum = "UPS_Express_Box_Small";
+let value: ParcelTemplateUPSEnum = "UPS_Express_Box";
 ```
 
 ## Values

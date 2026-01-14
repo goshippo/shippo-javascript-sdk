@@ -1,5 +1,4 @@
 # Refunds
-(*refunds*)
 
 ## Overview
 
@@ -18,12 +17,13 @@ Creates a new refund object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateRefund" method="post" path="/refunds" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -32,7 +32,6 @@ async function run() {
     transaction: "915d94940ea54c3a80cbfa328722f5a1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -50,8 +49,8 @@ import { refundsCreate } from "shippo/funcs/refundsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -59,15 +58,12 @@ async function run() {
     async: false,
     transaction: "915d94940ea54c3a80cbfa328722f5a1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("refundsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -99,18 +95,18 @@ Returns a list all refund objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListRefunds" method="get" path="/refunds/" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.refunds.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -128,21 +124,18 @@ import { refundsList } from "shippo/funcs/refundsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await refundsList(shippo, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("refundsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -172,18 +165,18 @@ Returns an existing rate using a rate object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetRefund" method="get" path="/refunds/{RefundId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.refunds.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -201,21 +194,18 @@ import { refundsGet } from "shippo/funcs/refundsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await refundsGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("refundsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

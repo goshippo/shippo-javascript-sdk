@@ -6,6 +6,7 @@
 import { CarrierAccountDPDUKCreateRequest } from "shippo/models/components";
 
 let value: CarrierAccountDPDUKCreateRequest = {
+  carrier: "dpd_uk",
   parameters: {},
 };
 ```
@@ -14,5 +15,5 @@ let value: CarrierAccountDPDUKCreateRequest = {
 
 | Field                                                                                                                          | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `carrier`                                                                                                                      | *string*                                                                                                                       | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |
+| `carrier`                                                                                                                      | *"dpd_uk"*                                                                                                                     | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |
 | `parameters`                                                                                                                   | [components.CarrierAccountDPDUKCreateRequestParameters](../../models/components/carrieraccountdpdukcreaterequestparameters.md) | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |

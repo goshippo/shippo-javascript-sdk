@@ -1,5 +1,4 @@
 # RatesAtCheckout
-(*ratesAtCheckout*)
 
 ## Overview
 
@@ -29,53 +28,23 @@ template or a fully formed user parcel template object as the parcel value.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateLiveRate" method="post" path="/live-rates" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.ratesAtCheckout.create({
     addressFrom: "<value>",
-    addressTo: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
-    lineItems: [
-      {
-        currency: "USD",
-        manufactureCountry: "US",
-        maxDeliveryTime: new Date("2016-07-23T00:00:00Z"),
-        maxShipTime: new Date("2016-07-23T00:00:00Z"),
-        quantity: 20,
-        sku: "HM-123",
-        title: "Hippo Magazines",
-        totalPrice: "12.1",
-        variantTitle: "June Edition",
-        weight: "0.4",
-        weightUnit: "lb",
-        objectId: "abf7d5675d744b6ea9fdb6f796b28f28",
-      },
-    ],
+    addressTo: "<value>",
+    lineItems: [],
     parcel: "5df144dca289442cv7a06",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -93,56 +62,23 @@ import { ratesAtCheckoutCreate } from "shippo/funcs/ratesAtCheckoutCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await ratesAtCheckoutCreate(shippo, {
     addressFrom: "<value>",
-    addressTo: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
-    lineItems: [
-      {
-        currency: "USD",
-        manufactureCountry: "US",
-        maxDeliveryTime: new Date("2016-07-23T00:00:00Z"),
-        maxShipTime: new Date("2016-07-23T00:00:00Z"),
-        quantity: 20,
-        sku: "HM-123",
-        title: "Hippo Magazines",
-        totalPrice: "12.1",
-        variantTitle: "June Edition",
-        weight: "0.4",
-        weightUnit: "lb",
-        objectId: "abf7d5675d744b6ea9fdb6f796b28f28",
-      },
-    ],
+    addressTo: "<value>",
+    lineItems: [],
     parcel: "5df144dca289442cv7a06",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ratesAtCheckoutCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -173,18 +109,18 @@ Retrieve and display the currently configured default parcel template for live r
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetDefaultParcelTemplate" method="get" path="/live-rates/settings/parcel-template" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.ratesAtCheckout.getDefaultParcelTemplate({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -202,21 +138,18 @@ import { ratesAtCheckoutGetDefaultParcelTemplate } from "shippo/funcs/ratesAtChe
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await ratesAtCheckoutGetDefaultParcelTemplate(shippo, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ratesAtCheckoutGetDefaultParcelTemplate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -246,12 +179,13 @@ Update the currently configured default parcel template for live rates. The obje
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateDefaultParcelTemplate" method="put" path="/live-rates/settings/parcel-template" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -259,7 +193,6 @@ async function run() {
     objectId: "b958d3690bb04bb8b2986724872750f5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -277,23 +210,20 @@ import { ratesAtCheckoutUpdateDefaultParcelTemplate } from "shippo/funcs/ratesAt
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await ratesAtCheckoutUpdateDefaultParcelTemplate(shippo, {
     objectId: "b958d3690bb04bb8b2986724872750f5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ratesAtCheckoutUpdateDefaultParcelTemplate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -324,12 +254,13 @@ Clears the currently configured default parcel template for live rates.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="DeleteDefaultParcelTemplate" method="delete" path="/live-rates/settings/parcel-template" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -352,20 +283,18 @@ import { ratesAtCheckoutDeleteDefaultParcelTemplate } from "shippo/funcs/ratesAt
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await ratesAtCheckoutDeleteDefaultParcelTemplate(shippo, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("ratesAtCheckoutDeleteDefaultParcelTemplate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

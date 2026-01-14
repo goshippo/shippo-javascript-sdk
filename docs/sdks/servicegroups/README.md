@@ -1,5 +1,4 @@
 # ServiceGroups
-(*serviceGroups*)
 
 ## Overview
 
@@ -20,18 +19,18 @@ Returns a list of service group objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListServiceGroups" method="get" path="/service-groups" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.serviceGroups.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -49,21 +48,18 @@ import { serviceGroupsList } from "shippo/funcs/serviceGroupsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await serviceGroupsList(shippo, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serviceGroupsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -93,12 +89,13 @@ Creates a new service group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateServiceGroup" method="post" path="/service-groups" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -111,15 +108,9 @@ async function run() {
     name: "USPS Shipping",
     rateAdjustment: 15,
     type: "FLAT_RATE",
-    serviceLevels: [
-      {
-        accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
-        serviceLevelToken: "ups_next_day_air_saver",
-      },
-    ],
+    serviceLevels: [],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -137,8 +128,8 @@ import { serviceGroupsCreate } from "shippo/funcs/serviceGroupsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -151,22 +142,14 @@ async function run() {
     name: "USPS Shipping",
     rateAdjustment: 15,
     type: "FLAT_RATE",
-    serviceLevels: [
-      {
-        accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
-        serviceLevelToken: "ups_next_day_air_saver",
-      },
-    ],
+    serviceLevels: [],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serviceGroupsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -197,12 +180,13 @@ Updates an existing service group object. <br>The object_id cannot be updated as
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateServiceGroup" method="put" path="/service-groups" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -222,18 +206,9 @@ async function run() {
         accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
         serviceLevelToken: "ups_next_day_air_saver",
       },
-      {
-        accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
-        serviceLevelToken: "ups_next_day_air_saver",
-      },
-      {
-        accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
-        serviceLevelToken: "ups_next_day_air_saver",
-      },
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -251,8 +226,8 @@ import { serviceGroupsUpdate } from "shippo/funcs/serviceGroupsUpdate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -272,25 +247,14 @@ async function run() {
         accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
         serviceLevelToken: "ups_next_day_air_saver",
       },
-      {
-        accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
-        serviceLevelToken: "ups_next_day_air_saver",
-      },
-      {
-        accountObjectId: "80feb1633d4a43c898f0058506cfd82d",
-        serviceLevelToken: "ups_next_day_air_saver",
-      },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("serviceGroupsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -321,12 +285,13 @@ Deletes an existing service group using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="DeleteServiceGroup" method="delete" path="/service-groups/{ServiceGroupId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -349,20 +314,18 @@ import { serviceGroupsDelete } from "shippo/funcs/serviceGroupsDelete.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await serviceGroupsDelete(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("serviceGroupsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

@@ -1,5 +1,4 @@
 # Transactions
-(*transactions*)
 
 ## Overview
 
@@ -18,23 +17,21 @@ Returns a list of all transaction objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListTransactions" method="get" path="/transactions" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.transactions.list({
     objectStatus: "SUCCESS",
     trackingStatus: "DELIVERED",
-    page: 1,
-    results: 25,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -52,26 +49,21 @@ import { transactionsList } from "shippo/funcs/transactionsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await transactionsList(shippo, {
     objectStatus: "SUCCESS",
     trackingStatus: "DELIVERED",
-    page: 1,
-    results: 25,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -102,12 +94,13 @@ Creates a new transaction object and purchases the shipping label using a rate o
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateTransaction" method="post" path="/transactions" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -119,7 +112,6 @@ async function run() {
     order: "adcfdddf8ec64b84ad22772bce3ea37a",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -137,8 +129,8 @@ import { transactionsCreate } from "shippo/funcs/transactionsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -149,15 +141,12 @@ async function run() {
     rate: "ec9f0d3adc9441449c85d315f0997fd5",
     order: "adcfdddf8ec64b84ad22772bce3ea37a",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -188,18 +177,18 @@ Returns an existing transaction using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetTransaction" method="get" path="/transactions/{TransactionId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.transactions.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -217,21 +206,18 @@ import { transactionsGet } from "shippo/funcs/transactionsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await transactionsGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("transactionsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

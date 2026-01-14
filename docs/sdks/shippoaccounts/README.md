@@ -1,5 +1,4 @@
 # ShippoAccounts
-(*shippoAccounts*)
 
 ## Overview
 
@@ -21,18 +20,18 @@ Returns a list of Shippo Managed Accounts objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListShippoAccounts" method="get" path="/shippo-accounts" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.shippoAccounts.list(1, 25);
+  const result = await shippo.shippoAccounts.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -50,21 +49,18 @@ import { shippoAccountsList } from "shippo/funcs/shippoAccountsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await shippoAccountsList(shippo, 1, 25);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await shippoAccountsList(shippo);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("shippoAccountsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -96,12 +92,13 @@ Creates a new <a href="https://docs.goshippo.com/docs/platformaccounts/platform_
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateShippoAccount" method="post" path="/shippo-accounts" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -112,7 +109,6 @@ async function run() {
     companyName: "Acme",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -130,8 +126,8 @@ import { shippoAccountsCreate } from "shippo/funcs/shippoAccountsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -141,15 +137,12 @@ async function run() {
     lastName: "Meister",
     companyName: "Acme",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("shippoAccountsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -180,18 +173,18 @@ Returns a Shippo Managed Account using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetShippoAccount" method="get" path="/shippo-accounts/{ShippoAccountId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.shippoAccounts.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -209,21 +202,18 @@ import { shippoAccountsGet } from "shippo/funcs/shippoAccountsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await shippoAccountsGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("shippoAccountsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -254,12 +244,13 @@ Updates a Shippo Managed Account using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="UpdateShippoAccount" method="put" path="/shippo-accounts/{ShippoAccountId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -270,7 +261,6 @@ async function run() {
     companyName: "Acme",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -288,8 +278,8 @@ import { shippoAccountsUpdate } from "shippo/funcs/shippoAccountsUpdate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -299,15 +289,12 @@ async function run() {
     lastName: "Meister",
     companyName: "Acme",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("shippoAccountsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

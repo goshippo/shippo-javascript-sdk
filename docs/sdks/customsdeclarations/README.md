@@ -1,5 +1,4 @@
 # CustomsDeclarations
-(*customsDeclarations*)
 
 ## Overview
 
@@ -19,18 +18,18 @@ Returns a a list of all customs declaration objects
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListCustomsDeclarations" method="get" path="/customs/declarations" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.customsDeclarations.list(1, 5);
+  const result = await shippo.customsDeclarations.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,21 +47,18 @@ import { customsDeclarationsList } from "shippo/funcs/customsDeclarationsList.js
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await customsDeclarationsList(shippo, 1, 5);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await customsDeclarationsList(shippo);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customsDeclarationsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -94,12 +90,13 @@ Creates a new customs declaration object
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateCustomsDeclaration" method="post" path="/customs/declarations" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -143,25 +140,11 @@ async function run() {
     contentsType: "MERCHANDISE",
     eelPfc: "NOEEI_30_37_a",
     incoterm: "DDP",
-    items: [
-      {
-        description: "T-Shirt",
-        massUnit: "lb",
-        metadata: "Order ID \"123454\"",
-        netWeight: "5",
-        originCountry: "<value>",
-        quantity: 20,
-        skuCode: "HM-123",
-        hsCode: "0901.21",
-        valueAmount: "200",
-        valueCurrency: "USD",
-      },
-    ],
+    items: [],
     nonDeliveryOption: "RETURN",
     test: true,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -179,8 +162,8 @@ import { customsDeclarationsCreate } from "shippo/funcs/customsDeclarationsCreat
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -224,32 +207,16 @@ async function run() {
     contentsType: "MERCHANDISE",
     eelPfc: "NOEEI_30_37_a",
     incoterm: "DDP",
-    items: [
-      {
-        description: "T-Shirt",
-        massUnit: "lb",
-        metadata: "Order ID \"123454\"",
-        netWeight: "5",
-        originCountry: "<value>",
-        quantity: 20,
-        skuCode: "HM-123",
-        hsCode: "0901.21",
-        valueAmount: "200",
-        valueCurrency: "USD",
-      },
-    ],
+    items: [],
     nonDeliveryOption: "RETURN",
     test: true,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customsDeclarationsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -280,18 +247,18 @@ Returns an existing customs declaration using an object ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetCustomsDeclaration" method="get" path="/customs/declarations/{CustomsDeclarationId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.customsDeclarations.get("<id>", 1);
+  const result = await shippo.customsDeclarations.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -309,21 +276,18 @@ import { customsDeclarationsGet } from "shippo/funcs/customsDeclarationsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await customsDeclarationsGet(shippo, "<id>", 1);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await customsDeclarationsGet(shippo, "<id>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customsDeclarationsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

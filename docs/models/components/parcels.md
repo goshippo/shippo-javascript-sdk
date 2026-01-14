@@ -50,7 +50,7 @@ const value: components.ParcelCreateFromTemplateRequest = {
   metadata: "Customer ID 123456",
   massUnit: "lb",
   weight: "1",
-  template: "USPS_MediumFlatRateBox1",
+  template: "DHLeC_SM_Flats",
 };
 ```
 

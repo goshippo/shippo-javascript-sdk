@@ -15,7 +15,7 @@ export const ServerList = [
 ] as const;
 
 export type SDKOptions = {
-  apiKeyHeader?: string | (() => Promise<string>);
+  apiKeyHeader?: string | (() => Promise<string>) | undefined;
 
   /**
    * Allows setting the shippoApiVersion parameter for all supported operations
@@ -26,11 +26,15 @@ export type SDKOptions = {
   /**
    * Allows overriding the default server used by the SDK
    */
-  serverIdx?: number;
+  serverIdx?: number | undefined;
   /**
    * Allows overriding the default server URL used by the SDK
    */
-  serverURL?: string;
+  serverURL?: string | undefined;
+  /**
+   * Allows overriding the default user agent used by the SDK
+   */
+  userAgent?: string | undefined;
   /**
    * Allows overriding the default retry config used by the SDK
    */
@@ -59,7 +63,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "2018-02-08",
-  sdkVersion: "2.15.0",
-  genVersion: "2.495.1",
-  userAgent: "speakeasy-sdk/typescript 2.15.0 2.495.1 2018-02-08 shippo",
+  sdkVersion: "2.17.2",
+  genVersion: "2.795.6",
+  userAgent: "speakeasy-sdk/typescript 2.17.2 2.795.6 2018-02-08 shippo",
 } as const;

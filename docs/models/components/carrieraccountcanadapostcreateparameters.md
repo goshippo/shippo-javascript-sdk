@@ -6,7 +6,7 @@
 import { CarrierAccountCanadaPostCreateParameters } from "shippo/models/components";
 
 let value: CarrierAccountCanadaPostCreateParameters = {
-  canadaPostTerms: false,
+  canadaPostTerms: true,
   company: "Shippo",
   email: "hippo@shippo.com",
   fullName: "Shippo Meister",

@@ -15,7 +15,7 @@
 ```typescript
 import { ServiceLevelChronopostEnum } from "shippo/models/components";
 
-let value: ServiceLevelChronopostEnum = "chronopost_classic";
+let value: ServiceLevelChronopostEnum = "chronopost_18";
 ```
 
 ## Values

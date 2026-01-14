@@ -6,6 +6,7 @@
 import { CarrierAccountUPSCreateRequest } from "shippo/models/components";
 
 let value: CarrierAccountUPSCreateRequest = {
+  carrier: "ups",
   parameters: {
     billingAddressCity: "San Francisco",
     billingAddressCountryIso2: "US",
@@ -33,5 +34,5 @@ let value: CarrierAccountUPSCreateRequest = {
 
 | Field                                                                                                                      | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `carrier`                                                                                                                  | *string*                                                                                                                   | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |
+| `carrier`                                                                                                                  | *"ups"*                                                                                                                    | :heavy_check_mark:                                                                                                         | N/A                                                                                                                        |
 | `parameters`                                                                                                               | [components.CarrierAccountUPSCreateRequestParameters](../../models/components/carrieraccountupscreaterequestparameters.md) | :heavy_minus_sign:                                                                                                         | N/A                                                                                                                        |

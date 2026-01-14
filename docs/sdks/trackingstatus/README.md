@@ -1,5 +1,4 @@
 # TrackingStatus
-(*trackingStatus*)
 
 ## Overview
 
@@ -26,12 +25,13 @@ Registers a webhook that will send HTTP notifications to you when the status of 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateTrack" method="post" path="/tracks" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -41,7 +41,6 @@ async function run() {
     trackingNumber: "9205590164917312751089",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -59,8 +58,8 @@ import { trackingStatusCreate } from "shippo/funcs/trackingStatusCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -69,15 +68,12 @@ async function run() {
     metadata: "Order 000123",
     trackingNumber: "9205590164917312751089",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("trackingStatusCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -110,18 +106,18 @@ Returns the tracking status of a shipment using a carrier name and a tracking nu
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetTrack" method="get" path="/tracks/{Carrier}/{TrackingNumber}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.trackingStatus.get("<value>", "<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -139,21 +135,18 @@ import { trackingStatusGet } from "shippo/funcs/trackingStatusGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await trackingStatusGet(shippo, "<value>", "<value>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("trackingStatusGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -1,5 +1,4 @@
 # Manifests
-(*manifests*)
 
 ## Overview
 
@@ -24,18 +23,18 @@ Returns a list of all manifest objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="ListManifests" method="get" path="/manifests" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const result = await shippo.manifests.list(1, 5);
+  const result = await shippo.manifests.list();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -53,21 +52,18 @@ import { manifestsList } from "shippo/funcs/manifestsList.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-  const res = await manifestsList(shippo, 1, 5);
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await manifestsList(shippo);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manifestsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -99,12 +95,13 @@ Creates a new manifest object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreateManifest" method="post" path="/manifests" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -114,25 +111,9 @@ async function run() {
     transactions: [
       "adcfdddf8ec64b84ad22772bce3ea37a",
     ],
-    addressFrom: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
+    addressFrom: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -150,8 +131,8 @@ import { manifestsCreate } from "shippo/funcs/manifestsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -161,32 +142,14 @@ async function run() {
     transactions: [
       "adcfdddf8ec64b84ad22772bce3ea37a",
     ],
-    addressFrom: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
+    addressFrom: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manifestsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -217,18 +180,18 @@ Returns an existing manifest using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="GetManifest" method="get" path="/manifests/{ManifestId}" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const result = await shippo.manifests.get("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -246,21 +209,18 @@ import { manifestsGet } from "shippo/funcs/manifestsGet.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
   const res = await manifestsGet(shippo, "<id>");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manifestsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

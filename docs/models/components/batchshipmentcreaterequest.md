@@ -114,22 +114,7 @@ let value: BatchShipmentCreateRequest = {
     metadata: "Customer ID 123456",
     shipmentDate: "2021-03-22T12:00:00Z",
     addressFrom: "d799c2679e644279b59fe661ac8fa488",
-    addressReturn: {
-      name: "Shwan Ippotle",
-      company: "Shippo",
-      street1: "215 Clayton St.",
-      street3: "",
-      streetNo: "",
-      city: "San Francisco",
-      state: "CA",
-      zip: "94117",
-      country: "US",
-      phone: "+1 555 341 9393",
-      email: "shippotle@shippo.com",
-      isResidential: true,
-      metadata: "Customer ID 123456",
-      validate: true,
-    },
+    addressReturn: "d799c2679e644279b59fe661ac8fa488",
     addressTo: "d799c2679e644279b59fe661ac8fa489",
     customsDeclaration: "adcfdddf8ec64b84ad22772bce3ea37a",
     carrierAccounts: [
@@ -137,25 +122,7 @@ let value: BatchShipmentCreateRequest = {
       "73f706f4bdb94b54a337563840ce52b0",
     ],
     parcels: [
-      {
-        extra: {
-          cod: {
-            amount: "5.5",
-            currency: "USD",
-            paymentMethod: "CASH",
-          },
-          insurance: {
-            amount: "5.5",
-            content: "Laptop",
-            currency: "USD",
-            provider: "UPS",
-          },
-        },
-        metadata: "Customer ID 123456",
-        massUnit: "lb",
-        weight: "1",
-        template: "UPS_MI_MEDIA_MAIL",
-      },
+      "<value>",
     ],
   },
 };

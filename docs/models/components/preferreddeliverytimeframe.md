@@ -7,7 +7,7 @@ Required for DHL Germany Paket Sameday. Designates a desired timeframe for deliv
 ```typescript
 import { PreferredDeliveryTimeframe } from "shippo/models/components";
 
-let value: PreferredDeliveryTimeframe = "19002100";
+let value: PreferredDeliveryTimeframe = "18002000";
 ```
 
 ## Values

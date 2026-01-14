@@ -1,14 +1,23 @@
 # FedExConnectExistingOwnAccountParameters
 
+In the case of masked fields, they should be handled carefully.
+
+Fields also must consider: 
+- Not providing a *fields* in parameters will not result in a change to any configured value 
+- Providing a value in a *masked field* with ****** (exactly 6 asterisks) will not change the configured value 
+- Providing *field* with null will clear the configured value 
+- Providing *field* with any other value will change the configured value and may affect the behavior of the account.
+
+
 ## Example Usage
 
 ```typescript
 import { FedExConnectExistingOwnAccountParameters } from "shippo/models/components";
 
 let value: FedExConnectExistingOwnAccountParameters = {
-  firstName: "Elena",
-  lastName: "Hamill",
-  phoneNumber: "1-265-450-5936 x172",
+  firstName: "Alexander",
+  lastName: "Bosco",
+  phoneNumber: "726.412.3737 x3334",
   fromAddressSt: "<value>",
   fromAddressCity: "<value>",
   fromAddressState: "<value>",

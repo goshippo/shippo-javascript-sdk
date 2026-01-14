@@ -1,6 +1,6 @@
 {
   "name": "shippo",
-  "version": "2.15.0",
+  "version": "2.17.2",
   "author": "Shippo",
   "license": "MIT",
   "main": "./index.js",
@@ -10,28 +10,26 @@
     "url": "https://github.com/goshippo/shippo-javascript-sdk.git"
   },
   "scripts": {
-    "lint": "eslint --max-warnings=0 src",
+    "lint": "eslint --cache --max-warnings=0 src",
     "build": "tsc",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "zod": ">= 3"
+    
   },
   "devDependencies": {
+    "@eslint/js": "^9.19.0",
     "@types/chai": "^4.3.14",
     "@types/mocha": "^10.0.6",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
     "chai": "^5.1.0",
-    "eslint": "^8.57.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
     "mocha": "^10.4.0",
     "tsx": "^4.7.2",
-    "typescript": "^5.4.5",
-    "zod": "^3.23.4"
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
-    
+    "zod": "^3.25.65 || ^4.0.0"
   }
 }

@@ -17,9 +17,11 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import { ShippoError } from "../models/errors/shippoerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -28,21 +30,49 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Returns a list all of all user parcel template objects.
  */
-export async function userParcelTemplatesList(
+export function userParcelTemplatesList(
+  client: ShippoCore,
+  _request: operations.ListUserParcelTemplatesRequest,
+  options?: RequestOptions,
+): APIPromise<
+  Result<
+    components.UserParcelTemplateList,
+    | ShippoError
+    | ResponseValidationError
+    | ConnectionError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
+  >
+> {
+  return new APIPromise($do(
+    client,
+    _request,
+    options,
+  ));
+}
+
+async function $do(
   client: ShippoCore,
   _request: operations.ListUserParcelTemplatesRequest,
   options?: RequestOptions,
 ): Promise<
-  Result<
-    components.UserParcelTemplateList,
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
-    | RequestAbortedError
-    | RequestTimeoutError
-    | ConnectionError
-  >
+  [
+    Result<
+      components.UserParcelTemplateList,
+      | ShippoError
+      | ResponseValidationError
+      | ConnectionError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
+    >,
+    APICall,
+  ]
 > {
   const path = pathToFunc("/user-parcel-templates")();
 
@@ -60,8 +90,10 @@ export async function userParcelTemplatesList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "ListUserParcelTemplates",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -78,10 +110,11 @@ export async function userParcelTemplatesList(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -92,27 +125,28 @@ export async function userParcelTemplatesList(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
   const [result] = await M.match<
     components.UserParcelTemplateList,
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | ShippoError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, components.UserParcelTemplateList$inboundSchema),
     M.fail([400, "4XX"]),
     M.fail("5XX"),
-  )(response);
+  )(response, req);
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

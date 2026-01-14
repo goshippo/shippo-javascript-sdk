@@ -4,5 +4,7 @@
 
 export * from "./httpclienterrors.js";
 export * from "./initiateoauth2signin.js";
+export * from "./responsevalidationerror.js";
 export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";
+export * from "./shippoerror.js";

@@ -15,7 +15,7 @@
 ```typescript
 import { ServiceLevelLSOEnum } from "shippo/models/components";
 
-let value: ServiceLevelLSOEnum = "lso_2nd_day";
+let value: ServiceLevelLSOEnum = "lso_economy_next_day";
 ```
 
 ## Values

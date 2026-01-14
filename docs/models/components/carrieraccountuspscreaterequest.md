@@ -6,6 +6,7 @@
 import { CarrierAccountUSPSCreateRequest } from "shippo/models/components";
 
 let value: CarrierAccountUSPSCreateRequest = {
+  carrier: "usps",
   parameters: {},
 };
 ```
@@ -14,5 +15,5 @@ let value: CarrierAccountUSPSCreateRequest = {
 
 | Field                                                                                                                        | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `carrier`                                                                                                                    | *string*                                                                                                                     | :heavy_check_mark:                                                                                                           | N/A                                                                                                                          |
+| `carrier`                                                                                                                    | *"usps"*                                                                                                                     | :heavy_check_mark:                                                                                                           | N/A                                                                                                                          |
 | `parameters`                                                                                                                 | [components.CarrierAccountUSPSCreateRequestParameters](../../models/components/carrieraccountuspscreaterequestparameters.md) | :heavy_check_mark:                                                                                                           | N/A                                                                                                                          |

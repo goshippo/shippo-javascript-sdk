@@ -5,7 +5,9 @@
 ```typescript
 import { RemoveShipmentsFromBatchGlobals } from "shippo/models/operations";
 
-let value: RemoveShipmentsFromBatchGlobals = {};
+let value: RemoveShipmentsFromBatchGlobals = {
+  shippoApiVersion: "2018-02-08",
+};
 ```
 
 ## Fields

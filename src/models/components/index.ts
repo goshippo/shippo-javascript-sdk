@@ -154,6 +154,7 @@ export * from "./servicelevelparcelforceenum.js";
 export * from "./servicelevelpostitalianeenum.js";
 export * from "./servicelevelpurolatorenum.js";
 export * from "./servicelevelroyalmailenum.js";
+export * from "./servicelevelroyalmailsfenum.js";
 export * from "./servicelevelsendleenum.js";
 export * from "./servicelevelswyftenum.js";
 export * from "./serviceleveludsenum.js";

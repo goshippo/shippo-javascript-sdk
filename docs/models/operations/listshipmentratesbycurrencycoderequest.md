@@ -7,7 +7,6 @@ import { ListShipmentRatesByCurrencyCodeRequest } from "shippo/models/operations
 
 let value: ListShipmentRatesByCurrencyCodeRequest = {
   shipmentId: "<id>",
-  currencyCode: "USD",
 };
 ```
 

@@ -1,5 +1,4 @@
 # Pickups
-(*pickups*)
 
 ## Overview
 
@@ -17,12 +16,13 @@ Creates a pickup object. This request is for a carrier to come to a specified lo
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="CreatePickup" method="post" path="/pickups" -->
 ```typescript
 import { Shippo } from "shippo";
 
 const shippo = new Shippo({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -49,14 +49,13 @@ async function run() {
       buildingType: "apartment",
       instructions: "Behind screen door",
     },
-    requestedEndTime: new Date("2024-06-17T07:14:55.338Z"),
-    requestedStartTime: new Date("2024-11-30T17:06:07.804Z"),
+    requestedEndTime: new Date("2025-03-28T03:12:16.314Z"),
+    requestedStartTime: new Date("2024-05-20T03:35:43.192Z"),
     transactions: [
       "adcfdddf8ec64b84ad22772bce3ea37a",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -74,8 +73,8 @@ import { pickupsCreate } from "shippo/funcs/pickupsCreate.js";
 // Use `ShippoCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
-  apiKeyHeader: "<YOUR_API_KEY_HERE>",
   shippoApiVersion: "2018-02-08",
+  apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
@@ -102,21 +101,18 @@ async function run() {
       buildingType: "apartment",
       instructions: "Behind screen door",
     },
-    requestedEndTime: new Date("2024-06-17T07:14:55.338Z"),
-    requestedStartTime: new Date("2024-11-30T17:06:07.804Z"),
+    requestedEndTime: new Date("2025-03-28T03:12:16.314Z"),
+    requestedStartTime: new Date("2024-05-20T03:35:43.192Z"),
     transactions: [
       "adcfdddf8ec64b84ad22772bce3ea37a",
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("pickupsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

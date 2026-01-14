@@ -17,7 +17,7 @@
 ```typescript
 import { ServiceLevelAsendiaEnum } from "shippo/models/components";
 
-let value: ServiceLevelAsendiaEnum = "asendia_us_priority_mail_international";
+let value: ServiceLevelAsendiaEnum = "asendia_us_priority_tracked";
 ```
 
 ## Values
