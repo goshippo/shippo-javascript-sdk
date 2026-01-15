@@ -3,17 +3,17 @@ id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
   docChecksum: 8c8466e9d6de1941988f39ef92f07e94
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.685.2
-  generationVersion: 2.795.6
-  releaseVersion: 2.17.2
-  configChecksum: 76ea83e68528b0c7dc08da01af3a6df2
+  speakeasyVersion: 1.685.3
+  generationVersion: 2.795.8
+  releaseVersion: 2.17.3
+  configChecksum: 25e598138c64519fce0f255d521cb8ce
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
 persistentEdits:
-  generation_id: adc501f3-1a11-43a8-bb59-5748d4f5c8e7
-  pristine_commit_hash: ee4fc0d74734f67c0a399c869dc804a22792132b
-  pristine_tree_hash: f1cf033c46be6a08369faa78702f30e512b073c7
+  generation_id: eddcd9e6-8a3c-4161-8206-5067e0a86ec5
+  pristine_commit_hash: 50e8f1a4f1bd5709a306d848b84da1492b8654b9
+  pristine_tree_hash: 234422b8fdaff6db38ff2b93dbd90463a2520eb3
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -504,8 +504,8 @@ trackedFiles:
     pristine_git_object: c23e3b847b009963ace9c627ff819b4f2e037e57
   docs/models/components/latitude.md:
     id: e8ad33d0f49e
-    last_write_checksum: sha1:46b9fa21be90d2543b88ddbed2d3efd1011f8b80
-    pristine_git_object: 1a08ef303a885f60923bd070b3f9e6fbeacdd4ea
+    last_write_checksum: sha1:056917b958970814a6f2668a92cfca2b96248600
+    pristine_git_object: b4eeaa681eecadddc894ce86c34083d1d73080bf
   docs/models/components/lineitem.md:
     id: 97e125223c72
     last_write_checksum: sha1:c4c113fd0a8e1716f92c38f7a832ec52ebf192d6
@@ -544,8 +544,8 @@ trackedFiles:
     pristine_git_object: ba86db4451a6fd4f0e1dad479f4884d46f1dd39b
   docs/models/components/longitude.md:
     id: ed0719abee5b
-    last_write_checksum: sha1:981cfc264bd15f3ce6e74de4b58ae025e4444c38
-    pristine_git_object: 782373f55a923f5e5ab94ca8c984e172f948348b
+    last_write_checksum: sha1:434397bb1b2d0ccebea51963212fbe70a4cb7fe8
+    pristine_git_object: d79b7c57ffd4e8bb24d8565646547a05883bf3ac
   docs/models/components/manifest.md:
     id: ab82543dfdb2
     last_write_checksum: sha1:154d36569c1618c7aa14e756a5a06b35110e61f0
@@ -1692,12 +1692,12 @@ trackedFiles:
     pristine_git_object: 67c6c1dc1f226fac8fb2a52cb6b3b7b3127b6b5d
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:a6d503b7de86afd9513f4cfcec57da0be9f99fb7
-    pristine_git_object: 7466c30e78c19e3822d9c9522fbc631f43937f96
+    last_write_checksum: sha1:b60566b8b0eb1adecb9b14eea30c1a0ca2223a27
+    pristine_git_object: cc0b6e66cee181dbf083f45c6c09621aed845b18
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:ef7af875d5d607f8885eae412d77b5f9c0c7528a
-    pristine_git_object: 2c5dd5a20a93bb551036e1e3cc4d29ce752e4e8a
+    last_write_checksum: sha1:0b78db2b30e86a011100e0250365a316f92c9ad4
+    pristine_git_object: 9cfd798b60fb00320b7980b8e6e531b552c17927
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:f45d247bf2f5a1f6eb57917d08444f4ca4b662ff
@@ -2004,8 +2004,8 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:7dd6addc64a4e38f684ec424c4f4dcb0aaae3df9
-    pristine_git_object: 945f05f0c78172f7dd8d157214cbd4e7e9b0614d
+    last_write_checksum: sha1:191eeaa214ffc882635fda6d5f6cf2107aca5d2d
+    pristine_git_object: 51145cf26318ad6b9490bf211eabb29a488f4183
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
@@ -2060,8 +2060,8 @@ trackedFiles:
     pristine_git_object: f3a8de6c021de59c991707946cd294596cae954d
   src/models/components/address.ts:
     id: 345069d9fe49
-    last_write_checksum: sha1:d2dacdbb4081e09f87c2de6e866ac4f52f96860a
-    pristine_git_object: 7461c496202cdbd70a659f1d3397facfc5b894e6
+    last_write_checksum: sha1:0469d8cd20da7ebfb83c2a78823cf383497358dc
+    pristine_git_object: abdfbdcd947e2f4e97b2e271b876eb7005e84cee
   src/models/components/addresscompletecreaterequest.ts:
     id: a77f3b7820eb
     last_write_checksum: sha1:8540cd2e3c81495acb1a598428554749fed34020
@@ -4004,7 +4004,6 @@ examples:
           webhookId: "<id>"
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes:\n* `shippo.batches.create()`: \n  *  `request.batchShipments.[].shipment.extra.usmcaEligible` **Added**\n* `shippo.batches.addShipments()`: \n  *  `requestbody.[].shipment.extra.usmcaEligible` **Added**\n* `shippo.carrierAccounts.list()`: \n  *  `request.carrier` **Changed**\n* `shippo.shipments.list()`:  `response.results.[].extra.usmcaEligible` **Added**\n* `shippo.shipments.create()`: \n  *  `request.extra.usmcaEligible` **Added**\n  *  `response.extra.usmcaEligible` **Added**\n* `shippo.shipments.get()`:  `response.extra.usmcaEligible` **Added**\n* `shippo.transactions.create()`: \n  *  `request.[instantTransactionCreateRequest].shipment.extra.usmcaEligible` **Added**\n"
 generatedFiles:
   - .eslintrc.cjs
   - .gitattributes

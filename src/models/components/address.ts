@@ -12,8 +12,14 @@ import {
   AddressValidationResults$inboundSchema,
 } from "./addressvalidationresults.js";
 
+/**
+ * Latitude of address
+ */
 export type Latitude = number | string;
 
+/**
+ * Longitude of address
+ */
 export type Longitude = number | string;
 
 /**
