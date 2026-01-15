@@ -1,14 +1,17 @@
 name: Publish
+permissions:
+  id-token: write
 "on":
   push:
     branches:
       - main
     paths:
-      - RELEASES.md
-      - '*/RELEASES.md'
+      - .speakeasy/gen.lock
 jobs:
   publish:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
+    with:
+      target: first-target
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.NPM_TOKEN }}
