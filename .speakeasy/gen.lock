@@ -5,15 +5,15 @@ management:
   docVersion: "2018-02-08"
   speakeasyVersion: 1.685.3
   generationVersion: 2.795.8
-  releaseVersion: 2.17.3
-  configChecksum: 25e598138c64519fce0f255d521cb8ce
+  releaseVersion: 2.17.4
+  configChecksum: 58b90a47f5e39cddbe1ce919f362623d
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
 persistentEdits:
-  generation_id: eddcd9e6-8a3c-4161-8206-5067e0a86ec5
-  pristine_commit_hash: 50e8f1a4f1bd5709a306d848b84da1492b8654b9
-  pristine_tree_hash: 234422b8fdaff6db38ff2b93dbd90463a2520eb3
+  generation_id: ef64f729-c8a2-457b-9d23-7cb488509c74
+  pristine_commit_hash: 49c587f78bc77ad1c0af571c49b981c7f894feee
+  pristine_tree_hash: c74aeda388b563014e333d2a2237dcc55eefa669
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -1692,12 +1692,12 @@ trackedFiles:
     pristine_git_object: 67c6c1dc1f226fac8fb2a52cb6b3b7b3127b6b5d
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:b60566b8b0eb1adecb9b14eea30c1a0ca2223a27
-    pristine_git_object: cc0b6e66cee181dbf083f45c6c09621aed845b18
+    last_write_checksum: sha1:d75d708bf5a04b14cb580a239cdf0fc532cb5baf
+    pristine_git_object: 86a594e56b8ad9bdd290d5009bc83ee37b570bef
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:0b78db2b30e86a011100e0250365a316f92c9ad4
-    pristine_git_object: 9cfd798b60fb00320b7980b8e6e531b552c17927
+    last_write_checksum: sha1:02e7aa2f7ddc3599ac5109f57f69071b300cbb9f
+    pristine_git_object: 3a49e3692ace9ecf949c3822a2815f3c538e714d
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:f45d247bf2f5a1f6eb57917d08444f4ca4b662ff
@@ -2004,8 +2004,8 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:191eeaa214ffc882635fda6d5f6cf2107aca5d2d
-    pristine_git_object: 51145cf26318ad6b9490bf211eabb29a488f4183
+    last_write_checksum: sha1:7833a228513463a87dc263ffa9de1512c8fb4690
+    pristine_git_object: 2b351288eb727fd93118ca91c34f104483976ee7
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
