@@ -172,11 +172,6 @@ import {
   ServiceLevelRoyalMailSFEnum$outboundSchema,
 } from "./servicelevelroyalmailsfenum.js";
 import {
-  ServiceLevelSendleEnum,
-  ServiceLevelSendleEnum$inboundSchema,
-  ServiceLevelSendleEnum$outboundSchema,
-} from "./servicelevelsendleenum.js";
-import {
   ServiceLevelSwyftEnum,
   ServiceLevelSwyftEnum$inboundSchema,
   ServiceLevelSwyftEnum$outboundSchema,
@@ -234,7 +229,6 @@ export type ServiceLevelEnumSet =
   | ServiceLevelePostGlobalEnum
   | ServiceLevelRoyalMailEnum
   | ServiceLevelRoyalMailSFEnum
-  | ServiceLevelSendleEnum
   | ServiceLevelOnTracEnum
   | ServiceLevelJitsuEnum
   | ServiceLevelLasershipEnum
@@ -279,7 +273,6 @@ export const ServiceLevelEnumSet$inboundSchema: z.ZodMiniType<
   ServiceLevelePostGlobalEnum$inboundSchema,
   ServiceLevelRoyalMailEnum$inboundSchema,
   ServiceLevelRoyalMailSFEnum$inboundSchema,
-  ServiceLevelSendleEnum$inboundSchema,
   ServiceLevelOnTracEnum$inboundSchema,
   ServiceLevelJitsuEnum$inboundSchema,
   ServiceLevelLasershipEnum$inboundSchema,
@@ -290,7 +283,6 @@ export const ServiceLevelEnumSet$inboundSchema: z.ZodMiniType<
 ]);
 /** @internal */
 export type ServiceLevelEnumSet$Outbound =
-  | string
   | string
   | string
   | string
@@ -366,7 +358,6 @@ export const ServiceLevelEnumSet$outboundSchema: z.ZodMiniType<
   ServiceLevelePostGlobalEnum$outboundSchema,
   ServiceLevelRoyalMailEnum$outboundSchema,
   ServiceLevelRoyalMailSFEnum$outboundSchema,
-  ServiceLevelSendleEnum$outboundSchema,
   ServiceLevelOnTracEnum$outboundSchema,
   ServiceLevelJitsuEnum$outboundSchema,
   ServiceLevelLasershipEnum$outboundSchema,

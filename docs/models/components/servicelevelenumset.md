@@ -202,12 +202,6 @@ const value: components.ServiceLevelRoyalMailSFEnum =
   "royal_mail_sf_tracked_24_for_post_office_drop";
 ```
 
-### `components.ServiceLevelSendleEnum`
-
-```typescript
-const value: components.ServiceLevelSendleEnum = "sendle_standard_dropoff";
-```
-
 ### `components.ServiceLevelOnTracEnum`
 
 ```typescript

@@ -24,7 +24,7 @@ export type ParcelInsuranceProvider = ClosedEnum<
 >;
 
 /**
- * To add insurace to your parcel, specify `amount`, `content` and `currency`. <br><br>If you do not want to add insurance to you parcel, do not set these parameters.
+ * To add insurance to your parcel, specify `amount`, `content` and `currency`. <br><br>If you do not want to add insurance to you parcel, do not set these parameters.
  */
 export type ParcelInsurance = {
   /**

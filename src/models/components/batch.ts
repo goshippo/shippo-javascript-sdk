@@ -96,7 +96,7 @@ export type Batch = {
    */
   objectId: string;
   /**
-   * Username of the user who created the Address object.
+   * Username of the user who created the Batch object.
    */
   objectOwner: string;
   /**

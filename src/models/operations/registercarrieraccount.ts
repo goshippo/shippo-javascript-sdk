@@ -30,7 +30,8 @@ export type RegisterCarrierAccountRequestBody =
   | components.CarrierAccountPosteItalianeCreateRequest
   | components.CarrierAccountUPSCreateRequest
   | components.CarrierAccountUSPSCreateRequest
-  | components.CarrierAccountSendleCreateRequest;
+  | components.CarrierAccountRoyalMailCreateRequest
+  | components.CarrierAccountRoyalMailSfCreateRequest;
 
 /** @internal */
 export type RegisterCarrierAccountRequestBody$Outbound =
@@ -48,7 +49,8 @@ export type RegisterCarrierAccountRequestBody$Outbound =
   | components.CarrierAccountPosteItalianeCreateRequest$Outbound
   | components.CarrierAccountUPSCreateRequest$Outbound
   | components.CarrierAccountUSPSCreateRequest$Outbound
-  | components.CarrierAccountSendleCreateRequest$Outbound;
+  | components.CarrierAccountRoyalMailCreateRequest$Outbound
+  | components.CarrierAccountRoyalMailSfCreateRequest$Outbound;
 
 /** @internal */
 export const RegisterCarrierAccountRequestBody$outboundSchema: z.ZodMiniType<
@@ -69,7 +71,8 @@ export const RegisterCarrierAccountRequestBody$outboundSchema: z.ZodMiniType<
   components.CarrierAccountPosteItalianeCreateRequest$outboundSchema,
   components.CarrierAccountUPSCreateRequest$outboundSchema,
   components.CarrierAccountUSPSCreateRequest$outboundSchema,
-  components.CarrierAccountSendleCreateRequest$outboundSchema,
+  components.CarrierAccountRoyalMailCreateRequest$outboundSchema,
+  components.CarrierAccountRoyalMailSfCreateRequest$outboundSchema,
 ]);
 
 export function registerCarrierAccountRequestBodyToJSON(
