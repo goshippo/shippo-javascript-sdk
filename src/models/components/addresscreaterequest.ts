@@ -24,15 +24,15 @@ export type AddressCreateRequest = {
    * **required for purchase**<br>
    *
    * @remarks
-   * First street line, 35 character limit. Usually street number and street name (except for DHL Germany, see street_no).
+   * First street line. Usually street number and street name (except for DHL Germany, see street_no).
    */
   street1?: string | undefined;
   /**
-   * Second street line, 35 character limit.
+   * Second street line.
    */
   street2?: string | undefined;
   /**
-   * Third street line, 35 character limit.
+   * Third street line.
    *
    * @remarks
    * Only accepted for USPS international shipments, UPS domestic and UPS international shipments.
@@ -72,7 +72,7 @@ export type AddressCreateRequest = {
    */
   zip?: string | undefined;
   /**
-   * ISO 3166-1 alpha-2 country codes and country names can be used. For most consistent results, we reccomend using country codes like `US` or `DE`.
+   * ISO 3166-1 alpha-2 country codes and country names can be used. For most consistent results, we recommend using country codes like `US` or `DE`.
    *
    * @remarks
    * If using country names, please ensure they are spelled correctly and in English. Country names are converted to country codes.

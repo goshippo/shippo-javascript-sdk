@@ -62,7 +62,6 @@ import { ClosedEnum } from "../../types/enums.js";
  * | royal_mail_sf | Royal Mail Storefeeder|
  * | rr_donnelley | ePost Global|
  * | russian_post | Russian Post|
- * | sendle | Sendle|
  * | skypostal | SkyPostal|
  * | stuart | Stuart|
  * | swyft | Swyft|
@@ -124,7 +123,6 @@ export const CarriersEnum = {
   RoyalMailSf: "royal_mail_sf",
   RrDonnelley: "rr_donnelley",
   RussianPost: "russian_post",
-  Sendle: "sendle",
   Skypostal: "skypostal",
   Stuart: "stuart",
   Swyft: "swyft",
@@ -190,7 +188,6 @@ export const CarriersEnum = {
  * | royal_mail_sf | Royal Mail Storefeeder|
  * | rr_donnelley | ePost Global|
  * | russian_post | Russian Post|
- * | sendle | Sendle|
  * | skypostal | SkyPostal|
  * | stuart | Stuart|
  * | swyft | Swyft|

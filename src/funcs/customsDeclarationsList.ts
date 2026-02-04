@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * List all customs declarations
  *
  * @remarks
- * Returns a a list of all customs declaration objects
+ * Returns a list of all customs declaration objects
  */
 export function customsDeclarationsList(
   client: ShippoCore,

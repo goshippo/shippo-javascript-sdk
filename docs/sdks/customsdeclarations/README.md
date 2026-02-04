@@ -14,7 +14,7 @@ customs clearance for your international shipments.
 
 ## list
 
-Returns a a list of all customs declaration objects
+Returns a list of all customs declaration objects
 
 ### Example Usage
 

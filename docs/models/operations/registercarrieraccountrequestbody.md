@@ -158,12 +158,27 @@ const value: components.CarrierAccountUSPSCreateRequest = {
 };
 ```
 
-### `components.CarrierAccountSendleCreateRequest`
+### `components.CarrierAccountRoyalMailCreateRequest`
 
 ```typescript
-const value: components.CarrierAccountSendleCreateRequest = {
-  carrier: "sendle",
-  parameters: {},
+const value: components.CarrierAccountRoyalMailCreateRequest = {
+  carrier: "royal_mail",
+  parameters: {
+    clientId: "<id>",
+    clientSecret: "<value>",
+    partnerToken: "<value>",
+  },
+};
+```
+
+### `components.CarrierAccountRoyalMailSfCreateRequest`
+
+```typescript
+const value: components.CarrierAccountRoyalMailSfCreateRequest = {
+  carrier: "royal_mail_sf",
+  parameters: {
+    royalMailSfAgreements: true,
+  },
 };
 ```
 

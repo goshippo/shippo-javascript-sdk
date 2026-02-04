@@ -14,7 +14,7 @@ export class CustomsDeclarations extends ClientSDK {
    * List all customs declarations
    *
    * @remarks
-   * Returns a a list of all customs declaration objects
+   * Returns a list of all customs declaration objects
    */
   async list(
     page?: number | undefined,
