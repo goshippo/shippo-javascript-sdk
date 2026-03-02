@@ -13,6 +13,15 @@ import {
   WeightUnitEnum$outboundSchema,
 } from "./weightunitenum.js";
 
+/**
+ * <p style="text-align: center; background-color: #F2F3F4;">
+ *
+ * @remarks
+ *   </br>Line Items, and their corresponding abstract Products and Variants, might be exposed as a separate resource
+ *   in the future. Currently it's a nested object within the order resource.</br></br>
+ * </p>
+ * A line item is an individual object in an order. For example, if your order contains a t-shirt, shorts, and a jacket, each item is represented by a line item.
+ */
 export type LineItem = {
   /**
    * Currency of the <code>total_price</code> amount.

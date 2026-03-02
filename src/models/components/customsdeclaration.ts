@@ -77,7 +77,7 @@ export type CustomsDeclaration = {
    *
    * @remarks
    * <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
-   * Allowed values available <a href="#tag/Customs-Declaration-B13A-Filing-Option">here</a>
+   * Allowed values available <a href="/shippoapi/public-api/customs-declaration-b13a-filing-option">here</a>
    */
   b13aFilingOption?: string | undefined;
   /**
@@ -114,6 +114,13 @@ export type CustomsDeclaration = {
   contentsExplanation?: string | undefined;
   /**
    * Disclaimer for the shipment and customs information that have been provided.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 554 characters |
    */
   disclaimer?: string | undefined;
   /**
@@ -163,7 +170,7 @@ export type CustomsDeclaration = {
    * Type of goods of the shipment.
    *
    * @remarks
-   * Allowed values available <a href="#tag/Customs-Declaration-Contents-Type">here</a>
+   * Allowed values available <a href="/shippoapi/public-api/customs-declaration-contents-type">here</a>
    */
   contentsType: string;
   /**
@@ -171,16 +178,22 @@ export type CustomsDeclaration = {
    *
    * @remarks
    * other shipments from the US, `NOEEI_30_37_a` is applicable.
-   * Allowed values available <a href="#tag/Customs-Declaration-EELPFC">here</a>
+   * Allowed values available <a href="/shippoapi/public-api/customs-declaration-eelpfc">here</a>
    */
   eelPfc?: string | undefined;
   /**
    * The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only.
    *
    * @remarks
-   * eDAP is available for DPD UK only. DAP is available for DHL Express and DPD UK.
+   * eDAP is available for DPD UK only. DAP is available for DHL Express, FedEx, and DPD UK.
    * If expecting DAP for other carriers, please use DDU.
-   * Allowed values available <a href="#tag/Customs-Declaration-Incoterm">here</a>
+   * Allowed values available <a href="/shippoapi/public-api/customs-declaration-incoterm">here</a>
+   * Carrier-specific restrictions are in the table below.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Must be one of DDP, DDU, FCA, DAP |
    */
   incoterm?: string | undefined;
   /**
@@ -195,7 +208,7 @@ export type CustomsDeclaration = {
    * Indicates how the carrier should proceed in case the shipment can't be delivered.
    *
    * @remarks
-   * Allowed values available <a href="#tag/Customs-Declaration-Non-Delivery-Option">here</a>
+   * Allowed values available <a href="/shippoapi/public-api/customs-declaration-non-delivery-option">here</a>
    */
   nonDeliveryOption: string;
   /**

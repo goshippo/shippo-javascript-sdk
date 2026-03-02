@@ -387,3 +387,13 @@ Based on:
 - [typescript v2.18.0] .
 ### Releases
 - [NPM v2.18.0] https://www.npmjs.com/package/shippo/v/2.18.0 - .
+
+## 2026-03-02 00:18:16
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.736.3 (2.845.15) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v2.18.1] .
+### Releases
+- [NPM v2.18.1] https://www.npmjs.com/package/shippo/v/2.18.1 - .

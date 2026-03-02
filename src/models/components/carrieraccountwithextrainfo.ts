@@ -90,7 +90,7 @@ export type CarrierAccountWithExtraInfo = {
    */
   active?: boolean | undefined;
   /**
-   * Carrier token, see <a href="#tag/Carriers">Carriers</a><br>
+   * Carrier token, see <a href="/shippoapi/public-api/carriers">Carriers</a><br>
    *
    * @remarks
    * Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for all supported carriers.
@@ -102,7 +102,7 @@ export type CarrierAccountWithExtraInfo = {
     | { [k: string]: any }
     | undefined;
   /**
-   * Carrier name, see <a href="#tag/Carriers">Carriers</a><br>
+   * Carrier name, see <a href="/shippoapi/public-api/carriers">Carriers</a><br>
    */
   carrierName?: any | undefined;
   isShippoAccount?: boolean | undefined;

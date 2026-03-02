@@ -22,6 +22,13 @@ export type RmaNumber = {
   prefix?: string | undefined;
   /**
    * Optional text to be printed on the shipping label for RMA number. Up to 40 characters.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 20 characters |
    */
   value?: string | undefined;
   /**

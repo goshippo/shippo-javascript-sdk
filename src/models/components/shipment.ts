@@ -66,7 +66,7 @@ export type Shipment = {
    */
   shipmentDate?: string | undefined;
   /**
-   * <a href="#tag/Addresses">Address</a> object of the sender / seller. Will be returned expanded by default.
+   * <a href="/shippoapi/public-api/addresses">Address</a> object of the sender / seller. Will be returned expanded by default.
    */
   addressFrom: Address;
   /**
@@ -78,7 +78,7 @@ export type Shipment = {
    */
   addressReturn?: Address | undefined;
   /**
-   * <a href="#tag/Addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
+   * <a href="/shippoapi/public-api/addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
    */
   addressTo: Address;
   /**

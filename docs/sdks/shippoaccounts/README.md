@@ -5,7 +5,6 @@
 Shippo Accounts are used by Shippo Platform Accounts to create and manage Managed Shippo Accounts. 
 Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. 
 They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our <a href="https://docs.goshippo.com/docs/platformaccounts/platform_accounts/">guide</a> for more details.
-<SchemaDefinition schemaRef="#/components/schemas/ShippoAccount"/>
 
 ### Available Operations
 

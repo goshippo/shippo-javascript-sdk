@@ -87,15 +87,15 @@ export type Order = {
    */
   weightUnit?: WeightUnitEnum | undefined;
   /**
-   * <a href="#tag/Addresses">Address</a> object of the sender / seller. Will be returned expanded by default.
+   * <a href="/shippoapi/public-api/addresses">Address</a> object of the sender / seller. Will be returned expanded by default.
    */
   fromAddress?: Address | undefined;
   /**
-   * <a href="#tag/Addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
+   * <a href="/shippoapi/public-api/addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
    */
   toAddress: Address;
   /**
-   * Array of <a href="#section/Line-Item">line item</a> objects representing the items in this order.
+   * Array of <a href="/shippoapi/public-api/orders/lineitem">line item</a> objects representing the items in this order.
    *
    * @remarks
    * All objects will be returned expanded by default.
@@ -117,7 +117,7 @@ export type Order = {
    */
   shopApp?: OrderShopAppEnum | undefined;
   /**
-   * Array of <a href="#tag/Transactions">transaction</a> objects representing all shipping labels purchased for this order.
+   * Array of <a href="/shippoapi/public-api/transactions">transaction</a> objects representing all shipping labels purchased for this order.
    *
    * @remarks
    * All objects are returned expanded with a limited number of fields by default.

@@ -33,7 +33,7 @@ export type ServiceLevel = {
    * Token of the Rate's servicelevel, e.g. `usps_priority` or `fedex_ground`.
    *
    * @remarks
-   * See <a href="#tag/Service-Levels">servicelevels</a>.
+   * See <a href="/shippoapi/public-api/service-levels">servicelevels</a>.
    */
   token?: string | undefined;
   /**

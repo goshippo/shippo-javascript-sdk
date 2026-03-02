@@ -36,7 +36,7 @@ export type Track = {
    */
   addressTo?: TrackingStatusLocationBase | undefined;
   /**
-   * Name of the carrier of the shipment to track. See <a href="#tag/Carriers">Carriers</a>.
+   * Name of the carrier of the shipment to track. See <a href="/shippoapi/public-api/carriers">Carriers</a>.
    */
   carrier: string;
   /**

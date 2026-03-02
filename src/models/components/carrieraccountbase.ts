@@ -37,7 +37,7 @@ export type CarrierAccountBase = {
    */
   active?: boolean | undefined;
   /**
-   * Carrier token, see <a href="#tag/Carriers">Carriers</a><br>
+   * Carrier token, see <a href="/shippoapi/public-api/carriers">Carriers</a><br>
    *
    * @remarks
    * Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for all supported carriers.
