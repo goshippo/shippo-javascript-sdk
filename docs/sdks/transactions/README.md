@@ -3,7 +3,6 @@
 ## Overview
 
 A transaction is the purchase of a shipping label from a shipping provider for a specific service. You can print purchased labels and used them to ship a parcel with a carrier, such as USPS or FedEx.
-<SchemaDefinition schemaRef="#/components/schemas/Transaction"/>
 
 ### Available Operations
 

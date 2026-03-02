@@ -25,6 +25,11 @@ export type CustomerReference = {
    *
    * @remarks
    * this is provided, reference_1 will be ignored.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 40 characters (Express services); Max 30 characters (Ground services) |
    */
   value?: string | undefined;
   /**

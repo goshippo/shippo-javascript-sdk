@@ -47,7 +47,7 @@ export type Parcel = {
    * An object holding optional extra services to be requested for each parcel in a multi-piece shipment.
    *
    * @remarks
-   * See the <a href="#section/Parcel-Extras">Parcel Extra table below</a> for all available services.
+   * The following values are supported for the `extra` field of the parcel object.
    */
   extra?: ParcelExtra | undefined;
   metadata?: string | undefined;

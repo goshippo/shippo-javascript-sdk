@@ -318,10 +318,24 @@ export type ShipmentExtra = {
   qrCodeRequested?: boolean | undefined;
   /**
    * Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 40 characters (Express services); Max 30 characters (Ground services) |
    */
   reference1?: string | undefined;
   /**
    * Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters. For DHL eCommerce, this field can be used for billing reference.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 30 characters |
    */
   reference2?: string | undefined;
   /**

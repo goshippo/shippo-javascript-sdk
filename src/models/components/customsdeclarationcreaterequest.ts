@@ -129,6 +129,13 @@ export type CustomsDeclarationCreateRequest = {
   contentsExplanation?: string | undefined;
   /**
    * Disclaimer for the shipment and customs information that have been provided.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 554 characters |
    */
   disclaimer?: string | undefined;
   /**

@@ -26,8 +26,8 @@ export type BatchShipmentCreateRequest = {
    * A token that sets the shipping method for the batch, overriding the batch default.
    *
    * @remarks
-   * Servicelevel tokens can be found <a href="#tag/Service-Levels">in this list</a>
-   * or <a href="#operation/ListCarrierAccounts">at this endpoint</a>.
+   * Servicelevel tokens can be found <a href="/shippoapi/public-api/service-levels">in this list</a>
+   * or <a href="/shippoapi/public-api/carrier-accounts/listcarrieraccounts">at this endpoint</a>.
    */
   servicelevelToken?: string | undefined;
   shipment: ShipmentCreateRequest;

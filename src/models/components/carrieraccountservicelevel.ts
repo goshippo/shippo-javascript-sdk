@@ -18,14 +18,14 @@ export type CarrierAccountServiceLevel = {
    * @remarks
    * A service level commonly defines the transit time of a Shipment (e.g., Express vs. Standard), along with other properties.
    * These names vary depending on the provider.<br>
-   * See <a href="#tag/Service-Levels">Service Levels</a>.
+   * See <a href="/shippoapi/public-api/service-levels">Service Levels</a>.
    */
   name?: string | undefined;
   /**
    * Service level token, e.g. `usps_priority` or `fedex_ground`.<br>
    *
    * @remarks
-   * See <a href="#tag/Service-Levels">Service Levels</a>.
+   * See <a href="/shippoapi/public-api/service-levels">Service Levels</a>.
    */
   token?: string | undefined;
   /**

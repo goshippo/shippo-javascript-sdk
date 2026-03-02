@@ -9,7 +9,7 @@ import { ClosedEnum } from "../../types/enums.js";
  * Indicates how the carrier should proceed in case the shipment can't be delivered.
  *
  * @remarks
- * Allowed values available <a href="#tag/Customs-Declaration-Non-Delivery-Option">here</a>
+ * Allowed values available <a href="/shippoapi/public-api/customs-declaration-non-delivery-option">here</a>
  */
 export const CustomsDeclarationNonDeliveryOptionEnum = {
   Abandon: "ABANDON",
@@ -19,7 +19,7 @@ export const CustomsDeclarationNonDeliveryOptionEnum = {
  * Indicates how the carrier should proceed in case the shipment can't be delivered.
  *
  * @remarks
- * Allowed values available <a href="#tag/Customs-Declaration-Non-Delivery-Option">here</a>
+ * Allowed values available <a href="/shippoapi/public-api/customs-declaration-non-delivery-option">here</a>
  */
 export type CustomsDeclarationNonDeliveryOptionEnum = ClosedEnum<
   typeof CustomsDeclarationNonDeliveryOptionEnum

@@ -14,10 +14,22 @@ export type AddressCreateRequest = {
    *
    * @remarks
    * First and Last Name of the addressee
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Either company or name required; No length validation (first 35 chars printed on label) |
    */
   name?: string | undefined;
   /**
    * Company Name
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 35 characters; Either company or name required |
    */
   company?: string | undefined;
   /**
@@ -25,10 +37,22 @@ export type AddressCreateRequest = {
    *
    * @remarks
    * First street line. Usually street number and street name (except for DHL Germany, see street_no).
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | At least one street line required; Max 35 characters per line |
    */
   street1?: string | undefined;
   /**
    * Second street line.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | At least one street line required; Max 35 characters per line |
    */
   street2?: string | undefined;
   /**
@@ -36,6 +60,11 @@ export type AddressCreateRequest = {
    *
    * @remarks
    * Only accepted for USPS international shipments, UPS domestic and UPS international shipments.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | At least one street line required; Max 35 characters per line |
    */
   street3?: string | undefined;
   /**
@@ -52,6 +81,11 @@ export type AddressCreateRequest = {
    * Name of a city. When creating a Quote Address, sending a city is optional but will yield more accurate Rates.
    * Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state
    * or a ZIP code (see below), if known, it will yield more accurate results.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Required; Max 35 characters |
    */
   city?: string | undefined;
   /**
@@ -61,6 +95,11 @@ export type AddressCreateRequest = {
    * State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some
    * countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers
    * only accept two or three character state abbreviations.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Required if country requires state; Max 2 characters for US, CA, PR |
    */
   state?: string | undefined;
   /**
@@ -69,6 +108,11 @@ export type AddressCreateRequest = {
    * @remarks
    * Postal code of an Address. When creating a Quote Addresses, sending a ZIP is optional but will yield more
    * accurate Rates.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 10 characters |
    */
   zip?: string | undefined;
   /**
@@ -85,10 +129,22 @@ export type AddressCreateRequest = {
    *
    * @remarks
    * increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Required; Min 1, max 15 characters |
    */
   phone?: string | undefined;
   /**
    * E-mail address of the contact person, RFC3696/5321-compliant.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 80 characters |
    */
   email?: string | undefined;
   isResidential?: boolean | undefined;

@@ -8,49 +8,13 @@ import { ShippoError } from "./shippoerror.js";
 /**
  * Invalid carrier account provided by the user
  */
-export type InitiateOauth2SigninCarrierAccountsResponseResponseBodyData = {
-  title?: string | undefined;
-  detail?: string | undefined;
-};
-
-/**
- * Invalid carrier account provided by the user
- */
-export class InitiateOauth2SigninCarrierAccountsResponseResponseBody
-  extends ShippoError
-{
-  title?: string | undefined;
-  detail?: string | undefined;
-
-  /** The original data that was passed to this error instance. */
-  data$: InitiateOauth2SigninCarrierAccountsResponseResponseBodyData;
-
-  constructor(
-    err: InitiateOauth2SigninCarrierAccountsResponseResponseBodyData,
-    httpMeta: { response: Response; request: Request; body: string },
-  ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
-    super(message, httpMeta);
-    this.data$ = err;
-    if (err.title != null) this.title = err.title;
-    if (err.detail != null) this.detail = err.detail;
-
-    this.name = "InitiateOauth2SigninCarrierAccountsResponseResponseBody";
-  }
-}
-
-/**
- * Invalid ShippoToken or unsupported carrier account provided by the user
- */
 export type InitiateOauth2SigninCarrierAccountsResponseBodyData = {
   title?: string | undefined;
   detail?: string | undefined;
 };
 
 /**
- * Invalid ShippoToken or unsupported carrier account provided by the user
+ * Invalid carrier account provided by the user
  */
 export class InitiateOauth2SigninCarrierAccountsResponseBody
   extends ShippoError
@@ -74,6 +38,42 @@ export class InitiateOauth2SigninCarrierAccountsResponseBody
     if (err.detail != null) this.detail = err.detail;
 
     this.name = "InitiateOauth2SigninCarrierAccountsResponseBody";
+  }
+}
+
+/**
+ * Invalid ShippoToken or unsupported carrier account provided by the user
+ */
+export type InitiateOauth2SigninCarrierAccountsResponseResponseBodyData = {
+  title?: string | undefined;
+  detail?: string | undefined;
+};
+
+/**
+ * Invalid ShippoToken or unsupported carrier account provided by the user
+ */
+export class InitiateOauth2SigninCarrierAccountsResponseResponseBody
+  extends ShippoError
+{
+  title?: string | undefined;
+  detail?: string | undefined;
+
+  /** The original data that was passed to this error instance. */
+  data$: InitiateOauth2SigninCarrierAccountsResponseResponseBodyData;
+
+  constructor(
+    err: InitiateOauth2SigninCarrierAccountsResponseResponseBodyData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
+    const message = "message" in err && typeof err.message === "string"
+      ? err.message
+      : `API error occurred: ${JSON.stringify(err)}`;
+    super(message, httpMeta);
+    this.data$ = err;
+    if (err.title != null) this.title = err.title;
+    if (err.detail != null) this.detail = err.detail;
+
+    this.name = "InitiateOauth2SigninCarrierAccountsResponseResponseBody";
   }
 }
 
@@ -112,6 +112,26 @@ export class InitiateOauth2SigninResponseBody extends ShippoError {
 }
 
 /** @internal */
+export const InitiateOauth2SigninCarrierAccountsResponseBody$inboundSchema:
+  z.ZodMiniType<InitiateOauth2SigninCarrierAccountsResponseBody, unknown> = z
+    .pipe(
+      z.object({
+        title: z.optional(z.string()),
+        detail: z.optional(z.string()),
+        request$: z.custom<Request>(x => x instanceof Request),
+        response$: z.custom<Response>(x => x instanceof Response),
+        body$: z.string(),
+      }),
+      z.transform((v) => {
+        return new InitiateOauth2SigninCarrierAccountsResponseBody(v, {
+          request: v.request$,
+          response: v.response$,
+          body: v.body$,
+        });
+      }),
+    );
+
+/** @internal */
 export const InitiateOauth2SigninCarrierAccountsResponseResponseBody$inboundSchema:
   z.ZodMiniType<
     InitiateOauth2SigninCarrierAccountsResponseResponseBody,
@@ -132,26 +152,6 @@ export const InitiateOauth2SigninCarrierAccountsResponseResponseBody$inboundSche
       });
     }),
   );
-
-/** @internal */
-export const InitiateOauth2SigninCarrierAccountsResponseBody$inboundSchema:
-  z.ZodMiniType<InitiateOauth2SigninCarrierAccountsResponseBody, unknown> = z
-    .pipe(
-      z.object({
-        title: z.optional(z.string()),
-        detail: z.optional(z.string()),
-        request$: z.custom<Request>(x => x instanceof Request),
-        response$: z.custom<Response>(x => x instanceof Response),
-        body$: z.string(),
-      }),
-      z.transform((v) => {
-        return new InitiateOauth2SigninCarrierAccountsResponseBody(v, {
-          request: v.request$,
-          response: v.response$,
-          body: v.body$,
-        });
-      }),
-    );
 
 /** @internal */
 export const InitiateOauth2SigninResponseBody$inboundSchema: z.ZodMiniType<

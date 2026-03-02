@@ -86,15 +86,15 @@ export type OrderCreateRequest = {
    */
   weightUnit?: WeightUnitEnum | undefined;
   /**
-   * <a href="#tag/Addresses">Address</a> object of the sender / seller. Will be returned expanded by default..
+   * <a href="/shippoapi/public-api/addresses">Address</a> object of the sender / seller. Will be returned expanded by default..
    */
   fromAddress?: AddressCreateRequest | undefined;
   /**
-   * <a href="#tag/Addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
+   * <a href="/shippoapi/public-api/addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
    */
   toAddress: AddressCreateRequest;
   /**
-   * Array of <a href="#section/Line-Item">line item</a> objects representing the items in this order.
+   * Array of <a href="/shippoapi/public-api/orders/lineitem">line item</a> objects representing the items in this order.
    *
    * @remarks
    * All objects will be returned expanded by default.

@@ -8,7 +8,6 @@ them to be defined once and then used for many shipments. These parcel templates
 
 User parcel templates can also be created using a carrier parcel template, where the dimensions will be copied from 
 the carrier presets, but the weight can be configured by you.
-<SchemaDefinition schemaRef="#/components/schemas/UserParcelTemplate"/>
 
 ### Available Operations
 
@@ -93,7 +92,7 @@ run();
 Creates a new user parcel template. <br>You can choose to create a
 parcel template using a preset carrier template as a starting point, or
 you can create an entirely custom one. To use a preset carrier template,
-pass in a unique template token from <a href="#tag/Parcel-Templates">this list</a>
+pass in a unique template token from <a href="/shippoapi/public-api/parcel-templates">this list</a>
 plus the weight fields (**weight** and **weight_unit**). Otherwise, omit
 the template field and pass the other fields, for the weight, length, height,
 and depth, as well as their units."
