@@ -28,7 +28,7 @@ export type BatchCreateRequest = {
    *
    * @remarks
    * The servicelevel can be changed on a per-shipment basis by changing the servicelevel_token in the
-   * corresponding BatchShipment object. <a href="#tag/Service-Levels">Servicelevel tokens can be found here.</a>
+   * corresponding BatchShipment object. <a href="/shippoapi/public-api/service-levels">Servicelevel tokens can be found here.</a>
    */
   defaultServicelevelToken: string;
   /**

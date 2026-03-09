@@ -33,6 +33,15 @@ export const Status = {
  */
 export type Status = ClosedEnum<typeof Status>;
 
+/**
+ * The batch shipment object is a wrapper around a shipment object, which include shipment-specific information
+ *
+ * @remarks
+ * for batch processing.
+ *
+ * Note: batch shipments can only be created on the batch endpoint, either when creating a batch object or by through
+ * the `/batches/{BATCH_OBJECT_ID}/add_shipments` endpoint
+ */
 export type BatchShipment = {
   /**
    * Object ID of the carrier account to be used for this shipment (will override batch default)
@@ -49,8 +58,8 @@ export type BatchShipment = {
    * A token that sets the shipping method for the batch, overriding the batch default.
    *
    * @remarks
-   * Servicelevel tokens can be found <a href="#tag/Service-Levels">in this list</a>
-   * or <a href="#operation/ListCarrierAccounts">at this endpoint</a>.
+   * Servicelevel tokens can be found <a href="/shippoapi/public-api/service-levels">in this list</a>
+   * or <a href="/shippoapi/public-api/carrier-accounts/listcarrieraccounts">at this endpoint</a>.
    */
   servicelevelToken?: string | undefined;
   /**

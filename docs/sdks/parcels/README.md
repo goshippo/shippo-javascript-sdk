@@ -2,12 +2,7 @@
 
 ## Overview
 
-A parcel is an item you are shipping. The parcel object includes details about its physical make-up of the parcel. It includes dimensions and weight that Shippo uses to calculate rates. 
-<SchemaDefinition schemaRef="#/components/schemas/Parcel"/>
-
-# Parcel Extras
-The following values are supported for the `extra` field of the parcel object.
-<SchemaDefinition schemaRef="#/components/schemas/ParcelExtra"/>
+A parcel is an item you are shipping. The parcel object includes details about its physical make-up of the parcel. It includes dimensions and weight that Shippo uses to calculate rates.
 
 ### Available Operations
 

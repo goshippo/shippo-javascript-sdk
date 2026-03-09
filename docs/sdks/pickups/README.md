@@ -4,7 +4,6 @@
 
 A pickup is when you schedule a carrier to collect a package for delivery.
 Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.
-<SchemaDefinition schemaRef="#/components/schemas/Pickup"/>
 
 ### Available Operations
 

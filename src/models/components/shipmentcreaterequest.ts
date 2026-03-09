@@ -68,12 +68,22 @@ export type ShipmentCreateRequest = {
   customsDeclaration?: CustomsDeclarationCreateRequest | string | undefined;
   async?: boolean | undefined;
   /**
-   * List of <a href="#tag/Carrier-Accounts/">Carrier Accounts</a> `object_id`s used to filter
+   * List of <a href="/shippoapi/public-api/carrier-accounts">Carrier Accounts</a> `object_id`s used to filter
    *
    * @remarks
    * the returned rates.  If set, only rates from these carriers will be returned.
    */
   carrierAccounts?: Array<string> | undefined;
+  /**
+   * List of parcels to be shipped.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 30 items |
+   */
   parcels: Array<
     ParcelCreateRequest | ParcelCreateFromTemplateRequest | string
   >;

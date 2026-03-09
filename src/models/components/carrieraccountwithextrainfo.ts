@@ -67,10 +67,30 @@ export type Authentication = {
 };
 
 /**
+ * Policy to indicate if the Account needs multi-factor verification.
+ */
+export const Policy = {
+  Required: "required",
+  NotRequired: "not-required",
+} as const;
+/**
+ * Policy to indicate if the Account needs multi-factor verification.
+ */
+export type Policy = ClosedEnum<typeof Policy>;
+
+export type Verification = {
+  /**
+   * Policy to indicate if the Account needs multi-factor verification.
+   */
+  policy?: Policy | undefined;
+};
+
+/**
  * Holds internal state relevant to users.
  */
 export type ObjectInfo = {
   authentication?: Authentication | undefined;
+  verification?: Verification | undefined;
 };
 
 export type CarrierAccountWithExtraInfo = {
@@ -90,7 +110,7 @@ export type CarrierAccountWithExtraInfo = {
    */
   active?: boolean | undefined;
   /**
-   * Carrier token, see <a href="#tag/Carriers">Carriers</a><br>
+   * Carrier token, see <a href="/shippoapi/public-api/carriers">Carriers</a><br>
    *
    * @remarks
    * Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for all supported carriers.
@@ -102,7 +122,7 @@ export type CarrierAccountWithExtraInfo = {
     | { [k: string]: any }
     | undefined;
   /**
-   * Carrier name, see <a href="#tag/Carriers">Carriers</a><br>
+   * Carrier name, see <a href="/shippoapi/public-api/carriers">Carriers</a><br>
    */
   carrierName?: any | undefined;
   isShippoAccount?: boolean | undefined;
@@ -174,9 +194,31 @@ export function authenticationFromJSON(
 }
 
 /** @internal */
+export const Policy$inboundSchema: z.ZodMiniEnum<typeof Policy> = z.enum(
+  Policy,
+);
+
+/** @internal */
+export const Verification$inboundSchema: z.ZodMiniType<Verification, unknown> =
+  z.object({
+    policy: z.optional(Policy$inboundSchema),
+  });
+
+export function verificationFromJSON(
+  jsonString: string,
+): SafeParseResult<Verification, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Verification$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Verification' from JSON`,
+  );
+}
+
+/** @internal */
 export const ObjectInfo$inboundSchema: z.ZodMiniType<ObjectInfo, unknown> = z
   .object({
     authentication: z.optional(z.lazy(() => Authentication$inboundSchema)),
+    verification: z.optional(z.lazy(() => Verification$inboundSchema)),
   });
 
 export function objectInfoFromJSON(

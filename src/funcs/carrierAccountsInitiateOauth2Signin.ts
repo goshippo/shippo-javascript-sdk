@@ -42,8 +42,8 @@ export function carrierAccountsInitiateOauth2Signin(
   Result<
     operations.InitiateOauth2SigninResponse | undefined,
     | errors.InitiateOauth2SigninResponseBody
-    | errors.InitiateOauth2SigninCarrierAccountsResponseBody
     | errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody
+    | errors.InitiateOauth2SigninCarrierAccountsResponseBody
     | ShippoError
     | ResponseValidationError
     | ConnectionError
@@ -74,8 +74,8 @@ async function $do(
     Result<
       operations.InitiateOauth2SigninResponse | undefined,
       | errors.InitiateOauth2SigninResponseBody
-      | errors.InitiateOauth2SigninCarrierAccountsResponseBody
       | errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody
+      | errors.InitiateOauth2SigninCarrierAccountsResponseBody
       | ShippoError
       | ResponseValidationError
       | ConnectionError
@@ -185,8 +185,8 @@ async function $do(
   const [result] = await M.match<
     operations.InitiateOauth2SigninResponse | undefined,
     | errors.InitiateOauth2SigninResponseBody
-    | errors.InitiateOauth2SigninCarrierAccountsResponseBody
     | errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody
+    | errors.InitiateOauth2SigninCarrierAccountsResponseBody
     | ShippoError
     | ResponseValidationError
     | ConnectionError
@@ -204,12 +204,12 @@ async function $do(
     M.jsonErr(400, errors.InitiateOauth2SigninResponseBody$inboundSchema),
     M.jsonErr(
       401,
-      errors.InitiateOauth2SigninCarrierAccountsResponseBody$inboundSchema,
+      errors
+        .InitiateOauth2SigninCarrierAccountsResponseResponseBody$inboundSchema,
     ),
     M.jsonErr(
       404,
-      errors
-        .InitiateOauth2SigninCarrierAccountsResponseResponseBody$inboundSchema,
+      errors.InitiateOauth2SigninCarrierAccountsResponseBody$inboundSchema,
     ),
     M.fail("4XX"),
     M.fail("5XX"),

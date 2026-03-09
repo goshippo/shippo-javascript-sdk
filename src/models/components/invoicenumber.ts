@@ -25,6 +25,11 @@ export type InvoiceNumber = {
    *
    * @remarks
    * provided, this will be used on the label instead of shipment.customs_declaration.invoice.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 30 characters |
    */
   value?: string | undefined;
   /**

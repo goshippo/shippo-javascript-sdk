@@ -49,14 +49,14 @@ export type CoreRate = {
    * @remarks
    * A service level commonly defines the transit time of a Shipment (e.g., Express vs. Standard),
    * along with other properties.  These names vary depending on the provider.<br>
-   * See <a href="#tag/Service-Levels">Service Levels</a>.
+   * See <a href="/shippoapi/public-api/service-levels">Service Levels</a>.
    */
   servicelevelName?: string | undefined;
   /**
    * Token of the Rate's servicelevel, e.g. `usps_priority` or `fedex_ground`.
    *
    * @remarks
-   * See <a href="#tag/Service-Levels">servicelevels</a>.
+   * See <a href="/shippoapi/public-api/service-levels">servicelevels</a>.
    */
   servicelevelToken?: string | undefined;
 };

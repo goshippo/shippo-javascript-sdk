@@ -10,7 +10,7 @@ import { ClosedEnum } from "../../types/enums.js";
  *
  * @remarks
  * other shipments from the US, `NOEEI_30_37_a` is applicable.
- * Allowed values available <a href="#tag/Customs-Declaration-EELPFC">here</a>
+ * Allowed values available <a href="/shippoapi/public-api/customs-declaration-eelpfc">here</a>
  */
 export const CustomsDeclarationEelPfcEnum = {
   NOEEI3037A: "NOEEI_30_37_a",
@@ -24,7 +24,7 @@ export const CustomsDeclarationEelPfcEnum = {
  *
  * @remarks
  * other shipments from the US, `NOEEI_30_37_a` is applicable.
- * Allowed values available <a href="#tag/Customs-Declaration-EELPFC">here</a>
+ * Allowed values available <a href="/shippoapi/public-api/customs-declaration-eelpfc">here</a>
  */
 export type CustomsDeclarationEelPfcEnum = ClosedEnum<
   typeof CustomsDeclarationEelPfcEnum

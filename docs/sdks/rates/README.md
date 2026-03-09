@@ -3,7 +3,6 @@
 ## Overview
 
 A rate is the cost to ship a parcel from a carrier. The rate object details the service level including the cost and transit time. 
-<SchemaDefinition schemaRef="#/components/schemas/Rate"/>
 
 ### Available Operations
 

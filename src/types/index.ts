@@ -3,6 +3,7 @@
  */
 
 export { blobLikeSchema, isBlobLike } from "./blobs.js";
+export { Decimal } from "./decimal.js";
 export type { ClosedEnum, OpenEnum } from "./enums.js";
 export type { Result } from "./fp.js";
 export type { PageIterator, Paginator } from "./operations.js";

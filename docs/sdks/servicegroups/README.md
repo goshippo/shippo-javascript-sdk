@@ -4,7 +4,6 @@
 
 A service group is a set of service levels grouped together. 
 Rates at checkout uses services groups to present available shipping options to customers in their shopping basket.
-<SchemaDefinition schemaRef="#/components/schemas/ServiceGroup"/>
 
 ### Available Operations
 
