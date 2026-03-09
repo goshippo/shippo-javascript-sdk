@@ -5,8 +5,25 @@
 import * as z from "zod/v4-mini";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { Decimal as Decimal$ } from "../../types/decimal.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { RFCDate } from "../../types/rfcdate.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+/**
+ * Determines the verification option to use for the account registration (Enum: SMS, EMAIL, CALL, INVOICE).
+ */
+export const VerificationOption = {
+  Sms: "SMS",
+  Email: "EMAIL",
+  Call: "CALL",
+  Invoice: "INVOICE",
+} as const;
+/**
+ * Determines the verification option to use for the account registration (Enum: SMS, EMAIL, CALL, INVOICE).
+ */
+export type VerificationOption = ClosedEnum<typeof VerificationOption>;
 
 /**
  * In the case of masked fields, they should be handled carefully.
@@ -52,7 +69,44 @@ export type FedExConnectExistingOwnAccountParameters = {
    * Country of the account holder
    */
   fromAddressCountryIso2: string;
+  /**
+   * Must be true. FedEx accounts are registered using the multi-factor registration workflow.
+   */
+  useMultiFactorRegistration: boolean;
+  /**
+   * Determines the verification option to use for the account registration (Enum: SMS, EMAIL, CALL, INVOICE).
+   */
+  verificationOption: VerificationOption;
+  /**
+   * (optional) The PIN to verify the account.
+   */
+  verificationPin?: string | undefined;
+  /**
+   * (optional) The invoice number to verify the account.
+   */
+  verificationInvoiceNumber?: string | undefined;
+  /**
+   * (optional) The invoice amount to verify the account.
+   */
+  verificationInvoiceAmount?: Decimal$ | number | undefined;
+  /**
+   * (optional) The invoice date to verify the account. In the format `YYYY-MM-DD`.
+   */
+  verificationInvoiceDate?: RFCDate | undefined;
+  /**
+   * (optional) The invoice currency to verify the account.
+   */
+  verificationInvoiceCurrency?: string | undefined;
 };
+
+/** @internal */
+export const VerificationOption$inboundSchema: z.ZodMiniEnum<
+  typeof VerificationOption
+> = z.enum(VerificationOption);
+/** @internal */
+export const VerificationOption$outboundSchema: z.ZodMiniEnum<
+  typeof VerificationOption
+> = VerificationOption$inboundSchema;
 
 /** @internal */
 export const FedExConnectExistingOwnAccountParameters$inboundSchema:
@@ -66,6 +120,18 @@ export const FedExConnectExistingOwnAccountParameters$inboundSchema:
       from_address_state: z.string(),
       from_address_zip: z.string(),
       from_address_country_iso2: z.string(),
+      use_multi_factor_registration: z.boolean(),
+      verification_option: VerificationOption$inboundSchema,
+      verification_pin: z.optional(z.string()),
+      verification_invoice_number: z.optional(z.string()),
+      verification_invoice_amount: z.optional(
+        z.pipe(z.string(), z.transform(v => new Decimal$(v))),
+      ),
+      verification_invoice_date: z.optional(z.pipe(
+        z.string(),
+        z.transform(v => new RFCDate(v)),
+      )),
+      verification_invoice_currency: z.optional(z.string()),
     }),
     z.transform((v) => {
       return remap$(v, {
@@ -77,6 +143,13 @@ export const FedExConnectExistingOwnAccountParameters$inboundSchema:
         "from_address_state": "fromAddressState",
         "from_address_zip": "fromAddressZip",
         "from_address_country_iso2": "fromAddressCountryIso2",
+        "use_multi_factor_registration": "useMultiFactorRegistration",
+        "verification_option": "verificationOption",
+        "verification_pin": "verificationPin",
+        "verification_invoice_number": "verificationInvoiceNumber",
+        "verification_invoice_amount": "verificationInvoiceAmount",
+        "verification_invoice_date": "verificationInvoiceDate",
+        "verification_invoice_currency": "verificationInvoiceCurrency",
       });
     }),
   );
@@ -90,6 +163,13 @@ export type FedExConnectExistingOwnAccountParameters$Outbound = {
   from_address_state: string;
   from_address_zip: string;
   from_address_country_iso2: string;
+  use_multi_factor_registration: boolean;
+  verification_option: string;
+  verification_pin?: string | undefined;
+  verification_invoice_number?: string | undefined;
+  verification_invoice_amount?: string | undefined;
+  verification_invoice_date?: string | undefined;
+  verification_invoice_currency?: string | undefined;
 };
 
 /** @internal */
@@ -107,6 +187,23 @@ export const FedExConnectExistingOwnAccountParameters$outboundSchema:
       fromAddressState: z.string(),
       fromAddressZip: z.string(),
       fromAddressCountryIso2: z.string(),
+      useMultiFactorRegistration: z.boolean(),
+      verificationOption: VerificationOption$outboundSchema,
+      verificationPin: z.optional(z.string()),
+      verificationInvoiceNumber: z.optional(z.string()),
+      verificationInvoiceAmount: z.optional(
+        z.pipe(
+          z.union([z.custom<Decimal$>(x => x instanceof Decimal$), z.number()]),
+          z.transform(v =>
+            `${v}`
+          ),
+        ),
+      ),
+      verificationInvoiceDate: z.optional(z.pipe(
+        z.custom<RFCDate>(x => x instanceof RFCDate),
+        z.transform(v => v.toString()),
+      )),
+      verificationInvoiceCurrency: z.optional(z.string()),
     }),
     z.transform((v) => {
       return remap$(v, {
@@ -118,6 +215,13 @@ export const FedExConnectExistingOwnAccountParameters$outboundSchema:
         fromAddressState: "from_address_state",
         fromAddressZip: "from_address_zip",
         fromAddressCountryIso2: "from_address_country_iso2",
+        useMultiFactorRegistration: "use_multi_factor_registration",
+        verificationOption: "verification_option",
+        verificationPin: "verification_pin",
+        verificationInvoiceNumber: "verification_invoice_number",
+        verificationInvoiceAmount: "verification_invoice_amount",
+        verificationInvoiceDate: "verification_invoice_date",
+        verificationInvoiceCurrency: "verification_invoice_currency",
       });
     }),
   );

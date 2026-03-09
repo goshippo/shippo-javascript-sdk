@@ -4,8 +4,6 @@
 
 Carriers are the companies who deliver your package. Shippo uses Carrier account objects as credentials to retrieve shipping rates and purchase labels from shipping Carriers.
 
-<SchemaDefinition schemaRef="#/components/schemas/CarrierAccount"/>
-
 ### Available Operations
 
 * [list](#list) - List all carrier accounts
@@ -433,8 +431,8 @@ run();
 | Error Type                                                     | Status Code                                                    | Content Type                                                   |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | errors.InitiateOauth2SigninResponseBody                        | 400                                                            | application/json                                               |
-| errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401                                                            | application/json                                               |
-| errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404                                                            | application/json                                               |
+| errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 401                                                            | application/json                                               |
+| errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 404                                                            | application/json                                               |
 | errors.SDKError                                                | 4XX, 5XX                                                       | \*/\*                                                          |
 
 ## register

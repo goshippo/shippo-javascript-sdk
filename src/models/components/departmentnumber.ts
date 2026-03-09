@@ -22,6 +22,13 @@ export type DepartmentNumber = {
   prefix?: string | undefined;
   /**
    * Optional text to be printed on the shipping label for department number. Up to 40 characters.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 30 characters |
    */
   value?: string | undefined;
   /**

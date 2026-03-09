@@ -3,11 +3,6 @@
 ## Overview
 
 A shipment is the act of transporting goods. A shipment object contains **to** and **from** addresses, and the parcel details that you are shipping. You can use the shipment object to retrieve shipping rates and purchase a shipping label.
-<SchemaDefinition schemaRef="#/components/schemas/Shipment"/>
- 
-# Shipment Extras
-The following values are supported for the `extra` field of the shipment object.
-<SchemaDefinition schemaRef="#/components/schemas/ShipmentExtra"/>
 
 ### Available Operations
 

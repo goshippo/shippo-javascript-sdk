@@ -3,15 +3,6 @@
 ## Overview
 
 A batch is a technique for creating multiple labels at once. Use the  batch object to create and purchase many shipments in two API calls. After creating the batch, retrieve the batch to verify that all shipments are valid. You can add and remove shipments after you have created the batch. When all shipments are valid you can purchase the batch and retrieve all the shipping labels.
-<SchemaDefinition schemaRef="#/components/schemas/Batch"/>
-
-# Batch Shipment
-The batch shipment object is a wrapper around a shipment object, which include shipment-specific information 
-for batch processing.
-
-Note: batch shipments can only be created on the batch endpoint, either when creating a batch object or by through 
-the `/batches/{BATCH_OBJECT_ID}/add_shipments` endpoint
-<SchemaDefinition schemaRef="#/components/schemas/BatchShipment"/>
 
 ### Available Operations
 
