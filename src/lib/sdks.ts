@@ -53,6 +53,13 @@ export type RequestOptions = {
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options|Request}
    */
   fetchOptions?: Omit<RequestInit, "method" | "body">;
+  /**
+   * The Shippo Account ID to scope this request to.
+   * When using a Platform Account, set this to make API calls on behalf of a customer.
+   * Sent as the `SHIPPO-ACCOUNT-ID: <ShippoAccountID>` header.
+   */
+  shippoAccountId?: string;
+
 } & Omit<RequestInit, "method" | "body">;
 
 type RequestConfig = {
@@ -159,6 +166,10 @@ export class ClientSDK {
         [username || "", password || ""].join(":"),
       );
       headers.set("Authorization", `Basic ${encoded}`);
+    }
+
+    if (options?.shippoAccountId) {
+      headers.set("SHIPPO-ACCOUNT-ID", options.shippoAccountId);
     }
 
     const securityHeaders = new Headers(security?.headers || {});
