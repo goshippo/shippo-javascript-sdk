@@ -27,10 +27,10 @@ export type CarrierAccountParameters =
 
 export type CarrierAccount = {
   /**
-   * Unique identifier of the account. Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a>
+   * Unique identifier of the account. Please check the [carrier accounts tutorial](https://docs.goshippo.com/docs/carriers/carrieraccounts/)
    *
    * @remarks
-   * page for the `account_id` per carrier.<br>
+   * page for the `account_id` per carrier.
    * To protect account information, this field will be masked in any API response.
    */
   accountId: string;
@@ -42,10 +42,10 @@ export type CarrierAccount = {
    */
   active?: boolean | undefined;
   /**
-   * Carrier token, see <a href="#tag/Carriers">Carriers</a><br>
+   * Carrier token, see [Carriers](/shippoapi/public-api/carriers)
    *
    * @remarks
-   * Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for all supported carriers.
+   * Please check the [carrier accounts tutorial](https://docs.goshippo.com/docs/carriers/carrieraccounts/) page for all supported carriers.
    */
   carrier: string;
   parameters?:
@@ -54,7 +54,7 @@ export type CarrierAccount = {
     | { [k: string]: any }
     | undefined;
   /**
-   * Carrier name, see <a href="#tag/Carriers">Carriers</a><br>
+   * Carrier name, see [Carriers](/shippoapi/public-api/carriers)
    */
   carrierName?: any | undefined;
   isShippoAccount?: boolean | undefined;

@@ -3,7 +3,6 @@
 ## Overview
 
 A transaction is the purchase of a shipping label from a shipping provider for a specific service. You can print purchased labels and used them to ship a parcel with a carrier, such as USPS or FedEx.
-<SchemaDefinition schemaRef="#/components/schemas/Transaction"/>
 
 ### Available Operations
 
@@ -14,6 +13,19 @@ A transaction is the purchase of a shipping label from a shipping provider for a
 ## list
 
 Returns a list of all transaction objects.
+
+To filter results by creation date, use the optional query parameters below. Provided dates should be ISO 8601 UTC dates (timezone offsets are currently not supported).
+
+- `object_created_gt`: object(s) created after the provided date time
+- `object_created_gte`: object(s) created at or after the provided date time
+- `object_created_lt`: object(s) created before the provided date time
+- `object_created_lte`: object(s) created at or before the provided date time
+
+Provide at most one lower bound (`object_created_gt` or `object_created_gte`) and at most one upper bound (`object_created_lt` or `object_created_lte`) per request. Lower bounds must not be in the future.
+
+Date format examples: `2017-01-01`, `2017-01-01T03:30:30` (or `2017-01-01T03:30:30.5`), `2017-01-01T03:30:30Z`
+
+Example URL: `https://api.goshippo.com/transactions/?object_created_gte=2017-01-01T00:00:30&object_created_lt=2017-04-01T00:00:30`
 
 ### Example Usage
 
@@ -90,7 +102,9 @@ run();
 
 ## create
 
-Creates a new transaction object and purchases the shipping label using a rate object that has previously been created. <br> OR <br> Creates a new transaction object and purchases the shipping label instantly using shipment details, an existing carrier account, and an existing service level token.
+Creates a new transaction object and purchases the shipping label using a rate object that has previously been created.
+
+Alternatively, creates a new transaction object and purchases the shipping label instantly using shipment details, an existing carrier account, and an existing service level token.
 
 ### Example Usage
 

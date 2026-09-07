@@ -6,7 +6,7 @@ import * as z from "zod/v4-mini";
 
 export type ListParcelsGlobals = {
   /**
-   * Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.
+   * Optional string used to pick a non-default API version to use. See our [API version](https://docs.goshippo.com/docs/api_concepts/apiversioning/) guide.
    */
   shippoApiVersion?: string | undefined;
 };

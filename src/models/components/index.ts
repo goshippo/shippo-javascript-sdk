@@ -132,7 +132,6 @@ export * from "./servicelevelasendiaenum.js";
 export * from "./servicelevelaustraliapostenum.js";
 export * from "./servicelevelbettertrucksenum.js";
 export * from "./servicelevelcanadapostenum.js";
-export * from "./servicelevelcdlenum.js";
 export * from "./servicelevelchronopostenum.js";
 export * from "./servicelevelcolissimoenum.js";
 export * from "./servicelevelcorreosespanaenum.js";

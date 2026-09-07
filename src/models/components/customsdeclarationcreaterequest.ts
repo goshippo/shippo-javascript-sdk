@@ -88,20 +88,20 @@ export type DutiesPayor = {
 
 export type CustomsDeclarationCreateRequest = {
   /**
-   * **required if eel_pfc is `AES_ITN`**<br>
+   * **required if eel_pfc is `AES_ITN`**
    *
    * @remarks
+   *
    * AES / ITN reference of the shipment.
    */
   aesItn?: string | undefined;
   b13aFilingOption?: CustomsDeclarationB13AFilingOptionEnum | undefined;
   /**
-   * **must be provided if and only if b13a_filing_option is provided**<br>
+   * **must be provided if and only if b13a_filing_option is provided**
    *
    * @remarks
-   * Represents:<br> the Proof of Report (POR) Number when b13a_filing_option is `FILED_ELECTRONICALLY`;<br>
-   * the Summary ID Number when b13a_filing_option is `SUMMARY_REPORTING`;<br>
-   * or the Exemption Number when b13a_filing_option is `NOT_REQUIRED`.
+   *
+   * Represents the Proof of Report (POR) Number when b13a_filing_option is `FILED_ELECTRONICALLY`; the Summary ID Number when b13a_filing_option is `SUMMARY_REPORTING`; or the Exemption Number when b13a_filing_option is `NOT_REQUIRED`.
    */
   b13aNumber?: string | undefined;
   /**
@@ -121,14 +121,22 @@ export type CustomsDeclarationCreateRequest = {
   certifySigner: string;
   commercialInvoice?: boolean | undefined;
   /**
-   * **required if contents_type is `OTHER`**<br>
+   * **required if contents_type is `OTHER`**
    *
    * @remarks
+   *
    * Explanation of the type of goods of the shipment.
    */
   contentsExplanation?: string | undefined;
   /**
    * Disclaimer for the shipment and customs information that have been provided.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 554 characters |
    */
   disclaimer?: string | undefined;
   /**

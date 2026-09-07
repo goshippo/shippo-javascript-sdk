@@ -22,7 +22,6 @@ import { ClosedEnum } from "../../types/enums.js";
  * | boxberry | Boxberry|
  * | bring | Bring (also used for Posten Norge)|
  * | canada_post | Canada Post|
- * | cdl | CDL|
  * | chronopost | Chronopost|
  * | collect_plus | CollectPlus|
  * | correios_br | CorreiosBR|
@@ -83,7 +82,6 @@ export const CarriersEnum = {
   Boxberry: "boxberry",
   Bring: "bring",
   CanadaPost: "canada_post",
-  Cdl: "cdl",
   Chronopost: "chronopost",
   CollectPlus: "collect_plus",
   CorreiosBr: "correios_br",
@@ -148,7 +146,6 @@ export const CarriersEnum = {
  * | boxberry | Boxberry|
  * | bring | Bring (also used for Posten Norge)|
  * | canada_post | Canada Post|
- * | cdl | CDL|
  * | chronopost | Chronopost|
  * | collect_plus | CollectPlus|
  * | correios_br | CorreiosBR|

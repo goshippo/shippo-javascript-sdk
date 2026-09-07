@@ -4,7 +4,6 @@
 
 A service group is a set of service levels grouped together. 
 Rates at checkout uses services groups to present available shipping options to customers in their shopping basket.
-<SchemaDefinition schemaRef="#/components/schemas/ServiceGroup"/>
 
 ### Available Operations
 
@@ -176,7 +175,7 @@ run();
 
 ## update
 
-Updates an existing service group object. <br>The object_id cannot be updated as it is the unique identifier for the object.
+Updates an existing service group object. The object_id cannot be updated as it is the unique identifier for the object.
 
 ### Example Usage
 

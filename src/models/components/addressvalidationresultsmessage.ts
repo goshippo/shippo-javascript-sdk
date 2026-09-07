@@ -9,11 +9,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddressValidationResultsMessage = {
   /**
-   * See <a href="#tag/Address-Validation-Codes">Address Validation Codes</a>
+   * See [Address Validation Codes](/shippoapi/public-api/address-validation-codes)
    */
   code?: string | undefined;
   /**
-   * See <a href="#tag/Address-Validation-Source">Address Validation Source</a>
+   * See [Address Validation Source](/shippoapi/public-api/address-validation-source)
    */
   source?: string | undefined;
   text?: string | undefined;

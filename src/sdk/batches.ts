@@ -33,10 +33,11 @@ export class Batches extends ClientSDK {
    * Retrieve a batch
    *
    * @remarks
-   * Returns a batch using an object ID. <br> Batch shipments are displayed 100 at a time.  You can iterate
-   * through each `page` using the `?page= query` parameter.  You can also filter based on batch shipment
-   * status, for example, by passing a query param like `?object_results=creation_failed`. <br>
-   * For more details on filtering results, see our guide on <a href="https://docs.goshippo.com/docs/api_concepts/filtering/" target="blank"> filtering</a>.
+   * Returns a batch using an object ID.
+   *
+   * Batch shipments are displayed 100 at a time. You can iterate through each page using the `?page=` query parameter. You can also filter based on batch shipment status, for example, by passing a query param like `?object_results=creation_failed`.
+   *
+   * For more details on filtering results, see our guide on [filtering](https://docs.goshippo.com/docs/api_concepts/filtering/).
    */
   async get(
     batchId: string,

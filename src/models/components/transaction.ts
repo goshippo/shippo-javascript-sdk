@@ -60,7 +60,7 @@ export type CreatedBy = {
  * @remarks
  * If you purchase a label by calling the transaction endpoint without a rate (instalabel),
  * this field will be a simplified Rate object in the Transaction model returned from the POST request.
- * </br>Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
+ * Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
  */
 export type TransactionRate = CoreRate | string;
 
@@ -78,10 +78,10 @@ export type Transaction = {
    */
   eta?: string | undefined;
   /**
-   * Print format of the <a href="https://docs.goshippo.com/docs/shipments/shippinglabelsizes/">label</a>. If empty, will use the default format set from
+   * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from
    *
    * @remarks
-   * <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
+   * [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
    */
   labelFileType?: LabelFileTypeEnum | undefined;
   /**
@@ -136,7 +136,7 @@ export type Transaction = {
    * @remarks
    * If you purchase a label by calling the transaction endpoint without a rate (instalabel),
    * this field will be a simplified Rate object in the Transaction model returned from the POST request.
-   * </br>Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
+   * Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
    */
   rate?: CoreRate | string | undefined;
   /**
