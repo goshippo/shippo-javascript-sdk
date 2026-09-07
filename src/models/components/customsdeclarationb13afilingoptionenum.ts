@@ -9,8 +9,8 @@ import { ClosedEnum } from "../../types/enums.js";
  * B13A Option details are obtained by filing a B13A Canada Export Declaration via the Canadian Export Reporting System (CERS).
  *
  * @remarks
- * <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
- * Allowed values available <a href="#tag/Customs-Declaration-B13A-Filing-Option">here</a>
+ * [More information on reporting commercial exports from Canada.](https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html)
+ * Allowed values available [here](/shippoapi/public-api/customs-declaration-b13a-filing-option)
  */
 export const CustomsDeclarationB13AFilingOptionEnum = {
   FiledElectronically: "FILED_ELECTRONICALLY",
@@ -21,8 +21,8 @@ export const CustomsDeclarationB13AFilingOptionEnum = {
  * B13A Option details are obtained by filing a B13A Canada Export Declaration via the Canadian Export Reporting System (CERS).
  *
  * @remarks
- * <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
- * Allowed values available <a href="#tag/Customs-Declaration-B13A-Filing-Option">here</a>
+ * [More information on reporting commercial exports from Canada.](https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html)
+ * Allowed values available [here](/shippoapi/public-api/customs-declaration-b13a-filing-option)
  */
 export type CustomsDeclarationB13AFilingOptionEnum = ClosedEnum<
   typeof CustomsDeclarationB13AFilingOptionEnum

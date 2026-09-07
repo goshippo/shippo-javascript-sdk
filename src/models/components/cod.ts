@@ -13,7 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * Secured funds include money orders, certified cheques and others (see
  *
  * @remarks
- * <a href="https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html">UPS</a> for details).
+ * [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
  * If no payment_method inputted the value defaults to "ANY".)
  */
 export const PaymentMethod = {
@@ -25,7 +25,7 @@ export const PaymentMethod = {
  * Secured funds include money orders, certified cheques and others (see
  *
  * @remarks
- * <a href="https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html">UPS</a> for details).
+ * [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
  * If no payment_method inputted the value defaults to "ANY".)
  */
 export type PaymentMethod = ClosedEnum<typeof PaymentMethod>;
@@ -46,7 +46,7 @@ export type Cod = {
    * Secured funds include money orders, certified cheques and others (see
    *
    * @remarks
-   * <a href="https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html">UPS</a> for details).
+   * [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
    * If no payment_method inputted the value defaults to "ANY".)
    */
   paymentMethod?: PaymentMethod | undefined;

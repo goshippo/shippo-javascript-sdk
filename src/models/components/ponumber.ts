@@ -25,6 +25,11 @@ export type PoNumber = {
    *
    * @remarks
    * this is provided, reference_2 will be ignored.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 30 characters |
    */
   value?: string | undefined;
   /**

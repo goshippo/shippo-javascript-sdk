@@ -11,6 +11,9 @@ import {
   CarrierParcelTemplate$inboundSchema,
 } from "./carrierparceltemplate.js";
 
+/**
+ * List of carrier parcel templates
+ */
 export type CarrierParcelTemplateList = {
   results?: Array<CarrierParcelTemplate> | undefined;
 };

@@ -25,6 +25,9 @@ import {
   WebhookPayloadTransaction$outboundSchema,
 } from "./webhookpayloadtransaction.js";
 
+/**
+ * The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.
+ */
 export type WebhookPayload =
   | (WebhookPayloadTrack & { event: "track_updated" })
   | (WebhookPayloadBatch & { event: "batch_created" })

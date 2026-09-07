@@ -9,7 +9,7 @@ import { ClosedEnum } from "../../types/enums.js";
  * Type of goods of the shipment.
  *
  * @remarks
- * Allowed values available <a href="#tag/Customs-Declaration-Contents-Type">here</a>
+ * Allowed values available [here](/shippoapi/public-api/customs-declaration-contents-type)
  */
 export const CustomsDeclarationContentsTypeEnum = {
   Documents: "DOCUMENTS",
@@ -24,7 +24,7 @@ export const CustomsDeclarationContentsTypeEnum = {
  * Type of goods of the shipment.
  *
  * @remarks
- * Allowed values available <a href="#tag/Customs-Declaration-Contents-Type">here</a>
+ * Allowed values available [here](/shippoapi/public-api/customs-declaration-contents-type)
  */
 export type CustomsDeclarationContentsTypeEnum = ClosedEnum<
   typeof CustomsDeclarationContentsTypeEnum

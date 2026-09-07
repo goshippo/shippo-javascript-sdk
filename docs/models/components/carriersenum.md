@@ -14,7 +14,6 @@
 | boxberry | Boxberry|
 | bring | Bring (also used for Posten Norge)|
 | canada_post | Canada Post|
-| cdl | CDL|
 | chronopost | Chronopost|
 | collect_plus | CollectPlus|
 | correios_br | CorreiosBR|
@@ -68,11 +67,11 @@
 ```typescript
 import { CarriersEnum } from "shippo/models/components";
 
-let value: CarriersEnum = "royal_mail_sf";
+let value: CarriersEnum = "rr_donnelley";
 ```
 
 ## Values
 
 ```typescript
-"airterra" | "apc_postal" | "apg" | "aramex" | "asendia_us" | "australia_post" | "axlehire" | "better_trucks" | "borderguru" | "boxberry" | "bring" | "canada_post" | "cdl" | "chronopost" | "collect_plus" | "correios_br" | "correos_espana" | "colissimo" | "deutsche_post" | "dhl_benelux" | "dhl_ecommerce" | "dhl_express" | "dhl_germany_c2c" | "dhl_germany" | "dpd_de" | "dpd_uk" | "estafeta" | "fastway_australia" | "fedex" | "globegistics" | "gls_us" | "gophr" | "gso" | "hermes_germany_b2c" | "hermes_uk" | "hongkong_post" | "lasership" | "lso" | "mondial_relay" | "new_zealand_post" | "nippon_express" | "ontrac" | "parcelforce" | "passport" | "pcf" | "poste_italiane" | "posti" | "purolator" | "royal_mail" | "royal_mail_sf" | "rr_donnelley" | "russian_post" | "skypostal" | "stuart" | "swyft" | "uds" | "ups" | "usps" | "veho"
+"airterra" | "apc_postal" | "apg" | "aramex" | "asendia_us" | "australia_post" | "axlehire" | "better_trucks" | "borderguru" | "boxberry" | "bring" | "canada_post" | "chronopost" | "collect_plus" | "correios_br" | "correos_espana" | "colissimo" | "deutsche_post" | "dhl_benelux" | "dhl_ecommerce" | "dhl_express" | "dhl_germany_c2c" | "dhl_germany" | "dpd_de" | "dpd_uk" | "estafeta" | "fastway_australia" | "fedex" | "globegistics" | "gls_us" | "gophr" | "gso" | "hermes_germany_b2c" | "hermes_uk" | "hongkong_post" | "lasership" | "lso" | "mondial_relay" | "new_zealand_post" | "nippon_express" | "ontrac" | "parcelforce" | "passport" | "pcf" | "poste_italiane" | "posti" | "purolator" | "royal_mail" | "royal_mail_sf" | "rr_donnelley" | "russian_post" | "skypostal" | "stuart" | "swyft" | "uds" | "ups" | "usps" | "veho"
 ```

@@ -28,14 +28,14 @@ export type BatchCreateRequest = {
    *
    * @remarks
    * The servicelevel can be changed on a per-shipment basis by changing the servicelevel_token in the
-   * corresponding BatchShipment object. <a href="#tag/Service-Levels">Servicelevel tokens can be found here.</a>
+   * corresponding BatchShipment object. [Servicelevel tokens can be found here.](/shippoapi/public-api/service-levels)
    */
   defaultServicelevelToken: string;
   /**
-   * Print format of the <a href="https://docs.goshippo.com/docs/shipments/shippinglabelsizes/">label</a>. If empty, will use the default format set from
+   * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from
    *
    * @remarks
-   * <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
+   * [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
    */
   labelFiletype?: LabelFileTypeEnum | undefined;
   /**

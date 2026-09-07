@@ -18,7 +18,7 @@ import {
 } from "./labelfiletypeenum.js";
 
 /**
- * An object containing the following counts:<br>`creation_succeeded`<br>`creation_failed`<br>`purchase_succeeded`<br>`purchase_failed`
+ * An object containing the following counts: `creation_succeeded`, `creation_failed`, `purchase_succeeded`, `purchase_failed`
  */
 export type ObjectResults = {
   creationFailed: number;
@@ -28,13 +28,13 @@ export type ObjectResults = {
 };
 
 /**
- * Batches that are `VALIDATING` are being created and validated<br>
+ * - `VALIDATING`: the batch is being created and validated
  *
  * @remarks
- * `VALID` batches can be purchased<br>
- * `INVALID` batches cannot be purchased, `INVALID` BatchShipments must be removed<br>
- * Batches that are in the `PURCHASING` state are being purchased<br>
- * `PURCHASED` batches are finished purchasing.
+ * - `VALID`: the batch can be purchased
+ * - `INVALID`: the batch cannot be purchased; `INVALID` BatchShipments must be removed
+ * - `PURCHASING`: the batch is being purchased
+ * - `PURCHASED`: the batch is finished purchasing
  */
 export const BatchStatus = {
   Validating: "VALIDATING",
@@ -44,13 +44,13 @@ export const BatchStatus = {
   Purchased: "PURCHASED",
 } as const;
 /**
- * Batches that are `VALIDATING` are being created and validated<br>
+ * - `VALIDATING`: the batch is being created and validated
  *
  * @remarks
- * `VALID` batches can be purchased<br>
- * `INVALID` batches cannot be purchased, `INVALID` BatchShipments must be removed<br>
- * Batches that are in the `PURCHASING` state are being purchased<br>
- * `PURCHASED` batches are finished purchasing.
+ * - `VALID`: the batch can be purchased
+ * - `INVALID`: the batch cannot be purchased; `INVALID` BatchShipments must be removed
+ * - `PURCHASING`: the batch is being purchased
+ * - `PURCHASED`: the batch is finished purchasing
  */
 export type BatchStatus = ClosedEnum<typeof BatchStatus>;
 
@@ -68,14 +68,14 @@ export type Batch = {
    *
    * @remarks
    * The servicelevel can be changed on a per-shipment basis by changing the servicelevel_token in the
-   * corresponding BatchShipment object. <a href="#tag/Service-Levels">Servicelevel tokens can be found here.</a>
+   * corresponding BatchShipment object. [Servicelevel tokens can be found here.](/shippoapi/public-api/service-levels)
    */
   defaultServicelevelToken: string;
   /**
-   * Print format of the <a href="https://docs.goshippo.com/docs/shipments/shippinglabelsizes/">label</a>. If empty, will use the default format set from
+   * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from
    *
    * @remarks
-   * <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
+   * [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
    */
   labelFiletype?: LabelFileTypeEnum | undefined;
   /**
@@ -100,7 +100,7 @@ export type Batch = {
    */
   objectOwner: string;
   /**
-   * An object containing the following counts:<br>`creation_succeeded`<br>`creation_failed`<br>`purchase_succeeded`<br>`purchase_failed`
+   * An object containing the following counts: `creation_succeeded`, `creation_failed`, `purchase_succeeded`, `purchase_failed`
    */
   objectResults: ObjectResults;
   /**
@@ -108,13 +108,13 @@ export type Batch = {
    */
   objectUpdated: string;
   /**
-   * Batches that are `VALIDATING` are being created and validated<br>
+   * - `VALIDATING`: the batch is being created and validated
    *
    * @remarks
-   * `VALID` batches can be purchased<br>
-   * `INVALID` batches cannot be purchased, `INVALID` BatchShipments must be removed<br>
-   * Batches that are in the `PURCHASING` state are being purchased<br>
-   * `PURCHASED` batches are finished purchasing.
+   * - `VALID`: the batch can be purchased
+   * - `INVALID`: the batch cannot be purchased; `INVALID` BatchShipments must be removed
+   * - `PURCHASING`: the batch is being purchased
+   * - `PURCHASED`: the batch is finished purchasing
    */
   status: BatchStatus;
   test?: boolean | undefined;

@@ -8,7 +8,7 @@ import * as components from "../components/index.js";
 
 export type ListTransactionsGlobals = {
   /**
-   * Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.
+   * Optional string used to pick a non-default API version to use. See our [API version](https://docs.goshippo.com/docs/api_concepts/apiversioning/) guide.
    */
   shippoApiVersion?: string | undefined;
 };
@@ -34,6 +34,22 @@ export type ListTransactionsRequest = {
    * The number of results to return per page (max 100)
    */
   results?: number | undefined;
+  /**
+   * Object(s) created greater than a provided date and time.
+   */
+  objectCreatedGt?: string | undefined;
+  /**
+   * Object(s) created greater than or equal to a provided date and time.
+   */
+  objectCreatedGte?: string | undefined;
+  /**
+   * Object(s) created lesser than a provided date and time.
+   */
+  objectCreatedLt?: string | undefined;
+  /**
+   * Object(s) created lesser than or equal to a provided date and time.
+   */
+  objectCreatedLte?: string | undefined;
 };
 
 /** @internal */
@@ -43,6 +59,10 @@ export type ListTransactionsRequest$Outbound = {
   tracking_status?: string | undefined;
   page: number;
   results: number;
+  object_created_gt?: string | undefined;
+  object_created_gte?: string | undefined;
+  object_created_lt?: string | undefined;
+  object_created_lte?: string | undefined;
 };
 
 /** @internal */
@@ -56,11 +76,19 @@ export const ListTransactionsRequest$outboundSchema: z.ZodMiniType<
     trackingStatus: z.optional(components.TrackingStatusEnum$outboundSchema),
     page: z._default(z.int(), 1),
     results: z._default(z.int(), 25),
+    objectCreatedGt: z.optional(z.string()),
+    objectCreatedGte: z.optional(z.string()),
+    objectCreatedLt: z.optional(z.string()),
+    objectCreatedLte: z.optional(z.string()),
   }),
   z.transform((v) => {
     return remap$(v, {
       objectStatus: "object_status",
       trackingStatus: "tracking_status",
+      objectCreatedGt: "object_created_gt",
+      objectCreatedGte: "object_created_gte",
+      objectCreatedLt: "object_created_lt",
+      objectCreatedLte: "object_created_lte",
     });
   }),
 );
