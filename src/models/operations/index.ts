@@ -8,6 +8,7 @@ export * from "./createbatch.js";
 export * from "./createcarrieraccount.js";
 export * from "./createcustomsdeclaration.js";
 export * from "./createcustomsitem.js";
+export * from "./createembeddedauthorization.js";
 export * from "./createliverate.js";
 export * from "./createmanifest.js";
 export * from "./createorder.js";

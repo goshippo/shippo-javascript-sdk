@@ -34,7 +34,7 @@ export class ShippoAccounts extends ClientSDK {
    * Create a Shippo Account
    *
    * @remarks
-   * Creates a new <a href="https://docs.goshippo.com/docs/platformaccounts/platform_using_accounts/">Shippo Managed Account</a>.
+   * Creates a new [Shippo Managed Account](https://docs.goshippo.com/docs/platformaccounts/platform_using_accounts/).
    */
   async create(
     request: components.ShippoAccountUpdateRequest,

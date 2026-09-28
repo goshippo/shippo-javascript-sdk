@@ -2,19 +2,10 @@
 
 ## Overview
 
-An order is a request from a customer to purchase goods from a merchant. 
+An order is a request from a customer to purchase goods from a merchant.
 Use the orders object to load orders from your system to the Shippo dashboard.
-You can use the orders object to create, retrieve, list, and manage orders programmatically. 
+You can use the orders object to create, retrieve, list, and manage orders programmatically.
 You can also retrieve shipping rates, purchase labels, and track shipments for each order.
-<SchemaDefinition schemaRef="#/components/schemas/Order"/>
-
-# Line Item
-<p style="text-align: center; background-color: #F2F3F4;">
-  </br>Line Items, and their corresponding abstract Products and Variants, might be exposed as a separate resource 
-  in the future. Currently it's a nested object within the order resource.</br></br>
-</p>
- A line item is an individual object in an order. For example, if your order contains a t-shirt, shorts, and a jacket, each item is represented by a line item.
-<SchemaDefinition schemaRef="#/components/schemas/LineItem"/>
 
 ### Available Operations
 

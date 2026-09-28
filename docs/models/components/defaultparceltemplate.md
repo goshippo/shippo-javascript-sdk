@@ -1,5 +1,7 @@
 # DefaultParcelTemplate
 
+Default parcel template
+
 ## Example Usage
 
 ```typescript

@@ -44,7 +44,7 @@ export type CustomsItem = {
    * Country of origin of the item. Example: `US` or `DE`.
    *
    * @remarks
-   * All accepted values can be found on the <a href="http://www.iso.org/" target="_blank">Official ISO Website</a>.
+   * All accepted values can be found on the [Official ISO Website](http://www.iso.org/).
    */
   originCountry: string;
   /**
@@ -68,7 +68,7 @@ export type CustomsItem = {
    */
   valueAmount: string;
   /**
-   * Currency used for value_amount. The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a>
+   * Currency used for value_amount. The [official ISO 4217](http://www.xe.com/iso4217.php)
    *
    * @remarks
    * currency codes are used, e.g.  `USD` or `EUR`.

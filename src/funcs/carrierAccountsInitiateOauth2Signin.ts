@@ -5,6 +5,7 @@
 import * as z from "zod/v4-mini";
 import { ShippoCore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -42,8 +43,8 @@ export function carrierAccountsInitiateOauth2Signin(
   Result<
     operations.InitiateOauth2SigninResponse | undefined,
     | errors.InitiateOauth2SigninResponseBody
-    | errors.InitiateOauth2SigninCarrierAccountsResponseBody
     | errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody
+    | errors.InitiateOauth2SigninCarrierAccountsResponseBody
     | ShippoError
     | ResponseValidationError
     | ConnectionError
@@ -74,8 +75,8 @@ async function $do(
     Result<
       operations.InitiateOauth2SigninResponse | undefined,
       | errors.InitiateOauth2SigninResponseBody
-      | errors.InitiateOauth2SigninCarrierAccountsResponseBody
       | errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody
+      | errors.InitiateOauth2SigninCarrierAccountsResponseBody
       | ShippoError
       | ResponseValidationError
       | ConnectionError
@@ -113,7 +114,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/carrier_accounts/{CarrierAccountObjectId}/signin/initiate",
   )(pathParams);
@@ -169,7 +169,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "404", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -185,8 +186,8 @@ async function $do(
   const [result] = await M.match<
     operations.InitiateOauth2SigninResponse | undefined,
     | errors.InitiateOauth2SigninResponseBody
-    | errors.InitiateOauth2SigninCarrierAccountsResponseBody
     | errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody
+    | errors.InitiateOauth2SigninCarrierAccountsResponseBody
     | ShippoError
     | ResponseValidationError
     | ConnectionError
@@ -204,12 +205,12 @@ async function $do(
     M.jsonErr(400, errors.InitiateOauth2SigninResponseBody$inboundSchema),
     M.jsonErr(
       401,
-      errors.InitiateOauth2SigninCarrierAccountsResponseBody$inboundSchema,
+      errors
+        .InitiateOauth2SigninCarrierAccountsResponseResponseBody$inboundSchema,
     ),
     M.jsonErr(
       404,
-      errors
-        .InitiateOauth2SigninCarrierAccountsResponseResponseBody$inboundSchema,
+      errors.InitiateOauth2SigninCarrierAccountsResponseBody$inboundSchema,
     ),
     M.fail("4XX"),
     M.fail("5XX"),
