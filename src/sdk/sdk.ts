@@ -12,6 +12,7 @@ import { CarrierAccounts } from "./carrieraccounts.js";
 import { CarrierParcelTemplates } from "./carrierparceltemplates.js";
 import { CustomsDeclarations } from "./customsdeclarations.js";
 import { CustomsItems } from "./customsitems.js";
+import { EmbeddedAuthorization } from "./embeddedauthorization.js";
 import { Manifests } from "./manifests.js";
 import { Orders } from "./orders.js";
 import { Parcels } from "./parcels.js";
@@ -53,6 +54,13 @@ export class Shippo extends ClientSDK {
   private _customsItems?: CustomsItems;
   get customsItems(): CustomsItems {
     return (this._customsItems ??= new CustomsItems(this._options));
+  }
+
+  private _embeddedAuthorization?: EmbeddedAuthorization;
+  get embeddedAuthorization(): EmbeddedAuthorization {
+    return (this._embeddedAuthorization ??= new EmbeddedAuthorization(
+      this._options,
+    ));
   }
 
   private _ratesAtCheckout?: RatesAtCheckout;

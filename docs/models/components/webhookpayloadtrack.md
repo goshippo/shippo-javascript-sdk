@@ -27,9 +27,11 @@ let value: WebhookPayloadTrack = {
     originalEta: new Date("2021-07-23T00:00:00Z"),
     servicelevel: {
       name: "Priority Mail Express",
+      terms: "ONERATE",
       token: "usps_priority_express",
       parentServicelevel: {
         name: "Priority Mail Express",
+        terms: "ONERATE",
         token: "usps_priority_express",
       },
     },

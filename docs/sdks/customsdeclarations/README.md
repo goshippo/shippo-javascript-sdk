@@ -4,7 +4,6 @@
 
 Customs declarations are relevant information, including one or multiple customs items, you need to provide for 
 customs clearance for your international shipments.
-<SchemaDefinition schemaRef="#/components/schemas/CustomsDeclaration"/>
 
 ### Available Operations
 

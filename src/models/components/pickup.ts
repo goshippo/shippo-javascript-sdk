@@ -29,7 +29,7 @@ export type Pickup = {
    * The object ID of your USPS or DHL Express carrier account.
    *
    * @remarks
-   * You can retrieve this from your Rate requests or our <a href="#tag/Carrier-Accounts/">Carrier Accounts</a> endpoint.
+   * You can retrieve this from your Rate requests or our [Carrier Accounts](/shippoapi/public-api/carrier-accounts) endpoint.
    */
   carrierAccount: string;
   /**

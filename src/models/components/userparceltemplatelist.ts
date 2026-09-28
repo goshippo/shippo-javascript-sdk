@@ -11,6 +11,9 @@ import {
   UserParcelTemplate$inboundSchema,
 } from "./userparceltemplate.js";
 
+/**
+ * List of user parcel templates
+ */
 export type UserParcelTemplateList = {
   results?: Array<UserParcelTemplate> | undefined;
 };

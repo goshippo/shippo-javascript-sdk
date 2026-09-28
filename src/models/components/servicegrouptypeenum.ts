@@ -6,12 +6,13 @@ import * as z from "zod/v4-mini";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
- * The type of the service group.<br>
+ * The type of the service group.
  *
  * @remarks
- * `LIVE_RATE` - Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.<br>
- * `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.<br>
- * `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
+ *
+ * - `LIVE_RATE`: Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.
+ * - `FLAT_RATE`: returns a shipping option with the specified flat rate amount.
+ * - `FREE_SHIPPING`: returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
  */
 export const ServiceGroupTypeEnum = {
   LiveRate: "LIVE_RATE",
@@ -19,12 +20,13 @@ export const ServiceGroupTypeEnum = {
   FreeShipping: "FREE_SHIPPING",
 } as const;
 /**
- * The type of the service group.<br>
+ * The type of the service group.
  *
  * @remarks
- * `LIVE_RATE` - Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.<br>
- * `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.<br>
- * `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
+ *
+ * - `LIVE_RATE`: Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.
+ * - `FLAT_RATE`: returns a shipping option with the specified flat rate amount.
+ * - `FREE_SHIPPING`: returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
  */
 export type ServiceGroupTypeEnum = ClosedEnum<typeof ServiceGroupTypeEnum>;
 
