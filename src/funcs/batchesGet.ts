@@ -5,6 +5,7 @@
 import * as z from "zod/v4-mini";
 import { ShippoCore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -30,10 +31,11 @@ import { Result } from "../types/fp.js";
  * Retrieve a batch
  *
  * @remarks
- * Returns a batch using an object ID. <br> Batch shipments are displayed 100 at a time.  You can iterate
- * through each `page` using the `?page= query` parameter.  You can also filter based on batch shipment
- * status, for example, by passing a query param like `?object_results=creation_failed`. <br>
- * For more details on filtering results, see our guide on <a href="https://docs.goshippo.com/docs/api_concepts/filtering/" target="blank"> filtering</a>.
+ * Returns a batch using an object ID.
+ *
+ * Batch shipments are displayed 100 at a time. You can iterate through each page using the `?page=` query parameter. You can also filter based on batch shipment status, for example, by passing a query param like `?object_results=creation_failed`.
+ *
+ * For more details on filtering results, see our guide on [filtering](https://docs.goshippo.com/docs/api_concepts/filtering/).
  */
 export function batchesGet(
   client: ShippoCore,
@@ -108,7 +110,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/batches/{BatchId}")(pathParams);
 
   const query = encodeFormQuery({
@@ -162,7 +163,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

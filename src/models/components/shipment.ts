@@ -66,19 +66,19 @@ export type Shipment = {
    */
   shipmentDate?: string | undefined;
   /**
-   * <a href="#tag/Addresses">Address</a> object of the sender / seller. Will be returned expanded by default.
+   * [Address](/shippoapi/public-api/addresses) object of the sender / seller. Will be returned expanded by default.
    */
   addressFrom: Address;
   /**
-   * ID of the Address object where the shipment will be sent back to if it is not delivered
+   * ID of the Address object where the shipment will be sent back to if it is not delivered (Only available for UPS, USPS, and Fedex shipments).
    *
    * @remarks
-   * (Only available for UPS, USPS, and Fedex shipments). <br/>
+   *
    * If this field is not set, your shipments will be returned to the address_from.
    */
   addressReturn?: Address | undefined;
   /**
-   * <a href="#tag/Addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
+   * [Address](/shippoapi/public-api/addresses) object of the recipient / buyer. Will be returned expanded by default.
    */
   addressTo: Address;
   /**
@@ -112,7 +112,7 @@ export type Shipment = {
    */
   parcels: Array<Parcel>;
   /**
-   * An array with all available rates. If <code>async</code> has been set to <code>false</code> in the request,
+   * An array with all available rates. If `async` has been set to `false` in the request,
    *
    * @remarks
    * this will be populated with all available rates in the response. Otherwise rates will be created

@@ -3,7 +3,6 @@
 ## Overview
 
 Customs declarations are relevant information, including one or multiple customs items, you need to provide for customs clearance for your international shipments.
-<SchemaDefinition schemaRef="#/components/schemas/CustomsItem"/>
 
 ### Available Operations
 
@@ -101,6 +100,8 @@ const shippo = new Shippo({
 async function run() {
   const result = await shippo.customsItems.create({
     description: "T-Shirt",
+    manufacturerCode: "ACME-TS-001",
+    manufacturerStandardCode: "00012345678905",
     massUnit: "lb",
     metadata: "Order ID \"123454\"",
     netWeight: "5",
@@ -136,6 +137,8 @@ const shippo = new ShippoCore({
 async function run() {
   const res = await customsItemsCreate(shippo, {
     description: "T-Shirt",
+    manufacturerCode: "ACME-TS-001",
+    manufacturerStandardCode: "00012345678905",
     massUnit: "lb",
     metadata: "Order ID \"123454\"",
     netWeight: "5",

@@ -3,7 +3,6 @@
 ## Overview
 
 Addresses are the locations a parcel is being shipped **from** and **to**. They represent company and residential places. Among other things, you can use address objects to create shipments, calculate shipping rates, and purchase shipping labels.
-<SchemaDefinition schemaRef="#/components/schemas/Address"/>
 
 ### Available Operations
 

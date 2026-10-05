@@ -66,9 +66,10 @@ export type CustomsDeclarationDutiesPayor = {
 
 export type CustomsDeclaration = {
   /**
-   * **required if eel_pfc is `AES_ITN`**<br>
+   * **required if eel_pfc is `AES_ITN`**
    *
    * @remarks
+   *
    * AES / ITN reference of the shipment.
    */
   aesItn?: string | undefined;
@@ -76,17 +77,16 @@ export type CustomsDeclaration = {
    * B13A Option details are obtained by filing a B13A Canada Export Declaration via the Canadian Export Reporting System (CERS).
    *
    * @remarks
-   * <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
-   * Allowed values available <a href="#tag/Customs-Declaration-B13A-Filing-Option">here</a>
+   * [More information on reporting commercial exports from Canada.](https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html)
+   * Allowed values available [here](/shippoapi/public-api/customs-declaration-b13a-filing-option)
    */
   b13aFilingOption?: string | undefined;
   /**
-   * **must be provided if and only if b13a_filing_option is provided**<br>
+   * **must be provided if and only if b13a_filing_option is provided**
    *
    * @remarks
-   * Represents:<br> the Proof of Report (POR) Number when b13a_filing_option is `FILED_ELECTRONICALLY`;<br>
-   * the Summary ID Number when b13a_filing_option is `SUMMARY_REPORTING`;<br>
-   * or the Exemption Number when b13a_filing_option is `NOT_REQUIRED`.
+   *
+   * Represents the Proof of Report (POR) Number when b13a_filing_option is `FILED_ELECTRONICALLY`; the Summary ID Number when b13a_filing_option is `SUMMARY_REPORTING`; or the Exemption Number when b13a_filing_option is `NOT_REQUIRED`.
    */
   b13aNumber?: string | undefined;
   /**
@@ -106,14 +106,22 @@ export type CustomsDeclaration = {
   certifySigner: string;
   commercialInvoice?: boolean | undefined;
   /**
-   * **required if contents_type is `OTHER`**<br>
+   * **required if contents_type is `OTHER`**
    *
    * @remarks
+   *
    * Explanation of the type of goods of the shipment.
    */
   contentsExplanation?: string | undefined;
   /**
    * Disclaimer for the shipment and customs information that have been provided.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 554 characters |
    */
   disclaimer?: string | undefined;
   /**
@@ -156,6 +164,15 @@ export type CustomsDeclaration = {
    */
   notes?: string | undefined;
   /**
+   * Indicates the shipment goes to a business (B2B) rather than a consumer. Newly created
+   *
+   * @remarks
+   * declarations default to false when the field is not provided; declarations created before
+   * the field existed return null, which is treated as false. When true, EU product
+   * identifiers are not required on the customs items.
+   */
+  recipientIsBusiness: boolean;
+  /**
    * Object ID of the Importer address.
    */
   addressImporter?: string | undefined;
@@ -163,7 +180,7 @@ export type CustomsDeclaration = {
    * Type of goods of the shipment.
    *
    * @remarks
-   * Allowed values available <a href="#tag/Customs-Declaration-Contents-Type">here</a>
+   * Allowed values available [here](/shippoapi/public-api/customs-declaration-contents-type)
    */
   contentsType: string;
   /**
@@ -171,16 +188,22 @@ export type CustomsDeclaration = {
    *
    * @remarks
    * other shipments from the US, `NOEEI_30_37_a` is applicable.
-   * Allowed values available <a href="#tag/Customs-Declaration-EELPFC">here</a>
+   * Allowed values available [here](/shippoapi/public-api/customs-declaration-eelpfc)
    */
   eelPfc?: string | undefined;
   /**
    * The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only.
    *
    * @remarks
-   * eDAP is available for DPD UK only. DAP is available for DHL Express and DPD UK.
+   * eDAP is available for DPD UK only. DAP is available for DHL Express, FedEx, and DPD UK.
    * If expecting DAP for other carriers, please use DDU.
-   * Allowed values available <a href="#tag/Customs-Declaration-Incoterm">here</a>
+   * Allowed values available [here](/shippoapi/public-api/customs-declaration-incoterm)
+   * Carrier-specific restrictions are in the table below.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Must be one of DDP, DDU, FCA, DAP |
    */
   incoterm?: string | undefined;
   /**
@@ -195,7 +218,7 @@ export type CustomsDeclaration = {
    * Indicates how the carrier should proceed in case the shipment can't be delivered.
    *
    * @remarks
-   * Allowed values available <a href="#tag/Customs-Declaration-Non-Delivery-Option">here</a>
+   * Allowed values available [here](/shippoapi/public-api/customs-declaration-non-delivery-option)
    */
   nonDeliveryOption: string;
   /**
@@ -297,6 +320,7 @@ export const CustomsDeclaration$inboundSchema: z.ZodMiniType<
     license: z.optional(z.string()),
     metadata: z.optional(z.string()),
     notes: z.optional(z.string()),
+    recipient_is_business: z._default(z.boolean(), false),
     address_importer: z.optional(z.string()),
     contents_type: z.string(),
     eel_pfc: z.optional(z.string()),
@@ -328,6 +352,7 @@ export const CustomsDeclaration$inboundSchema: z.ZodMiniType<
       "exporter_reference": "exporterReference",
       "importer_reference": "importerReference",
       "is_vat_collected": "isVatCollected",
+      "recipient_is_business": "recipientIsBusiness",
       "address_importer": "addressImporter",
       "contents_type": "contentsType",
       "eel_pfc": "eelPfc",

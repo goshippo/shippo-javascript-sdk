@@ -37,14 +37,14 @@ export type Rate = {
    * Currency used in the sender's country, refers to `amount`.
    *
    * @remarks
-   * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or `EUR`.
+   * The [official ISO 4217](http://www.xe.com/iso4217.php) currency codes are used, e.g. `USD` or `EUR`.
    */
   currency: string;
   /**
    * Currency used in the recipient's country, refers to `amount_local`.
    *
    * @remarks
-   * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or "EUR".
+   * The [official ISO 4217](http://www.xe.com/iso4217.php) currency codes are used, e.g. `USD` or "EUR".
    */
   currencyLocal: string;
   /**

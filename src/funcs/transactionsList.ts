@@ -5,6 +5,7 @@
 import * as z from "zod/v4-mini";
 import { ShippoCore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -31,6 +32,19 @@ import { Result } from "../types/fp.js";
  *
  * @remarks
  * Returns a list of all transaction objects.
+ *
+ * To filter results by creation date, use the optional query parameters below. Provided dates should be ISO 8601 UTC dates (timezone offsets are currently not supported).
+ *
+ * - `object_created_gt`: object(s) created after the provided date time
+ * - `object_created_gte`: object(s) created at or after the provided date time
+ * - `object_created_lt`: object(s) created before the provided date time
+ * - `object_created_lte`: object(s) created at or before the provided date time
+ *
+ * Provide at most one lower bound (`object_created_gt` or `object_created_gte`) and at most one upper bound (`object_created_lt` or `object_created_lte`) per request. Lower bounds must not be in the future.
+ *
+ * Date format examples: `2017-01-01`, `2017-01-01T03:30:30` (or `2017-01-01T03:30:30.5`), `2017-01-01T03:30:30Z`
+ *
+ * Example URL: `https://api.goshippo.com/transactions/?object_created_gte=2017-01-01T00:00:30&object_created_lt=2017-04-01T00:00:30`
  */
 export function transactionsList(
   client: ShippoCore,
@@ -91,6 +105,10 @@ async function $do(
   const path = pathToFunc("/transactions")();
 
   const query = encodeFormQuery({
+    "object_created_gt": payload.object_created_gt,
+    "object_created_gte": payload.object_created_gte,
+    "object_created_lt": payload.object_created_lt,
+    "object_created_lte": payload.object_created_lte,
     "object_status": payload.object_status,
     "page": payload.page,
     "rate": payload.rate,
@@ -144,7 +162,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

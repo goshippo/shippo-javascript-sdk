@@ -5,6 +5,7 @@
 import * as z from "zod/v4-mini";
 import { ShippoCore } from "../core.js";
 import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -30,7 +31,9 @@ import { Result } from "../types/fp.js";
  * Create a shipping label
  *
  * @remarks
- * Creates a new transaction object and purchases the shipping label using a rate object that has previously been created. <br> OR <br> Creates a new transaction object and purchases the shipping label instantly using shipment details, an existing carrier account, and an existing service level token.
+ * Creates a new transaction object and purchases the shipping label using a rate object that has previously been created.
+ *
+ * Alternatively, creates a new transaction object and purchases the shipping label instantly using shipment details, an existing carrier account, and an existing service level token.
  */
 export function transactionsCreate(
   client: ShippoCore,
@@ -136,7 +139,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
