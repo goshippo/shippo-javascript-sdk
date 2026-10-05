@@ -5,6 +5,7 @@
 import * as z from "zod/v4-mini";
 import { ShippoCore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -30,13 +31,14 @@ import { Result } from "../types/fp.js";
  * List all carrier parcel templates
  *
  * @remarks
- * List all carrier parcel template objects. <br> Use the following query string params to filter the results as needed. <br>
- * <ul>
- * <li>`include=all` (the default). Includes templates from all carriers </li>
- * <li>`include=user`. Includes templates only from carriers which the user has added (whether or not they're currently enabled) </li>
- * <li>`include=enabled`. includes templates only for carriers which the user has added and enabled </li>
- * <li>`carrier=*token*`. filter by specific carrier, e.g. fedex, usps </li>
- * </ul>
+ * List all carrier parcel template objects.
+ *
+ * Use the following query string params to filter the results as needed:
+ *
+ * - `include=all` (the default): includes templates from all carriers
+ * - `include=user`: includes templates only from carriers which the user has added (whether or not they're currently enabled)
+ * - `include=enabled`: includes templates only for carriers which the user has added and enabled
+ * - `carrier=<token>`: filter by specific carrier, e.g. `fedex`, `usps`
  */
 export function carrierParcelTemplatesList(
   client: ShippoCore,
@@ -158,7 +160,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

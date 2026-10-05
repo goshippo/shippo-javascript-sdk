@@ -21,8 +21,8 @@ export class CarrierAccounts extends ClientSDK {
    * @remarks
    * Returns a list of all carrier accounts connected to your Shippo account. These carrier accounts include both Shippo carrier accounts and your own carrier accounts that you have connected to your Shippo account.
    *
-   * Additionally, you can get information about the service levels associated with each carrier account by passing in the `?service_levels=true` query parameter. <br>
-   * Using it appends the property `service_levels` to each carrier account. <br>
+   * Additionally, you can get information about the service levels associated with each carrier account by passing in the `?service_levels=true` query parameter.
+   * Using it appends the property `service_levels` to each carrier account.
    * By default, if the query parameter is omitted, the `service_levels` property will not be included in the response.
    */
   async list(

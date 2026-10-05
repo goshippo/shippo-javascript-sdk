@@ -23,6 +23,9 @@ export const RefundStatus = {
  */
 export type RefundStatus = ClosedEnum<typeof RefundStatus>;
 
+/**
+ * Refund
+ */
 export type Refund = {
   /**
    * Date and time of object creation.

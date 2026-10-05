@@ -21,14 +21,14 @@ export type CoreRate = {
    * Currency used in the sender's country, refers to `amount`.
    *
    * @remarks
-   * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or `EUR`.
+   * The [official ISO 4217](http://www.xe.com/iso4217.php) currency codes are used, e.g. `USD` or `EUR`.
    */
   currency?: string | undefined;
   /**
    * Currency used in the recipient's country, refers to `amount_local`.
    *
    * @remarks
-   * The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or "EUR".
+   * The [official ISO 4217](http://www.xe.com/iso4217.php) currency codes are used, e.g. `USD` or "EUR".
    */
   currencyLocal?: string | undefined;
   /**
@@ -48,15 +48,15 @@ export type CoreRate = {
    *
    * @remarks
    * A service level commonly defines the transit time of a Shipment (e.g., Express vs. Standard),
-   * along with other properties.  These names vary depending on the provider.<br>
-   * See <a href="#tag/Service-Levels">Service Levels</a>.
+   * along with other properties.  These names vary depending on the provider.
+   * See [Service Levels](/shippoapi/public-api/service-levels).
    */
   servicelevelName?: string | undefined;
   /**
    * Token of the Rate's servicelevel, e.g. `usps_priority` or `fedex_ground`.
    *
    * @remarks
-   * See <a href="#tag/Service-Levels">servicelevels</a>.
+   * See [servicelevels](/shippoapi/public-api/service-levels).
    */
   servicelevelToken?: string | undefined;
 };

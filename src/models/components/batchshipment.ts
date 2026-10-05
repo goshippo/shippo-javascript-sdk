@@ -10,12 +10,12 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * `INVALID` batch shipments cannot be purchased and will have to be removed, fixed, and added to the batch again.<br>
+ * - `INVALID`: the batch shipment cannot be purchased and will have to be removed, fixed, and added to the batch again
  *
  * @remarks
- * `VALID` batch shipments can be purchased. <br>
- * Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field<br>
- * `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
+ * - `VALID`: the batch shipment can be purchased
+ * - `TRANSACTION_FAILED`: the batch shipment was not able to be purchased and the error will be displayed on the message field
+ * - `INCOMPLETE`: the batch shipment has an issue with the Address and will need to be removed, fixed, and added to the batch again
  */
 export const Status = {
   Invalid: "INVALID",
@@ -24,15 +24,24 @@ export const Status = {
   TransactionFailed: "TRANSACTION_FAILED",
 } as const;
 /**
- * `INVALID` batch shipments cannot be purchased and will have to be removed, fixed, and added to the batch again.<br>
+ * - `INVALID`: the batch shipment cannot be purchased and will have to be removed, fixed, and added to the batch again
  *
  * @remarks
- * `VALID` batch shipments can be purchased. <br>
- * Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field<br>
- * `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
+ * - `VALID`: the batch shipment can be purchased
+ * - `TRANSACTION_FAILED`: the batch shipment was not able to be purchased and the error will be displayed on the message field
+ * - `INCOMPLETE`: the batch shipment has an issue with the Address and will need to be removed, fixed, and added to the batch again
  */
 export type Status = ClosedEnum<typeof Status>;
 
+/**
+ * The batch shipment object is a wrapper around a shipment object, which include shipment-specific information
+ *
+ * @remarks
+ * for batch processing.
+ *
+ * Note: batch shipments can only be created on the batch endpoint, either when creating a batch object or by through
+ * the `/batches/{BATCH_OBJECT_ID}/add_shipments` endpoint
+ */
 export type BatchShipment = {
   /**
    * Object ID of the carrier account to be used for this shipment (will override batch default)
@@ -49,8 +58,8 @@ export type BatchShipment = {
    * A token that sets the shipping method for the batch, overriding the batch default.
    *
    * @remarks
-   * Servicelevel tokens can be found <a href="#tag/Service-Levels">in this list</a>
-   * or <a href="#operation/ListCarrierAccounts">at this endpoint</a>.
+   * Servicelevel tokens can be found [in this list](/shippoapi/public-api/service-levels)
+   * or [at this endpoint](/shippoapi/public-api/carrier-accounts/listcarrieraccounts).
    */
   servicelevelToken?: string | undefined;
   /**
@@ -66,12 +75,12 @@ export type BatchShipment = {
    */
   shipment: string;
   /**
-   * `INVALID` batch shipments cannot be purchased and will have to be removed, fixed, and added to the batch again.<br>
+   * - `INVALID`: the batch shipment cannot be purchased and will have to be removed, fixed, and added to the batch again
    *
    * @remarks
-   * `VALID` batch shipments can be purchased. <br>
-   * Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field<br>
-   * `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
+   * - `VALID`: the batch shipment can be purchased
+   * - `TRANSACTION_FAILED`: the batch shipment was not able to be purchased and the error will be displayed on the message field
+   * - `INCOMPLETE`: the batch shipment has an issue with the Address and will need to be removed, fixed, and added to the batch again
    */
   status: Status;
   /**
