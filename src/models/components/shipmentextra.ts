@@ -109,7 +109,7 @@ export const AncillaryEndorsement = {
 export type AncillaryEndorsement = ClosedEnum<typeof AncillaryEndorsement>;
 
 /**
- * Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
+ * Dangerous Goods Code (DHL eCommerce only). See [Category Codes](https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods)
  */
 export const DangerousGoodsCode = {
   One: "01",
@@ -123,7 +123,7 @@ export const DangerousGoodsCode = {
   Nine: "09",
 } as const;
 /**
- * Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
+ * Dangerous Goods Code (DHL eCommerce only). See [Category Codes](https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods)
  */
 export type DangerousGoodsCode = ClosedEnum<typeof DangerousGoodsCode>;
 
@@ -245,11 +245,11 @@ export type ShipmentExtra = {
    *
    * @remarks
    * are provided, only certain USPS service levels will be eligible. For more information, see our
-   * <a href="https://docs.goshippo.com/docs/shipments/hazmat/">guide on hazardous or dangerous materials shipping</a>.
+   * [guide on hazardous or dangerous materials shipping](https://docs.goshippo.com/docs/shipments/hazmat/).
    */
   dangerousGoods?: DangerousGoodsObject | undefined;
   /**
-   * Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
+   * Dangerous Goods Code (DHL eCommerce only). See [Category Codes](https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods)
    */
   dangerousGoodsCode?: DangerousGoodsCode | undefined;
   dealerOrderNumber?: UPSReferenceFields | undefined;
@@ -271,11 +271,13 @@ export type ShipmentExtra = {
    */
   fulfillmentCenter?: string | undefined;
   /**
-   * To add 3rd party insurance powered by <a href="https://docs.goshippo.com/docs/shipments/shippinginsurance/">XCover</a>,
+   * To add 3rd party insurance powered by [XCover](https://docs.goshippo.com/docs/shipments/shippinginsurance/),
    *
    * @remarks
-   * specify <br> `amount`, `content`, and `currency`. <br> Alternatively, you can choose carrier provided insurance
-   * by additionally specifying `provider` (UPS, FedEx and OnTrac only). <br><br> If you do not want to add insurance
+   * specify `amount`, `content`, and `currency`. Alternatively, you can choose carrier provided insurance
+   * by additionally specifying `provider` (UPS, FedEx and OnTrac only).
+   *
+   * If you do not want to add insurance
    * to your shipment, do not set these parameters.
    */
   insurance?: Insurance | undefined;
@@ -284,7 +286,7 @@ export type ShipmentExtra = {
    */
   invoiceNumber?: InvoiceNumber | undefined;
   /**
-   * This field specifies if it is a scan-based return shipment. See the <a href="https://docs.goshippo.com/docs/shipments/returns/">Create a return shipment</a> section for more details.
+   * This field specifies if it is a scan-based return shipment. See the [Create a return shipment](https://docs.goshippo.com/docs/shipments/returns/) section for more details.
    */
   isReturn?: boolean | undefined;
   /**
@@ -318,10 +320,24 @@ export type ShipmentExtra = {
   qrCodeRequested?: boolean | undefined;
   /**
    * Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 40 characters (Express services); Max 30 characters (Ground services) |
    */
   reference1?: string | undefined;
   /**
    * Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters. For DHL eCommerce, this field can be used for billing reference.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 30 characters |
    */
   reference2?: string | undefined;
   /**

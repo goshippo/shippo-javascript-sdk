@@ -88,20 +88,20 @@ export type DutiesPayor = {
 
 export type CustomsDeclarationCreateRequest = {
   /**
-   * **required if eel_pfc is `AES_ITN`**<br>
+   * **required if eel_pfc is `AES_ITN`**
    *
    * @remarks
+   *
    * AES / ITN reference of the shipment.
    */
   aesItn?: string | undefined;
   b13aFilingOption?: CustomsDeclarationB13AFilingOptionEnum | undefined;
   /**
-   * **must be provided if and only if b13a_filing_option is provided**<br>
+   * **must be provided if and only if b13a_filing_option is provided**
    *
    * @remarks
-   * Represents:<br> the Proof of Report (POR) Number when b13a_filing_option is `FILED_ELECTRONICALLY`;<br>
-   * the Summary ID Number when b13a_filing_option is `SUMMARY_REPORTING`;<br>
-   * or the Exemption Number when b13a_filing_option is `NOT_REQUIRED`.
+   *
+   * Represents the Proof of Report (POR) Number when b13a_filing_option is `FILED_ELECTRONICALLY`; the Summary ID Number when b13a_filing_option is `SUMMARY_REPORTING`; or the Exemption Number when b13a_filing_option is `NOT_REQUIRED`.
    */
   b13aNumber?: string | undefined;
   /**
@@ -121,14 +121,22 @@ export type CustomsDeclarationCreateRequest = {
   certifySigner: string;
   commercialInvoice?: boolean | undefined;
   /**
-   * **required if contents_type is `OTHER`**<br>
+   * **required if contents_type is `OTHER`**
    *
    * @remarks
+   *
    * Explanation of the type of goods of the shipment.
    */
   contentsExplanation?: string | undefined;
   /**
    * Disclaimer for the shipment and customs information that have been provided.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | FedEx | Max 554 characters |
    */
   disclaimer?: string | undefined;
   /**
@@ -170,6 +178,15 @@ export type CustomsDeclarationCreateRequest = {
    * Additional notes to be included in the customs declaration.
    */
   notes?: string | undefined;
+  /**
+   * Indicates the shipment goes to a business (B2B) rather than a consumer. Newly created
+   *
+   * @remarks
+   * declarations default to false when the field is not provided; declarations created before
+   * the field existed return null, which is treated as false. When true, EU product
+   * identifiers are not required on the customs items.
+   */
+  recipientIsBusiness?: boolean | undefined;
   /**
    * Object that represents the address of the importer
    */
@@ -259,6 +276,7 @@ export type CustomsDeclarationCreateRequest$Outbound = {
   license?: string | undefined;
   metadata?: string | undefined;
   notes?: string | undefined;
+  recipient_is_business: boolean;
   address_importer?: AddressImporter$Outbound | undefined;
   contents_type: string;
   eel_pfc?: string | undefined;
@@ -296,6 +314,7 @@ export const CustomsDeclarationCreateRequest$outboundSchema: z.ZodMiniType<
     license: z.optional(z.string()),
     metadata: z.optional(z.string()),
     notes: z.optional(z.string()),
+    recipientIsBusiness: z._default(z.boolean(), false),
     addressImporter: z.optional(AddressImporter$outboundSchema),
     contentsType: CustomsDeclarationContentsTypeEnum$outboundSchema,
     eelPfc: z.optional(CustomsDeclarationEelPfcEnum$outboundSchema),
@@ -317,6 +336,7 @@ export const CustomsDeclarationCreateRequest$outboundSchema: z.ZodMiniType<
       exporterReference: "exporter_reference",
       importerReference: "importer_reference",
       isVatCollected: "is_vat_collected",
+      recipientIsBusiness: "recipient_is_business",
       addressImporter: "address_importer",
       contentsType: "contents_type",
       eelPfc: "eel_pfc",

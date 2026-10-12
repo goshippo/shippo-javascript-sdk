@@ -37,9 +37,11 @@ let value: RatePaginatedList = {
       providerImage200: "https://cdn2.goshippo.com/providers/200/USPS.png",
       servicelevel: {
         name: "Priority Mail Express",
+        terms: "ONERATE",
         token: "usps_priority_express",
         parentServicelevel: {
           name: "Priority Mail Express",
+          terms: "ONERATE",
           token: "usps_priority_express",
         },
       },

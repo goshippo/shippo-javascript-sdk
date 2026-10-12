@@ -1,5 +1,7 @@
 # WebhookPayload
 
+The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.
+
 
 ## Supported Types
 
@@ -26,9 +28,11 @@ const value: components.WebhookPayloadTrack = {
     originalEta: new Date("2021-07-23T00:00:00Z"),
     servicelevel: {
       name: "Priority Mail Express",
+      terms: "ONERATE",
       token: "usps_priority_express",
       parentServicelevel: {
         name: "Priority Mail Express",
+        terms: "ONERATE",
         token: "usps_priority_express",
       },
     },

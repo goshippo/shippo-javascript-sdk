@@ -11,7 +11,7 @@ import {
 
 export type LineItemBase = {
   /**
-   * Currency of the <code>total_price</code> amount.
+   * Currency of the `total_price` amount.
    */
   currency?: string | undefined;
   /**
@@ -62,7 +62,7 @@ export type LineItemBase = {
    * Total weight of this/these item(s). Instead of specifying the weight of all items,
    *
    * @remarks
-   * you can also set the <code>total_weight</code> value of the order object.
+   * you can also set the `total_weight` value of the order object.
    */
   weight?: string | undefined;
   /**

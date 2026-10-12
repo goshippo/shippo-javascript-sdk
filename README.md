@@ -142,6 +142,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`customsItemsCreate`](docs/sdks/customsitems/README.md#create) - Create a new customs item
 - [`customsItemsGet`](docs/sdks/customsitems/README.md#get) - Retrieve a customs item
 - [`customsItemsList`](docs/sdks/customsitems/README.md#list) - List all customs items
+- [`embeddedAuthorizationCreate`](docs/sdks/embeddedauthorization/README.md#create) - Create a JWT
 - [`manifestsCreate`](docs/sdks/manifests/README.md#create) - Create a new manifest
 - [`manifestsGet`](docs/sdks/manifests/README.md#get) - Retrieve a manifest
 - [`manifestsList`](docs/sdks/manifests/README.md#list) - List all manifests
@@ -207,7 +208,7 @@ const shippo = new Shippo({
 });
 
 async function run() {
-  const result = await shippo.addresses.list({
+  const result = await shippo.addresses.list(undefined, undefined, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -270,19 +271,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { Shippo } from "shippo";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "shippo/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {
@@ -375,6 +380,10 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [list](docs/sdks/customsitems/README.md#list) - List all customs items
 * [create](docs/sdks/customsitems/README.md#create) - Create a new customs item
 * [get](docs/sdks/customsitems/README.md#get) - Retrieve a customs item
+
+### [EmbeddedAuthorization](docs/sdks/embeddedauthorization/README.md)
+
+* [create](docs/sdks/embeddedauthorization/README.md#create) - Create a JWT
 
 ### [Manifests](docs/sdks/manifests/README.md)
 

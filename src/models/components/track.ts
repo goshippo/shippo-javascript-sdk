@@ -26,6 +26,9 @@ import {
   TrackingStatusLocationBase$outboundSchema,
 } from "./trackingstatuslocationbase.js";
 
+/**
+ * Tracking status
+ */
 export type Track = {
   /**
    * The sender address with city, state, zip and country information.
@@ -36,7 +39,7 @@ export type Track = {
    */
   addressTo?: TrackingStatusLocationBase | undefined;
   /**
-   * Name of the carrier of the shipment to track. See <a href="#tag/Carriers">Carriers</a>.
+   * Name of the carrier of the shipment to track. See [Carriers](/shippoapi/public-api/carriers).
    */
   carrier: string;
   /**
@@ -54,7 +57,7 @@ export type Track = {
   originalEta?: Date | undefined;
   servicelevel?: ServiceLevelWithParent | undefined;
   /**
-   * A list of tracking events, following the same structure as <code>tracking_status</code>.
+   * A list of tracking events, following the same structure as `tracking_status`.
    *
    * @remarks
    * It contains a full history of all tracking statuses, starting with the earlier tracking event first.
@@ -69,7 +72,7 @@ export type Track = {
    */
   trackingStatus?: TrackingStatus | undefined;
   /**
-   * The <code>object_id</code> of the transaction associated with this tracking object.
+   * The `object_id` of the transaction associated with this tracking object.
    *
    * @remarks
    * This field is visible only to the object owner of the transaction.

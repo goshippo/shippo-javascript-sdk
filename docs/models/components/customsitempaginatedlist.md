@@ -11,6 +11,8 @@ let value: CustomsItemPaginatedList = {
   results: [
     {
       description: "T-Shirt",
+      manufacturerCode: "ACME-TS-001",
+      manufacturerStandardCode: "00012345678905",
       massUnit: "lb",
       metadata: "Order ID \"123454\"",
       netWeight: "5",

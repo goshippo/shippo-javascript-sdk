@@ -66,12 +66,6 @@ const value: components.ServiceLevelBetterTrucksEnum = "better_trucks_same_day";
 const value: components.ServiceLevelCanadaPostEnum = "canada_post_xpresspost";
 ```
 
-### `components.ServiceLevelCDLEnum`
-
-```typescript
-const value: components.ServiceLevelCDLEnum = "cdl_next_day";
-```
-
 ### `components.ServiceLevelChronopostEnum`
 
 ```typescript

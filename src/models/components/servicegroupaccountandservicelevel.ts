@@ -14,10 +14,10 @@ export type ServiceGroupAccountAndServiceLevel = {
    */
   accountObjectId?: string | undefined;
   /**
-   * Service level token, e.g. `usps_priority` or `fedex_ground`.<br>
+   * Service level token, e.g. `usps_priority` or `fedex_ground`.
    *
    * @remarks
-   * See <a href="#tag/Service-Levels">Service Levels</a>.
+   * See [Service Levels](/shippoapi/public-api/service-levels).
    */
   serviceLevelToken?: string | undefined;
 };

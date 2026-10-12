@@ -8,6 +8,9 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Carrier account registration status
+ */
 export type CarrierAccountRegistrationStatus = {
   carrierAccount?: string | undefined;
   objectCreated?: Date | undefined;

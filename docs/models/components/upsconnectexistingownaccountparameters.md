@@ -1,7 +1,7 @@
 # UPSConnectExistingOwnAccountParameters
 
 An array of additional parameters for the account, such as e.g. password or token.
-Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for the parameters per carrier.<br> 
+Please check the [carrier accounts tutorial](https://docs.goshippo.com/docs/carriers/carrieraccounts/) page for the parameters per carrier.
 To protect account information, this field will be masked in any API response.
 In the case of masked fields, they should be handled carefully.
 

@@ -5,6 +5,7 @@
 import * as z from "zod/v4-mini";
 import { ShippoCore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -32,8 +33,8 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Returns a list of all carrier accounts connected to your Shippo account. These carrier accounts include both Shippo carrier accounts and your own carrier accounts that you have connected to your Shippo account.
  *
- * Additionally, you can get information about the service levels associated with each carrier account by passing in the `?service_levels=true` query parameter. <br>
- * Using it appends the property `service_levels` to each carrier account. <br>
+ * Additionally, you can get information about the service levels associated with each carrier account by passing in the `?service_levels=true` query parameter.
+ * Using it appends the property `service_levels` to each carrier account.
  * By default, if the query parameter is omitted, the `service_levels` property will not be included in the response.
  */
 export function carrierAccountsList(
@@ -148,7 +149,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

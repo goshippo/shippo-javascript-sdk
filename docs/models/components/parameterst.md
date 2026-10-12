@@ -25,6 +25,11 @@ const value: components.FedExConnectExistingOwnAccountParameters = {
   fromAddressState: "<value>",
   fromAddressZip: "<value>",
   fromAddressCountryIso2: "<value>",
+  useMultiFactorRegistration: true,
+  verificationOption: "EMAIL",
+  verificationInvoiceAmount: new Decimal("340"),
+  verificationInvoiceDate: new RFCDate("2024-03-09"),
+  verificationInvoiceCurrency: "USD",
 };
 ```
 
