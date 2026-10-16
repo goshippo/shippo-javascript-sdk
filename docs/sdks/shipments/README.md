@@ -3,11 +3,6 @@
 ## Overview
 
 A shipment is the act of transporting goods. A shipment object contains **to** and **from** addresses, and the parcel details that you are shipping. You can use the shipment object to retrieve shipping rates and purchase a shipping label.
-<SchemaDefinition schemaRef="#/components/schemas/Shipment"/>
- 
-# Shipment Extras
-The following values are supported for the `extra` field of the shipment object.
-<SchemaDefinition schemaRef="#/components/schemas/ShipmentExtra"/>
 
 ### Available Operations
 
@@ -17,24 +12,20 @@ The following values are supported for the `extra` field of the shipment object.
 
 ## list
 
-Returns a list of all shipment objects.<br><br>
-In order to filter results, you must use the below path parameters. 
-A maximum date range of 90 days is permitted. 
-Provided dates should be ISO 8601 UTC dates (timezone offsets are currently not supported).<br><br>
+Returns a list of all shipment objects.
 
-Optional path parameters:<br>
-  `object_created_gt`- object(s) created greater than a provided date time<br>
-  `object_created_gte` - object(s) created greater than or equal to a provided date time<br>
-  `object_created_lt` - object(s) created less than a provided date time<br>
-  `object_created_lte` - object(s) created less than or equal to a provided date time<br>
+To filter results, use the optional query parameters below. Provided dates should be ISO 8601 UTC dates (timezone offsets are currently not supported).
 
-  Date format examples:<br>
-    `2017-01-01`<br>
-    `2017-01-01T03:30:30` or `2017-01-01T03:30:30.5`<br>
-    `2017-01-01T03:30:30Z`<br><br>
+- `object_created_gt`: object(s) created after the provided date time
+- `object_created_gte`: object(s) created at or after the provided date time
+- `object_created_lt`: object(s) created before the provided date time
+- `object_created_lte`: object(s) created at or before the provided date time
 
-  Example URL:<br>
-    `https://api.goshippo.com/shipments/?object_created_gte=2017-01-01T00:00:30&object_created_lt=2017-04-01T00:00:30`
+Date format examples: `2017-01-01`, `2017-01-01T03:30:30` (or `2017-01-01T03:30:30.5`), `2017-01-01T03:30:30Z`
+
+Example URL: `https://api.goshippo.com/shipments/?object_created_gte=2017-01-01T00:00:30&object_created_lt=2017-04-01T00:00:30`
+
+Note: Shipment objects older than 390 days are not returned.
 
 ### Example Usage
 
@@ -406,7 +397,7 @@ run();
 
 ## get
 
-Returns an existing shipment using an object ID
+Returns an existing shipment using an object ID. Shipment objects older than 390 days are not returned.
 
 ### Example Usage
 

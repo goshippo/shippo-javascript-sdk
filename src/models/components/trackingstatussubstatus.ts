@@ -13,11 +13,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export type TrackingStatusSubstatus = {
   /**
-   * A code that represents the substatus of the shipment. See the <a href="https://docs.goshippo.com/docs/tracking/tracking/#event-definitions">Event Definitions</a> for more information.
+   * A code that represents the substatus of the shipment. See the [Event Definitions](https://docs.goshippo.com/docs/tracking/tracking/#event-definitions) for more information.
    */
   code: string;
   /**
-   * A human-readable description of the substatus. See the <a href="https://docs.goshippo.com/docs/tracking/tracking/#event-definitions">Event Definitions</a> for more information.
+   * A human-readable description of the substatus. See the [Event Definitions](https://docs.goshippo.com/docs/tracking/tracking/#event-definitions) for more information.
    */
   text: string;
   /**

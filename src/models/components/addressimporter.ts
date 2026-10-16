@@ -44,9 +44,10 @@ export type AddressImporter = {
    */
   city?: string | undefined;
   /**
-   * **required for purchase for some countries**<br>
+   * **required for purchase for some countries**
    *
    * @remarks
+   *
    * State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some
    * countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers
    * only accept two or three character state abbreviations.
@@ -60,7 +61,7 @@ export type AddressImporter = {
    * Example: `US` or `DE`. All accepted values can be found on the
    *
    * @remarks
-   * <a href="http://www.iso.org/" target="blank">Official ISO Website</a>.
+   * [Official ISO Website](http://www.iso.org/).
    * Sending a country is always required.
    */
   country?: string | undefined;

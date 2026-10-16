@@ -47,11 +47,6 @@ import {
   ServiceLevelCanadaPostEnum$outboundSchema,
 } from "./servicelevelcanadapostenum.js";
 import {
-  ServiceLevelCDLEnum,
-  ServiceLevelCDLEnum$inboundSchema,
-  ServiceLevelCDLEnum$outboundSchema,
-} from "./servicelevelcdlenum.js";
-import {
   ServiceLevelChronopostEnum,
   ServiceLevelChronopostEnum$inboundSchema,
   ServiceLevelChronopostEnum$outboundSchema,
@@ -208,7 +203,6 @@ export type ServiceLevelEnumSet =
   | ServiceLevelAPGEnum
   | ServiceLevelBetterTrucksEnum
   | ServiceLevelCanadaPostEnum
-  | ServiceLevelCDLEnum
   | ServiceLevelChronopostEnum
   | ServiceLevelCorreosEspanaEnum
   | ServiceLevelColissimoEnum
@@ -252,7 +246,6 @@ export const ServiceLevelEnumSet$inboundSchema: z.ZodMiniType<
   ServiceLevelAPGEnum$inboundSchema,
   ServiceLevelBetterTrucksEnum$inboundSchema,
   ServiceLevelCanadaPostEnum$inboundSchema,
-  ServiceLevelCDLEnum$inboundSchema,
   ServiceLevelChronopostEnum$inboundSchema,
   ServiceLevelCorreosEspanaEnum$inboundSchema,
   ServiceLevelColissimoEnum$inboundSchema,
@@ -319,7 +312,6 @@ export type ServiceLevelEnumSet$Outbound =
   | string
   | string
   | string
-  | string
   | string;
 
 /** @internal */
@@ -337,7 +329,6 @@ export const ServiceLevelEnumSet$outboundSchema: z.ZodMiniType<
   ServiceLevelAPGEnum$outboundSchema,
   ServiceLevelBetterTrucksEnum$outboundSchema,
   ServiceLevelCanadaPostEnum$outboundSchema,
-  ServiceLevelCDLEnum$outboundSchema,
   ServiceLevelChronopostEnum$outboundSchema,
   ServiceLevelCorreosEspanaEnum$outboundSchema,
   ServiceLevelColissimoEnum$outboundSchema,

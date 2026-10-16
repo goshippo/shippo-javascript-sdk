@@ -23,7 +23,7 @@ export type CustomsExporterIdentification = {
    *
    * @remarks
    * country code followed by a 6-17 character alphanumeric identifier (e.g. PL1234567890ABCDE).
-   * <a href="https://ec.europa.eu/taxation_customs/business/customs-procedures/general-overview/economic-operators-registration-identification-number-eori_en">More information on EORI.</a>
+   * [More information on EORI.](https://ec.europa.eu/taxation_customs/business/customs-procedures/general-overview/economic-operators-registration-identification-number-eori_en)
    */
   eoriNumber?: string | undefined;
   /**

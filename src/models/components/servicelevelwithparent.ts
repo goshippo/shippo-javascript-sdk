@@ -27,14 +27,19 @@ export type ServiceLevelWithParent = {
    */
   name?: string | undefined;
   /**
-   * Further clarification of the service.
+   * Further clarification of the service. For FedEx, a value of `ONERATE` indicates this
+   *
+   * @remarks
+   * rate is a FedEx One Rate variant of the same service level — it shares the same
+   * `token` as the standard-rate object but is a separate rate with its own `amount`.
+   * Standard (non-One Rate) rates have an empty string here.
    */
   terms?: string | undefined;
   /**
    * Token of the Rate's servicelevel, e.g. `usps_priority` or `fedex_ground`.
    *
    * @remarks
-   * See <a href="#tag/Service-Levels">servicelevels</a>.
+   * See [servicelevels](/shippoapi/public-api/service-levels).
    */
   token?: string | undefined;
   /**

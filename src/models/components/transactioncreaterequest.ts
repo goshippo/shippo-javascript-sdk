@@ -12,10 +12,10 @@ import {
 export type TransactionCreateRequest = {
   async?: boolean | undefined;
   /**
-   * Print format of the <a href="https://docs.goshippo.com/docs/shipments/shippinglabelsizes/">label</a>. If empty, will use the default format set from
+   * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from
    *
    * @remarks
-   * <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
+   * [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
    */
   labelFileType?: LabelFileTypeEnum | undefined;
   metadata?: string | undefined;

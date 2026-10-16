@@ -19,6 +19,30 @@ export type CustomsItemCreateRequest = {
    */
   eccnEar99?: string | undefined;
   /**
+   * Marks the item as belonging to an EU-exempt product category. Exempt items do not need
+   *
+   * @remarks
+   * product identifiers on shipments that meet the EU product identifier conditions
+   * (EU destination, non-EU origin, MERCHANDISE contents, recipient not a business).
+   */
+  euExemptCategory?: boolean | undefined;
+  /**
+   * Product identifier assigned by the manufacturer. Up to 100 characters; some carriers
+   *
+   * @remarks
+   * accept fewer and reject longer values at label purchase. Required together with
+   * `sku_code` on every non-exempt item when the shipment meets the EU product
+   * identifier conditions.
+   */
+  manufacturerCode?: string | undefined;
+  /**
+   * Standardized product identifier such as a GTIN. Up to 100 characters. Never required,
+   *
+   * @remarks
+   * but recommended for EU-bound shipments when one exists.
+   */
+  manufacturerStandardCode?: string | undefined;
+  /**
    * The unit used for weight.
    */
   massUnit: WeightUnitEnum;
@@ -37,7 +61,7 @@ export type CustomsItemCreateRequest = {
    * Country of origin of the item. Example: `US` or `DE`.
    *
    * @remarks
-   * All accepted values can be found on the <a href="http://www.iso.org/" target="_blank">Official ISO Website</a>.
+   * All accepted values can be found on the [Official ISO Website](http://www.iso.org/).
    */
   originCountry: string;
   /**
@@ -45,7 +69,12 @@ export type CustomsItemCreateRequest = {
    */
   quantity: number;
   /**
-   * SKU code of the item, which is required by some carriers.
+   * SKU or merchant-assigned product code of the item. Up to 100 characters; some carriers
+   *
+   * @remarks
+   * accept fewer and reject longer values at label purchase. Required together with
+   * `manufacturer_code` on every non-exempt item when the shipment meets the EU product
+   * identifier conditions; some carriers also use it outside the EU.
    */
   skuCode?: string | undefined;
   /**
@@ -61,7 +90,7 @@ export type CustomsItemCreateRequest = {
    */
   valueAmount: string;
   /**
-   * Currency used for value_amount. The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a>
+   * Currency used for value_amount. The [official ISO 4217](http://www.xe.com/iso4217.php)
    *
    * @remarks
    * currency codes are used, e.g.  `USD` or `EUR`.
@@ -73,6 +102,9 @@ export type CustomsItemCreateRequest = {
 export type CustomsItemCreateRequest$Outbound = {
   description: string;
   eccn_ear99?: string | undefined;
+  eu_exempt_category: boolean;
+  manufacturer_code?: string | undefined;
+  manufacturer_standard_code?: string | undefined;
   mass_unit: string;
   metadata?: string | undefined;
   net_weight: string;
@@ -93,6 +125,9 @@ export const CustomsItemCreateRequest$outboundSchema: z.ZodMiniType<
   z.object({
     description: z.string(),
     eccnEar99: z.optional(z.string()),
+    euExemptCategory: z._default(z.boolean(), false),
+    manufacturerCode: z.optional(z.string()),
+    manufacturerStandardCode: z.optional(z.string()),
     massUnit: WeightUnitEnum$outboundSchema,
     metadata: z.optional(z.string()),
     netWeight: z.string(),
@@ -107,6 +142,9 @@ export const CustomsItemCreateRequest$outboundSchema: z.ZodMiniType<
   z.transform((v) => {
     return remap$(v, {
       eccnEar99: "eccn_ear99",
+      euExemptCategory: "eu_exempt_category",
+      manufacturerCode: "manufacturer_code",
+      manufacturerStandardCode: "manufacturer_standard_code",
       massUnit: "mass_unit",
       netWeight: "net_weight",
       originCountry: "origin_country",

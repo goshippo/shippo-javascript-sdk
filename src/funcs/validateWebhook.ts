@@ -25,13 +25,12 @@ export async function validateWebhook(_client: ShippoCore, {
   >
 > {
   const request = normalizeRequest(rawRequest);
+  const jsonString = await request.text();
   const knownSchemas = [
     components.webhookPayloadBatchFromJSON,
     components.webhookPayloadTrackFromJSON,
     components.webhookPayloadTransactionFromJSON,
   ];
-
-  const jsonString = await request.text();
 
   for (const schema of knownSchemas) {
     const ret = schema(jsonString);

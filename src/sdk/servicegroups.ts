@@ -50,7 +50,7 @@ export class ServiceGroups extends ClientSDK {
    * Update an existing service group
    *
    * @remarks
-   * Updates an existing service group object. <br>The object_id cannot be updated as it is the unique identifier for the object.
+   * Updates an existing service group object. The object_id cannot be updated as it is the unique identifier for the object.
    */
   async update(
     request?: components.ServiceGroupUpdateRequest | undefined,
