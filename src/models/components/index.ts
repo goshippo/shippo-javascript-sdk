@@ -77,6 +77,7 @@ export * from "./dryice.js";
 export * from "./embeddedauthorization.js";
 export * from "./embeddedauthorizationrequest.js";
 export * from "./fedexconnectexistingownaccountparameters.js";
+export * from "./healthcarehandling.js";
 export * from "./instanttransactioncreaterequest.js";
 export * from "./insurance.js";
 export * from "./invoicenumber.js";

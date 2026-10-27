@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 4f7e8ab5-4c00-496a-9710-e7c707e4ee78
 management:
-  docChecksum: 5d62f969066e4f322a951b765a695fa7
+  docChecksum: 0fd9342093a376346ad9896937287d27
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.802.0
-  generationVersion: 2.948.4
-  releaseVersion: 2.19.0
-  configChecksum: 76760a9a6dbaa3ef52f68047c0c70a1c
+  speakeasyVersion: 1.803.2
+  generationVersion: 2.950.13
+  releaseVersion: 2.19.1
+  configChecksum: 5a5f0ae95308cb82f05d451ad7f181a5
   repoURL: https://github.com/goshippo/shippo-javascript-sdk.git
   installationURL: https://github.com/goshippo/shippo-javascript-sdk
   published: true
 persistentEdits:
-  generation_id: d43cd6b0-8442-4acf-80b8-107867aa8f8f
-  pristine_commit_hash: 6aa9748e261167f4809a36d85e2b89b166da0320
-  pristine_tree_hash: 0de94aacdf149ff67928cf7ea929f6683e713a80
+  generation_id: 4fba1a1a-6d4e-4698-82df-0209bb957a3a
+  pristine_commit_hash: 487f2eba8f6544ff26c373e612659ef63c32c0db
+  pristine_tree_hash: b1534a80cf8328efb00044244ba576d9ff8364be
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.14
-    core: 3.31.6
+    core: 3.31.7
     decimal: 0.1.2
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
@@ -500,6 +500,10 @@ trackedFiles:
     id: 9121ff311085
     last_write_checksum: sha1:3fb118c6cadeb9023a86dfd15adfd3c5492e1838
     pristine_git_object: 9a14ce1efdf73422a3d22b24e1a7bf34516564af
+  docs/models/components/healthcarehandling.md:
+    id: 359d4e86dc81
+    last_write_checksum: sha1:9aea21d83fb5a1f0d9c0b9bd3d66045213d6c558
+    pristine_git_object: feccc572a04df3a50ea8798888663575f5e1ca9e
   docs/models/components/instanttransactioncreaterequest.md:
     id: 5b3f06fccb9b
     last_write_checksum: sha1:98d21aff41443b214357289472e962a396384c48
@@ -954,8 +958,8 @@ trackedFiles:
     pristine_git_object: 6ac9786dc59da85b3e625182396ae36b00133585
   docs/models/components/shipmentextra.md:
     id: 33f4b769d22e
-    last_write_checksum: sha1:503d8c63f1e59d332ec776bbd98edafc1249134f
-    pristine_git_object: de87d7e8e4ef9ee3860ef0777a4501f604e00092
+    last_write_checksum: sha1:99fde5646f2255b688f4c332948d2e0906b674b2
+    pristine_git_object: d2cdae16c7942e124bc67cab7b8779f40909ad1c
   docs/models/components/shipmentextralasershipattributesenum.md:
     id: 197a5833eca9
     last_write_checksum: sha1:2280c73528291322cf8ff1fbe14c5f7156f66e0f
@@ -1734,12 +1738,12 @@ trackedFiles:
     pristine_git_object: 67c6c1dc1f226fac8fb2a52cb6b3b7b3127b6b5d
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:482a71d3ad77c8879bccbcfdef7b4615af12bde4
-    pristine_git_object: 54abdacb19fd9532efca0e576d501363eaed8726
+    last_write_checksum: sha1:db5c66e4e6f8b0ee0cf69415652a8160045edce6
+    pristine_git_object: eb3e062a4c507244d98ee0ca0d23d42054b879d8
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:d6172caa6fe51f1c2c7f481595310f5fdc7d1d8a
-    pristine_git_object: e41460adae7e498f96711891362591689c30417c
+    last_write_checksum: sha1:39cc8004e6ed106cf54af4e8f6c4f5fe2f9c6744
+    pristine_git_object: 9fd0b01c08c203e0ec0b7edd35cc50aadbe845c8
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:f45d247bf2f5a1f6eb57917d08444f4ca4b662ff
@@ -2054,8 +2058,8 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:cb4380719f1527991913d446981f6c1816dcf6f6
-    pristine_git_object: fc806bc79fc274f8fe4a84f5ef0aadd6dc02eee3
+    last_write_checksum: sha1:c8a6988d2c9bcbe49b71c1739066f8ef13ef5fe9
+    pristine_git_object: 3fbfe9c499a1a678cdaf848153ba9d39b79d4e95
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -2400,10 +2404,14 @@ trackedFiles:
     id: f44ff3163c2c
     last_write_checksum: sha1:9875c0f9a4524fd06795dfa3401fca626dd84b80
     pristine_git_object: 90a4939c1abf855a77e9776d1bac79443cf3834d
+  src/models/components/healthcarehandling.ts:
+    id: 38606d295f9d
+    last_write_checksum: sha1:c8eec0ecbd4e7f1203096cbaf4129839a26f9ab4
+    pristine_git_object: 05081090192eae657c50ee749467ffad57169c84
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:2185374d87e8414e6e42e6d47a72ee5588c3c78c
-    pristine_git_object: db6727aac89c45aceefd5997607385dc2daee764
+    last_write_checksum: sha1:a375cf146aeafa028dd47f02c327357348f8b68a
+    pristine_git_object: 6376b48d198c0a302dc9ef69c73ce4dc1348fb74
   src/models/components/instanttransactioncreaterequest.ts:
     id: 66b3a90a8755
     last_write_checksum: sha1:94bce19e1ade03d8ccb0df7b11ec2121da6d361c
@@ -2766,8 +2774,8 @@ trackedFiles:
     pristine_git_object: f09e4236051f727270d37e1b335b90d21be3eacb
   src/models/components/shipmentextra.ts:
     id: 24d7ebc92c74
-    last_write_checksum: sha1:0fb04ce881746f8e0728cd2b4070a30e07b17544
-    pristine_git_object: d4dbb7e854ffa17e1e4ed220b4934290d7d84f59
+    last_write_checksum: sha1:01620ead4350ef8f7f24d8cb5686ebe802fdfcb0
+    pristine_git_object: 505fdc37b3c10eea5c5265cffb83cd15dc58fbd9
   src/models/components/shipmentextralasershipattributesenum.ts:
     id: 85d7c74fa493
     last_write_checksum: sha1:5635af8a4bddfd2b4bcf57deddc0ef3d0dca137d
@@ -4081,6 +4089,7 @@ examples:
           application/json: {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY3QiOnsidXNlcl9pZCI6MTIzNDU2N30sImV4cCI6MTcwMDAwMDAwMCwiaXNfdGVzdCI6dHJ1ZSwib2F1dGhfYXBwX2lkIjoxMDAwMSwib3JpZ2luYWxfYXV0aF9zdHJhdGVneSI6IkpXVEF1dGgiLCJwYXJ0bmVyX25hbWUiOiJleGFtcGxlLXBhcnRuZXIiLCJwbGF0Zm9ybV9pZCI6MTAwMCwidXNlcl9pZCI6MTIzNDU2NywidXNlcl9vYmplY3RfaWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJ1c2VybmFtZSI6InNoaXBwb3RsZUBzaGlwcG8uY29tIn0.EXAMPLE_SIGNATURE_NOT_VALID", "expiresIn": 1700000000}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes:\n* `shippo.batches.create()`: \n  *  `request.batchShipments[].shipment.extra` **Changed**\n* `shippo.batches.addShipments()`: \n  *  `requestBody[].shipment.extra` **Changed**\n* `shippo.shipments.list()`:  `response.results[].extra` **Changed**\n* `shippo.shipments.create()`: \n  *  `request.extra` **Changed**\n  *  `response.extra` **Changed**\n* `shippo.shipments.get()`:  `response.extra` **Changed**\n* `shippo.transactions.create()`: \n  *  `request.union(InstantTransactionCreateRequest).shipment.extra` **Changed**\n"
 generatedFiles:
   - .eslintrc.cjs
   - .gitattributes

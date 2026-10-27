@@ -51,6 +51,12 @@ import {
   DryIce$outboundSchema,
 } from "./dryice.js";
 import {
+  HealthcareHandling,
+  HealthcareHandling$inboundSchema,
+  HealthcareHandling$Outbound,
+  HealthcareHandling$outboundSchema,
+} from "./healthcarehandling.js";
+import {
   Insurance,
   Insurance$inboundSchema,
   Insurance$Outbound,
@@ -254,7 +260,7 @@ export type ShipmentExtra = {
   dangerousGoodsCode?: DangerousGoodsCode | undefined;
   dealerOrderNumber?: UPSReferenceFields | undefined;
   /**
-   * Specify delivery instructions. Up to 500 characters. (FedEx and OnTrac only).
+   * Specify delivery instructions. Up to 500 characters (Purolator accepts up to 30 characters). (FedEx, OnTrac and Purolator only).
    */
   deliveryInstructions?: string | undefined;
   /**
@@ -270,6 +276,18 @@ export type ShipmentExtra = {
    * The fulfilment center where the package originates from.
    */
   fulfillmentCenter?: string | undefined;
+  /**
+   * Requests the carrier's healthcare handling program, where the carrier offers one. The rate returned keeps the carrier's
+   *
+   * @remarks
+   * regular service level token.
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | Purolator | Maps to Health Care+. Domestic Express services only (Express, Express 9AM, Express 10:30AM, Express Evening). Available to Purolator-approved accounts only. |
+   */
+  healthcareHandling?: HealthcareHandling | undefined;
   /**
    * To add 3rd party insurance powered by [XCover](https://docs.goshippo.com/docs/shipments/shippinginsurance/),
    *
@@ -327,6 +345,7 @@ export type ShipmentExtra = {
    * | Carrier | Constraints |
    * |:---|:---|
    * | FedEx | Max 40 characters (Express services); Max 30 characters (Ground services) |
+   * | Purolator | Max 25 characters |
    */
   reference1?: string | undefined;
   /**
@@ -338,8 +357,31 @@ export type ShipmentExtra = {
    * | Carrier | Constraints |
    * |:---|:---|
    * | FedEx | Max 30 characters |
+   * | Purolator | Max 25 characters |
    */
   reference2?: string | undefined;
+  /**
+   * Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | Purolator | Max 25 characters |
+   */
+  reference3?: string | undefined;
+  /**
+   * Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.
+   *
+   * @remarks
+   *
+   * **Carrier-Specific Constraints:**
+   * | Carrier | Constraints |
+   * |:---|:---|
+   * | Purolator | Max 25 characters |
+   */
+  reference4?: string | undefined;
   /**
    * Returns retail rates instead of account-based rates (UPS and FedEx only).
    */
@@ -492,6 +534,7 @@ export const ShipmentExtra$inboundSchema: z.ZodMiniType<
     dry_ice: z.optional(DryIce$inboundSchema),
     fda_product_code: z.optional(UPSReferenceFields$inboundSchema),
     fulfillment_center: z.optional(z.string()),
+    healthcare_handling: z.optional(HealthcareHandling$inboundSchema),
     insurance: z.optional(Insurance$inboundSchema),
     invoice_number: z.optional(InvoiceNumber$inboundSchema),
     is_return: z.optional(z.boolean()),
@@ -512,6 +555,8 @@ export const ShipmentExtra$inboundSchema: z.ZodMiniType<
     qr_code_requested: z.optional(z.boolean()),
     reference_1: z.optional(z.string()),
     reference_2: z.optional(z.string()),
+    reference_3: z.optional(z.string()),
+    reference_4: z.optional(z.string()),
     request_retail_rates: z.optional(z.boolean()),
     return_service_type: z.optional(
       z.union([
@@ -554,6 +599,7 @@ export const ShipmentExtra$inboundSchema: z.ZodMiniType<
       "dry_ice": "dryIce",
       "fda_product_code": "fdaProductCode",
       "fulfillment_center": "fulfillmentCenter",
+      "healthcare_handling": "healthcareHandling",
       "invoice_number": "invoiceNumber",
       "is_return": "isReturn",
       "lasership_attrs": "lasershipAttrs",
@@ -568,6 +614,8 @@ export const ShipmentExtra$inboundSchema: z.ZodMiniType<
       "qr_code_requested": "qrCodeRequested",
       "reference_1": "reference1",
       "reference_2": "reference2",
+      "reference_3": "reference3",
+      "reference_4": "reference4",
       "request_retail_rates": "requestRetailRates",
       "return_service_type": "returnServiceType",
       "rma_number": "rmaNumber",
@@ -610,6 +658,7 @@ export type ShipmentExtra$Outbound = {
   dry_ice?: DryIce$Outbound | undefined;
   fda_product_code?: UPSReferenceFields$Outbound | undefined;
   fulfillment_center?: string | undefined;
+  healthcare_handling?: HealthcareHandling$Outbound | undefined;
   insurance?: Insurance$Outbound | undefined;
   invoice_number?: InvoiceNumber$Outbound | undefined;
   is_return?: boolean | undefined;
@@ -626,6 +675,8 @@ export type ShipmentExtra$Outbound = {
   qr_code_requested?: boolean | undefined;
   reference_1?: string | undefined;
   reference_2?: string | undefined;
+  reference_3?: string | undefined;
+  reference_4?: string | undefined;
   request_retail_rates?: boolean | undefined;
   return_service_type?: string | string | undefined;
   rma_number?: RmaNumber$Outbound | undefined;
@@ -671,6 +722,7 @@ export const ShipmentExtra$outboundSchema: z.ZodMiniType<
     dryIce: z.optional(DryIce$outboundSchema),
     fdaProductCode: z.optional(UPSReferenceFields$outboundSchema),
     fulfillmentCenter: z.optional(z.string()),
+    healthcareHandling: z.optional(HealthcareHandling$outboundSchema),
     insurance: z.optional(Insurance$outboundSchema),
     invoiceNumber: z.optional(InvoiceNumber$outboundSchema),
     isReturn: z.optional(z.boolean()),
@@ -691,6 +743,8 @@ export const ShipmentExtra$outboundSchema: z.ZodMiniType<
     qrCodeRequested: z.optional(z.boolean()),
     reference1: z.optional(z.string()),
     reference2: z.optional(z.string()),
+    reference3: z.optional(z.string()),
+    reference4: z.optional(z.string()),
     requestRetailRates: z.optional(z.boolean()),
     returnServiceType: z.optional(
       z.union([
@@ -732,6 +786,7 @@ export const ShipmentExtra$outboundSchema: z.ZodMiniType<
       dryIce: "dry_ice",
       fdaProductCode: "fda_product_code",
       fulfillmentCenter: "fulfillment_center",
+      healthcareHandling: "healthcare_handling",
       invoiceNumber: "invoice_number",
       isReturn: "is_return",
       lasershipAttrs: "lasership_attrs",
@@ -746,6 +801,8 @@ export const ShipmentExtra$outboundSchema: z.ZodMiniType<
       qrCodeRequested: "qr_code_requested",
       reference1: "reference_1",
       reference2: "reference_2",
+      reference3: "reference_3",
+      reference4: "reference_4",
       requestRetailRates: "request_retail_rates",
       returnServiceType: "return_service_type",
       rmaNumber: "rma_number",
