@@ -1,4 +1,4 @@
-# <img src="https://docs.goshippo.com/images/Logo.png" width="30" alt="Shippo logo"> Shippo JavaScript SDK
+# <img src="https://raw.githubusercontent.com/goshippo/shippo-javascript-sdk/main/.github/assets/shippo-logo.png" width="30" alt="Shippo logo"> Shippo JavaScript SDK
 
 Shippo is a shipping API that connects you with [multiple shipping carriers](https://goshippo.com/carriers) (such as USPS, UPS, DHL, Canada Post, Australia Post, and many others) through one interface.
 
@@ -7,8 +7,8 @@ You must register for a [Shippo account](https://apps.goshippo.com/join) to use 
 To use the API, you must generate an [API Token](https://docs.goshippo.com/docs/guides_general/authentication/). In the following examples, replace `<YOUR_API_KEY_HERE>` with your own token.
 
 For example.
-```
-api_key_header="<YOUR_API_TOKEN>"
+```typescript
+apiKeyHeader: "<YOUR_API_KEY_HERE>"
 ```
 
 
@@ -21,7 +21,7 @@ Shippo external API.: Use this API to integrate with the Shippo service
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [<img src="https://docs.goshippo.com/images/Logo.png" width="30" alt="Shippo logo"> Shippo JavaScript SDK](#img-srchttpsdocsgoshippocomimageslogopng-width30-altshippo-logo-shippo-javascript-sdk)
+* [<img src="https://raw.githubusercontent.com/goshippo/shippo-javascript-sdk/main/.github/assets/shippo-logo.png" width="30" alt="Shippo logo"> Shippo JavaScript SDK](#img-srchttpsrawgithubusercontentcomgoshipposhippo-javascript-sdkmaingithubassetsshippo-logopng-width30-altshippo-logo-shippo-javascript-sdk)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
