@@ -28,6 +28,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -52,6 +53,7 @@ import { carrierParcelTemplatesList } from "shippo/funcs/carrierParcelTemplatesL
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -100,6 +102,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -124,6 +127,7 @@ import { carrierParcelTemplatesGet } from "shippo/funcs/carrierParcelTemplatesGe
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 

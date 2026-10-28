@@ -24,6 +24,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -48,6 +49,7 @@ import { serviceGroupsList } from "shippo/funcs/serviceGroupsList.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -94,6 +96,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -128,6 +131,7 @@ import { serviceGroupsCreate } from "shippo/funcs/serviceGroupsCreate.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -185,6 +189,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -226,6 +231,7 @@ import { serviceGroupsUpdate } from "shippo/funcs/serviceGroupsUpdate.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -290,6 +296,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -314,6 +321,7 @@ import { serviceGroupsDelete } from "shippo/funcs/serviceGroupsDelete.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 

@@ -35,6 +35,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -59,6 +60,7 @@ import { shipmentsList } from "shippo/funcs/shipmentsList.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -106,6 +108,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -245,6 +248,7 @@ import { shipmentsCreate } from "shippo/funcs/shipmentsCreate.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -407,6 +411,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -431,6 +436,7 @@ import { shipmentsGet } from "shippo/funcs/shipmentsGet.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 

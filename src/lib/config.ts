@@ -22,6 +22,11 @@ export type SDKOptions = {
    */
   shippoApiVersion?: string | undefined;
 
+  /**
+   * Allows setting the shippoAccountId parameter for all supported operations
+   */
+  shippoAccountId?: string | undefined;
+
   httpClient?: HTTPClient;
   /**
    * Allows overriding the default server used by the SDK
@@ -63,7 +68,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "2018-02-08",
-  sdkVersion: "2.19.1",
-  genVersion: "2.950.13",
-  userAgent: "speakeasy-sdk/typescript 2.19.1 2.950.13 2018-02-08 shippo",
+  sdkVersion: "2.19.2",
+  genVersion: "2.954.8",
+  userAgent: "speakeasy-sdk/typescript 2.19.2 2.954.8 2018-02-08 shippo",
 } as const;

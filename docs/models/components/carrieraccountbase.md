@@ -23,14 +23,14 @@ let value: CarrierAccountBase = {
     "currency_code": "USD",
     "email": "hippo@shippo.com",
     "full_name": "Shippo Meister",
-    "has_invoice": true,
+    "has_invoice": false,
     "invoice_controlid": "1234",
     "invoice_date": "20210529",
     "invoice_number": "1112234",
     "invoice_value": "11.23",
     "phone": "1112223333",
     "title": "Manager",
-    "ups_agreements": true,
+    "ups_agreements": false,
   },
 };
 ```

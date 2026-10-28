@@ -20,10 +20,15 @@ import {
   UPSConnectExistingOwnAccountParameters,
   UPSConnectExistingOwnAccountParameters$inboundSchema,
 } from "./upsconnectexistingownaccountparameters.js";
+import {
+  UPSConnectExistingOwnAccountStreamlinedParameters,
+  UPSConnectExistingOwnAccountStreamlinedParameters$inboundSchema,
+} from "./upsconnectexistingownaccountstreamlinedparameters.js";
 
 export type ParametersT =
   | UPSConnectExistingOwnAccountParameters
   | FedExConnectExistingOwnAccountParameters
+  | UPSConnectExistingOwnAccountStreamlinedParameters
   | { [k: string]: any };
 
 /**
@@ -119,6 +124,7 @@ export type CarrierAccountWithExtraInfo = {
   parameters?:
     | UPSConnectExistingOwnAccountParameters
     | FedExConnectExistingOwnAccountParameters
+    | UPSConnectExistingOwnAccountStreamlinedParameters
     | { [k: string]: any }
     | undefined;
   /**
@@ -151,6 +157,7 @@ export const ParametersT$inboundSchema: z.ZodMiniType<ParametersT, unknown> = z
   .union([
     UPSConnectExistingOwnAccountParameters$inboundSchema,
     FedExConnectExistingOwnAccountParameters$inboundSchema,
+    UPSConnectExistingOwnAccountStreamlinedParameters$inboundSchema,
     z.record(z.string(), z.any()),
   ]);
 
@@ -244,6 +251,7 @@ export const CarrierAccountWithExtraInfo$inboundSchema: z.ZodMiniType<
       z.union([
         UPSConnectExistingOwnAccountParameters$inboundSchema,
         FedExConnectExistingOwnAccountParameters$inboundSchema,
+        UPSConnectExistingOwnAccountStreamlinedParameters$inboundSchema,
         z.record(z.string(), z.any()),
       ]),
     ),

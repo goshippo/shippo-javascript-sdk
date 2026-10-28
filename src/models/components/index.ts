@@ -187,6 +187,7 @@ export * from "./transactioncreaterequest.js";
 export * from "./transactionpaginatedlist.js";
 export * from "./transactionstatusenum.js";
 export * from "./upsconnectexistingownaccountparameters.js";
+export * from "./upsconnectexistingownaccountstreamlinedparameters.js";
 export * from "./upsreferencefields.js";
 export * from "./userparceltemplate.js";
 export * from "./userparceltemplatecreaterequest.js";

@@ -24,6 +24,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -54,6 +55,7 @@ import { batchesCreate } from "shippo/funcs/batchesCreate.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -111,6 +113,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -135,6 +138,7 @@ import { batchesGet } from "shippo/funcs/batchesGet.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -184,6 +188,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -330,6 +335,7 @@ import { batchesAddShipments } from "shippo/funcs/batchesAddShipments.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -503,6 +509,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -527,6 +534,7 @@ import { batchesPurchase } from "shippo/funcs/batchesPurchase.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -574,6 +582,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -600,6 +609,7 @@ import { batchesRemoveShipments } from "shippo/funcs/batchesRemoveShipments.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 

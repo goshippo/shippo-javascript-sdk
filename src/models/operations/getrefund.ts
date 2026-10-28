@@ -10,6 +10,10 @@ export type GetRefundGlobals = {
    * Optional string used to pick a non-default API version to use. See our [API version](https://docs.goshippo.com/docs/api_concepts/apiversioning/) guide.
    */
   shippoApiVersion?: string | undefined;
+  /**
+   * Optional. The object ID of a Managed Shippo Account. Platform accounts set this to make the request on behalf of one of their managed accounts. See the [Platform accounts guide](https://docs.goshippo.com/platform-accounts/platform-using-accounts).
+   */
+  shippoAccountId?: string | undefined;
 };
 
 export type GetRefundRequest = {
