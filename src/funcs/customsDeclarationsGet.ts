@@ -114,6 +114,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "SHIPPO-ACCOUNT-ID": encodeSimple(
+      "SHIPPO-ACCOUNT-ID",
+      client._options.shippoAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
     "SHIPPO-API-VERSION": encodeSimple(
       "SHIPPO-API-VERSION",
       client._options.shippoApiVersion,
