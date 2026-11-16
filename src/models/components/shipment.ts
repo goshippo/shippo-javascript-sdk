@@ -61,8 +61,7 @@ export type Shipment = {
    * Date the shipment will be tendered to the carrier. Must be in the format `2014-01-18T00:35:03.463Z`.
    *
    * @remarks
-   * Defaults to current date and time if no value is provided. Please note that some carriers require this value to
-   * be in the future, on a working day, or similar.
+   * Defaults to current date and time if no value is provided. Please note that some carriers require this value to be in the future, on a working day, or similar.
    */
   shipmentDate?: string | undefined;
   /**
@@ -85,8 +84,7 @@ export type Shipment = {
    * An array of object_ids of the carrier account objects to be used for getting shipping rates for this shipment.
    *
    * @remarks
-   * If no carrier account object_ids are set in this field, Shippo will attempt to generate rates using all the
-   * carrier accounts that have the `active` field set.
+   * If no carrier account object_ids are set in this field, Shippo will attempt to generate rates using all the carrier accounts that have the `active` field set.
    */
   carrierAccounts: Array<string>;
   customsDeclaration?: CustomsDeclaration | undefined;
@@ -112,11 +110,7 @@ export type Shipment = {
    */
   parcels: Array<Parcel>;
   /**
-   * An array with all available rates. If `async` has been set to `false` in the request,
-   *
-   * @remarks
-   * this will be populated with all available rates in the response. Otherwise rates will be created
-   * asynchronously and this array will initially be empty.
+   * An array with all available rates. If `async` has been set to `false` in the request, this will be populated with all available rates in the response. Otherwise rates will be created asynchronously and this array will initially be empty.
    */
   rates: Array<Rate>;
   /**

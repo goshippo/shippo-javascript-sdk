@@ -20,10 +20,7 @@ export type CreateEmbeddedAuthorizationSecurity = {
 
 export type CreateEmbeddedAuthorizationRequest = {
   /**
-   * Optional. The object ID of a Managed Shippo Account. Platform accounts set this to
-   *
-   * @remarks
-   * mint a JWT scoped to one of their managed accounts.
+   * Optional. The object ID of a Managed Shippo Account. Platform accounts set this to mint a JWT scoped to one of their managed accounts. `Shippo-Account-Id` and `SHIPPO-ACCOUNT-ID` are the same header.
    */
   shippoAccountId?: string | undefined;
   /**
@@ -66,7 +63,7 @@ export function createEmbeddedAuthorizationSecurityToJSON(
 
 /** @internal */
 export type CreateEmbeddedAuthorizationRequest$Outbound = {
-  "SHIPPO-ACCOUNT-ID"?: string | undefined;
+  "Shippo-Account-Id"?: string | undefined;
   EmbeddedAuthorizationRequest:
     components.EmbeddedAuthorizationRequest$Outbound;
 };
@@ -83,7 +80,7 @@ export const CreateEmbeddedAuthorizationRequest$outboundSchema: z.ZodMiniType<
   }),
   z.transform((v) => {
     return remap$(v, {
-      shippoAccountId: "SHIPPO-ACCOUNT-ID",
+      shippoAccountId: "Shippo-Account-Id",
       embeddedAuthorizationRequest: "EmbeddedAuthorizationRequest",
     });
   }),

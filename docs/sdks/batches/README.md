@@ -2,7 +2,7 @@
 
 ## Overview
 
-A batch is a technique for creating multiple labels at once. Use the  batch object to create and purchase many shipments in two API calls. After creating the batch, retrieve the batch to verify that all shipments are valid. You can add and remove shipments after you have created the batch. When all shipments are valid you can purchase the batch and retrieve all the shipping labels.
+A batch is a technique for creating multiple labels at once. Use the batch object to create and purchase many shipments in two API calls. After creating the batch, retrieve the batch to verify that all shipments are valid. You can add and remove shipments after you have created the batch. When all shipments are valid you can purchase the batch and retrieve all the shipping labels.
 
 ### Available Operations
 
@@ -24,6 +24,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -54,6 +55,7 @@ import { batchesCreate } from "shippo/funcs/batchesCreate.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -111,6 +113,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -135,6 +138,7 @@ import { batchesGet } from "shippo/funcs/batchesGet.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -184,6 +188,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -330,6 +335,7 @@ import { batchesAddShipments } from "shippo/funcs/batchesAddShipments.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -490,10 +496,9 @@ run();
 
 ## purchase
 
-Purchases an existing batch with a status of `VALID`. 
-Once you send a POST request to the purchase endpoint the batch status will change to `PURCHASING`. 
-When all the shipments are purchased, the status will change to `PURCHASED` and you will receive a 
-`batch_purchased` webhook indicating that the batch has been purchased
+Purchases an existing batch with a status of `VALID`.
+Once you send a POST request to the purchase endpoint the batch status will change to `PURCHASING`.
+When all the shipments are purchased, the status will change to `PURCHASED` and you will receive a `batch_purchased` webhook indicating that the batch has been purchased.
 
 ### Example Usage
 
@@ -503,6 +508,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -527,6 +533,7 @@ import { batchesPurchase } from "shippo/funcs/batchesPurchase.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -574,6 +581,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -600,6 +608,7 @@ import { batchesRemoveShipments } from "shippo/funcs/batchesRemoveShipments.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 

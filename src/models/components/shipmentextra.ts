@@ -159,10 +159,7 @@ export type ReturnServiceType =
   | ShipmentExtraReturnServiceTypeLasershipEnum;
 
 /**
- * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only)
- *
- * @remarks
- * or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
+ * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only) or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
  */
 export const SignatureConfirmation = {
   Standard: "STANDARD",
@@ -172,10 +169,7 @@ export const SignatureConfirmation = {
   CarrierConfirmation: "CARRIER_CONFIRMATION",
 } as const;
 /**
- * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only)
- *
- * @remarks
- * or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
+ * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only) or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
  */
 export type SignatureConfirmation = ClosedEnum<typeof SignatureConfirmation>;
 
@@ -194,11 +188,7 @@ export type ShipmentExtra = {
   ancillaryEndorsement?: AncillaryEndorsement | undefined;
   appropriationNumber?: UPSReferenceFields | undefined;
   /**
-   * Request `true` to give carrier permission to leave the parcel in a safe place if no one answers the
-   *
-   * @remarks
-   * door (where supported). When set to `false`, if no one is available to receive the item, the parcel
-   * will not be left (*surcharges may be applicable).
+   * Request `true` to give carrier permission to leave the parcel in a safe place if no one answers the door (where supported). When set to `false`, if no one is available to receive the item, the parcel will not be left (*surcharges may be applicable).
    */
   authorityToLeave?: boolean | undefined;
   billOfLadingNumber?: UPSReferenceFields | undefined;
@@ -247,11 +237,7 @@ export type ShipmentExtra = {
    */
   customerReference?: CustomerReference | undefined;
   /**
-   * Container for specifying the presence of dangerous materials. This is specific to USPS, and if any contents
-   *
-   * @remarks
-   * are provided, only certain USPS service levels will be eligible. For more information, see our
-   * [guide on hazardous or dangerous materials shipping](https://docs.goshippo.com/docs/shipments/hazmat/).
+   * Container for specifying the presence of dangerous materials. This is specific to USPS, and if any contents are provided, only certain USPS service levels will be eligible. For more information, see our [guide on hazardous or dangerous materials shipping](https://docs.goshippo.com/docs/shipments/hazmat/).
    */
   dangerousGoods?: DangerousGoodsObject | undefined;
   /**
@@ -277,10 +263,9 @@ export type ShipmentExtra = {
    */
   fulfillmentCenter?: string | undefined;
   /**
-   * Requests the carrier's healthcare handling program, where the carrier offers one. The rate returned keeps the carrier's
+   * Requests the carrier's healthcare handling program, where the carrier offers one. The rate returned keeps the carrier's regular service level token.
    *
    * @remarks
-   * regular service level token.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -289,14 +274,11 @@ export type ShipmentExtra = {
    */
   healthcareHandling?: HealthcareHandling | undefined;
   /**
-   * To add 3rd party insurance powered by [XCover](https://docs.goshippo.com/docs/shipments/shippinginsurance/),
+   * To add 3rd party insurance powered by [XCover](https://docs.goshippo.com/docs/shipments/shippinginsurance/), specify `amount`, `content`, and `currency`. Alternatively, you can choose carrier provided insurance by additionally specifying `provider` (UPS, FedEx and OnTrac only).
    *
    * @remarks
-   * specify `amount`, `content`, and `currency`. Alternatively, you can choose carrier provided insurance
-   * by additionally specifying `provider` (UPS, FedEx and OnTrac only).
    *
-   * If you do not want to add insurance
-   * to your shipment, do not set these parameters.
+   * If you do not want to add insurance to your shipment, do not set these parameters.
    */
   insurance?: Insurance | undefined;
   /**
@@ -404,10 +386,7 @@ export type ShipmentExtra = {
   salespersonNumber?: UPSReferenceFields | undefined;
   serialNumber?: UPSReferenceFields | undefined;
   /**
-   * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only)
-   *
-   * @remarks
-   * or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
+   * Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only) or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
    */
   signatureConfirmation?: SignatureConfirmation | undefined;
   storeNumber?: UPSReferenceFields | undefined;

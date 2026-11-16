@@ -6,7 +6,7 @@
 If you purchased your shipping label through Shippo, you can also get all the tracking details of your Shipment 
 from the [Transaction](/shippoapi/public-api/transactions) object.
 <br><br></p>
-A tracking status of a package is an indication of current location of a package in the supply chain. For example,  sorting, warehousing, or out for delivery. Use the tracking status object to track the location of your shipments.
+A tracking status of a package is an indication of current location of a package in the supply chain. For example, sorting, warehousing, or out for delivery. Use the tracking status object to track the location of your shipments.
 
 When using your [Test](https://docs.goshippo.com/docs/guides_general/authentication/) token for tracking, you need to use Shippo's 
 predefined tokens for testing different tracking statuses. You can find more information in our 
@@ -30,6 +30,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -58,6 +59,7 @@ import { trackingStatusCreate } from "shippo/funcs/trackingStatusCreate.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -111,6 +113,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -135,6 +138,7 @@ import { trackingStatusGet } from "shippo/funcs/trackingStatusGet.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 

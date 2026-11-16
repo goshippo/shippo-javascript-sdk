@@ -20,10 +20,7 @@ Assign one of your user parcel templates to be the default used when generating 
 
 ## create
 
-Initiates a live rates request. Include either the object ID for
-an existing address record or a fully formed address object when entering
-an address value. You can also enter the object ID of an existing user parcel
-template or a fully formed user parcel template object as the parcel value.
+Initiates a live rates request. Include either the object ID for an existing address record or a fully formed address object when entering an address value. You can also enter the object ID of an existing user parcel template or a fully formed user parcel template object as the parcel value.
 
 ### Example Usage
 
@@ -33,6 +30,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -62,6 +60,7 @@ import { ratesAtCheckoutCreate } from "shippo/funcs/ratesAtCheckoutCreate.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -114,6 +113,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -138,6 +138,7 @@ import { ratesAtCheckoutGetDefaultParcelTemplate } from "shippo/funcs/ratesAtChe
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -184,6 +185,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -210,6 +212,7 @@ import { ratesAtCheckoutUpdateDefaultParcelTemplate } from "shippo/funcs/ratesAt
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -259,6 +262,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -283,6 +287,7 @@ import { ratesAtCheckoutDeleteDefaultParcelTemplate } from "shippo/funcs/ratesAt
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 

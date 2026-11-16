@@ -44,9 +44,7 @@ import {
  * An object with details about the user who created the Transaction (purchased the label).
  *
  * @remarks
- * A value will be returned only for Transactions that can be associated with a specific user, e.g. when a logged-in
- * user purchases a label via the Shippo Web application; but not for Transactions purchased e.g. via the API using a ShippoToken,
- * which is associated with the account but not any specific user.
+ * A value will be returned only for Transactions that can be associated with a specific user, e.g. when a logged-in user purchases a label via the Shippo Web application; but not for Transactions purchased e.g. via the API using a ShippoToken, which is associated with the account but not any specific user.
  */
 export type CreatedBy = {
   firstName?: string | undefined;
@@ -58,8 +56,7 @@ export type CreatedBy = {
  * ID of the Rate object for which a Label has to be obtained.
  *
  * @remarks
- * If you purchase a label by calling the transaction endpoint without a rate (instalabel),
- * this field will be a simplified Rate object in the Transaction model returned from the POST request.
+ * If you purchase a label by calling the transaction endpoint without a rate (instalabel), this field will be a simplified Rate object in the Transaction model returned from the POST request.
  * Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
  */
 export type TransactionRate = CoreRate | string;
@@ -78,10 +75,7 @@ export type Transaction = {
    */
   eta?: string | undefined;
   /**
-   * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from
-   *
-   * @remarks
-   * [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
+   * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
    */
   labelFileType?: LabelFileTypeEnum | undefined;
   /**
@@ -89,14 +83,12 @@ export type Transaction = {
    *
    * @remarks
    * A value will only be returned if the Transactions has been processed successfully.
+   * The URL expires. The `Expires` query parameter gives the expiration time as a Unix timestamp in seconds. Before you download the label, compare `Expires` with the current time. If `Expires` is in the past, call `GET /transactions/{TransactionId}` to get a new `label_url`. If the `Expires` value on the new `label_url` is also in the past, the label file is no longer available. This occurs for labels created more than one year ago. Do not retry.
    */
   labelUrl?: string | undefined;
   messages?: Array<ResponseMessage> | undefined;
   /**
-   * A string of up to 100 characters that can be filled with any additional information you want to
-   *
-   * @remarks
-   * attach to the object.
+   * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
    */
   metadata?: string | undefined;
   /**
@@ -134,8 +126,7 @@ export type Transaction = {
    * ID of the Rate object for which a Label has to be obtained.
    *
    * @remarks
-   * If you purchase a label by calling the transaction endpoint without a rate (instalabel),
-   * this field will be a simplified Rate object in the Transaction model returned from the POST request.
+   * If you purchase a label by calling the transaction endpoint without a rate (instalabel), this field will be a simplified Rate object in the Transaction model returned from the POST request.
    * Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
    */
   rate?: CoreRate | string | undefined;

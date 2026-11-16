@@ -13,18 +13,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export type PoNumber = {
   /**
-   * Custom prefix for PO number field (ZPL labels only). Up to 11 characters, including trailing
-   *
-   * @remarks
-   * spaces. Empty string indicates removal of default prefix. To use the default prefix, do not include
-   * this property.
+   * Custom prefix for PO number field (ZPL labels only). Up to 11 characters, including trailing spaces. Empty string indicates removal of default prefix. To use the default prefix, do not include this property.
    */
   prefix?: string | undefined;
   /**
-   * Optional text to be printed on the shipping label for PO number. Up to 40 characters. If
+   * Optional text to be printed on the shipping label for PO number. Up to 40 characters. If this is provided, reference_2 will be ignored.
    *
    * @remarks
-   * this is provided, reference_2 will be ignored.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |

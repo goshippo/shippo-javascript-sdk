@@ -2,12 +2,9 @@
 
 ## Overview
 
-A user parcel template represents a package used for shipping that has preset dimensions and attributes defined 
-by you. They are useful for capturing attributes of parcel-types you frequently use for shipping, allowing 
-them to be defined once and then used for many shipments. These parcel templates can also be used for live rates.
+A user parcel template represents a package used for shipping that has preset dimensions and attributes defined by you. They are useful for capturing attributes of parcel-types you frequently use for shipping, allowing them to be defined once and then used for many shipments. These parcel templates can also be used for live rates.
 
-User parcel templates can also be created using a carrier parcel template, where the dimensions will be copied from 
-the carrier presets, but the weight can be configured by you.
+User parcel templates can also be created using a carrier parcel template, where the dimensions will be copied from the carrier presets, but the weight can be configured by you.
 
 ### Available Operations
 
@@ -29,6 +26,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -53,6 +51,7 @@ import { userParcelTemplatesList } from "shippo/funcs/userParcelTemplatesList.js
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -91,13 +90,7 @@ run();
 
 Creates a new user parcel template.
 
-You can choose to create a
-parcel template using a preset carrier template as a starting point, or
-you can create an entirely custom one. To use a preset carrier template,
-pass in a unique template token from [this list](/shippoapi/public-api/parcel-templates)
-plus the weight fields (**weight** and **weight_unit**). Otherwise, omit
-the template field and pass the other fields, for the weight, length, height,
-and depth, as well as their units."
+You can choose to create a parcel template using a preset carrier template as a starting point, or you can create an entirely custom one. To use a preset carrier template, pass in a unique template token from [this list](/shippoapi/public-api/parcel-templates) plus the weight fields (**weight** and **weight_unit**). Otherwise, omit the template field and pass the other fields, for the weight, length, height, and depth, as well as their units.
 
 ### Example Usage
 
@@ -107,6 +100,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -139,6 +133,7 @@ import { userParcelTemplatesCreate } from "shippo/funcs/userParcelTemplatesCreat
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -194,6 +189,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -218,6 +214,7 @@ import { userParcelTemplatesDelete } from "shippo/funcs/userParcelTemplatesDelet
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -255,8 +252,7 @@ run();
 
 ## get
 
-Returns the parcel template information for a specific user parcel
-template, identified by the object ID.
+Returns the parcel template information for a specific user parcel template, identified by the object ID.
 
 ### Example Usage
 
@@ -266,6 +262,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -290,6 +287,7 @@ import { userParcelTemplatesGet } from "shippo/funcs/userParcelTemplatesGet.js";
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -337,6 +335,7 @@ import { Shippo } from "shippo";
 
 const shippo = new Shippo({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 
@@ -369,6 +368,7 @@ import { userParcelTemplatesUpdate } from "shippo/funcs/userParcelTemplatesUpdat
 // You can create one instance of it to use across an application.
 const shippo = new ShippoCore({
   shippoApiVersion: "2018-02-08",
+  shippoAccountId: "<id>",
   apiKeyHeader: "<YOUR_API_KEY_HERE>",
 });
 

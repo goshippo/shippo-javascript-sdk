@@ -27,11 +27,7 @@ export type LineItemBase = {
    */
   maxDeliveryTime?: Date | undefined;
   /**
-   * The date and time this item needs to be fulfilled by, i.e. by when the shipping label needs to be
-   *
-   * @remarks
-   * created and handed over to the carrier. This value is used by some platforms such as eBay to measure
-   * a seller's handling time and performance. It will be displayed in the Shippo dashboard.
+   * The date and time this item needs to be fulfilled by, i.e. by when the shipping label needs to be created and handed over to the carrier. This value is used by some platforms such as eBay to measure a seller's handling time and performance. It will be displayed in the Shippo dashboard.
    */
   maxShipTime?: Date | undefined;
   /**
@@ -59,10 +55,7 @@ export type LineItemBase = {
    */
   variantTitle?: string | undefined;
   /**
-   * Total weight of this/these item(s). Instead of specifying the weight of all items,
-   *
-   * @remarks
-   * you can also set the `total_weight` value of the order object.
+   * Total weight of this/these item(s). Instead of specifying the weight of all items, you can also set the `total_weight` value of the order object.
    */
   weight?: string | undefined;
   /**

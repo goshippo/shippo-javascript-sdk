@@ -32,13 +32,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Creates a new user parcel template.
  *
- * You can choose to create a
- * parcel template using a preset carrier template as a starting point, or
- * you can create an entirely custom one. To use a preset carrier template,
- * pass in a unique template token from [this list](/shippoapi/public-api/parcel-templates)
- * plus the weight fields (**weight** and **weight_unit**). Otherwise, omit
- * the template field and pass the other fields, for the weight, length, height,
- * and depth, as well as their units."
+ * You can choose to create a parcel template using a preset carrier template as a starting point, or you can create an entirely custom one. To use a preset carrier template, pass in a unique template token from [this list](/shippoapi/public-api/parcel-templates) plus the weight fields (**weight** and **weight_unit**). Otherwise, omit the template field and pass the other fields, for the weight, length, height, and depth, as well as their units.
  */
 export function userParcelTemplatesCreate(
   client: ShippoCore,
@@ -101,6 +95,11 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "SHIPPO-ACCOUNT-ID": encodeSimple(
+      "SHIPPO-ACCOUNT-ID",
+      client._options.shippoAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
     "SHIPPO-API-VERSION": encodeSimple(
       "SHIPPO-API-VERSION",
       client._options.shippoApiVersion,

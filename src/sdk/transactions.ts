@@ -65,6 +65,7 @@ export class Transactions extends ClientSDK {
    *
    * @remarks
    * Returns an existing transaction using an object ID.
+   * Each call returns a new `label_url` with a new expiration time. Use this endpoint to get a new `label_url` when the `Expires` value on the current `label_url` is in the past. Send one call for each transaction.
    */
   async get(
     transactionId: string,

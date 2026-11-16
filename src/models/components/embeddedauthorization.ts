@@ -9,17 +9,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EmbeddedAuthorization = {
   /**
-   * The encoded JSON Web Token. Pass it on subsequent API requests as
-   *
-   * @remarks
-   * `Authorization: JWT <JWT_TOKEN>`.
+   * The encoded JSON Web Token. Pass it on subsequent API requests as `Authorization: JWT <JWT_TOKEN>`.
    */
   token?: string | undefined;
   /**
-   * Unix timestamp (seconds) of when the token expires. This matches the `exp` claim
-   *
-   * @remarks
-   * inside the token itself. Tokens are valid for 12 hours from issue.
+   * Unix timestamp (seconds) of when the token expires. This matches the `exp` claim inside the token itself. Tokens are valid for 12 hours from issue.
    */
   expiresIn?: number | undefined;
 };

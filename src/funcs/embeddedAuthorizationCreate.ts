@@ -31,16 +31,11 @@ import { Result } from "../types/fp.js";
  * Create a JWT
  *
  * @remarks
- * Creates a short-lived JSON Web Token (JWT) that client-side applications can use
- * to authenticate against the Shippo API without exposing a long-lived API token.
+ * Creates a short-lived JSON Web Token (JWT) that client-side applications can use to authenticate against the Shippo API without exposing a long-lived API token.
  *
- * Authenticate this request with either a Shippo API token
- * (`Authorization: ShippoToken <API_TOKEN>`) or an OAuth bearer token
- * (`Authorization: Bearer <OAUTH_BEARER_TOKEN>`). Platform accounts can mint a token
- * on behalf of a Managed Shippo Account by setting the `SHIPPO-ACCOUNT-ID` header.
+ * Authenticate this request with either a Shippo API token (`Authorization: ShippoToken <API_TOKEN>`) or an OAuth bearer token (`Authorization: Bearer <OAUTH_BEARER_TOKEN>`). Platform accounts can mint a token on behalf of a Managed Shippo Account by setting the `SHIPPO-ACCOUNT-ID` header.
  *
- * The returned token is valid for 12 hours. Send it on subsequent requests as
- * `Authorization: JWT <JWT_TOKEN>`.
+ * The returned token is valid for 12 hours. Send it on subsequent requests as `Authorization: JWT <JWT_TOKEN>`.
  */
 export function embeddedAuthorizationCreate(
   client: ShippoCore,
@@ -119,14 +114,14 @@ async function $do(
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "SHIPPO-ACCOUNT-ID": encodeSimple(
-      "SHIPPO-ACCOUNT-ID",
-      payload["SHIPPO-ACCOUNT-ID"],
-      { explode: false, charEncoding: "none" },
-    ),
     "SHIPPO-API-VERSION": encodeSimple(
       "SHIPPO-API-VERSION",
       client._options.shippoApiVersion,
+      { explode: false, charEncoding: "none" },
+    ),
+    "Shippo-Account-Id": encodeSimple(
+      "Shippo-Account-Id",
+      payload["Shippo-Account-Id"],
       { explode: false, charEncoding: "none" },
     ),
   }));

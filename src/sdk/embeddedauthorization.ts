@@ -13,16 +13,11 @@ export class EmbeddedAuthorization extends ClientSDK {
    * Create a JWT
    *
    * @remarks
-   * Creates a short-lived JSON Web Token (JWT) that client-side applications can use
-   * to authenticate against the Shippo API without exposing a long-lived API token.
+   * Creates a short-lived JSON Web Token (JWT) that client-side applications can use to authenticate against the Shippo API without exposing a long-lived API token.
    *
-   * Authenticate this request with either a Shippo API token
-   * (`Authorization: ShippoToken <API_TOKEN>`) or an OAuth bearer token
-   * (`Authorization: Bearer <OAUTH_BEARER_TOKEN>`). Platform accounts can mint a token
-   * on behalf of a Managed Shippo Account by setting the `SHIPPO-ACCOUNT-ID` header.
+   * Authenticate this request with either a Shippo API token (`Authorization: ShippoToken <API_TOKEN>`) or an OAuth bearer token (`Authorization: Bearer <OAUTH_BEARER_TOKEN>`). Platform accounts can mint a token on behalf of a Managed Shippo Account by setting the `SHIPPO-ACCOUNT-ID` header.
    *
-   * The returned token is valid for 12 hours. Send it on subsequent requests as
-   * `Authorization: JWT <JWT_TOKEN>`.
+   * The returned token is valid for 12 hours. Send it on subsequent requests as `Authorization: JWT <JWT_TOKEN>`.
    */
   async create(
     security: operations.CreateEmbeddedAuthorizationSecurity,

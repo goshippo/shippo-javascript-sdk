@@ -8,10 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Requests the carrier's healthcare handling program, where the carrier offers one. The rate returned keeps the carrier's
+ * Requests the carrier's healthcare handling program, where the carrier offers one. The rate returned keeps the carrier's regular service level token.
  *
  * @remarks
- * regular service level token.
  *
  * **Carrier-Specific Constraints:**
  * | Carrier | Constraints |

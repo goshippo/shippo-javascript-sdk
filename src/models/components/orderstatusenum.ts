@@ -6,10 +6,7 @@ import * as z from "zod/v4-mini";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
- * Current state of the order. See the [orders tutorial](https://docs.goshippo.com/docs/orders/orders/)
- *
- * @remarks
- * for the logic of how the status is handled.
+ * Current state of the order. See the [orders tutorial](https://docs.goshippo.com/docs/orders/orders/) for the logic of how the status is handled.
  */
 export const OrderStatusEnum = {
   Unknown: "UNKNOWN",
@@ -21,10 +18,7 @@ export const OrderStatusEnum = {
   Shipped: "SHIPPED",
 } as const;
 /**
- * Current state of the order. See the [orders tutorial](https://docs.goshippo.com/docs/orders/orders/)
- *
- * @remarks
- * for the logic of how the status is handled.
+ * Current state of the order. See the [orders tutorial](https://docs.goshippo.com/docs/orders/orders/) for the logic of how the status is handled.
  */
 export type OrderStatusEnum = ClosedEnum<typeof OrderStatusEnum>;
 

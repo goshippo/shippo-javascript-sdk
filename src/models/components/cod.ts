@@ -10,11 +10,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Secured funds include money orders, certified cheques and others (see
+ * Secured funds include money orders, certified cheques and others (see [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
  *
  * @remarks
- * [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
- * If no payment_method inputted the value defaults to "ANY".)
+ * If no `payment_method` is provided, the value defaults to "ANY".
  */
 export const PaymentMethod = {
   SecuredFunds: "SECURED_FUNDS",
@@ -22,11 +21,10 @@ export const PaymentMethod = {
   Any: "ANY",
 } as const;
 /**
- * Secured funds include money orders, certified cheques and others (see
+ * Secured funds include money orders, certified cheques and others (see [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
  *
  * @remarks
- * [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
- * If no payment_method inputted the value defaults to "ANY".)
+ * If no `payment_method` is provided, the value defaults to "ANY".
  */
 export type PaymentMethod = ClosedEnum<typeof PaymentMethod>;
 
@@ -43,11 +41,10 @@ export type Cod = {
    */
   currency?: string | undefined;
   /**
-   * Secured funds include money orders, certified cheques and others (see
+   * Secured funds include money orders, certified cheques and others (see [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
    *
    * @remarks
-   * [UPS](https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html) for details).
-   * If no payment_method inputted the value defaults to "ANY".)
+   * If no `payment_method` is provided, the value defaults to "ANY".
    */
   paymentMethod?: PaymentMethod | undefined;
 };

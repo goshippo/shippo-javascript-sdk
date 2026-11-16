@@ -13,11 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export type RmaNumber = {
   /**
-   * Custom prefix for RMA number field (ZPL labels only). Up to 11 characters, including trailing
-   *
-   * @remarks
-   * spaces. Empty string indicates removal of default prefix. To use the default prefix, do not include
-   * this property.
+   * Custom prefix for RMA number field (ZPL labels only). Up to 11 characters, including trailing spaces. Empty string indicates removal of default prefix. To use the default prefix, do not include this property.
    */
   prefix?: string | undefined;
   /**

@@ -16,10 +16,7 @@ import {
 } from "./addresscompletecreaterequest.js";
 
 /**
- * Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only
- *
- * @remarks
- * supported for DHL Express.
+ * Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only supported for DHL Express.
  */
 export const BuildingLocationType = {
   BackDoor: "Back Door",
@@ -36,10 +33,7 @@ export const BuildingLocationType = {
   SideDoor: "Side Door",
 } as const;
 /**
- * Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only
- *
- * @remarks
- * supported for DHL Express.
+ * Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only supported for DHL Express.
  */
 export type BuildingLocationType = ClosedEnum<typeof BuildingLocationType>;
 
@@ -64,18 +58,11 @@ export type BuildingType = ClosedEnum<typeof BuildingType>;
  */
 export type Location = {
   /**
-   * The pickup address, which includes your name, company name, street address, city, state, zip code,
-   *
-   * @remarks
-   * country, phone number, and email address (strings). Special characters should not be included in
-   * any address element, especially name, company, and email.
+   * The pickup address, which includes your name, company name, street address, city, state, zip code, country, phone number, and email address (strings). Special characters should not be included in any address element, especially name, company, and email.
    */
   address: AddressCompleteCreateRequest;
   /**
-   * Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only
-   *
-   * @remarks
-   * supported for DHL Express.
+   * Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only supported for DHL Express.
    */
   buildingLocationType: BuildingLocationType;
   /**

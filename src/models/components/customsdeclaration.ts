@@ -98,10 +98,7 @@ export type CustomsDeclaration = {
    */
   certify: boolean;
   /**
-   * Name of the person who created the customs declaration and is responsible for the validity of all
-   *
-   * @remarks
-   * information provided.
+   * Name of the person who created the customs declaration and is responsible for the validity of all information provided.
    */
   certifySigner: string;
   commercialInvoice?: boolean | undefined;
@@ -153,10 +150,7 @@ export type CustomsDeclaration = {
    */
   license?: string | undefined;
   /**
-   * A string of up to 100 characters that can be filled with any additional information you
-   *
-   * @remarks
-   * want to attach to the object.
+   * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
    */
   metadata?: string | undefined;
   /**
@@ -164,12 +158,7 @@ export type CustomsDeclaration = {
    */
   notes?: string | undefined;
   /**
-   * Indicates the shipment goes to a business (B2B) rather than a consumer. Newly created
-   *
-   * @remarks
-   * declarations default to false when the field is not provided; declarations created before
-   * the field existed return null, which is treated as false. When true, EU product
-   * identifiers are not required on the customs items.
+   * Indicates the shipment goes to a business (B2B) rather than a consumer. Newly created declarations default to false when the field is not provided; declarations created before the field existed return null, which is treated as false. When true, EU product identifiers are not required on the customs items.
    */
   recipientIsBusiness: boolean;
   /**
@@ -184,10 +173,9 @@ export type CustomsDeclaration = {
    */
   contentsType: string;
   /**
-   * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most
+   * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most other shipments from the US, `NOEEI_30_37_a` is applicable.
    *
    * @remarks
-   * other shipments from the US, `NOEEI_30_37_a` is applicable.
    * Allowed values available [here](/shippoapi/public-api/customs-declaration-eelpfc)
    */
   eelPfc?: string | undefined;

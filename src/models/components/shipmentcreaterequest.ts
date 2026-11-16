@@ -58,8 +58,7 @@ export type ShipmentCreateRequest = {
    * Date the shipment will be tendered to the carrier. Must be in the format `2014-01-18T00:35:03.463Z`.
    *
    * @remarks
-   * Defaults to current date and time if no value is provided. Please note that some carriers require this value to
-   * be in the future, on a working day, or similar.
+   * Defaults to current date and time if no value is provided. Please note that some carriers require this value to be in the future, on a working day, or similar.
    */
   shipmentDate?: string | undefined;
   addressFrom: AddressCreateRequest | string;
@@ -68,10 +67,7 @@ export type ShipmentCreateRequest = {
   customsDeclaration?: CustomsDeclarationCreateRequest | string | undefined;
   async?: boolean | undefined;
   /**
-   * List of [Carrier Accounts](/shippoapi/public-api/carrier-accounts) `object_id`s used to filter
-   *
-   * @remarks
-   * the returned rates.  If set, only rates from these carriers will be returned.
+   * List of [Carrier Accounts](/shippoapi/public-api/carrier-accounts) `object_id`s used to filter the returned rates. If set, only rates from these carriers will be returned.
    */
   carrierAccounts?: Array<string> | undefined;
   /**

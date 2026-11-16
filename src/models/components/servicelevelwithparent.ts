@@ -27,11 +27,9 @@ export type ServiceLevelWithParent = {
    */
   name?: string | undefined;
   /**
-   * Further clarification of the service. For FedEx, a value of `ONERATE` indicates this
+   * Further clarification of the service. For FedEx, a value of `ONERATE` indicates this rate is a FedEx One Rate variant of the same service level — it shares the same `token` as the standard-rate object but is a separate rate with its own `amount`.
    *
    * @remarks
-   * rate is a FedEx One Rate variant of the same service level — it shares the same
-   * `token` as the standard-rate object but is a separate rate with its own `amount`.
    * Standard (non-One Rate) rates have an empty string here.
    */
   terms?: string | undefined;

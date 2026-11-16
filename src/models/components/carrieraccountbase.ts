@@ -22,22 +22,18 @@ export type CarrierAccountBaseParameters =
 
 export type CarrierAccountBase = {
   /**
-   * Unique identifier of the account. Please check the [carrier accounts tutorial](https://docs.goshippo.com/docs/carriers/carrieraccounts/)
+   * Unique identifier of the account. Please check the [carrier accounts tutorial](https://docs.goshippo.com/docs/carriers/carrieraccounts/) page for the `account_id` per carrier.
    *
    * @remarks
-   * page for the `account_id` per carrier.
    * To protect account information, this field will be masked in any API response.
    */
   accountId: string;
   /**
-   * Determines whether the account is active. When creating a shipment, if no `carrier_accounts` are explicitly
-   *
-   * @remarks
-   * passed Shippo will query all carrier accounts that have this field set. By default, this is set to True.
+   * Determines whether the account is active. When creating a shipment, if no `carrier_accounts` are explicitly passed Shippo will query all carrier accounts that have this field set. By default, this is set to True.
    */
   active?: boolean | undefined;
   /**
-   * Carrier token, see [Carriers](/shippoapi/public-api/carriers)
+   * Carrier token, see [Carriers](/shippoapi/public-api/carriers).
    *
    * @remarks
    * Please check the [carrier accounts tutorial](https://docs.goshippo.com/docs/carriers/carrieraccounts/) page for all supported carriers.

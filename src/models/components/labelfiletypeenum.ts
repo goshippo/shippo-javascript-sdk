@@ -6,10 +6,7 @@ import * as z from "zod/v4-mini";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
- * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from
- *
- * @remarks
- * [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
+ * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
  */
 export const LabelFileTypeEnum = {
   Png: "PNG",
@@ -24,10 +21,7 @@ export const LabelFileTypeEnum = {
   Zplii: "ZPLII",
 } as const;
 /**
- * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from
- *
- * @remarks
- * [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
+ * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
  */
 export type LabelFileTypeEnum = ClosedEnum<typeof LabelFileTypeEnum>;
 

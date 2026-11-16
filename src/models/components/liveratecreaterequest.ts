@@ -17,22 +17,14 @@ import {
 import { Parcel, Parcel$Outbound, Parcel$outboundSchema } from "./parcel.js";
 
 /**
- * The sender address, which includes your name, company name, street address, city, state, zip code,
- *
- * @remarks
- * country, phone number, and email address (strings). Special characters should not be included in
- * any address element, especially name, company, and email.
+ * The sender address, which includes your name, company name, street address, city, state, zip code, country, phone number, and email address (strings). Special characters should not be included in any address element, especially name, company, and email.
  */
 export type LiveRateCreateRequestAddressFrom =
   | AddressCompleteCreateRequest
   | string;
 
 /**
- * The recipient address, which includes the recipient's name, company name, street address, city, state, zip code,
- *
- * @remarks
- * country, phone number, and email address (strings). Special characters should not be included in
- * any address element, especially name, company, and email.
+ * The recipient address, which includes the recipient's name, company name, street address, city, state, zip code, country, phone number, and email address (strings). Special characters should not be included in any address element, especially name, company, and email.
  */
 export type LiveRateCreateRequestAddressTo =
   | AddressCompleteCreateRequest
@@ -45,19 +37,11 @@ export type LiveRateCreateRequestParcel = Parcel | string;
 
 export type LiveRateCreateRequest = {
   /**
-   * The sender address, which includes your name, company name, street address, city, state, zip code,
-   *
-   * @remarks
-   * country, phone number, and email address (strings). Special characters should not be included in
-   * any address element, especially name, company, and email.
+   * The sender address, which includes your name, company name, street address, city, state, zip code, country, phone number, and email address (strings). Special characters should not be included in any address element, especially name, company, and email.
    */
   addressFrom?: AddressCompleteCreateRequest | string | undefined;
   /**
-   * The recipient address, which includes the recipient's name, company name, street address, city, state, zip code,
-   *
-   * @remarks
-   * country, phone number, and email address (strings). Special characters should not be included in
-   * any address element, especially name, company, and email.
+   * The recipient address, which includes the recipient's name, company name, street address, city, state, zip code, country, phone number, and email address (strings). Special characters should not be included in any address element, especially name, company, and email.
    */
   addressTo: AddressCompleteCreateRequest | string;
   /**
