@@ -6,10 +6,9 @@ import * as z from "zod/v4-mini";
 import { ClosedEnum } from "../../types/enums.js";
 
 /**
- * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most
+ * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most other shipments from the US, `NOEEI_30_37_a` is applicable.
  *
  * @remarks
- * other shipments from the US, `NOEEI_30_37_a` is applicable.
  * Allowed values available [here](/shippoapi/public-api/customs-declaration-eelpfc)
  */
 export const CustomsDeclarationEelPfcEnum = {
@@ -20,10 +19,9 @@ export const CustomsDeclarationEelPfcEnum = {
   AesItn: "AES_ITN",
 } as const;
 /**
- * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most
+ * EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most other shipments from the US, `NOEEI_30_37_a` is applicable.
  *
  * @remarks
- * other shipments from the US, `NOEEI_30_37_a` is applicable.
  * Allowed values available [here](/shippoapi/public-api/customs-declaration-eelpfc)
  */
 export type CustomsDeclarationEelPfcEnum = ClosedEnum<

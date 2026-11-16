@@ -82,8 +82,7 @@ export type AddressCreateRequest = {
    * @remarks
    *
    * Name of a city. When creating a Quote Address, sending a city is optional but will yield more accurate Rates.
-   * Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state
-   * or a ZIP code (see below), if known, it will yield more accurate results.
+   * Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state or a ZIP code (see below), if known, to get more accurate results.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -96,9 +95,7 @@ export type AddressCreateRequest = {
    *
    * @remarks
    *
-   * State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some
-   * countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers
-   * only accept two or three character state abbreviations.
+   * State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some countries (i.e. Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers only accept two or three character state abbreviations.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -111,8 +108,7 @@ export type AddressCreateRequest = {
    *
    * @remarks
    *
-   * Postal code of an Address. When creating a Quote Addresses, sending a ZIP is optional but will yield more
-   * accurate Rates.
+   * Postal code of an Address. When creating a Quote Address, sending a ZIP is optional but will yield more accurate Rates.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -130,10 +126,9 @@ export type AddressCreateRequest = {
    */
   country: string;
   /**
-   * Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This
+   * Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.
    *
    * @remarks
-   * increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -156,10 +151,7 @@ export type AddressCreateRequest = {
   email?: string | undefined;
   isResidential?: boolean | undefined;
   /**
-   * A string of up to 100 characters that can be filled with any additional information you want
-   *
-   * @remarks
-   * to attach to the object.
+   * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
    */
   metadata?: string | undefined;
   /**

@@ -9,12 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Used for some Service Levels to link to the more "generic" version of this Service Level - for example,
- *
- * @remarks
- * if this Service Level is a variation specific to shipments to Europe("ups_saver_eu"), the "parent" is
- * the fully generic version ("ups_saver"). Helpful when displaying Service Levels to users. Has the same
- * structure of the servicelevel - "name", "token", "terms", and "extended_token", or it is otherwise null.
+ * Used for some Service Levels to link to the more "generic" version of this Service Level - for example, if this Service Level is a variation specific to shipments to Europe ("ups_saver_eu"), the "parent" is the fully generic version ("ups_saver"). Helpful when displaying Service Levels to users. Has the same structure as the servicelevel - "name", "token", "terms", and "extended_token", or it is otherwise null.
  */
 export type ServiceLevel = {
   /**
@@ -26,11 +21,9 @@ export type ServiceLevel = {
    */
   name?: string | undefined;
   /**
-   * Further clarification of the service. For FedEx, a value of `ONERATE` indicates this
+   * Further clarification of the service. For FedEx, a value of `ONERATE` indicates this rate is a FedEx One Rate variant of the same service level — it shares the same `token` as the standard-rate object but is a separate rate with its own `amount`.
    *
    * @remarks
-   * rate is a FedEx One Rate variant of the same service level — it shares the same
-   * `token` as the standard-rate object but is a separate rate with its own `amount`.
    * Standard (non-One Rate) rates have an empty string here.
    */
   terms?: string | undefined;

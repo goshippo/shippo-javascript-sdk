@@ -31,8 +31,7 @@ import { Result } from "../types/fp.js";
  * Retrieves a user parcel template
  *
  * @remarks
- * Returns the parcel template information for a specific user parcel
- * template, identified by the object ID.
+ * Returns the parcel template information for a specific user parcel template, identified by the object ID.
  */
 export function userParcelTemplatesGet(
   client: ShippoCore,
@@ -107,6 +106,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "SHIPPO-ACCOUNT-ID": encodeSimple(
+      "SHIPPO-ACCOUNT-ID",
+      client._options.shippoAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
     "SHIPPO-API-VERSION": encodeSimple(
       "SHIPPO-API-VERSION",
       client._options.shippoApiVersion,

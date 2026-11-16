@@ -11,6 +11,10 @@ export type ListOrdersGlobals = {
    * Optional string used to pick a non-default API version to use. See our [API version](https://docs.goshippo.com/docs/api_concepts/apiversioning/) guide.
    */
   shippoApiVersion?: string | undefined;
+  /**
+   * Optional. The object ID of a Managed Shippo Account. Platform accounts set this to make the request on behalf of one of their managed accounts. See the [Platform accounts guide](https://docs.goshippo.com/platform-accounts/platform-using-accounts).
+   */
+  shippoAccountId?: string | undefined;
 };
 
 export type ListOrdersRequest = {
@@ -31,17 +35,11 @@ export type ListOrdersRequest = {
    */
   shopApp?: components.OrderShopAppEnum | undefined;
   /**
-   * Filter orders created after the input date and time (ISO 8601 UTC format).  This is based on the
-   *
-   * @remarks
-   * `placed_at` field, meaning when the order has been placed, not when the order object was created.
+   * Filter orders created after the input date and time (ISO 8601 UTC format). This is based on the `placed_at` field, meaning when the order has been placed, not when the order object was created.
    */
   startDate?: string | undefined;
   /**
-   * Filter orders created before the input date and time (ISO 8601 UTC format).  This is based on the
-   *
-   * @remarks
-   * `placed_at` field, meaning when the order has been placed, not when the order object was created.
+   * Filter orders created before the input date and time (ISO 8601 UTC format). This is based on the `placed_at` field, meaning when the order has been placed, not when the order object was created.
    */
   endDate?: string | undefined;
 };

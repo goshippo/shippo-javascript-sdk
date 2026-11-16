@@ -47,8 +47,7 @@ export type CoreRate = {
    * Service level name, e.g. `Priority Mail` or `FedEx Ground®`.
    *
    * @remarks
-   * A service level commonly defines the transit time of a Shipment (e.g., Express vs. Standard),
-   * along with other properties.  These names vary depending on the provider.
+   * A service level commonly defines the transit time of a Shipment (e.g., Express vs. Standard), along with other properties. These names vary depending on the provider.
    * See [Service Levels](/shippoapi/public-api/service-levels).
    */
   servicelevelName?: string | undefined;

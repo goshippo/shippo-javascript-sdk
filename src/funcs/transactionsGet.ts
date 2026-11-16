@@ -32,6 +32,7 @@ import { Result } from "../types/fp.js";
  *
  * @remarks
  * Returns an existing transaction using an object ID.
+ * Each call returns a new `label_url` with a new expiration time. Use this endpoint to get a new `label_url` when the `Expires` value on the current `label_url` is in the past. Send one call for each transaction.
  */
 export function transactionsGet(
   client: ShippoCore,
@@ -102,6 +103,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "SHIPPO-ACCOUNT-ID": encodeSimple(
+      "SHIPPO-ACCOUNT-ID",
+      client._options.shippoAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
     "SHIPPO-API-VERSION": encodeSimple(
       "SHIPPO-API-VERSION",
       client._options.shippoApiVersion,

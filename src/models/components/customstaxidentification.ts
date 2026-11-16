@@ -37,10 +37,7 @@ export type CustomsTaxIdentificationType = ClosedEnum<
 >;
 
 /**
- * Tax identification that may be required to ship in certain countries. Typically used to assess duties on
- *
- * @remarks
- * goods that are crossing a border.
+ * Tax identification that may be required to ship in certain countries. Typically used to assess duties on goods that are crossing a border.
  */
 export type CustomsTaxIdentification = {
   /**

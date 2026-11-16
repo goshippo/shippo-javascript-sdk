@@ -8,10 +8,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Message returned with supporting information from a request. In some cases this can be an error message,
- *
- * @remarks
- * for example a timeout from a carrier. If available, the origin of the message is displayed in `source`.
+ * Message returned with supporting information from a request. In some cases this can be an error message, for example a timeout from a carrier. If available, the origin of the message is displayed in `source`.
  */
 export type ResponseMessage = {
   /**

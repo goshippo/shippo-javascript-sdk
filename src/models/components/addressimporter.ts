@@ -48,9 +48,7 @@ export type AddressImporter = {
    *
    * @remarks
    *
-   * State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some
-   * countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers
-   * only accept two or three character state abbreviations.
+   * State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some countries (i.e. Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers only accept two or three character state abbreviations.
    */
   state?: string | undefined;
   /**
@@ -58,18 +56,14 @@ export type AddressImporter = {
    */
   zip?: string | undefined;
   /**
-   * Example: `US` or `DE`. All accepted values can be found on the
+   * Example: `US` or `DE`. All accepted values can be found on the [Official ISO Website](http://www.iso.org/).
    *
    * @remarks
-   * [Official ISO Website](http://www.iso.org/).
    * Sending a country is always required.
    */
   country?: string | undefined;
   /**
-   * Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This
-   *
-   * @remarks
-   * increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.
+   * Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.
    */
   phone?: string | undefined;
   /**

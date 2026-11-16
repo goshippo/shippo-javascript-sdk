@@ -99,8 +99,7 @@ export type Address = {
    * @remarks
    *
    * Name of a city. When creating a Quote Address, sending a city is optional but will yield more accurate Rates.
-   * Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state
-   * or a ZIP code (see below), if known, it will yield more accurate results.
+   * Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state or a ZIP code (see below), if known, to get more accurate results.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -113,9 +112,7 @@ export type Address = {
    *
    * @remarks
    *
-   * State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some
-   * countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers
-   * only accept two or three character state abbreviations.
+   * State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some countries (i.e. Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers only accept two or three character state abbreviations.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -128,8 +125,7 @@ export type Address = {
    *
    * @remarks
    *
-   * Postal code of an Address. When creating a Quote Addresses, sending a ZIP is optional but will yield more
-   * accurate Rates.
+   * Postal code of an Address. When creating a Quote Address, sending a ZIP is optional but will yield more accurate Rates.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -147,10 +143,9 @@ export type Address = {
    */
   country: string;
   /**
-   * Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This
+   * Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.
    *
    * @remarks
-   * increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |
@@ -173,10 +168,7 @@ export type Address = {
   email?: string | undefined;
   isResidential?: boolean | undefined;
   /**
-   * A string of up to 100 characters that can be filled with any additional information you want
-   *
-   * @remarks
-   * to attach to the object.
+   * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
    */
   metadata?: string | undefined;
   /**
@@ -211,18 +203,11 @@ export type Address = {
    */
   objectOwner?: string | undefined;
   /**
-   * Date and time of last Address update. Since you cannot update Addresses after they were created, this time
-   *
-   * @remarks
-   * stamp reflects the time when the Address was changed by Shippo's systems for the last time, e.g., during the
-   * approximation of one or more values.
+   * Date and time of last Address update. Since you cannot update Addresses after they were created, this time stamp reflects the time when the Address was changed by Shippo's systems for the last time, e.g., during the approximation of one or more values.
    */
   objectUpdated?: Date | undefined;
   /**
-   * Object that contains information regarding if an address had been validated or not. Also contains any messages
-   *
-   * @remarks
-   * generated during validation. Children keys are `is_valid`(boolean) and `messages`(array).
+   * Object that contains information regarding if an address had been validated or not. Also contains any messages generated during validation. Children keys are `is_valid`(boolean) and `messages`(array).
    */
   validationResults?: AddressValidationResults | undefined;
   /**

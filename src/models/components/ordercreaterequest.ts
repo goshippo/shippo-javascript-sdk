@@ -41,10 +41,7 @@ export type OrderCreateRequest = {
    */
   orderNumber?: string | undefined;
   /**
-   * Current state of the order. See the [orders tutorial](https://docs.goshippo.com/docs/orders/orders/)
-   *
-   * @remarks
-   * for the logic of how the status is handled.
+   * Current state of the order. See the [orders tutorial](https://docs.goshippo.com/docs/orders/orders/) for the logic of how the status is handled.
    */
   orderStatus?: OrderStatusEnum | undefined;
   /**

@@ -62,3 +62,13 @@ const value: components.UPSConnectExistingOwnAccountParameters = {
 };
 ```
 
+### `components.UPSConnectExistingOwnAccountStreamlinedParameters`
+
+```typescript
+const value: components.UPSConnectExistingOwnAccountStreamlinedParameters = {
+  accountNumber: "1989",
+  billingAddressCountryIso2: "BE",
+  upsAgreements: false,
+};
+```
+

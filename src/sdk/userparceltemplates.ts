@@ -36,13 +36,7 @@ export class UserParcelTemplates extends ClientSDK {
    * @remarks
    * Creates a new user parcel template.
    *
-   * You can choose to create a
-   * parcel template using a preset carrier template as a starting point, or
-   * you can create an entirely custom one. To use a preset carrier template,
-   * pass in a unique template token from [this list](/shippoapi/public-api/parcel-templates)
-   * plus the weight fields (**weight** and **weight_unit**). Otherwise, omit
-   * the template field and pass the other fields, for the weight, length, height,
-   * and depth, as well as their units."
+   * You can choose to create a parcel template using a preset carrier template as a starting point, or you can create an entirely custom one. To use a preset carrier template, pass in a unique template token from [this list](/shippoapi/public-api/parcel-templates) plus the weight fields (**weight** and **weight_unit**). Otherwise, omit the template field and pass the other fields, for the weight, length, height, and depth, as well as their units.
    */
   async create(
     request: components.UserParcelTemplateCreateRequest,
@@ -76,8 +70,7 @@ export class UserParcelTemplates extends ClientSDK {
    * Retrieves a user parcel template
    *
    * @remarks
-   * Returns the parcel template information for a specific user parcel
-   * template, identified by the object ID.
+   * Returns the parcel template information for a specific user parcel template, identified by the object ID.
    */
   async get(
     userParcelTemplateObjectId: string,

@@ -35,10 +35,7 @@ export type Manifest = {
    */
   shipmentDate: string;
   /**
-   * IDs transactions to use. If you set this to null or not send this parameter,
-   *
-   * @remarks
-   * Shippo will automatically assign all applicable transactions.
+   * IDs of the transactions to use. If you set this to null or don't send this parameter, Shippo will automatically assign all applicable transactions.
    */
   transactions?: Array<string> | undefined;
   /**

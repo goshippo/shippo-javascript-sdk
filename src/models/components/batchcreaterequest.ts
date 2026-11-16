@@ -19,23 +19,18 @@ export type BatchCreateRequest = {
    * ID of the Carrier Account object to use as the default for all shipments in this Batch.
    *
    * @remarks
-   * The carrier account can be changed on a per-shipment basis by changing the carrier_account in the
-   * corresponding BatchShipment object.
+   * The carrier account can be changed on a per-shipment basis by changing the carrier_account in the corresponding BatchShipment object.
    */
   defaultCarrierAccount: string;
   /**
    * Token of the service level to use as the default for all shipments in this Batch.
    *
    * @remarks
-   * The servicelevel can be changed on a per-shipment basis by changing the servicelevel_token in the
-   * corresponding BatchShipment object. [Servicelevel tokens can be found here.](/shippoapi/public-api/service-levels)
+   * The servicelevel can be changed on a per-shipment basis by changing the servicelevel_token in the corresponding BatchShipment object. [Servicelevel tokens can be found here.](/shippoapi/public-api/service-levels)
    */
   defaultServicelevelToken: string;
   /**
-   * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from
-   *
-   * @remarks
-   * [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
+   * Print format of the [label](https://docs.goshippo.com/docs/shipments/shippinglabelsizes/). If empty, will use the default format set from [the Shippo dashboard.](https://apps.goshippo.com/settings/labels)
    */
   labelFiletype?: LabelFileTypeEnum | undefined;
   /**

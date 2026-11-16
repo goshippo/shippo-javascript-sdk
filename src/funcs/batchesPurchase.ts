@@ -33,8 +33,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Purchases an existing batch with a status of `VALID`.
  * Once you send a POST request to the purchase endpoint the batch status will change to `PURCHASING`.
- * When all the shipments are purchased, the status will change to `PURCHASED` and you will receive a
- * `batch_purchased` webhook indicating that the batch has been purchased
+ * When all the shipments are purchased, the status will change to `PURCHASED` and you will receive a `batch_purchased` webhook indicating that the batch has been purchased.
  */
 export function batchesPurchase(
   client: ShippoCore,
@@ -105,6 +104,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "SHIPPO-ACCOUNT-ID": encodeSimple(
+      "SHIPPO-ACCOUNT-ID",
+      client._options.shippoAccountId,
+      { explode: false, charEncoding: "none" },
+    ),
     "SHIPPO-API-VERSION": encodeSimple(
       "SHIPPO-API-VERSION",
       client._options.shippoApiVersion,

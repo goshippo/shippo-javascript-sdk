@@ -19,18 +19,14 @@ import {
  */
 export type CustomsExporterIdentification = {
   /**
-   * Economic Operators' Registration and Identification (EORI) number. Must start with a 2 character
+   * Economic Operators' Registration and Identification (EORI) number. Must start with a 2 character country code followed by a 6-17 character alphanumeric identifier (e.g. PL1234567890ABCDE).
    *
    * @remarks
-   * country code followed by a 6-17 character alphanumeric identifier (e.g. PL1234567890ABCDE).
    * [More information on EORI.](https://ec.europa.eu/taxation_customs/business/customs-procedures/general-overview/economic-operators-registration-identification-number-eori_en)
    */
   eoriNumber?: string | undefined;
   /**
-   * Tax identification that may be required to ship in certain countries. Typically used to assess duties on
-   *
-   * @remarks
-   * goods that are crossing a border.
+   * Tax identification that may be required to ship in certain countries. Typically used to assess duties on goods that are crossing a border.
    */
   taxId?: CustomsTaxIdentification | undefined;
 };

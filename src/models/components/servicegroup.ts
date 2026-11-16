@@ -22,13 +22,7 @@ export type ServiceGroup = {
    */
   description: string;
   /**
-   * String representation of an amount to be returned as the flat rate
-   *
-   * @remarks
-   * if 1. The service group is of type `LIVE_RATE` and no matching rates
-   * were found; or 2. The service group is of type `FLAT_RATE`. Either
-   * integers or decimals are accepted. Required unless type is
-   * `FREE_SHIPPING`
+   * String representation of an amount to be returned as the flat rate if 1. The service group is of type `LIVE_RATE` and no matching rates were found; or 2. The service group is of type `FLAT_RATE`. Either integers or decimals are accepted. Required unless type is `FREE_SHIPPING`
    */
   flatRate?: string | undefined;
   /**
@@ -40,11 +34,7 @@ export type ServiceGroup = {
    */
   freeShippingThresholdCurrency?: string | undefined;
   /**
-   * For service groups of type `FREE_SHIPPING`, this field must be required to configure the minimum
-   *
-   * @remarks
-   * cart total (total cost of items in the cart) for this service group to be returned for rates at
-   * checkout. Optional unless type is `FREE_SHIPPING`
+   * For service groups of type `FREE_SHIPPING`, this field must be required to configure the minimum cart total (total cost of items in the cart) for this service group to be returned for rates at checkout. Optional unless type is `FREE_SHIPPING`
    */
   freeShippingThresholdMin?: string | undefined;
   /**

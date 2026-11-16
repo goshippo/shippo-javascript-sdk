@@ -13,18 +13,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export type InvoiceNumber = {
   /**
-   * Custom prefix for invoice number field (ZPL labels only). Up to 11 characters, including trailing
-   *
-   * @remarks
-   * spaces. Empty string indicates removal of default prefix. To use the default prefix, do not include
-   * this property.
+   * Custom prefix for invoice number field (ZPL labels only). Up to 11 characters, including trailing spaces. Empty string indicates removal of default prefix. To use the default prefix, do not include this property.
    */
   prefix?: string | undefined;
   /**
-   * Optional text to be printed on the shipping label for invoice number. Up to 40 characters. If
+   * Optional text to be printed on the shipping label for invoice number. Up to 40 characters. If provided, this will be used on the label instead of shipment.customs_declaration.invoice.
    *
    * @remarks
-   * provided, this will be used on the label instead of shipment.customs_declaration.invoice.
    *
    * **Carrier-Specific Constraints:**
    * | Carrier | Constraints |

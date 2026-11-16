@@ -21,11 +21,7 @@ import {
 } from "./dangerousgoodslithiumbatteries.js";
 
 /**
- * Container for specifying the presence of dangerous materials. This is specific to USPS, and if any contents
- *
- * @remarks
- * are provided, only certain USPS service levels will be eligible. For more information, see our
- * [guide on hazardous or dangerous materials shipping](https://docs.goshippo.com/docs/shipments/hazmat/).
+ * Container for specifying the presence of dangerous materials. This is specific to USPS, and if any contents are provided, only certain USPS service levels will be eligible. For more information, see our [guide on hazardous or dangerous materials shipping](https://docs.goshippo.com/docs/shipments/hazmat/).
  */
 export type DangerousGoodsObject = {
   /**

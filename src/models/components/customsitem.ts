@@ -26,27 +26,15 @@ export type CustomsItem = {
    */
   eccnEar99?: string | undefined;
   /**
-   * Marks the item as belonging to an EU-exempt product category. Exempt items do not need
-   *
-   * @remarks
-   * product identifiers on shipments that meet the EU product identifier conditions
-   * (EU destination, non-EU origin, MERCHANDISE contents, recipient not a business).
+   * Marks the item as belonging to an EU-exempt product category. Exempt items do not need product identifiers on shipments that meet the EU product identifier conditions (EU destination, non-EU origin, MERCHANDISE contents, recipient not a business).
    */
   euExemptCategory: boolean;
   /**
-   * Product identifier assigned by the manufacturer. Up to 100 characters; some carriers
-   *
-   * @remarks
-   * accept fewer and reject longer values at label purchase. Required together with
-   * `sku_code` on every non-exempt item when the shipment meets the EU product
-   * identifier conditions.
+   * Product identifier assigned by the manufacturer. Up to 100 characters; some carriers accept fewer and reject longer values at label purchase. Required together with `sku_code` on every non-exempt item when the shipment meets the EU product identifier conditions.
    */
   manufacturerCode?: string | undefined;
   /**
-   * Standardized product identifier such as a GTIN. Up to 100 characters. Never required,
-   *
-   * @remarks
-   * but recommended for EU-bound shipments when one exists.
+   * Standardized product identifier such as a GTIN. Up to 100 characters. Never required, but recommended for EU-bound shipments when one exists.
    */
   manufacturerStandardCode?: string | undefined;
   /**
@@ -54,10 +42,7 @@ export type CustomsItem = {
    */
   massUnit: WeightUnitEnum;
   /**
-   * A string of up to 100 characters that can be filled with any additional information you
-   *
-   * @remarks
-   * want to attach to the object.
+   * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
    */
   metadata?: string | undefined;
   /**
@@ -72,20 +57,15 @@ export type CustomsItem = {
    */
   originCountry: string;
   /**
-   * Quantity of this item in the shipment you send.  Must be greater than 0.
+   * Quantity of this item in the shipment you send. Must be greater than 0.
    */
   quantity: number;
   /**
-   * SKU or merchant-assigned product code of the item. Up to 100 characters; some carriers
-   *
-   * @remarks
-   * accept fewer and reject longer values at label purchase. Required together with
-   * `manufacturer_code` on every non-exempt item when the shipment meets the EU product
-   * identifier conditions; some carriers also use it outside the EU.
+   * SKU or merchant-assigned product code of the item. Up to 100 characters; some carriers accept fewer and reject longer values at label purchase. Required together with `manufacturer_code` on every non-exempt item when the shipment meets the EU product identifier conditions; some carriers also use it outside the EU.
    */
   skuCode?: string | undefined;
   /**
-   * HS code of the item, which is required by some carriers. If `tariff_number` is not provided, `hs_code` will be used.  If both `hs_code` and `tariff_number` are provided, `tariff_number` will be used. 50 character limit.
+   * HS code of the item, which is required by some carriers. If `tariff_number` is not provided, `hs_code` will be used. If both `hs_code` and `tariff_number` are provided, `tariff_number` will be used. 50 character limit.
    */
   hsCode?: string | undefined;
   /**
@@ -97,10 +77,7 @@ export type CustomsItem = {
    */
   valueAmount: string;
   /**
-   * Currency used for value_amount. The [official ISO 4217](http://www.xe.com/iso4217.php)
-   *
-   * @remarks
-   * currency codes are used, e.g.  `USD` or `EUR`.
+   * Currency used for value_amount. The [official ISO 4217](http://www.xe.com/iso4217.php) currency codes are used, e.g. `USD` or `EUR`.
    */
   valueCurrency: string;
   /**

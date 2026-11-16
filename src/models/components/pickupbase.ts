@@ -23,10 +23,7 @@ export type PickupBase = {
    */
   location: Location;
   /**
-   * A string of up to 100 characters that can be filled with any additional information you
-   *
-   * @remarks
-   * want to attach to the object.
+   * A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
    */
   metadata?: string | undefined;
   /**
